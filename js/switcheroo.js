@@ -591,10 +591,13 @@ function showLoadSlotButtons() {
 		var bodyType3 = localStorage.getItem("Slot1_Body_Type3");
 		mySlider4.setValue(bodyType3);
 		
-		//areAdvancedSettingsOpen();
-		//alert(open);
-		//var xd = open;
-		//alert(xd);
+		var xx = document.getElementById("AdvancedSettingsContainer");
+			if (xx.style.display === "none") {
+				var open = "no"
+			}
+			else {
+				var open = "yes"		
+			}
  
 		document.getElementById("AdvancedSettingsContainer").style.display='block'; 
   
@@ -646,19 +649,19 @@ function showLoadSlotButtons() {
 			mySlider8.setValue(breastSizeFemale);
 		}
 		
-		//if (xd =="no") {
-		//	document.getElementById("AdvancedSettingsContainer").style.display='none'; 
-		//	document.getElementById("settingsLoadedPopup").style.display = "block";	
-		//	document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Loaded:" + " " + Sex + " " + Species;
-		//	hideLoadSlotButtons();
-		//	setTimeout(hideLoadedPopup, 4000);
-		//}
-		//else { 
+		if (open =="no") {
+			document.getElementById("AdvancedSettingsContainer").style.display='none'; 
 			document.getElementById("settingsLoadedPopup").style.display = "block";	
 			document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Loaded:" + " " + Sex + " " + Species;
 			hideLoadSlotButtons();
 			setTimeout(hideLoadedPopup, 4000);
-		//}
+		}
+		else { 
+			document.getElementById("settingsLoadedPopup").style.display = "block";	
+			document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Loaded:" + " " + Sex + " " + Species;
+			hideLoadSlotButtons();
+			setTimeout(hideLoadedPopup, 4000);
+		}
 	}
 }
 
@@ -671,18 +674,6 @@ function hideUnblockSettingsError() {
 	document.getElementById("unblockSettingsOkay").style.display='none'; 
 	document.getElementById("unblockSettingsMessage").style.display='none'; 
 	document.getElementById("errorMessageContainer").style.display='none'; 
-}
-
-function areAdvancedSettingsOpen() {
-	var xx = document.getElementById("AdvancedSettingsContainer");
-	if (xx.style.display === "none") {
-		var open = "no"
-		return open;
-	}
-	else {
-		var open = "yes"
-		return open;		
-	}
 }
 
 function logOut() {

@@ -104,6 +104,14 @@
  
 		var bodyType3 = localStorage.getItem("Slot5_Body_Type3");
 		mySlider4.setValue(bodyType3);
+		
+		var xx = document.getElementById("AdvancedSettingsContainer");
+			if (xx.style.display === "none") {
+				var open = "no"
+			}
+			else {
+				var open = "yes"		
+			}
  
 		document.getElementById("AdvancedSettingsContainer").style.display='block'; 
   
@@ -155,9 +163,18 @@
 			mySlider8.setValue(breastSizeFemale);
 		}
  
-		document.getElementById("settingsLoadedPopup").style.display = "block";	
-		document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Loaded:" + " " + Sex + " " + Species;
-		hideLoadSlotButtons();
-		setTimeout(hideLoadedPopup, 4000);
+		if (open =="no") {
+			document.getElementById("AdvancedSettingsContainer").style.display='none'; 
+			document.getElementById("settingsLoadedPopup").style.display = "block";	
+			document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Loaded:" + " " + Sex + " " + Species;
+			hideLoadSlotButtons();
+			setTimeout(hideLoadedPopup, 4000);
+		}
+		else { 
+			document.getElementById("settingsLoadedPopup").style.display = "block";	
+			document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Loaded:" + " " + Sex + " " + Species;
+			hideLoadSlotButtons();
+			setTimeout(hideLoadedPopup, 4000);
+		}
 	}
 }
