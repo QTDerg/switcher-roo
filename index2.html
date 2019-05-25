@@ -1,0 +1,1076 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Switcher-Roo – the way to create the perfect you.</title>
+  <meta name="description" content="Want to be your fursona? With this app you can choose 20+ species, change your gender and modify many body and personality aspects!">
+  <meta name="keywords" content="Switcherroo, Switcher-roo, Furry, Transformation, Tyroo">
+  <meta name="author" content="IgnitioTheDerg">
+
+  <link rel="stylesheet" href="css/styles_mobile_fhd.css?v=1.0">  
+  <link rel="stylesheet" type="text/css" href="css/dhtmlxslider_MFHD.css" id="defaultcss"/>
+  <link rel="stylesheet" type="text/css" href="css/radio_button_style_MFHD.css" id="radioButtonStyle"/>
+  <link rel="icon" 
+      type="image/png" 
+      href="images/favicon.png">
+  <script src="js/dhtmlxslider.js"></script>
+  <script src="js/switcheroo.js"></script>
+  <script src="js/slot2.js"></script>
+  <script src="js/slot3.js"></script>
+  <script src="js/slot4.js"></script>
+  <script src="js/slot5.js"></script>
+  
+<script>
+//(function titleScroller(text) {
+//    document.title = text;
+//    setTimeout(function () {
+//        titleScroller(text.substr(1) + text.substr(0, 1));
+//    }, 250);
+//}(" Switcher-Roo – augment your appearance! The way to create the perfect you. "));
+
+function changeRadioButtonAppearance() {
+		document.getElementById('radioButtonStyle').href='css/radio_button_style_error_MFHD.css';
+	}
+ 
+function error621ChangeSlider() {
+		document.getElementById('defaultcss').href='css/dhtmlxslider_MFHD_error.css';
+	}
+</script>
+
+</head>
+
+<body>
+<div class="siteWidthContainer">
+
+<!-- Popup with settings loaded message -->
+<div class="settingsLoadedPopup" id="settingsLoadedPopup">
+
+	<script>
+	document.getElementById("settingsLoadedPopup").style.display = "none";	
+	</script>
+
+</div>
+
+<!-- Divs with error messages begin here-->
+
+<!-- Container with error messages -->
+<div class="errorMessageContainer" id="errorMessageContainer">	
+	
+	<div class="errorMessageAlignLeft" id="remoteLoginErrorMessage">
+	>Remote login enabled... <br>
+	>Setting sex = female <br>
+	>Setting shy = 100 <br>
+	>Setting tall = 0 <br>
+	>Setting submissive = 100 <br>
+	>Setting fluffiness = 100 <br>
+	>Lock settings enabled <br>
+	>Default profile settings saved <br>
+	>New password saved...
+	<script>
+	document.getElementById("remoteLoginErrorMessage").style.display = "none";	
+	</script>
+	</div>
+	
+	<div class="errorMessageAlignCenter" id="MSSErrorMessage" >
+	UwU <br>
+	>Error//multi_sex_select <br>
+	>processing...<br>
+	<br>
+	Please contact Switcher-Roo support
+	<script>
+	document.getElementById("MSSErrorMessage").style.display = "none";	
+	</script>
+	</div>
+	
+	
+	<div class="errorMessageAlignLeft" id="unblockSettingsMessage">
+	>Error: Please unblock settings to load settings
+	<script>
+		document.getElementById("unblockSettingsMessage").style.display = "none";	
+	</script>
+	</div>
+
+	<div class="errorMessageAlignLeft" id="error69Message">
+	<center>UwU</center>
+	<br>
+	>Error69//lock_settings <br>
+	>lock_setting1 initialized
+	<script>
+		document.getElementById("error69Message").style.display = "none";	
+	</script>
+	</div>
+	
+	<script>
+	document.getElementById("errorMessageContainer").style.display = "none";	
+	</script>
+	
+</div>
+
+<!-- Okay buttons to close errors -->
+
+<div class="RLEOkayContainer" id="RLEOkayContainer" onClick=hideRemoteLoginError()>
+
+	<div class="okay" id="RLEOkay">
+
+	Okay
+	
+		<script>
+			document.getElementById("RLEOkay").style.display = "none";	
+		</script>
+		
+	</div>
+	
+	<script>
+	document.getElementById("RLEOkayContainer").style.display = "none";	
+	</script>
+	
+</div>
+
+<div class="MSSOkayContainer" id="MSSOkayContainer" onClick=hideMSSError()>
+
+	<div class="okay" id="MSSOkay">
+
+	Okay
+	
+		<script>
+			document.getElementById("MSSOkay").style.display = "none";	
+		</script>
+		
+	</div>
+	
+	<script>
+	document.getElementById("MSSOkayContainer").style.display = "none";	
+	</script>
+	
+</div>
+
+
+<div class="unblockSettingsOkayContainer" id="unblockSettingsOkayContainer" onClick=hideUnblockSettingsError()>
+
+	<div class="okay" id="unblockSettingsOkay">
+
+	Okay
+	
+		<script>
+			document.getElementById("unblockSettingsOkay").style.display = "none";	
+		</script>
+		
+	</div>
+
+	<script>
+	document.getElementById("unblockSettingsOkayContainer").style.display = "none";	
+	</script>
+	
+</div>
+
+<div class="error69OkayContainer" id="error69OkayContainer" onClick=hideError69()>
+
+	<div class="okay" id="error69Okay">
+
+	Okay
+	
+		<script>
+			document.getElementById("error69Okay").style.display = "none";	
+		</script>
+		
+	</div>
+
+	<script>
+	document.getElementById("error69OkayContainer").style.display = "none";	
+	</script>
+	
+</div>
+
+<!-- Second slider handle for error 621 --> 
+<div class="secondSliderHandleContainer" id="secondSliderHandleContainer">
+	<div class="secondSliderHandle" id="secondSliderHandle">	
+		<script>
+		document.getElementById("secondSliderHandle").style.display = "none";	
+		</script>
+	</div>
+	<script>
+		document.getElementById("secondSliderHandleContainer").style.display = "none";	
+	</script>
+</div>
+<!-- Divs with error messages end here-->
+
+<!-- Status bar stuff begins here-->
+
+<div class="statusBarContainer" id="statusBarContainer">
+
+	<div class="coverageContainer">
+		
+		<div id="coverage4">
+			<img src="images/coverage_4.png" height="48" width="240">
+		</div>
+		
+		<div id="coverage3">
+			<img src="images/coverage_3.png" height="48" width="240">
+		</div>
+		
+		<div id="coverage2">
+			<img src="images/coverage_2.png" height="48" width="240">
+		</div>
+		
+		<div id="coverage1">
+			<img src="images/coverage_1.png" height="48" width="240">
+		</div>
+		
+		<script>
+		document.getElementById("coverage3").style.display = "none";	
+		document.getElementById("coverage2").style.display = "none";	
+		document.getElementById("coverage1").style.display = "none";	
+		changeCoverageWait();
+		</script>		
+		
+	</div>
+	
+	<div class="currentTime" id="currentTime">
+	6:21 PM
+		<script>
+		currentTime();
+		</script>
+	</div>	
+	
+	<div class="chargeBattery" id="chargeBattery" onclick="batteryCharge()">
+		Charge <br> battery!
+		<script>
+		document.getElementById("chargeBattery").style.display = "none";	
+		</script>
+	</div>
+			
+	<div class="batteryContainer">		
+		
+		<div id="battery_full">
+			<img src="images/battery_full.png" height="48" width="150" align="right">
+		</div>
+		
+		<div id="battery_34">
+			<img src="images/battery_34.png" height="48" width="150" align="right">
+		</div>
+		
+		<div id="battery_half">
+			<img src="images/battery_half.png" height="48" width="150" align="right">
+		</div>
+		
+		<div id="battery_14">
+			<img src="images/battery_14.png" height="48" width="150" align="right">
+		</div>
+		
+		<div id="battery_low">
+			<img src="images/battery_low.png" height="48" width="150" align="right">
+		</div>
+		
+		<div id="battery_34_charging">
+			<img src="images/battery_34_charging.png" height="48" width="150" align="right">
+		</div>
+		
+		<div id="battery_half_charging">
+			<img src="images/battery_half_charging.png" height="48" width="150" align="right">
+		</div>
+		
+		<div id="battery_14_charging">
+			<img src="images/battery_14_charging.png" height="48" width="150" align="right">
+		</div>
+		
+		<div id="battery_low_charging">
+			<img src="images/battery_low_charging.png" height="48" width="150" align="right">
+		</div>
+		
+		<script>
+		document.getElementById("battery_low").style.display = "none";	
+		document.getElementById("battery_14").style.display = "none";	
+		document.getElementById("battery_half").style.display = "none";	
+		document.getElementById("battery_34").style.display = "none";	
+		document.getElementById("battery_low_charging").style.display = "none";	
+		document.getElementById("battery_14_charging").style.display = "none";	
+		document.getElementById("battery_half_charging").style.display = "none";	
+		document.getElementById("battery_34_charging").style.display = "none";	
+		batteryDrain();
+		</script>
+		
+	</div>
+
+</div>
+
+<!-- Status bar ends begins here-->
+
+<div class="switcherLogo">
+  <img src="images/logo.png" height="148" width="892" alt="logo"> 
+</div>
+  
+  <div class="adminPerms" id="adminPermsText">
+  ADMINISTRATOR PERMISSIONS: ENABLED
+	<script>
+	document.getElementById("adminPermsText").style.display = "none";
+	</script>
+  </div>  
+  
+  <div class="processingText" id="processingText">
+  Processing...
+  <script>
+		document.getElementById("processingText").style.display = "none";			
+	</script>
+  </div>
+  
+<div class="container2" id="container2">
+	<div class="lockSettingsImgOpen" id="lockOpen" onclick="closeLock()">
+	<img src="images/lockOpen.png" height="124" width="80"> 
+	</div>
+	
+	<div class="lockSettingsImgClosed" id="lockClosed" onclick="openLock()">
+	<script>
+		document.getElementById("lockClosed").style.display = "none";
+	</script>
+	<img src="images/lockClosed.png" height="124" width="80"> 
+	</div>
+  
+	<div class="lockSettings" onclick="switchLockFunction()">
+	Lock settings
+	</div>
+  
+	<div class="processingContainer">  
+			<div class="processingAnim" id="processingAnim">
+			<img src="images/animation.png" class="rotate" height="168 "width="148"> 
+			<script>
+			document.getElementById("processingAnim").style.display = "none";
+			</script>
+			</div>
+  
+	</div>
+  
+	<div class="logOut" onclick="logOut()">
+	Log out&nbsp;&nbsp;
+	</div>
+	
+</div>
+  
+<div class="species menuFirst" id="speciesMenu">
+	<div class="lines">
+	<img src="images/lines.png" height="64" width="80"> 
+	</div>
+	
+	<div class="speciesChoice">
+  &nbsp;Species 
+  
+  &nbsp;&nbsp;&nbsp;
+  <select class="select_box" id="speciesChoice" onchange="realScaliesDontHaveFluff()">
+  <option value="Default">Default</option>
+  <option value="Arctic Fox">Arctic Fox</option>
+  <option value="Bear">Bear</option>
+  <option value="Cat">Cat</option>
+  <option value="Cheetah">Cheetah</option>
+  <option value="Coyote">Coyote</option>
+  <option value="Dog">Dog</option>
+  <option value="Dragon">Dragon</option>
+  <option value="Ferret">Ferret</option>
+  <option value="Even Bigger Bottom">Folf</option>
+  <option value="Bottom">Fox</option>
+  <option value="Horse">Horse</option>
+  <option value="Husky">Husky</option>
+  <option value="Hyena">Hyena</option>
+  <option value="Kangaroo">Kangaroo</option>
+  <option value="Kobold">Kobold</option>
+  <option value="Lion">Lion</option>
+  <option value="Otter">Otter</option>
+  <option value="Panther">Panther</option>
+  <option value="Protogen">Protogen</option>
+  <option value="Rabbit">Rabbit</option>
+  <option value="Raccoon">Raccoon</option>
+  <option value="Sergal">Sergal</option>
+  <option value="Shark">Shark</option>
+  <option value="Skunk">Skunk</option>
+  <option value="Snow Leopard">Snow Leopard</option>
+  <option value="Tiger">Tiger</option>
+  <option value="Wolf">Wolf</option>
+  <option value="Discount Dragon">Wyvern</option>
+	</select>
+	</div>
+
+	<div class="search">
+	<img src="images/search.png" height="104" width="100"> 
+	</div>
+	
+</div>  
+  
+<div class="sex menu" id="sexMenu">
+		<div class="linesSex">
+			<img src="images/lines.png" height="64" width="80" id="linesNormal"> 
+			<img src="images/linesError.png" height="64" width="80" id="linesError"> 
+			<script>
+			document.getElementById("linesError").style.display = "none";
+			</script>
+		</div>
+			<div>
+			&nbsp;&nbsp;Sex
+			<br>&nbsp;
+	  <label class="container">&nbsp;&nbsp;&nbsp;Male
+  <input type="radio" name="radio" onclick="breastSizeMaleFunction();changeSexToMale()" id="radiobuttonMale">
+  <span class="radiobuttonMale"></span>
+</label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;
+<label class="container">&nbsp;&nbsp;&nbsp;Female
+  <input type="radio" name="radio2" onclick="breastSizeFemaleFunction();changeSexToFemale()" id="radiobuttonFemale">
+  <span class="radiobuttonFemale"></span>
+</label>
+			</div>
+			  
+</div>
+  
+<div class="adaptClothing menu" id="adaptClothing">
+		<div class="linesAC">
+			<img src="images/lines.png" height="64" width="80"> 
+		</div>
+		
+		<div class="menutextAC">&nbsp;
+			<label class="container">&nbsp;&nbsp;&nbsp;&nbsp;Adapt clothing
+				<input type="checkbox" id="adaptClothingCheckbox">
+				<span class="checkbox"></span>  
+			</label>
+		</div>
+		
+</div>
+
+<div class="error621" id="error621">
+<p style="font-size: 120px; margin: 40px">UwU</p> 
+
+Error621//multisliders//processing... <br>
+initializing reboot... <br>
+reboot failed... <br>
+<br>
+Please contact Switcher-Roo support for assistance
+<br><br><br>
+
+<script>
+document.getElementById("error621").style.display = "none";
+</script>
+</div>
+
+<div class="logOutMessage" id="logOutMessage">
+<p style="font-size: 120px; margin: 40px">UwU</p> 
+You have been successfully logged out!<br><br>
+We hope you'll be back soon!
+<br><br><br>
+<script>
+document.getElementById("logOutMessage").style.display = "none";
+</script>
+</div>
+  
+<div class="menuSlider" id="bodyType1Slider">
+	<div class="linesMenuSlider">
+			<img src="images/lines.png" height="64" width="80"> 
+	</div>
+	
+	<div class="textinmenuLeft">
+	Masculine	
+	</div>
+	
+	<div class="textinmenuCenter">
+	&nbsp;
+	</div>
+	
+	<div class="textinmenuRight">
+	Feminine
+	</div>
+	
+	
+	<div id="sliderbodytype" class="slider">			
+			 <script>
+				var mySlider6 = new dhtmlXSlider(sliderbodytype, 850, null, false, 0, 100, 50, 1);
+			</script>
+	</div>
+			
+</div>
+  
+<div class="menuSlider" id="bodyType2Slider">
+	<div class="linesMenuSlider">
+			<img src="images/lines.png" height="64" width="80"> 
+	</div>
+	
+	<div class="textinmenuLeft">
+	Thin	
+	</div>
+	
+	<div class="textinmenuCenter">
+	&nbsp;
+	</div>
+	
+	<div class="textinmenuRight">
+	Thicc
+	</div>
+	
+	<div id="sliderwidth" class="slider">		
+			 <script>
+				var mySlider5 = new dhtmlXSlider(sliderwidth, 850, null, false, 0, 100, 50, 1);
+			</script>
+	</div>
+			
+</div>
+  
+<div class="menuSlider" id="bodyType3Slider">
+	<div class="linesMenuSlider">
+			<img src="images/lines.png" height="64" width="80"> 
+	</div>
+	
+	<div class="textinmenuLeft">
+	Smol	
+	</div>
+	
+	<div class="textinmenuCenter">
+	&nbsp;
+	</div>
+	
+	<div class="textinmenuRight">
+	Tall
+	</div>
+	
+	<div id="sliderheight" class="slider">			
+			 <script>
+				var mySlider4 = new dhtmlXSlider(sliderheight, 850, null, false, 0, 100, 50, 1);
+			</script>
+	</div>
+			
+</div>
+  
+<div class="advancedSettings menuAS" id="advancedSettings" onclick="advSettFunctionV2()">
+	<div class="linesAS">
+			<img src="images/lines.png" height="64" width="80"> 
+			
+			<img src="images/arrow.png" height="64" width="80">
+	</div>
+	
+	Advanced Settings
+</div>
+
+<div id="AdvancedSettingsContainer">
+
+	<div class="menuSlider" id="showAdvancedSettings4a">
+		<div class="linesMenuSlider">
+				<img src="images/lines.png" height="64" width="80"> 
+		</div>
+		
+		<div class="textinmenuLeft">
+		Flat
+		</div>
+	
+		<div class="textinmenuCenter">
+		Breast Size
+		</div>
+	
+		<div class="textinmenuRight">
+		Enormous
+		</div>
+		
+		<div id="sliderbreastsizemale" class="slider">			
+			 <script>
+				var mySlider9 = new dhtmlXSlider(sliderbreastsizemale, 850, null, false, 0, 100, 0, 1);
+				document.getElementById("showAdvancedSettings4a").style.display='none';  
+			</script>
+		</div>
+			
+	</div>
+
+	<div class="menuSlider" id="showAdvancedSettings4b">
+		<div class="linesMenuSlider">
+			<img src="images/lines.png" height="64" width="80"> 
+		</div>
+		
+		<div class="textinmenuLeft">
+		Flat
+		</div>
+	
+		<div class="textinmenuCenter">
+		Breast Size
+		</div>
+	
+		<div class="textinmenuRight">
+		Enormous
+		</div>
+				
+		<div id="sliderbreastsizefemale" class="slider">			
+			 <script>
+				var mySlider8 = new dhtmlXSlider(sliderbreastsizefemale, 850, null, false, 0, 100, 50, 1);
+				document.getElementById("showAdvancedSettings4b").style.display='none';  
+			</script>
+		</div>
+			
+	</div>
+	
+	<div class="menuSlider">
+		<div class="linesMenuSlider">
+			<img src="images/lines.png" height="64" width="80"> 
+		</div>
+		
+		<div class="textinmenuLeft">
+		Flat
+		</div>
+	
+		<div class="textinmenuCenter">
+		Butt Size
+		</div>
+	
+		<div class="textinmenuRight">
+		Badonkadonk
+		</div>
+				
+		<div id="sliderButtSize" class="slider">			
+			 <script>
+				var mySlider13 = new dhtmlXSlider(sliderButtSize, 850, null, false, 0, 100, 50, 1);							
+			</script>
+		</div>
+			
+	</div> 
+	
+	<div class="menuSlider">
+		<div class="linesMenuSlider">
+			<img src="images/lines.png" height="64" width="80"> 
+		</div>
+		
+		<div class="textinmenuLeft">
+		Flat
+		</div>
+	
+		<div class="textinmenuCenter">
+		Belly Size
+		</div>
+	
+		<div class="textinmenuRight">
+		Plump
+		</div>
+				
+		<div id="sliderBellySize" class="slider">			
+			 <script>
+				var mySlider14 = new dhtmlXSlider(sliderBellySize, 850, null, false, 0, 100, 50, 1);							
+			</script>
+		</div>
+			
+	</div> 
+	
+	<div class="menuSlider">
+		<div class="linesMenuSlider">
+			<img src="images/lines.png" height="64" width="80"> 
+		</div>
+		
+		<div class="textinmenuLeft">
+		Flabby
+		</div>
+	
+		<div class="textinmenuCenter">
+		Belly Shape
+		</div>
+	
+		<div class="textinmenuRight">
+		Round
+		</div>
+				
+		<div id="sliderBellyShape" class="slider">			
+			 <script>
+				var mySlider15 = new dhtmlXSlider(sliderBellyShape, 850, null, false, 0, 100, 50, 1);							
+			</script>
+		</div>
+			
+	</div> 
+
+	<div class="menuSlider">
+		<div class="linesMenuSlider">
+			<img src="images/lines.png" height="64" width="80"> 
+		</div>
+		
+		<div class="textinmenuLeft">
+			Tiny	
+			</div>
+	
+			<div class="textinmenuCenter">
+			Hips
+			</div>
+	
+			<div class="textinmenuRight">
+			Enormous
+			</div>
+
+		<div id="sliderhips" class="slider">			
+			 <script>
+				var mySlider3 = new dhtmlXSlider(sliderhips, 850, null, false, 0, 100, 50, 1);				
+			</script>
+		</div>
+			
+	</div>
+ 
+
+  
+ 
+	<div class="menuSlider">
+		<div class="linesMenuSlider">
+			<img src="images/lines.png" height="64" width="80"> 
+			</div>
+			
+			<div class="textinmenuLeft">
+			Puny	
+			</div>
+	
+			<div class="textinmenuCenter">
+			Genital Size
+			</div>
+	
+			<div class="textinmenuRight">
+			Monster
+			</div>
+
+		<div id="slidergs" class="slider">			
+			 <script>
+				var mySlider2 = new dhtmlXSlider(slidergs, 850, null, false, 0, 100, 50, 1);				
+			</script>
+		</div>
+			
+	</div>	
+	
+	<div class="species menuSlider" id="cockTypeMenu">
+		<div class="lines">
+			<img src="images/lines.png" height="64" width="80"> 
+		</div>
+	
+		<div class="speciesChoice">
+		&nbsp;&nbsp;Cock Type&nbsp; 
+		<select class="select_box" id="cockType">
+			<option value="Default">Default</option>
+			<option value="No cock like">Horsecock</option>
+			<option value="Humanoid">Humanoid</option>
+			<option value="Knotted">Knotted</option>
+			<option value="None">None</option>
+			<option value="Slit">Slit</option>		
+		</select>
+		</div>
+
+		<div class="search">
+			<img src="images/search.png" height="104" width="100"> 
+		</div>
+	
+	</div>  
+
+	<div class="menuSlider">
+		<div class="linesMenuSlider">
+			<img src="images/lines.png" height="64" width="80"> 
+		</div>
+		
+		<div class="textinmenuLeft">
+		Low
+		</div>
+	
+		<div class="textinmenuCenter">
+		Libido
+		</div>
+	
+		<div class="textinmenuRight">
+		High
+		</div>
+		
+		<div id="sliderlibido" class="slider">			
+			 <script>
+				var mySlider7 = new dhtmlXSlider(sliderlibido, 850, null, false, 0, 100, 50, 1);							
+			</script>
+		</div>
+			
+	</div>
+
+
+	
+	<div class="menuSlider">
+		<div class="linesMenuSlider">
+			<img src="images/lines.png" height="64" width="80"> 
+		</div>
+		
+		<div class="textinmenuLeft">
+		Low
+		</div>
+	
+		<div class="textinmenuCenter">
+		Sensitivity
+		</div>
+	
+		<div class="textinmenuRight">
+		High
+		</div>
+		
+		<div id="slidersensitivity" class="slider">			
+			 <script>
+				var mySlider11 = new dhtmlXSlider(slidersensitivity, 850, null, false, 0, 100, 50, 1);							
+			</script>
+		</div>
+			
+	</div>
+	
+	<div class="menuSlider">
+		<div class="linesMenuSlider">
+			<img src="images/lines.png" height="64" width="80"> 
+		</div>
+		
+		<div class="textinmenuLeft">
+		Assertive
+		</div>
+	
+		<div class="textinmenuCenter">
+		Demeanor
+		</div>
+	
+		<div class="textinmenuRight">
+		Shy
+		</div>
+				
+		<div id="sliderAssertiveShy" class="slider">			
+			 <script>
+				var mySlider12 = new dhtmlXSlider(sliderAssertiveShy, 850, null, false, 0, 100, 50, 1);							
+			</script>
+		</div>
+			
+	</div>
+	
+	<div class="menuSlider">
+		<div class="linesMenuSlider">
+			<img src="images/lines.png" height="64" width="80"> 
+		</div>
+		
+		<div class="textinmenuLeft">
+		Dominant
+		</div>
+	
+		<div class="textinmenuCenterPP">
+		Position Preference
+		</div>
+	
+		<div class="textinmenuRight">
+		Submissive
+		</div>
+				
+		<div id="sliderdomsub" class="slider">			
+			 <script>
+				var mySlider10 = new dhtmlXSlider(sliderdomsub, 850, null, false, 0, 100, 50, 1);							
+			</script>
+		</div>
+			
+	</div>
+	
+	<div class="menuSlider">
+		<div class="linesMenuSlider">
+			<img src="images/lines.png" height="64" width="80"> 
+		</div>
+		
+		<div class="textinmenuLeft">
+		Low
+		</div>
+	
+		<div class="textinmenuCenter">
+		Intelligence
+		</div>
+	
+		<div class="textinmenuRight">
+		High
+		</div>
+				
+		<div id="sliderIntelligence" class="slider">			
+			 <script>
+				var mySlider16 = new dhtmlXSlider(sliderIntelligence, 850, null, false, 0, 100, 50, 1);							
+			</script>
+		</div>
+			
+	</div>
+	
+	<div class="menuSlider">
+			<div class="linesMenuSlider">
+				<img src="images/lines.png" height="64" width="80"> 
+			</div>
+			
+			<div class="textinmenuLeft">
+			Short-Hair	
+			</div>
+	
+			<div class="textinmenuCenter">
+			Fluffiness
+			</div>
+	
+			<div class="textinmenuRight">
+			Fluff-ball
+			</div>
+			
+			<div id="sliderfluff" class="slider">			
+				<script>
+				var mySlider = new dhtmlXSlider(sliderfluff, 850, null, false, 0, 100, 50, 1);				
+				</script>
+			</div>
+			
+	</div>
+
+	<script>
+		document.getElementById("AdvancedSettingsContainer").style.display='none';  
+	</script>
+</div>
+
+<div class="applybutton" id="applySettingsButton">
+<button class="apply" onclick="processingShowFunction()">Apply Settings</button>
+</div>
+
+<div class="adminbutton" id="adminbutton">
+<button class="admin" onclick="enterPasswordFunction()">Admin Mode</button>
+</div>
+
+<div class="enterPassword" id="enterPassword">
+<input id="password" class="passwordTextField" value="Enter password">
+<button type="button" class= "buttonSubmitPassword "id="buttonSubmitPassword "onclick="processingPasswordFunction()">Proceed</button>
+<script>
+document.getElementById("enterPassword").style.display='none';  
+</script>
+</div>
+
+<div class="processingPasswordDiv" id="loading1">
+<button class="loading">Processing</button>
+<script>
+document.getElementById("loading1").style.display='none';  
+</script>
+</div>
+<div class="processingPasswordDiv" id="loading2">
+<button class="loading">Processing.</button>
+<script>
+document.getElementById("loading2").style.display='none';  
+</script>
+</div>
+<div class="processingPasswordDiv" id="loading3">
+<button class="loading">Processing..</button>
+<script>
+document.getElementById("loading3").style.display='none';  
+</script>
+</div>
+<div class="processingPasswordDiv" id="loading4">
+<button class="loading">Processing...</button>
+<script>
+document.getElementById("loading4").style.display='none';  
+</script>
+</div>
+
+<div class="accessGrantedDiv" id="accessGranted">
+<button class="accessGranted">Access Granted OwO</button>
+<script>
+document.getElementById("accessGranted").style.display='none';  
+</script>
+</div>
+
+<div class="accessDenied" id="accessDenied">
+<button class="admin">Access Denied UwU</button>
+<script>
+document.getElementById("accessDenied").style.display='none';  
+</script>
+</div>
+
+<div class="applybutton" id="saveSettingsButton">
+<button class="apply" onclick="showSaveSlotButtons()">Save settings</button>
+</div>
+
+	<div class="slotbutton" id="saveSlotButtons">
+		<button class="slot" onclick="saveSettingsSlot1()">1</button>
+		<button class="slot" onclick="saveSettingsSlot2()">2</button>
+		<button class="slot" onclick="saveSettingsSlot3()">3</button>
+		<button class="slot" onclick="saveSettingsSlot4()">4</button>
+		<button class="slot" onclick="saveSettingsSlot5()">5</button>
+		<script>
+			document.getElementById("saveSlotButtons").style.display='none';  
+		</script>
+	</div>
+
+<div class="applybutton" id="loadSettingsButton">
+<button class="apply" onclick="showLoadSlotButtons()">Load settings</button>
+</div>
+
+	<div class="slotbutton" id="loadSlotButtons">
+		<button class="slot" onclick="loadSettingsSlot1()">1</button>
+		<button class="slot" onclick="loadSettingsSlot2()">2</button>
+		<button class="slot" onclick="loadSettingsSlot3()">3</button>
+		<button class="slot" onclick="loadSettingsSlot4()">4</button>
+		<button class="slot" onclick="loadSettingsSlot5()">5</button>
+		<script>
+			document.getElementById("loadSlotButtons").style.display='none';  
+		</script>
+	</div>
+<!-- DEBUG check if advanced settings are open
+<div class="applybutton">
+<button class="apply" onclick="areAdvancedSettingsOpen()">Check</button>
+</div>
+-->
+
+<div class="applybutton" id="triggerRLEButton">
+<button class="apply" onclick="remoteLoginError()">Trigger RLE</button>
+<script>
+document.getElementById("triggerRLEButton").style.display='none';  
+</script>
+</div>
+
+<div class="applybutton" id="triggerError69Button">
+<button class="apply" onclick="error69()">Trigger Error69</button>
+<script>
+document.getElementById("triggerError69Button").style.display='none';  
+</script>
+</div>
+
+<div class="applybutton" id="triggerError621Button">
+<button class="apply" onclick="error621()">Trigger Error621</button>
+<script>
+document.getElementById("triggerError621Button").style.display='none';  
+</script>
+</div>
+
+<div class="applybutton" id="preferences">
+<button class="apply" onclick="showOptions()">Preferences</button>
+</div>
+
+<div class="applybutton" id="triggerErrors">
+<button class="apply" onclick="triggerErrorsFunction()">(Dev) Trigger errors manually</button>
+<script>
+document.getElementById("triggerErrors").style.display='none';  
+</script>
+</div>
+
+<div class="applybutton" id="goBack">
+<button class="apply" onclick="goBackFunction()">Go back</button>
+<script>
+document.getElementById("goBack").style.display='none';  
+</script>
+</div>
+
+<div class="applybutton" id="creditsButton">
+<button class="apply" onclick="toggleCreditsFunction()">Show/Hide Credits</button>
+</div>
+
+<div class="ECPNNHr"></div>
+
+<div class="credits" id="credits">
+App concept by Tyroo <br>
+<a href="https://www.furaffinity.net/user/tyroo/">
+	<img src="images/fa_logo.jpg" width="280" height="280">
+</a>
+ 
+<a href="https://twitter.com/TyrooTweets">               
+<img src="images/twitter_logo.png" width="280" height="280">
+</a>
+<a href="https://patreon.com/Tyroo">               
+<img src="images/patreon_logo.png" width="280" height="280">
+</a><br>
+
+Programming - Ignitio The Dragon <br>
+
+<a href="https://twitter.com/IgnitioTheDerg">
+	<img src="images/twitter_logo.png" width="280" height="280">
+</a> <br>
+
+Twitter Logo by <a href="https://twitter.com/EndangeredCDs"> Endangered CDs </a><br>
+
+Sliders by <a href="https://dhtmlx.com/">DHTMLX</a> under <a href="License_gpl_2.0.txt">GNU GPL</a><br>
+Ver 0.6.2.1e <!--Please use letters for versioning--> <br>
+<a href ="changelog.txt">Changelog</a>
+<script>
+document.getElementById("credits").style.display = "none";
+</script>				
+</div>
+
+</div>
+</body>
+</html>

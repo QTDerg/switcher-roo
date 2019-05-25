@@ -1,0 +1,31 @@
+0.6.2.1e
+-Added 5 slots for saving/loading settings
+-Added log out function
+
+0.6.2.1d
+-Added status bar with coverage, current time and battery draining/recharging
+-Added error69 and error 621
+-Errors can now happen randomly when battery is low
+-Reworked credits section
+-Changed locked sliders appearance
+-Added Ferret & Folf to species list
+
+0.6.2.1c
+-Deleted "Even More Advanced Settings". Now all sliders are under "Advanced Settings"
+-Added new sliders - Butt Size, Belly Size, Belly Shape and Intelligence
+-Changed order of sliders under "Advanced Settings"
+-Added Wyvern & Kobold to species list
+
+0.6.2.1b
+-Added ability to save/load settings
+-Added lock settings function
+-Added errors
+-Added Sensitivity slider
+-Added Assertive/Shy slider
+-Added Kangaroo, Protogen, Sergal & Shark to species list
+-Added scrolling title
+-Changed admin password
+-Minor improvements
+
+0.6.2.1a
+-First version
