@@ -640,11 +640,13 @@ function showLoadSlotButtons() {
  
 		if (Sex == "Male") {
 			document.getElementById("showAdvancedSettings4a").style.display = "block";
+			document.getElementById("showAdvancedSettings4b").style.display = "none";
 			var breastSizeMale = localStorage.getItem("Slot1_Breast_Size_Male");
 			mySlider9.setValue(breastSizeMale);
 		}
  		else {
 			document.getElementById("showAdvancedSettings4b").style.display = "block";
+			document.getElementById("showAdvancedSettings4a").style.display = "none";
 			var breastSizeFemale = localStorage.getItem("Slot1_Breast_Size_Female");
 			mySlider8.setValue(breastSizeFemale);
 		}

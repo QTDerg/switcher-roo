@@ -1,6 +1,10 @@
+@font-face {
+font-family: "Century Gothic";
+src: url("fonts/CenturyGothic.ttf");
+}
 body {
   background-color: #3b395e;
-  font-family: "Arial";
+  font-family:Century Gothic,Arial, sans-serif;
   color: #FFFFFF;
   font-size: 15px;
   margin: 0 !important;
@@ -36,6 +40,7 @@ div {
 	float: left;
 	text-align:center;
 	font-weight: bold;
+	font-family: Arial;
 }
 
 .chargeBattery {
@@ -69,7 +74,7 @@ div {
 	margin-right: auto;	
 	left: 0;
 	right: 80%;	
-	top: 289px;
+	top: 303px;
 	opacity: 1;
 }
 
@@ -110,7 +115,7 @@ div {
 	margin-right: auto;
 	left: 0;
 	right: 0;	
-	top: 195px;
+	top: 204px;
 	opacity: 0.8;
 }
 
@@ -124,7 +129,7 @@ div {
 	margin-right: auto;
 	left: 0;
 	right: 0;	
-	top: 123px;
+	top: 127px;
 	opacity: 0.8;
 }
 
@@ -138,7 +143,7 @@ div {
 	margin-right: auto;
 	left: 0;
 	right: 0;	
-	top: 51px;
+	top: 52px;
 	opacity: 0.8;
 }
 
@@ -152,7 +157,7 @@ div {
 	margin-right: auto;
 	left: 0;
 	right: 0;	
-	top: 106px;
+	top: 110px;
 	opacity: 0.8;
 }
 
@@ -294,7 +299,7 @@ body select {
     background: url("../images/speciesSelectTriangle.png") right center no-repeat;
     background-color: #3b395e; 
     color: #ffffff; 
-    font-family: "Arial";
+    font-family: "Century Gothic";
 	font-size: 15px;
     line-height: 15px !important; 
     appearance: none; 
@@ -351,7 +356,7 @@ select:disabled::-ms-expand {
 .linesMenuSlider
 {
 	display: block;
-	margin-top: 21px;	
+	margin-top: 25px;	
 	width: 6%;
 	float: left;
 	margin-left: 4px;

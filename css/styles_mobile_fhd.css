@@ -1,6 +1,10 @@
+@font-face {
+font-family: "Century Gothic";
+src: url("fonts/CenturyGothic.ttf");
+}
 body {
   background-color: #3b395e;
-  font-family: "Arial";
+  font-family:Century Gothic,Arial, sans-serif;
   color: #FFFFFF;
   font-size: 60px;
   margin: 0 !important;
@@ -33,6 +37,7 @@ div {
 	text-align:center;
 	font-size: 50px;
 	font-weight: bold;
+	font-family: Arial;
 }
 
 .chargeBattery {
@@ -67,7 +72,7 @@ div {
 	margin-right: auto;	
 	left: 0;
 	right: 68%;	
-	top: 989px;
+	top: 1038px;
 	opacity: 1;
 }
 
@@ -108,7 +113,7 @@ div {
 	margin-right: auto;
 	left: 0;
 	right: 0;	
-	top: 735px;
+	top: 772px;
 	opacity: 0.8;
 }
 
@@ -122,7 +127,7 @@ div {
 	margin-right: auto;
 	left: 0;
 	right: 0;	
-	top: 515px;
+	top: 548px;
 	opacity: 0.8;
 }
 
@@ -136,7 +141,7 @@ div {
 	margin-right: auto;
 	left: 0;
 	right: 0;	
-	top: 245px;
+	top: 249px;
 	opacity: 0.8;
 }
 
@@ -150,7 +155,7 @@ div {
 	margin-right: auto;
 	left: 0;
 	right: 0;	
-	top: 375px;
+	top: 399px;
 	opacity: 0.8;
 }
 
