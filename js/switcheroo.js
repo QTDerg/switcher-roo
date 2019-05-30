@@ -121,29 +121,37 @@ function lowBatteryWait() {
 	setTimeout(errorLowBattery, 10000);
 }
  function errorLowBattery() {
-	 var isBatteryLow = document.getElementById("battery_low");
-	 if (isBatteryLow.style.display === "block") {
-		 var rng = Math.floor(Math.random() * 100) + 1;
-		 if (rng == 21) {
-			 remoteLoginError();
-			 setTimeout(errorLowBattery, 10000);
-		 }
-		 else if (rng == 37) {
-			 error69();
-			 setTimeout(errorLowBattery, 10000);
-		 }
-		 else if (rng == 69) {
-			 error621();
-			 setTimeout(errorLowBattery, 10000);
-		 }
-		 else {
-			 setTimeout(errorLowBattery, 10000);
-		 }
+	var areAdminPermsOn = document.getElementById("adminPermsText");
+	if (areAdminPermsOn.style.display === "none"){
+
+		var isBatteryLow = document.getElementById("battery_low");
+		if (isBatteryLow.style.display === "block") {
+			var rng = Math.floor(Math.random() * 100) + 1;
+				if (rng == 21) {
+				remoteLoginError();
+				setTimeout(errorLowBattery, 10000);
+			}
+				else if (rng == 37) {
+				error69();
+				setTimeout(errorLowBattery, 10000);
+			}
+				else if (rng == 69) {
+				error621();
+				setTimeout(errorLowBattery, 10000);
+			}
+				else {
+				setTimeout(errorLowBattery, 10000);
+			}
 			
-	 }
-	 else {
-		 return;
-	 }
+		}
+		else {
+			return;
+		}
+	}
+	else {
+			return;
+		}	
+	
  }
 
 function showSecondSliderHandle() {

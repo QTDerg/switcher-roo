@@ -1,6 +1,8 @@
 0.6.2.1e
 -Added 5 slots for saving/loading settings
 -Added log out function
+-Added Deer to species list
+-When Admin Permissions are enabled, errors due to low battery won't happen anymore
 
 0.6.2.1d
 -Added status bar with coverage, current time and battery draining/recharging
