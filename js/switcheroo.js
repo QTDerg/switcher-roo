@@ -6,7 +6,7 @@ function advSettFunctionV2() {
 			x.style.display = "none";
 		}
 	}
-
+	
 function changeCoverageWait() {
 	setTimeout(changeCoverage, 20000);
 }
@@ -48,7 +48,7 @@ function currentTime() {
 		var date = new Date();
 		var hours = date.getHours();
 		var minutes = date.getMinutes();
-		var ampm = hours >= 12 ? 'pm' : 'am';
+		var ampm = hours >= 12 ? 'PM' : 'AM';
 		hours = hours % 12;
 		hours = hours ? hours : 12; // the hour '0' should be '12'
 		minutes = minutes < 10 ? '0'+minutes : minutes;
@@ -56,9 +56,25 @@ function currentTime() {
 		document.getElementById('currentTime').innerHTML = strTime;
 		setTimeout(currentTime, 1000);
 	}
-
+	
+function disableBatteryFuntion() {
+var tickbox = document.getElementById("disableBatteryCheckbox");
+	if (tickbox.checked) {
+		var tickbox = "Yes"
+	}
+	else {
+		var tickbox = "No"
+	}
+	localStorage.setItem("Battery_Disabled", tickbox);
+}
 function batteryDrain() {
-	setTimeout(batteryDrain2, 40000);
+	var isBatteryDisabled = localStorage.getItem("Battery_Disabled"); 
+	if (isBatteryDisabled == "Yes") {
+		return;
+	}
+	else {
+	setTimeout(batteryDrain2, 40000);	
+	}	
 }
 
 function batteryDrain2() {
@@ -87,10 +103,16 @@ function batteryDrain5() {
 }
 
 function batteryCharge() {
+	var doesBatteryNeedCharging = document.getElementById("chargeBattery");
+	if (doesBatteryNeedCharging.style.display === "none"){
+		return;
+	}
+	else{
 	document.getElementById("chargeBattery").style.display = "none";
 	document.getElementById("battery_low").style.display = "none";
 	document.getElementById("battery_low_charging").style.display = "block";
 	setTimeout(batteryCharge2, 20000);
+	}
 }
 
 function batteryCharge2() {
@@ -118,8 +140,10 @@ function batteryCharge5() {
 }
 
 function lowBatteryWait() {
+	lowBatteryMessage();
 	setTimeout(errorLowBattery, 10000);
 }
+
  function errorLowBattery() {
 	var areAdminPermsOn = document.getElementById("adminPermsText");
 	if (areAdminPermsOn.style.display === "none"){
@@ -157,6 +181,16 @@ function lowBatteryWait() {
 function showSecondSliderHandle() {
 document.getElementById("secondSliderHandleContainer").style.display = "block";	
 document.getElementById("secondSliderHandle").style.display = "block";	
+}
+
+function switchLockFunction() {
+	var lock = document.getElementById("lockClosed");
+	if (lock.style.display === "block") {
+		openLock();
+	}
+	else {
+		closeLock();
+	}
 }
  
 function openLock() {
@@ -278,6 +312,11 @@ function adminPermsOn() {
 		document.getElementById('defaultcss').href='css/admindhtmlxslider.css';
 		document.getElementById("adminPermsText").style.display='block';  
 	}
+	
+function adminPermsTextOff() {
+		document.getElementById('defaultcss').href='css/dhtmlxslider.css';
+		document.getElementById("adminPermsText").style.display='none';  
+	}
  
 function reTry() {
 		document.getElementById("accessDenied").style.display='none';
@@ -330,22 +369,45 @@ function error621() {
 		document.getElementById("sexMenu").style.display = "none";
 		document.getElementById("adaptClothing").style.display= 'none';  
 		document.getElementById("error621").style.display = "block";		
-		mySlider6.setValue(98);	
+		mySlider6.setValue(99);	
 		mySlider6.disable();	
 		error621ChangeSlider();
 		showSecondSliderHandle();
 	}	
-	
+function lowBatteryMessage() {
+		var lowBatteryMessageSeen = localStorage.getItem("Low_Battery_Message_Seen");
+		if (lowBatteryMessageSeen === "Yes") {
+			return;
+		}
+		else {
+			document.getElementById("errorMessageContainer").style.display = "block";
+			document.getElementById("lowBatteryMessage").style.display = "block";
+			document.getElementById("lowBatteryOkayContainer").style.display = "block";
+			document.getElementById("lowBatteryOkay").style.display= 'block';  
+		}
+}
+function hideLowBatteryMessage(){
+		document.getElementById("errorMessageContainer").style.display = "none";
+		document.getElementById("lowBatteryMessage").style.display = "none";
+		document.getElementById("lowBatteryOkayContainer").style.display = "none";
+		document.getElementById("lowBatteryOkay").style.display= 'none';  
+		var lowBatteryMessageSeen = "Yes";
+		localStorage.setItem("Low_Battery_Message_Seen", lowBatteryMessageSeen);	
+}
 function showOptions() {
 		document.getElementById("preferences").style.display = "none";
 		document.getElementById("triggerErrors").style.display = "block";
 		document.getElementById("goBack").style.display = "block";
+		document.getElementById("adminbutton2").style.display='block';  
+		document.getElementById("disableBattery").style.display='block';  
 	}
 	
 function goBackFunction() {
 		document.getElementById("preferences").style.display = "block";
 		document.getElementById("triggerErrors").style.display = "none";
 		document.getElementById("goBack").style.display = "none";
+		document.getElementById("adminbutton2").style.display='none';  
+		document.getElementById("disableBattery").style.display='none';  
 	}
 	
 function triggerErrorsFunction() {
@@ -355,6 +417,8 @@ function triggerErrorsFunction() {
 	}
  
  function changeSexToMale() {
+	 var settingSex = "Male";
+	 localStorage.setItem("Slot0_Sex", settingSex);
 	rbfemale = document.getElementById("radiobuttonFemale");
 	if (rbfemale.checked) {
 		var error2 = Math.floor(Math.random() * 100) + 1;
@@ -384,6 +448,8 @@ function triggerErrorsFunction() {
  } 
  
  function changeSexToFemale() {
+	 var settingSex = "Female";
+	 localStorage.setItem("Slot0_Sex", settingSex);
 	rbmale = document.getElementById("radiobuttonMale");
 	if (rbmale.checked) {  
 		var error2 = Math.floor(Math.random() * 100) + 1;
@@ -419,7 +485,11 @@ function hideMSSError () {
 	document.getElementById("MSSOkay").style.display = "none";	
 	}
  
- function realScaliesDontHaveFluff() {
+ function saveCurrentSpecies() {
+	var settingSpecies = document.getElementById('speciesChoice').value 
+	localStorage.setItem("Slot0_Species", settingSpecies);	 
+ }
+ function realScaliesDontHaveFluff() {	 
 		if(document.getElementById('speciesChoice').value == "Dragon") { 
 			var x1 = document.getElementById("AdvancedSettingsContainer");
 			if (x1.style.display === "none") {
@@ -472,6 +542,17 @@ function hideMSSError () {
 		}
  }
  
+ function saveCheckbox() {
+	var tickbox = document.getElementById("adaptClothingCheckbox");
+	if (tickbox.checked) {
+		var tickbox = "Yes"
+		localStorage.setItem("Slot0_AC_Box_Ticked", tickbox);
+	}
+	else {
+		var tickbox = "No"
+		localStorage.setItem("Slot0_AC_Box_Ticked", tickbox);
+	} 
+ }
  function showSaveSlotButtons() {
 	 document.getElementById("saveSlotButtons").style.display='block';  
 	 document.getElementById("saveSettingsButton").style.display='none';  
@@ -567,6 +648,13 @@ function showLoadSlotButtons() {
 	}
 	else {
 		var Species = localStorage.getItem("Slot1_Species");
+		if (Species == null) {
+			document.getElementById("settingsLoadedPopup").style.display = "block";	
+			document.getElementById('settingsLoadedPopup').innerHTML = ">Error: This slot is empty";
+			hideLoadSlotButtons();
+			setTimeout(hideLoadedPopup, 4000);			
+		}
+		else{
 		var element = document.getElementById("speciesChoice");
 		element.value = Species; 
  
@@ -664,14 +752,17 @@ function showLoadSlotButtons() {
 			document.getElementById("settingsLoadedPopup").style.display = "block";	
 			document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Loaded:" + " " + Sex + " " + Species;
 			hideLoadSlotButtons();
+			saveSettingsSlot0();
 			setTimeout(hideLoadedPopup, 4000);
 		}
 		else { 
 			document.getElementById("settingsLoadedPopup").style.display = "block";	
 			document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Loaded:" + " " + Sex + " " + Species;
 			hideLoadSlotButtons();
+			saveSettingsSlot0();
 			setTimeout(hideLoadedPopup, 4000);
 		}
+	}
 	}
 }
 
@@ -708,7 +799,293 @@ function logOut() {
 	document.getElementById("loadSettingsButton").style.display = "none";
 	document.getElementById("saveSettingsButton").style.display = "none";
 	document.getElementById("adminbutton").style.display = "none";
+	document.getElementById("adminbutton2").style.display = "none";
+	document.getElementById("goBack").style.display = "none";
 	document.getElementById("applySettingsButton").style.display = "none";
+	document.getElementById("disableBattery").style.display = "none";
+	document.getElementById("saveSlotButtons").style.display='none';
+	document.getElementById("loadSlotButtons").style.display='none';
 	document.getElementById("logOutMessage").style.display = "block";
-	document.getElementById("linktoMobile").style.display = "none";
+}
+
+function loadPreviousState() {
+	document.getElementById("AdvancedSettingsContainer").style.display='block'; 
+			var Species = localStorage.getItem("Slot0_Species");
+			if (Species == null) {
+				loadPS2();
+			}
+			else{
+		var element = document.getElementById("speciesChoice");
+		element.value = Species; 
+		realScaliesDontHaveFluff();
+		loadPS2();
+			}
+}
+
+function loadPS2() {
+		var Sex = localStorage.getItem("Slot0_Sex");
+		if (Sex == null) {
+			loadPS3();
+		}
+		else{
+		if (Sex == "Male") {
+			rbmale = document.getElementById("radiobuttonMale");
+			rbmale.checked = true;
+			rbfemale = document.getElementById("radiobuttonFemale");
+			rbfemale.checked = false;
+			loadPS3();
+		}
+		else {
+			rbfemale = document.getElementById("radiobuttonFemale");
+			rbfemale.checked = true;
+			rbmale = document.getElementById("radiobuttonMale");
+			rbmale.checked = false;
+			loadPS3();
+		}	
+		}
+}
+ 
+function loadPS3() {
+		var AC_Box_Ticked = localStorage.getItem("Slot0_AC_Box_Ticked");
+		if (AC_Box_Ticked == null) {
+			loadPS4();
+		}	
+		else {
+			if (AC_Box_Ticked == "Yes") {
+				var tickbox = document.getElementById("adaptClothingCheckbox");
+				tickbox.checked = true;
+				loadPS4();
+			}
+			else {
+				loadPS4();
+			}	
+		}
+}
+ 
+function loadPS4() {
+		var bodyType1 = localStorage.getItem("Slot0_Body_Type1");
+		if (bodyType1 == null) {
+			loadPS5();
+		}
+		else {
+			mySlider6.setValue(bodyType1);	
+			loadPS5();
+		}		
+}
+
+function loadPS5() {
+		var bodyType2 = localStorage.getItem("Slot0_Body_Type2");
+		if (bodyType2 == null) {
+			loadPS6();
+		}
+		else {
+			mySlider5.setValue(bodyType2);	
+			loadPS6();
+		}		
+}
+ 
+function loadPS6() {
+		var bodyType3 = localStorage.getItem("Slot0_Body_Type3");
+		if (bodyType3 == null) {
+			loadPS7();
+		}
+		else {
+			mySlider4.setValue(bodyType3);	
+			loadPS7();
+		}		
+}
+ 
+function loadPS7() {
+		var hips = localStorage.getItem("Slot0_Hips");
+		if (hips == null) {
+			loadPS8();
+		}
+		else {
+			mySlider3.setValue(hips);	
+			loadPS8();
+		}		
+}
+ 
+function loadPS8() {
+		var genitalSize = localStorage.getItem("Slot0_Genital_Size");
+		if (genitalSize == null) {
+			loadPS9();
+		}
+		else {
+			mySlider2.setValue(genitalSize);
+			loadPS9();
+		}		
+}
+		
+function loadPS9() {
+		var fluffiness = localStorage.getItem("Slot0_Fluffiness");
+		if (fluffiness == null) {
+			loadPS10();
+		}
+		else {
+			mySlider.setValue(fluffiness);
+			loadPS10();
+		}		
+}		
+  
+function loadPS10() {
+		var libido = localStorage.getItem("Slot0_Libido");
+		if (libido == null) {
+			loadPS11();
+		}
+		else {
+			mySlider7.setValue(libido);
+			loadPS11();
+		}		
+}				
+		
+function loadPS11() {
+		var domsub = localStorage.getItem("Slot0_Position_Preference");
+		if (domsub == null) {
+			loadPS12();
+		}
+		else {
+			mySlider10.setValue(domsub);
+			loadPS12();
+		}		
+}		 
+		
+function loadPS12() {
+		var sensitivity = localStorage.getItem("Slot0_Sensitivity");
+		if (sensitivity == null) {
+			loadPS13();
+		}
+		else {
+			mySlider11.setValue(sensitivity);
+			loadPS13();
+		}		
+}		 		
+ 
+function loadPS13() {
+		var assertiveShy = localStorage.getItem("Slot0_Demeanor");
+		if (assertiveShy == null) {
+			loadPS14();
+		}
+		else {
+			mySlider12.setValue(assertiveShy);
+			loadPS14();
+		}		
+}				
+				
+function loadPS14() {
+		var buttSize = localStorage.getItem("Slot0_Butt_Size");	
+		if (buttSize == null) {
+			loadPS15();
+		}
+		else {
+			mySlider13.setValue(buttSize);
+			loadPS15();
+		}		
+}		 
+		
+function loadPS15() {
+		var bellySize = localStorage.getItem("Slot0_Belly_Size");
+		if (bellySize == null) {
+			loadPS16();
+		}
+		else {
+			mySlider14.setValue(bellySize);
+			loadPS16();
+		}		
+}				
+ 
+function loadPS16() {
+		var bellyShape = localStorage.getItem("Slot0_Belly_Shape");
+		if (bellyShape == null) {
+			loadPS17();
+		}
+		else {
+			mySlider15.setValue(bellyShape);
+			loadPS17();
+		}		
+}			
+		
+function loadPS17() {
+		var intelligence = localStorage.getItem("Slot0_Intelligence");
+		if (intelligence == null) {
+			loadPS18();
+		}
+		else {
+			mySlider16.setValue(intelligence);
+			loadPS18();
+		}		
+}			 
+		
+function loadPS18() {
+		var cockType = localStorage.getItem("Slot0_Cock_Type");
+		if (cockType == null) {
+			loadPS19();
+		}
+		else {
+			var element2 = document.getElementById("cockType");
+			element2.value = cockType; 
+			loadPS19();
+		}		
+}			
+ 
+function loadPS19() {
+		var Sex = localStorage.getItem("Slot0_Sex");
+		if (Sex == null) {
+			loadPS20();
+		}
+		else {
+
+			if (Sex == "Male") {
+				var breastSizeMale = localStorage.getItem("Slot0_Breast_Size_Male");
+				if (breastSizeMale == null) {
+					document.getElementById("showAdvancedSettings4a").style.display = "block";
+					loadPS20();
+				}
+				else {
+					document.getElementById("showAdvancedSettings4a").style.display = "block";
+					document.getElementById("showAdvancedSettings4b").style.display = "none";				
+					mySlider9.setValue(breastSizeMale);
+					loadPS20();
+				}
+			}
+			else {
+				var breastSizeFemale = localStorage.getItem("Slot0_Breast_Size_Female");
+				if (breastSizeFemale == null) {
+					document.getElementById("showAdvancedSettings4b").style.display = "block";
+					loadPS20();
+				}
+				else{
+					document.getElementById("showAdvancedSettings4b").style.display = "block";
+					document.getElementById("showAdvancedSettings4a").style.display = "none";				
+					mySlider8.setValue(breastSizeFemale);
+					loadPS20();
+				}
+			}
+		}
+}
+
+function loadPS20() {
+		var disableBatteryCheckboxTicked = localStorage.getItem("Battery_Disabled");
+		if (disableBatteryCheckboxTicked == null) {
+			loadPS21();
+		}	
+		else {
+			if (disableBatteryCheckboxTicked == "Yes") {
+				var tickbox = document.getElementById("disableBatteryCheckbox");
+				tickbox.checked = true;
+				loadPS21();
+			}
+			else {
+				loadPS21();
+			}	
+		}
+}
+		
+function loadPS21() { 		
+	document.getElementById("AdvancedSettingsContainer").style.display='none'; 	
+}
+
+function saveCockType() {
+	var cockType = document.getElementById('cockType').value 
+	localStorage.setItem("Slot0_Cock_Type", cockType);
 }

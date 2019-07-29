@@ -1,8 +1,16 @@
+0.6.2.1f
+-Overhauled app appearance
+-Web mobile version deleted
+-Settings now are saved automatically
+-Loading settings from empty slot will now give you error
+-Added option to disable battery draining mechanic
+
 0.6.2.1e
 -Added 5 slots for saving/loading settings
 -Added log out function
 -Added Deer to species list
 -When Admin Permissions are enabled, errors due to low battery won't happen anymore
+-Added a way to enable Admin Mode without password in Preferences
 
 0.6.2.1d
 -Added status bar with coverage, current time and battery draining/recharging

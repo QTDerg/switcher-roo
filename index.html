@@ -18,6 +18,7 @@
     href="images/favicon.png">
 <script src="js/dhtmlxslider.js"></script>
 <script src="js/switcheroo.js"></script>
+<script src="js/slot0.js"></script>
 <script src="js/slot2.js"></script>
 <script src="js/slot3.js"></script>
 <script src="js/slot4.js"></script>
@@ -38,12 +39,14 @@ function changeRadioButtonAppearance() {
 function error621ChangeSlider() {
 		document.getElementById('defaultcss').href='css/dhtmlxslider_error.css';
 	}
+	
 </script>
 
 </head>
 
 <body>
-<div class="siteWidthContainer">
+
+<div class="appWidthContainer">
 <!-- Popup with settings loaded message -->
 <div class="settingsLoadedPopup" id="settingsLoadedPopup">
 
@@ -57,7 +60,7 @@ function error621ChangeSlider() {
 
 <!-- Container with error messages -->
 <div class="errorMessageContainer" id="errorMessageContainer">	
-	
+
 	<div class="errorMessageAlignLeft" id="remoteLoginErrorMessage">
 	>Remote login enabled... <br>
 	>Setting sex = female <br>
@@ -101,7 +104,13 @@ function error621ChangeSlider() {
 		document.getElementById("error69Message").style.display = "none";	
 	</script>
 	</div>
-
+	
+	<div class="errorMessageAlignLeft" id="lowBatteryMessage">
+	>Your battery is low. Click "Charge Battery" text or Switcher-Roo logo or there will be 1 in 33 chance every 10 seconds, that error will happen.
+	<script>
+		document.getElementById("lowBatteryMessage").style.display = "none";	
+	</script>
+	</div>
 	
 	
 	<script>
@@ -184,6 +193,24 @@ function error621ChangeSlider() {
 	
 </div>
 
+<div class="lowBatteryOkayContainer" id="lowBatteryOkayContainer" onClick=hideLowBatteryMessage()>
+
+	<div class="okay" id="lowBatteryOkay">
+
+	Okay
+	
+		<script>
+			document.getElementById("lowBatteryOkay").style.display = "none";	
+		</script>
+		
+	</div>
+
+	<script>
+	document.getElementById("lowBatteryOkayContainer").style.display = "none";	
+	</script>
+	
+</div>
+
 <!-- Second slider handle for error 621 --> 
 <div class="secondSliderHandleContainer" id="secondSliderHandleContainer">
 	<div class="secondSliderHandle" id="secondSliderHandle">	
@@ -204,19 +231,19 @@ function error621ChangeSlider() {
 	<div class="coverageContainer">
 		
 		<div id="coverage4">
-			<img src="images/coverage_4.png" height="16" width="80">
+			<img src="images/coverage_4.png" height="16" width="52">
 		</div>
 		
 		<div id="coverage3">
-			<img src="images/coverage_3.png" height="16" width="80">
+			<img src="images/coverage_3.png" height="16" width="52">
 		</div>
 		
 		<div id="coverage2">
-			<img src="images/coverage_2.png" height="16" width="80">
+			<img src="images/coverage_2.png" height="16" width="52">
 		</div>
 		
 		<div id="coverage1">
-			<img src="images/coverage_1.png" height="16" width="80">
+			<img src="images/coverage_1.png" height="16" width="52">
 		</div>
 		
 		<script>
@@ -232,7 +259,7 @@ function error621ChangeSlider() {
 	6:21 PM
 		<script>
 		currentTime();
-		</script>
+		</script>		
 	</div>	
 	
 	<div class="chargeBattery" id="chargeBattery" onclick="batteryCharge()">
@@ -245,39 +272,39 @@ function error621ChangeSlider() {
 	<div class="batteryContainer">		
 		
 		<div id="battery_full">
-			<img src="images/battery_full.png" height="16" width="50" align="right">
+			<img src="images/battery_full.png" height="16" width="38" align="right">
 		</div>
 		
 		<div id="battery_34">
-			<img src="images/battery_34.png" height="16" width="50" align="right">
+			<img src="images/battery_34.png" height="16" width="38" align="right">
 		</div>
 		
 		<div id="battery_half">
-			<img src="images/battery_half.png" height="16" width="50" align="right">
+			<img src="images/battery_half.png" height="16" width="38" align="right">
 		</div>
 		
 		<div id="battery_14">
-			<img src="images/battery_14.png" height="16" width="50" align="right">
+			<img src="images/battery_14.png" height="16" width="38" align="right">
 		</div>
 		
 		<div id="battery_low">
-			<img src="images/battery_low.png" height="16" width="50" align="right">
+			<img src="images/battery_low.png" height="16" width="38" align="right">
 		</div>
 		
 		<div id="battery_34_charging">
-			<img src="images/battery_34_charging.png" height="16" width="50" align="right">
+			<img src="images/battery_34_charging.png" height="16" width="38" align="right">
 		</div>
 		
 		<div id="battery_half_charging">
-			<img src="images/battery_half_charging.png" height="16" width="50" align="right">
+			<img src="images/battery_half_charging.png" height="16" width="38" align="right">
 		</div>
 		
 		<div id="battery_14_charging">
-			<img src="images/battery_14_charging.png" height="16" width="50" align="right">
+			<img src="images/battery_14_charging.png" height="16" width="38" align="right">
 		</div>
 		
 		<div id="battery_low_charging">
-			<img src="images/battery_low_charging.png" height="16" width="50" align="right">
+			<img src="images/battery_low_charging.png" height="16" width="38" align="right">
 		</div>
 		
 		<script>
@@ -298,8 +325,8 @@ function error621ChangeSlider() {
 
 <!-- Status bar ends begins here-->
 
-<div class="switcherLogo">
-  <img src="images/logo.png" height="37" width="223" alt="logo"> 
+<div class="switcherLogo" onclick="batteryCharge()">
+  <img src="images/logo.png" height="41" width="250" alt="logo"> 
 </div>
   
   <div class="adminPerms" id="adminPermsText">
@@ -318,14 +345,14 @@ function error621ChangeSlider() {
   
 <div class="container2" id="container2">
 	<div class="lockSettingsImgOpen" id="lockOpen" onclick="closeLock()">
-	<img src="images/lockOpen.png"> 
+	<img src="images/lockOpen.png" height="37" width="23"> 
 	</div>
 	
 	<div class="lockSettingsImgClosed" id="lockClosed" onclick="openLock()">
 	<script>
 		document.getElementById("lockClosed").style.display = "none";
 	</script>
-	<img src="images/lockClosed.png"> 
+	<img src="images/lockClosed.png" height="37" width="23"> 
 	</div>
   
 	<div class="lockSettings" onclick="switchLockFunction()">
@@ -334,7 +361,7 @@ function error621ChangeSlider() {
   
 	<div class="processingContainer">  
 			<div class="processingAnim" id="processingAnim">
-			<img src="images/animation.png" class="rotate" height="42 "width="37"> 
+			<img src="images/animation.png" class="rotate" height="50" width="45"> 
 			<script>
 			document.getElementById("processingAnim").style.display = "none";
 			</script>
@@ -348,86 +375,109 @@ function error621ChangeSlider() {
 	
 </div>
   
-<div class="species menuFirst" id="speciesMenu">
-	<div class="lines">
-	<img src="images/lines.png" height="16" width="20"> 
-	</div>
-	
-	<div class="speciesChoice">
-	&nbsp;&nbsp;Species&nbsp; 
-	<select class="select_box" id="speciesChoice" onchange="realScaliesDontHaveFluff()">
-		<option value="Default">Default</option>
-		<option value="Arctic Fox">Arctic Fox</option>
-		<option value="Bear">Bear</option>
-		<option value="Cat">Cat</option>
-		<option value="Cheetah">Cheetah</option>
-		<option value="Coyote">Coyote</option>
-		<option value="Deer">Deer</option>
-		<option value="Dog">Dog</option>
-		<option value="Dragon">Dragon</option>
-		<option value="Ferret">Ferret</option>
-		<option value="Even Bigger Bottom">Folf</option>
-		<option value="Bottom">Fox</option>
-		<option value="Horse">Horse</option>
-		<option value="Husky">Husky</option>
-		<option value="Hyena">Hyena</option>
-		<option value="Kangaroo">Kangaroo</option>
-		<option value="Kobold">Kobold</option>
-		<option value="Lion">Lion</option>
-		<option value="Otter">Otter</option>
-		<option value="Panther">Panther</option>
-		<option value="Protogen">Protogen</option>
-		<option value="Rabbit">Rabbit</option>
-		<option value="Raccoon">Raccoon</option>
-		<option value="Sergal">Sergal</option>
-		<option value="Shark">Shark</option>
-		<option value="Skunk">Skunk</option>
-		<option value="Snow Leopard">Snow Leopard</option>
-		<option value="Tiger">Tiger</option>
-		<option value="Wolf">Wolf</option>
-		<option value="Discount Dragon">Wyvern</option>
-	</select>
+<div class="menuFirst" id="speciesMenu">
+
+	<div class="speciesText">
+	Species
 	</div>
 
-	<div class="search">
-	<img src="images/search.png"> 
+	<div class="selectMenuContainer">
+	
+	
+		<div class="lines">
+		<img src="images/lines.png" height="15" width="20"> 
+		</div>
+	
+		<div class="speciesChoice">
+	
+		<select class="select_box" id="speciesChoice" onchange="realScaliesDontHaveFluff();saveCurrentSpecies();">
+			<option value="Default">Default</option>
+			<option value="Arctic Fox">Arctic Fox</option>
+			<option value="Bear">Bear</option>
+			<option value="Cat">Cat</option>
+			<option value="Cheetah">Cheetah</option>
+			<option value="Coyote">Coyote</option>
+			<option value="Deer">Deer</option>
+			<option value="Dog">Dog</option>
+			<option value="Dragon">Dragon</option>
+			<option value="Ferret">Ferret</option>
+			<option value="Even Bigger Bottom">Folf</option>
+			<option value="Bottom">Fox</option>
+			<option value="Horse">Horse</option>
+			<option value="Husky">Husky</option>
+			<option value="Hyena">Hyena</option>
+			<option value="Kangaroo">Kangaroo</option>
+			<option value="Kobold">Kobold</option>
+			<option value="Lion">Lion</option>
+			<option value="Otter">Otter</option>
+			<option value="Panther">Panther</option>
+			<option value="Protogen">Protogen</option>
+			<option value="Rabbit">Rabbit</option>
+			<option value="Raccoon">Raccoon</option>
+			<option value="Sergal">Sergal</option>
+			<option value="Shark">Shark</option>
+			<option value="Sheep">Sheep</option>
+			<option value="Skunk">Skunk</option>
+			<option value="Snow Leopard">Snow Leopard</option>
+			<option value="Tiger">Tiger</option>
+			<option value="Wolf">Wolf</option>
+			<option value="Discount Dragon">Wyvern</option>
+		</select>
+		
+		</div>
+
+		<div class="search">
+		<img src="images/search.png" height="28" width="28"> 
+		</div>
+	
 	</div>
 	
 </div>  
   
-<div class="sex menu" id="sexMenu">
+<div class="menu" id="sexMenu">
+
+	<div class="speciesText">
+	Sex
+	</div>
+	
+	<div class="selectMenuContainer2">
 		<div class="linesSex">
-			<img src="images/lines.png" height="16" width="20" id="linesNormal"> 
-			<img src="images/linesError.png" height="16" width="20" id="linesError"> 
+			<img src="images/lines.png" height="15" width="20" id="linesNormal"> 
+			<img src="images/linesError.png" height="15" width="20" id="linesError"> 
 			<script>
 			document.getElementById("linesError").style.display = "none";
 			</script>
 		</div>
-			<div>
-			&nbsp;&nbsp;Sex
-			<br>
-	  <label class="container">Male
-  <input type="radio" name="radio" onclick="breastSizeMaleFunction();changeSexToMale()" id="radiobuttonMale">
-  <span class="radiobuttonMale"></span>
-</label>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<label class="container">Female
-  <input type="radio" name="radio2" onclick="breastSizeFemaleFunction();changeSexToFemale()" id="radiobuttonFemale">
-  <span class="radiobuttonFemale"></span>
-</label>
-			</div>
+			
+			
+		<div class="containerRBMale">
+		<label class="container">Male
+			<input type="radio" name="radio" onclick="changeSexToMale()" id="radiobuttonMale">
+			<span class="radiobuttonMale"></span>
+		</label>
+		</div>
+		
+		<div class="containerRBFemale">
+		<label class="container">Female
+			<input type="radio" name="radio2" onclick="changeSexToFemale()" id="radiobuttonFemale">
+			<span class="radiobuttonFemale"></span>
+		</label>
+		</div>
+		
+	</div>
 			  
 </div>
   
 <div class="adaptClothing menu" id="adaptClothing">
+
+	
 		<div class="linesAC">
-			<img src="images/lines.png" height="16" width="20"> 
+			<img src="images/lines.png" height="15" width="20"> 
 		</div>
 		
 		<div class="menutextAC">
 			<label class="container">Adapt clothing
-				<input type="checkbox" id="adaptClothingCheckbox">
+				<input type="checkbox" id="adaptClothingCheckbox" onclick="saveCheckbox()">
 				<span class="checkbox"></span>  
 			</label>
 		</div>
@@ -461,7 +511,7 @@ document.getElementById("logOutMessage").style.display = "none";
   
 <div class="menuSlider" id="bodyType1Slider">
 	<div class="linesMenuSlider">
-			<img src="images/lines.png" height="16" width="20"> 
+			<img src="images/lines.png" height="15" width="20"> 
 	</div>
 	
 	<div class="textinmenuLeft">
@@ -478,7 +528,7 @@ document.getElementById("logOutMessage").style.display = "none";
 	
 	<div id="sliderbodytype" class="slider">			
 			 <script>
-				var mySlider6 = new dhtmlXSlider(sliderbodytype, 450, null, false, 0, 100, 50, 1);
+				var mySlider6 = new dhtmlXSlider(sliderbodytype, 315, null, false, 0, 100, 50, 1);
 			</script>
 	</div>
 			
@@ -486,7 +536,7 @@ document.getElementById("logOutMessage").style.display = "none";
   
 <div class="menuSlider" id="bodyType2Slider">
 	<div class="linesMenuSlider">
-			<img src="images/lines.png" height="16" width="20"> 
+			<img src="images/lines.png" height="15" width="20"> 
 	</div>
 	
 	<div class="textinmenuLeft">
@@ -503,7 +553,7 @@ document.getElementById("logOutMessage").style.display = "none";
 	
 	<div id="sliderwidth" class="slider">			
 			 <script>
-				var mySlider5 = new dhtmlXSlider(sliderwidth, 450, null, false, 0, 100, 50, 1);
+				var mySlider5 = new dhtmlXSlider(sliderwidth, 315, null, false, 0, 100, 50, 1);
 			</script>
 	</div>
 			
@@ -511,7 +561,7 @@ document.getElementById("logOutMessage").style.display = "none";
   
 <div class="menuSlider" id="bodyType3Slider">
 	<div class="linesMenuSlider">
-			<img src="images/lines.png" height="16" width="20"> 
+			<img src="images/lines.png" height="15" width="20"> 
 	</div>
 	
 	<div class="textinmenuLeft">
@@ -528,7 +578,7 @@ document.getElementById("logOutMessage").style.display = "none";
 	
 	<div id="sliderheight" class="slider">			
 			 <script>
-				var mySlider4 = new dhtmlXSlider(sliderheight, 450, null, false, 0, 100, 50, 1);
+				var mySlider4 = new dhtmlXSlider(sliderheight, 315, null, false, 0, 100, 50, 1);
 			</script>
 	</div>
 			
@@ -536,19 +586,19 @@ document.getElementById("logOutMessage").style.display = "none";
   
 <div class="menuAS" id="advancedSettings" onclick="advSettFunctionV2()">
 	<div class="linesAS">
-			<img src="images/lines.png" height="16" width="20"> 
-			&nbsp;&nbsp;
-			<img src="images/arrow.png" height="16" width="20">
+			<img src="images/lines.png" height="15" width="20"> 
+			&nbsp;
+			<img src="images/arrow.png" height="15" width="20">
 	</div>
 	
-	Advanced Settings
+	&nbsp;&nbsp;Advanced Settings
 </div>
 
 <div id="AdvancedSettingsContainer">
 
 	<div class="menuSlider" id="showAdvancedSettings4a">
 		<div class="linesMenuSlider">
-				<img src="images/lines.png" height="16" width="20"> 
+				<img src="images/lines.png" height="15" width="20"> 
 		</div>
 		
 		<div class="textinmenuLeft">
@@ -565,7 +615,7 @@ document.getElementById("logOutMessage").style.display = "none";
 		
 		<div id="sliderbreastsizemale" class="slider">			
 			 <script>
-				var mySlider9 = new dhtmlXSlider(sliderbreastsizemale, 450, null, false, 0, 100, 0, 1);
+				var mySlider9 = new dhtmlXSlider(sliderbreastsizemale, 315, null, false, 0, 100, 0, 1);
 				document.getElementById("showAdvancedSettings4a").style.display='none';  
 			</script>
 		</div>
@@ -574,7 +624,7 @@ document.getElementById("logOutMessage").style.display = "none";
 
 	<div class="menuSlider" id="showAdvancedSettings4b">
 		<div class="linesMenuSlider">
-			<img src="images/lines.png" height="16" width="20"> 
+			<img src="images/lines.png" height="15" width="20"> 
 		</div>
 		
 		<div class="textinmenuLeft">
@@ -591,16 +641,16 @@ document.getElementById("logOutMessage").style.display = "none";
 				
 		<div id="sliderbreastsizefemale" class="slider">			
 			 <script>
-				var mySlider8 = new dhtmlXSlider(sliderbreastsizefemale, 450, null, false, 0, 100, 50, 1);
+				var mySlider8 = new dhtmlXSlider(sliderbreastsizefemale, 315, null, false, 0, 100, 50, 1);
 				document.getElementById("showAdvancedSettings4b").style.display='none';  
 			</script>
 		</div>
 			
 	</div>
 	
-	<div class="menuSlider">
+	<div class="menuSlider" id="buttSizeSlider">
 		<div class="linesMenuSlider">
-			<img src="images/lines.png" height="16" width="20"> 
+			<img src="images/lines.png" height="15" width="20"> 
 		</div>
 		
 		<div class="textinmenuLeft">
@@ -612,20 +662,20 @@ document.getElementById("logOutMessage").style.display = "none";
 		</div>
 	
 		<div class="textinmenuRight">
-		Badonkadonk
+		Badonk
 		</div>
 				
 		<div id="sliderButtSize" class="slider">			
 			 <script>
-				var mySlider13 = new dhtmlXSlider(sliderButtSize, 450, null, false, 0, 100, 50, 1);							
+				var mySlider13 = new dhtmlXSlider(sliderButtSize, 315, null, false, 0, 100, 50, 1);							
 			</script>
 		</div>
 			
 	</div> 
 	
-	<div class="menuSlider">
+	<div class="menuSlider" id="bellySizeSlider">
 		<div class="linesMenuSlider">
-			<img src="images/lines.png" height="16" width="20"> 
+			<img src="images/lines.png" height="15" width="20"> 
 		</div>
 		
 		<div class="textinmenuLeft">
@@ -642,15 +692,15 @@ document.getElementById("logOutMessage").style.display = "none";
 				
 		<div id="sliderBellySize" class="slider">			
 			 <script>
-				var mySlider14 = new dhtmlXSlider(sliderBellySize, 450, null, false, 0, 100, 50, 1);							
+				var mySlider14 = new dhtmlXSlider(sliderBellySize, 315, null, false, 0, 100, 50, 1);							
 			</script>
 		</div>
 			
 	</div> 
 	
-	<div class="menuSlider">
+	<div class="menuSlider" id="bellyShapeSlider">
 		<div class="linesMenuSlider">
-			<img src="images/lines.png" height="16" width="20"> 
+			<img src="images/lines.png" height="15" width="20"> 
 		</div>
 		
 		<div class="textinmenuLeft">
@@ -667,15 +717,15 @@ document.getElementById("logOutMessage").style.display = "none";
 				
 		<div id="sliderBellyShape" class="slider">			
 			 <script>
-				var mySlider15 = new dhtmlXSlider(sliderBellyShape, 450, null, false, 0, 100, 50, 1);							
+				var mySlider15 = new dhtmlXSlider(sliderBellyShape, 315, null, false, 0, 100, 50, 1);							
 			</script>
 		</div>
 			
 	</div> 
 
-	<div class="menuSlider">
+	<div class="menuSlider" id="hipsSlider">
 		<div class="linesMenuSlider">
-			<img src="images/lines.png" height="16" width="20"> 
+			<img src="images/lines.png" height="15" width="20"> 
 		</div>
 		
 		<div class="textinmenuLeft">
@@ -692,7 +742,7 @@ document.getElementById("logOutMessage").style.display = "none";
 
 		<div id="sliderhips" class="slider">			
 			 <script>
-				var mySlider3 = new dhtmlXSlider(sliderhips, 450, null, false, 0, 100, 50, 1);				
+				var mySlider3 = new dhtmlXSlider(sliderhips, 315, null, false, 0, 100, 50, 1);				
 			</script>
 		</div>
 			
@@ -701,9 +751,9 @@ document.getElementById("logOutMessage").style.display = "none";
 
   
  
-	<div class="menuSlider">
+	<div class="menuSlider" id="genitalSizeSlider">
 		<div class="linesMenuSlider">
-			<img src="images/lines.png" height="16" width="20"> 
+			<img src="images/lines.png" height="15" width="20"> 
 			</div>
 			
 			<div class="textinmenuLeft">
@@ -720,38 +770,47 @@ document.getElementById("logOutMessage").style.display = "none";
 
 		<div id="slidergs" class="slider">			
 			 <script>
-				var mySlider2 = new dhtmlXSlider(slidergs, 450, null, false, 0, 100, 50, 1);				
+				var mySlider2 = new dhtmlXSlider(slidergs, 315, null, false, 0, 100, 50, 1);				
 			</script>
 		</div>
 			
 	</div>	
 	
 	<div class="species menuSlider" id="cockTypeMenu">
-		<div class="lines">
-			<img src="images/lines.png" height="16" width="20"> 
-		</div>
 	
-		<div class="speciesChoice">
-		&nbsp;&nbsp;Cock Type&nbsp; 
-		<select class="select_box" id="cockType">
-			<option value="Default">Default</option>
-			<option value="No cock like">Horsecock</option>
-			<option value="Human">Human</option>
-			<option value="Knotted">Knotted</option>
-			<option value="None">None</option>
-			<option value="Slit">Slit</option>		
-		</select>
+		<div class="speciesText">
+		Cock Type
 		</div>
+		
+		<div class="selectMenuContainer">
+		
+			<div class="lines">
+				<img src="images/lines.png" height="15" width="20"> 
+			</div>
+		
+			<div class="speciesChoice">
+			
+			<select class="select_box" id="cockType" onchange="saveCockType()">
+				<option value="Default">Default</option>
+				<option value="Canine">Canine</option>
+				<option value="Equine">Equine</option>
+				<option value="Prepare_for_trouble">Double</option>
+				<option value="Draconic">Draconic</option>
+				<option value="Feline">Feline</option>
+				<option value="Humanoid">Humanoid</option>
+				<option value="None">None</option>
+			</select>
+			</div>
 
-		<div class="search">
-			<img src="images/search.png"> 
+			<div class="search">
+				<img src="images/search.png" height="28" width="28"> 
+			</div>
 		</div>
-	
 	</div>  
 
-	<div class="menuSlider">
+	<div class="menuSlider" id="libidoSlider">
 		<div class="linesMenuSlider">
-			<img src="images/lines.png" height="16" width="20"> 
+			<img src="images/lines.png" height="15" width="20"> 
 		</div>
 		
 		<div class="textinmenuLeft">
@@ -768,7 +827,7 @@ document.getElementById("logOutMessage").style.display = "none";
 		
 		<div id="sliderlibido" class="slider">			
 			 <script>
-				var mySlider7 = new dhtmlXSlider(sliderlibido, 450, null, false, 0, 100, 50, 1);							
+				var mySlider7 = new dhtmlXSlider(sliderlibido, 315, null, false, 0, 100, 50, 1);							
 			</script>
 		</div>
 			
@@ -776,9 +835,9 @@ document.getElementById("logOutMessage").style.display = "none";
 
 
 	
-	<div class="menuSlider">
+	<div class="menuSlider" id="sensitivitySlider">
 		<div class="linesMenuSlider">
-			<img src="images/lines.png" height="16" width="20"> 
+			<img src="images/lines.png" height="15" width="20"> 
 		</div>
 		
 		<div class="textinmenuLeft">
@@ -795,15 +854,15 @@ document.getElementById("logOutMessage").style.display = "none";
 		
 		<div id="slidersensitivity" class="slider">			
 			 <script>
-				var mySlider11 = new dhtmlXSlider(slidersensitivity, 450, null, false, 0, 100, 50, 1);							
+				var mySlider11 = new dhtmlXSlider(slidersensitivity, 315, null, false, 0, 100, 50, 1);							
 			</script>
 		</div>
 			
 	</div>
 	
-	<div class="menuSlider">
+	<div class="menuSlider" id="demeanorSlider">
 		<div class="linesMenuSlider">
-			<img src="images/lines.png" height="16" width="20"> 
+			<img src="images/lines.png" height="15" width="20"> 
 		</div>
 		
 		<div class="textinmenuLeft">
@@ -820,22 +879,22 @@ document.getElementById("logOutMessage").style.display = "none";
 				
 		<div id="sliderAssertiveShy" class="slider">			
 			 <script>
-				var mySlider12 = new dhtmlXSlider(sliderAssertiveShy, 450, null, false, 0, 100, 50, 1);							
+				var mySlider12 = new dhtmlXSlider(sliderAssertiveShy, 315, null, false, 0, 100, 50, 1);							
 			</script>
 		</div>
 			
 	</div>
 	
-	<div class="menuSlider">
+	<div class="menuSlider" id="positionPrefSlider">
 		<div class="linesMenuSlider">
-			<img src="images/lines.png" height="16" width="20"> 
+			<img src="images/lines.png" height="15" width="20"> 
 		</div>
 		
 		<div class="textinmenuLeft">
 		Dominant
 		</div>
 	
-		<div class="textinmenuCenter">
+		<div class="textinmenuPP">
 		Position Preference
 		</div>
 	
@@ -845,15 +904,15 @@ document.getElementById("logOutMessage").style.display = "none";
 				
 		<div id="sliderdomsub" class="slider">			
 			 <script>
-				var mySlider10 = new dhtmlXSlider(sliderdomsub, 450, null, false, 0, 100, 50, 1);							
+				var mySlider10 = new dhtmlXSlider(sliderdomsub, 315, null, false, 0, 100, 50, 1);							
 			</script>
 		</div>
 			
 	</div>
 	
-	<div class="menuSlider">
+	<div class="menuSlider" id="intelligenceSlider">
 		<div class="linesMenuSlider">
-			<img src="images/lines.png" height="16" width="20"> 
+			<img src="images/lines.png" height="15" width="20"> 
 		</div>
 		
 		<div class="textinmenuLeft">
@@ -870,15 +929,15 @@ document.getElementById("logOutMessage").style.display = "none";
 				
 		<div id="sliderIntelligence" class="slider">			
 			 <script>
-				var mySlider16 = new dhtmlXSlider(sliderIntelligence, 450, null, false, 0, 100, 50, 1);							
+				var mySlider16 = new dhtmlXSlider(sliderIntelligence, 315, null, false, 0, 100, 50, 1);							
 			</script>
 		</div>
 			
 	</div>
 	
-	<div class="menuSlider">
+	<div class="menuSlider" id="fluffinessSlider">
 			<div class="linesMenuSlider">
-				<img src="images/lines.png" height="16" width="20"> 
+				<img src="images/lines.png" height="15" width="20"> 
 			</div>
 			
 			<div class="textinmenuLeft">
@@ -895,7 +954,7 @@ document.getElementById("logOutMessage").style.display = "none";
 			
 			<div id="sliderfluff" class="slider">			
 				<script>
-				var mySlider = new dhtmlXSlider(sliderfluff, 450, null, false, 0, 100, 50, 1);				
+				var mySlider = new dhtmlXSlider(sliderfluff, 315, null, false, 0, 100, 50, 1);				
 				</script>
 			</div>
 			
@@ -1023,6 +1082,24 @@ document.getElementById("triggerErrors").style.display='none';
 </script>
 </div>
 
+		<div class="menutextAC" id="disableBattery">
+			<label class="container">Disable battery draining
+				<input type="checkbox" id="disableBatteryCheckbox" onclick="disableBatteryFuntion()">
+				<span class="checkbox"></span>  
+			</label>
+			<script>
+document.getElementById("disableBattery").style.display='none';  
+</script>
+		</div>
+
+<div class="adminbutton" id="adminbutton2">
+<button class="admin" onclick="adminPermsOn()">Admin Mode</button>
+<script>
+document.getElementById("adminbutton2").style.display='none';  
+</script>
+</div>
+
+
 <div class="applybutton" id="goBack">
 <button class="apply" onclick="goBackFunction()">Go back</button>
 <script>
@@ -1058,17 +1135,96 @@ Programming - Ignitio The Dragon <br>
 Twitter Logo by <a href="https://twitter.com/EndangeredCDs"> Endangered CDs </a><br>
 
 Sliders by <a href="https://dhtmlx.com/">DHTMLX</a> under <a href="License_gpl_2.0.txt">GNU GPL</a><br>
-Ver 0.6.2.1e <!--Please use letters for versioning--> <br>
+Ver 0.6.2.1f <!--Please use letters for versioning--> <br>
 <a href ="changelog.txt">Changelog</a>
 <script>
 document.getElementById("credits").style.display = "none";
+
+
+mySlider6.attachEvent("onSlideEnd", function() {
+   	var bodyType1 = mySlider6.getValue();
+	localStorage.setItem("Slot0_Body_Type1", bodyType1);
+});
+
+mySlider5.attachEvent("onSlideEnd", function() {
+   	var bodyType2 = mySlider5.getValue();
+	localStorage.setItem("Slot0_Body_Type2", bodyType2);
+});
+
+mySlider4.attachEvent("onSlideEnd", function() {
+   	var bodyType3 = mySlider4.getValue();
+	localStorage.setItem("Slot0_Body_Type3", bodyType3);
+});
+
+mySlider3.attachEvent("onSlideEnd", function() {
+   	var hips = mySlider3.getValue();
+	localStorage.setItem("Slot0_Hips", hips);
+});
+
+mySlider2.attachEvent("onSlideEnd", function() {
+   	var genitalSize = mySlider2.getValue();
+	localStorage.setItem("Slot0_Genital_Size", genitalSize);
+});
+
+mySlider.attachEvent("onSlideEnd", function() {
+   	var fluffiness = mySlider.getValue();
+	localStorage.setItem("Slot0_Fluffiness", fluffiness);
+});
+
+mySlider7.attachEvent("onSlideEnd", function() {
+   	var libido = mySlider7.getValue();
+	localStorage.setItem("Slot0_Libido", libido);
+});
+
+mySlider10.attachEvent("onSlideEnd", function() {
+   	var domsub = mySlider10.getValue();
+	localStorage.setItem("Slot0_Position_Preference", domsub);
+});
+
+mySlider11.attachEvent("onSlideEnd", function() {
+   	var sensitivity = mySlider11.getValue();
+	localStorage.setItem("Slot0_Sensitivity", sensitivity);
+});
+
+mySlider12.attachEvent("onSlideEnd", function() {
+   	var assertiveShy = mySlider12.getValue();
+	localStorage.setItem("Slot0_Demeanor", assertiveShy);
+});
+
+mySlider9.attachEvent("onSlideEnd", function() {
+   	var breastSizeMale = mySlider9.getValue();
+	localStorage.setItem("Slot0_Breast_Size_Male", breastSizeMale);
+});
+
+mySlider8.attachEvent("onSlideEnd", function() {
+   	var breastSizeFemale = mySlider8.getValue();
+	localStorage.setItem("Slot0_Breast_Size_Female", breastSizeFemale);
+});
+
+mySlider13.attachEvent("onSlideEnd", function() {
+   	var buttSize = mySlider13.getValue();
+	localStorage.setItem("Slot0_Butt_Size", buttSize);
+});
+
+mySlider14.attachEvent("onSlideEnd", function() {
+   	var bellySize = mySlider14.getValue();
+	localStorage.setItem("Slot0_Belly_Size", bellySize);
+});
+
+mySlider15.attachEvent("onSlideEnd", function() {
+   	var bellyShape = mySlider15.getValue();
+	localStorage.setItem("Slot0_Belly_Shape", bellyShape);
+});
+
+mySlider16.attachEvent("onSlideEnd", function() {
+   	var intelligence = mySlider16.getValue();
+	localStorage.setItem("Slot0_Intelligence", intelligence);
+});
+
+loadPreviousState();
 </script>				
 </div>
-
-<div class="linktoMobile" id="linktoMobile">
-<a href = "index2.html"> Mobile version</a>
 </div>
 
-</div>
 </body>
 </html>

@@ -6,18 +6,18 @@ body {
   background-color: #3b395e;
   font-family:Century Gothic,Arial, sans-serif;
   color: #FFFFFF;
-  font-size: 15px;
+  font-size: 17px;
   margin: 0 !important;
   padding: 0 !important;
-  
 }
 div {
 	border: 1px;
 	text-align: left;
 	
 }
-.siteWidthContainer {
-	width: 510px;
+
+.appWidthContainer {
+	width: 354px;
 	margin: 0 auto;	
 	border: 2px solid #000000;
 }
@@ -32,28 +32,30 @@ div {
 	border-bottom: 2px solid #000000;
 }
 .coverageContainer {
-	width: 33%;
+	width: 40%;
 	float: left;
 }
 .currentTime {
-	width: 34%;
+	width: 20%;
 	float: left;
 	text-align:center;
 	font-weight: bold;
-	font-family: Arial;
+	font-size:15px;
 }
 
 .chargeBattery {
-	width: 22%;
+	width: 25%;
 	float: left;
-	font-size: 13px;
+	font-size: 11px;
 	text-align:right;
+	padding-top:1.5px;
 }
 
 .batteryContainer {
 	width: 11%;
 	float: right;
 	text-align:right;
+	margin-right: 12px;
 }
 .secondSliderHandleContainer {
 	width: 510px;
@@ -64,43 +66,42 @@ div {
 .secondSliderHandle {
 	background-color: #FF4550;
 	border:1px solid #3b395e;
-	border-radius:3px;
+	border-radius:1px;
 	color: #000000;
 	z-index: 1;
 	position: absolute;
-	width: 10px;
-	height: 26px;
+	width: 11px;
+	height: 32px;
 	margin-left: auto;
 	margin-right: auto;	
 	left: 0;
-	right: 80%;	
-	top: 303px;
+	right: 84.5%;	
+	top: 345px;
 	opacity: 1;
 }
 
 .errorMessageContainer {
-	background-color: #ffffff;
+	background-color: #E8E8EA;
 	color: #000000;
 	z-index: 1;
 	position: absolute;
-	width: 510px;
+	width: 354px;
 	margin-left: auto;
 	margin-right: auto;
-	left: 0;
-	right: 0;	
-	top: 1%;
-	opacity: 0.8;
+
+	top: 70px;
+	opacity: 0.9;
 }
 .errorMessageAlignLeft {
 	z-index: 1;
 	margin-left: 10px;
-	margin-top: 10px;
+	margin-top: 2px;
 	margin-bottom: 10px;
 }
 .errorMessageAlignCenter {
 	z-index: 1;
 	margin-left: 10px;
-	margin-top: 10px;
+	margin-top: 2px;
 	margin-bottom: 10px;
 	text-align: center;
 }
@@ -110,12 +111,11 @@ div {
 	color: #000000;
 	z-index: 1;
 	position: absolute;
-	width: 510px;
+	width: 354px;
 	margin-left: auto;
 	margin-right: auto;
-	left: 0;
-	right: 0;	
-	top: 204px;
+	
+	top: 277px;
 	opacity: 0.8;
 }
 
@@ -124,12 +124,11 @@ div {
 	color: #000000;
 	z-index: 1;
 	position: absolute;
-	width: 510px;
+	width: 354px;
 	margin-left: auto;
 	margin-right: auto;
-	left: 0;
-	right: 0;	
-	top: 127px;
+	
+	top: 193px;
 	opacity: 0.8;
 }
 
@@ -138,12 +137,11 @@ div {
 	color: #000000;
 	z-index: 1;
 	position: absolute;
-	width: 510px;
+	width: 354px;
 	margin-left: auto;
 	margin-right: auto;
-	left: 0;
-	right: 0;	
-	top: 52px;
+
+	top: 130px;
 	opacity: 0.8;
 }
 
@@ -152,12 +150,24 @@ div {
 	color: #000000;
 	z-index: 1;
 	position: absolute;
-	width: 510px;
+	width: 354px;
 	margin-left: auto;
 	margin-right: auto;
-	left: 0;
-	right: 0;	
-	top: 110px;
+
+	top: 172px;
+	opacity: 0.8;
+}
+
+.lowBatteryOkayContainer {
+	background-color: #ffffff;
+	color: #000000;
+	z-index: 1;
+	position: absolute;
+	width: 354px;
+	margin-left: auto;
+	margin-right: auto;
+
+	top: 172px;
 	opacity: 0.8;
 }
 
@@ -174,14 +184,14 @@ div {
 	color: #000000;
 	z-index: 1;
 	position: absolute;
-	width: 510px;
+	width: 354px;
 	margin-left: auto;
 	margin-right: auto;
 	left: 0;
 	right: 0;	
-	top: 5%;
+	top: 70px;
 	opacity: 0.8;
-	font-size: 26px;
+	font-size: 18px;
 }
 
 .error621 {
@@ -214,20 +224,20 @@ div {
 }
 .switcherLogo {
 	text-align: center;
-	height: 40px;
+	height: 42.5px;
 	margin-top: 3px;
 }
 .container2 {
 	text-align: center;
-	height: 45px;
+	height: 60px;
 }
 .processingText {
 	height: 25px;
-	font-size: 20px;
+	font-size: 22px;
 	text-align: center;
 }
 .rotate {
-  animation: rotation 2s infinite linear;
+  animation: rotation 3s infinite linear;
 }
 
 @keyframes rotation {
@@ -240,20 +250,21 @@ div {
 }
 .lockSettingsImgClosed {
 	float: left;
-	width: 6%;	
-	margin-left: 3px;
-	margin-top: 10px;
+	width: 7.5%;	
+	margin-left: 5px;
+	margin-top: 20px;
 }
 .lockSettingsImgOpen {
 	float: left;
-	width: 6%;	
-	margin-left: 3px;
-	margin-top: 10px;
+	width: 7.5%;	
+	margin-left: 5px;
+	margin-top: 20px;
 }
 .lockSettings {
 	float: left;
-	width: 26%;	
-	margin-top: 22px;
+	width: 30%;	
+	margin-top: 35px;
+	font-size:17px;
 }
 .enterPassword {
 	text-align: center;
@@ -262,45 +273,81 @@ div {
 
 .processingContainer {
 	float: left;
-	width: 33%;
+	width: 23.5%;
 	text-align: center;	
 }
 .logOut {
 	float: right;
 	width: 33%;
 	text-align: right;	
-	margin-top: 22px;
+	margin-top: 35px;
+	font-size:17px;
 }
 .adminPerms {
 	color: #ff1b1f;
 	text-align: center;
 	font-weight: bold;
+	font-size: 15px;
 }
 
 .speciesChoice {
-	width: 70%;
+	width: 75%;
 	float: left;
+	padding-top:4px;
+	padding-left:7px;
 }
 .search {
 	width: 10%;
 	float: left;
-	margin-top: 15px;
-	margin-left: 10px;
+	margin-top: 2.5px;
+	
+}
+.speciesText {
+	width: 90%;
+	padding-left: 36px;
+	padding-top:2px;
+}
+.speciesTextSmall {
+	width: 90%;
+	font-size: 12px;
+	padding-left: 36px;
+	padding-top:2px;
+}
+.selectMenuContainer {
+	width: 100%;
+	height: 40px;
+	float: left;
+}
+.selectMenuContainer2 {
+	width: 100%;
+	height: 30px;
+	float: left;
+}
+.containerRBFemale {
+	width: 30%;
+	float:left;
+	margin-top:11px;
+}
+.containerRBMale {
+	width: 40%;
+	float:left;
+	margin-top:11px;
+	margin-left:5px;
 }
 
 /* body select.select_box */ 
 body select { 
     display: block;
     
-    width: 100%; 
-    height: 20px;
-    border: 1px solid #ffffff; 
-    border-radius: 3px; 
+    width: 95%; 
+    height: 24px;
+    border: 2px solid #9D9CAF;
+    border-radius: 2px;
     background: url("../images/speciesSelectTriangle.png") right center no-repeat;
     background-color: #3b395e; 
     color: #ffffff; 
     font-family: "Century Gothic";
-	font-size: 15px;
+	font-size: 17px;
     line-height: 15px !important; 
     appearance: none; 
     /* this is must */ -webkit-appearance: none; 
@@ -319,23 +366,41 @@ select:disabled::-ms-expand {
 }
 
 .menu {
-	border-bottom: 1px solid #fff;	
-	text-align: center;
-	height: 50px;
-	margin-top:5px;
-}
-.menuSlider {
-	border-bottom: 1px solid #fff;	
+	border-bottom: 3px solid #73728C;	
 	text-align: center;
 	height: 60px;
-	margin-top:8px;
+}
+.menuSmall {
+	border-bottom: 3px solid #73728C;	
+	text-align: center;
+	height: 45px;
+}
+.menuBig {
+	border-bottom: 3px solid #73728C;	
+	text-align: center;
+	height: 340px;
+}
+.menuBig2 {
+	border-bottom: 3px solid #73728C;	
+	text-align: center;
+	height: 220px;
+}
+.menuSlider {
+	border-bottom: 3px solid #73728C;	
+	text-align: center;
+	height: 74px;
+	margin-top:2px;
 }
 .menuFirst {
-	border-top: 1px solid #fff;	
-	border-bottom: 1px solid #fff;	
+	border-top: 3px solid #73728C;	
+	border-bottom: 3px solid #73728C;	
 	text-align: center;
-	height: 50px;
-	margin-top:5px;
+	height: 62px;
+	
+}
+.adaptClothing {
+	text-align: left;
+	height: 47px;
 }
 .menuAS {
 	text-align: left;
@@ -344,11 +409,12 @@ select:disabled::-ms-expand {
 }
 .processingAnim {
 	text-align: center;
+	margin-top:5px;
 }
 .lines
 {
 	display: block;
-	margin-top: 17px;	
+	margin-top: 8px;	
 	width: 6%;
 	float: left;
 	margin-left: 4px;
@@ -356,7 +422,7 @@ select:disabled::-ms-expand {
 .linesMenuSlider
 {
 	display: block;
-	margin-top: 25px;	
+	margin-top: 36px;	
 	width: 6%;
 	float: left;
 	margin-left: 4px;
@@ -364,7 +430,7 @@ select:disabled::-ms-expand {
 .linesAC
 {
 	display: block;
-	margin-top: 5px;	
+	margin-top: 18px;	
 	width: 6%;
 	float: left;
 	margin-left: 4px;
@@ -372,38 +438,34 @@ select:disabled::-ms-expand {
 .menutextAC{
 	float: left;
 	text-align: center;	
-	margin-top: 5px;
+	margin-top: 15px;
+	height:30px;
+	margin-left:7px;
+	font-size:18px;
 }
 .linesAS
 {
 	display: block;
 	margin: 0 auto;
-	width: 13%;
+	width: 16%;
 	float: left;
 	margin-left: 4px;
 }
-.species {
-	text-align: left;
-}
-.sex {
-	text-align: left;
-}
+
 .linesSex
 {
 	display: block;
-	margin-top: 17px;	
+	margin-top: 10px;	
 	width: 7%;
 	float: left;
 	margin-left: 4px;
 	}
-.adaptClothing {
-	text-align: left;
-	height: 35px;
-}
+
 .slider{
 	float: left;
 	text-align: center;
 	margin-top:5px;
+	margin-left:3px;
 }
 .menutext{
 	float: left;
@@ -411,18 +473,29 @@ select:disabled::-ms-expand {
 }
 .textinmenuLeft {
 	float: left;
-	width: 30%;
+	width: 27.5%;
 	text-align: left;
+	margin-left: 9px;
+	padding-top:8px;
 }
 .textinmenuCenter {
 	float: left;
 	width: 30%;
 	text-align: center;
+	
 }
 .textinmenuRight {
 	float: left;
-	width: 30%;
+	width: 28.5%;
 	text-align: right;
+	padding-top:8px;
+}
+.textinmenuPP {
+	float: left;
+	width: 30%;
+	text-align: center;
+	padding-top:5px;
+	font-size:11px;
 }
 .credits {
 	text-align: center;
@@ -456,7 +529,7 @@ select:disabled::-ms-expand {
   position: relative;
   background-color: #282640;
   border: none;
-  font-size: 36px;
+  font-size: 26px;
   color: #FFFFFF;
   padding: 10px;
   width: 90%;
@@ -494,11 +567,44 @@ select:disabled::-ms-expand {
 	text-align: center;
 	margin-top: 5px;
 }
+.slotCoverage2 {
+  position: relative;
+  background-color: #282640;
+  border: none;
+  font-size: 22px;
+  color: #FFFFFF;
+
+  text-align: center;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+  float: left;
+  margin-left: 8px;
+  margin-top:5px;
+}
+.slotCoverage {
+  position: relative;
+  background-color: #282640;
+  border: none;
+  font-size: 22px;
+  color: #FFFFFF;
+
+  text-align: center;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+  float: left;
+  margin-left: 8px;
+}
 .slot {
   position: relative;
   background-color: #282640;
   border: none;
-  font-size: 36px;
+  font-size: 26px;
   color: #FFFFFF;
   padding: 10px;
   width: 15%;
@@ -509,8 +615,7 @@ select:disabled::-ms-expand {
   overflow: hidden;
   cursor: pointer;
   float: left;
-  margin-bottom: 5px;
-  margin-left: 10px;
+  margin-left: 8px;
 }
 
 .slot:after {
@@ -538,13 +643,14 @@ select:disabled::-ms-expand {
 .slotbutton {
 	text-align: center;
 	margin-top: 5px;
-	margin-left: 50px;
+	margin-left: 30px;
+	height:60px;
 }
 .admin {
   position: relative;
   background-color: #660002;
   border: 1px solid #b30003;
-  font-size: 36px;
+  font-size: 26px;
   color: #FFFFFF;
   padding: 10px;
   width: 90%;
@@ -583,7 +689,7 @@ select:disabled::-ms-expand {
   position: relative;
   background-color: #29a329;
   border: 1px solid #145214;
-  font-size: 36px;
+  font-size: 26px;
   color: #FFFFFF;
   padding: 10px;
   width: 90%;
@@ -622,7 +728,7 @@ select:disabled::-ms-expand {
   position: relative;
   background-color: #660002;
   border: 1px solid #b30003;
-  font-size: 36px;
+  font-size: 26px;
   color: #FFFFFF;
   padding: 10px;
   width: 90%;
@@ -699,7 +805,7 @@ select:disabled::-ms-expand {
 	color: #ffffff;
 	width: 42%;
 	padding: 10px;
-	font-size: 26px;
+	font-size: 22px;
 }
 
 /* Customize the label (the container) */
@@ -728,10 +834,11 @@ select:disabled::-ms-expand {
   position: absolute;
   top: 0;
   left: 0;
-  height: 15px;
-  width: 15px;
+  height: 13px;
+  width: 13px;
   background-color: #3b395e;
-  border: 1px solid #fff;	
+  border: 1.5px solid #fff;	
+  margin-top: 4px;
 }
 
 /* On mouse-over, add a grey background color */
@@ -758,15 +865,15 @@ select:disabled::-ms-expand {
 
 /* Style the checkmark/indicator */
 .container .checkbox:after {
-  left: 8px;
-  top: -10px;
-  width: 5px;
-  height: 20px;
+  left: 3px;
+  top: -16px;
+  width: 10px;
+  height: 25px;
   border: solid white;
   border-width: 0 2px 2px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
+  -webkit-transform: rotate(35deg);
+  -ms-transform: rotate(35deg);
+  transform: rotate(35deg);
 }
 
 /* unvisited link */

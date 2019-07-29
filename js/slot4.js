@@ -73,6 +73,13 @@
 	}
 	else {
 		var Species = localStorage.getItem("Slot4_Species");
+				if (Species == null) {
+			document.getElementById("settingsLoadedPopup").style.display = "block";	
+			document.getElementById('settingsLoadedPopup').innerHTML = ">Error: This slot is empty";
+			hideLoadSlotButtons();
+			setTimeout(hideLoadedPopup, 4000);			
+		}
+		else{
 		var element = document.getElementById("speciesChoice");
 		element.value = Species; 
  
@@ -178,5 +185,6 @@
 			hideLoadSlotButtons();
 			setTimeout(hideLoadedPopup, 4000);
 		}
+	}
 	}
 }
