@@ -1120,6 +1120,10 @@ document.getElementById("logOutMessage").style.display = "none";
 <button class="apply" onclick="processingShowFunction()">Apply Settings</button>
 </div>
 -->
+<div class="applybutton" id="applySettingsButton">
+<button class="apply" onclick="checkWindowSize()">testwindow</button>
+</div>
+
 <div class="adminbutton" id="adminbutton">
 <button class="admin" onclick="enterPasswordFunction()">Admin Mode</button>
 </div>
@@ -1295,6 +1299,15 @@ Twitter Logo by <a href="https://twitter.com/EndangeredCDs"> Endangered CDs </a>
 Sliders by <a href="https://dhtmlx.com/">DHTMLX</a> under <a href="License_gpl_2.0.txt">GNU GPL</a><br>
 Ver 0.6.2.1g <!--Please use letters for versioning--> <br>
 <a href ="changelog.txt">Changelog</a>
+</div>
+
+<div id="downloadAPK" class="downloadAPK">
+<a href="https://drive.google.com/drive/folders/1WQMr1M0AFGRBERiGeehir_m_11XXbTCf"> Download .apk  </a>
+<script>
+document.getElementById("downloadAPK").style.display='none';  
+</script>
+</div>
+
 <script>
 document.getElementById("credits").style.display = "none";
 
@@ -1400,13 +1413,7 @@ loadSliderSettings();
 visitCounter();
 visitAdmin();
 </script>				
-</div>
-<div style = "text-align: center; font-size: 30px"; id="downloadAPK">
-<a href="https://drive.google.com/drive/folders/1WQMr1M0AFGRBERiGeehir_m_11XXbTCf"> Download .apk  </a>
-<script>
-document.getElementById("downloadAPK").style.display='none';  
-</script>
-</div>
+
 </div>
 
 </body>

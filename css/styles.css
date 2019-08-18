@@ -16,6 +16,10 @@ div {
 	
 }
 
+.downloadAPK {
+	text-align: center;
+	font-size: 30px	
+}
 .appWidthContainer {
 	width: 354px;
 	margin: 0 auto;	
@@ -180,7 +184,7 @@ div {
 	margin-left: auto;
 	margin-right: auto;
 
-	top: 172px;
+	top: 192px;
 	opacity: 0.8;
 }
 
