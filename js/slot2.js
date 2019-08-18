@@ -35,6 +35,8 @@
 	var intelligence = mySlider16.getValue();
 	
 	var cockType = document.getElementById('cockType').value 
+	
+	var settingSex = functionBodyType(settingSex, bodyType1);
  
 	localStorage.setItem("Slot2_Species", settingSpecies);	
     localStorage.setItem("Slot2_Sex", settingSex);	
@@ -84,13 +86,13 @@
 		element.value = Species; 
  
 		var Sex = localStorage.getItem("Slot2_Sex");
-		if (Sex == "Male") {
+		if (Sex == "Male" || Sex == "Femboy") {
 			rbmale = document.getElementById("radiobuttonMale");
 			rbmale.checked = true;
 			rbfemale = document.getElementById("radiobuttonFemale");
 			rbfemale.checked = false;
 		}
-		else {
+		else if (Sex == "Female" || Sex == "Tomboy") {
 			rbfemale = document.getElementById("radiobuttonFemale");
 			rbfemale.checked = true;
 			rbmale = document.getElementById("radiobuttonMale");
@@ -159,7 +161,7 @@
 		var element2 = document.getElementById("cockType");
 		element2.value = cockType; 
  
-		if (Sex == "Male") {
+		if (Sex == "Male" || Sex == "Femboy") {
 			document.getElementById("showAdvancedSettings4a").style.display = "block";
 			document.getElementById("showAdvancedSettings4b").style.display = "none";
 			var breastSizeMale = localStorage.getItem("Slot2_Breast_Size_Male");
