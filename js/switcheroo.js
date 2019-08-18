@@ -7,6 +7,15 @@ function advSettFunctionV2() {
 		}
 	}
 	
+function addRemoveSlidersFunction() {
+		var x = document.getElementById("addRemoveSlidersContainer");
+		if (x.style.display === "none") {
+			x.style.display = "block";
+		} else {
+			x.style.display = "none";
+		}
+	}
+	
 function changeCoverageWait() {
 	setTimeout(changeCoverage, 20000);
 }
@@ -235,6 +244,18 @@ mySlider15.disable();
 mySlider16.disable();
 }
 
+function processingShowFunctionV2() {
+	document.getElementById('processingText').innerHTML = "Processing...";
+	document.getElementById("processingAnim").style.display='block';  
+	var rng = Math.floor(Math.random() * 2500) + 1500;
+	setTimeout(processingHideFunctionV2, rng)    
+}
+
+function processingHideFunctionV2() {
+  document.getElementById('processingText').innerHTML = "";
+  document.getElementById("processingAnim").style.display='none';   
+}
+
 function processingShowFunction() {
 	document.getElementById("processingText").style.display='block';
 	document.getElementById("processingAnim").style.display='block';  
@@ -311,6 +332,22 @@ function adminPermsOn() {
 		document.getElementById("accessGranted").style.display='none';
 		document.getElementById('defaultcss').href='css/admindhtmlxslider.css';
 		document.getElementById("adminPermsText").style.display='block';  
+		localStorage.setItem("Admin_passwd_entered", "Yes");
+		localStorage.setItem("Admin_mode_on", "Yes");
+		document.getElementById("adminbuttontoggle").style.display='block';
+	}
+	
+function toggleAdminModeFunction() {
+	var isAdminOn = document.getElementById("adminPermsText");
+		if (isAdminOn.style.display === "none") {
+			isAdminOn.style.display = "block";
+			document.getElementById('defaultcss').href='css/admindhtmlxslider.css';
+			localStorage.setItem("Admin_mode_on", "Yes");
+		} else {
+			isAdminOn.style.display = "none";
+			document.getElementById('defaultcss').href='css/dhtmlxslider.css';
+			localStorage.setItem("Admin_mode_on", "No");
+		}	
 	}
 	
 function adminPermsTextOff() {
@@ -368,7 +405,8 @@ function error621() {
 		document.getElementById("speciesMenu").style.display = "none";
 		document.getElementById("sexMenu").style.display = "none";
 		document.getElementById("adaptClothing").style.display= 'none';  
-		document.getElementById("error621").style.display = "block";		
+		document.getElementById("error621").style.display = "block";	
+		document.getElementById("processingText").style.display = "none";
 		mySlider6.setValue(99);	
 		mySlider6.disable();	
 		error621ChangeSlider();
@@ -397,17 +435,18 @@ function hideLowBatteryMessage(){
 function showOptions() {
 		document.getElementById("preferences").style.display = "none";
 		document.getElementById("triggerErrors").style.display = "block";
-		document.getElementById("goBack").style.display = "block";
-		document.getElementById("adminbutton2").style.display='block';  
+		document.getElementById("goBack").style.display = "block";		
 		document.getElementById("disableBattery").style.display='block';  
 	}
 	
 function goBackFunction() {
 		document.getElementById("preferences").style.display = "block";
 		document.getElementById("triggerErrors").style.display = "none";
-		document.getElementById("goBack").style.display = "none";
-		document.getElementById("adminbutton2").style.display='none';  
+		document.getElementById("goBack").style.display = "none";		
 		document.getElementById("disableBattery").style.display='none';  
+		document.getElementById("triggerRLEButton").style.display = "none";
+		document.getElementById("triggerError69Button").style.display = "none";
+		document.getElementById("triggerError621Button").style.display = "none";
 	}
 	
 function triggerErrorsFunction() {
@@ -439,11 +478,16 @@ function triggerErrorsFunction() {
 		rbmale.checked = true;
 		rbfemale = document.getElementById("radiobuttonFemale");
 		rbfemale.checked = false;
+		document.getElementById("showAdvancedSettings4a").style.display='block'; 
+		document.getElementById("showAdvancedSettings4b").style.display='none'; 
+		processingShowFunctionV2();
 	}
  }
 	else { 
 	rbmale = document.getElementById("radiobuttonMale");
 	rbmale.checked = true;
+	document.getElementById("showAdvancedSettings4a").style.display='block'; 
+	document.getElementById("showAdvancedSettings4b").style.display='none'; 
 	}
  } 
  
@@ -470,11 +514,16 @@ function triggerErrorsFunction() {
 		rbmale.checked = false;
 		rbfemale = document.getElementById("radiobuttonFemale");
 		rbfemale.checked = true;
+		document.getElementById("showAdvancedSettings4a").style.display='none'; 
+		document.getElementById("showAdvancedSettings4b").style.display='block'; 
+		processingShowFunctionV2();
 	}
  }  
 	else {  
 		rbfemale = document.getElementById("radiobuttonFemale");
 		rbfemale.checked = true;
+		document.getElementById("showAdvancedSettings4a").style.display='none'; 
+		document.getElementById("showAdvancedSettings4b").style.display='block'; 
 	}
  }
  
@@ -488,6 +537,7 @@ function hideMSSError () {
  function saveCurrentSpecies() {
 	var settingSpecies = document.getElementById('speciesChoice').value 
 	localStorage.setItem("Slot0_Species", settingSpecies);	 
+	processingShowFunctionV2();
  }
  function realScaliesDontHaveFluff() {	 
 		if(document.getElementById('speciesChoice').value == "Dragon") { 
@@ -610,6 +660,8 @@ function showLoadSlotButtons() {
 	var intelligence = mySlider16.getValue();
 	
 	var cockType = document.getElementById('cockType').value 
+	
+	var settingSex = functionBodyType(settingSex, bodyType1);
  
 	localStorage.setItem("Slot1_Species", settingSpecies);	
     localStorage.setItem("Slot1_Sex", settingSex);	
@@ -659,13 +711,13 @@ function showLoadSlotButtons() {
 		element.value = Species; 
  
 		var Sex = localStorage.getItem("Slot1_Sex");
-		if (Sex == "Male") {
+		if (Sex == "Male" || Sex == "Femboy") {
 			rbmale = document.getElementById("radiobuttonMale");
 			rbmale.checked = true;
 			rbfemale = document.getElementById("radiobuttonFemale");
 			rbfemale.checked = false;
 		}
-		else {
+		else if (Sex == "Female" || Sex == "Tomboy") {
 			rbfemale = document.getElementById("radiobuttonFemale");
 			rbfemale.checked = true;
 			rbmale = document.getElementById("radiobuttonMale");
@@ -734,7 +786,7 @@ function showLoadSlotButtons() {
 		var element2 = document.getElementById("cockType");
 		element2.value = cockType; 
  
-		if (Sex == "Male") {
+		if (Sex == "Male" || Sex == "Femboy") {
 			document.getElementById("showAdvancedSettings4a").style.display = "block";
 			document.getElementById("showAdvancedSettings4b").style.display = "none";
 			var breastSizeMale = localStorage.getItem("Slot1_Breast_Size_Male");
@@ -749,20 +801,17 @@ function showLoadSlotButtons() {
 		
 		if (open =="no") {
 			document.getElementById("AdvancedSettingsContainer").style.display='none'; 
-			document.getElementById("settingsLoadedPopup").style.display = "block";	
-			document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Loaded:" + " " + Sex + " " + Species;
-			hideLoadSlotButtons();
-			saveSettingsSlot0();
-			setTimeout(hideLoadedPopup, 4000);
 		}
-		else { 
-			document.getElementById("settingsLoadedPopup").style.display = "block";	
-			document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Loaded:" + " " + Sex + " " + Species;
-			hideLoadSlotButtons();
-			saveSettingsSlot0();
-			setTimeout(hideLoadedPopup, 4000);
+		else {
+			document.getElementById("AdvancedSettingsContainer").style.display='block';
 		}
-	}
+		
+		document.getElementById("settingsLoadedPopup").style.display = "block";	
+		document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Loaded:" + " " + Sex + " " + Species;
+		hideLoadSlotButtons();
+		saveSettingsSlot0();
+		setTimeout(hideLoadedPopup, 4000);			
+		}
 	}
 }
 
@@ -782,13 +831,14 @@ function logOut() {
 	document.getElementById("bodyType2Slider").style.display = "none";
 	document.getElementById("bodyType3Slider").style.display = "none";
 	document.getElementById("advancedSettings").style.display = "none";
+	document.getElementById("advancedSettings2").style.display = "none";
 	document.getElementById("adaptClothing").style.display = "none";
 	document.getElementById("sexMenu").style.display = "none";
 	document.getElementById("speciesMenu").style.display = "none";
 	document.getElementById("container2").style.display = "none";
 	document.getElementById("adminPermsText").style.display = "none";
 	document.getElementById("AdvancedSettingsContainer").style.display = "none";
-	
+	document.getElementById("processingText").style.display = "none";
 	document.getElementById("credits").style.display = "none";
 	document.getElementById("creditsButton").style.display = "none";
 	document.getElementById("preferences").style.display = "none";
@@ -801,7 +851,7 @@ function logOut() {
 	document.getElementById("adminbutton").style.display = "none";
 	document.getElementById("adminbutton2").style.display = "none";
 	document.getElementById("goBack").style.display = "none";
-	document.getElementById("applySettingsButton").style.display = "none";
+	document.getElementById("adminbuttontoggle").style.display = "none";
 	document.getElementById("disableBattery").style.display = "none";
 	document.getElementById("saveSlotButtons").style.display='none';
 	document.getElementById("loadSlotButtons").style.display='none';
@@ -1080,12 +1130,355 @@ function loadPS20() {
 			}	
 		}
 }
+
+function loadPS21() {
+		var hasUserEnteredPassword = localStorage.getItem("Admin_passwd_entered");
+		if (hasUserEnteredPassword == null) {
+			loadPS22();
+		}	
+		else {
+			if (hasUserEnteredPassword == "Yes") {
+				document.getElementById("adminbutton").style.display='none'; 
+				document.getElementById("adminbuttontoggle").style.display='block';
+				loadPS22();
+			}
+			else {
+				loadPS22();
+			}	
+		}
+}
+
+function loadPS22() {
+		var isAdminModeOn = localStorage.getItem("Admin_mode_on");
+		if (isAdminModeOn == null) {
+			loadPS23();
+		}	
+		else {
+			if (isAdminModeOn == "Yes") {
+				document.getElementById('defaultcss').href='css/admindhtmlxslider.css';
+				document.getElementById("adminPermsText").style.display='block';  
+				loadPS23();
+			}
+			else {
+				loadPS23();
+			}	
+		}
+}
 		
-function loadPS21() { 		
+function loadPS23() { 		
 	document.getElementById("AdvancedSettingsContainer").style.display='none'; 	
 }
 
 function saveCockType() {
 	var cockType = document.getElementById('cockType').value 
 	localStorage.setItem("Slot0_Cock_Type", cockType);
+}
+
+function checkWindowSize() {
+	var width = window.screen.width;
+	var height = window.screen.height;	
+	var seenMobileDeviceMessage = localStorage.getItem("Seen_Mobile_Device_Message");
+	if (seenMobileDeviceMessage == "Yes") {
+		return;
+	}
+	else {
+		if (height > width) {
+			document.getElementById("errorMessageContainer").style.display = "block";
+			document.getElementById("mobileDeviceMessage").style.display = "block";
+			document.getElementById("mobileDeviceOkayContainer").style.display = "block";
+			document.getElementById("mobileDeviceOkay").style.display= 'block';  
+			document.getElementById("downloadAPK").style.display = "block";
+		}
+		else {
+			return;
+		}
+	}
+}
+
+function hideMobileDeviceMessage() {
+	document.getElementById("errorMessageContainer").style.display = "none";
+	document.getElementById("mobileDeviceMessage").style.display = "none";
+	document.getElementById("mobileDeviceOkayContainer").style.display = "none";
+	document.getElementById("mobileDeviceOkay").style.display= 'none';  
+	localStorage.setItem("Seen_Mobile_Device_Message", "Yes");		
+}
+
+function toggleButtSizeSlider() {
+var tickbox = document.getElementById("buttSizeSliderCheckbox");
+	if (tickbox.checked) {
+		var tickbox = "Yes"
+		document.getElementById("buttSizeSlider").style.display= 'block';
+	}
+	else {
+		var tickbox = "No"
+		document.getElementById("buttSizeSlider").style.display= 'none';
+	}
+	localStorage.setItem("Butt_Size_Slider_Enabled", tickbox);
+}
+
+function toggleBellySizeSlider() {
+var tickbox = document.getElementById("bellySizeSliderCheckbox");
+	if (tickbox.checked) {
+		var tickbox = "Yes"
+		document.getElementById("bellySizeSlider").style.display= 'block';
+	}
+	else {
+		var tickbox = "No"
+		document.getElementById("bellySizeSlider").style.display= 'none';
+	}
+	localStorage.setItem("Belly_Size_Slider_Enabled", tickbox);
+}
+
+function toggleBellyShapeSlider() {
+var tickbox = document.getElementById("bellyShapeSliderCheckbox");
+	if (tickbox.checked) {
+		var tickbox = "Yes"
+		document.getElementById("bellyShapeSlider").style.display= 'block';
+	}
+	else {
+		var tickbox = "No"
+		document.getElementById("bellyShapeSlider").style.display= 'none';
+	}
+	localStorage.setItem("Belly_Shape_Slider_Enabled", tickbox);
+}
+
+function toggleHipsSlider() {
+var tickbox = document.getElementById("hipsSliderCheckbox");
+	if (tickbox.checked) {
+		var tickbox = "Yes"
+		document.getElementById("hipsSlider").style.display= 'block';
+	}
+	else {
+		var tickbox = "No"
+		document.getElementById("hipsSlider").style.display= 'none';
+	}
+	localStorage.setItem("Hips_Slider_Enabled", tickbox);
+}
+
+function toggleGenitalSizeSlider() {
+var tickbox = document.getElementById("genitalSizeSliderCheckbox");
+	if (tickbox.checked) {
+		var tickbox = "Yes"
+		document.getElementById("genitalSizeSlider").style.display= 'block';
+	}
+	else {
+		var tickbox = "No"
+		document.getElementById("genitalSizeSlider").style.display= 'none';
+	}
+	localStorage.setItem("Genital_Size_Slider_Enabled", tickbox);
+}
+
+function toggleCockTypeMenu() {
+var tickbox = document.getElementById("cockTypeMenuCheckbox");
+	if (tickbox.checked) {
+		var tickbox = "Yes"
+		document.getElementById("cockTypeMenu").style.display= 'block';
+	}
+	else {
+		var tickbox = "No"
+		document.getElementById("cockTypeMenu").style.display= 'none';
+	}
+	localStorage.setItem("Cock_Type_Menu_Enabled", tickbox);
+}
+
+function toggleLibidoSlider() {
+var tickbox = document.getElementById("libidoSliderCheckbox");
+	if (tickbox.checked) {
+		var tickbox = "Yes"
+		document.getElementById("libidoSlider").style.display= 'block';
+	}
+	else {
+		var tickbox = "No"
+		document.getElementById("libidoSlider").style.display= 'none';
+	}
+	localStorage.setItem("Libido_Slider_Enabled", tickbox);
+}
+
+function toggleSensitivitySlider() {
+var tickbox = document.getElementById("sensitivitySliderCheckbox");
+	if (tickbox.checked) {
+		var tickbox = "Yes"
+		document.getElementById("sensitivitySlider").style.display= 'block';
+	}
+	else {
+		var tickbox = "No"
+		document.getElementById("sensitivitySlider").style.display= 'none';
+	}
+	localStorage.setItem("Sensitivity_Slider_Enabled", tickbox);
+}
+
+function toggleDemeanorSlider() {
+var tickbox = document.getElementById("demeanorSliderCheckbox");
+	if (tickbox.checked) {
+		var tickbox = "Yes"
+		document.getElementById("demeanorSlider").style.display= 'block';
+	}
+	else {
+		var tickbox = "No"
+		document.getElementById("demeanorSlider").style.display= 'none';
+	}
+	localStorage.setItem("Demeanor_Slider_Enabled", tickbox);
+}
+
+function togglePositionPreferenceSlider() {
+var tickbox = document.getElementById("positionPreferenceSliderCheckbox");
+	if (tickbox.checked) {
+		var tickbox = "Yes"
+		document.getElementById("positionPrefSlider").style.display= 'block';
+	}
+	else {
+		var tickbox = "No"
+		document.getElementById("positionPrefSlider").style.display= 'none';
+	}
+	localStorage.setItem("Postion_Pref_Slider_Enabled", tickbox);
+}
+
+function toggleIntelligenceSlider() {
+var tickbox = document.getElementById("intelligenceSliderCheckbox");
+	if (tickbox.checked) {
+		var tickbox = "Yes"
+		document.getElementById("intelligenceSlider").style.display= 'block';
+	}
+	else {
+		var tickbox = "No"
+		document.getElementById("intelligenceSlider").style.display= 'none';
+	}
+	localStorage.setItem("Intelligence_Slider_Enabled", tickbox);
+}
+
+function toggleFluffinessSlider() {
+var tickbox = document.getElementById("fluffinessSliderCheckbox");
+	if (tickbox.checked) {
+		var tickbox = "Yes"
+		document.getElementById("fluffinessSlider").style.display= 'block';
+	}
+	else {
+		var tickbox = "No"
+		document.getElementById("fluffinessSlider").style.display= 'none';
+	}
+	localStorage.setItem("Fluffiness_Slider_Enabled", tickbox);
+}
+
+function loadSliderSettings() {
+	var buttSizeSliderEnabled = localStorage.getItem("Butt_Size_Slider_Enabled");
+	var bellySizeSliderEnabled = localStorage.getItem("Belly_Size_Slider_Enabled");
+	var bellyShapeSliderEnabled = localStorage.getItem("Belly_Shape_Slider_Enabled");
+	var hipsSliderEnabled = localStorage.getItem("Hips_Slider_Enabled");
+	var genitalSizeSliderEnabled = localStorage.getItem("Genital_Size_Slider_Enabled");
+	var cockTypeMenuEnabled = localStorage.getItem("Cock_Type_Menu_Enabled");
+	var libidoSliderEnabled = localStorage.getItem("Libido_Slider_Enabled");
+	var sensitivitySliderEnabled = localStorage.getItem("Sensitivity_Slider_Enabled");
+	var demeanorSliderEnabled = localStorage.getItem("Demeanor_Slider_Enabled");
+	var positionPrefSliderEnabled = localStorage.getItem("Postion_Pref_Slider_Enabled");
+	var intelligenceSliderEnabled = localStorage.getItem("Intelligence_Slider_Enabled");
+	var fluffinessSliderEnabled = localStorage.getItem("Fluffiness_Slider_Enabled");
+	
+	if (buttSizeSliderEnabled != "No") {
+		document.getElementById("buttSizeSliderCheckbox").checked = true;
+	}
+	else {
+		document.getElementById("buttSizeSlider").style.display= 'none';
+	}
+
+	if (bellySizeSliderEnabled != "No") {
+		document.getElementById("bellySizeSliderCheckbox").checked = true;
+	}
+	else {
+		document.getElementById("bellySizeSlider").style.display= 'none';
+	}
+	
+	if (bellyShapeSliderEnabled != "No") {
+		document.getElementById("bellyShapeSliderCheckbox").checked = true;
+	}
+	else {
+		document.getElementById("bellyShapeSlider").style.display= 'none';
+	}
+	
+	if (hipsSliderEnabled != "No") {
+		document.getElementById("hipsSliderCheckbox").checked = true;
+	}
+	else {
+		document.getElementById("hipsSlider").style.display= 'none';
+	}
+	
+	if (genitalSizeSliderEnabled != "No") {
+		document.getElementById("genitalSizeSliderCheckbox").checked = true;
+	}
+	else {
+		document.getElementById("genitalSizeSlider").style.display= 'none';
+	}
+	
+	if (cockTypeMenuEnabled != "No") {
+		document.getElementById("cockTypeMenuCheckbox").checked = true;
+	}
+	else {
+		document.getElementById("cockTypeMenu").style.display= 'none';
+	}
+	
+	if (libidoSliderEnabled != "No") {
+		document.getElementById("libidoSliderCheckbox").checked = true;
+	}
+	else {
+		document.getElementById("libidoSlider").style.display= 'none';
+	}
+	
+	if (sensitivitySliderEnabled != "No") {
+		document.getElementById("sensitivitySliderCheckbox").checked = true;
+	}
+	else {
+		document.getElementById("sensitivitySlider").style.display= 'none';
+	}
+	
+	if (demeanorSliderEnabled != "No") {
+		document.getElementById("demeanorSliderCheckbox").checked = true;
+	}
+	else {
+		document.getElementById("demeanorSlider").style.display= 'none';
+	}
+	
+	if (positionPrefSliderEnabled != "No") {
+		document.getElementById("positionPreferenceSliderCheckbox").checked = true;
+	}
+	else {
+		document.getElementById("positionPrefSlider").style.display= 'none';
+	}
+	
+	if (intelligenceSliderEnabled != "No") {
+		document.getElementById("intelligenceSliderCheckbox").checked = true;
+	}
+	else {
+		document.getElementById("intelligenceSlider").style.display= 'none';
+	}
+	
+	if (fluffinessSliderEnabled != "No") {
+		document.getElementById("fluffinessSliderCheckbox").checked = true;
+	}
+	else {
+		document.getElementById("fluffinessSlider").style.display= 'none';
+	}	
+}
+
+function visitCounter() {	
+	var visitNumber = localStorage.getItem("Visit_Counter");	
+	if (visitNumber == null) {		
+		var visitNumber = 1;		
+		localStorage.setItem("Visit_Counter", visitNumber);
+	}
+	else {
+		visitNumber = parseInt(visitNumber);	
+		var visitNumber = visitNumber + 1;	
+		localStorage.setItem("Visit_Counter", visitNumber);
+	}
+}
+
+function visitAdmin() {
+	var visitNumber = localStorage.getItem("Visit_Counter");
+	visitNumber = parseInt(visitNumber);
+	if (visitNumber >= 15) {
+		document.getElementById("adminbutton").style.display='none';  
+		document.getElementById("adminbuttontoggle").style.display='block';  
+	}
+	else {
+		return;
+	}
 }

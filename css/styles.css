@@ -171,6 +171,19 @@ div {
 	opacity: 0.8;
 }
 
+.mobileDeviceOkayContainer {
+	background-color: #ffffff;
+	color: #000000;
+	z-index: 1;
+	position: absolute;
+	width: 354px;
+	margin-left: auto;
+	margin-right: auto;
+
+	top: 172px;
+	opacity: 0.8;
+}
+
 .okay {
 	z-index: 1;
 	margin-left: 10px;
@@ -404,7 +417,7 @@ select:disabled::-ms-expand {
 }
 .menuAS {
 	text-align: left;
-	height: 20px;
+	height: 25px;
 	margin-top:5px;
 }
 .processingAnim {
@@ -898,4 +911,12 @@ a:hover {
 a:active {
   color: #fff;
   text-decoration: none;
+}
+
+.option {
+	width: 40%;
+	float: left;	
+	padding-left: 30px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 }

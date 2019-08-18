@@ -23,6 +23,7 @@
 <script src="js/slot3.js"></script>
 <script src="js/slot4.js"></script>
 <script src="js/slot5.js"></script>
+<script src="js/bodytype.js"></script>
   
 <script>
 //(function titleScroller(text) {
@@ -111,7 +112,13 @@ function error621ChangeSlider() {
 		document.getElementById("lowBatteryMessage").style.display = "none";	
 	</script>
 	</div>
-	
+
+	<div class="errorMessageAlignLeft" id="mobileDeviceMessage">
+	>It appears you're using mobile device. If you're using Android you can download .apk version of this app that should look better on your device. Link is at bottom of the page.
+	<script>
+		document.getElementById("mobileDeviceMessage").style.display = "none";	
+	</script>
+	</div>	
 	
 	<script>
 	document.getElementById("errorMessageContainer").style.display = "none";	
@@ -207,6 +214,24 @@ function error621ChangeSlider() {
 
 	<script>
 	document.getElementById("lowBatteryOkayContainer").style.display = "none";	
+	</script>
+	
+</div>
+
+<div class="mobileDeviceOkayContainer" id="mobileDeviceOkayContainer" onClick=hideMobileDeviceMessage()>
+
+	<div class="okay" id="mobileDeviceOkay">
+
+	Okay
+	
+		<script>
+			document.getElementById("mobileDeviceOkay").style.display = "none";	
+		</script>
+		
+	</div>
+
+	<script>
+	document.getElementById("mobileDeviceOkayContainer").style.display = "none";	
 	</script>
 	
 </div>
@@ -337,9 +362,9 @@ function error621ChangeSlider() {
   </div>  
   
   <div class="processingText" id="processingText">
-  Processing...
+  
   <script>
-		document.getElementById("processingText").style.display = "none";			
+		//document.getElementById("processingText").style.display = "none";			
 	</script>
   </div>
   
@@ -419,6 +444,7 @@ function error621ChangeSlider() {
 			<option value="Sheep">Sheep</option>
 			<option value="Skunk">Skunk</option>
 			<option value="Snow Leopard">Snow Leopard</option>
+			<option value="Synth">Synth</option>
 			<option value="Tiger">Tiger</option>
 			<option value="Wolf">Wolf</option>
 			<option value="Discount Dragon">Wyvern</option>
@@ -477,7 +503,7 @@ function error621ChangeSlider() {
 		
 		<div class="menutextAC">
 			<label class="container">Adapt clothing
-				<input type="checkbox" id="adaptClothingCheckbox" onclick="saveCheckbox()">
+				<input type="checkbox" id="adaptClothingCheckbox" onclick="saveCheckbox();processingShowFunctionV2()">
 				<span class="checkbox"></span>  
 			</label>
 		</div>
@@ -963,14 +989,146 @@ document.getElementById("logOutMessage").style.display = "none";
 	<script>
 		document.getElementById("AdvancedSettingsContainer").style.display='none';  
 	</script>
+	
 </div>
 
+<div class="menuAS" id="advancedSettings2" onclick="addRemoveSlidersFunction()">
+	<div class="linesAS">
+			<img src="images/lines.png" height="15" width="20"> 
+			&nbsp;
+			<img src="images/arrow.png" height="15" width="20">
+	</div>
+	
+	&nbsp;&nbsp;Add/Remove Sliders
+</div>
+
+<div id="addRemoveSlidersContainer">
+
+	<div class="option">
+
+		<label class="container">Butt Size
+			<input type="checkbox" id="buttSizeSliderCheckbox" onClick="toggleButtSizeSlider()">
+			<span class="checkbox"></span>  
+		</label>
+		
+	</div>
+
+	<div class="option">
+
+		<label class="container">Belly Size
+			<input type="checkbox" id="bellySizeSliderCheckbox" onClick="toggleBellySizeSlider()">
+			<span class="checkbox"></span>  
+		</label>
+		
+	</div>
+
+	<div class="option">
+
+		<label class="container">Belly Shape
+			<input type="checkbox" id="bellyShapeSliderCheckbox" onClick="toggleBellyShapeSlider()">
+			<span class="checkbox"></span>  
+		</label>
+		
+	</div>
+
+	<div class="option">
+
+		<label class="container">Hips
+			<input type="checkbox" id="hipsSliderCheckbox" onClick="toggleHipsSlider()">
+			<span class="checkbox"></span>  
+		</label>
+		
+	</div>
+
+	<div class="option">
+
+		<label class="container">Genital Size
+			<input type="checkbox" id="genitalSizeSliderCheckbox" onClick="toggleGenitalSizeSlider()">
+			<span class="checkbox"></span>  
+		</label>
+		
+	</div>
+
+	<div class="option">
+
+		<label class="container">Cock Type
+			<input type="checkbox" id="cockTypeMenuCheckbox" onClick="toggleCockTypeMenu()">
+			<span class="checkbox"></span>  
+		</label>
+		
+	</div>	
+	
+	<div class="option">
+
+		<label class="container">Libido
+			<input type="checkbox" id="libidoSliderCheckbox" onClick="toggleLibidoSlider()">
+			<span class="checkbox"></span>  
+		</label>
+		
+	</div>
+
+	<div class="option">
+
+		<label class="container">Sensitivity
+			<input type="checkbox" id="sensitivitySliderCheckbox" onClick="toggleSensitivitySlider()">
+			<span class="checkbox"></span>  
+		</label>
+		
+	</div>
+
+	<div class="option">
+
+		<label class="container">Demeanor
+			<input type="checkbox" id="demeanorSliderCheckbox" onClick="toggleDemeanorSlider()">
+			<span class="checkbox"></span>  
+		</label>
+		
+	</div>
+
+	<div class="option">
+
+		<label class="container">Position Pref.
+			<input type="checkbox" id="positionPreferenceSliderCheckbox" onClick="togglePositionPreferenceSlider()">
+			<span class="checkbox"></span>  
+		</label>
+		
+	</div>
+
+	<div class="option">
+
+		<label class="container">Intelligence
+			<input type="checkbox" id="intelligenceSliderCheckbox" onClick="toggleIntelligenceSlider()">
+			<span class="checkbox"></span>  
+		</label>
+		
+	</div>
+
+	<div class="option">
+
+		<label class="container">Fluffiness
+			<input type="checkbox" id="fluffinessSliderCheckbox" onClick="toggleFluffinessSlider()">
+			<span class="checkbox"></span>  
+		</label>
+		
+	</div>	
+<script>
+	document.getElementById("addRemoveSlidersContainer").style.display='none';  
+</script>	
+</div>
+<!--
 <div class="applybutton" id="applySettingsButton">
 <button class="apply" onclick="processingShowFunction()">Apply Settings</button>
 </div>
-
+-->
 <div class="adminbutton" id="adminbutton">
 <button class="admin" onclick="enterPasswordFunction()">Admin Mode</button>
+</div>
+
+<div class="adminbutton" id="adminbuttontoggle">
+<button class="admin" onclick="toggleAdminModeFunction()">Toggle Admin Mode</button>
+<script>
+document.getElementById("adminbuttontoggle").style.display='none';  
+</script>
 </div>
 
 <div class="enterPassword" id="enterPassword">
@@ -1135,94 +1293,119 @@ Programming - Ignitio The Dragon <br>
 Twitter Logo by <a href="https://twitter.com/EndangeredCDs"> Endangered CDs </a><br>
 
 Sliders by <a href="https://dhtmlx.com/">DHTMLX</a> under <a href="License_gpl_2.0.txt">GNU GPL</a><br>
-Ver 0.6.2.1f <!--Please use letters for versioning--> <br>
+Ver 0.6.2.1g <!--Please use letters for versioning--> <br>
 <a href ="changelog.txt">Changelog</a>
 <script>
 document.getElementById("credits").style.display = "none";
 
-
 mySlider6.attachEvent("onSlideEnd", function() {
    	var bodyType1 = mySlider6.getValue();
 	localStorage.setItem("Slot0_Body_Type1", bodyType1);
+	processingShowFunctionV2();
 });
 
 mySlider5.attachEvent("onSlideEnd", function() {
    	var bodyType2 = mySlider5.getValue();
 	localStorage.setItem("Slot0_Body_Type2", bodyType2);
+	processingShowFunctionV2();
 });
 
 mySlider4.attachEvent("onSlideEnd", function() {
    	var bodyType3 = mySlider4.getValue();
 	localStorage.setItem("Slot0_Body_Type3", bodyType3);
+	processingShowFunctionV2();
 });
 
 mySlider3.attachEvent("onSlideEnd", function() {
    	var hips = mySlider3.getValue();
 	localStorage.setItem("Slot0_Hips", hips);
+	processingShowFunctionV2();
 });
 
 mySlider2.attachEvent("onSlideEnd", function() {
    	var genitalSize = mySlider2.getValue();
 	localStorage.setItem("Slot0_Genital_Size", genitalSize);
+	processingShowFunctionV2();
 });
 
 mySlider.attachEvent("onSlideEnd", function() {
    	var fluffiness = mySlider.getValue();
 	localStorage.setItem("Slot0_Fluffiness", fluffiness);
+	processingShowFunctionV2();
 });
 
 mySlider7.attachEvent("onSlideEnd", function() {
    	var libido = mySlider7.getValue();
 	localStorage.setItem("Slot0_Libido", libido);
+	processingShowFunctionV2();
 });
 
 mySlider10.attachEvent("onSlideEnd", function() {
    	var domsub = mySlider10.getValue();
 	localStorage.setItem("Slot0_Position_Preference", domsub);
+	processingShowFunctionV2();
 });
 
 mySlider11.attachEvent("onSlideEnd", function() {
    	var sensitivity = mySlider11.getValue();
 	localStorage.setItem("Slot0_Sensitivity", sensitivity);
+	processingShowFunctionV2();
 });
 
 mySlider12.attachEvent("onSlideEnd", function() {
    	var assertiveShy = mySlider12.getValue();
 	localStorage.setItem("Slot0_Demeanor", assertiveShy);
+	processingShowFunctionV2();
 });
 
 mySlider9.attachEvent("onSlideEnd", function() {
    	var breastSizeMale = mySlider9.getValue();
 	localStorage.setItem("Slot0_Breast_Size_Male", breastSizeMale);
+	processingShowFunctionV2();
 });
 
 mySlider8.attachEvent("onSlideEnd", function() {
    	var breastSizeFemale = mySlider8.getValue();
 	localStorage.setItem("Slot0_Breast_Size_Female", breastSizeFemale);
+	processingShowFunctionV2();
 });
 
 mySlider13.attachEvent("onSlideEnd", function() {
    	var buttSize = mySlider13.getValue();
 	localStorage.setItem("Slot0_Butt_Size", buttSize);
+	processingShowFunctionV2();
 });
 
 mySlider14.attachEvent("onSlideEnd", function() {
    	var bellySize = mySlider14.getValue();
 	localStorage.setItem("Slot0_Belly_Size", bellySize);
+	processingShowFunctionV2();
 });
 
 mySlider15.attachEvent("onSlideEnd", function() {
    	var bellyShape = mySlider15.getValue();
 	localStorage.setItem("Slot0_Belly_Shape", bellyShape);
+	processingShowFunctionV2();
 });
 
 mySlider16.attachEvent("onSlideEnd", function() {
    	var intelligence = mySlider16.getValue();
 	localStorage.setItem("Slot0_Intelligence", intelligence);
+	processingShowFunctionV2();
 });
 
 loadPreviousState();
+checkWindowSize();
+loadSliderSettings();
+visitCounter();
+visitAdmin();
 </script>				
+</div>
+<div style = "text-align: center; font-size: 30px"; id="downloadAPK">
+<a href="https://drive.google.com/drive/folders/1WQMr1M0AFGRBERiGeehir_m_11XXbTCf"> Download .apk  </a>
+<script>
+document.getElementById("downloadAPK").style.display='none';  
+</script>
 </div>
 </div>
 

@@ -174,17 +174,16 @@
  
 		if (open =="no") {
 			document.getElementById("AdvancedSettingsContainer").style.display='none'; 
-			document.getElementById("settingsLoadedPopup").style.display = "block";	
-			document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Loaded:" + " " + Sex + " " + Species;
-			hideLoadSlotButtons();
-			setTimeout(hideLoadedPopup, 4000);
 		}
-		else { 
-			document.getElementById("settingsLoadedPopup").style.display = "block";	
-			document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Loaded:" + " " + Sex + " " + Species;
-			hideLoadSlotButtons();
-			setTimeout(hideLoadedPopup, 4000);
+		else {
+			document.getElementById("AdvancedSettingsContainer").style.display='block';
 		}
-	}
+		
+		document.getElementById("settingsLoadedPopup").style.display = "block";	
+		document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Loaded:" + " " + Sex + " " + Species;
+		hideLoadSlotButtons();
+		saveSettingsSlot0();
+		setTimeout(hideLoadedPopup, 4000);	
+		}
 	}
 }
