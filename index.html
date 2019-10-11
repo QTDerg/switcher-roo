@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 
-<title>Switcher-Roo – the way to create the perfect you.</title>
+<title>Switcher⇌Roo – the way to create the perfect you</title>
 <meta name="google-site-verification" content="62PCPqW9coVro9hrtg4Lh0afxRvd47BDbRmKAeuv98o" />
 <meta name="description" content="Want to be your fursona? With this app you can choose 20+ species, change your gender and modify many body and personality aspects!">
 <meta name="keywords" content="Switcherroo, Switcher-roo, Furry, Transformation, Tyroo">
@@ -24,8 +24,21 @@
 <script src="js/slot4.js"></script>
 <script src="js/slot5.js"></script>
 <script src="js/bodytype.js"></script>
-  
+
+
+ 
 <script>
+
+function sendFeedback() {
+	var feedback = document.getElementById("feedbackTextField").value;
+	localStorage.setItem("Feedback", feedback);	
+
+
+	
+	document.getElementById("feedbackButton").style.display='block';
+	document.getElementById("enterFeedback").style.display='none';
+}
+
 //(function titleScroller(text) {
 //   document.title = text;
 //    setTimeout(function () {
@@ -287,6 +300,13 @@ function error621ChangeSlider() {
 		</script>		
 	</div>	
 	
+	<div class="welcomeUserMessage" id="welcomeUserMessage">
+	Notices your bulge *OwO*
+		<script>
+		document.getElementById("welcomeUserMessage").style.display = "none";	
+		</script>		
+	</div>	
+	
 	<div class="chargeBattery" id="chargeBattery" onclick="batteryCharge()">
 		Charge battery!
 		<script>
@@ -341,7 +361,7 @@ function error621ChangeSlider() {
 		document.getElementById("battery_14_charging").style.display = "none";	
 		document.getElementById("battery_half_charging").style.display = "none";	
 		document.getElementById("battery_34_charging").style.display = "none";	
-		batteryDrain();
+		
 		</script>
 		
 	</div>
@@ -394,7 +414,7 @@ function error621ChangeSlider() {
   
 	</div>
   
-	<div class="logOut" onClick="logOut()">
+	<div class="logOut" <!--onClick="logOut()"-->
 	Log out&nbsp;&nbsp;</a>
 	</div>
 	
@@ -415,7 +435,7 @@ function error621ChangeSlider() {
 	
 		<div class="speciesChoice">
 	
-		<select class="select_box" id="speciesChoice" onchange="realScaliesDontHaveFluff();saveCurrentSpecies();">
+		<select class="select_box" id="speciesChoice" onchange="saveCurrentSpecies();">
 			<option value="Default">Default</option>
 			<option value="Arctic Fox">Arctic Fox</option>
 			<option value="Bear">Bear</option>
@@ -426,14 +446,15 @@ function error621ChangeSlider() {
 			<option value="Dog">Dog</option>
 			<option value="Dragon">Dragon</option>
 			<option value="Ferret">Ferret</option>
-			<option value="Even Bigger Bottom">Folf</option>
-			<option value="Bottom">Fox</option>
+			<option value="Folf">Folf</option>
+			<option value="Fox">Fox</option>
 			<option value="Horse">Horse</option>
 			<option value="Husky">Husky</option>
 			<option value="Hyena">Hyena</option>
 			<option value="Kangaroo">Kangaroo</option>
 			<option value="Kobold">Kobold</option>
 			<option value="Lion">Lion</option>
+			<option value="Lynx">Lynx</option>
 			<option value="Otter">Otter</option>
 			<option value="Panther">Panther</option>
 			<option value="Protogen">Protogen</option>
@@ -443,11 +464,11 @@ function error621ChangeSlider() {
 			<option value="Shark">Shark</option>
 			<option value="Sheep">Sheep</option>
 			<option value="Skunk">Skunk</option>
-			<option value="Snow Leopard">Snow Leopard</option>
+			<option value="Snow Leo">Snow Leopard</option>
 			<option value="Synth">Synth</option>
 			<option value="Tiger">Tiger</option>
 			<option value="Wolf">Wolf</option>
-			<option value="Discount Dragon">Wyvern</option>
+			<option value="Wyvern">Wyvern</option>
 		</select>
 		
 		</div>
@@ -1183,12 +1204,14 @@ document.getElementById("accessDenied").style.display='none';
 <button class="apply" onclick="showSaveSlotButtons()">Save settings</button>
 </div>
 
-	<div class="slotbutton" id="saveSlotButtons">
-		<button class="slot" onclick="saveSettingsSlot1()">1</button>
-		<button class="slot" onclick="saveSettingsSlot2()">2</button>
-		<button class="slot" onclick="saveSettingsSlot3()">3</button>
-		<button class="slot" onclick="saveSettingsSlot4()">4</button>
-		<button class="slot" onclick="saveSettingsSlot5()">5</button>
+	<div class="saveslotbutton" id="saveSlotButtons">
+		Save<br>
+		<button class="slot" id="saveSlot1" onclick="saveSettingsSlot1()">1</button>
+		<button class="slot" id="saveSlot2" onclick="saveSettingsSlot2()">2</button>
+		<button class="slot" id="saveSlot3" onclick="saveSettingsSlot3()">3</button>
+		<button class="slot" id="saveSlot4" onclick="saveSettingsSlot4()">4</button>
+		<button class="slot" id="saveSlot5" onclick="saveSettingsSlot5()">5</button>
+		<button class="slot" onclick="hideSaveSlotButtons()">Go back</button>
 		<script>
 			document.getElementById("saveSlotButtons").style.display='none';  
 		</script>
@@ -1198,12 +1221,14 @@ document.getElementById("accessDenied").style.display='none';
 <button class="apply" onclick="showLoadSlotButtons()">Load settings</button>
 </div>
 
-	<div class="slotbutton" id="loadSlotButtons">
-		<button class="slot" onclick="loadSettingsSlot1()">1</button>
-		<button class="slot" onclick="loadSettingsSlot2()">2</button>
-		<button class="slot" onclick="loadSettingsSlot3()">3</button>
-		<button class="slot" onclick="loadSettingsSlot4()">4</button>
-		<button class="slot" onclick="loadSettingsSlot5()">5</button>
+	<div class="loadslotbutton" id="loadSlotButtons">
+		Load<br>
+		<button class="slot" id="loadSlot1" onclick="loadSettingsSlot1()">1</button>
+		<button class="slot" id="loadSlot2" onclick="loadSettingsSlot2()">2</button>
+		<button class="slot" id="loadSlot3" onclick="loadSettingsSlot3()">3</button>
+		<button class="slot" id="loadSlot4" onclick="loadSettingsSlot4()">4</button>
+		<button class="slot" id="loadSlot5" onclick="loadSettingsSlot5()">5</button>
+		<button class="slot" onclick="hideLoadSlotButtons()">Go back</button>
 		<script>
 			document.getElementById("loadSlotButtons").style.display='none';  
 		</script>
@@ -1231,7 +1256,7 @@ document.getElementById("triggerError621Button").style.display='none';
 </div>
 
 <div class="applybutton" id="preferences">
-<button class="apply" onclick="showOptions()">Preferences</button>
+<button class="apply" onclick="showOptions()">Options</button>
 </div>
 
 <div class="applybutton" id="triggerErrors">
@@ -1241,14 +1266,48 @@ document.getElementById("triggerErrors").style.display='none';
 </script>
 </div>
 
-		<div class="menutextAC" id="disableBattery">
+		<div class="optionsCheckboxes" id="disableBattery">
+			<div>
 			<label class="container">Disable battery draining
 				<input type="checkbox" id="disableBatteryCheckbox" onclick="disableBatteryFuntion()">
 				<span class="checkbox"></span>  
 			</label>
+			</div>
+			<br>
+			
+			<div>
+			<label class="container">Hide username button
+				<input type="checkbox" id="hideUsernameCheckbox" onclick="hideUsernameFuntion()">
+				<span class="checkbox"></span>  
+			</label>
+			</div>
+			
+			<br>
+			<div>
+			<label class="container">Hide feedback button
+				<input type="checkbox" id="hideFeedbackCheckbox" onclick="hideFeedbackFuntion()">
+				<span class="checkbox"></span>  
+			</label>
+			</div>
+			
+			<br>
+			<div>
+			<label class="container">Show Breast Size slider when Male Sex is selected
+				<input type="checkbox" id="showBreastSizeMaleCheckbox" onclick="toggleBreastSizeMaleOption()">
+				<span class="checkbox"></span>  
+			</label>
+			</div>
+
+			<br>
+			<div>
+			<label class="container">Show Genital Size slider when Female Sex is selected
+				<input type="checkbox" id="showGenitalSizeFemaleCheckbox" onclick="toggleGenitalSizeFemaleOption()">
+				<span class="checkbox"></span>  
+			</label>
+			</div>
 			<script>
-document.getElementById("disableBattery").style.display='none';  
-</script>
+			document.getElementById("disableBattery").style.display='none';  
+			</script>
 		</div>
 
 <div class="adminbutton" id="adminbutton2">
@@ -1258,11 +1317,34 @@ document.getElementById("adminbutton2").style.display='none';
 </script>
 </div>
 
-
 <div class="applybutton" id="goBack">
 <button class="apply" onclick="goBackFunction()">Go back</button>
 <script>
 document.getElementById("goBack").style.display='none';  
+</script>
+</div>
+
+<div class="applybutton" id="usernameButton">
+<button class="apply" onclick="changeUsernameBegin()">Username</button>
+</div>
+
+<div class="enterUsername" id="enterUsername">
+<input id="usernameTextField" class="usernameTextField" value="">
+<button type="button" class="buttonChangeUsername" id="buttonChangeUsername" onclick="changeUsername()">Set</button>
+<script>
+document.getElementById("enterUsername").style.display='none';  
+</script>
+</div>
+
+<div class="applybutton" id="feedbackButton">
+<button class="apply" onclick="feedbackBegin()">Feedback</button>
+</div>
+
+<div class="enterFeedback" id="enterFeedback">
+<input id="feedbackTextField" class="feedbackTextField" value="feedback function is not working atm">
+<button type="button" class="buttonSendFeedback" id="buttonSendFeedback" onclick="sendFeedback()">Send</button>
+<script>
+document.getElementById("enterFeedback").style.display='none';  
 </script>
 </div>
 
@@ -1293,9 +1375,9 @@ Programming - Ignitio The Dragon <br>
 
 Twitter Logo by <a href="https://twitter.com/EndangeredCDs"> Endangered CDs </a><br>
 
-Sliders by <a href="https://dhtmlx.com/">DHTMLX</a> under <a href="License_gpl_2.0.txt">GNU GPL</a><br>
-Ver 0.6.2.1g <!--Please use letters for versioning--> <br>
-<a href ="changelog.txt">Changelog</a>
+Sliders by <a href="https://dhtmlx.com/">DHTMLX</a> under GNU GPL<br>
+Ver 0.6.2.1h <!--Please use letters for versioning--> <br>
+<a href ="changelog.html">Changelog</a>
 </div>
 
 <div id="downloadAPK" class="downloadAPK">
@@ -1405,10 +1487,15 @@ mySlider16.attachEvent("onSlideEnd", function() {
 });
 
 loadPreviousState();
-checkWindowSize();
 loadSliderSettings();
 visitCounter();
 visitAdmin();
+checkSlots();
+welcomeUser();
+showOrHideBreastSizeMaleSlider();
+showOrHideGenitalSizeFemaleSlider();
+hideFeedback(); <!-- Hide feedback button as function is not working-->
+checkWindowSize(); <!-- Delete in mobile version-->
 </script>				
 
 </div>

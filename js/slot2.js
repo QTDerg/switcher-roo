@@ -61,7 +61,8 @@
 	
 	document.getElementById("settingsLoadedPopup").style.display = "block";	
 	document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Saved:" + " " + settingSex + " " + settingSpecies;
-	hideSaveSlotButtons();	
+	//hideSaveSlotButtons();
+	checkSlots();	
 	setTimeout(hideLoadedPopup, 4000);
  }
    
@@ -183,7 +184,7 @@
 		
 		document.getElementById("settingsLoadedPopup").style.display = "block";	
 		document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Loaded:" + " " + Sex + " " + Species;
-		hideLoadSlotButtons();
+		//hideLoadSlotButtons();
 		saveSettingsSlot0();
 		setTimeout(hideLoadedPopup, 4000);	
 		}

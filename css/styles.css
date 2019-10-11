@@ -25,6 +25,14 @@ div {
 	margin: 0 auto;	
 	border: 2px solid #000000;
 }
+
+.changelogWidthContainer {
+	width: 600px;
+	margin: 0 auto;	
+	border: 2px solid #000000;
+	
+}
+
 .linktoMobile {
 	text-align: center;
 	font-size: 50px;
@@ -36,11 +44,19 @@ div {
 	border-bottom: 2px solid #000000;
 }
 .coverageContainer {
-	width: 40%;
+	width: 20%;
 	float: left;
 }
 .currentTime {
-	width: 20%;
+	width: 60%;
+	float: left;
+	text-align:center;
+	font-weight: bold;
+	font-size:15px;
+}
+
+.welcomeUserMessage {
+	width: 60%;
 	float: left;
 	text-align:center;
 	font-weight: bold;
@@ -460,6 +476,14 @@ select:disabled::-ms-expand {
 	margin-left:7px;
 	font-size:18px;
 }
+.optionsCheckboxes{
+	float: left;
+	text-align: center;	
+	margin-top: 15px;
+	margin-left:7px;
+	font-size:18px;
+	margin-bottom: 10px;
+}
 .linesAS
 {
 	display: block;
@@ -621,10 +645,10 @@ select:disabled::-ms-expand {
   position: relative;
   background-color: #282640;
   border: none;
-  font-size: 26px;
+  font-size: 17px;
   color: #FFFFFF;
   padding: 10px;
-  width: 15%;
+  width: 46.5%;
   text-align: center;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
@@ -633,6 +657,8 @@ select:disabled::-ms-expand {
   cursor: pointer;
   float: left;
   margin-left: 8px;
+  height: 55px;
+  margin-bottom: 5px;
 }
 
 .slot:after {
@@ -657,11 +683,21 @@ select:disabled::-ms-expand {
 .slot:hover {
 	background: #59568f; 
 }
-.slotbutton {
+.saveslotbutton {
 	text-align: center;
 	margin-top: 5px;
-	margin-left: 30px;
-	height:60px;
+	height: 220px;
+	color: #FF4550;
+	border: 3px solid #FF4550;
+	font-size: 30px;
+}
+.loadslotbutton {
+	text-align: center;
+	margin-top: 5px;
+	height: 220px;
+	color: #4845ff;
+	border: 3px solid #4845ff;
+	font-size: 30px;	
 }
 .admin {
   position: relative;
@@ -825,6 +861,112 @@ select:disabled::-ms-expand {
 	font-size: 22px;
 }
 
+.buttonChangeUsername {
+  position: relative;
+  background-color: #282640;
+  border: none; 
+  font-size: 26px;
+  color: #FFFFFF;
+  padding: 10px;
+  width: 18%;
+  text-align: center;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.buttonChangeUsername:after {
+  content: "";
+  background: #8280b3;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px!important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 1.8s
+}
+
+.buttonChangeUsername:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}
+.buttonChangeUsername:hover {
+	background: #59568f; 
+}
+
+.usernameTextField {
+	background: #59568f;
+	border: 1px solid #8280b3; 
+	color: #282640;
+	width: 65%;
+	padding: 10px;
+	font-size: 22px;
+}
+
+.enterUsername {
+	text-align: center;
+	margin-top: 5px;
+}
+
+.enterFeedback {
+	text-align: center;
+	margin-top: 5px;
+}
+
+.buttonSendFeedback {
+  position: relative;
+  background-color: #282640;
+  border: none; 
+  font-size: 22px;
+  color: #FFFFFF;
+  padding: 10px;
+  width: 20%;
+  text-align: center;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.buttonSendFeedback:after {
+  content: "";
+  background: #8280b3;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px!important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 1.8s
+}
+
+.buttonSendFeedback:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}
+.buttonSendFeedback:hover {
+	background: #59568f; 
+}
+
+.feedbackTextField {
+	background: #59568f;
+	border: 1px solid #8280b3; 
+	color: #282640;
+	width: 65%;
+	padding: 10px;
+	font-size: 22px;
+}
+
 /* Customize the label (the container) */
 .container {  
   position: relative;
@@ -923,4 +1065,10 @@ a:active {
 	padding-left: 30px;
 	padding-top: 15px;
 	padding-bottom: 15px;
+}
+
+.changelogVersion {
+	font-size: 30px;
+	border-top: 2px solid #282640;
+	margin-top: 10px;
 }
