@@ -1622,9 +1622,14 @@ function changeUsernameBegin() {
 
 function changeUsername() {
 	var username = document.getElementById("usernameTextField").value;
-	localStorage.setItem("Username", username);
-	document.getElementById("usernameButton").style.display='block';
-	document.getElementById("enterUsername").style.display='none';
+	if (username == null) {
+		return;
+	}
+	else {
+		localStorage.setItem("Username", username);
+		document.getElementById("usernameButton").style.display='block';
+		document.getElementById("enterUsername").style.display='none';
+	}
 }
 
 function hideUsernameFuntion() {
