@@ -24,6 +24,7 @@ div {
 	width: 354px;
 	margin: 0 auto;	
 	border: 2px solid #000000;
+	background-color: #3b395e;
 }
 
 .changelogWidthContainer {
@@ -860,6 +861,45 @@ select:disabled::-ms-expand {
 	padding: 10px;
 	font-size: 22px;
 }
+.buttonChangeBG {
+  position: relative;
+  background-color: #282640;
+  border: none; 
+  font-size: 16px;
+  color: #FFFFFF;
+  padding: 5px;
+  width: 18%;
+  text-align: center;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.buttonChangeBG:after {
+  content: "";
+  background: #8280b3;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px!important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 1.8s
+}
+
+.buttonChangeBG:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}
+.buttonChangeBG:hover {
+	background: #59568f; 
+}
+
 
 .buttonChangeUsername {
   position: relative;
@@ -906,6 +946,15 @@ select:disabled::-ms-expand {
 	color: #282640;
 	width: 65%;
 	padding: 10px;
+	font-size: 22px;
+}
+
+.bgColorTextField {
+	background: #59568f;
+	border: 1px solid #8280b3; 
+	color: #282640;
+	width: 65%;
+	padding: 5px;
 	font-size: 22px;
 }
 

@@ -1199,8 +1199,8 @@ function loadPS24() {
 		}	
 		else {
 			if (isFeedbackButtonDisabled == "Yes") {
-				document.getElementById("feedbackButton").style.display='none'; 
-				var tickbox = document.getElementById("hideFeedbackCheckbox");
+				document.getElementById("feedbackLinkGithub").style.display='none'; 
+				var tickbox = document.getElementById("hideFeedbackCheckbox2");
 				tickbox.checked = true;				
 				loadPS25();
 			}
@@ -1662,43 +1662,76 @@ function hideFeedbackFuntion() {
 	}
 }
 
+function hideFeedbackFuntion2() {
+	var tickbox = document.getElementById("hideFeedbackCheckbox2");
+	if (tickbox.checked) {
+		var tickbox = "Yes"
+		localStorage.setItem("Feedback_Button_Hidden", tickbox);
+		document.getElementById("feedbackLinkGithub").style.display='none'; 
+	}
+	else {
+		var tickbox = "No"
+		localStorage.setItem("Feedback_Button_Hidden", tickbox);
+		document.getElementById("feedbackLinkGithub").style.display='block';
+	}
+}
+
+function toggleUserGreetings() {
+	var tickbox = document.getElementById("hideUGCheckbox");
+	if (tickbox.checked) {
+		var tickbox = "Yes"
+		localStorage.setItem("User_Greetings_Disabled", tickbox);
+	}
+	else {
+		var tickbox = "No"
+		localStorage.setItem("User_Greetings_Disabled", tickbox);
+	}
+}
+
 function welcomeUser() {
 	var username = localStorage.getItem("Username");
 	if (username == null) {		
 		return;
 	}
 	else {
-	var phrase = Math.floor(Math.random() * 7) + 1;
-		if (phrase == 1) {
-		document.getElementById('welcomeUserMessage').innerHTML = "Hi," + " " + username;
-		showWelcomeUserMessage();
+		var userGreetingsDisabled = localStorage.getItem("User_Greetings_Disabled");
+		if (userGreetingsDisabled != "Yes") {
+
+			var phrase = Math.floor(Math.random() * 7) + 1;
+			if (phrase == 1) {
+				document.getElementById('welcomeUserMessage').innerHTML = "Hi," + " " + username;
+				showWelcomeUserMessage();
+			}
+			if (phrase == 2) {
+				document.getElementById('welcomeUserMessage').innerHTML = "Hello," + " " + username;
+				showWelcomeUserMessage();
+			}
+			if (phrase == 3) {
+				document.getElementById('welcomeUserMessage').innerHTML = "Hewwo," + " " + username;
+				showWelcomeUserMessage();
+			}
+			if (phrase == 4) {
+				document.getElementById('welcomeUserMessage').innerHTML = "Good morning," + " " + username;
+				showWelcomeUserMessage();
+			}
+			if (phrase == 5) {
+				document.getElementById('welcomeUserMessage').innerHTML = "Good to see you," + " " + username;
+				showWelcomeUserMessage();
+			}
+			if (phrase == 6) {
+				document.getElementById('welcomeUserMessage').innerHTML = "Nice to see you," + " " + username;
+				showWelcomeUserMessage();
+			}	
+			if (phrase == 7) {
+				document.getElementById('welcomeUserMessage').innerHTML = "Have a nice day," + " " + username;
+				showWelcomeUserMessage();
+			}		
+			else {
+				return;
+			}
 		}
-		if (phrase == 2) {
-		document.getElementById('welcomeUserMessage').innerHTML = "Hello," + " " + username;
-		showWelcomeUserMessage();
-		}
-		if (phrase == 3) {
-		document.getElementById('welcomeUserMessage').innerHTML = "Hewwo," + " " + username;
-		showWelcomeUserMessage();
-		}
-		if (phrase == 4) {
-		document.getElementById('welcomeUserMessage').innerHTML = "Good morning," + " " + username;
-		showWelcomeUserMessage();
-		}
-		if (phrase == 5) {
-		document.getElementById('welcomeUserMessage').innerHTML = "Good to see you," + " " + username;
-		showWelcomeUserMessage();
-		}
-		if (phrase == 6) {
-		document.getElementById('welcomeUserMessage').innerHTML = "Nice to see you," + " " + username;
-		showWelcomeUserMessage();
-		}	
-		if (phrase == 7) {
-		document.getElementById('welcomeUserMessage').innerHTML = "Have a nice day," + " " + username;
-		showWelcomeUserMessage();
-		}		
 		else {
-		return;
+			return;
 		}
 	}
 }
@@ -1783,6 +1816,10 @@ function hideFeedback() {
 	document.getElementById("feedbackButton").style.display='none';	
 }
 
+function hideFeedback2() {
+	document.getElementById("feedbackLinkGithub").style.display='none';	
+}
+
 function setSliderRangeToAdminMode() {
 	mySlider.setMin(-20);
 	mySlider.setMax(120);
@@ -1851,4 +1888,63 @@ function setSliderRangeToNormalMode() {
 	mySlider15.setMax(100);
 	mySlider16.setMin(0);
 	mySlider16.setMax(100);
+}
+
+function changeBGDefault() {
+	document.body.style.background = '#3b395e';
+	localStorage.setItem("Background_Color", '#3b395e');
+}
+
+function changeBGWhite() {
+	document.body.style.background = '#fff';
+	localStorage.setItem("Background_Color", '#fff');
+}
+
+function changeBGGray() {
+	document.body.style.background = '#222';
+	localStorage.setItem("Background_Color", '#222');
+}
+
+function changeBGBlack() {
+	document.body.style.background = '#000';
+	localStorage.setItem("Background_Color", '#000');
+}
+
+function changeBGCustomBegin() {
+	document.getElementById("buttonBGDefault").style.visibility='hidden';  
+	document.getElementById("buttonBGWhite").style.visibility='hidden';  
+	document.getElementById("buttonBGGray").style.visibility='hidden';  
+	document.getElementById("buttonBGBlack").style.visibility='hidden';  
+	document.getElementById("buttonBGCustom").style.visibility='hidden'; 
+	document.getElementById("buttonBGCustomSet").style.visibility='visible'; 
+	document.getElementById("bgColorTextField").style.visibility='visible';	
+}
+
+function changeBGCustom() {
+	var bgcolor = document.getElementById("bgColorTextField").value;	
+	if (bgcolor == null) {		
+		return;
+	}
+	else {
+		localStorage.setItem("Background_Color", bgcolor);
+		document.body.style.background = bgcolor;
+		document.getElementById("buttonBGCustomSet").style.visibility='hidden'; 
+		document.getElementById("bgColorTextField").style.visibility='hidden';
+
+		document.getElementById("buttonBGDefault").style.visibility='visible';  
+		document.getElementById("buttonBGWhite").style.visibility='visible';  
+		document.getElementById("buttonBGGray").style.visibility='visible';  
+		document.getElementById("buttonBGBlack").style.visibility='visible';  
+		document.getElementById("buttonBGCustom").style.visibility='visible'; 	
+	}
+}
+
+function setBGColorOnInit() {
+	var bgcolor = localStorage.getItem("Background_Color");
+	if (bgcolor == null) {		
+		return;
+	}
+	else {
+		document.body.style.background = bgcolor;
+	}
 }
