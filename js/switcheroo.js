@@ -1622,8 +1622,9 @@ function changeUsernameBegin() {
 
 function changeUsername() {
 	var username = document.getElementById("usernameTextField").value;
-	if (username == null) {
-		return;
+	if (username == "") {
+		document.getElementById("usernameButton").style.display='block';
+		document.getElementById("enterUsername").style.display='none';
 	}
 	else {
 		localStorage.setItem("Username", username);
@@ -1927,8 +1928,15 @@ function changeBGCustomBegin() {
 
 function changeBGCustom() {
 	var bgcolor = document.getElementById("bgColorTextField").value;	
-	if (bgcolor == null) {		
-		return;
+	if (bgcolor == "") {		
+		document.getElementById("buttonBGCustomSet").style.visibility='hidden'; 
+		document.getElementById("bgColorTextField").style.visibility='hidden';
+
+		document.getElementById("buttonBGDefault").style.visibility='visible';  
+		document.getElementById("buttonBGWhite").style.visibility='visible';  
+		document.getElementById("buttonBGGray").style.visibility='visible';  
+		document.getElementById("buttonBGBlack").style.visibility='visible';  
+		document.getElementById("buttonBGCustom").style.visibility='visible'; 
 	}
 	else {
 		localStorage.setItem("Background_Color", bgcolor);
