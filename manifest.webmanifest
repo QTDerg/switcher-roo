@@ -1,0 +1,22 @@
+{
+  "name": "Switcher⇌Roo",
+  "start_url": "http://www.switcher-roo.rf.gd/",
+  "short_name": "Switcher⇌Roo",
+  "description": "Want to be your fursona? With this app you can choose 20+ species, change your gender and modify many body and personality aspects!",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "lang": "English",
+  "background_color": "#3B395E",
+  "icons": [
+    {
+      "src": "/images/favicon.png",
+      "type": "image/png",
+      "sizes": "39x38"
+    },
+    {
+      "src": "/images/favicon-upscaled-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
