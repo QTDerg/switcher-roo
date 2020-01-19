@@ -1219,27 +1219,6 @@ function saveCockType() {
 	localStorage.setItem("Slot0_Cock_Type", cockType);
 }
 
-function checkWindowSize() {
-	var width = window.screen.width;
-	var height = window.screen.height;	
-	var seenMobileDeviceMessage = localStorage.getItem("Seen_Mobile_Device_Message");
-	if (seenMobileDeviceMessage == "Yes") {
-		return;
-	}
-	else {
-		if (height > width) {
-			document.getElementById("errorMessageContainer").style.display = "block";
-			document.getElementById("mobileDeviceMessage").style.display = "block";
-			document.getElementById("mobileDeviceOkayContainer").style.display = "block";
-			document.getElementById("mobileDeviceOkay").style.display= 'block';  
-			document.getElementById("downloadAPK").style.display='block'; 
-		}
-		else {
-			return;
-		}
-	}
-}
-
 function hideMobileDeviceMessage() {
 	document.getElementById("errorMessageContainer").style.display = "none";
 	document.getElementById("mobileDeviceMessage").style.display = "none";
