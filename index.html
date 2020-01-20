@@ -1314,7 +1314,7 @@ document.getElementById("triggerErrors").style.display='none';
 			</label>
 			</div>
 			
-			<br>!-->
+			<br>
 			<div>
 			<label class="container">Hide feedback link
 				<input type="checkbox" id="hideFeedbackCheckbox2" onclick="hideFeedbackFuntion2()">
@@ -1322,7 +1322,7 @@ document.getElementById("triggerErrors").style.display='none';
 			</label>
 			</div>
 			
-			<br>
+			<br>!-->
 			<div>
 			<label class="container">Show Breast Size slider when Male Sex is selected
 				<input type="checkbox" id="showBreastSizeMaleCheckbox" onclick="toggleBreastSizeMaleOption()">
@@ -1392,6 +1392,14 @@ document.getElementById("goBack").style.display='none';
 <script>
 document.getElementById("enterUsername").style.display='none';  
 </script>
+
+<div class="applybutton" id="clearUsernameButton">
+<button class="apply" onclick="clearUsername()">Delete username</button>
+<script>
+document.getElementById("clearUsernameButton").style.display='none';  
+</script>
+</div>
+
 </div>
 <!--
 <div class="applybutton" id="feedbackButton">
@@ -1413,34 +1421,72 @@ document.getElementById("enterFeedback").style.display='none';
 <div class="ECPNNHr"></div>
 
 <div class="credits" id="credits">
-App concept by Tyroo <br>
-<a href="https://www.furaffinity.net/user/tyroo/">
-	<img src="images/fa_logo.jpg" width="70" height="70">
-</a>
- 
+
+<div class="creditsEntry">
+
+<div class="creditsText">
+App design <br> Tyroo
+</div>
+<div class="creditsAvatar">
 <a href="https://twitter.com/TyrooTweets">               
-<img src="images/twitter_logo.png" width="70" height="70">
+<img src="images/avatar_tyroo.jpg" width="70" height="70">
 </a>
-<a href="https://patreon.com/Tyroo">               
-<img src="images/patreon_logo.png" width="70" height="70">
-</a><br>
-
-Programming - Ignitio The Dragon <br>
-
-<a href="https://twitter.com/IgnitioTheDerg">
-	<img src="images/twitter_logo.png" width="70" height="70">
-</a> <br>
-PWA Integration - SRThrowaway <br>
-
-Twitter Logo by <a href="https://twitter.com/EndangeredCDs"> Endangered CDs </a><br>
-
-Sliders by <a href="https://dhtmlx.com/">DHTMLX</a> under GNU GPL<br>
-Ver 0.6.2.1h2 <!--Please use letters for versioning--> <br>
-<a href ="changelog.html">Changelog</a>
 </div>
 
-<div id="feedbackLinkGithub" class="downloadAPK">
-<a href="https://github.com/QTDerg/switcher-roo/issues/1"> Feedback  </a>
+</div>
+
+<div class="creditsEntry">
+
+<div class="creditsText">
+Programming <br> IgnitioTheDerg
+</div>
+<div class="creditsAvatar">
+<a href="https://twitter.com/IgnitioTheDerg">              
+<img src="images/avatar_qtderg.png" width="70" height="70">
+</a>
+</div>
+
+</div>
+
+<div class="creditsEntry">
+
+<div class="creditsText">
+PWA Integration <br> SRThrowaway
+</div>
+<div class="creditsAvatar">
+<a href="https://github.com/SRThrowaway">               
+<img src="images/avatar_srthrowaway.png" width="70" height="70">
+</a>
+</div>
+
+</div>
+
+Sliders by <a href="https://dhtmlx.com/">DHTMLX</a> under GNU GPL<br>
+Ver 0.6.2.1i <!--Please use letters for versioning, unless update is small.--><br>
+<a href="changelog.html">Changelog</a>
+</div>
+
+<div class="footerContainer">
+
+<div class="githubSource">
+<a href="https://github.com/QTDerg/switcher-roo">
+<img src="images/githubSource.png" width="70" height="70">
+</a>
+</div>
+
+<div class="githubSource">
+<a href="https://github.com/QTDerg/switcher-roo/issues/1">
+<img src="images/githubFeedback.png" width="70" height="70">
+</a>
+</div>
+
+
+<div class="addToDevice" onclick="pwaInstall">
+<a href="guide.html">
+<img src="images/addToDevice.png" width="175" height="70">
+</a>
+</div>
+
 </div>
 
 <script>

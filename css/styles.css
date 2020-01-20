@@ -1121,3 +1121,38 @@ a:active {
 	border-top: 2px solid #282640;
 	margin-top: 10px;
 }
+
+.creditsText {
+	font-size: 22px;
+	width: 74%;
+	float:left;
+	text-align: center;
+	padding-top: 7px;
+}
+
+.creditsAvatar {
+	width: 26%;
+	float:left;
+}
+
+.creditsEntry {
+	margin-left: 18px;
+	height: 70px;
+	margin-top: 10px;
+}
+
+.footerContainer {
+	margin-left: 18px;
+	margin-top: 10px;
+	height: 70px;
+}
+
+.githubSource {
+	float: left;
+	width: 20%;
+}
+
+.addToDevice {
+	float: left;
+	width: 60%;
+}

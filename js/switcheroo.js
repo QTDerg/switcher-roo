@@ -1191,26 +1191,8 @@ function loadPS23() {
 			}	
 		}
 }
-
-function loadPS24() {
-		var isFeedbackButtonDisabled = localStorage.getItem("Feedback_Button_Hidden");
-		if (isFeedbackButtonDisabled == null) {
-			loadPS25();
-		}	
-		else {
-			if (isFeedbackButtonDisabled == "Yes") {
-				document.getElementById("feedbackLinkGithub").style.display='none'; 
-				var tickbox = document.getElementById("hideFeedbackCheckbox2");
-				tickbox.checked = true;				
-				loadPS25();
-			}
-			else {
-				loadPS25();
-			}	
-		}
-}
 		
-function loadPS25() { 		
+function loadPS24() { 		
 	document.getElementById("AdvancedSettingsContainer").style.display='none'; 	
 }
 
@@ -1597,6 +1579,7 @@ function checkSlots() {
 function changeUsernameBegin() {
 	document.getElementById("usernameButton").style.display='none';
 	document.getElementById("enterUsername").style.display='block';
+	document.getElementById("clearUsernameButton").style.display='block';
 }
 
 function changeUsername() {
@@ -1604,12 +1587,21 @@ function changeUsername() {
 	if (username == "") {
 		document.getElementById("usernameButton").style.display='block';
 		document.getElementById("enterUsername").style.display='none';
+		document.getElementById("clearUsernameButton").style.display='none';
 	}
 	else {
 		localStorage.setItem("Username", username);
 		document.getElementById("usernameButton").style.display='block';
 		document.getElementById("enterUsername").style.display='none';
+		document.getElementById("clearUsernameButton").style.display='none';
 	}
+}
+
+function clearUsername() {
+	localStorage.removeItem('Username');
+	document.getElementById("usernameButton").style.display='block';
+	document.getElementById("enterUsername").style.display='none';
+	document.getElementById("clearUsernameButton").style.display='none';	
 }
 
 function hideUsernameFuntion() {
