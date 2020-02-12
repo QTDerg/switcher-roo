@@ -34,6 +34,22 @@ div {
 	
 }
 
+.customSliderTextField {
+	background: #59568f;
+	border: 1px solid #282640; 
+	color: #fff;
+	width: 20%;
+	padding: 4px;
+	font-size: 12px;
+	float: left;
+	margin-left: 4px;
+}
+
+.setButton {
+	width: 20%;
+	float: left;
+}
+
 .linktoMobile {
 	text-align: center;
 	font-size: 50px;
@@ -440,6 +456,17 @@ select:disabled::-ms-expand {
 	text-align: left;
 	height: 25px;
 	margin-top:5px;
+	float: left;
+	width: 100%;
+}
+#AdvancedSettingsContainer {
+	float: left;
+}
+#addRemoveSlidersContainer {
+	float: left;
+}
+#CustomSlidersContainer {
+	float: left;
 }
 .processingAnim {
 	text-align: center;
@@ -502,7 +529,16 @@ select:disabled::-ms-expand {
 	float: left;
 	margin-left: 4px;
 	}
-
+	
+.checkboxCustomSliders
+{
+	display: block;
+	float: left;
+	padding-left: 6px;
+	}
+.addRemoveSlidersContainer {
+	height: 300px;
+}
 .slider{
 	float: left;
 	text-align: center;

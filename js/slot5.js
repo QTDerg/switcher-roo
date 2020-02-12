@@ -37,6 +37,38 @@
 	var cockType = document.getElementById('cockType').value 
 	
 	var settingSex = functionBodyType(settingSex, bodyType1);
+	
+	var custom1 = mySlider17.getValue();
+	var custom2 = mySlider18.getValue();
+	var custom3 = mySlider19.getValue();
+ 
+	localStorage.setItem("Slot5_Custom_Slider1_Value", custom1);	
+	localStorage.setItem("Slot5_Custom_Slider2_Value", custom2);	
+	localStorage.setItem("Slot5_Custom_Slider3_Value", custom3);
+
+	var leftText = document.getElementById("textinmenuLeftCS1").innerText;
+	var centerText = document.getElementById("textinmenuCenterCS1").innerText;
+	var rightText = document.getElementById("textinmenuRightCS1").innerText;
+	
+	localStorage.setItem("Slot5_Custom_Slider1_LeftText", leftText);	
+	localStorage.setItem("Slot5_Custom_Slider1_CenterText", centerText);
+	localStorage.setItem("Slot5_Custom_Slider1_RightText", rightText);	
+	
+	var leftText = document.getElementById("textinmenuLeftCS2").innerText;
+	var centerText = document.getElementById("textinmenuCenterCS2").innerText;
+	var rightText = document.getElementById("textinmenuRightCS2").innerText;
+	
+	localStorage.setItem("Slot5_Custom_Slider2_LeftText", leftText);	
+	localStorage.setItem("Slot5_Custom_Slider2_CenterText", centerText);	
+	localStorage.setItem("Slot5_Custom_Slider2_RightText", rightText);	
+	
+	var leftText = document.getElementById("textinmenuLeftCS3").innerText;
+	var centerText = document.getElementById("textinmenuCenterCS3").innerText;
+	var rightText = document.getElementById("textinmenuRightCS3").innerText;
+	
+	localStorage.setItem("Slot5_Custom_Slider3_LeftText", leftText);	
+	localStorage.setItem("Slot5_Custom_Slider3_CenterText", centerText);	
+	localStorage.setItem("Slot5_Custom_Slider3_RightText", rightText);	
  
 	localStorage.setItem("Slot5_Species", settingSpecies);	
     localStorage.setItem("Slot5_Sex", settingSex);	
@@ -180,6 +212,53 @@
 		}
 		else {
 			document.getElementById("AdvancedSettingsContainer").style.display='block';
+		}
+		
+		var leftText = localStorage.getItem("Slot5_Custom_Slider1_LeftText");
+		var centerText = localStorage.getItem("Slot5_Custom_Slider1_CenterText");
+		var rightText = localStorage.getItem("Slot5_Custom_Slider1_RightText");
+		document.getElementById('textinmenuLeftCS1').innerHTML = leftText;	
+		document.getElementById('textinmenuCenterCS1').innerHTML = centerText;	
+		document.getElementById('textinmenuRightCS1').innerHTML = rightText;	
+		
+		var leftText = localStorage.getItem("Slot5_Custom_Slider2_LeftText");
+		var centerText = localStorage.getItem("Slot5_Custom_Slider2_CenterText");
+		var rightText = localStorage.getItem("Slot5_Custom_Slider2_RightText");
+		document.getElementById('textinmenuLeftCS2').innerHTML = leftText;	
+		document.getElementById('textinmenuCenterCS2').innerHTML = centerText;	
+		document.getElementById('textinmenuRightCS2').innerHTML = rightText;
+		
+		var leftText = localStorage.getItem("Slot5_Custom_Slider3_LeftText");
+		var centerText = localStorage.getItem("Slot5_Custom_Slider3_CenterText");
+		var rightText = localStorage.getItem("Slot5_Custom_Slider3_RightText");
+		document.getElementById('textinmenuLeftCS3').innerHTML = leftText;	
+		document.getElementById('textinmenuCenterCS3').innerHTML = centerText;	
+		document.getElementById('textinmenuRightCS3').innerHTML = rightText;
+		
+		var isCS1Enabled = localStorage.getItem("Custom_Slider1_Enabled");
+		var isCS2Enabled = localStorage.getItem("Custom_Slider2_Enabled");
+		var isCS3Enabled = localStorage.getItem("Custom_Slider3_Enabled");
+		
+		document.getElementById("custom1SliderMenu").style.display='block';
+		document.getElementById("custom2SliderMenu").style.display='block';
+		document.getElementById("custom3SliderMenu").style.display='block';
+		
+		var CS1Value = localStorage.getItem("Slot5_Custom_Slider1_Value");
+		var CS2Value = localStorage.getItem("Slot5_Custom_Slider2_Value");
+		var CS3Value = localStorage.getItem("Slot5_Custom_Slider3_Value");
+		
+		mySlider17.setValue(CS1Value);
+		mySlider18.setValue(CS2Value);
+		mySlider19.setValue(CS3Value);
+		
+		if (isCS1Enabled != "Yes") {
+			document.getElementById("custom1SliderMenu").style.display='none';
+		}
+		if (isCS2Enabled != "Yes") {
+			document.getElementById("custom2SliderMenu").style.display='none';
+		}
+		if (isCS3Enabled != "Yes") {
+			document.getElementById("custom3SliderMenu").style.display='none';
 		}
 		
 		document.getElementById("settingsLoadedPopup").style.display = "block";	

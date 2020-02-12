@@ -1,3 +1,4 @@
+// Slot 0 is "current" state of the app. This function is triggered after loading settings from slots 1-5.
  function saveSettingsSlot0() {
 	var settingSpecies = document.getElementById('speciesChoice').value 
  
@@ -56,5 +57,36 @@
 	localStorage.setItem("Slot0_Belly_Shape", bellyShape);
 	localStorage.setItem("Slot0_Intelligence", intelligence);
 	localStorage.setItem("Slot0_Cock_Type", cockType);
- }
-   
+	
+	var custom1 = mySlider17.getValue();
+	var custom2 = mySlider18.getValue();
+	var custom3 = mySlider19.getValue();
+ 
+	localStorage.setItem("Slot0_Custom_Slider1_Value", custom1);	
+	localStorage.setItem("Slot0_Custom_Slider2_Value", custom2);	
+	localStorage.setItem("Slot0_Custom_Slider3_Value", custom3);
+
+	var leftText = document.getElementById("textinmenuLeftCS1").innerText;
+	var centerText = document.getElementById("textinmenuCenterCS1").innerText;
+	var rightText = document.getElementById("textinmenuRightCS1").innerText;
+	
+	localStorage.setItem("Custom_Slider1_LeftText", leftText);	
+	localStorage.setItem("Custom_Slider1_CenterText", centerText);	
+	localStorage.setItem("Custom_Slider1_RightText", rightText);	
+	
+	var leftText = document.getElementById("textinmenuLeftCS2").innerText;
+	var centerText = document.getElementById("textinmenuCenterCS2").innerText;
+	var rightText = document.getElementById("textinmenuRightCS2").innerText;
+	
+	localStorage.setItem("Custom_Slider2_LeftText", leftText);	
+	localStorage.setItem("Custom_Slider2_CenterText", centerText);	
+	localStorage.setItem("Custom_Slider2_RightText", rightText);	
+	
+	var leftText = document.getElementById("textinmenuLeftCS3").innerText;
+	var centerText = document.getElementById("textinmenuCenterCS3").innerText;
+	var rightText = document.getElementById("textinmenuRightCS3").innerText;
+	
+	localStorage.setItem("Custom_Slider3_LeftText", leftText);	
+	localStorage.setItem("Custom_Slider3_CenterText", centerText);	
+	localStorage.setItem("Custom_Slider3_RightText", rightText);	
+}   

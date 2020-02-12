@@ -11,7 +11,7 @@
 <meta name="google-site-verification" content="ZlbW0WzveBStYcU29sN4lKtKMy7ytBMUKn6A3_i5AbQ" />
 <meta name="description" content="Want to be your fursona? With this app you can choose 30+ species, change your gender and modify many body and personality aspects!">
 <meta name="keywords" content="Switcherroo, Switcher-roo, Furry, Transformation, Tyroo">
-<meta name="author" content="IgnitioTheDerg">
+<meta name="author" content="qtderg">
 
 <link rel='manifest' href='/switcher-roo/manifest.webmanifest'>
 <link rel="stylesheet" href="css/styles.css?v=1.0">  
@@ -23,11 +23,12 @@
 <script src="js/dhtmlxslider.js"></script>
 <script src="js/switcheroo.js"></script>
 <script src="js/slot0.js"></script>
+<script src="js/slot1.js"></script>
 <script src="js/slot2.js"></script>
 <script src="js/slot3.js"></script>
 <script src="js/slot4.js"></script>
 <script src="js/slot5.js"></script>
-<script src="js/bodytype.js"></script>
+
 <script src="pwabuilder-sw.js"></script>
 <script>
 // This is the "Offline copy of pages" service worker
@@ -62,23 +63,6 @@ if ("serviceWorker" in navigator) {
 </script>
  
 <script>
-
-function sendFeedback() {
-	var feedback = document.getElementById("feedbackTextField").value;
-	localStorage.setItem("Feedback", feedback);	
-
-
-	
-	document.getElementById("feedbackButton").style.display='block';
-	document.getElementById("enterFeedback").style.display='none';
-}
-
-//(function titleScroller(text) {
-//   document.title = text;
-//    setTimeout(function () {
-//        titleScroller(text.substr(1) + text.substr(0, 1));
-//    }, 250);
-//}(" Switcher-Roo – augment your appearance! The way to create the perfect you. "));
 
 function changeRadioButtonAppearance() {
 		document.getElementById('radioButtonStyle').href='css/radio_button_style_error.css';
@@ -671,8 +655,83 @@ document.getElementById("logOutMessage").style.display = "none";
 	</div>
 			
 </div>
+
+<div class="menuSlider" id="custom1SliderMenu">
+	<div class="linesMenuSlider">
+			<img src="images/lines.png" height="15" width="20"> 
+	</div>
+	
+	<div class="textinmenuLeft" id="textinmenuLeftCS1">
+	&nbsp;	
+	</div>
+	
+	<div class="textinmenuCenter" id="textinmenuCenterCS1">
+	Custom1
+	</div>
+	
+	<div class="textinmenuRight" id="textinmenuRightCS1">
+	&nbsp;
+	</div>
+	
+	<div id="sliderCustom1" class="slider">			
+			 <script>
+				var mySlider17 = new dhtmlXSlider(sliderCustom1, 315, null, false, 0, 100, 50, 1);
+			</script>
+	</div>
+			
+</div>
+
+<div class="menuSlider" id="custom2SliderMenu">
+	<div class="linesMenuSlider">
+			<img src="images/lines.png" height="15" width="20"> 
+	</div>
+	
+	<div class="textinmenuLeft" id="textinmenuLeftCS2">
+	&nbsp;	
+	</div>
+	
+	<div class="textinmenuCenter" id="textinmenuCenterCS2">
+	Custom2
+	</div>
+	
+	<div class="textinmenuRight" id="textinmenuRightCS2">
+	&nbsp;
+	</div>
+	
+	<div id="sliderCustom2" class="slider">			
+			 <script>
+				var mySlider18 = new dhtmlXSlider(sliderCustom2, 315, null, false, 0, 100, 50, 1);
+			</script>
+	</div>
+			
+</div>
+
+<div class="menuSlider" id="custom3SliderMenu">
+	<div class="linesMenuSlider">
+			<img src="images/lines.png" height="15" width="20"> 
+	</div>
+	
+	<div class="textinmenuLeft" id="textinmenuLeftCS3">
+	&nbsp;	
+	</div>
+	
+	<div class="textinmenuCenter" id="textinmenuCenterCS3">
+	Custom3
+	</div>
+	
+	<div class="textinmenuRight" id="textinmenuRightCS3">
+	&nbsp;
+	</div>
+	
+	<div id="sliderCustom3" class="slider">			
+			 <script>
+				var mySlider19 = new dhtmlXSlider(sliderCustom3, 315, null, false, 0, 100, 50, 1);
+			</script>
+	</div>
+			
+</div>
   
-<div class="menuAS" id="advancedSettings" onclick="advSettFunctionV2()">
+<div class="menuAS" id="advancedSettings" onclick="openAdvancedSettings()">
 	<div class="linesAS">
 			<img src="images/lines.png" height="15" width="20"> 
 			&nbsp;
@@ -1177,6 +1236,106 @@ document.getElementById("logOutMessage").style.display = "none";
 	document.getElementById("addRemoveSlidersContainer").style.display='none';  
 </script>	
 </div>
+
+<div class="menuAS" id="advancedSettings3" onclick="openCustomSlidersMenu()">
+	<div class="linesAS">
+			<img src="images/lines.png" height="15" width="20"> 
+			&nbsp;
+			<img src="images/arrow.png" height="15" width="20">
+	</div>
+	
+	&nbsp;&nbsp;Custom Sliders
+</div>
+
+<div id="CustomSlidersContainer">
+	
+	
+		<div class="menu">
+
+			<div class="speciesText">
+			Slider 1
+			</div>
+	
+			<div class="selectMenuContainer2">
+				<div class="checkboxCustomSliders">
+					<label class="container">
+						<input type="checkbox" id="customSlider1Checkbox" onClick="toggleCustomSlider1()">
+						<span class="checkbox"></span>  
+					</label>
+				</div>
+					
+				<input id="slider1LeftText" class="customSliderTextField">
+				<input id="slider1CenterText" class="customSliderTextField">
+				<input id="slider1RightText" class="customSliderTextField">
+				
+				<div class="setButton">
+				<button class="slotCoverage" onclick="makeCustomSlider1()">Set</button>
+				</div>
+					
+			</div>
+		
+		</div>
+
+		<div class="menu">
+
+			<div class="speciesText">
+			Slider 2
+			</div>
+	
+			<div class="selectMenuContainer2">
+				<div class="checkboxCustomSliders">
+					<label class="container">
+						<input type="checkbox" id="customSlider2Checkbox" onClick="toggleCustomSlider2()">
+						<span class="checkbox"></span>  
+					</label>
+				</div>
+				
+				<input id="slider2LeftText" class="customSliderTextField">
+				<input id="slider2CenterText" class="customSliderTextField">
+				<input id="slider2RightText" class="customSliderTextField">
+				
+				<div class="setButton">
+				<button class="slotCoverage" onclick="makeCustomSlider2()">Set</button>
+				</div>
+				
+				
+				
+			</div>
+		
+		</div>
+		
+		<div class="menu">
+
+			<div class="speciesText">
+			Slider 3
+			</div>
+	
+			<div class="selectMenuContainer2">
+				<div class="checkboxCustomSliders">
+					<label class="container">
+						<input type="checkbox" id="customSlider3Checkbox" onClick="toggleCustomSlider3()">
+						<span class="checkbox"></span>  
+					</label>
+				</div>
+							
+				<input id="slider3LeftText" class="customSliderTextField">
+				<input id="slider3CenterText" class="customSliderTextField">
+				<input id="slider3RightText" class="customSliderTextField">
+				
+				<div class="setButton">
+				<button class="slotCoverage" onclick="makeCustomSlider3()">Set</button>
+				</div>
+					
+			</div>
+		
+		</div>		
+	
+</div>
+
+<script>
+document.getElementById("CustomSlidersContainer").style.display='none';  
+</script>
+
 <!--
 <div class="applybutton" id="applySettingsButton">
 <button class="apply" onclick="processingShowFunction()">Apply Settings</button>
@@ -1324,22 +1483,7 @@ document.getElementById("triggerErrors").style.display='none';
 			</div>
 			
 			<br>
-			<!--<div>
-			<label class="container">Hide feedback button
-				<input type="checkbox" id="hideFeedbackCheckbox" onclick="hideFeedbackFuntion()">
-				<span class="checkbox"></span>  
-			</label>
-			</div>
 			
-			<br>
-			<div>
-			<label class="container">Hide feedback link
-				<input type="checkbox" id="hideFeedbackCheckbox2" onclick="hideFeedbackFuntion2()">
-				<span class="checkbox"></span>  
-			</label>
-			</div>
-			
-			<br>!-->
 			<div>
 			<label class="container">Show Breast Size slider when Male Sex is selected
 				<input type="checkbox" id="showBreastSizeMaleCheckbox" onclick="toggleBreastSizeMaleOption()">
@@ -1365,7 +1509,7 @@ document.getElementById("triggerErrors").style.display='none';
 			<br>
 			
 			<div>
-			Background color:
+			Background color (Desktop users only):
 			</div>
 			
 			<button type="button" class="buttonChangeBG" id="buttonBGDefault" onclick="changeBGDefault()">Default</button>
@@ -1418,18 +1562,6 @@ document.getElementById("clearUsernameButton").style.display='none';
 </div>
 
 </div>
-<!--
-<div class="applybutton" id="feedbackButton">
-<button class="apply" onclick="feedbackBegin()">Feedback</button>
-</div>
--->
-<div class="enterFeedback" id="enterFeedback">
-<input id="feedbackTextField" class="feedbackTextField" value="feedback function is not working atm">
-<button type="button" class="buttonSendFeedback" id="buttonSendFeedback" onclick="sendFeedback()">Send</button>
-<script>
-document.getElementById("enterFeedback").style.display='none';  
-</script>
-</div>
 
 <div class="applybutton" id="creditsButton">
 <button class="apply" onclick="toggleCreditsFunction()">Show/Hide Credits</button>
@@ -1479,7 +1611,7 @@ PWA Integration <br> SRThrowaway
 </div>
 
 Sliders by <a href="https://dhtmlx.com/">DHTMLX</a> under GNU GPL<br>
-Ver 0.6.2.1i <!--Please use letters for versioning, unless update is small.--><br>
+Ver 0.6.2.1j <!--Please use letters for versioning, unless update is small.--><br>
 <a href="changelog.html">Changelog</a>
 </div>
 
@@ -1605,6 +1737,24 @@ mySlider16.attachEvent("onSlideEnd", function() {
 	processingShowFunctionV2();
 });
 
+mySlider17.attachEvent("onSlideEnd", function() {
+   	var custom1 = mySlider17.getValue();
+	localStorage.setItem("Slot0_Custom_Slider1_Value", custom1);
+	processingShowFunctionV2();
+});
+
+mySlider18.attachEvent("onSlideEnd", function() {
+   	var custom2 = mySlider18.getValue();
+	localStorage.setItem("Slot0_Custom_Slider2_Value", custom2);
+	processingShowFunctionV2();
+});
+
+mySlider19.attachEvent("onSlideEnd", function() {
+   	var custom3 = mySlider19.getValue();
+	localStorage.setItem("Slot0_Custom_Slider3_Value", custom3);
+	processingShowFunctionV2();
+});
+
 loadPreviousState();
 loadSliderSettings();
 visitCounter();
@@ -1613,8 +1763,8 @@ checkSlots();
 welcomeUser();
 showOrHideBreastSizeMaleSlider();
 showOrHideGenitalSizeFemaleSlider();
-<!-- hideFeedback(); Hide feedback button as function is not working-->
 setBGColorOnInit();
+loadCustomSlidersOnStartup();
 
 </script>				
 

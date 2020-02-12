@@ -1,4 +1,4 @@
- function saveSettingsSlot4() {
+function saveSettingsSlot1() {
 	var settingSpecies = document.getElementById('speciesChoice').value 
  
 	rbchoice = document.getElementById("radiobuttonMale");
@@ -42,63 +42,63 @@
 	var custom2 = mySlider18.getValue();
 	var custom3 = mySlider19.getValue();
  
-	localStorage.setItem("Slot4_Custom_Slider1_Value", custom1);	
-	localStorage.setItem("Slot4_Custom_Slider2_Value", custom2);	
-	localStorage.setItem("Slot4_Custom_Slider3_Value", custom3);
+	localStorage.setItem("Slot1_Custom_Slider1_Value", custom1);	
+	localStorage.setItem("Slot1_Custom_Slider2_Value", custom2);	
+	localStorage.setItem("Slot1_Custom_Slider3_Value", custom3);
 
 	var leftText = document.getElementById("textinmenuLeftCS1").innerText;
 	var centerText = document.getElementById("textinmenuCenterCS1").innerText;
 	var rightText = document.getElementById("textinmenuRightCS1").innerText;
 	
-	localStorage.setItem("Slot4_Custom_Slider1_LeftText", leftText);	
-	localStorage.setItem("Slot4_Custom_Slider1_CenterText", centerText);	
-	localStorage.setItem("Slot4_Custom_Slider1_RightText", rightText);	
+	localStorage.setItem("Slot1_Custom_Slider1_LeftText", leftText);	
+	localStorage.setItem("Slot1_Custom_Slider1_CenterText", centerText);	
+	localStorage.setItem("Slot1_Custom_Slider1_RightText", rightText);	
 	
 	var leftText = document.getElementById("textinmenuLeftCS2").innerText;
 	var centerText = document.getElementById("textinmenuCenterCS2").innerText;
 	var rightText = document.getElementById("textinmenuRightCS2").innerText;
 	
-	localStorage.setItem("Slot4_Custom_Slider2_LeftText", leftText);	
-	localStorage.setItem("Slot4_Custom_Slider2_CenterText", centerText);	
-	localStorage.setItem("Slot4_Custom_Slider2_RightText", rightText);	
+	localStorage.setItem("Slot1_Custom_Slider2_LeftText", leftText);	
+	localStorage.setItem("Slot1_Custom_Slider2_CenterText", centerText);	
+	localStorage.setItem("Slot1_Custom_Slider2_RightText", rightText);	
 	
 	var leftText = document.getElementById("textinmenuLeftCS3").innerText;
 	var centerText = document.getElementById("textinmenuCenterCS3").innerText;
 	var rightText = document.getElementById("textinmenuRightCS3").innerText;
 	
-	localStorage.setItem("Slot4_Custom_Slider3_LeftText", leftText);	
-	localStorage.setItem("Slot4_Custom_Slider3_CenterText", centerText);	
-	localStorage.setItem("Slot4_Custom_Slider3_RightText", rightText);	
- 
-	localStorage.setItem("Slot4_Species", settingSpecies);	
-    localStorage.setItem("Slot4_Sex", settingSex);	
-	localStorage.setItem("Slot4_AC_Box_Ticked", tickbox);
-	localStorage.setItem("Slot4_Body_Type1", bodyType1);
-	localStorage.setItem("Slot4_Body_Type2", bodyType2);
-	localStorage.setItem("Slot4_Body_Type3", bodyType3);
-	localStorage.setItem("Slot4_Hips", hips);
-	localStorage.setItem("Slot4_Genital_Size", genitalSize);
-	localStorage.setItem("Slot4_Fluffiness", fluffiness);
-	localStorage.setItem("Slot4_Libido", libido);
-	localStorage.setItem("Slot4_Position_Preference", domsub);
-	localStorage.setItem("Slot4_Sensitivity", sensitivity);
-	localStorage.setItem("Slot4_Demeanor", assertiveShy); 
-	localStorage.setItem("Slot4_Breast_Size_Male", breastSizeMale); 
-	localStorage.setItem("Slot4_Breast_Size_Female", breastSizeFemale); 
-	localStorage.setItem("Slot4_Butt_Size", buttSize);
-	localStorage.setItem("Slot4_Belly_Size", bellySize);
-	localStorage.setItem("Slot4_Belly_Shape", bellyShape);
-	localStorage.setItem("Slot4_Intelligence", intelligence);
-	localStorage.setItem("Slot4_Cock_Type", cockType);
+	localStorage.setItem("Slot1_Custom_Slider3_LeftText", leftText);	
+	localStorage.setItem("Slot1_Custom_Slider3_CenterText", centerText);	
+	localStorage.setItem("Slot1_Custom_Slider3_RightText", rightText);	
+		
+	localStorage.setItem("Slot1_Species", settingSpecies);	
+    localStorage.setItem("Slot1_Sex", settingSex);	
+	localStorage.setItem("Slot1_AC_Box_Ticked", tickbox);
+	localStorage.setItem("Slot1_Body_Type1", bodyType1);
+	localStorage.setItem("Slot1_Body_Type2", bodyType2);
+	localStorage.setItem("Slot1_Body_Type3", bodyType3);
+	localStorage.setItem("Slot1_Hips", hips);
+	localStorage.setItem("Slot1_Genital_Size", genitalSize);
+	localStorage.setItem("Slot1_Fluffiness", fluffiness);
+	localStorage.setItem("Slot1_Libido", libido);
+	localStorage.setItem("Slot1_Position_Preference", domsub);
+	localStorage.setItem("Slot1_Sensitivity", sensitivity);
+	localStorage.setItem("Slot1_Demeanor", assertiveShy); 
+	localStorage.setItem("Slot1_Breast_Size_Male", breastSizeMale); 
+	localStorage.setItem("Slot1_Breast_Size_Female", breastSizeFemale); 
+	localStorage.setItem("Slot1_Butt_Size", buttSize);
+	localStorage.setItem("Slot1_Belly_Size", bellySize);
+	localStorage.setItem("Slot1_Belly_Shape", bellyShape);
+	localStorage.setItem("Slot1_Intelligence", intelligence);
+	localStorage.setItem("Slot1_Cock_Type", cockType);
 	
 	document.getElementById("settingsLoadedPopup").style.display = "block";	
 	document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Saved:" + " " + settingSex + " " + settingSpecies;
-	//hideSaveSlotButtons();
+	//hideSaveSlotButtons();	
 	checkSlots();
 	setTimeout(hideLoadedPopup, 4000);
  }
    
- function loadSettingsSlot4() {
+ function loadSettingsSlot1() {
 	var lock = document.getElementById("lockClosed");
 	if (lock.style.display === "block") {
 		document.getElementById("unblockSettingsOkayContainer").style.display='block'; 
@@ -107,8 +107,8 @@
 		document.getElementById("errorMessageContainer").style.display='block'; 
 	}
 	else {
-		var Species = localStorage.getItem("Slot4_Species");
-				if (Species == null) {
+		var Species = localStorage.getItem("Slot1_Species");
+		if (Species == null) {
 			document.getElementById("settingsLoadedPopup").style.display = "block";	
 			document.getElementById('settingsLoadedPopup').innerHTML = ">Error: This slot is empty";
 			hideLoadSlotButtons();
@@ -118,7 +118,7 @@
 		var element = document.getElementById("speciesChoice");
 		element.value = Species; 
  
-		var Sex = localStorage.getItem("Slot4_Sex");
+		var Sex = localStorage.getItem("Slot1_Sex");
 		if (Sex == "Male" || Sex == "Femboy") {
 			rbmale = document.getElementById("radiobuttonMale");
 			rbmale.checked = true;
@@ -132,19 +132,19 @@
 			rbmale.checked = false;
 		}
  
-		var AC_Box_Ticked = localStorage.getItem("Slot4_AC_Box_Ticked");
+		var AC_Box_Ticked = localStorage.getItem("Slot1_AC_Box_Ticked");
 		if (AC_Box_Ticked == "Yes") {
 			var tickbox = document.getElementById("adaptClothingCheckbox");
 			tickbox.checked = true;
 		}
  
-		var bodyType1 = localStorage.getItem("Slot4_Body_Type1");
+		var bodyType1 = localStorage.getItem("Slot1_Body_Type1");
 		mySlider6.setValue(bodyType1);
  
-		var bodyType2 = localStorage.getItem("Slot4_Body_Type2");
+		var bodyType2 = localStorage.getItem("Slot1_Body_Type2");
 		mySlider5.setValue(bodyType2);
  
-		var bodyType3 = localStorage.getItem("Slot4_Body_Type3");
+		var bodyType3 = localStorage.getItem("Slot1_Body_Type3");
 		mySlider4.setValue(bodyType3);
 		
 		var xx = document.getElementById("AdvancedSettingsContainer");
@@ -157,56 +157,56 @@
  
 		document.getElementById("AdvancedSettingsContainer").style.display='block'; 
   
-		var hips = localStorage.getItem("Slot4_Hips");
+		var hips = localStorage.getItem("Slot1_Hips");
 		mySlider3.setValue(hips);
  
-		var genitalSize = localStorage.getItem("Slot4_Genital_Size");
+		var genitalSize = localStorage.getItem("Slot1_Genital_Size");
 		mySlider2.setValue(genitalSize);
  
-		var fluffiness = localStorage.getItem("Slot4_Fluffiness");
+		var fluffiness = localStorage.getItem("Slot1_Fluffiness");
 		mySlider.setValue(fluffiness);
  
-		var libido = localStorage.getItem("Slot4_Libido");
+		var libido = localStorage.getItem("Slot1_Libido");
 		mySlider7.setValue(libido);
  
-		var domsub = localStorage.getItem("Slot4_Position_Preference");
+		var domsub = localStorage.getItem("Slot1_Position_Preference");
 		mySlider10.setValue(domsub);
  
-		var sensitivity = localStorage.getItem("Slot4_Sensitivity");
+		var sensitivity = localStorage.getItem("Slot1_Sensitivity");
 		mySlider11.setValue(sensitivity);
  
-		var assertiveShy = localStorage.getItem("Slot4_Demeanor");
+		var assertiveShy = localStorage.getItem("Slot1_Demeanor");
 		mySlider12.setValue(assertiveShy);
  
-		var buttSize = localStorage.getItem("Slot4_Butt_Size");	
+		var buttSize = localStorage.getItem("Slot1_Butt_Size");	
 		mySlider13.setValue(buttSize);
  
-		var bellySize = localStorage.getItem("Slot4_Belly_Size");
+		var bellySize = localStorage.getItem("Slot1_Belly_Size");
 		mySlider14.setValue(bellySize);
  
-		var bellyShape = localStorage.getItem("Slot4_Belly_Shape");
+		var bellyShape = localStorage.getItem("Slot1_Belly_Shape");
 		mySlider15.setValue(bellyShape);
  
-		var intelligence = localStorage.getItem("Slot4_Intelligence");
+		var intelligence = localStorage.getItem("Slot1_Intelligence");
 		mySlider16.setValue(intelligence);
 		
-		var cockType = localStorage.getItem("Slot4_Cock_Type");
+		var cockType = localStorage.getItem("Slot1_Cock_Type");
 		var element2 = document.getElementById("cockType");
 		element2.value = cockType; 
  
 		if (Sex == "Male" || Sex == "Femboy") {
 			document.getElementById("showAdvancedSettings4a").style.display = "block";
 			document.getElementById("showAdvancedSettings4b").style.display = "none";
-			var breastSizeMale = localStorage.getItem("Slot4_Breast_Size_Male");
+			var breastSizeMale = localStorage.getItem("Slot1_Breast_Size_Male");
 			mySlider9.setValue(breastSizeMale);
 		}
  		else {
 			document.getElementById("showAdvancedSettings4b").style.display = "block";
 			document.getElementById("showAdvancedSettings4a").style.display = "none";
-			var breastSizeFemale = localStorage.getItem("Slot4_Breast_Size_Female");
+			var breastSizeFemale = localStorage.getItem("Slot1_Breast_Size_Female");
 			mySlider8.setValue(breastSizeFemale);
 		}
- 
+		
 		if (open =="no") {
 			document.getElementById("AdvancedSettingsContainer").style.display='none'; 
 		}
@@ -214,23 +214,23 @@
 			document.getElementById("AdvancedSettingsContainer").style.display='block';
 		}
 		
-		var leftText = localStorage.getItem("Slot4_Custom_Slider1_LeftText");
-		var centerText = localStorage.getItem("Slot4_Custom_Slider1_CenterText");
-		var rightText = localStorage.getItem("Slot4_Custom_Slider1_RightText");
+		var leftText = localStorage.getItem("Slot1_Custom_Slider1_LeftText");
+		var centerText = localStorage.getItem("Slot1_Custom_Slider1_CenterText");
+		var rightText = localStorage.getItem("Slot1_Custom_Slider1_RightText");
 		document.getElementById('textinmenuLeftCS1').innerHTML = leftText;	
 		document.getElementById('textinmenuCenterCS1').innerHTML = centerText;	
 		document.getElementById('textinmenuRightCS1').innerHTML = rightText;	
 		
-		var leftText = localStorage.getItem("Slot4_Custom_Slider2_LeftText");
-		var centerText = localStorage.getItem("Slot4_Custom_Slider2_CenterText");
-		var rightText = localStorage.getItem("Slot4_Custom_Slider2_RightText");
+		var leftText = localStorage.getItem("Slot1_Custom_Slider2_LeftText");
+		var centerText = localStorage.getItem("Slot1_Custom_Slider2_CenterText");
+		var rightText = localStorage.getItem("Slot1_Custom_Slider2_RightText");
 		document.getElementById('textinmenuLeftCS2').innerHTML = leftText;	
 		document.getElementById('textinmenuCenterCS2').innerHTML = centerText;	
 		document.getElementById('textinmenuRightCS2').innerHTML = rightText;
 		
-		var leftText = localStorage.getItem("Slot4_Custom_Slider3_LeftText");
-		var centerText = localStorage.getItem("Slot4_Custom_Slider3_CenterText");
-		var rightText = localStorage.getItem("Slot4_Custom_Slider3_RightText");
+		var leftText = localStorage.getItem("Slot1_Custom_Slider3_LeftText");
+		var centerText = localStorage.getItem("Slot1_Custom_Slider3_CenterText");
+		var rightText = localStorage.getItem("Slot1_Custom_Slider3_RightText");
 		document.getElementById('textinmenuLeftCS3').innerHTML = leftText;	
 		document.getElementById('textinmenuCenterCS3').innerHTML = centerText;	
 		document.getElementById('textinmenuRightCS3').innerHTML = rightText;
@@ -243,9 +243,9 @@
 		document.getElementById("custom2SliderMenu").style.display='block';
 		document.getElementById("custom3SliderMenu").style.display='block';
 		
-		var CS1Value = localStorage.getItem("Slot4_Custom_Slider1_Value");
-		var CS2Value = localStorage.getItem("Slot4_Custom_Slider2_Value");
-		var CS3Value = localStorage.getItem("Slot4_Custom_Slider3_Value");
+		var CS1Value = localStorage.getItem("Slot1_Custom_Slider1_Value");
+		var CS2Value = localStorage.getItem("Slot1_Custom_Slider2_Value");
+		var CS3Value = localStorage.getItem("Slot1_Custom_Slider3_Value");
 		
 		mySlider17.setValue(CS1Value);
 		mySlider18.setValue(CS2Value);
@@ -265,7 +265,7 @@
 		document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Loaded:" + " " + Sex + " " + Species;
 		//hideLoadSlotButtons();
 		saveSettingsSlot0();
-		setTimeout(hideLoadedPopup, 4000);	
+		setTimeout(hideLoadedPopup, 4000);			
 		}
 	}
 }

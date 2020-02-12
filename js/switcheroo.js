@@ -1,4 +1,4 @@
-function advSettFunctionV2() {
+function openAdvancedSettings() {
 		var x = document.getElementById("AdvancedSettingsContainer");
 		if (x.style.display === "none") {
 			x.style.display = "block";
@@ -9,6 +9,15 @@ function advSettFunctionV2() {
 	
 function addRemoveSlidersFunction() {
 		var x = document.getElementById("addRemoveSlidersContainer");
+		if (x.style.display === "none") {
+			x.style.display = "block";
+		} else {
+			x.style.display = "none";
+		}
+	}
+	
+function openCustomSlidersMenu() {
+		var x = document.getElementById("CustomSlidersContainer");
 		if (x.style.display === "none") {
 			x.style.display = "block";
 		} else {
@@ -221,6 +230,9 @@ mySlider13.enable();
 mySlider14.enable();
 mySlider15.enable();
 mySlider16.enable();
+mySlider17.enable();
+mySlider18.enable();
+mySlider19.enable();
 }
 
 function closeLock() {
@@ -242,6 +254,9 @@ mySlider13.disable();
 mySlider14.disable();
 mySlider15.disable();
 mySlider16.disable();
+mySlider17.disable();
+mySlider18.disable();
+mySlider19.disable();
 }
 
 function processingShowFunctionV2() {
@@ -460,7 +475,7 @@ function changeSexToMale() {
 	localStorage.setItem("Slot0_Sex", settingSex);
 	rbfemale = document.getElementById("radiobuttonFemale");
 	if (rbfemale.checked) {
-		var error2 = Math.floor(Math.random() * 100) + 1;
+		var error2 = Math.floor(Math.random() * 621) + 1;
 		if (error2 == 69) {
 			document.getElementById("sexMenu").style.color='#FF4550'; 
 			document.getElementById("linesNormal").style.display='none'; 
@@ -500,7 +515,7 @@ function changeSexToFemale() {
 	localStorage.setItem("Slot0_Sex", settingSex);
 	rbmale = document.getElementById("radiobuttonMale");
 	if (rbmale.checked) {  
-		var error2 = Math.floor(Math.random() * 100) + 1;
+		var error2 = Math.floor(Math.random() * 621) + 1;
 		if (error2 == 69) {
 			document.getElementById("sexMenu").style.color='#FF4550'; 
 			document.getElementById("linesNormal").style.display='none'; 
@@ -545,58 +560,6 @@ function hideMSSError () {
 	localStorage.setItem("Slot0_Species", settingSpecies);	 
 	processingShowFunctionV2();
  }
- function realScaliesDontHaveFluff() {	 
-		if(document.getElementById('speciesChoice').value == "Dragon") { 
-			var x1 = document.getElementById("AdvancedSettingsContainer");
-			if (x1.style.display === "none") {
-			x1.style.display = "block";
-			mySlider.setValue(0);
-			x1.style.display = "none";
-			} else {
-			mySlider.setValue(0);
-			}
-		}
-		else if(document.getElementById('speciesChoice').value == "Shark") { 
-			var x1 = document.getElementById("AdvancedSettingsContainer");
-			if (x1.style.display === "none") {
-			x1.style.display = "block";
-			mySlider.setValue(0);
-			x1.style.display = "none";
-			} else {
-			mySlider.setValue(0);
-			}
-		}
-		else if(document.getElementById('speciesChoice').value == "Kobold") { 
-			var x1 = document.getElementById("AdvancedSettingsContainer");
-			if (x1.style.display === "none") {
-			x1.style.display = "block";
-			mySlider.setValue(0);
-			x1.style.display = "none";
-			} else {
-			mySlider.setValue(0);
-			}
-		}
-		else if(document.getElementById('speciesChoice').value == "Discount Dragon") { 
-			var x1 = document.getElementById("AdvancedSettingsContainer");
-			if (x1.style.display === "none") {
-			x1.style.display = "block";
-			mySlider.setValue(0);
-			x1.style.display = "none";
-			} else {
-			mySlider.setValue(0);
-			}
-		}
-		else { 
-			var x1 = document.getElementById("AdvancedSettingsContainer");
-			if (x1.style.display === "none") {
-			x1.style.display = "block";
-			mySlider.setValue(50);
-			x1.style.display = "none";
-			} else {
-			mySlider.setValue(50);
-			}
-		}
- }
  
  function saveCheckbox() {
 	var tickbox = document.getElementById("adaptClothingCheckbox");
@@ -629,198 +592,7 @@ function showLoadSlotButtons() {
 	 document.getElementById("loadSettingsButton").style.display='block';  
  }
  
- function saveSettingsSlot1() {
-	var settingSpecies = document.getElementById('speciesChoice').value 
- 
-	rbchoice = document.getElementById("radiobuttonMale");
-	if (rbchoice.checked) {
-		var settingSex = "Male"
-	}
-	else {
-		var settingSex = "Female"
-	}
- 
-	var tickbox = document.getElementById("adaptClothingCheckbox");
-	if (tickbox.checked) {
-		var tickbox = "Yes"
-	}
-	else {
-		var tickbox = "No"
-	}
- 
-	var bodyType1 = mySlider6.getValue();
-	var bodyType2 = mySlider5.getValue();
-	var bodyType3 = mySlider4.getValue();
-	var hips = mySlider3.getValue();
-	var genitalSize = mySlider2.getValue();
-	var fluffiness = mySlider.getValue();
-	var libido = mySlider7.getValue();
-	var domsub = mySlider10.getValue();
-	var sensitivity = mySlider11.getValue();
-	var assertiveShy = mySlider12.getValue();
-	var breastSizeMale = mySlider9.getValue();
-	var breastSizeFemale = mySlider8.getValue();
-	var buttSize = mySlider13.getValue();
-	var bellySize = mySlider14.getValue();
-	var bellyShape = mySlider15.getValue();
-	var intelligence = mySlider16.getValue();
-	
-	var cockType = document.getElementById('cockType').value 
-	
-	var settingSex = functionBodyType(settingSex, bodyType1);
- 
-	localStorage.setItem("Slot1_Species", settingSpecies);	
-    localStorage.setItem("Slot1_Sex", settingSex);	
-	localStorage.setItem("Slot1_AC_Box_Ticked", tickbox);
-	localStorage.setItem("Slot1_Body_Type1", bodyType1);
-	localStorage.setItem("Slot1_Body_Type2", bodyType2);
-	localStorage.setItem("Slot1_Body_Type3", bodyType3);
-	localStorage.setItem("Slot1_Hips", hips);
-	localStorage.setItem("Slot1_Genital_Size", genitalSize);
-	localStorage.setItem("Slot1_Fluffiness", fluffiness);
-	localStorage.setItem("Slot1_Libido", libido);
-	localStorage.setItem("Slot1_Position_Preference", domsub);
-	localStorage.setItem("Slot1_Sensitivity", sensitivity);
-	localStorage.setItem("Slot1_Demeanor", assertiveShy); 
-	localStorage.setItem("Slot1_Breast_Size_Male", breastSizeMale); 
-	localStorage.setItem("Slot1_Breast_Size_Female", breastSizeFemale); 
-	localStorage.setItem("Slot1_Butt_Size", buttSize);
-	localStorage.setItem("Slot1_Belly_Size", bellySize);
-	localStorage.setItem("Slot1_Belly_Shape", bellyShape);
-	localStorage.setItem("Slot1_Intelligence", intelligence);
-	localStorage.setItem("Slot1_Cock_Type", cockType);
-	
-	document.getElementById("settingsLoadedPopup").style.display = "block";	
-	document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Saved:" + " " + settingSex + " " + settingSpecies;
-	//hideSaveSlotButtons();	
-	checkSlots();
-	setTimeout(hideLoadedPopup, 4000);
- }
-   
- function loadSettingsSlot1() {
-	var lock = document.getElementById("lockClosed");
-	if (lock.style.display === "block") {
-		document.getElementById("unblockSettingsOkayContainer").style.display='block'; 
-		document.getElementById("unblockSettingsOkay").style.display='block'; 
-		document.getElementById("unblockSettingsMessage").style.display='block'; 
-		document.getElementById("errorMessageContainer").style.display='block'; 
-	}
-	else {
-		var Species = localStorage.getItem("Slot1_Species");
-		if (Species == null) {
-			document.getElementById("settingsLoadedPopup").style.display = "block";	
-			document.getElementById('settingsLoadedPopup').innerHTML = ">Error: This slot is empty";
-			hideLoadSlotButtons();
-			setTimeout(hideLoadedPopup, 4000);			
-		}
-		else{
-		var element = document.getElementById("speciesChoice");
-		element.value = Species; 
- 
-		var Sex = localStorage.getItem("Slot1_Sex");
-		if (Sex == "Male" || Sex == "Femboy") {
-			rbmale = document.getElementById("radiobuttonMale");
-			rbmale.checked = true;
-			rbfemale = document.getElementById("radiobuttonFemale");
-			rbfemale.checked = false;
-		}
-		else if (Sex == "Female" || Sex == "Tomboy") {
-			rbfemale = document.getElementById("radiobuttonFemale");
-			rbfemale.checked = true;
-			rbmale = document.getElementById("radiobuttonMale");
-			rbmale.checked = false;
-		}
- 
-		var AC_Box_Ticked = localStorage.getItem("Slot1_AC_Box_Ticked");
-		if (AC_Box_Ticked == "Yes") {
-			var tickbox = document.getElementById("adaptClothingCheckbox");
-			tickbox.checked = true;
-		}
- 
-		var bodyType1 = localStorage.getItem("Slot1_Body_Type1");
-		mySlider6.setValue(bodyType1);
- 
-		var bodyType2 = localStorage.getItem("Slot1_Body_Type2");
-		mySlider5.setValue(bodyType2);
- 
-		var bodyType3 = localStorage.getItem("Slot1_Body_Type3");
-		mySlider4.setValue(bodyType3);
-		
-		var xx = document.getElementById("AdvancedSettingsContainer");
-			if (xx.style.display === "none") {
-				var open = "no"
-			}
-			else {
-				var open = "yes"		
-			}
- 
-		document.getElementById("AdvancedSettingsContainer").style.display='block'; 
-  
-		var hips = localStorage.getItem("Slot1_Hips");
-		mySlider3.setValue(hips);
- 
-		var genitalSize = localStorage.getItem("Slot1_Genital_Size");
-		mySlider2.setValue(genitalSize);
- 
-		var fluffiness = localStorage.getItem("Slot1_Fluffiness");
-		mySlider.setValue(fluffiness);
- 
-		var libido = localStorage.getItem("Slot1_Libido");
-		mySlider7.setValue(libido);
- 
-		var domsub = localStorage.getItem("Slot1_Position_Preference");
-		mySlider10.setValue(domsub);
- 
-		var sensitivity = localStorage.getItem("Slot1_Sensitivity");
-		mySlider11.setValue(sensitivity);
- 
-		var assertiveShy = localStorage.getItem("Slot1_Demeanor");
-		mySlider12.setValue(assertiveShy);
- 
-		var buttSize = localStorage.getItem("Slot1_Butt_Size");	
-		mySlider13.setValue(buttSize);
- 
-		var bellySize = localStorage.getItem("Slot1_Belly_Size");
-		mySlider14.setValue(bellySize);
- 
-		var bellyShape = localStorage.getItem("Slot1_Belly_Shape");
-		mySlider15.setValue(bellyShape);
- 
-		var intelligence = localStorage.getItem("Slot1_Intelligence");
-		mySlider16.setValue(intelligence);
-		
-		var cockType = localStorage.getItem("Slot1_Cock_Type");
-		var element2 = document.getElementById("cockType");
-		element2.value = cockType; 
- 
-		if (Sex == "Male" || Sex == "Femboy") {
-			document.getElementById("showAdvancedSettings4a").style.display = "block";
-			document.getElementById("showAdvancedSettings4b").style.display = "none";
-			var breastSizeMale = localStorage.getItem("Slot1_Breast_Size_Male");
-			mySlider9.setValue(breastSizeMale);
-		}
- 		else {
-			document.getElementById("showAdvancedSettings4b").style.display = "block";
-			document.getElementById("showAdvancedSettings4a").style.display = "none";
-			var breastSizeFemale = localStorage.getItem("Slot1_Breast_Size_Female");
-			mySlider8.setValue(breastSizeFemale);
-		}
-		
-		if (open =="no") {
-			document.getElementById("AdvancedSettingsContainer").style.display='none'; 
-		}
-		else {
-			document.getElementById("AdvancedSettingsContainer").style.display='block';
-		}
-		
-		document.getElementById("settingsLoadedPopup").style.display = "block";	
-		document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Loaded:" + " " + Sex + " " + Species;
-		//hideLoadSlotButtons();
-		saveSettingsSlot0();
-		setTimeout(hideLoadedPopup, 4000);			
-		}
-	}
-}
+
 
 function hideLoadedPopup() {
 	document.getElementById("settingsLoadedPopup").style.display = "none";	
@@ -1619,40 +1391,6 @@ function hideUsernameFuntion() {
 	}
 }
 
-function feedbackBegin() {
-	document.getElementById("feedbackButton").style.display='none';
-	document.getElementById("enterFeedback").style.display='block';
-}
-
-function hideFeedbackFuntion() {
-	var tickbox = document.getElementById("hideFeedbackCheckbox");
-	if (tickbox.checked) {
-		var tickbox = "Yes"
-		localStorage.setItem("Feedback_Button_Hidden", tickbox);
-		document.getElementById("feedbackButton").style.display='none'; 
-		document.getElementById("enterFeedback").style.display='none'; 
-	}
-	else {
-		var tickbox = "No"
-		localStorage.setItem("Feedback_Button_Hidden", tickbox);
-		document.getElementById("feedbackButton").style.display='block';
-	}
-}
-
-function hideFeedbackFuntion2() {
-	var tickbox = document.getElementById("hideFeedbackCheckbox2");
-	if (tickbox.checked) {
-		var tickbox = "Yes"
-		localStorage.setItem("Feedback_Button_Hidden", tickbox);
-		document.getElementById("feedbackLinkGithub").style.display='none'; 
-	}
-	else {
-		var tickbox = "No"
-		localStorage.setItem("Feedback_Button_Hidden", tickbox);
-		document.getElementById("feedbackLinkGithub").style.display='block';
-	}
-}
-
 function toggleUserGreetings() {
 	var tickbox = document.getElementById("hideUGCheckbox");
 	if (tickbox.checked) {
@@ -1789,14 +1527,6 @@ function showOrHideGenitalSizeFemaleSlider() {
 	}
 }
 
-function hideFeedback() {
-	document.getElementById("feedbackButton").style.display='none';	
-}
-
-function hideFeedback2() {
-	document.getElementById("feedbackLinkGithub").style.display='none';	
-}
-
 function setSliderRangeToAdminMode() {
 	mySlider.setMin(-20);
 	mySlider.setMax(120);
@@ -1931,4 +1661,230 @@ function setBGColorOnInit() {
 	else {
 		document.body.style.background = bgcolor;
 	}
+}
+
+function functionBodyType(Sex, bodyType1) {
+	if (Sex == "Male" && bodyType1 >= 85) {
+		var Sex = "Femboy";
+		return Sex;
+	}
+	else if (Sex == "Female" && bodyType1 <= 15) {
+		var Sex = "Tomboy";
+		return Sex;
+	}
+	else if (Sex == "Male" && bodyType1 <= 84) {
+		var Sex = "Male";
+		return Sex;
+	}
+	else if (Sex == "Female" && bodyType1 >= 16) {
+		var Sex = "Female";
+		return Sex;
+	}
+}
+
+function makeCustomSlider1() {
+	var leftText = document.getElementById("slider1LeftText").value;
+	var centerText = document.getElementById("slider1CenterText").value;
+	var rightText = document.getElementById("slider1RightText").value;
+	
+		if (leftText === "") {
+			leftText = "&nbsp;";
+		}
+		
+		if (centerText === "") {
+			centerText = "&nbsp;";
+		}
+		
+		if (rightText === "") {
+			rightText = "&nbsp;";
+		}	
+		
+		document.getElementById('textinmenuLeftCS1').innerHTML = leftText;	
+		document.getElementById('textinmenuCenterCS1').innerHTML = centerText;	
+		document.getElementById('textinmenuRightCS1').innerHTML = rightText;	
+		localStorage.setItem("Custom_Slider1_LeftText", leftText);	
+		localStorage.setItem("Custom_Slider1_CenterText", centerText);	
+		localStorage.setItem("Custom_Slider1_RightText", rightText);	
+}
+
+function makeCustomSlider2() {
+	var leftText = document.getElementById("slider2LeftText").value;
+	var centerText = document.getElementById("slider2CenterText").value;
+	var rightText = document.getElementById("slider2RightText").value;
+	
+		if (leftText === "") {
+			leftText = "&nbsp;";
+		}
+		
+		if (centerText === "") {
+			centerText = "&nbsp;";
+		}
+		
+		if (rightText === "") {
+			rightText = "&nbsp;";
+		}	
+		
+		document.getElementById('textinmenuLeftCS2').innerHTML = leftText;	
+		document.getElementById('textinmenuCenterCS2').innerHTML = centerText;	
+		document.getElementById('textinmenuRightCS2').innerHTML = rightText;	
+		localStorage.setItem("Custom_Slider2_LeftText", leftText);	
+		localStorage.setItem("Custom_Slider2_CenterText", centerText);	
+		localStorage.setItem("Custom_Slider2_RightText", rightText);	
+}
+
+function makeCustomSlider3() {
+	var leftText = document.getElementById("slider3LeftText").value;
+	var centerText = document.getElementById("slider3CenterText").value;
+	var rightText = document.getElementById("slider3RightText").value;
+	
+		if (leftText === "") {
+			leftText = "&nbsp;";
+		}
+		
+		if (centerText === "") {
+			centerText = "&nbsp;";
+		}
+		
+		if (rightText === "") {
+			rightText = "&nbsp;";
+		}		
+		
+		document.getElementById('textinmenuLeftCS3').innerHTML = leftText;	
+		document.getElementById('textinmenuCenterCS3').innerHTML = centerText;	
+		document.getElementById('textinmenuRightCS3').innerHTML = rightText;	
+		localStorage.setItem("Custom_Slider3_LeftText", leftText);	
+		localStorage.setItem("Custom_Slider3_CenterText", centerText);	
+		localStorage.setItem("Custom_Slider3_RightText", rightText);	
+}
+
+function toggleCustomSlider1() {
+var tickbox = document.getElementById("customSlider1Checkbox");
+	if (tickbox.checked) {
+		var tickbox = "Yes"
+		document.getElementById("custom1SliderMenu").style.display= 'block';
+	}
+	else {
+		var tickbox = "No"
+		document.getElementById("custom1SliderMenu").style.display= 'none';
+	}
+	localStorage.setItem("Custom_Slider1_Enabled", tickbox);
+}
+
+function toggleCustomSlider2() {
+var tickbox = document.getElementById("customSlider2Checkbox");
+	if (tickbox.checked) {
+		var tickbox = "Yes"
+		document.getElementById("custom2SliderMenu").style.display= 'block';
+	}
+	else {
+		var tickbox = "No"
+		document.getElementById("custom2SliderMenu").style.display= 'none';
+	}
+	localStorage.setItem("Custom_Slider2_Enabled", tickbox);
+}
+
+function toggleCustomSlider3() {
+var tickbox = document.getElementById("customSlider3Checkbox");
+	if (tickbox.checked) {
+		var tickbox = "Yes"
+		document.getElementById("custom3SliderMenu").style.display= 'block';
+	}
+	else {
+		var tickbox = "No"
+		document.getElementById("custom3SliderMenu").style.display= 'none';
+	}
+	localStorage.setItem("Custom_Slider3_Enabled", tickbox);
+}
+
+function loadCustomSlidersOnStartup() {
+	loadCustomSlidersValuesOnStartup1();
+	loadCustomSlidersValuesOnStartup2();
+	loadCustomSlidersValuesOnStartup3();
+	loadCustomSlidersNamesOnStartup1();
+	loadCustomSlidersNamesOnStartup2();
+	loadCustomSlidersNamesOnStartup3();
+}
+
+function loadCustomSlidersValuesOnStartup1() {
+	var isCS1Enabled = localStorage.getItem("Custom_Slider1_Enabled");	
+	if (isCS1Enabled == "Yes") {
+		document.getElementById("customSlider1Checkbox").checked = true;
+		var CS1Value = localStorage.getItem("Slot0_Custom_Slider1_Value");
+		mySlider17.setValue(CS1Value);
+	}
+	else {
+		var CS1Value = localStorage.getItem("Slot0_Custom_Slider1_Value");
+		if (CS1Value == null) {
+			document.getElementById("custom1SliderMenu").style.display= 'none';
+		}
+		else {
+			mySlider17.setValue(CS1Value);
+			document.getElementById("custom1SliderMenu").style.display= 'none';
+		}
+	}
+}
+
+function loadCustomSlidersNamesOnStartup1() {
+	var leftText = localStorage.getItem("Custom_Slider1_LeftText");
+	var centerText = localStorage.getItem("Custom_Slider1_CenterText");
+	var rightText = localStorage.getItem("Custom_Slider1_RightText");
+	document.getElementById('textinmenuLeftCS1').innerHTML = leftText;	
+	document.getElementById('textinmenuCenterCS1').innerHTML = centerText;	
+	document.getElementById('textinmenuRightCS1').innerHTML = rightText;		
+}
+
+function loadCustomSlidersValuesOnStartup2() {
+	var isCS2Enabled = localStorage.getItem("Custom_Slider2_Enabled");	
+	if (isCS2Enabled == "Yes") {
+		document.getElementById("customSlider2Checkbox").checked = true;
+		var CS2Value = localStorage.getItem("Slot0_Custom_Slider2_Value");
+		mySlider18.setValue(CS2Value);
+	}
+	else {
+		var CS2Value = localStorage.getItem("Slot0_Custom_Slider2_Value");
+		if (CS2Value == null) {
+			document.getElementById("custom2SliderMenu").style.display= 'none';
+		}
+		else {
+			mySlider18.setValue(CS2Value);
+			document.getElementById("custom2SliderMenu").style.display= 'none';
+		}
+	}
+}
+
+function loadCustomSlidersNamesOnStartup2() {
+	var leftText = localStorage.getItem("Custom_Slider2_LeftText");
+	var centerText = localStorage.getItem("Custom_Slider2_CenterText");
+	var rightText = localStorage.getItem("Custom_Slider2_RightText");
+	document.getElementById('textinmenuLeftCS2').innerHTML = leftText;	
+	document.getElementById('textinmenuCenterCS2').innerHTML = centerText;	
+	document.getElementById('textinmenuRightCS2').innerHTML = rightText;		
+}
+
+function loadCustomSlidersValuesOnStartup3() {
+	var isCS3Enabled = localStorage.getItem("Custom_Slider3_Enabled");	
+	if (isCS3Enabled == "Yes") {
+		document.getElementById("customSlider3Checkbox").checked = true;
+		var CS3Value = localStorage.getItem("Slot0_Custom_Slider3_Value");
+		mySlider19.setValue(CS3Value);
+	}
+	else {
+		var CS3Value = localStorage.getItem("Slot0_Custom_Slider3_Value");
+		if (CS3Value == null) {
+			document.getElementById("custom3SliderMenu").style.display= 'none';
+		}
+		else {
+			mySlider19.setValue(CS3Value);
+			document.getElementById("custom3SliderMenu").style.display= 'none';
+		}
+	}
+}
+
+function loadCustomSlidersNamesOnStartup3() {
+	var leftText = localStorage.getItem("Custom_Slider3_LeftText");
+	var centerText = localStorage.getItem("Custom_Slider3_CenterText");
+	var rightText = localStorage.getItem("Custom_Slider3_RightText");
+	document.getElementById('textinmenuLeftCS3').innerHTML = leftText;	
+	document.getElementById('textinmenuCenterCS3').innerHTML = centerText;	
+	document.getElementById('textinmenuRightCS3').innerHTML = rightText;		
 }
