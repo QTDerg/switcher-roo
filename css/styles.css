@@ -38,7 +38,7 @@ div {
 	background: #59568f;
 	border: 1px solid #282640; 
 	color: #fff;
-	width: 20%;
+	width: 19.5%;
 	padding: 4px;
 	font-size: 12px;
 	float: left;
@@ -344,7 +344,7 @@ div {
 	width: 75%;
 	float: left;
 	padding-top:4px;
-	padding-left:7px;
+	padding-left:9px;
 }
 .search {
 	width: 10%;
@@ -382,7 +382,7 @@ div {
 	width: 40%;
 	float:left;
 	margin-top:11px;
-	margin-left:5px;
+	margin-left:7px;
 }
 
 /* body select.select_box */ 
@@ -478,7 +478,7 @@ select:disabled::-ms-expand {
 	margin-top: 8px;	
 	width: 6%;
 	float: left;
-	margin-left: 4px;
+	margin-left: 2px;
 	}
 .linesMenuSlider
 {
@@ -486,7 +486,7 @@ select:disabled::-ms-expand {
 	margin-top: 36px;	
 	width: 6%;
 	float: left;
-	margin-left: 4px;
+	margin-left: 2px;
 	}
 .linesAC
 {
@@ -494,14 +494,14 @@ select:disabled::-ms-expand {
 	margin-top: 18px;	
 	width: 6%;
 	float: left;
-	margin-left: 4px;
+	margin-left: 2px;
 	}
 .menutextAC{
 	float: left;
 	text-align: center;	
 	margin-top: 15px;
 	height:30px;
-	margin-left:7px;
+	margin-left:9px;
 	font-size:18px;
 }
 .optionsCheckboxes{
@@ -516,9 +516,9 @@ select:disabled::-ms-expand {
 {
 	display: block;
 	margin: 0 auto;
-	width: 16%;
+	width: 17%;
 	float: left;
-	margin-left: 4px;
+	margin-left: 2px;
 }
 
 .linesSex
@@ -527,7 +527,7 @@ select:disabled::-ms-expand {
 	margin-top: 10px;	
 	width: 7%;
 	float: left;
-	margin-left: 4px;
+	margin-left: 2px;
 	}
 	
 .checkboxCustomSliders
@@ -543,7 +543,7 @@ select:disabled::-ms-expand {
 	float: left;
 	text-align: center;
 	margin-top:5px;
-	margin-left:3px;
+	margin-left:5px;
 }
 .menutext{
 	float: left;
