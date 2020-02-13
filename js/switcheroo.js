@@ -1704,7 +1704,10 @@ function makeCustomSlider1() {
 		document.getElementById('textinmenuRightCS1').innerHTML = rightText;	
 		localStorage.setItem("Custom_Slider1_LeftText", leftText);	
 		localStorage.setItem("Custom_Slider1_CenterText", centerText);	
-		localStorage.setItem("Custom_Slider1_RightText", rightText);	
+		localStorage.setItem("Custom_Slider1_RightText", rightText);
+		localStorage.setItem("Custom_Slider1_Enabled", "Yes");
+		document.getElementById("customSlider1Checkbox").checked = true;
+		document.getElementById("custom1SliderMenu").style.display= 'block';
 }
 
 function makeCustomSlider2() {
@@ -1729,7 +1732,10 @@ function makeCustomSlider2() {
 		document.getElementById('textinmenuRightCS2').innerHTML = rightText;	
 		localStorage.setItem("Custom_Slider2_LeftText", leftText);	
 		localStorage.setItem("Custom_Slider2_CenterText", centerText);	
-		localStorage.setItem("Custom_Slider2_RightText", rightText);	
+		localStorage.setItem("Custom_Slider2_RightText", rightText);
+		localStorage.setItem("Custom_Slider2_Enabled", "Yes");
+		document.getElementById("customSlider2Checkbox").checked = true;
+		document.getElementById("custom2SliderMenu").style.display= 'block';
 }
 
 function makeCustomSlider3() {
@@ -1754,7 +1760,10 @@ function makeCustomSlider3() {
 		document.getElementById('textinmenuRightCS3').innerHTML = rightText;	
 		localStorage.setItem("Custom_Slider3_LeftText", leftText);	
 		localStorage.setItem("Custom_Slider3_CenterText", centerText);	
-		localStorage.setItem("Custom_Slider3_RightText", rightText);	
+		localStorage.setItem("Custom_Slider3_RightText", rightText);
+		localStorage.setItem("Custom_Slider3_Enabled", "Yes");
+		document.getElementById("customSlider3Checkbox").checked = true;
+		document.getElementById("custom3SliderMenu").style.display= 'block';
 }
 
 function toggleCustomSlider1() {
