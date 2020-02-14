@@ -69,6 +69,14 @@
 	localStorage.setItem("Slot3_Custom_Slider3_LeftText", leftText);	
 	localStorage.setItem("Slot3_Custom_Slider3_CenterText", centerText);	
 	localStorage.setItem("Slot3_Custom_Slider3_RightText", rightText);	
+	
+	var isCS1Enabled = localStorage.getItem("Custom_Slider1_Enabled");
+	var isCS2Enabled = localStorage.getItem("Custom_Slider2_Enabled");
+	var isCS3Enabled = localStorage.getItem("Custom_Slider3_Enabled");
+
+	localStorage.setItem("Slot3_Custom_Slider1_Enabled", isCS1Enabled);	
+	localStorage.setItem("Slot3_Custom_Slider2_Enabled", isCS2Enabled);	
+	localStorage.setItem("Slot3_Custom_Slider3_Enabled", isCS3Enabled);	
  
 	localStorage.setItem("Slot3_Species", settingSpecies);	
     localStorage.setItem("Slot3_Sex", settingSex);	
@@ -235,9 +243,9 @@
 		document.getElementById('textinmenuCenterCS3').innerHTML = centerText;	
 		document.getElementById('textinmenuRightCS3').innerHTML = rightText;
 		
-		var isCS1Enabled = localStorage.getItem("Custom_Slider1_Enabled");
-		var isCS2Enabled = localStorage.getItem("Custom_Slider2_Enabled");
-		var isCS3Enabled = localStorage.getItem("Custom_Slider3_Enabled");
+		var isCS1Enabled = localStorage.getItem("Slot3_Custom_Slider1_Enabled");
+		var isCS2Enabled = localStorage.getItem("Slot3_Custom_Slider2_Enabled");
+		var isCS3Enabled = localStorage.getItem("Slot3_Custom_Slider3_Enabled");
 		
 		document.getElementById("custom1SliderMenu").style.display='block';
 		document.getElementById("custom2SliderMenu").style.display='block';
@@ -259,6 +267,18 @@
 		}
 		if (isCS3Enabled != "Yes") {
 			document.getElementById("custom3SliderMenu").style.display='none';
+		}
+		if (isCS1Enabled == "Yes") {
+			document.getElementById("customSlider1Checkbox").checked = true;
+			localStorage.setItem("Custom_Slider1_Enabled", "Yes");
+		}
+		if (isCS2Enabled == "Yes") {
+			document.getElementById("customSlider2Checkbox").checked = true;
+			localStorage.setItem("Custom_Slider2_Enabled", "Yes");
+		}
+		if (isCS3Enabled == "Yes") {
+			document.getElementById("customSlider3Checkbox").checked = true;
+			localStorage.setItem("Custom_Slider3_Enabled", "Yes");
 		}
 		
 		document.getElementById("settingsLoadedPopup").style.display = "block";	

@@ -271,17 +271,6 @@ function processingHideFunctionV2() {
   document.getElementById("processingAnim").style.display='none';   
 }
 
-function processingShowFunction() {
-	document.getElementById("processingText").style.display='block';
-	document.getElementById("processingAnim").style.display='block';  
-	setTimeout(processingHideFunction, 3000)    
-}
-
-function processingHideFunction() {
-  document.getElementById("processingText").style.display='none';
-  document.getElementById("processingAnim").style.display='none';   
-}
-
 function breastSizeMaleFunction() {
   document.getElementById("showAdvancedSettings4a").style.display = "block";
   document.getElementById("showAdvancedSettings4b").style.display = "none";  
