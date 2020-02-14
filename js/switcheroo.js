@@ -259,36 +259,58 @@ mySlider18.disable();
 mySlider19.disable();
 }
 
-function processingShowFunctionV2() {
-	document.getElementById('processingText').innerHTML = "Processing...";
-	document.getElementById("processingAnim").style.display='block';  
-	var rng = Math.floor(Math.random() * 2500) + 1500;
-	setTimeout(processingHideFunctionV2, rng)    
-}
+function toggleAlwaysShowAnim() {
+		var tickbox = document.getElementById("alwaysShowCheckbox");
+		if (tickbox.checked) {
+			var tickbox = "Yes"
+			localStorage.setItem("Always_Show_Processing_Animation", tickbox);
+			document.getElementById('processingText').innerHTML = "Processing...";
+			document.getElementById("processingAnim").style.display='block';
+		}
+		else {
+			var tickbox = "No"
+			localStorage.setItem("Always_Show_Processing_Animation", tickbox);
+			document.getElementById('processingText').innerHTML = "";
+			document.getElementById("processingAnim").style.display='none';
+		}
+	}
 
-function processingHideFunctionV2() {
-  document.getElementById('processingText').innerHTML = "";
-  document.getElementById("processingAnim").style.display='none';   
-}
+function showProcessingAnimation() {
+		document.getElementById('processingText').innerHTML = "Processing...";
+		document.getElementById("processingAnim").style.display='block'; 
+		var alwaysShow = localStorage.getItem("Always_Show_Processing_Animation");
+		if (alwaysShow == "Yes") {
+			return;
+		}
+		else {		
+			var rng = Math.floor(Math.random() * 2500) + 1500;
+			setTimeout(hideProcessingAnimation, rng)    
+		}
+	}
+
+function hideProcessingAnimation() {
+		document.getElementById('processingText').innerHTML = "";
+		document.getElementById("processingAnim").style.display='none';   
+	}
 
 function breastSizeMaleFunction() {
-  document.getElementById("showAdvancedSettings4a").style.display = "block";
-  document.getElementById("showAdvancedSettings4b").style.display = "none";  
-}
+		document.getElementById("showAdvancedSettings4a").style.display = "block";
+		document.getElementById("showAdvancedSettings4b").style.display = "none";  
+	}
 
 function breastSizeFemaleFunction() {
-  document.getElementById("showAdvancedSettings4b").style.display = "block";
-  document.getElementById("showAdvancedSettings4a").style.display = "none";  
-}
+		document.getElementById("showAdvancedSettings4b").style.display = "block";
+		document.getElementById("showAdvancedSettings4a").style.display = "none";  
+	}
 
 function toggleCreditsFunction(){
-var c = document.getElementById("credits");
-  if (c.style.display === "none") {
-    c.style.display = "block";
-  } else {
-    c.style.display = "none";
-  }
-}
+		var c = document.getElementById("credits");
+		if (c.style.display === "none") {
+			c.style.display = "block";
+		} else {
+			c.style.display = "none";
+		}
+	}
 
 function enterPasswordFunction(){
 document.getElementById("adminbutton").style.display='none';  
@@ -321,15 +343,15 @@ setTimeout(adminPasswordCheck, 400);
 }
 
 function adminPasswordCheck() {
-	document.getElementById("loading4").style.display='none'; 
-	var password = document.getElementById("password").value;
-		if (password == "OwO") {
-			document.getElementById("accessGranted").style.display='block';
-			setTimeout(adminPermsOn, 1500);
-		} else {
-			document.getElementById("accessDenied").style.display='block';
-			setTimeout(reTry, 2000);
-		}
+		document.getElementById("loading4").style.display='none'; 
+		var password = document.getElementById("password").value;
+			if (password == "OwO") {
+				document.getElementById("accessGranted").style.display='block';
+				setTimeout(adminPermsOn, 1500);
+			} else {
+				document.getElementById("accessDenied").style.display='block';
+				setTimeout(reTry, 2000);
+			}
 	}
 
 function adminPermsOn() {
@@ -342,7 +364,7 @@ function adminPermsOn() {
 	}
 	
 function toggleAdminModeFunction() {
-	var isAdminOn = document.getElementById("adminPermsText");
+		var isAdminOn = document.getElementById("adminPermsText");
 		if (isAdminOn.style.display === "none") {
 			isAdminOn.style.display = "block";
 			document.getElementById('defaultcss').href='css/admindhtmlxslider.css';
@@ -353,7 +375,7 @@ function toggleAdminModeFunction() {
 			localStorage.setItem("Admin_mode_on", "No");
 		}	
 	}
-	
+
 function adminPermsTextOff() {
 		document.getElementById('defaultcss').href='css/dhtmlxslider.css';
 		document.getElementById("adminPermsText").style.display='none';  
@@ -952,10 +974,29 @@ function loadPS23() {
 			}	
 		}
 }
+
+function loadPS24() {
+		var alwaysShow = localStorage.getItem("Always_Show_Processing_Animation");
+		if (alwaysShow == null) {
+			loadPS25();
+		}	
+		else {
+			if (alwaysShow == "Yes") {
+				document.getElementById('processingText').innerHTML = "Processing...";
+				document.getElementById("processingAnim").style.display='block';
+				var tickbox = document.getElementById("alwaysShowCheckbox");
+				tickbox.checked = true;				
+				loadPS25();
+			}
+			else {
+				loadPS25();
+			}	
+		}
+	}
 		
-function loadPS24() { 		
-	document.getElementById("AdvancedSettingsContainer").style.display='none'; 	
-}
+function loadPS25() { 		
+		document.getElementById("AdvancedSettingsContainer").style.display='none'; 	
+	}
 
 function saveCockType() {
 	var cockType = document.getElementById('cockType').value 

@@ -549,7 +549,7 @@ function error621ChangeSlider() {
 		
 		<div class="menutextAC">
 			<label class="container">Adapt clothing
-				<input type="checkbox" id="adaptClothingCheckbox" onclick="saveCheckbox();processingShowFunctionV2()">
+				<input type="checkbox" id="adaptClothingCheckbox" onclick="saveCheckbox();showProcessingAnimation()">
 				<span class="checkbox"></span>  
 			</label>
 		</div>
@@ -1509,6 +1509,14 @@ document.getElementById("triggerErrors").style.display='none';
 			<br>
 			
 			<div>
+			<label class="container">Always show "Processing" animation
+				<input type="checkbox" id="alwaysShowCheckbox" onclick="toggleAlwaysShowAnim()">
+				<span class="checkbox"></span>  
+			</label>
+			</div>
+			<br>
+			
+			<div>
 			Background color (Desktop users only):
 			</div>
 			
@@ -1644,115 +1652,115 @@ document.getElementById("credits").style.display = "none";
 mySlider6.attachEvent("onSlideEnd", function() {
    	var bodyType1 = mySlider6.getValue();
 	localStorage.setItem("Slot0_Body_Type1", bodyType1);
-	processingShowFunctionV2();
+	showProcessingAnimation();
 });
 
 mySlider5.attachEvent("onSlideEnd", function() {
    	var bodyType2 = mySlider5.getValue();
 	localStorage.setItem("Slot0_Body_Type2", bodyType2);
-	processingShowFunctionV2();
+	showProcessingAnimation();
 });
 
 mySlider4.attachEvent("onSlideEnd", function() {
    	var bodyType3 = mySlider4.getValue();
 	localStorage.setItem("Slot0_Body_Type3", bodyType3);
-	processingShowFunctionV2();
+	showProcessingAnimation();
 });
 
 mySlider3.attachEvent("onSlideEnd", function() {
    	var hips = mySlider3.getValue();
 	localStorage.setItem("Slot0_Hips", hips);
-	processingShowFunctionV2();
+	showProcessingAnimation();
 });
 
 mySlider2.attachEvent("onSlideEnd", function() {
    	var genitalSize = mySlider2.getValue();
 	localStorage.setItem("Slot0_Genital_Size", genitalSize);
-	processingShowFunctionV2();
+	showProcessingAnimation();
 });
 
 mySlider.attachEvent("onSlideEnd", function() {
    	var fluffiness = mySlider.getValue();
 	localStorage.setItem("Slot0_Fluffiness", fluffiness);
-	processingShowFunctionV2();
+	showProcessingAnimation();
 });
 
 mySlider7.attachEvent("onSlideEnd", function() {
    	var libido = mySlider7.getValue();
 	localStorage.setItem("Slot0_Libido", libido);
-	processingShowFunctionV2();
+	showProcessingAnimation();
 });
 
 mySlider10.attachEvent("onSlideEnd", function() {
    	var domsub = mySlider10.getValue();
 	localStorage.setItem("Slot0_Position_Preference", domsub);
-	processingShowFunctionV2();
+	showProcessingAnimation();
 });
 
 mySlider11.attachEvent("onSlideEnd", function() {
    	var sensitivity = mySlider11.getValue();
 	localStorage.setItem("Slot0_Sensitivity", sensitivity);
-	processingShowFunctionV2();
+	showProcessingAnimation();
 });
 
 mySlider12.attachEvent("onSlideEnd", function() {
    	var assertiveShy = mySlider12.getValue();
 	localStorage.setItem("Slot0_Demeanor", assertiveShy);
-	processingShowFunctionV2();
+	showProcessingAnimation();
 });
 
 mySlider9.attachEvent("onSlideEnd", function() {
    	var breastSizeMale = mySlider9.getValue();
 	localStorage.setItem("Slot0_Breast_Size_Male", breastSizeMale);
-	processingShowFunctionV2();
+	showProcessingAnimation();
 });
 
 mySlider8.attachEvent("onSlideEnd", function() {
    	var breastSizeFemale = mySlider8.getValue();
 	localStorage.setItem("Slot0_Breast_Size_Female", breastSizeFemale);
-	processingShowFunctionV2();
+	showProcessingAnimation();
 });
 
 mySlider13.attachEvent("onSlideEnd", function() {
    	var buttSize = mySlider13.getValue();
 	localStorage.setItem("Slot0_Butt_Size", buttSize);
-	processingShowFunctionV2();
+	showProcessingAnimation();
 });
 
 mySlider14.attachEvent("onSlideEnd", function() {
    	var bellySize = mySlider14.getValue();
 	localStorage.setItem("Slot0_Belly_Size", bellySize);
-	processingShowFunctionV2();
+	showProcessingAnimation();
 });
 
 mySlider15.attachEvent("onSlideEnd", function() {
    	var bellyShape = mySlider15.getValue();
 	localStorage.setItem("Slot0_Belly_Shape", bellyShape);
-	processingShowFunctionV2();
+	showProcessingAnimation();
 });
 
 mySlider16.attachEvent("onSlideEnd", function() {
    	var intelligence = mySlider16.getValue();
 	localStorage.setItem("Slot0_Intelligence", intelligence);
-	processingShowFunctionV2();
+	showProcessingAnimation();
 });
 
 mySlider17.attachEvent("onSlideEnd", function() {
    	var custom1 = mySlider17.getValue();
 	localStorage.setItem("Slot0_Custom_Slider1_Value", custom1);
-	processingShowFunctionV2();
+	showProcessingAnimation();
 });
 
 mySlider18.attachEvent("onSlideEnd", function() {
    	var custom2 = mySlider18.getValue();
 	localStorage.setItem("Slot0_Custom_Slider2_Value", custom2);
-	processingShowFunctionV2();
+	showProcessingAnimation();
 });
 
 mySlider19.attachEvent("onSlideEnd", function() {
    	var custom3 = mySlider19.getValue();
 	localStorage.setItem("Slot0_Custom_Slider3_Value", custom3);
-	processingShowFunctionV2();
+	showProcessingAnimation();
 });
 
 loadPreviousState();
