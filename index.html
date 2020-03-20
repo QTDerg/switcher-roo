@@ -411,16 +411,28 @@ function error621ChangeSlider() {
 	<img src="images/lockOpen.png" height="37" width="23"> 
 	</div>
 	
-	<div class="lockSettingsImgClosed" id="lockClosed" onclick="openLock()">
+	<div class="lockSettingsImgClosed" id="lockClosed" onclick="openLockStage1()">
 	<script>
 		document.getElementById("lockClosed").style.display = "none";
 	</script>
 	<img src="images/lockClosed.png" height="37" width="23"> 
 	</div>
   
-	<div class="lockSettings" onclick="switchLockFunction()">
-	Lock settings
+	<div class="lockSettings" id="lockSettings" onclick="switchLockFunction()">
+		Lock settings
 	</div>
+	
+	<div class="lockSettingsPasswordAndButtonContainer" id="lockSettingsPasswordAndButtonContainer">
+	
+		<button type="button" class="buttonOpenLock" id="buttonPasswordEnter" onclick="openLockStage2()">Proceed</button>
+		<br>
+		<input id="passwordTextFieldOpenLock" class="PasswordTextFieldOpenLock" value="">
+		
+	</div>
+	
+	<script>
+		document.getElementById("lockSettingsPasswordAndButtonContainer").style.display = "none";
+	</script>
   
 	<div class="processingContainer">  
 			<div class="processingAnim" id="processingAnim">
@@ -446,65 +458,588 @@ function error621ChangeSlider() {
 
 	<div class="selectMenuContainer">
 	
+	<div class="lines">
+		<img src="images/lines.png" height="15" width="20"> 
+	</div>
 	
-		<div class="lines">
-		<img src="images/lines.png" height="17" width="23"> 
-		</div>
-	
-		<div class="speciesChoice">
-	
-		<select class="select_box" id="speciesChoice" onchange="saveCurrentSpecies();">
-			<option value="Default">Default</option>
-			<option value="Arctic Fox">Arctic Fox</option>
-			<option value="Bear">Bear</option>
-			<option value="Bison">Bison</option>
-			<option value="Buffalo">Buffalo</option>
-			<option value="Bull">Bull</option>
-			<option value="Cat">Cat</option>
-			<option value="Cheetah">Cheetah</option>
-			<option value="Cow">Cow</option>
-			<option value="Coyote">Coyote</option>
-			<option value="Deer">Deer</option>
-			<option value="Dog">Dog</option>
-			<option value="Donkey">Donkey</option>
-			<option value="Dragon">Dragon</option>
-			<option value="Fennec">Fennec</option>
-			<option value="Ferret">Ferret</option>
-			<option value="Folf">Folf</option>
-			<option value="Fox">Fox</option>
-			<option value="Horse">Horse</option>
-			<option value="Husky">Husky</option>
-			<option value="Hyena">Hyena</option>
-			<option value="Kangaroo">Kangaroo</option>
-			<option value="Kobold">Kobold</option>
-			<option value="Lion">Lion</option>
-			<option value="Lynx">Lynx</option>
-			<option value="Otter">Otter</option>
-			<option value="Panther">Panther</option>
-			<option value="Possum">Possum</option>
-			<option value="Protogen">Protogen</option>
-			<option value="Rabbit">Rabbit</option>
-			<option value="Raccoon">Raccoon</option>
-			<option value="Sergal">Sergal</option>
-			<option value="Shark">Shark</option>
-			<option value="Sheep">Sheep</option>
-			<option value="Skunk">Skunk</option>
-			<option value="Snow Leo">Snow Leopard</option>
-			<option value="Synth">Synth</option>
-			<option value="Tiger">Tiger</option>
-			<option value="Wolf">Wolf</option>
-			<option value="Wyvern">Wyvern</option>
-		</select>
+	<div class="speciesContainer" id="speciesContainer">
 		
+		<div class="speciesCurrentContainer" id="speciesCurrentContainer" onClick="speciesLoadList();">
+		
+			<div class="speciesCurrent" id="speciesCurrent">
+				Default
+			</div>
+				
+			<div class="speciesSelectTriangle">
+				<img src="images/speciesSelectTriangle.png"> 
+			</div>
+			
 		</div>
+		
+		<!--
+  __  __       _                                    
+ |  \/  | __ _(_)_ __    _ __ ___   ___ _ __  _   _ 
+ | |\/| |/ _` | | '_ \  | '_ ` _ \ / _ \ '_ \| | | |
+ | |  | | (_| | | | | | | | | | | |  __/ | | | |_| |
+ |_|  |_|\__,_|_|_| |_| |_| |_| |_|\___|_| |_|\__,_|
+                                                    
+		-->
+		
+		<div class="speciesCategorySelectorContainer" id="speciesCategorySelectorContainer">
+		
+			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromCategoryList();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="goToMostPopularCategory();"><div class="speciesCategoryText">Most Popular</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="goToCustomCategory();"><div class="speciesCategoryText">Custom</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="goToAvianCategory();"><div class="speciesCategoryText">Avian</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="goToBovineCategory();"><div class="speciesCategoryText">Bovine</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="goToCanineCategory();"><div class="speciesCategoryText">Canine</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="goToCervineCategory();"><div class="speciesCategoryText">Cervine</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="goToEquineCategory();"><div class="speciesCategoryText">Equine</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="goToFelineCategory();"><div class="speciesCategoryText">Feline</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="goToFictionalCategory();"><div class="speciesCategoryText">Fictional</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="goToHybridCategory();"><div class="speciesCategoryText">Hybrid</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="goToLagomorphCategory();"><div class="speciesCategoryText">Lagomorph</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="goToMarsupialCategory();"><div class="speciesCategoryText">Marsupial</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="goToMustelidCategory();"><div class="speciesCategoryText">Mustelid</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="goToReptileCategory();"><div class="speciesCategoryText">Reptile</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="goToRodentCategory();"><div class="speciesCategoryText">Rodent</div></div>
+			<div class="speciesCategoryLast" id="speciesCategory" onClick="goToUngulateCategory();"><div class="speciesCategoryText">Ungulate</div></div>
+			
+		</div>
+		
+		<!--
+  __  __           _     ____                   _            
+ |  \/  | ___  ___| |_  |  _ \ ___  _ __  _   _| | __ _ _ __ 
+ | |\/| |/ _ \/ __| __| | |_) / _ \| '_ \| | | | |/ _` | '__|
+ | |  | | (_) \__ \ |_  |  __/ (_) | |_) | |_| | | (_| | |   
+ |_|  |_|\___/|___/\__| |_|   \___/| .__/ \__,_|_|\__,_|_|   
+                                   |_|                       
+		-->
+		
+		<div class="speciesSelector" id="speciesSelectorMostPopular">
+		
+			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromMostPopularCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategoryButtonEnd"><div class="categoryText">⥢</div></div>
+			<div class="speciesCategoryName"><div class="categoryText">Most Popular</div></div>
+			<div class="speciesCategoryButton" onClick="goToCustomCategoryFromMostPopular();"><div class="categoryText">⥤</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Arctic Fox');"><div class="speciesEntryText">Arctic Fox</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Bat');"><div class="speciesEntryText">Bat</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Bear');"><div class="speciesEntryText">Bear</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Cat');"><div class="speciesEntryText">Cat</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Cheetah');"><div class="speciesEntryText">Cheetah</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Coyote');"><div class="speciesEntryText">Coyote</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Deer');"><div class="speciesEntryText">Deer</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Dog');"><div class="speciesEntryText">Dog</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Dragon');"><div class="speciesEntryText">Dragon</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Fennec');"><div class="speciesEntryText">Fennec</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Fox');"><div class="speciesEntryText">Fox</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Horse');"><div class="speciesEntryText">Horse</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Hyena');"><div class="speciesEntryText">Hyena</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Kangaroo');"><div class="speciesEntryText">Kangaroo</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Lion');"><div class="speciesEntryText">Lion</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Lynx');"><div class="speciesEntryText">Lynx</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Otter');"><div class="speciesEntryText">Otter</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Panther');"><div class="speciesEntryText">Panther</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Protogen');"><div class="speciesEntryText">Protogen</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Rabbit');"><div class="speciesEntryText">Rabbit</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Raccoon');"><div class="speciesEntryText">Raccoon</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Sergal');"><div class="speciesEntryText">Sergal</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Shark');"><div class="speciesEntryText">Shark</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Skunk');"><div class="speciesEntryText">Skunk</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Snow Leopard');"><div class="speciesEntryText">Snow Leopard</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Synth');"><div class="speciesEntryText">Synth</div></div>
+			<div class="speciesEntryLeftLast" onClick="setSpeciesTo('Tiger');"><div class="speciesEntryText">Tiger</div></div>
+			<div class="speciesEntryRightLast" onClick="setSpeciesTo('Wolf');"><div class="speciesEntryText">Wolf</div></div>			
+			
+		</div>
+		
+		<!--
+   ____          _                  
+  / ___|   _ ___| |_ ___  _ __ ___  
+ | |  | | | / __| __/ _ \| '_ ` _ \ 
+ | |__| |_| \__ \ || (_) | | | | | |
+  \____\__,_|___/\__\___/|_| |_| |_|
+                                    
+		-->
+		
+		<div class="speciesSelector" id="speciesSelectorCustom">
+		
+			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromCustomCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategoryButton" onClick="goToMostPopularCategoryFromCustom();"><div class="categoryText">⥢</div></div>
+			<div class="speciesCategoryName"><div class="categoryText">Custom</div></div>
+			<div class="speciesCategoryButton" onClick="goToAvianCategoryFromCustom();"><div class="categoryText">⥤</div></div>
+			<div class="speciesEntryLeft" id="speciesEntryCustom1" onClick="setSpeciesToCustom('Slot_One');"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryRight" id="speciesEntryCustom2" onClick="setSpeciesToCustom('Slot_Two');"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryLeft" id="speciesEntryCustom3" onClick="setSpeciesToCustom('Slot_Three');"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryRight" id="speciesEntryCustom4" onClick="setSpeciesToCustom('Slot_Four');"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryLeft" id="speciesEntryCustom5" onClick="setSpeciesToCustom('Slot_Five');"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryRight" id="speciesEntryCustom6" onClick="setSpeciesToCustom('Slot_Six');"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryLeft" id="speciesEntryCustom7" onClick="setSpeciesToCustom('Slot_Seven');"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryRight" id="speciesEntryCustom8" onClick="setSpeciesToCustom('Slot_Eight');"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryLeftLast" id="speciesEntryCustom9" onClick="setSpeciesToCustom('Slot_Nine');"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryRightLast" id="speciesEntryCustom10" onClick="setSpeciesToCustom('Slot_Ten');"><div class="speciesEntryText">Empty</div></div>			
+			
+		</div>
+		
+		<!--
+     _        _             
+    / \__   _(_) __ _ _ __  
+   / _ \ \ / / |/ _` | '_ \ 
+  / ___ \ V /| | (_| | | | |
+ /_/   \_\_/ |_|\__,_|_| |_|
+                            
+		-->
+		
+		<div class="speciesSelector" id="speciesSelectorAvian">
+		
+			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromAvianCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategoryButton" onClick="goToCustomCategoryFromAvian();"><div class="categoryText">⥢</div></div>
+			<div class="speciesCategoryName"><div class="categoryText">Avian</div></div>
+			<div class="speciesCategoryButton" onClick="goToBovineCategoryFromAvian();"><div class="categoryText">⥤</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Avian');"><div class="speciesEntryText">Avian</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Bird');"><div class="speciesEntryText">Bird</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Crow');"><div class="speciesEntryText">Crow</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Eagle');"><div class="speciesEntryText">Eagle</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Gryphon');"><div class="speciesEntryText">Gryphon</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Owl');"><div class="speciesEntryText">Owl</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Penguin');"><div class="speciesEntryText">Penguin</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Phoenix');"><div class="speciesEntryText">Phoenix</div></div>
+			<div class="speciesEntryLeftLast" onClick="setSpeciesTo('Raven');"><div class="speciesEntryText">Raven</div></div>
+			<div class="speciesEntryRightLast" onClick="setSpeciesTo('Hawk');"><div class="speciesEntryText">Hawk</div></div>			
+			
+		</div>	
 
-		<div class="search">
+		<!--
+  ____             _            
+ | __ )  _____   _(_)_ __   ___ 
+ |  _ \ / _ \ \ / / | '_ \ / _ \
+ | |_) | (_) \ V /| | | | |  __/
+ |____/ \___/ \_/ |_|_| |_|\___|
+                                
+		-->
+		
+		<div class="speciesSelector" id="speciesSelectorBovine">
+		
+			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromBovineCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategoryButton" onClick="goToAvianCategoryFromBovine();"><div class="categoryText">⥢</div></div>
+			<div class="speciesCategoryName"><div class="categoryText">Bovine</div></div>
+			<div class="speciesCategoryButton" onClick="goToCanineCategoryFromBovine();"><div class="categoryText">⥤</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Bison');"><div class="speciesEntryText">Bison</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Buffalo');"><div class="speciesEntryText">Buffalo</div></div>
+			<div class="speciesEntryLeftLast" onClick="setSpeciesTo('Bull');"><div class="speciesEntryText">Bull</div></div>
+			<div class="speciesEntryRightLast" onClick="setSpeciesTo('Cow');"><div class="speciesEntryText">Cow</div></div>			
+			
+		</div>
+		
+		<!--
+   ____            _            
+  / ___|__ _ _ __ (_)_ __   ___ 
+ | |   / _` | '_ \| | '_ \ / _ \
+ | |__| (_| | | | | | | | |  __/
+  \____\__,_|_| |_|_|_| |_|\___|
+                                
+		-->
+		
+		<div class="speciesSelector" id="speciesSelectorCanine">
+		
+			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromCanineCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategoryButton" onClick="goToBovineCategoryFromCanine();"><div class="categoryText">⥢</div></div>
+			<div class="speciesCategoryName"><div class="categoryText">Canine</div></div>
+			<div class="speciesCategoryButton" onClick="goToCervineCategoryFromCanine();"><div class="categoryText">⥤</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('African Wild Dog');"><div class="speciesEntryText">African Wild Dog</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Arctic Fox');"><div class="speciesEntryText">Arctic Fox</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Coyote');"><div class="speciesEntryText">Coyote</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Dog');"><div class="speciesEntryText">Dog</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Ethiopian Wolf');"><div class="speciesEntryText">Ethiopian Wolf</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Fennec Fox');"><div class="speciesEntryText">Fennec Fox</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Folf');"><div class="speciesEntryText">Folf</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Fox');"><div class="speciesEntryText">Fox</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Husky');"><div class="speciesEntryText">Husky</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Maned Wolf');"><div class="speciesEntryText">Maned Wolf</div></div>
+			<div class="speciesEntryLeftLast" onClick="setSpeciesTo('Werewolf');"><div class="speciesEntryText">Werewolf</div></div>
+			<div class="speciesEntryRightLast" onClick="setSpeciesTo('Wolf');"><div class="speciesEntryText">Wolf</div></div>			
+			
+		</div>
+		
+		<!--
+   ____                _            
+  / ___|___ _ ____   _(_)_ __   ___ 
+ | |   / _ \ '__\ \ / / | '_ \ / _ \
+ | |__|  __/ |   \ V /| | | | |  __/
+  \____\___|_|    \_/ |_|_| |_|\___|
+                                    
+		-->
+		
+		<div class="speciesSelector" id="speciesSelectorCervine">
+		
+			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromCervineCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategoryButton" onClick="goToCanineCategoryFromCervine();"><div class="categoryText">⥢</div></div>
+			<div class="speciesCategoryName"><div class="categoryText">Cervine</div></div>
+			<div class="speciesCategoryButton" onClick="goToEquineCategoryFromCervine();"><div class="categoryText">⥤</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Deer');"><div class="speciesEntryText">Deer</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Reindeer');"><div class="speciesEntryText">Reindeer</div></div>
+			<div class="speciesEntryLeftLast" onClick="setSpeciesTo('Elk');"><div class="speciesEntryText">Elk</div></div>
+			<div class="speciesEntryRightLast" onClick="setSpeciesTo('Moose');"><div class="speciesEntryText">Moose</div></div>			
+			
+		</div>	
+		
+		<!--
+  _____            _            
+ | ____|__ _ _   _(_)_ __   ___ 
+ |  _| / _` | | | | | '_ \ / _ \
+ | |__| (_| | |_| | | | | |  __/
+ |_____\__, |\__,_|_|_| |_|\___|
+          |_|                   
+		-->
+		
+		<div class="speciesSelector" id="speciesSelectorEquine">
+		
+			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromEquineCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategoryButton" onClick="goToCervineCategoryFromEquine();"><div class="categoryText">⥢</div></div>
+			<div class="speciesCategoryName"><div class="categoryText">Equine</div></div>
+			<div class="speciesCategoryButton" onClick="goToFelineCategoryFromEquine();"><div class="categoryText">⥤</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Donkey');"><div class="speciesEntryText">Donkey</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Horse');"><div class="speciesEntryText">Horse</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Pegasus');"><div class="speciesEntryText">Pegasus</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Pony');"><div class="speciesEntryText">Pony</div></div>
+			<div class="speciesEntryLeftLast" onClick="setSpeciesTo('Unicorn');"><div class="speciesEntryText">Unicorn</div></div>
+			<div class="speciesEntryRightLast" onClick="setSpeciesTo('Zebra');"><div class="speciesEntryText">Zebra</div></div>			
+			
+		</div>
+		
+		<!--
+  _____    _ _            
+ |  ___|__| (_)_ __   ___ 
+ | |_ / _ \ | | '_ \ / _ \
+ |  _|  __/ | | | | |  __/
+ |_|  \___|_|_|_| |_|\___|
+                          
+		-->
+		
+		<div class="speciesSelector" id="speciesSelectorFeline">
+		
+			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromFelineCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategoryButton" onClick="goToEquineCategoryFromFeline();"><div class="categoryText">⥢</div></div>
+			<div class="speciesCategoryName"><div class="categoryText">Feline</div></div>
+			<div class="speciesCategoryButton" onClick="goToFictionalCategoryFromFeline();"><div class="categoryText">⥤</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Caracal');"><div class="speciesEntryText">Caracal</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Cat');"><div class="speciesEntryText">Cat</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Cheetah');"><div class="speciesEntryText">Cheetah</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Cougar');"><div class="speciesEntryText">Cougar</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Jaguar');"><div class="speciesEntryText">Jaguar</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Khajiit');"><div class="speciesEntryText">Khajiit</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Leopard');"><div class="speciesEntryText">Leopard</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Liger');"><div class="speciesEntryText">Liger</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Lion');"><div class="speciesEntryText">Lion</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Lynx');"><div class="speciesEntryText">Lynx</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Panther');"><div class="speciesEntryText">Panther</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Serval');"><div class="speciesEntryText">Serval</div></div>
+			<div class="speciesEntryLeftLast" onClick="setSpeciesTo('Snow Leopard');"><div class="speciesEntryText">Snow Leopard</div></div>
+			<div class="speciesEntryRightLast" onClick="setSpeciesTo('Tiger');"><div class="speciesEntryText">Tiger</div></div>			
+			
+		</div>
+		
+		<!--
+  _____ _      _   _                   _ 
+ |  ___(_) ___| |_(_) ___  _ __   __ _| |
+ | |_  | |/ __| __| |/ _ \| '_ \ / _` | |
+ |  _| | | (__| |_| | (_) | | | | (_| | |
+ |_|   |_|\___|\__|_|\___/|_| |_|\__,_|_|
+                                         
+		-->
+		
+		<div class="speciesSelector" id="speciesSelectorFictional">
+		
+			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromFictionalCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategoryButton" onClick="goToFelineCategoryFromFictional();"><div class="categoryText">⥢</div></div>
+			<div class="speciesCategoryName"><div class="categoryText">Fictional</div></div>
+			<div class="speciesCategoryButton" onClick="goToHybridCategoryFromFictional();"><div class="categoryText">⥤</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Argonian');"><div class="speciesEntryText">Argonian</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Dragon');"><div class="speciesEntryText">Dragon</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Gryphon');"><div class="speciesEntryText">Gryphon</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Jackalope');"><div class="speciesEntryText">Jackalope</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Jex');"><div class="speciesEntryText">Jex</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Khajiit');"><div class="speciesEntryText">Khajiit</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Kitsune');"><div class="speciesEntryText">Kitsune</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Kobold');"><div class="speciesEntryText">Kobold</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Sergal');"><div class="speciesEntryText">Sergal</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Tanuki');"><div class="speciesEntryText">Tanuki</div></div>
+			<div class="speciesEntryLeftLast" onClick="setSpeciesTo('Unicorn');"><div class="speciesEntryText">Unicorn</div></div>
+			<div class="speciesEntryRightLast" onClick="setSpeciesTo('Werewolf');"><div class="speciesEntryText">Werewolf</div></div>			
+			
+		</div>
+		
+		<!--
+  _   _       _          _     _ 
+ | | | |_   _| |__  _ __(_) __| |
+ | |_| | | | | '_ \| '__| |/ _` |
+ |  _  | |_| | |_) | |  | | (_| |
+ |_| |_|\__, |_.__/|_|  |_|\__,_|
+        |___/                    
+		-->
+		
+		<div class="speciesSelector" id="speciesSelectorHybrid">
+		
+			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromHybridCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategoryButton" onClick="goToFictionalCategoryFromHybrid();"><div class="categoryText">⥢</div></div>
+			<div class="speciesCategoryName"><div class="categoryText">Hybrid</div></div>
+			<div class="speciesCategoryButton" onClick="goToLagomorphCategoryFromHybrid();"><div class="categoryText">⥤</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Chimera');"><div class="speciesEntryText">Chimera</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Folf');"><div class="speciesEntryText">Folf</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Foxcoon');"><div class="speciesEntryText">Foxcoon</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Gryphon');"><div class="speciesEntryText">Gryphon</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Liger');"><div class="speciesEntryText">Liger</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Manokit');"><div class="speciesEntryText">Manokit</div></div>
+			<div class="speciesEntryLeftLast" onClick="setSpeciesTo('Wox');"><div class="speciesEntryText">Wox</div></div>
+			<div class="speciesEntryRightLast" onClick="setSpeciesTo('Wusky');"><div class="speciesEntryText">Wusky</div></div>			
+			
+		</div>
+		
+		<!--
+  _                                                 _     
+ | |    __ _  __ _  ___  _ __ ___   ___  _ __ _ __ | |__  
+ | |   / _` |/ _` |/ _ \| '_ ` _ \ / _ \| '__| '_ \| '_ \ 
+ | |__| (_| | (_| | (_) | | | | | | (_) | |  | |_) | | | |
+ |_____\__,_|\__, |\___/|_| |_| |_|\___/|_|  | .__/|_| |_|
+             |___/                           |_|          
+		-->
+		
+		<div class="speciesSelector" id="speciesSelectorLagomorph">
+		
+			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromLagomorphCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategoryButton" onClick="goToHybridCategoryFromLagomorph();"><div class="categoryText">⥢</div></div>
+			<div class="speciesCategoryName"><div class="categoryText">Lagomorph</div></div>
+			<div class="speciesCategoryButton" onClick="goToMarsupialCategoryFromLagomorph();"><div class="categoryText">⥤</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Pika');"><div class="speciesEntryText">Pika</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Hare');"><div class="speciesEntryText">Hare</div></div>
+			<div class="speciesEntryLeftLast" onClick="setSpeciesTo('Jackalope');"><div class="speciesEntryText">Jackalope</div></div>
+			<div class="speciesEntryRightLast" onClick="setSpeciesTo('Rabbit');"><div class="speciesEntryText">Rabbit</div></div>			
+			
+		</div>
+		
+		<!--
+  __  __                            _       _ 
+ |  \/  | __ _ _ __ ___ _   _ _ __ (_) __ _| |
+ | |\/| |/ _` | '__/ __| | | | '_ \| |/ _` | |
+ | |  | | (_| | |  \__ \ |_| | |_) | | (_| | |
+ |_|  |_|\__,_|_|  |___/\__,_| .__/|_|\__,_|_|
+                             |_|              
+		-->
+		
+		<div class="speciesSelector" id="speciesSelectorMarsupial">
+		
+			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromMarsupialCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategoryButton" onClick="goToLagomorphCategoryFromMarsupial();"><div class="categoryText">⥢</div></div>
+			<div class="speciesCategoryName"><div class="categoryText">Marsupial</div></div>
+			<div class="speciesCategoryButton" onClick="goToMustelidCategoryFromMarsupial();"><div class="categoryText">⥤</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Kangaroo');"><div class="speciesEntryText">Kangaroo</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Koala');"><div class="speciesEntryText">Koala</div></div>
+			<div class="speciesEntryLeftLast" onClick="setSpeciesTo('Opossum');"><div class="speciesEntryText">Opossum</div></div>
+			<div class="speciesEntryRightLast" onClick="setSpeciesTo('Possum');"><div class="speciesEntryText">Possum</div></div>			
+			
+		</div>
+		
+		<!--
+  __  __           _       _ _     _ 
+ |  \/  |_   _ ___| |_ ___| (_) __| |
+ | |\/| | | | / __| __/ _ \ | |/ _` |
+ | |  | | |_| \__ \ ||  __/ | | (_| |
+ |_|  |_|\__,_|___/\__\___|_|_|\__,_|
+                                     
+		-->
+		
+		<div class="speciesSelector" id="speciesSelectorMustelid">
+		
+			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromMustelidCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategoryButton" onClick="goToMarsupialCategoryFromMustelid();"><div class="categoryText">⥢</div></div>
+			<div class="speciesCategoryName"><div class="categoryText">Mustelid</div></div>
+			<div class="speciesCategoryButton" onClick="goToReptileCategoryFromMustelid();"><div class="categoryText">⥤</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Badger');"><div class="speciesEntryText">Badger</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Ferret');"><div class="speciesEntryText">Ferret</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Marten');"><div class="speciesEntryText">Marten</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Otter');"><div class="speciesEntryText">Otter</div></div>
+			<div class="speciesEntryLeftLast" onClick="setSpeciesTo('Skunk');"><div class="speciesEntryText">Skunk</div></div>
+			<div class="speciesEntryRightLast" onClick="setSpeciesTo('Weasel');"><div class="speciesEntryText">Weasel</div></div>			
+			
+		</div>
+		
+		<!--
+  ____            _   _ _      
+ |  _ \ ___ _ __ | |_(_) | ___ 
+ | |_) / _ \ '_ \| __| | |/ _ \
+ |  _ <  __/ |_) | |_| | |  __/
+ |_| \_\___| .__/ \__|_|_|\___|
+           |_|                 
+		-->
+		
+		<div class="speciesSelector" id="speciesSelectorReptile">
+		
+			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromReptileCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategoryButton" onClick="goToMustelidCategoryFromReptile();"><div class="categoryText">⥢</div></div>
+			<div class="speciesCategoryName"><div class="categoryText">Reptile</div></div>
+			<div class="speciesCategoryButton" onClick="goToRodentCategoryFromReptile();"><div class="categoryText">⥤</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Alligator');"><div class="speciesEntryText">Alligator</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Crocodile');"><div class="speciesEntryText">Crocodile</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Dinosaur');"><div class="speciesEntryText">Dinosaur</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Dragon');"><div class="speciesEntryText">Dragon</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Iguana');"><div class="speciesEntryText">Iguana</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Raptor');"><div class="speciesEntryText">Raptor</div></div>
+			<div class="speciesEntryLeftLast" onClick="setSpeciesTo('Snake');"><div class="speciesEntryText">Snake</div></div>
+			<div class="speciesEntryRightLast" onClick="setSpeciesTo('Turtle');"><div class="speciesEntryText">Turtle</div></div>			
+			
+		</div>
+		
+		<!--
+  ____           _            _   
+ |  _ \ ___   __| | ___ _ __ | |_ 
+ | |_) / _ \ / _` |/ _ \ '_ \| __|
+ |  _ < (_) | (_| |  __/ | | | |_ 
+ |_| \_\___/ \__,_|\___|_| |_|\__|
+                                  
+		-->
+		
+		<div class="speciesSelector" id="speciesSelectorRodent">
+		
+			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromRodentCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategoryButton" onClick="goToReptileCategoryFromRodent();"><div class="categoryText">⥢</div></div>
+			<div class="speciesCategoryName"><div class="categoryText">Rodent</div></div>
+			<div class="speciesCategoryButton" onClick="goToUngulateCategoryFromRodent();"><div class="categoryText">⥤</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Beaver');"><div class="speciesEntryText">Beaver</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Hamster');"><div class="speciesEntryText">Hamster</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Mouse');"><div class="speciesEntryText">Mouse</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Porcupine');"><div class="speciesEntryText">Porcupine</div></div>
+			<div class="speciesEntryLeftLast" onClick="setSpeciesTo('Rat');"><div class="speciesEntryText">Rat</div></div>
+			<div class="speciesEntryRightLast" onClick="setSpeciesTo('Squirrel');"><div class="speciesEntryText">Squirrel</div></div>			
+			
+		</div>
+		
+		<!--
+  _   _                   _       _       
+ | | | |_ __   __ _ _   _| | __ _| |_ ___ 
+ | | | | '_ \ / _` | | | | |/ _` | __/ _ \
+ | |_| | | | | (_| | |_| | | (_| | ||  __/
+  \___/|_| |_|\__, |\__,_|_|\__,_|\__\___|
+              |___/                       
+		-->
+		
+		<div class="speciesSelector" id="speciesSelectorUngulate">
+		
+			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromUngulateCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategoryButton" onClick="goToRodentCategoryFromUngulate();"><div class="categoryText">⥢</div></div>
+			<div class="speciesCategoryName"><div class="categoryText">Ungulate</div></div>
+			<div class="speciesCategoryButtonEnd"><div class="categoryText">⥤</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Gazelle');"><div class="speciesEntryText">Gazelle</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Giraffe');"><div class="speciesEntryText">Giraffe</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Goat');"><div class="speciesEntryText">Goat</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Llama');"><div class="speciesEntryText">Llama</div></div>
+			<div class="speciesEntryLeftLast" onClick="setSpeciesTo('Pig');"><div class="speciesEntryText">Pig</div></div>
+			<div class="speciesEntryRightLast" onClick="setSpeciesTo('Sheep');"><div class="speciesEntryText">Sheep</div></div>			
+			
+		</div>
+				
+		<!--
+  _   _ _     _                        _        _                                         _             _               
+ | | | (_) __| | ___    ___ ___  _ __ | |_ __ _(_)_ __   ___ _ __ ___    ___  _ __    ___| |_ __ _ _ __| |_ _   _ _ __  
+ | |_| | |/ _` |/ _ \  / __/ _ \| '_ \| __/ _` | | '_ \ / _ \ '__/ __|  / _ \| '_ \  / __| __/ _` | '__| __| | | | '_ \ 
+ |  _  | | (_| |  __/ | (_| (_) | | | | || (_| | | | | |  __/ |  \__ \ | (_) | | | | \__ \ || (_| | |  | |_| |_| | |_) |
+ |_| |_|_|\__,_|\___|  \___\___/|_| |_|\__\__,_|_|_| |_|\___|_|  |___/  \___/|_| |_| |___/\__\__,_|_|   \__|\__,_| .__/ 
+                                                                                                                 |_|    
+		-->
+		<script>
+			document.getElementById("speciesCategorySelectorContainer").style.display = "none";
+			document.getElementById("speciesSelectorMostPopular").style.display = "none";
+			document.getElementById("speciesSelectorCustom").style.display = "none";
+			document.getElementById("speciesSelectorAvian").style.display = "none";
+			document.getElementById("speciesSelectorBovine").style.display = "none";
+			document.getElementById("speciesSelectorCanine").style.display = "none";
+			document.getElementById("speciesSelectorCervine").style.display = "none";
+			document.getElementById("speciesSelectorEquine").style.display = "none";
+			document.getElementById("speciesSelectorFeline").style.display = "none";
+			document.getElementById("speciesSelectorFictional").style.display = "none";
+			document.getElementById("speciesSelectorHybrid").style.display = "none";
+			document.getElementById("speciesSelectorLagomorph").style.display = "none";
+			document.getElementById("speciesSelectorMarsupial").style.display = "none";
+			document.getElementById("speciesSelectorMustelid").style.display = "none";
+			document.getElementById("speciesSelectorReptile").style.display = "none";
+			document.getElementById("speciesSelectorRodent").style.display = "none";
+			document.getElementById("speciesSelectorUngulate").style.display = "none";
+		</script>
+	
+	</div>
+	
+	<div class="search" id="speciesSearch" onClick="speciesLoadList();">
 		<img src="images/search.png" height="28" width="28"> 
+	</div>
+	
+	</div>
+	
+</div> 
+
+
+
+<div class="menuInanimateObjects" id="inanimateObjectsMenu">
+
+	<div class="speciesText">
+	Inanimate Object
+	</div>
+
+	<div class="selectMenuContainer">
+	
+	<div class="lines">
+		<img src="images/lines.png" height="15" width="20"> 
+	</div>
+	
+	<div class="speciesContainer" id="inanimateObjectsContainer">
+		
+		<div class="speciesCurrentContainer" id="inanimateObjectsCurrentContainer" onClick="inanimateObjectsLoadList();">
+		
+			<div class="speciesCurrent" id="inanimateObjectsCurrent">
+				Default
+			</div>
+				
+			<div class="speciesSelectTriangle">
+				<img src="images/speciesSelectTriangle.png"> 
+			</div>
+			
+		</div>
+		
+		<!--
+  ___                   _                 _          ___  _     _           _       
+ |_ _|_ __   __ _ _ __ (_)_ __ ___   __ _| |_ ___   / _ \| |__ (_) ___  ___| |_ ___ 
+  | || '_ \ / _` | '_ \| | '_ ` _ \ / _` | __/ _ \ | | | | '_ \| |/ _ \/ __| __/ __|
+  | || | | | (_| | | | | | | | | | | (_| | ||  __/ | |_| | |_) | |  __/ (__| |_\__ \
+ |___|_| |_|\__,_|_| |_|_|_| |_| |_|\__,_|\__\___|  \___/|_.__// |\___|\___|\__|___/
+                                                             |__/                   
+		-->
+		
+		<div class="speciesCategorySelectorContainer" id="inanimateObjectsSelectorContainer">
+		
+			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromInanimateObjectsList();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" id="inanimateObjectEntry1" onClick="setInanimateObjectToCustom('Slot_One');"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" id="inanimateObjectEntry2" onClick="setInanimateObjectToCustom('Slot_Two');"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" id="inanimateObjectEntry3" onClick="setInanimateObjectToCustom('Slot_Three');"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" id="inanimateObjectEntry4" onClick="setInanimateObjectToCustom('Slot_Four');"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" id="inanimateObjectEntry5" onClick="setInanimateObjectToCustom('Slot_Five');"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" id="inanimateObjectEntry6" onClick="setInanimateObjectToCustom('Slot_Six');"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" id="inanimateObjectEntry7" onClick="setInanimateObjectToCustom('Slot_Seven');"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" id="inanimateObjectEntry8" onClick="setInanimateObjectToCustom('Slot_Eight');"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" id="inanimateObjectEntry9" onClick="setInanimateObjectToCustom('Slot_Nine');"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategoryLast" id="inanimateObjectEntry10" onClick="setInanimateObjectToCustom('Slot_Ten');"><div class="speciesCategoryText">Empty</div></div>
+			
 		</div>
 	
 	</div>
 	
-</div>  
+	<div class="search" id="inanimateObjectsSearch" onClick="inanimateObjectsLoadList();">
+		<img src="images/search.png" height="28" width="28"> 
+	</div>
+</div> 
+
+</div>
+
+<script>
+	document.getElementById("inanimateObjectsSelectorContainer").style.display = "none";
+</script>
   
 <div class="menu" id="sexMenu">
 
@@ -523,14 +1058,14 @@ function error621ChangeSlider() {
 			
 			
 		<div class="containerRBMale">
-		<label class="container">Male
+		<label class="container" id="RBMaleContainer">Male
 			<input type="radio" name="radio" onclick="changeSexToMale()" id="radiobuttonMale">
 			<span class="radiobuttonMale"></span>
 		</label>
 		</div>
 		
 		<div class="containerRBFemale">
-		<label class="container">Female
+		<label class="container" id="RBFemaleContainer">Female
 			<input type="radio" name="radio2" onclick="changeSexToFemale()" id="radiobuttonFemale">
 			<span class="radiobuttonFemale"></span>
 		</label>
@@ -548,8 +1083,8 @@ function error621ChangeSlider() {
 		</div>
 		
 		<div class="menutextAC">
-			<label class="container">Adapt clothing
-				<input type="checkbox" id="adaptClothingCheckbox" onclick="saveCheckbox();showProcessingAnimation()">
+			<label class="container" id="adaptClothingContainer">Adapt clothing
+				<input type="checkbox" id="adaptClothingCheckbox" onclick="saveCheckbox()">
 				<span class="checkbox"></span>  
 			</label>
 		</div>
@@ -731,7 +1266,7 @@ document.getElementById("logOutMessage").style.display = "none";
 			
 </div>
   
-<div class="menuAS" id="advancedSettings" onclick="openAdvancedSettings()">
+<div class="menuAS" id="advancedSettings" onclick="toggleAdvancedSettingsMenu()">
 	<div class="linesAS">
 			<img src="images/lines.png" height="17" width="23"> 
 			&nbsp;
@@ -1108,12 +1643,12 @@ document.getElementById("logOutMessage").style.display = "none";
 	</div>
 
 	<script>
-		document.getElementById("AdvancedSettingsContainer").style.display='none';  
+	//	document.getElementById("AdvancedSettingsContainer").style.display='none';  
 	</script>
 	
 </div>
 
-<div class="menuAS" id="advancedSettings2" onclick="addRemoveSlidersFunction()">
+<div class="menuAS" id="advancedSettings2" onclick="toggleAddRemoveSlidersMenu()">
 	<div class="linesAS">
 			<img src="images/lines.png" height="17" width="23"> 
 			&nbsp;
@@ -1233,11 +1768,11 @@ document.getElementById("logOutMessage").style.display = "none";
 		
 	</div>	
 <script>
-	document.getElementById("addRemoveSlidersContainer").style.display='none';  
+//	document.getElementById("addRemoveSlidersContainer").style.display='none';  
 </script>	
 </div>
 
-<div class="menuAS" id="advancedSettings3" onclick="openCustomSlidersMenu()">
+<div class="menuAS" id="advancedSettings3" onclick="toggleCustomSlidersMenu()">
 	<div class="linesAS">
 			<img src="images/lines.png" height="17" width="23"> 
 			&nbsp;
@@ -1332,9 +1867,301 @@ document.getElementById("logOutMessage").style.display = "none";
 	
 </div>
 
+<div class="menuAS" id="advancedSettings4" onclick="toggleCustomSpeciesMenu()">
+	<div class="linesAS">
+			<img src="images/lines.png" height="17" width="23"> 
+			&nbsp;
+			<img src="images/arrow.png" height="17" width="23">
+	</div>
+	
+	&nbsp;&nbsp;Custom Species
+</div>
+
+<div id="CustomSpeciesContainer">
+
+	<div id="CSContainerSlot11"> <!-- Custom Species Container Slot 1-1 -->
+		<div class="CSSlotDiv">Slot 1 -&nbsp;</div>
+		<div class="CSNameDiv" id="customSpeciesName1">SpeciesName</div>
+		<button type="button" class="buttonOpenLock" id="buttonCSSlot1" onclick="changeCSSlot1()">Change</button>
+	</div>
+	
+	<div id="CSContainerSlot12"> <!-- Custom Species Container Slot 1-2 -->
+		<input id="customSpeciesSlot1TextField" class="bgColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCSSlot1()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCSSlot1()">Go Back</button>
+	</div>
+	
+	<div id="CSContainerSlot21">
+		<div class="CSSlotDiv">Slot 2 -&nbsp;</div>
+		<div class="CSNameDiv" id="customSpeciesName2">SpeciesName</div>
+		<button type="button" class="buttonOpenLock" id="buttonCSSlot2" onclick="changeCSSlot2()">Change</button>
+	</div>
+	
+	<div id="CSContainerSlot22">
+		<input id="customSpeciesSlot2TextField" class="bgColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCSSlot2()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCSSlot2()">Go Back</button>
+	</div>
+	
+	<div id="CSContainerSlot31">
+		<div class="CSSlotDiv">Slot 3 -&nbsp;</div>
+		<div class="CSNameDiv" id="customSpeciesName3">SpeciesName</div>
+		<button type="button" class="buttonOpenLock" id="buttonCSSlot3" onclick="changeCSSlot3()">Change</button>
+	</div>
+	
+	<div id="CSContainerSlot32">
+		<input id="customSpeciesSlot3TextField" class="bgColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCSSlot3()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCSSlot3()">Go Back</button>
+	</div>
+	
+	<div id="CSContainerSlot41">
+		<div class="CSSlotDiv">Slot 4 -&nbsp;</div>
+		<div class="CSNameDiv" id="customSpeciesName4">SpeciesName</div>
+		<button type="button" class="buttonOpenLock" id="buttonCSSlot4" onclick="changeCSSlot4()">Change</button>
+	</div>
+	
+	<div id="CSContainerSlot42">
+		<input id="customSpeciesSlot4TextField" class="bgColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCSSlot4()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCSSlot4()">Go Back</button>
+	</div>
+	
+	<div id="CSContainerSlot51">
+		<div class="CSSlotDiv">Slot 5 -&nbsp;</div>
+		<div class="CSNameDiv" id="customSpeciesName5">SpeciesName</div>
+		<button type="button" class="buttonOpenLock" id="buttonCSSlot5" onclick="changeCSSlot5()">Change</button>
+	</div>
+	
+	<div id="CSContainerSlot52">
+		<input id="customSpeciesSlot5TextField" class="bgColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCSSlot5()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCSSlot5()">Go Back</button>
+	</div>
+	
+	<div id="CSContainerSlot61">
+		<div class="CSSlotDiv">Slot 6 -&nbsp;</div>
+		<div class="CSNameDiv" id="customSpeciesName6">SpeciesName</div>
+		<button type="button" class="buttonOpenLock" id="buttonCSSlot6" onclick="changeCSSlot6()">Change</button>
+	</div>
+	
+	<div id="CSContainerSlot62">
+		<input id="customSpeciesSlot6TextField" class="bgColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCSSlot6()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCSSlot6()">Go Back</button>
+	</div>
+	
+	<div id="CSContainerSlot71">
+		<div class="CSSlotDiv">Slot 7 -&nbsp;</div>
+		<div class="CSNameDiv" id="customSpeciesName7">SpeciesName</div>
+		<button type="button" class="buttonOpenLock" id="buttonCSSlot7" onclick="changeCSSlot7()">Change</button>
+	</div>
+	
+	<div id="CSContainerSlot72">
+		<input id="customSpeciesSlot7TextField" class="bgColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCSSlot7()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCSSlot7()">Go Back</button>
+	</div>
+	
+	<div id="CSContainerSlot81">
+		<div class="CSSlotDiv">Slot 8 -&nbsp;</div>
+		<div class="CSNameDiv" id="customSpeciesName8">SpeciesName</div>
+		<button type="button" class="buttonOpenLock" id="buttonCSSlot8" onclick="changeCSSlot8()">Change</button>
+	</div>
+	
+	<div id="CSContainerSlot82">
+		<input id="customSpeciesSlot8TextField" class="bgColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCSSlot8()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCSSlot8()">Go Back</button>
+	</div>
+	
+	<div id="CSContainerSlot91">
+		<div class="CSSlotDiv">Slot 9 -&nbsp;</div>
+		<div class="CSNameDiv" id="customSpeciesName9">SpeciesName</div>
+		<button type="button" class="buttonOpenLock" id="buttonCSSlot9" onclick="changeCSSlot9()">Change</button>
+	</div>
+	
+	<div id="CSContainerSlot92">
+		<input id="customSpeciesSlot9TextField" class="bgColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCSSlot9()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCSSlot9()">Go Back</button>
+	</div>
+	
+	<div id="CSContainerSlot101">
+		<div class="CSSlotDiv">Slot 10 -&nbsp;</div>
+		<div class="CSNameDiv" id="customSpeciesName10">SpeciesName</div>
+		<button type="button" class="buttonOpenLock" id="buttonCSSlot10" onclick="changeCSSlot10()">Change</button>
+	</div>
+	
+	<div id="CSContainerSlot102">
+		<input id="customSpeciesSlot10TextField" class="bgColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCSSlot10()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCSSlot10()">Go Back</button>
+	</div>
+
+</div>
+
 <script>
-document.getElementById("CustomSlidersContainer").style.display='none';  
+document.getElementById("CSContainerSlot12").style.display='none';
+document.getElementById("CSContainerSlot22").style.display='none';
+document.getElementById("CSContainerSlot32").style.display='none';
+document.getElementById("CSContainerSlot42").style.display='none';
+document.getElementById("CSContainerSlot52").style.display='none';
+document.getElementById("CSContainerSlot62").style.display='none';
+document.getElementById("CSContainerSlot72").style.display='none';
+document.getElementById("CSContainerSlot82").style.display='none';
+document.getElementById("CSContainerSlot92").style.display='none';
+document.getElementById("CSContainerSlot102").style.display='none';
 </script>
+
+<div class="menuAS" id="advancedSettings5" onclick="toggleCustomObjectsMenu()">
+	<div class="linesAS">
+			<img src="images/lines.png" height="17" width="23"> 
+			&nbsp;
+			<img src="images/arrow.png" height="17" width="23">
+	</div>
+	
+	&nbsp;&nbsp;Inanimate Objects
+</div>
+
+<div id="defineInanimateObjectsContainer">
+
+	<div id="COContainerSlot11"> <!-- Custom Objects Container Slot 1-1 -->
+		<div class="CSSlotDiv">Slot 1 -&nbsp;</div>
+		<div class="CSNameDiv" id="inanimateObjectName1">ObjectName</div>
+		<button type="button" class="buttonOpenLock" id="buttonCOSlot1" onclick="changeCOSlot1()">Change</button>
+	</div>
+	
+	<div id="COContainerSlot12"> <!-- Custom Objects Container Slot 1-2 -->
+		<input id="inanimateObjectSlot1TextField" class="bgColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCOSlot1()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCOSlot1()">Go Back</button>
+	</div>
+	
+	<div id="COContainerSlot21">
+		<div class="CSSlotDiv">Slot 2 -&nbsp;</div>
+		<div class="CSNameDiv" id="inanimateObjectName2">ObjectName</div>
+		<button type="button" class="buttonOpenLock" id="buttonCOSlot2" onclick="changeCOSlot2()">Change</button>
+	</div>
+	
+	<div id="COContainerSlot22">
+		<input id="inanimateObjectSlot2TextField" class="bgColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCOSlot2()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCOSlot2()">Go Back</button>
+	</div>
+	
+	<div id="COContainerSlot31">
+		<div class="CSSlotDiv">Slot 3 -&nbsp;</div>
+		<div class="CSNameDiv" id="inanimateObjectName3">ObjectName</div>
+		<button type="button" class="buttonOpenLock" id="buttonCOSlot3" onclick="changeCOSlot3()">Change</button>
+	</div>
+	
+	<div id="COContainerSlot32">
+		<input id="inanimateObjectSlot3TextField" class="bgColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCOSlot3()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCOSlot3()">Go Back</button>
+	</div>
+	
+	<div id="COContainerSlot41">
+		<div class="CSSlotDiv">Slot 4 -&nbsp;</div>
+		<div class="CSNameDiv" id="inanimateObjectName4">ObjectName</div>
+		<button type="button" class="buttonOpenLock" id="buttonCOSlot4" onclick="changeCOSlot4()">Change</button>
+	</div>
+	
+	<div id="COContainerSlot42">
+		<input id="inanimateObjectSlot4TextField" class="bgColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCOSlot4()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCOSlot4()">Go Back</button>
+	</div>
+	
+	<div id="COContainerSlot51">
+		<div class="CSSlotDiv">Slot 5 -&nbsp;</div>
+		<div class="CSNameDiv" id="inanimateObjectName5">ObjectName</div>
+		<button type="button" class="buttonOpenLock" id="buttonCOSlot5" onclick="changeCOSlot5()">Change</button>
+	</div>
+	
+	<div id="COContainerSlot52">
+		<input id="inanimateObjectSlot5TextField" class="bgColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCOSlot5()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCOSlot5()">Go Back</button>
+	</div>
+	
+	<div id="COContainerSlot61">
+		<div class="CSSlotDiv">Slot 6 -&nbsp;</div>
+		<div class="CSNameDiv" id="inanimateObjectName6">ObjectName</div>
+		<button type="button" class="buttonOpenLock" id="buttonCOSlot6" onclick="changeCOSlot6()">Change</button>
+	</div>
+	
+	<div id="COContainerSlot62">
+		<input id="inanimateObjectSlot6TextField" class="bgColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCOSlot6()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCOSlot6()">Go Back</button>
+	</div>
+	
+	<div id="COContainerSlot71">
+		<div class="CSSlotDiv">Slot 7 -&nbsp;</div>
+		<div class="CSNameDiv" id="inanimateObjectName7">ObjectName</div>
+		<button type="button" class="buttonOpenLock" id="buttonCOSlot7" onclick="changeCOSlot7()">Change</button>
+	</div>
+	
+	<div id="COContainerSlot72">
+		<input id="inanimateObjectSlot7TextField" class="bgColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCOSlot7()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCOSlot7()">Go Back</button>
+	</div>
+	
+	<div id="COContainerSlot81">
+		<div class="CSSlotDiv">Slot 8 -&nbsp;</div>
+		<div class="CSNameDiv" id="inanimateObjectName8">ObjectName</div>
+		<button type="button" class="buttonOpenLock" id="buttonCOSlot8" onclick="changeCOSlot8()">Change</button>
+	</div>
+	
+	<div id="COContainerSlot82">
+		<input id="inanimateObjectSlot8TextField" class="bgColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCOSlot8()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCOSlot8()">Go Back</button>
+	</div>
+	
+	<div id="COContainerSlot91">
+		<div class="CSSlotDiv">Slot 9 -&nbsp;</div>
+		<div class="CSNameDiv" id="inanimateObjectName9">ObjectName</div>
+		<button type="button" class="buttonOpenLock" id="buttonCOSlot9" onclick="changeCOSlot9()">Change</button>
+	</div>
+	
+	<div id="COContainerSlot92">
+		<input id="inanimateObjectSlot9TextField" class="bgColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCOSlot9()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCOSlot9()">Go Back</button>
+	</div>
+	
+	<div id="COContainerSlot101">
+		<div class="CSSlotDiv">Slot 10 -&nbsp;</div>
+		<div class="CSNameDiv" id="inanimateObjectName10">ObjectName</div>
+		<button type="button" class="buttonOpenLock" id="buttonCOSlot10" onclick="changeCOSlot10()">Change</button>
+	</div>
+	
+	<div id="COContainerSlot102">
+		<input id="inanimateObjectSlot10TextField" class="bgColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCOSlot10()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCOSlot10()">Go Back</button>
+	</div>
+
+</div>
+
+<script>
+document.getElementById("COContainerSlot12").style.display='none';
+document.getElementById("COContainerSlot22").style.display='none';
+document.getElementById("COContainerSlot32").style.display='none';
+document.getElementById("COContainerSlot42").style.display='none';
+document.getElementById("COContainerSlot52").style.display='none';
+document.getElementById("COContainerSlot62").style.display='none';
+document.getElementById("COContainerSlot72").style.display='none';
+document.getElementById("COContainerSlot82").style.display='none';
+document.getElementById("COContainerSlot92").style.display='none';
+document.getElementById("COContainerSlot102").style.display='none';
+</script>
+
+<div id="ButtonsContainer">
 
 <!--
 <div class="applybutton" id="applySettingsButton">
@@ -1460,7 +2287,7 @@ document.getElementById("triggerError621Button").style.display='none';
 </div>
 
 <div class="applybutton" id="triggerErrors">
-<button class="apply" onclick="triggerErrorsFunction()">(Dev) Trigger errors manually</button>
+<button class="apply" onclick="triggerErrorsFunction()">(Debug) Trigger errors manually</button>
 <script>
 document.getElementById("triggerErrors").style.display='none';  
 </script>
@@ -1517,6 +2344,14 @@ document.getElementById("triggerErrors").style.display='none';
 			<br>
 			
 			<div>
+			<label class="container">Enable Inanimate Objects
+				<input type="checkbox" id="inanimateObjectsCheckbox" onclick="toggleInanimateObjectsMenu()">
+				<span class="checkbox"></span>  
+			</label>
+			</div>
+			<br>
+			
+			<div>
 			Background color (Desktop users only):
 			</div>
 			
@@ -1551,6 +2386,40 @@ document.getElementById("goBack").style.display='none';
 </script>
 </div>
 
+<div class="applybutton" id="lockSettingsPasswordButton">
+<button class="apply" onclick="openLockSettingsPasswordMenu()">Lock Settings Password</button>
+</div>
+
+<div class="lockSettingsPasswordMenu" id="lockSettingsPasswordMenu">
+
+	<div>
+		<label class="container">Enabled
+			<input type="checkbox" id="EnableLockSettingsPasswordCheckbox" onclick="toggleLockSettingsPassword()">
+			<span class="checkbox"></span>  
+		</label>
+		<div id="passwordMessage" class="passwordMessage">
+		&nbsp;
+		</div>
+	</div>
+	
+	Current password:<br>
+	
+	<input id="currentPasswordTextField" class="bgColorTextField" value="">
+	
+	<button type="button" class="buttonChangeBG" id="buttonPasswordGoBack" onclick="GoBackLockSettingsPassword()">Go Back</button> <br>
+	
+	New password:<br>
+	
+	<input id="newPasswordTextField" class="bgColorTextField" value="">
+	
+	<button type="button" class="buttonChangeBG" id="buttonPasswordSet" onclick="changeLockSettingsPassword()">Set</button>	
+
+</div>
+
+<script>
+document.getElementById("lockSettingsPasswordMenu").style.display='none';  
+</script>
+
 <div class="applybutton" id="usernameButton">
 <button class="apply" onclick="changeUsernameBegin()">Username</button>
 </div>
@@ -1571,22 +2440,30 @@ document.getElementById("clearUsernameButton").style.display='none';
 
 </div>
 
-<div class="applybutton" id="creditsButton">
-<button class="apply" onclick="toggleCreditsFunction()">Show/Hide Credits</button>
+<div class="applybutton" id="showCreditsButton">
+<button class="apply" onclick="showCredits()">Show Credits</button>
 </div>
 
-<div class="ECPNNHr"></div>
+<div class="applybutton" id="hideCreditsButton">
+<button class="apply" onclick="hideCredits()">Hide Credits</button>
+</div>
+
+<script>
+document.getElementById("hideCreditsButton").style.display='none';  
+</script>
+
+</div>
 
 <div class="credits" id="credits">
 
 <div class="creditsEntry">
 
 <div class="creditsText">
-App design <br> Tyroo
+App Design & Graphics <br> Tyroo
 </div>
 <div class="creditsAvatar">
 <a href="https://twitter.com/TyrooTweets">               
-<img src="images/avatar_tyroo.jpg" width="70" height="70">
+<img src="images/avatar_tyroo.jpg" width="70" height="70" class="avatar">
 </a>
 </div>
 
@@ -1599,7 +2476,7 @@ Programming <br> qtderg
 </div>
 <div class="creditsAvatar">
 <a href="https://twitter.com/qtderg">              
-<img src="images/avatar_qtderg.png" width="70" height="70">
+<img src="images/avatar_qtderg.png" width="70" height="70" class="avatar">
 </a>
 </div>
 
@@ -1612,18 +2489,20 @@ PWA Integration <br> SRThrowaway
 </div>
 <div class="creditsAvatar">
 <a href="https://github.com/SRThrowaway">               
-<img src="images/avatar_srthrowaway.png" width="70" height="70">
+<img src="images/avatar_srthrowaway.png" width="70" height="70" class="avatar">
 </a>
 </div>
 
 </div>
 
 Sliders by <a href="https://dhtmlx.com/">DHTMLX</a> under GNU GPL<br>
-Ver 0.6.2.1j <!--Please use letters for versioning, unless update is small.--><br>
+Ver 0.6.2.1k <!--Please use letters for versioning, unless update is small.--><br>
 <a href="changelog.html">Changelog</a>
 </div>
 
 <div class="footerContainer">
+
+<div class="footer">
 
 <div class="githubSource">
 <a href="https://github.com/QTDerg/switcher-roo">
@@ -1646,8 +2525,9 @@ Ver 0.6.2.1j <!--Please use letters for versioning, unless update is small.--><b
 
 </div>
 
+</div>
+
 <script>
-document.getElementById("credits").style.display = "none";
 
 mySlider6.attachEvent("onSlideEnd", function() {
    	var bodyType1 = mySlider6.getValue();
@@ -1773,6 +2653,13 @@ showOrHideBreastSizeMaleSlider();
 showOrHideGenitalSizeFemaleSlider();
 setBGColorOnInit();
 loadCustomSlidersOnStartup();
+setContainersHeightToZero();
+lockSettingsOnStartup();
+checkboxPasswordOnStartup();
+loadCustomSpeciesOnStartup();
+loadInanimateObjectsOnStartup();
+showOrHideInanimateObjectsMenu();
+loadInanimateObjectStatus();
 
 </script>				
 

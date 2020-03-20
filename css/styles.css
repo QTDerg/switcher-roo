@@ -16,6 +16,193 @@ div {
 	
 }
 
+.speciesCurrent {
+	font-size: 17px;
+	float: left;
+	padding-left: 7px;
+	width: 90%;
+	transition: 1s;
+	background-color: inherit;
+}
+
+.speciesCurrent:hover {
+	background-color: #59568f;
+}
+
+.speciesContainer {
+	border: 2px solid #9D9CAF;
+    border-radius: 2px;
+	float: left;
+	width: 70%;
+	margin-top: 4px;
+	margin-left: 7px;
+	transition: 1s;
+	cursor:pointer;
+}
+
+.speciesSelectTriangle {
+	float: left;
+	width: 1%;
+}
+
+.search {
+	width: 10%;
+	float: left;
+	margin-top: 3px;
+	margin-left: 13px;
+	cursor:pointer;
+}
+
+.speciesCategorySelectorContainer {
+	float: left;
+}
+
+.speciesSelector {
+	float: left;
+}
+
+.speciesEntry {
+	width: 50%;
+	height: 26px;
+	text-align: center;
+	border: 1px solid #282640;
+	padding-top: 8px;
+	float: left;
+	font-size: 16px;
+	background-color: #3b395e;
+	transition-duration: 0.5s;
+}
+
+.speciesEntry:hover {
+	border: 1px solid #59568f;
+	background-color: #59568f;
+}
+
+.speciesEntryLeft {
+	width: 50%;
+	height: 26px;
+	text-align: center;
+	border-bottom: 2px solid #282640;
+	padding-top: 8px;
+	float: left;
+	font-size: 16px;
+	background: linear-gradient(to right, #3b395e 0%, #3b395e 99%, #282640 99%, #282640 100%);
+	transition-duration: 0.5s;
+}
+
+.speciesEntryRight {
+	width: 50%;
+	height: 26px;
+	text-align: center;
+	border-bottom: 2px solid #282640;
+	padding-top: 8px;
+	float: right;
+	font-size: 16px;
+	background: linear-gradient(to left, #3b395e 0%, #3b395e 99%, #282640 99%, #282640 100%);
+	transition-duration: 0.5s;
+}
+
+.speciesEntryLeftLast {
+	width: 50%;
+	height: 26px;
+	text-align: center;
+	padding-top: 8px;
+	float: left;
+	font-size: 16px;
+	background: linear-gradient(to right, #3b395e 0%, #3b395e 99%, #282640 99%, #282640 100%);
+	transition-duration: 0.5s;
+}
+
+.speciesEntryRightLast {
+	width: 50%;
+	height: 26px;
+	text-align: center;
+	padding-top: 8px;
+	float: right;
+	font-size: 16px;
+	background: linear-gradient(to left, #3b395e 0%, #3b395e 99%, #282640 99%, #282640 100%);
+	transition-duration: 0.5s;
+}
+
+.speciesEntryLeft:hover,.speciesEntryLeftLast:hover {
+	background: linear-gradient(to right, #59568f 0%, #59568f 99%, #282640 99%, #282640 100%);
+}
+
+.speciesEntryRight:hover, .speciesEntryRightLast:hover {
+	background: linear-gradient(to left, #59568f 0%, #59568f 99%, #282640 99%, #282640 100%);
+}
+
+.speciesEntryText {
+	text-align: inherit;
+}
+
+.speciesCategoryText{
+	text-align: inherit;
+}
+
+.speciesCategory {
+	width: 100%;
+	height: 26px;
+	text-align: center;
+	border-bottom: 2px solid #282640;
+	padding-top: 5px;
+	float: left;
+	transition: 0.5s;
+}
+
+.speciesCategoryName {
+	width: 78%;
+	height: 26px;
+	text-align: center;
+	border-bottom: 2px solid #282640;
+	padding-top: 5px;
+	float: left;
+	transition: 0.5s;
+	cursor: not-allowed;
+	background-color: #282640;
+}
+
+.speciesCategoryButton {
+	width: 11%;
+	height: 31px;
+	text-align: center;
+	border-bottom: 2px solid #282640;
+	float: left;
+	transition: 0.5s;
+	cursor: pointer;
+	font-size: 23px;
+}
+
+.speciesCategoryButtonEnd {
+	width: 11%;
+	height: 31px;
+	text-align: center;
+	border-bottom: 2px solid #282640;
+	float: left;
+	transition: 0.5s;
+	cursor: pointer;
+	font-size: 23px;
+	background-color: #282640;
+	cursor: not-allowed;
+}
+
+.speciesCategoryLast {
+	width: 100%;
+	height: 26px;
+	text-align: center;
+	padding-top: 5px;
+	float: left;
+	transition: 0.5s;
+}
+
+.speciesCategory:hover, .speciesCategoryLast:hover, .speciesCategoryButton:hover {
+	background-color: #59568f;
+}
+
+.categoryText {
+	text-align: inherit;
+}
+
 .downloadAPK {
 	text-align: center;
 	font-size: 30px	
@@ -46,7 +233,6 @@ div {
 }
 
 .setButton {
-	width: 20%;
 	float: left;
 }
 
@@ -113,7 +299,7 @@ div {
 	margin-right: auto;	
 	left: 0;
 	right: 84.5%;	
-	top: 345px;
+	top: 353px;
 	opacity: 1;
 }
 
@@ -152,7 +338,7 @@ div {
 	margin-left: auto;
 	margin-right: auto;
 	
-	top: 277px;
+	top: 287px;
 	opacity: 0.8;
 }
 
@@ -298,23 +484,30 @@ div {
     transform: rotate(359deg);
   }
 }
+.lockSettingsPasswordAndButtonContainer {
+	float: left;
+	width: 37.5%;	
+}
 .lockSettingsImgClosed {
 	float: left;
 	width: 7.5%;	
 	margin-left: 5px;
 	margin-top: 20px;
+	cursor: pointer;
 }
 .lockSettingsImgOpen {
 	float: left;
 	width: 7.5%;	
 	margin-left: 5px;
 	margin-top: 20px;
+	cursor: pointer;
 }
 .lockSettings {
 	float: left;
 	width: 30%;	
 	margin-top: 35px;
 	font-size:17px;
+	cursor: pointer;
 }
 .enterPassword {
 	text-align: center;
@@ -446,7 +639,17 @@ select:disabled::-ms-expand {
 	border-bottom: 3px solid #73728C;	
 	text-align: center;
 	height: 62px;
-	
+	transition: 1s;
+	overflow: hidden;
+	width: 100%;
+}
+.menuInanimateObjects {
+	border-bottom: 3px solid #73728C;	
+	text-align: center;
+	height: 62px;
+	transition: 1s;
+	overflow: hidden;
+	width: 100%;
 }
 .adaptClothing {
 	text-align: left;
@@ -455,18 +658,53 @@ select:disabled::-ms-expand {
 .menuAS {
 	text-align: left;
 	height: 25px;
-	margin-top:5px;
+	padding-top:5px;
 	float: left;
 	width: 100%;
+	cursor: pointer;
+	transition: 0.5s;
+}
+
+.menuAS:hover {
+	background-color: #59568f;
 }
 #AdvancedSettingsContainer {
 	float: left;
+	overflow: hidden;
+	transition-duration: 1s;
 }
 #addRemoveSlidersContainer {
 	float: left;
+	border-bottom: 3px solid #73728C;
+	overflow: hidden;
+	transition-duration: 1s;
 }
 #CustomSlidersContainer {
 	float: left;
+	overflow: hidden;
+	transition-duration: 1s;
+}
+#CustomSpeciesContainer {
+	float: left;
+	overflow: hidden;
+	transition-duration: 1s;
+	width: 100%;
+}
+#CSContainerSlot101, #CSContainerSlot102 {
+	border-bottom: 3px solid #73728C;
+}
+#defineInanimateObjectsContainer {
+	float: left;
+	margin-bottom: 10px;
+	overflow: hidden;
+	transition-duration: 1s;
+	width: 100%;
+}
+#COContainerSlot101, #COContainerSlot102 {
+	border-bottom: 3px solid #73728C;
+}
+#ButtonsContainer {
+	margin-top: 100px;
 }
 .processingAnim {
 	text-align: center;
@@ -512,11 +750,23 @@ select:disabled::-ms-expand {
 	font-size:18px;
 	margin-bottom: 10px;
 }
+.lockSettingsPasswordMenu{
+	float: left;	
+	margin-top: 15px;
+	margin-left:7px;
+	font-size:18px;
+	margin-bottom: 10px;
+	width: 100%;
+}
+.passwordMessage{
+	float: right;	
+	margin-right:10px;
+}
 .linesAS
 {
 	display: block;
 	margin: 0 auto;
-	width: 17%;
+	width: 18%;
 	float: left;
 	margin-left: 2px;
 }
@@ -575,14 +825,20 @@ select:disabled::-ms-expand {
 	padding-top:5px;
 	font-size:11px;
 }
+
+.avatar {
+	border-radius: 50%;
+	margin-left: 14px;
+}
+
 .credits {
 	text-align: center;
 	font-size: 20px;
+	overflow: hidden;
+	max-height: 0px;
+	transition-duration: 1s;
+	border-top: 0px none;
 }
-.ECPNNHr {
-	display: none;
-}
-
 
 .adminbutton {
 	text-align: center;
@@ -897,6 +1153,44 @@ select:disabled::-ms-expand {
 	padding: 10px;
 	font-size: 22px;
 }
+.buttonOpenLock {
+  position: relative;
+  background-color: #282640;
+  border: none; 
+  font-size: 16px;
+  color: #FFFFFF;
+  padding: 5px;
+  text-align: center;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.buttonOpenLock:after {
+  content: "";
+  background: #8280b3;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px!important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 1.8s
+}
+
+.buttonOpenLock:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}
+.buttonOpenLock:hover {
+	background: #59568f; 
+}
+
 .buttonChangeBG {
   position: relative;
   background-color: #282640;
@@ -990,6 +1284,14 @@ select:disabled::-ms-expand {
 	border: 1px solid #8280b3; 
 	color: #282640;
 	width: 65%;
+	padding: 5px;
+	font-size: 22px;
+}
+
+.PasswordTextFieldOpenLock {
+	background: #59568f;
+	border: 1px solid #8280b3; 
+	color: #282640;
 	padding: 5px;
 	font-size: 22px;
 }
@@ -1159,7 +1461,7 @@ a:active {
 }
 
 .creditsText {
-	font-size: 22px;
+	font-size: 20px;
 	width: 74%;
 	float:left;
 	text-align: center;
@@ -1172,12 +1474,28 @@ a:active {
 }
 
 .creditsEntry {
-	margin-left: 18px;
+	margin-left: 15px;
+	margin-right: 15px;
 	height: 70px;
 	margin-top: 10px;
+	border-radius: 50px;
+	transition: 0.5s;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border: 2px solid #59568f;
+}
+
+.creditsEntry:hover {
+	background-color: #59568f;
+	border: 2px solid #282640;
 }
 
 .footerContainer {
+	margin-top: 10px;
+	border-top: 3px solid #73728C;
+}
+
+.footer {
 	margin-left: 18px;
 	margin-top: 10px;
 	height: 70px;
@@ -1191,4 +1509,12 @@ a:active {
 .addToDevice {
 	float: left;
 	width: 60%;
+}
+
+.CSSlotDiv {
+	float:left;
+}
+.CSNameDiv {
+	float:left;
+	margin-right: 15px;
 }

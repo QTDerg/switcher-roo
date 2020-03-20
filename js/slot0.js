@@ -1,6 +1,7 @@
 // Slot 0 is "current" state of the app. This function is triggered after loading settings from slots 1-5.
  function saveSettingsSlot0() {
-	var settingSpecies = document.getElementById('speciesChoice').value 
+	var settingSpecies = document.getElementById("speciesCurrent").innerHTML;
+	var inanimateObject = document.getElementById("inanimateObjectsCurrent").innerHTML;
  
 	rbchoice = document.getElementById("radiobuttonMale");
 	if (rbchoice.checked) {
@@ -38,6 +39,7 @@
 	var cockType = document.getElementById('cockType').value 
  
 	localStorage.setItem("Slot0_Species", settingSpecies);	
+	localStorage.setItem("Slot0_Inanimate_Object", inanimateObject);	
     localStorage.setItem("Slot0_Sex", settingSex);	
 	localStorage.setItem("Slot0_AC_Box_Ticked", tickbox);
 	localStorage.setItem("Slot0_Body_Type1", bodyType1);

@@ -1,33 +1,63 @@
-function openAdvancedSettings() {
-		var x = document.getElementById("AdvancedSettingsContainer");
-		if (x.style.display === "none") {
-			x.style.display = "block";
-		} else {
-			x.style.display = "none";
-		}
+function toggleAdvancedSettingsMenu() {
+	var x = document.getElementById("AdvancedSettingsContainer");
+	if (x.style.maxHeight === "0px") {
+		x.style.maxHeight = "950px";
+	} else {
+		x.style.maxHeight = "0px";
 	}
+}
 	
-function addRemoveSlidersFunction() {
-		var x = document.getElementById("addRemoveSlidersContainer");
-		if (x.style.display === "none") {
-			x.style.display = "block";
-		} else {
-			x.style.display = "none";
-		}
+function toggleAddRemoveSlidersMenu() {
+	var x = document.getElementById("addRemoveSlidersContainer");
+	if (x.style.maxHeight === "0px") {
+		x.style.maxHeight = "315px";
+		x.style.borderBottom = "3px solid #73728C";
+	} else {
+		x.style.maxHeight = "0px";
+		x.style.borderBottom = "0";
 	}
+}
 	
-function openCustomSlidersMenu() {
-		var x = document.getElementById("CustomSlidersContainer");
-		if (x.style.display === "none") {
-			x.style.display = "block";
-		} else {
-			x.style.display = "none";
-		}
+function toggleCustomSlidersMenu() {
+	var x = document.getElementById("CustomSlidersContainer");
+	if (x.style.maxHeight === "0px") {
+		x.style.maxHeight = "190px";
+	} else {
+		x.style.maxHeight = "0px";
 	}
+}
+
+function toggleCustomSpeciesMenu() {
+	var x = document.getElementById("CustomSpeciesContainer");
+	if (x.style.maxHeight === "0px") {
+		x.style.maxHeight = "300px";
+	} else {
+		x.style.maxHeight = "0px";
+	}
+}
+
+function toggleCustomObjectsMenu() {
+	var x = document.getElementById("defineInanimateObjectsContainer");
+	if (x.style.maxHeight === "0px") {
+		x.style.maxHeight = "300px";
+	} else {
+		x.style.maxHeight = "0px";
+	}
+}
+	
+function setContainersHeightToZero() {
+	document.getElementById("AdvancedSettingsContainer").style.maxHeight='0px';
+	document.getElementById("addRemoveSlidersContainer").style.maxHeight='0px';
+	document.getElementById("addRemoveSlidersContainer").style.borderBottom='0';
+	document.getElementById("CustomSlidersContainer").style.maxHeight='0px';
+	document.getElementById("CustomSpeciesContainer").style.maxHeight='0px';
+	document.getElementById("defineInanimateObjectsContainer").style.maxHeight='0px';
+	document.getElementById("AdvancedSettingsContainer").style.display='block';
+}
 	
 function changeCoverageWait() {
-	setTimeout(changeCoverage, 20000);
-}
+		setTimeout(changeCoverage, 20000);
+	}
 
 function changeCoverage() {
 	var coverage = Math.floor(Math.random() * 100) + 1;
@@ -162,10 +192,9 @@ function lowBatteryWait() {
 	setTimeout(errorLowBattery, 10000);
 }
 
- function errorLowBattery() {
+function errorLowBattery() {
 	var areAdminPermsOn = document.getElementById("adminPermsText");
 	if (areAdminPermsOn.style.display === "none"){
-
 		var isBatteryLow = document.getElementById("battery_low");
 		if (isBatteryLow.style.display === "block") {
 			var rng = Math.floor(Math.random() * 100) + 1;
@@ -184,7 +213,6 @@ function lowBatteryWait() {
 				else {
 				setTimeout(errorLowBattery, 10000);
 			}
-			
 		}
 		else {
 			return;
@@ -193,46 +221,101 @@ function lowBatteryWait() {
 	else {
 			return;
 		}	
-	
- }
+}
 
 function showSecondSliderHandle() {
-document.getElementById("secondSliderHandleContainer").style.display = "block";	
-document.getElementById("secondSliderHandle").style.display = "block";	
+	document.getElementById("secondSliderHandleContainer").style.display = "block";	
+	document.getElementById("secondSliderHandle").style.display = "block";	
 }
 
 function switchLockFunction() {
 	var lock = document.getElementById("lockClosed");
 	if (lock.style.display === "block") {
-		openLock();
+		openLockStage1();
 	}
 	else {
 		closeLock();
 	}
 }
- 
-function openLock() {
-document.getElementById("lockOpen").style.display='block'; 
-document.getElementById("lockClosed").style.display='none'; 
-mySlider.enable();
-mySlider2.enable();
-mySlider3.enable();
-mySlider4.enable();
-mySlider5.enable();
-mySlider6.enable();
-mySlider7.enable();
-mySlider8.enable();
-mySlider9.enable();
-mySlider10.enable();
-mySlider11.enable();
-mySlider12.enable();
-mySlider13.enable();
-mySlider14.enable();
-mySlider15.enable();
-mySlider16.enable();
-mySlider17.enable();
-mySlider18.enable();
-mySlider19.enable();
+
+function openLockStage1() {
+	var enabled = localStorage.getItem("Lock_Settings_Password_Enabled");
+	if (enabled === "Yes") {
+		document.getElementById("lockClosed").style.display='none'; 
+		document.getElementById("lockSettings").style.display='none'; 
+		document.getElementById("lockSettingsPasswordAndButtonContainer").style.display='block'; 
+		document.getElementById('processingText').style.color = "#FFFFFF";
+		document.getElementById('processingText').innerHTML = "Please input password!";
+	}
+	else {
+		openLockStage3();
+	}	
+}
+
+function openLockStage2() {
+	var currentPassword = localStorage.getItem("Current_Password");
+	var currentPasswordCheck = document.getElementById("passwordTextFieldOpenLock").value;		
+		if (currentPassword === currentPasswordCheck) {
+			openLockStage3();
+			document.getElementById('processingText').innerHTML = "Password OK! Settings unlocked!";
+			document.getElementById('processingText').style.color = "#4EFF45";
+			document.getElementById("lockOpen").style.display='block'; 
+			document.getElementById("lockSettings").style.display='block'; 
+			document.getElementById("lockSettingsPasswordAndButtonContainer").style.display='none'; 
+			setTimeout(hidePasswordMessage, 3000);
+		}
+		else {
+			document.getElementById('processingText').innerHTML = "Password invalid!";
+			document.getElementById('processingText').style.color = "#FF4550";
+			document.getElementById("lockClosed").style.display='block'; 
+			document.getElementById("lockSettings").style.display='block'; 
+			document.getElementById("lockSettingsPasswordAndButtonContainer").style.display='none'; 
+			setTimeout(hidePasswordMessage, 3000);		
+		}
+}
+
+function hidePasswordMessage() {
+	var x = document.getElementById("lockSettingsPasswordAndButtonContainer");
+	if (x.style.display === "block") {
+		return;
+	}
+	else {
+		document.getElementById('processingText').innerHTML = "&nbsp;";
+		document.getElementById('processingText').style.color = "#FFFFFF";
+	}
+}
+
+function openLockStage3() {
+		document.getElementById("lockOpen").style.display='block'; 
+		document.getElementById("lockClosed").style.display='none'; 
+		mySlider.enable();
+		mySlider2.enable();
+		mySlider3.enable();
+		mySlider4.enable();
+		mySlider5.enable();
+		mySlider6.enable();
+		mySlider7.enable();
+		mySlider8.enable();
+		mySlider9.enable();
+		mySlider10.enable();
+		mySlider11.enable();
+		mySlider12.enable();
+		mySlider13.enable();
+		mySlider14.enable();
+		mySlider15.enable();
+		mySlider16.enable();
+		mySlider17.enable();
+		mySlider18.enable();
+		mySlider19.enable();
+		localStorage.setItem("Settings_Locked", "No");
+		document.getElementById("speciesCurrentContainer").style.backgroundColor = '#3b395e';
+		document.getElementById("inanimateObjectsCurrentContainer").style.backgroundColor = '#3b395e';
+		document.getElementById("speciesCurrentContainer").style.cursor = 'pointer';
+		document.getElementById("inanimateObjectsCurrentContainer").style.cursor = 'pointer';
+		document.getElementById("adaptClothingContainer").style.cursor = 'pointer';
+		document.getElementById("RBMaleContainer").style.cursor = 'pointer';
+		document.getElementById("RBFemaleContainer").style.cursor = 'pointer';	
+		document.getElementById("speciesSearch").style.cursor = 'pointer';
 }
 
 function closeLock() {
@@ -257,6 +340,25 @@ mySlider16.disable();
 mySlider17.disable();
 mySlider18.disable();
 mySlider19.disable();
+localStorage.setItem("Settings_Locked", "Yes");
+document.getElementById("speciesCurrentContainer").style.backgroundColor = '#282640';
+document.getElementById("inanimateObjectsCurrentContainer").style.backgroundColor = '#282640';
+document.getElementById("speciesCurrentContainer").style.cursor = 'not-allowed';
+document.getElementById("inanimateObjectsCurrentContainer").style.cursor = 'not-allowed';
+document.getElementById("adaptClothingContainer").style.cursor = 'not-allowed';
+document.getElementById("RBMaleContainer").style.cursor = 'not-allowed';
+document.getElementById("RBFemaleContainer").style.cursor = 'not-allowed';
+document.getElementById("speciesSearch").style.cursor = 'not-allowed';
+}
+
+function lockSettingsOnStartup() {
+	var areSettingsLocked = localStorage.getItem("Settings_Locked");
+	if (areSettingsLocked === "Yes") {
+		closeLock();
+	}
+	else {
+		return;
+	}
 }
 
 function toggleAlwaysShowAnim() {
@@ -303,14 +405,23 @@ function breastSizeFemaleFunction() {
 		document.getElementById("showAdvancedSettings4a").style.display = "none";  
 	}
 
-function toggleCreditsFunction(){
-		var c = document.getElementById("credits");
-		if (c.style.display === "none") {
-			c.style.display = "block";
-		} else {
-			c.style.display = "none";
-		}
-	}
+function showCredits() {
+	var c = document.getElementById("credits");
+	c.style.borderTop = "3px solid #73728C";
+	c.style.maxHeight = "331px";
+	c.style.marginTop = "10px";
+	document.getElementById("hideCreditsButton").style.display='block';
+	document.getElementById("showCreditsButton").style.display='none';
+}
+
+function hideCredits() {
+	var c = document.getElementById("credits");
+	c.style.borderTop = "0";
+	c.style.maxHeight = "0px";
+	c.style.marginTop = "0px";
+	document.getElementById("hideCreditsButton").style.display='none';
+	document.getElementById("showCreditsButton").style.display='block';	
+}
 
 function enterPasswordFunction(){
 document.getElementById("adminbutton").style.display='none';  
@@ -386,8 +497,7 @@ function reTry() {
 		document.getElementById("adminbutton").style.display='block';
 	}
   
- function remoteLoginError() {
- 
+function remoteLoginError() {
 		document.getElementById("errorMessageContainer").style.display = "block";
 		document.getElementById("remoteLoginErrorMessage").style.display = "block";
 		document.getElementById("RLEOkayContainer").style.display = "block";
@@ -404,7 +514,7 @@ function reTry() {
 		closeLock();
 	}
  
- function hideRemoteLoginError () {
+function hideRemoteLoginError () {
 		document.getElementById("errorMessageContainer").style.display = "none";
 		document.getElementById("remoteLoginErrorMessage").style.display = "none";
 		document.getElementById("RLEOkayContainer").style.display = "none";
@@ -437,7 +547,8 @@ function error621() {
 		mySlider6.disable();	
 		error621ChangeSlider();
 		showSecondSliderHandle();
-	}	
+	}
+
 function lowBatteryMessage() {
 		var lowBatteryMessageSeen = localStorage.getItem("Low_Battery_Message_Seen");
 		if (lowBatteryMessageSeen === "Yes") {
@@ -449,7 +560,8 @@ function lowBatteryMessage() {
 			document.getElementById("lowBatteryOkayContainer").style.display = "block";
 			document.getElementById("lowBatteryOkay").style.display= 'block';  
 		}
-}
+	}
+
 function hideLowBatteryMessage(){
 		document.getElementById("errorMessageContainer").style.display = "none";
 		document.getElementById("lowBatteryMessage").style.display = "none";
@@ -457,7 +569,8 @@ function hideLowBatteryMessage(){
 		document.getElementById("lowBatteryOkay").style.display= 'none';  
 		var lowBatteryMessageSeen = "Yes";
 		localStorage.setItem("Low_Battery_Message_Seen", lowBatteryMessageSeen);	
-}
+	}
+
 function showOptions() {
 		document.getElementById("preferences").style.display = "none";
 		document.getElementById("triggerErrors").style.display = "block";
@@ -482,6 +595,23 @@ function triggerErrorsFunction() {
 	}
  
 function changeSexToMale() {
+	var areSettingsLocked = localStorage.getItem("Settings_Locked");
+	if (areSettingsLocked === "Yes") {
+		var Sex = localStorage.getItem("Slot0_Sex");
+		if (Sex == "Male") {
+				rbmale = document.getElementById("radiobuttonMale");
+				rbmale.checked = true;
+				rbfemale = document.getElementById("radiobuttonFemale");
+				rbfemale.checked = false;
+			}
+			else {
+				rbfemale = document.getElementById("radiobuttonFemale");
+				rbfemale.checked = true;
+				rbmale = document.getElementById("radiobuttonMale");
+				rbmale.checked = false;
+			}
+	}
+	else {
 	var settingSex = "Male";
 	localStorage.setItem("Slot0_Sex", settingSex);
 	rbfemale = document.getElementById("radiobuttonFemale");
@@ -508,7 +638,7 @@ function changeSexToMale() {
 			document.getElementById("showAdvancedSettings4b").style.display='none'; 
 			showOrHideBreastSizeMaleSlider();
 			showOrHideGenitalSizeFemaleSlider();
-			processingShowFunctionV2();
+			showProcessingAnimation();
 		}
 	}
 	else { 
@@ -519,9 +649,27 @@ function changeSexToMale() {
 		showOrHideBreastSizeMaleSlider();
 		showOrHideGenitalSizeFemaleSlider();
 	}
+	}
 } 
  
 function changeSexToFemale() {
+	var areSettingsLocked = localStorage.getItem("Settings_Locked");
+	if (areSettingsLocked === "Yes") {
+		var Sex = localStorage.getItem("Slot0_Sex");
+		if (Sex == "Male") {
+				rbmale = document.getElementById("radiobuttonMale");
+				rbmale.checked = true;
+				rbfemale = document.getElementById("radiobuttonFemale");
+				rbfemale.checked = false;
+			}
+			else {
+				rbfemale = document.getElementById("radiobuttonFemale");
+				rbfemale.checked = true;
+				rbmale = document.getElementById("radiobuttonMale");
+				rbmale.checked = false;
+			}
+	}
+	else {
 	var settingSex = "Female";
 	localStorage.setItem("Slot0_Sex", settingSex);
 	rbmale = document.getElementById("radiobuttonMale");
@@ -547,7 +695,7 @@ function changeSexToFemale() {
 			document.getElementById("showAdvancedSettings4a").style.display='none'; 
 			document.getElementById("showAdvancedSettings4b").style.display='block'; 
 			showOrHideGenitalSizeFemaleSlider();
-			processingShowFunctionV2();
+			showProcessingAnimation();
 		}
 	}  
 	else {  
@@ -557,36 +705,51 @@ function changeSexToFemale() {
 		document.getElementById("showAdvancedSettings4b").style.display='block'; 
 		showOrHideGenitalSizeFemaleSlider();
 	}
- }
+	}
+}
  
 function hideMSSError () {
-	document.getElementById("errorMessageContainer").style.display = "none";
-	document.getElementById("MSSErrorMessage").style.display = "none";
-	document.getElementById("MSSOkayContainer").style.display = "none";	
-	document.getElementById("MSSOkay").style.display = "none";	
+		document.getElementById("errorMessageContainer").style.display = "none";
+		document.getElementById("MSSErrorMessage").style.display = "none";
+		document.getElementById("MSSOkayContainer").style.display = "none";	
+		document.getElementById("MSSOkay").style.display = "none";	
 	}
  
- function saveCurrentSpecies() {
+function saveCurrentSpecies() {
 	var settingSpecies = document.getElementById('speciesChoice').value 
 	localStorage.setItem("Slot0_Species", settingSpecies);	 
 	processingShowFunctionV2();
- }
+}
  
- function saveCheckbox() {
+function saveCheckbox() {
 	var tickbox = document.getElementById("adaptClothingCheckbox");
+	var areSettingsLocked = localStorage.getItem("Settings_Locked");
+	if (areSettingsLocked === "Yes") {
+		if (tickbox.checked) {
+			tickbox.checked = false;
+		}
+		else {
+			tickbox.checked = true;
+		}
+	}
+	else {
 	if (tickbox.checked) {
 		var tickbox = "Yes"
 		localStorage.setItem("Slot0_AC_Box_Ticked", tickbox);
+		showProcessingAnimation()
 	}
 	else {
 		var tickbox = "No"
 		localStorage.setItem("Slot0_AC_Box_Ticked", tickbox);
+		showProcessingAnimation()
 	} 
- }
- function showSaveSlotButtons() {
+	}
+}
+
+function showSaveSlotButtons() {
 	 document.getElementById("saveSlotButtons").style.display='block';  
 	 document.getElementById("saveSettingsButton").style.display='none';  
- }
+}
  
 function hideSaveSlotButtons() {
 	 document.getElementById("saveSlotButtons").style.display='none';  
@@ -596,14 +759,12 @@ function hideSaveSlotButtons() {
 function showLoadSlotButtons() {
 	 document.getElementById("loadSlotButtons").style.display='block';  
 	 document.getElementById("loadSettingsButton").style.display='none';  
- }
+}
  
- function hideLoadSlotButtons() {
+function hideLoadSlotButtons() {
 	 document.getElementById("loadSlotButtons").style.display='none';  
 	 document.getElementById("loadSettingsButton").style.display='block';  
- }
- 
-
+}
 
 function hideLoadedPopup() {
 	document.getElementById("settingsLoadedPopup").style.display = "none";	
@@ -616,73 +777,40 @@ function hideUnblockSettingsError() {
 	document.getElementById("errorMessageContainer").style.display='none'; 
 }
 
-function logOut() {
-	document.getElementById("bodyType1Slider").style.display = "none";
-	document.getElementById("bodyType2Slider").style.display = "none";
-	document.getElementById("bodyType3Slider").style.display = "none";
-	document.getElementById("advancedSettings").style.display = "none";
-	document.getElementById("advancedSettings2").style.display = "none";
-	document.getElementById("adaptClothing").style.display = "none";
-	document.getElementById("sexMenu").style.display = "none";
-	document.getElementById("speciesMenu").style.display = "none";
-	document.getElementById("container2").style.display = "none";
-	document.getElementById("adminPermsText").style.display = "none";
-	document.getElementById("AdvancedSettingsContainer").style.display = "none";
-	document.getElementById("processingText").style.display = "none";
-	document.getElementById("credits").style.display = "none";
-	document.getElementById("creditsButton").style.display = "none";
-	document.getElementById("preferences").style.display = "none";
-	document.getElementById("triggerErrors").style.display = "none";
-	document.getElementById("triggerError621Button").style.display = "none";
-	document.getElementById("triggerError69Button").style.display = "none";
-	document.getElementById("triggerRLEButton").style.display = "none";
-	document.getElementById("loadSettingsButton").style.display = "none";
-	document.getElementById("saveSettingsButton").style.display = "none";
-	document.getElementById("adminbutton").style.display = "none";
-	document.getElementById("adminbutton2").style.display = "none";
-	document.getElementById("goBack").style.display = "none";
-	document.getElementById("adminbuttontoggle").style.display = "none";
-	document.getElementById("disableBattery").style.display = "none";
-	document.getElementById("saveSlotButtons").style.display='none';
-	document.getElementById("loadSlotButtons").style.display='none';
-	document.getElementById("logOutMessage").style.display = "block";
-}
-
 function loadPreviousState() {
-	document.getElementById("AdvancedSettingsContainer").style.display='block'; 
-			var Species = localStorage.getItem("Slot0_Species");
-			if (Species == null) {
-				loadPS2();
-			}
-			else{
-		var element = document.getElementById("speciesChoice");
-		element.value = Species; 
-		loadPS2();
-			}
-}
+		document.getElementById("AdvancedSettingsContainer").style.display='block'; 
+		var Species = localStorage.getItem("Slot0_Species");
+		if (Species == null) {
+			loadPS2();
+		}
+		else {
+			document.getElementById('speciesCurrent').innerHTML = Species;
+			loadPS2();
+		}
+	}
 
 function loadPS2() {
 		var Sex = localStorage.getItem("Slot0_Sex");
 		if (Sex == null) {
 			loadPS3();
 		}
-		else{
-		if (Sex == "Male") {
-			rbmale = document.getElementById("radiobuttonMale");
-			rbmale.checked = true;
-			rbfemale = document.getElementById("radiobuttonFemale");
-			rbfemale.checked = false;
-			loadPS3();
-		}
 		else {
-			rbfemale = document.getElementById("radiobuttonFemale");
-			rbfemale.checked = true;
-			rbmale = document.getElementById("radiobuttonMale");
-			rbmale.checked = false;
-			loadPS3();
-		}	
+			if (Sex == "Male") {
+				rbmale = document.getElementById("radiobuttonMale");
+				rbmale.checked = true;
+				rbfemale = document.getElementById("radiobuttonFemale");
+				rbfemale.checked = false;
+				loadPS3();
+			}
+			else {
+				rbfemale = document.getElementById("radiobuttonFemale");
+				rbfemale.checked = true;
+				rbmale = document.getElementById("radiobuttonMale");
+				rbmale.checked = false;
+				loadPS3();
+			}	
 		}
-}
+	}
  
 function loadPS3() {
 		var AC_Box_Ticked = localStorage.getItem("Slot0_AC_Box_Ticked");
@@ -699,7 +827,7 @@ function loadPS3() {
 				loadPS4();
 			}	
 		}
-}
+	}
  
 function loadPS4() {
 		var bodyType1 = localStorage.getItem("Slot0_Body_Type1");
@@ -710,7 +838,7 @@ function loadPS4() {
 			mySlider6.setValue(bodyType1);	
 			loadPS5();
 		}		
-}
+	}
 
 function loadPS5() {
 		var bodyType2 = localStorage.getItem("Slot0_Body_Type2");
@@ -721,7 +849,7 @@ function loadPS5() {
 			mySlider5.setValue(bodyType2);	
 			loadPS6();
 		}		
-}
+	}
  
 function loadPS6() {
 		var bodyType3 = localStorage.getItem("Slot0_Body_Type3");
@@ -732,7 +860,7 @@ function loadPS6() {
 			mySlider4.setValue(bodyType3);	
 			loadPS7();
 		}		
-}
+	}
  
 function loadPS7() {
 		var hips = localStorage.getItem("Slot0_Hips");
@@ -743,7 +871,7 @@ function loadPS7() {
 			mySlider3.setValue(hips);	
 			loadPS8();
 		}		
-}
+	}
  
 function loadPS8() {
 		var genitalSize = localStorage.getItem("Slot0_Genital_Size");
@@ -754,7 +882,7 @@ function loadPS8() {
 			mySlider2.setValue(genitalSize);
 			loadPS9();
 		}		
-}
+	}
 		
 function loadPS9() {
 		var fluffiness = localStorage.getItem("Slot0_Fluffiness");
@@ -765,7 +893,7 @@ function loadPS9() {
 			mySlider.setValue(fluffiness);
 			loadPS10();
 		}		
-}		
+	}		
   
 function loadPS10() {
 		var libido = localStorage.getItem("Slot0_Libido");
@@ -776,7 +904,7 @@ function loadPS10() {
 			mySlider7.setValue(libido);
 			loadPS11();
 		}		
-}				
+	}				
 		
 function loadPS11() {
 		var domsub = localStorage.getItem("Slot0_Position_Preference");
@@ -787,7 +915,7 @@ function loadPS11() {
 			mySlider10.setValue(domsub);
 			loadPS12();
 		}		
-}		 
+	}		 
 		
 function loadPS12() {
 		var sensitivity = localStorage.getItem("Slot0_Sensitivity");
@@ -798,7 +926,7 @@ function loadPS12() {
 			mySlider11.setValue(sensitivity);
 			loadPS13();
 		}		
-}		 		
+	}		 		
  
 function loadPS13() {
 		var assertiveShy = localStorage.getItem("Slot0_Demeanor");
@@ -809,7 +937,7 @@ function loadPS13() {
 			mySlider12.setValue(assertiveShy);
 			loadPS14();
 		}		
-}				
+	}				
 				
 function loadPS14() {
 		var buttSize = localStorage.getItem("Slot0_Butt_Size");	
@@ -820,7 +948,7 @@ function loadPS14() {
 			mySlider13.setValue(buttSize);
 			loadPS15();
 		}		
-}		 
+	}		 
 		
 function loadPS15() {
 		var bellySize = localStorage.getItem("Slot0_Belly_Size");
@@ -831,7 +959,7 @@ function loadPS15() {
 			mySlider14.setValue(bellySize);
 			loadPS16();
 		}		
-}				
+	}				
  
 function loadPS16() {
 		var bellyShape = localStorage.getItem("Slot0_Belly_Shape");
@@ -842,7 +970,7 @@ function loadPS16() {
 			mySlider15.setValue(bellyShape);
 			loadPS17();
 		}		
-}			
+	}			
 		
 function loadPS17() {
 		var intelligence = localStorage.getItem("Slot0_Intelligence");
@@ -853,7 +981,7 @@ function loadPS17() {
 			mySlider16.setValue(intelligence);
 			loadPS18();
 		}		
-}			 
+	}			 
 		
 function loadPS18() {
 		var cockType = localStorage.getItem("Slot0_Cock_Type");
@@ -865,7 +993,7 @@ function loadPS18() {
 			element2.value = cockType; 
 			loadPS19();
 		}		
-}			
+	}			
  
 function loadPS19() {
 		var Sex = localStorage.getItem("Slot0_Sex");
@@ -873,7 +1001,6 @@ function loadPS19() {
 			loadPS20();
 		}
 		else {
-
 			if (Sex == "Male") {
 				var breastSizeMale = localStorage.getItem("Slot0_Breast_Size_Male");
 				if (breastSizeMale == null) {
@@ -893,7 +1020,7 @@ function loadPS19() {
 					document.getElementById("showAdvancedSettings4b").style.display = "block";
 					loadPS20();
 				}
-				else{
+				else {
 					document.getElementById("showAdvancedSettings4b").style.display = "block";
 					document.getElementById("showAdvancedSettings4a").style.display = "none";				
 					mySlider8.setValue(breastSizeFemale);
@@ -901,7 +1028,7 @@ function loadPS19() {
 				}
 			}
 		}
-}
+	}
 
 function loadPS20() {
 		var disableBatteryCheckboxTicked = localStorage.getItem("Battery_Disabled");
@@ -921,7 +1048,7 @@ function loadPS20() {
 				loadPS21();
 			}	
 		}
-}
+	}
 
 function loadPS21() {
 		var hasUserEnteredPassword = localStorage.getItem("Admin_passwd_entered");
@@ -938,7 +1065,7 @@ function loadPS21() {
 				loadPS22();
 			}	
 		}
-}
+	}
 
 function loadPS22() {
 		var isAdminModeOn = localStorage.getItem("Admin_mode_on");
@@ -955,7 +1082,7 @@ function loadPS22() {
 				loadPS23();
 			}	
 		}
-}
+	}
 
 function loadPS23() {
 		var isUsernameButtonDisabled = localStorage.getItem("Username_Button_Hidden");
@@ -973,7 +1100,7 @@ function loadPS23() {
 				loadPS24();
 			}	
 		}
-}
+	}
 
 function loadPS24() {
 		var alwaysShow = localStorage.getItem("Always_Show_Processing_Animation");
@@ -999,9 +1126,9 @@ function loadPS25() {
 	}
 
 function saveCockType() {
-	var cockType = document.getElementById('cockType').value 
-	localStorage.setItem("Slot0_Cock_Type", cockType);
-}
+		var cockType = document.getElementById('cockType').value 
+		localStorage.setItem("Slot0_Cock_Type", cockType);
+	}
 
 function hideMobileDeviceMessage() {
 	document.getElementById("errorMessageContainer").style.display = "none";
@@ -1662,7 +1789,6 @@ function changeBGCustom() {
 	if (bgcolor == "") {		
 		document.getElementById("buttonBGCustomSet").style.visibility='hidden'; 
 		document.getElementById("bgColorTextField").style.visibility='hidden';
-
 		document.getElementById("buttonBGDefault").style.visibility='visible';  
 		document.getElementById("buttonBGWhite").style.visibility='visible';  
 		document.getElementById("buttonBGGray").style.visibility='visible';  
@@ -1674,7 +1800,6 @@ function changeBGCustom() {
 		document.body.style.background = bgcolor;
 		document.getElementById("buttonBGCustomSet").style.visibility='hidden'; 
 		document.getElementById("bgColorTextField").style.visibility='hidden';
-
 		document.getElementById("buttonBGDefault").style.visibility='visible';  
 		document.getElementById("buttonBGWhite").style.visibility='visible';  
 		document.getElementById("buttonBGGray").style.visibility='visible';  
@@ -1713,22 +1838,18 @@ function functionBodyType(Sex, bodyType1) {
 }
 
 function makeCustomSlider1() {
-	var leftText = document.getElementById("slider1LeftText").value;
-	var centerText = document.getElementById("slider1CenterText").value;
-	var rightText = document.getElementById("slider1RightText").value;
-	
+		var leftText = document.getElementById("slider1LeftText").value;
+		var centerText = document.getElementById("slider1CenterText").value;
+		var rightText = document.getElementById("slider1RightText").value;	
 		if (leftText === "") {
 			leftText = "&nbsp;";
 		}
-		
 		if (centerText === "") {
 			centerText = "&nbsp;";
 		}
-		
 		if (rightText === "") {
 			rightText = "&nbsp;";
-		}	
-		
+		}		
 		document.getElementById('textinmenuLeftCS1').innerHTML = leftText;	
 		document.getElementById('textinmenuCenterCS1').innerHTML = centerText;	
 		document.getElementById('textinmenuRightCS1').innerHTML = rightText;	
@@ -1738,25 +1859,21 @@ function makeCustomSlider1() {
 		localStorage.setItem("Custom_Slider1_Enabled", "Yes");
 		document.getElementById("customSlider1Checkbox").checked = true;
 		document.getElementById("custom1SliderMenu").style.display= 'block';
-}
+	}
 
 function makeCustomSlider2() {
-	var leftText = document.getElementById("slider2LeftText").value;
-	var centerText = document.getElementById("slider2CenterText").value;
-	var rightText = document.getElementById("slider2RightText").value;
-	
+		var leftText = document.getElementById("slider2LeftText").value;
+		var centerText = document.getElementById("slider2CenterText").value;
+		var rightText = document.getElementById("slider2RightText").value;	
 		if (leftText === "") {
 			leftText = "&nbsp;";
-		}
-		
+		}		
 		if (centerText === "") {
 			centerText = "&nbsp;";
-		}
-		
+		}		
 		if (rightText === "") {
 			rightText = "&nbsp;";
-		}	
-		
+		}		
 		document.getElementById('textinmenuLeftCS2').innerHTML = leftText;	
 		document.getElementById('textinmenuCenterCS2').innerHTML = centerText;	
 		document.getElementById('textinmenuRightCS2').innerHTML = rightText;	
@@ -1766,25 +1883,21 @@ function makeCustomSlider2() {
 		localStorage.setItem("Custom_Slider2_Enabled", "Yes");
 		document.getElementById("customSlider2Checkbox").checked = true;
 		document.getElementById("custom2SliderMenu").style.display= 'block';
-}
+	}
 
 function makeCustomSlider3() {
-	var leftText = document.getElementById("slider3LeftText").value;
-	var centerText = document.getElementById("slider3CenterText").value;
-	var rightText = document.getElementById("slider3RightText").value;
-	
+		var leftText = document.getElementById("slider3LeftText").value;
+		var centerText = document.getElementById("slider3CenterText").value;
+		var rightText = document.getElementById("slider3RightText").value;
 		if (leftText === "") {
 			leftText = "&nbsp;";
-		}
-		
+		}		
 		if (centerText === "") {
 			centerText = "&nbsp;";
-		}
-		
+		}		
 		if (rightText === "") {
 			rightText = "&nbsp;";
 		}		
-		
 		document.getElementById('textinmenuLeftCS3').innerHTML = leftText;	
 		document.getElementById('textinmenuCenterCS3').innerHTML = centerText;	
 		document.getElementById('textinmenuRightCS3').innerHTML = rightText;	
@@ -1794,7 +1907,7 @@ function makeCustomSlider3() {
 		localStorage.setItem("Custom_Slider3_Enabled", "Yes");
 		document.getElementById("customSlider3Checkbox").checked = true;
 		document.getElementById("custom3SliderMenu").style.display= 'block';
-}
+	}
 
 function toggleCustomSlider1() {
 var tickbox = document.getElementById("customSlider1Checkbox");
@@ -1926,4 +2039,1153 @@ function loadCustomSlidersNamesOnStartup3() {
 	document.getElementById('textinmenuLeftCS3').innerHTML = leftText;	
 	document.getElementById('textinmenuCenterCS3').innerHTML = centerText;	
 	document.getElementById('textinmenuRightCS3').innerHTML = rightText;		
+}
+
+function inanimateObjectsLoadList() {
+	var areSettingsLocked = localStorage.getItem("Settings_Locked");
+	if (areSettingsLocked === "Yes") {
+		return;
+	}
+	else {
+		document.getElementById("inanimateObjectsCurrentContainer").style.display= 'none';
+		document.getElementById("inanimateObjectsSearch").style.display= 'none';
+		document.getElementById("inanimateObjectsSelectorContainer").style.display= 'block';
+		document.getElementById('inanimateObjectsContainer').style.width = "80%";
+		//document.getElementById('speciesContainer').style.border = "2px solid #282640";
+		document.getElementById('inanimateObjectsMenu').style.height = "415px";
+	}
+}
+
+function speciesLoadList() {
+	var areSettingsLocked = localStorage.getItem("Settings_Locked");
+	if (areSettingsLocked === "Yes") {
+		return;
+	}
+	else {
+		document.getElementById("speciesCurrentContainer").style.display= 'none';
+		document.getElementById("speciesSearch").style.display= 'none';
+		document.getElementById("speciesCategorySelectorContainer").style.display= 'block';
+		document.getElementById('speciesContainer').style.width = "80%";
+		//document.getElementById('speciesContainer').style.border = "2px solid #282640";
+		document.getElementById('speciesMenu').style.height = "610px";
+	}
+}
+
+function goBackFromInanimateObjectsList() {
+	document.getElementById("inanimateObjectsCurrentContainer").style.display= 'block';
+	document.getElementById("inanimateObjectsSearch").style.display= 'block';
+	document.getElementById("inanimateObjectsSelectorContainer").style.display= 'none';
+	document.getElementById('inanimateObjectsContainer').style.width = "70%";
+	//document.getElementById('speciesContainer').style.border = "2px solid #9D9CAF";
+	document.getElementById('inanimateObjectsMenu').style.height = "62px";
+}
+
+function goBackFromCategoryList() {
+	document.getElementById("speciesCurrentContainer").style.display= 'block';
+	document.getElementById("speciesSearch").style.display= 'block';
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'none';
+	document.getElementById('speciesContainer').style.width = "70%";
+	//document.getElementById('speciesContainer').style.border = "2px solid #9D9CAF";
+	document.getElementById('speciesMenu').style.height = "62px";
+}
+
+function goToMostPopularCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'none';
+	document.getElementById("speciesSelectorMostPopular").style.display= 'block';
+	document.getElementById('speciesMenu').style.height = "620px";
+}
+
+function goBackFromMostPopularCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'block';
+	document.getElementById("speciesSelectorMostPopular").style.display= 'none';
+	document.getElementById('speciesMenu').style.height = "610px";
+}
+
+function goToCustomCategoryFromMostPopular() {
+	document.getElementById("speciesSelectorMostPopular").style.display= 'none';
+	document.getElementById("speciesSelectorCustom").style.display= 'block';
+	document.getElementById('speciesMenu').style.height = "300px";
+}
+
+function goToMostPopularCategoryFromCustom() {
+	document.getElementById("speciesSelectorCustom").style.display= 'none';
+	document.getElementById("speciesSelectorMostPopular").style.display= 'block';	
+	document.getElementById('speciesMenu').style.height = "620px";
+}
+
+function goToCustomCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'none';
+	document.getElementById("speciesSelectorCustom").style.display= 'block';
+	document.getElementById('speciesMenu').style.height = "300px";
+}
+
+function goBackFromCustomCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'block';
+	document.getElementById("speciesSelectorCustom").style.display= 'none';
+	document.getElementById('speciesMenu').style.height = "610px";
+}
+
+function goToAvianCategoryFromCustom() {
+	document.getElementById("speciesSelectorCustom").style.display= 'none';
+	document.getElementById("speciesSelectorAvian").style.display= 'block';	
+	document.getElementById('speciesMenu').style.height = "300px";
+}
+
+function goToCustomCategoryFromAvian() {
+	document.getElementById("speciesSelectorCustom").style.display= 'block';
+	document.getElementById("speciesSelectorAvian").style.display= 'none';	
+	document.getElementById('speciesMenu').style.height = "300px";
+}
+
+function goToAvianCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'none';
+	document.getElementById("speciesSelectorAvian").style.display= 'block';
+	document.getElementById('speciesMenu').style.height = "300px";
+}
+
+function goBackFromAvianCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'block';
+	document.getElementById("speciesSelectorAvian").style.display= 'none';
+	document.getElementById('speciesMenu').style.height = "610px";
+}
+
+function goToBovineCategoryFromAvian() {
+	document.getElementById("speciesSelectorBovine").style.display= 'block';
+	document.getElementById("speciesSelectorAvian").style.display= 'none';	
+	document.getElementById('speciesMenu').style.height = "190px";
+}
+
+function goToAvianCategoryFromBovine() {
+	document.getElementById("speciesSelectorBovine").style.display= 'none';
+	document.getElementById("speciesSelectorAvian").style.display= 'block';	
+	document.getElementById('speciesMenu').style.height = "300px";
+}
+
+function goToBovineCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'none';
+	document.getElementById("speciesSelectorBovine").style.display= 'block';
+	document.getElementById('speciesMenu').style.height = "190px";
+}
+
+function goBackFromBovineCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'block';
+	document.getElementById("speciesSelectorBovine").style.display= 'none';
+	document.getElementById('speciesMenu').style.height = "610px";
+}
+
+function goToCanineCategoryFromBovine() {
+	document.getElementById("speciesSelectorCanine").style.display= 'block';
+	document.getElementById("speciesSelectorBovine").style.display= 'none';	
+	document.getElementById('speciesMenu').style.height = "330px";
+}
+
+function goToBovineCategoryFromCanine() {
+	document.getElementById("speciesSelectorCanine").style.display= 'none';
+	document.getElementById("speciesSelectorBovine").style.display= 'block';	
+	document.getElementById('speciesMenu').style.height = "190px";
+}
+
+function goToCanineCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'none';
+	document.getElementById("speciesSelectorCanine").style.display= 'block';
+	document.getElementById('speciesMenu').style.height = "330px";
+}
+
+function goBackFromCanineCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'block';
+	document.getElementById("speciesSelectorCanine").style.display= 'none';
+	document.getElementById('speciesMenu').style.height = "610px";
+}
+
+function goToCervineCategoryFromCanine() {
+	document.getElementById("speciesSelectorCervine").style.display= 'block';
+	document.getElementById("speciesSelectorCanine").style.display= 'none';	
+	document.getElementById('speciesMenu').style.height = "190px";
+}
+
+function goToCanineCategoryFromCervine() {
+	document.getElementById("speciesSelectorCervine").style.display= 'none';
+	document.getElementById("speciesSelectorCanine").style.display= 'block';	
+	document.getElementById('speciesMenu').style.height = "330px";
+}
+
+function goToCervineCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'none';
+	document.getElementById("speciesSelectorCervine").style.display= 'block';
+	document.getElementById('speciesMenu').style.height = "190px";
+}
+
+function goBackFromCervineCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'block';
+	document.getElementById("speciesSelectorCervine").style.display= 'none';
+	document.getElementById('speciesMenu').style.height = "610px";
+}
+
+function goToEquineCategoryFromCervine() {
+	document.getElementById("speciesSelectorCervine").style.display= 'none';
+	document.getElementById("speciesSelectorEquine").style.display= 'block';	
+	document.getElementById('speciesMenu').style.height = "220px";
+}
+
+function goToCervineCategoryFromEquine() {
+	document.getElementById("speciesSelectorCervine").style.display= 'block';
+	document.getElementById("speciesSelectorEquine").style.display= 'none';	
+	document.getElementById('speciesMenu').style.height = "190px";
+}
+
+function goToEquineCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'none';
+	document.getElementById("speciesSelectorEquine").style.display= 'block';
+	document.getElementById('speciesMenu').style.height = "220px";
+}
+
+function goBackFromEquineCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'block';
+	document.getElementById("speciesSelectorEquine").style.display= 'none';
+	document.getElementById('speciesMenu').style.height = "610px";
+}
+
+function goToFelineCategoryFromEquine() {
+	document.getElementById("speciesSelectorFeline").style.display= 'block';
+	document.getElementById("speciesSelectorEquine").style.display= 'none';	
+	document.getElementById('speciesMenu').style.height = "370px";
+}
+
+function goToEquineCategoryFromFeline() {
+	document.getElementById("speciesSelectorFeline").style.display= 'none';
+	document.getElementById("speciesSelectorEquine").style.display= 'block';	
+	document.getElementById('speciesMenu').style.height = "220px";
+}
+
+function goToFelineCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'none';
+	document.getElementById("speciesSelectorFeline").style.display= 'block';
+	document.getElementById('speciesMenu').style.height = "370px";
+}
+
+function goBackFromFelineCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'block';
+	document.getElementById("speciesSelectorFeline").style.display= 'none';
+	document.getElementById('speciesMenu').style.height = "610px";
+}
+
+function goToFictionalCategoryFromFeline() {
+	document.getElementById("speciesSelectorFeline").style.display= 'none';
+	document.getElementById("speciesSelectorFictional").style.display= 'block';	
+	document.getElementById('speciesMenu').style.height = "335px";
+}
+
+function goToFelineCategoryFromFictional() {
+	document.getElementById("speciesSelectorFeline").style.display= 'block';
+	document.getElementById("speciesSelectorFictional").style.display= 'none';	
+	document.getElementById('speciesMenu').style.height = "370px";
+}
+
+function goToFictionalCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'none';
+	document.getElementById("speciesSelectorFictional").style.display= 'block';
+	document.getElementById('speciesMenu').style.height = "335px";
+}
+
+function goBackFromFictionalCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'block';
+	document.getElementById("speciesSelectorFictional").style.display= 'none';
+	document.getElementById('speciesMenu').style.height = "610px";
+}
+
+function goToHybridCategoryFromFictional() {
+	document.getElementById("speciesSelectorHybrid").style.display= 'block';
+	document.getElementById("speciesSelectorFictional").style.display= 'none';	
+	document.getElementById('speciesMenu').style.height = "260px";
+}
+
+function goToFictionalCategoryFromHybrid() {
+	document.getElementById("speciesSelectorHybrid").style.display= 'none';
+	document.getElementById("speciesSelectorFictional").style.display= 'block';	
+	document.getElementById('speciesMenu').style.height = "335px";
+}
+
+function goToHybridCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'none';
+	document.getElementById("speciesSelectorHybrid").style.display= 'block';
+	document.getElementById('speciesMenu').style.height = "260px";
+}
+
+function goBackFromHybridCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'block';
+	document.getElementById("speciesSelectorHybrid").style.display= 'none';
+	document.getElementById('speciesMenu').style.height = "610px";
+}
+
+function goToLagomorphCategoryFromHybrid() {
+	document.getElementById("speciesSelectorHybrid").style.display= 'none';
+	document.getElementById("speciesSelectorLagomorph").style.display= 'block';	
+	document.getElementById('speciesMenu').style.height = "190px";
+}
+
+function goToHybridCategoryFromLagomorph() {
+	document.getElementById("speciesSelectorHybrid").style.display= 'block';
+	document.getElementById("speciesSelectorLagomorph").style.display= 'none';	
+	document.getElementById('speciesMenu').style.height = "260px";
+}
+
+function goToLagomorphCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'none';
+	document.getElementById("speciesSelectorLagomorph").style.display= 'block';
+	document.getElementById('speciesMenu').style.height = "190px";
+}
+
+function goBackFromLagomorphCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'block';
+	document.getElementById("speciesSelectorLagomorph").style.display= 'none';
+	document.getElementById('speciesMenu').style.height = "610px";
+}
+
+function goToMarsupialCategoryFromLagomorph() {
+	document.getElementById("speciesSelectorMarsupial").style.display= 'block';
+	document.getElementById("speciesSelectorLagomorph").style.display= 'none';	
+	document.getElementById('speciesMenu').style.height = "190px";
+}
+
+function goToLagomorphCategoryFromMarsupial() {
+	document.getElementById("speciesSelectorMarsupial").style.display= 'none';
+	document.getElementById("speciesSelectorLagomorph").style.display= 'block';	
+	document.getElementById('speciesMenu').style.height = "190px";
+}
+
+function goToMarsupialCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'none';
+	document.getElementById("speciesSelectorMarsupial").style.display= 'block';
+	document.getElementById('speciesMenu').style.height = "190px";
+}
+
+function goBackFromMarsupialCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'block';
+	document.getElementById("speciesSelectorMarsupial").style.display= 'none';
+	document.getElementById('speciesMenu').style.height = "610px";
+}
+
+function goToMustelidCategoryFromMarsupial() {
+	document.getElementById("speciesSelectorMarsupial").style.display= 'none';
+	document.getElementById("speciesSelectorMustelid").style.display= 'block';	
+	document.getElementById('speciesMenu').style.height = "225px";
+}
+
+function goToMarsupialCategoryFromMustelid() {
+	document.getElementById("speciesSelectorMarsupial").style.display= 'block';
+	document.getElementById("speciesSelectorMustelid").style.display= 'none';	
+	document.getElementById('speciesMenu').style.height = "190px";
+}
+
+function goToMustelidCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'none';
+	document.getElementById("speciesSelectorMustelid").style.display= 'block';
+	document.getElementById('speciesMenu').style.height = "225px";
+}
+
+function goBackFromMustelidCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'block';
+	document.getElementById("speciesSelectorMustelid").style.display= 'none';
+	document.getElementById('speciesMenu').style.height = "610px";
+}
+
+function goToReptileCategoryFromMustelid() {
+	document.getElementById("speciesSelectorReptile").style.display= 'block';
+	document.getElementById("speciesSelectorMustelid").style.display= 'none';	
+	document.getElementById('speciesMenu').style.height = "260px";
+}
+
+function goToMustelidCategoryFromReptile() {
+	document.getElementById("speciesSelectorReptile").style.display= 'none';
+	document.getElementById("speciesSelectorMustelid").style.display= 'block';	
+	document.getElementById('speciesMenu').style.height = "225px";
+}
+
+function goToReptileCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'none';
+	document.getElementById("speciesSelectorReptile").style.display= 'block';
+	document.getElementById('speciesMenu').style.height = "260px";
+}
+
+function goBackFromReptileCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'block';
+	document.getElementById("speciesSelectorReptile").style.display= 'none';
+	document.getElementById('speciesMenu').style.height = "610px";
+}
+
+function goToRodentCategoryFromReptile() {
+	document.getElementById("speciesSelectorReptile").style.display= 'none';
+	document.getElementById("speciesSelectorRodent").style.display= 'block';	
+	document.getElementById('speciesMenu').style.height = "225px";
+}
+
+function goToReptileCategoryFromRodent() {
+	document.getElementById("speciesSelectorReptile").style.display= 'block';
+	document.getElementById("speciesSelectorRodent").style.display= 'none';	
+	document.getElementById('speciesMenu').style.height = "260px";
+}
+
+function goToRodentCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'none';
+	document.getElementById("speciesSelectorRodent").style.display= 'block';
+	document.getElementById('speciesMenu').style.height = "225px";
+}
+
+function goBackFromRodentCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'block';
+	document.getElementById("speciesSelectorRodent").style.display= 'none';
+	document.getElementById('speciesMenu').style.height = "610px";
+}
+
+function goToUngulateCategoryFromRodent() {
+	document.getElementById("speciesSelectorUngulate").style.display= 'block';
+	document.getElementById("speciesSelectorRodent").style.display= 'none';	
+	document.getElementById('speciesMenu').style.height = "225px";
+}
+
+function goToRodentCategoryFromUngulate() {
+	document.getElementById("speciesSelectorUngulate").style.display= 'none';
+	document.getElementById("speciesSelectorRodent").style.display= 'block';	
+	document.getElementById('speciesMenu').style.height = "225px";
+}
+
+function goToUngulateCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'none';
+	document.getElementById("speciesSelectorUngulate").style.display= 'block';
+	document.getElementById('speciesMenu').style.height = "225px";
+}
+
+function goBackFromUngulateCategory() {
+	document.getElementById("speciesCategorySelectorContainer").style.display= 'block';
+	document.getElementById("speciesSelectorUngulate").style.display= 'none';
+	document.getElementById('speciesMenu').style.height = "610px";
+}
+
+function setSpeciesTo(Species) {
+	document.getElementById('speciesCurrent').innerHTML = Species;
+	localStorage.setItem("Slot0_Species", Species);
+	closeCategoryMenu();
+	goBackFromCategoryList();
+	showProcessingAnimation();
+}
+
+function setInanimateObjectTo(Object) {
+	document.getElementById('inanimateObjectsCurrent').innerHTML = Object;
+	localStorage.setItem("Slot0_Inanimate_Object", Object);
+	goBackFromInanimateObjectsList();
+	showProcessingAnimation();
+}
+
+function closeCategoryMenu() {
+	document.getElementById("speciesCategorySelectorContainer").style.display = "none";
+	document.getElementById("speciesSelectorMostPopular").style.display = "none";
+	document.getElementById("speciesSelectorCustom").style.display = "none";
+	document.getElementById("speciesSelectorAvian").style.display = "none";
+	document.getElementById("speciesSelectorBovine").style.display = "none";
+	document.getElementById("speciesSelectorCanine").style.display = "none";
+	document.getElementById("speciesSelectorCervine").style.display = "none";
+	document.getElementById("speciesSelectorEquine").style.display = "none";
+	document.getElementById("speciesSelectorFeline").style.display = "none";
+	document.getElementById("speciesSelectorFictional").style.display = "none";
+	document.getElementById("speciesSelectorHybrid").style.display = "none";
+	document.getElementById("speciesSelectorLagomorph").style.display = "none";
+	document.getElementById("speciesSelectorMarsupial").style.display = "none";
+	document.getElementById("speciesSelectorMustelid").style.display = "none";
+	document.getElementById("speciesSelectorReptile").style.display = "none";
+	document.getElementById("speciesSelectorRodent").style.display = "none";
+	document.getElementById("speciesSelectorUngulate").style.display = "none";	
+}
+
+function changeLockSettingsPassword() {
+	var currentPassword = localStorage.getItem("Current_Password");
+	if (currentPassword == null) {
+		var newPassword = document.getElementById("newPasswordTextField").value;
+		localStorage.setItem("Current_Password", newPassword);
+		localStorage.setItem("Lock_Settings_Password_Enabled", "Yes");
+		passwordCheckbox = document.getElementById("EnableLockSettingsPasswordCheckbox");
+		passwordCheckbox.checked = true;
+		document.getElementById('passwordMessage').innerHTML = "New password saved!";
+		document.getElementById('passwordMessage').style.color = "#4EFF45";
+	}
+	else {
+		var currentPasswordCheck = document.getElementById("currentPasswordTextField").value;		
+		if (currentPassword === currentPasswordCheck) {
+			var newPassword = document.getElementById("newPasswordTextField").value;
+			localStorage.setItem("Current_Password", newPassword);
+			localStorage.setItem("Lock_Settings_Password_Enabled", "Yes");
+			passwordCheckbox = document.getElementById("EnableLockSettingsPasswordCheckbox");
+			passwordCheckbox.checked = true;
+			document.getElementById('passwordMessage').innerHTML = "New password saved!";
+			document.getElementById('passwordMessage').style.color = "#4EFF45";
+		}
+		else {
+			document.getElementById('passwordMessage').innerHTML = "Current password invalid!";
+			document.getElementById('passwordMessage').style.color = "#FF4550";			
+		}
+	}
+}
+
+function checkboxPasswordOnStartup() {
+	var enabled = localStorage.getItem("Lock_Settings_Password_Enabled");
+	if (enabled === "Yes") {
+		passwordCheckbox = document.getElementById("EnableLockSettingsPasswordCheckbox");
+		passwordCheckbox.checked = true;		
+	}
+	else {
+		return;
+	}
+}
+
+function toggleLockSettingsPassword() {
+	var tickbox = document.getElementById("EnableLockSettingsPasswordCheckbox");
+	if (tickbox.checked) {
+		var tickbox = "Yes"
+		localStorage.setItem("Lock_Settings_Password_Enabled", tickbox);
+	}
+	else {
+		var currentPassword = localStorage.getItem("Current_Password");
+		if (currentPassword == null) {
+			var tickbox = "No"
+			localStorage.setItem("Lock_Settings_Password_Enabled", tickbox);
+		}
+		else {
+			var currentPasswordCheck = document.getElementById("currentPasswordTextField").value;		
+			if (currentPassword === currentPasswordCheck) {
+				var tickbox = "No"
+				localStorage.setItem("Lock_Settings_Password_Enabled", tickbox);	
+				document.getElementById('passwordMessage').innerHTML = "Password OK!";
+				document.getElementById('passwordMessage').style.color = "#4EFF45";				
+			}
+			else {
+				tickbox.checked = true;
+				document.getElementById('passwordMessage').innerHTML = "Password invalid!";
+				document.getElementById('passwordMessage').style.color = "#FF4550";
+			}
+		} 
+	}
+}
+
+function openLockSettingsPasswordMenu() {
+	document.getElementById("lockSettingsPasswordButton").style.display = "none";
+	document.getElementById("lockSettingsPasswordMenu").style.display = "block";
+}
+
+function GoBackLockSettingsPassword() {
+	document.getElementById("lockSettingsPasswordButton").style.display = "block";
+	document.getElementById("lockSettingsPasswordMenu").style.display = "none";
+}
+
+function changeCSSlot1() {
+	document.getElementById("CSContainerSlot11").style.display='none'; 
+	document.getElementById("CSContainerSlot12").style.display='block'; 
+}
+
+function goBackCSSlot1() {
+	document.getElementById("CSContainerSlot11").style.display='block'; 
+	document.getElementById("CSContainerSlot12").style.display='none'; 
+}
+
+function changeCSSlot2() {
+	document.getElementById("CSContainerSlot21").style.display='none'; 
+	document.getElementById("CSContainerSlot22").style.display='block'; 
+}
+
+function goBackCSSlot2() {
+	document.getElementById("CSContainerSlot21").style.display='block'; 
+	document.getElementById("CSContainerSlot22").style.display='none'; 
+}
+
+function changeCSSlot3() {
+	document.getElementById("CSContainerSlot31").style.display='none'; 
+	document.getElementById("CSContainerSlot32").style.display='block'; 
+}
+
+function goBackCSSlot3() {
+	document.getElementById("CSContainerSlot31").style.display='block'; 
+	document.getElementById("CSContainerSlot32").style.display='none'; 
+}
+
+function changeCSSlot4() {
+	document.getElementById("CSContainerSlot41").style.display='none'; 
+	document.getElementById("CSContainerSlot42").style.display='block'; 
+}
+
+function goBackCSSlot4() {
+	document.getElementById("CSContainerSlot41").style.display='block'; 
+	document.getElementById("CSContainerSlot42").style.display='none'; 
+}
+
+function changeCSSlot5() {
+	document.getElementById("CSContainerSlot51").style.display='none'; 
+	document.getElementById("CSContainerSlot52").style.display='block'; 
+}
+
+function goBackCSSlot5() {
+	document.getElementById("CSContainerSlot51").style.display='block'; 
+	document.getElementById("CSContainerSlot52").style.display='none'; 
+}
+
+function changeCSSlot6() {
+	document.getElementById("CSContainerSlot61").style.display='none'; 
+	document.getElementById("CSContainerSlot62").style.display='block'; 
+}
+
+function goBackCSSlot6() {
+	document.getElementById("CSContainerSlot61").style.display='block'; 
+	document.getElementById("CSContainerSlot62").style.display='none'; 
+}
+
+function changeCSSlot7() {
+	document.getElementById("CSContainerSlot71").style.display='none'; 
+	document.getElementById("CSContainerSlot72").style.display='block'; 
+}
+
+function goBackCSSlot7() {
+	document.getElementById("CSContainerSlot71").style.display='block'; 
+	document.getElementById("CSContainerSlot72").style.display='none'; 
+}
+
+function changeCSSlot8() {
+	document.getElementById("CSContainerSlot81").style.display='none'; 
+	document.getElementById("CSContainerSlot82").style.display='block'; 
+}
+
+function goBackCSSlot8() {
+	document.getElementById("CSContainerSlot81").style.display='block'; 
+	document.getElementById("CSContainerSlot82").style.display='none'; 
+}
+
+function changeCSSlot9() {
+	document.getElementById("CSContainerSlot91").style.display='none'; 
+	document.getElementById("CSContainerSlot92").style.display='block'; 
+}
+
+function goBackCSSlot9() {
+	document.getElementById("CSContainerSlot91").style.display='block'; 
+	document.getElementById("CSContainerSlot92").style.display='none'; 
+}
+
+function changeCSSlot10() {
+	document.getElementById("CSContainerSlot101").style.display='none'; 
+	document.getElementById("CSContainerSlot102").style.display='block'; 
+}
+
+function goBackCSSlot10() {
+	document.getElementById("CSContainerSlot101").style.display='block'; 
+	document.getElementById("CSContainerSlot102").style.display='none'; 
+}
+
+function setCSSlot1() {
+	var species = document.getElementById("customSpeciesSlot1TextField").value;
+	localStorage.setItem("Custom_Species_Slot1", species);
+	document.getElementById('customSpeciesName1').innerHTML = species;
+	document.getElementById('speciesEntryCustom1').innerHTML = species;
+	goBackCSSlot1();
+}
+
+function setCSSlot2() {
+	var species = document.getElementById("customSpeciesSlot2TextField").value;
+	localStorage.setItem("Custom_Species_Slot2", species);
+	document.getElementById('customSpeciesName2').innerHTML = species;
+	document.getElementById('speciesEntryCustom2').innerHTML = species;
+	goBackCSSlot2();
+}
+
+function setCSSlot3() {
+	var species = document.getElementById("customSpeciesSlot3TextField").value;
+	localStorage.setItem("Custom_Species_Slot3", species);
+	document.getElementById('customSpeciesName3').innerHTML = species;
+	document.getElementById('speciesEntryCustom3').innerHTML = species;
+	goBackCSSlot3();
+}
+
+function setCSSlot4() {
+	var species = document.getElementById("customSpeciesSlot4TextField").value;
+	localStorage.setItem("Custom_Species_Slot4", species);
+	document.getElementById('customSpeciesName4').innerHTML = species;
+	document.getElementById('speciesEntryCustom4').innerHTML = species;
+	goBackCSSlot4();
+}
+
+function setCSSlot5() {
+	var species = document.getElementById("customSpeciesSlot5TextField").value;
+	localStorage.setItem("Custom_Species_Slot5", species);
+	document.getElementById('customSpeciesName5').innerHTML = species;
+	document.getElementById('speciesEntryCustom5').innerHTML = species;
+	goBackCSSlot5();
+}
+
+function setCSSlot6() {
+	var species = document.getElementById("customSpeciesSlot6TextField").value;
+	localStorage.setItem("Custom_Species_Slot6", species);
+	document.getElementById('customSpeciesName6').innerHTML = species;
+	document.getElementById('speciesEntryCustom6').innerHTML = species;
+	goBackCSSlot6();
+}
+
+function setCSSlot7() {
+	var species = document.getElementById("customSpeciesSlot7TextField").value;
+	localStorage.setItem("Custom_Species_Slot7", species);
+	document.getElementById('customSpeciesName7').innerHTML = species;
+	document.getElementById('speciesEntryCustom7').innerHTML = species;
+	goBackCSSlot7();
+}
+
+function setCSSlot8() {
+	var species = document.getElementById("customSpeciesSlot8TextField").value;
+	localStorage.setItem("Custom_Species_Slot8", species);
+	document.getElementById('customSpeciesName8').innerHTML = species;
+	document.getElementById('speciesEntryCustom8').innerHTML = species;
+	goBackCSSlot8();
+}
+
+function setCSSlot9() {
+	var species = document.getElementById("customSpeciesSlot9TextField").value;
+	localStorage.setItem("Custom_Species_Slot9", species);
+	document.getElementById('customSpeciesName9').innerHTML = species;
+	document.getElementById('speciesEntryCustom9').innerHTML = species;
+	goBackCSSlot9();
+}
+
+function setCSSlot10() {
+	var species = document.getElementById("customSpeciesSlot10TextField").value;
+	localStorage.setItem("Custom_Species_Slot10", species);
+	document.getElementById('customSpeciesName10').innerHTML = species;
+	document.getElementById('speciesEntryCustom10').innerHTML = species;
+	goBackCSSlot10();
+}
+
+function loadCustomSpeciesOnStartup() {
+	var species1 = localStorage.getItem("Custom_Species_Slot1");
+	var species2 = localStorage.getItem("Custom_Species_Slot2");
+	var species3 = localStorage.getItem("Custom_Species_Slot3");
+	var species4 = localStorage.getItem("Custom_Species_Slot4");
+	var species5 = localStorage.getItem("Custom_Species_Slot5");
+	var species6 = localStorage.getItem("Custom_Species_Slot6");
+	var species7 = localStorage.getItem("Custom_Species_Slot7");
+	var species8 = localStorage.getItem("Custom_Species_Slot8");
+	var species9 = localStorage.getItem("Custom_Species_Slot9");
+	var species10 = localStorage.getItem("Custom_Species_Slot10");
+	
+	if (species1 === null) {
+		species1 = "Empty";
+	}
+	if (species2 === null) {
+		species2 = "Empty";
+	}
+	if (species3 === null) {
+		species3 = "Empty";
+	}
+	if (species4 === null) {
+		species4 = "Empty";
+	}
+	if (species5 === null) {
+		species5 = "Empty";
+	}
+	if (species6 === null) {
+		species6 = "Empty";
+	}
+	if (species7 === null) {
+		species7 = "Empty";
+	}
+	if (species8 === null) {
+		species8 = "Empty";
+	}
+	if (species9 === null) {
+		species9 = "Empty";
+	}
+	if (species10 === null) {
+		species10 = "Empty";
+	}
+	
+	document.getElementById('customSpeciesName1').innerHTML = species1;
+	document.getElementById('speciesEntryCustom1').innerHTML = species1;
+	
+	document.getElementById('customSpeciesName2').innerHTML = species2;
+	document.getElementById('speciesEntryCustom2').innerHTML = species2;
+	
+	document.getElementById('customSpeciesName3').innerHTML = species3;
+	document.getElementById('speciesEntryCustom3').innerHTML = species3;
+	
+	document.getElementById('customSpeciesName4').innerHTML = species4;
+	document.getElementById('speciesEntryCustom4').innerHTML = species4;
+	
+	document.getElementById('customSpeciesName5').innerHTML = species5;
+	document.getElementById('speciesEntryCustom5').innerHTML = species5;
+	
+	document.getElementById('customSpeciesName6').innerHTML = species6;
+	document.getElementById('speciesEntryCustom6').innerHTML = species6;
+	
+	document.getElementById('customSpeciesName7').innerHTML = species7;
+	document.getElementById('speciesEntryCustom7').innerHTML = species7;
+	
+	document.getElementById('customSpeciesName8').innerHTML = species8;
+	document.getElementById('speciesEntryCustom8').innerHTML = species8;
+	
+	document.getElementById('customSpeciesName9').innerHTML = species9;
+	document.getElementById('speciesEntryCustom9').innerHTML = species9;
+	
+	document.getElementById('customSpeciesName10').innerHTML = species10;
+	document.getElementById('speciesEntryCustom10').innerHTML = species10;
+}
+
+function setSpeciesToCustom(slotNumber) {
+	if (slotNumber === "Slot_One") {
+		var Species = document.getElementById('speciesEntryCustom1').innerHTML;		
+	}
+	if (slotNumber === "Slot_Two") {
+		var Species = document.getElementById('speciesEntryCustom2').innerHTML;		
+	}
+	if (slotNumber === "Slot_Three") {
+		var Species = document.getElementById('speciesEntryCustom3').innerHTML;		
+	}
+	if (slotNumber === "Slot_Four") {
+		var Species = document.getElementById('speciesEntryCustom4').innerHTML;		
+	}
+	if (slotNumber === "Slot_Five") {
+		var Species = document.getElementById('speciesEntryCustom5').innerHTML;		
+	}
+	if (slotNumber === "Slot_Six") {
+		var Species = document.getElementById('speciesEntryCustom6').innerHTML;		
+	}
+	if (slotNumber === "Slot_Seven") {
+		var Species = document.getElementById('speciesEntryCustom7').innerHTML;		
+	}
+	if (slotNumber === "Slot_Eight") {
+		var Species = document.getElementById('speciesEntryCustom8').innerHTML;		
+	}
+	if (slotNumber === "Slot_Nine") {
+		var Species = document.getElementById('speciesEntryCustom9').innerHTML;		
+	}
+	if (slotNumber === "Slot_Ten") {
+		var Species = document.getElementById('speciesEntryCustom10').innerHTML;		
+	}
+	setSpeciesTo(Species);
+}
+
+function changeCOSlot1() {
+	document.getElementById("COContainerSlot11").style.display='none'; 
+	document.getElementById("COContainerSlot12").style.display='block'; 
+}
+
+function goBackCOSlot1() {
+	document.getElementById("COContainerSlot11").style.display='block'; 
+	document.getElementById("COContainerSlot12").style.display='none'; 
+}
+
+function changeCOSlot2() {
+	document.getElementById("COContainerSlot21").style.display='none'; 
+	document.getElementById("COContainerSlot22").style.display='block'; 
+}
+
+function goBackCOSlot2() {
+	document.getElementById("COContainerSlot21").style.display='block'; 
+	document.getElementById("COContainerSlot22").style.display='none'; 
+}
+
+function changeCOSlot3() {
+	document.getElementById("COContainerSlot31").style.display='none'; 
+	document.getElementById("COContainerSlot32").style.display='block'; 
+}
+
+function goBackCOSlot3() {
+	document.getElementById("COContainerSlot31").style.display='block'; 
+	document.getElementById("COContainerSlot32").style.display='none'; 
+}
+
+function changeCOSlot4() {
+	document.getElementById("COContainerSlot41").style.display='none'; 
+	document.getElementById("COContainerSlot42").style.display='block'; 
+}
+
+function goBackCOSlot4() {
+	document.getElementById("COContainerSlot41").style.display='block'; 
+	document.getElementById("COContainerSlot42").style.display='none'; 
+}
+
+function changeCOSlot5() {
+	document.getElementById("COContainerSlot51").style.display='none'; 
+	document.getElementById("COContainerSlot52").style.display='block'; 
+}
+
+function goBackCOSlot5() {
+	document.getElementById("COContainerSlot51").style.display='block'; 
+	document.getElementById("COContainerSlot52").style.display='none'; 
+}
+
+function changeCOSlot6() {
+	document.getElementById("COContainerSlot61").style.display='none'; 
+	document.getElementById("COContainerSlot62").style.display='block'; 
+}
+
+function goBackCOSlot6() {
+	document.getElementById("COContainerSlot61").style.display='block'; 
+	document.getElementById("COContainerSlot62").style.display='none'; 
+}
+
+function changeCOSlot7() {
+	document.getElementById("COContainerSlot71").style.display='none'; 
+	document.getElementById("COContainerSlot72").style.display='block'; 
+}
+
+function goBackCOSlot7() {
+	document.getElementById("COContainerSlot71").style.display='block'; 
+	document.getElementById("COContainerSlot72").style.display='none'; 
+}
+
+function changeCOSlot8() {
+	document.getElementById("COContainerSlot81").style.display='none'; 
+	document.getElementById("COContainerSlot82").style.display='block'; 
+}
+
+function goBackCOSlot8() {
+	document.getElementById("COContainerSlot81").style.display='block'; 
+	document.getElementById("COContainerSlot82").style.display='none'; 
+}
+
+function changeCOSlot9() {
+	document.getElementById("COContainerSlot91").style.display='none'; 
+	document.getElementById("COContainerSlot92").style.display='block'; 
+}
+
+function goBackCOSlot9() {
+	document.getElementById("COContainerSlot91").style.display='block'; 
+	document.getElementById("COContainerSlot92").style.display='none'; 
+}
+
+function changeCOSlot10() {
+	document.getElementById("COContainerSlot101").style.display='none'; 
+	document.getElementById("COContainerSlot102").style.display='block'; 
+}
+
+function goBackCOSlot10() {
+	document.getElementById("COContainerSlot101").style.display='block'; 
+	document.getElementById("COContainerSlot102").style.display='none'; 
+}
+
+function setCOSlot1() {
+	var object = document.getElementById("inanimateObjectSlot1TextField").value;
+	localStorage.setItem("Inanimate_Object_Slot1", object);
+	document.getElementById('inanimateObjectName1').innerHTML = object;
+	document.getElementById('inanimateObjectEntry1').innerHTML = object;
+	goBackCOSlot1();
+}
+
+function setCOSlot2() {
+	var object = document.getElementById("inanimateObjectSlot2TextField").value;
+	localStorage.setItem("Inanimate_Object_Slot2", object);
+	document.getElementById('inanimateObjectName2').innerHTML = object;
+	document.getElementById('inanimateObjectEntry2').innerHTML = object;
+	goBackCOSlot2();
+}
+
+function setCOSlot3() {
+	var object = document.getElementById("inanimateObjectSlot3TextField").value;
+	localStorage.setItem("Inanimate_Object_Slot3", object);
+	document.getElementById('inanimateObjectName3').innerHTML = object;
+	document.getElementById('inanimateObjectEntry3').innerHTML = object;
+	goBackCOSlot3();
+}
+
+function setCOSlot4() {
+	var object = document.getElementById("inanimateObjectSlot4TextField").value;
+	localStorage.setItem("Inanimate_Object_Slot4", object);
+	document.getElementById('inanimateObjectName4').innerHTML = object;
+	document.getElementById('inanimateObjectEntry4').innerHTML = object;
+	goBackCOSlot4();
+}
+
+function setCOSlot5() {
+	var object = document.getElementById("inanimateObjectSlot5TextField").value;
+	localStorage.setItem("Inanimate_Object_Slot5", object);
+	document.getElementById('inanimateObjectName5').innerHTML = object;
+	document.getElementById('inanimateObjectEntry5').innerHTML = object;
+	goBackCOSlot5();
+}
+
+function setCOSlot6() {
+	var object = document.getElementById("inanimateObjectSlot6TextField").value;
+	localStorage.setItem("Inanimate_Object_Slot6", object);
+	document.getElementById('inanimateObjectName6').innerHTML = object;
+	document.getElementById('inanimateObjectEntry6').innerHTML = object;
+	goBackCOSlot6();
+}
+
+function setCOSlot7() {
+	var object = document.getElementById("inanimateObjectSlot7TextField").value;
+	localStorage.setItem("Inanimate_Object_Slot7", object);
+	document.getElementById('inanimateObjectName7').innerHTML = object;
+	document.getElementById('inanimateObjectEntry7').innerHTML = object;
+	goBackCOSlot7();
+}
+
+function setCOSlot8() {
+	var object = document.getElementById("inanimateObjectSlot8TextField").value;
+	localStorage.setItem("Inanimate_Object_Slot8", object);
+	document.getElementById('inanimateObjectName8').innerHTML = object;
+	document.getElementById('inanimateObjectEntry8').innerHTML = object;
+	goBackCOSlot8();
+}
+
+function setCOSlot9() {
+	var object = document.getElementById("inanimateObjectSlot9TextField").value;
+	localStorage.setItem("Inanimate_Object_Slot9", object);
+	document.getElementById('inanimateObjectName9').innerHTML = object;
+	document.getElementById('inanimateObjectEntry9').innerHTML = object;
+	goBackCOSlot9();
+}
+
+function setCOSlot10() {
+	var object = document.getElementById("inanimateObjectSlot10TextField").value;
+	localStorage.setItem("Inanimate_Object_Slot10", object);
+	document.getElementById('inanimateObjectName10').innerHTML = object;
+	document.getElementById('inanimateObjectEntry10').innerHTML = object;
+	goBackCOSlot10();
+}
+
+function loadInanimateObjectsOnStartup() {
+	var object1 = localStorage.getItem("Inanimate_Object_Slot1");
+	var object2 = localStorage.getItem("Inanimate_Object_Slot2");
+	var object3 = localStorage.getItem("Inanimate_Object_Slot3");
+	var object4 = localStorage.getItem("Inanimate_Object_Slot4");
+	var object5 = localStorage.getItem("Inanimate_Object_Slot5");
+	var object6 = localStorage.getItem("Inanimate_Object_Slot6");
+	var object7 = localStorage.getItem("Inanimate_Object_Slot7");
+	var object8 = localStorage.getItem("Inanimate_Object_Slot8");
+	var object9 = localStorage.getItem("Inanimate_Object_Slot9");
+	var object10 = localStorage.getItem("Inanimate_Object_Slot10");
+	
+	if (object1 === null) {
+		object1 = "Empty";
+	}
+	if (object2 === null) {
+		object2 = "Empty";
+	}
+	if (object3 === null) {
+		object3 = "Empty";
+	}
+	if (object4 === null) {
+		object4 = "Empty";
+	}
+	if (object5 === null) {
+		object5 = "Empty";
+	}
+	if (object6 === null) {
+		object6 = "Empty";
+	}
+	if (object7 === null) {
+		object7 = "Empty";
+	}
+	if (object8 === null) {
+		object8 = "Empty";
+	}
+	if (object9 === null) {
+		object9 = "Empty";
+	}
+	if (object10 === null) {
+		object10 = "Empty";
+	}
+	
+	document.getElementById('inanimateObjectName1').innerHTML = object1;
+	document.getElementById('inanimateObjectEntry1').innerHTML = object1;
+	
+	document.getElementById('inanimateObjectName2').innerHTML = object2;
+	document.getElementById('inanimateObjectEntry2').innerHTML = object2;
+	
+	document.getElementById('inanimateObjectName3').innerHTML = object3;
+	document.getElementById('inanimateObjectEntry3').innerHTML = object3;
+	
+	document.getElementById('inanimateObjectName4').innerHTML = object4;
+	document.getElementById('inanimateObjectEntry4').innerHTML = object4;
+	
+	document.getElementById('inanimateObjectName5').innerHTML = object5;
+	document.getElementById('inanimateObjectEntry5').innerHTML = object5;
+	
+	document.getElementById('inanimateObjectName6').innerHTML = object6;
+	document.getElementById('inanimateObjectEntry6').innerHTML = object6;
+	
+	document.getElementById('inanimateObjectName7').innerHTML = object7;
+	document.getElementById('inanimateObjectEntry7').innerHTML = object7;
+	
+	document.getElementById('inanimateObjectName8').innerHTML = object8;
+	document.getElementById('inanimateObjectEntry8').innerHTML = object8;
+	
+	document.getElementById('inanimateObjectName9').innerHTML = object9;
+	document.getElementById('inanimateObjectEntry9').innerHTML = object9;
+	
+	document.getElementById('inanimateObjectName10').innerHTML = object10;
+	document.getElementById('inanimateObjectEntry10').innerHTML = object10;
+}
+
+function setInanimateObjectToCustom(slotNumber) {
+	if (slotNumber === "Slot_One") {
+		var Object = document.getElementById('inanimateObjectEntry1').innerHTML;		
+	}
+	if (slotNumber === "Slot_Two") {
+		var Object = document.getElementById('inanimateObjectEntry2').innerHTML;		
+	}
+	if (slotNumber === "Slot_Three") {
+		var Object = document.getElementById('inanimateObjectEntry3').innerHTML;		
+	}
+	if (slotNumber === "Slot_Four") {
+		var Object = document.getElementById('inanimateObjectEntry4').innerHTML;		
+	}
+	if (slotNumber === "Slot_Five") {
+		var Object = document.getElementById('inanimateObjectEntry5').innerHTML;		
+	}
+	if (slotNumber === "Slot_Six") {
+		var Object = document.getElementById('inanimateObjectEntry6').innerHTML;		
+	}
+	if (slotNumber === "Slot_Seven") {
+		var Object = document.getElementById('inanimateObjectEntry7').innerHTML;		
+	}
+	if (slotNumber === "Slot_Eight") {
+		var Object = document.getElementById('inanimateObjectEntry8').innerHTML;		
+	}
+	if (slotNumber === "Slot_Nine") {
+		var Object = document.getElementById('inanimateObjectEntry9').innerHTML;		
+	}
+	if (slotNumber === "Slot_Ten") {
+		var Object = document.getElementById('inanimateObjectEntry10').innerHTML;		
+	}
+	setInanimateObjectTo(Object);
+}
+
+function showOrHideInanimateObjectsMenu() {
+	var yesorno = localStorage.getItem("Inanimate_Objects_Enabled");
+	if (yesorno === "Yes") {
+		document.getElementById("inanimateObjectsMenu").style.display='block';
+		document.getElementById("advancedSettings5").style.display='block';	
+		document.getElementById("inanimateObjectsCheckbox").checked = true;		
+	}
+	else {
+		document.getElementById("inanimateObjectsMenu").style.display='none';
+		document.getElementById("advancedSettings5").style.display='none';		
+	}
+}
+
+function toggleInanimateObjectsMenu() {
+	var tickbox = document.getElementById("inanimateObjectsCheckbox");
+		if (tickbox.checked) {
+			var tickbox = "Yes"
+			localStorage.setItem("Inanimate_Objects_Enabled", tickbox);
+			document.getElementById("inanimateObjectsMenu").style.display='block';
+			document.getElementById("advancedSettings5").style.display='block';
+		}
+		else {
+			var tickbox = "No"
+			localStorage.setItem("Inanimate_Objects_Enabled", tickbox);
+			document.getElementById("inanimateObjectsMenu").style.display='none';
+			document.getElementById("advancedSettings5").style.display='none';
+		}
+}
+
+function loadInanimateObjectStatus() {
+	var object = localStorage.getItem("Slot0_Inanimate_Object");
+		if (object == null) {
+			return;
+		}
+		else {
+			document.getElementById('inanimateObjectsCurrent').innerHTML = object;
+		}	
 }

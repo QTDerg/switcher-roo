@@ -1,5 +1,6 @@
  function saveSettingsSlot2() {
-	var settingSpecies = document.getElementById('speciesChoice').value 
+	var settingSpecies = document.getElementById("speciesCurrent").innerHTML;
+	var inanimateObject = document.getElementById("inanimateObjectsCurrent").innerHTML;
  
 	rbchoice = document.getElementById("radiobuttonMale");
 	if (rbchoice.checked) {
@@ -79,6 +80,7 @@
 	localStorage.setItem("Slot2_Custom_Slider3_Enabled", isCS3Enabled);	
 	
 	localStorage.setItem("Slot2_Species", settingSpecies);	
+	localStorage.setItem("Slot2_Inanimate_Object", inanimateObject);
     localStorage.setItem("Slot2_Sex", settingSex);	
 	localStorage.setItem("Slot2_AC_Box_Ticked", tickbox);
 	localStorage.setItem("Slot2_Body_Type1", bodyType1);
@@ -123,8 +125,11 @@
 			setTimeout(hideLoadedPopup, 4000);			
 		}
 		else{
-		var element = document.getElementById("speciesChoice");
-		element.value = Species; 
+		document.getElementById('speciesCurrent').innerHTML = Species;
+		var object = localStorage.getItem("Slot2_Inanimate_Object");
+		if (object != null) {
+			document.getElementById('inanimateObjectsCurrent').innerHTML = object;
+		}
  
 		var Sex = localStorage.getItem("Slot2_Sex");
 		if (Sex == "Male" || Sex == "Femboy") {
