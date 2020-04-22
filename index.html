@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#3b395e">
 <title>Switcher⇌Roo – the way to create the perfect you</title>
 <meta name="google-site-verification" content="ZlbW0WzveBStYcU29sN4lKtKMy7ytBMUKn6A3_i5AbQ" />
-<meta name="description" content="Want to be your fursona? With this app you can choose 30+ species, change your gender and modify many body and personality aspects!">
+<meta name="description" content="Want to be your fursona? With Switcher-Roo you can choose dozens of various species, change your gender and modify many body and personality aspects!">
 <meta name="keywords" content="Switcherroo, Switcher-roo, Furry, Transformation, Tyroo">
 <meta name="author" content="qtderg">
 
@@ -93,6 +93,10 @@ function error621ChangeSlider() {
 <!-- Container with error messages -->
 <div class="errorMessageContainer" id="errorMessageContainer">	
 
+	<script>
+	document.getElementById("errorMessageContainer").style.display = "none";	
+	</script>
+
 	<div class="errorMessageAlignLeft" id="remoteLoginErrorMessage">
 	>Remote login enabled... <br>
 	>Setting sex = female <br>
@@ -121,40 +125,36 @@ function error621ChangeSlider() {
 	
 	
 	<div class="errorMessageAlignLeft" id="unblockSettingsMessage">
-	>Error: Please unblock settings to load settings
 	<script>
 		document.getElementById("unblockSettingsMessage").style.display = "none";	
 	</script>
+	>Error: Please unblock settings to load settings
 	</div>
 	
 	<div class="errorMessageAlignLeft" id="error69Message">
+	<script>
+		document.getElementById("error69Message").style.display = "none";	
+	</script>
 	<center>UwU</center>
 	<br>
 	>Error69//lock_settings <br>
 	>lock_setting1 initialized
-	<script>
-		document.getElementById("error69Message").style.display = "none";	
-	</script>
 	</div>
 	
 	<div class="errorMessageAlignLeft" id="lowBatteryMessage">
-	>Your battery is low. Click "Charge Battery" text or Switcher-Roo logo or there will be 1 in 33 chance every 10 seconds, that error will happen.
 	<script>
 		document.getElementById("lowBatteryMessage").style.display = "none";	
 	</script>
+	>Your battery is low. Click "Charge Battery" text or Switcher-Roo logo or there will be 1 in 33 chance every 10 seconds, that error will happen.
 	</div>
 
 	<div class="errorMessageAlignLeft" id="mobileDeviceMessage">
-	>It appears you're using mobile device. If you're using Android you can download .apk version of this app that should look better on your device. Link is at bottom of the page.
 	<script>
 		document.getElementById("mobileDeviceMessage").style.display = "none";	
 	</script>
+	>It appears you're using mobile device. If you're using Android you can download .apk version of this app that should look better on your device. Link is at bottom of the page.
 	</div>	
-	
-	<script>
-	document.getElementById("errorMessageContainer").style.display = "none";	
-	</script>
-	
+		
 </div>
 
 <!-- Okay buttons to close errors -->
@@ -386,7 +386,7 @@ function error621ChangeSlider() {
 
 </div>
 
-<!-- Status bar ends begins here-->
+<!-- Status bar stuff ends here-->
 
 <div class="switcherLogo" onclick="batteryCharge()">
   <img src="images/logo.png" height="41" width="250" alt="logo"> 
@@ -1092,6 +1092,9 @@ function error621ChangeSlider() {
 </div>
 
 <div class="error621" id="error621">
+<script>
+document.getElementById("error621").style.display = "none";
+</script>
 <p style="font-size: 30px; margin: 20px">UwU</p> 
 
 Error621//multisliders//processing... <br>
@@ -1101,19 +1104,16 @@ reboot failed... <br>
 Please contact Switcher-Roo support for assistance
 <br><br><br>
 
-<script>
-document.getElementById("error621").style.display = "none";
-</script>
 </div>
 
 <div class="logOutMessage" id="logOutMessage">
+<script>
+document.getElementById("logOutMessage").style.display = "none";
+</script>
 <p style="font-size: 30px; margin: 20px">UwU</p> 
 You have been successfully logged out!<br><br>
 We hope you'll be back soon!
 <br><br><br>
-<script>
-document.getElementById("logOutMessage").style.display = "none";
-</script>
 </div>
   
 <div class="menuSlider" id="bodyType1Slider">
@@ -2169,6 +2169,10 @@ document.getElementById("COContainerSlot102").style.display='none';
 </div>
 -->
 
+<div class="applybutton" id="randomizeButton">
+<button class="apply" onclick="randomizeCharacter()">Randomize</button>
+</div>
+
 <div class="adminbutton" id="adminbutton">
 <button class="admin" onclick="enterPasswordFunction()">Admin Mode</button>
 </div>
@@ -2261,24 +2265,10 @@ document.getElementById("accessDenied").style.display='none';
 		</script>
 	</div>
 
-<div class="applybutton" id="triggerRLEButton">
-<button class="apply" onclick="remoteLoginError()">Trigger RLE</button>
+<div class="applybutton" id="goBack">
+<button class="apply" onclick="goBackFunction()">Go back</button>
 <script>
-document.getElementById("triggerRLEButton").style.display='none';  
-</script>
-</div>
-
-<div class="applybutton" id="triggerError69Button">
-<button class="apply" onclick="error69()">Trigger Error69</button>
-<script>
-document.getElementById("triggerError69Button").style.display='none';  
-</script>
-</div>
-
-<div class="applybutton" id="triggerError621Button">
-<button class="apply" onclick="error621()">Trigger Error621</button>
-<script>
-document.getElementById("triggerError621Button").style.display='none';  
+document.getElementById("goBack").style.display='none';  
 </script>
 </div>
 
@@ -2286,29 +2276,22 @@ document.getElementById("triggerError621Button").style.display='none';
 <button class="apply" onclick="showOptions()">Options</button>
 </div>
 
-<div class="applybutton" id="triggerErrors">
-<button class="apply" onclick="triggerErrorsFunction()">(Debug) Trigger errors manually</button>
-<script>
-document.getElementById("triggerErrors").style.display='none';  
-</script>
-</div>
-
-		<div class="optionsCheckboxes" id="disableBattery">
+		<div class="optionsCheckboxes" id="optionsList">
+		
 			<div>
-			<label class="container">Disable battery draining
-				<input type="checkbox" id="disableBatteryCheckbox" onclick="disableBatteryFuntion()">
+			<label class="container">Enable Randomizer
+				<input type="checkbox" id="randomizerCheckbox" onclick="toggleRandomizer()">
 				<span class="checkbox"></span>  
 			</label>
 			</div>
 			<br>
 			
 			<div>
-			<label class="container">Hide username button
-				<input type="checkbox" id="hideUsernameCheckbox" onclick="hideUsernameFuntion()">
+			<label class="container">Enable Inanimate Objects
+				<input type="checkbox" id="inanimateObjectsCheckbox" onclick="toggleInanimateObjectsMenu()">
 				<span class="checkbox"></span>  
 			</label>
 			</div>
-			
 			<br>
 			
 			<div>
@@ -2328,8 +2311,8 @@ document.getElementById("triggerErrors").style.display='none';
 			<br>
 			
 			<div>
-			<label class="container">Turn off user greetings
-				<input type="checkbox" id="hideUGCheckbox" onclick="toggleUserGreetings()">
+			<label class="container">Disable battery draining
+				<input type="checkbox" id="disableBatteryCheckbox" onclick="disableBatteryFuntion()">
 				<span class="checkbox"></span>  
 			</label>
 			</div>
@@ -2344,8 +2327,34 @@ document.getElementById("triggerErrors").style.display='none';
 			<br>
 			
 			<div>
-			<label class="container">Enable Inanimate Objects
-				<input type="checkbox" id="inanimateObjectsCheckbox" onclick="toggleInanimateObjectsMenu()">
+			<label class="container">Hide username button
+				<input type="checkbox" id="hideUsernameCheckbox" onclick="hideUsernameFuntion()">
+				<span class="checkbox"></span>  
+			</label>
+			</div>
+			
+			<br>
+			
+			<div>
+			<label class="container">Hide feedback button
+				<input type="checkbox" id="hideFeedbackCheckbox" onclick="hideFeedbackButton()">
+				<span class="checkbox"></span>  
+			</label>
+			</div>
+			
+			<br>
+			
+			<div>
+			<label class="container">Turn off user greetings
+				<input type="checkbox" id="hideUGCheckbox" onclick="toggleUserGreetings()">
+				<span class="checkbox"></span>  
+			</label>
+			</div>
+			<br>			
+			
+			<div>
+			<label class="container">Show Developer Menu Button
+				<input type="checkbox" id="devMenuCheckbox" onclick="toggleDevMenu()">
 				<span class="checkbox"></span>  
 			</label>
 			</div>
@@ -2366,26 +2375,46 @@ document.getElementById("triggerErrors").style.display='none';
 			<button type="button" class="buttonChangeBG" id="buttonBGCustomSet" onclick="changeBGCustom()">Set</button>				
 			
 			<script>
-			document.getElementById("disableBattery").style.display='none';  
+			document.getElementById("optionsList").style.display='none';  
 			document.getElementById("buttonBGCustomSet").style.visibility='hidden';  
 			document.getElementById("bgColorTextField").style.visibility='hidden'; 
 			</script>
 		</div>
 
-<div class="adminbutton" id="adminbutton2">
-<button class="admin" onclick="adminPermsOn()">Admin Mode</button>
+<div class="applybutton" id="goBackFromDevMenu">
+<button class="apply" onclick="goBackFromDevMenuFunction()">Go back</button>
 <script>
-document.getElementById("adminbutton2").style.display='none';  
+document.getElementById("goBackFromDevMenu").style.display='none';  
 </script>
 </div>
 
-<div class="applybutton" id="goBack">
-<button class="apply" onclick="goBackFunction()">Go back</button>
-<script>
-document.getElementById("goBack").style.display='none';  
-</script>
+<div class="applybutton" id="devMenuButton">
+<button class="apply" onclick="showDevMenu()">Developer Menu</button>
 </div>
 
+	<div id="devMenuOptions">
+	
+	<div class="applybutton" id="triggerRLEButton">
+	<button class="apply" onclick="remoteLoginError()">Trigger Remote Login Error</button>
+	</div>
+
+	<div class="applybutton" id="triggerError69Button">
+	<button class="apply" onclick="error69()">Trigger Error69</button>
+	</div>
+
+	<div class="applybutton" id="triggerError621Button">
+	<button class="apply" onclick="error621()">Trigger Error621</button>
+	</div>	
+	
+	<div class="applybutton" id="deleteLockPasswordButton">
+	<button class="apply" onclick="deleteLockPassword()">Delete Lock Password</button>
+	</div>	
+	
+		<script>
+		document.getElementById("devMenuOptions").style.display='none';  
+		</script>
+	</div>
+	
 <div class="applybutton" id="lockSettingsPasswordButton">
 <button class="apply" onclick="openLockSettingsPasswordMenu()">Lock Settings Password</button>
 </div>
@@ -2444,6 +2473,10 @@ document.getElementById("clearUsernameButton").style.display='none';
 <button class="apply" onclick="showCredits()">Show Credits</button>
 </div>
 
+<div class="applybutton" id="toggleFeedbackButton">
+<button class="apply" onclick="toggleFeedbackMenu()">Feedback</button>
+</div>
+
 <div class="applybutton" id="hideCreditsButton">
 <button class="apply" onclick="hideCredits()">Hide Credits</button>
 </div>
@@ -2456,49 +2489,92 @@ document.getElementById("hideCreditsButton").style.display='none';
 
 <div class="credits" id="credits">
 
+<a href="https://twitter.com/TyrooTweets">  
 <div class="creditsEntry">
 
 <div class="creditsText">
 App Design & Graphics <br> Tyroo
 </div>
-<div class="creditsAvatar">
-<a href="https://twitter.com/TyrooTweets">               
+<div class="creditsAvatar">             
 <img src="images/avatar_tyroo.jpg" width="70" height="70" class="avatar">
+</div>
+</div>
 </a>
-</div>
 
-</div>
-
+<a href="https://twitter.com/qtderg">  
 <div class="creditsEntry">
 
 <div class="creditsText">
 Programming <br> qtderg
 </div>
-<div class="creditsAvatar">
-<a href="https://twitter.com/qtderg">              
+<div class="creditsAvatar">            
 <img src="images/avatar_qtderg.png" width="70" height="70" class="avatar">
+</div>
+</div>
 </a>
-</div>
 
-</div>
-
+<a href="https://github.com/SRThrowaway">
 <div class="creditsEntry">
 
 <div class="creditsText">
 PWA Integration <br> SRThrowaway
 </div>
-<div class="creditsAvatar">
-<a href="https://github.com/SRThrowaway">               
+<div class="creditsAvatar">             
 <img src="images/avatar_srthrowaway.png" width="70" height="70" class="avatar">
-</a>
 </div>
 
 </div>
+</a>
 
 Sliders by <a href="https://dhtmlx.com/">DHTMLX</a> under GNU GPL<br>
-Ver 0.6.2.1k <!--Please use letters for versioning, unless update is small.--><br>
+Ver 0.6.2.1K2 <!--Please use letters for versioning, unless update is small.--><br>
 <a href="changelog.html">Changelog</a>
 </div>
+
+
+<div class="feedback" id="feedback">
+
+<a href="https://github.com/QTDerg/switcher-roo/issues/1"> 
+<div class="creditsEntry">
+
+<div class="creditsText">
+Feedback Thread <br> on Github
+</div>
+<div class="creditsAvatar">              
+<img src="images/githubLogo.png" width="70" height="70" class="avatar">
+</div>
+</div>
+
+</a>
+
+<a href="https://twitter.com/qtderg">  
+<div class="creditsEntry">
+
+<div class="creditsText">
+DM me on <br> Twitter
+</div>
+<div class="creditsAvatar">            
+<img src="images/Twitter_Logo_WhiteOnBlue.png" width="70" height="70" class="avatar">
+</div>
+</div>
+
+</a>
+
+<a href="https://www.reddit.com/message/compose?to=qtderg&subject=Switcher-Roo Feedback"> 
+<div class="creditsEntry">
+
+<div class="creditsText">
+DM me on <br> Reddit
+</div>
+<div class="creditsAvatar">              
+<img src="images/Reddit_Mark_OnDark.png" width="70" height="70" class="avatar">
+</div>
+
+</div>
+</a>
+
+</div>
+
 
 <div class="footerContainer">
 
@@ -2506,18 +2582,12 @@ Ver 0.6.2.1k <!--Please use letters for versioning, unless update is small.--><b
 
 <div class="githubSource">
 <a href="https://github.com/QTDerg/switcher-roo">
-<img src="images/githubSource.png" width="70" height="70">
-</a>
-</div>
-
-<div class="githubSource">
-<a href="https://github.com/QTDerg/switcher-roo/issues/1">
-<img src="images/githubFeedback.png" width="70" height="70">
+<img src="images/githubSource.png" width="160" height="60">
 </a>
 </div>
 
 
-<div class="addToDevice" onclick="pwaInstall">
+<div class="addToDevice">
 <a href="guide.html">
 <img src="images/addToDevice.png" width="175" height="70">
 </a>
@@ -2655,11 +2725,14 @@ setBGColorOnInit();
 loadCustomSlidersOnStartup();
 setContainersHeightToZero();
 lockSettingsOnStartup();
-checkboxPasswordOnStartup();
+checkPasswordOnStartup();
 loadCustomSpeciesOnStartup();
 loadInanimateObjectsOnStartup();
 showOrHideInanimateObjectsMenu();
 loadInanimateObjectStatus();
+showOrHideRandomizerButton();
+showOrHideDevMenu();
+showOrHideFeedbackButton();
 
 </script>				
 

@@ -44,6 +44,37 @@ function toggleCustomObjectsMenu() {
 		x.style.maxHeight = "0px";
 	}
 }
+
+function toggleFeedbackMenu() {
+	var x = document.getElementById("feedback");
+	if (x.style.maxHeight === "0px") {
+		x.style.borderTop = "3px solid #73728C";
+		x.style.maxHeight = "250px";
+		x.style.marginTop = "10px";
+	} else {
+		x.style.borderTop = "0";
+		x.style.maxHeight = "0px";
+		x.style.marginTop = "0px";
+	}
+}
+
+function showCredits() {
+	var c = document.getElementById("credits");
+	c.style.borderTop = "3px solid #73728C";
+	c.style.maxHeight = "331px";
+	c.style.marginTop = "10px";
+	document.getElementById("hideCreditsButton").style.display='block';
+	document.getElementById("showCreditsButton").style.display='none';
+}
+
+function hideCredits() {
+	var c = document.getElementById("credits");
+	c.style.borderTop = "0";
+	c.style.maxHeight = "0px";
+	c.style.marginTop = "0px";
+	document.getElementById("hideCreditsButton").style.display='none';
+	document.getElementById("showCreditsButton").style.display='block';	
+}
 	
 function setContainersHeightToZero() {
 	document.getElementById("AdvancedSettingsContainer").style.maxHeight='0px';
@@ -53,6 +84,10 @@ function setContainersHeightToZero() {
 	document.getElementById("CustomSpeciesContainer").style.maxHeight='0px';
 	document.getElementById("defineInanimateObjectsContainer").style.maxHeight='0px';
 	document.getElementById("AdvancedSettingsContainer").style.display='block';
+	var c = document.getElementById("feedback");
+	c.style.borderTop = "0";
+	c.style.maxHeight = "0px";
+	c.style.marginTop = "0px";
 }
 	
 function changeCoverageWait() {
@@ -405,24 +440,6 @@ function breastSizeFemaleFunction() {
 		document.getElementById("showAdvancedSettings4a").style.display = "none";  
 	}
 
-function showCredits() {
-	var c = document.getElementById("credits");
-	c.style.borderTop = "3px solid #73728C";
-	c.style.maxHeight = "331px";
-	c.style.marginTop = "10px";
-	document.getElementById("hideCreditsButton").style.display='block';
-	document.getElementById("showCreditsButton").style.display='none';
-}
-
-function hideCredits() {
-	var c = document.getElementById("credits");
-	c.style.borderTop = "0";
-	c.style.maxHeight = "0px";
-	c.style.marginTop = "0px";
-	document.getElementById("hideCreditsButton").style.display='none';
-	document.getElementById("showCreditsButton").style.display='block';	
-}
-
 function enterPasswordFunction(){
 document.getElementById("adminbutton").style.display='none';  
 document.getElementById("enterPassword").style.display='block';  
@@ -573,19 +590,14 @@ function hideLowBatteryMessage(){
 
 function showOptions() {
 		document.getElementById("preferences").style.display = "none";
-		document.getElementById("triggerErrors").style.display = "block";
 		document.getElementById("goBack").style.display = "block";		
-		document.getElementById("disableBattery").style.display='block';  
+		document.getElementById("optionsList").style.display='block';  
 	}
 	
 function goBackFunction() {
 		document.getElementById("preferences").style.display = "block";
-		document.getElementById("triggerErrors").style.display = "none";
 		document.getElementById("goBack").style.display = "none";		
-		document.getElementById("disableBattery").style.display='none';  
-		document.getElementById("triggerRLEButton").style.display = "none";
-		document.getElementById("triggerError69Button").style.display = "none";
-		document.getElementById("triggerError621Button").style.display = "none";
+		document.getElementById("optionsList").style.display='none';  
 	}
 	
 function triggerErrorsFunction() {
@@ -1545,6 +1557,31 @@ function hideUsernameFuntion() {
 		var tickbox = "No"
 		localStorage.setItem("Username_Button_Hidden", tickbox);
 		document.getElementById("usernameButton").style.display='block';
+	}
+}
+
+function hideFeedbackButton() {
+	var tickbox = document.getElementById("hideFeedbackCheckbox");
+	if (tickbox.checked) {
+		var tickbox = "Yes"
+		localStorage.setItem("Feedback_Button_Hidden", tickbox);
+		document.getElementById("toggleFeedbackButton").style.display='none'; 
+	}
+	else {
+		var tickbox = "No"
+		localStorage.setItem("Feedback_Button_Hidden", tickbox);
+		document.getElementById("toggleFeedbackButton").style.display='block';
+	}
+}
+
+function showOrHideFeedbackButton() {
+	var yesorno = localStorage.getItem("Feedback_Button_Hidden");
+	if (yesorno === "Yes") {
+		document.getElementById("toggleFeedbackButton").style.display='none';
+		document.getElementById("hideFeedbackCheckbox").checked = true;		
+	}
+	else {
+		document.getElementById("toggleFeedbackButton").style.display='block';	
 	}
 }
 
@@ -2525,7 +2562,7 @@ function changeLockSettingsPassword() {
 	}
 }
 
-function checkboxPasswordOnStartup() {
+function checkPasswordOnStartup() {
 	var enabled = localStorage.getItem("Lock_Settings_Password_Enabled");
 	if (enabled === "Yes") {
 		passwordCheckbox = document.getElementById("EnableLockSettingsPasswordCheckbox");
@@ -3188,4 +3225,195 @@ function loadInanimateObjectStatus() {
 		else {
 			document.getElementById('inanimateObjectsCurrent').innerHTML = object;
 		}	
+}
+
+function randomizeCharacter() {
+	// Species
+	var rng = Math.floor(Math.random() * 100) + 1;
+	if (rng <= 90) {
+		// Most Popular Species
+		var array = ["Arctic Fox", "Bat", "Bear", "Cat", "Cheetah", "Coyote", "Deer",
+		"Dog", "Dragon", "Fennec", "Fox", "Horse", "Hyena", "Kangaroo", "Lion", "Lynx",
+		"Otter","Panther", "Protogen", "Rabbit", "Raccoon", "Sergal", "Shark", "Skunk",
+		"Snow Leopard",	"Synth", "Tiger", "Wolf"];
+		Species = array[Math.floor(Math.random() * array.length)];
+		document.getElementById('speciesCurrent').innerHTML = Species;
+	}
+	else {
+		// Other Species
+		var array = ["Avian", "Bird", "Crow", "Eagle", "Gryphon", "Owl", "Penguin"
+		, "Phoenix", "Raven", "Hawk", "Bison", "Buffalo", "Bull", "Cow", "African Wild Dog"
+		, "Ethiopian Wolf", "Fennec Fox", "Folf", "Husky", "Maned Wolf", "Werewolf", "Reindeer", "Elk"
+		, "Moose", "Donkey", "Pegasus", "Pony", "Unicorn", "Zebra", "Caracal", "Cougar"
+		, "Jaguar", "Khajiit", "Leopard", "Liger", "Serval", "Argonian", "Jackalope", "Jex"
+		, "Kitsune", "Kobold", "Tanuki", "Chimera", "Foxcoon", "Manokit", "Wox", "Wusky"
+		, "Pika", "Hare", "Koala", "Opossum", "Possum", "Badger", "Ferret", "Marten"
+		, "Weasel", "Alligator", "Crocodile", "Dinosaur", "Iguana", "Raptor", "Snake", "Turtle"
+		, "Beaver", "Hamster", "Mouse", "Porcupine", "Rat", "Squirrel", "Gazelle", "Giraffe"
+		, "Goat", "Llama", "Pig", "Sheep"];
+		Species = array[Math.floor(Math.random() * array.length)];
+		document.getElementById('speciesCurrent').innerHTML = Species;
+	}
+	// Sex
+	var rng = Math.floor(Math.random() * 2) + 1;
+	if (rng == 1) {
+		changeSexToFemale();
+	}
+	else {
+		changeSexToMale();
+	}
+	
+	// Adapt Clothing Checkbox
+	var tickbox = document.getElementById("adaptClothingCheckbox");
+	var rng = Math.floor(Math.random() * 2) + 1;
+	if (rng == 1) {
+		tickbox.checked = false;
+	}
+	else {
+		tickbox.checked = true;
+	}
+	
+	// Masculine/Feminine
+	var rng = Math.floor(Math.random() * 100) + 1;
+	mySlider6.setValue(rng);
+	
+	// Thin/Thicc
+	var rng = Math.floor(Math.random() * 100) + 1;
+	mySlider5.setValue(rng);
+	
+	// Smol/Tall
+	var rng = Math.floor(Math.random() * 100) + 1;
+	mySlider4.setValue(rng);
+	
+	// Custom Slider 1
+	var rng = Math.floor(Math.random() * 100) + 1;
+	mySlider17.setValue(rng);
+	
+	// Custom Slider 2
+	var rng = Math.floor(Math.random() * 100) + 1;
+	mySlider18.setValue(rng);
+	
+	// Custom Slider 3
+	var rng = Math.floor(Math.random() * 100) + 1;
+	mySlider19.setValue(rng);
+	
+	// Breast Size Female
+	var rng = Math.floor(Math.random() * 100) + 1;
+	mySlider8.setValue(rng);
+	
+	// Breast Size Male
+	var rng = Math.floor(Math.random() * 100) + 1;
+	mySlider9.setValue(rng);
+	
+	// Butt Size
+	var rng = Math.floor(Math.random() * 100) + 1;
+	mySlider13.setValue(rng);
+	
+	// Belly Size
+	var rng = Math.floor(Math.random() * 100) + 1;
+	mySlider14.setValue(rng);
+	
+	// Belly Shape
+	var rng = Math.floor(Math.random() * 100) + 1;
+	mySlider15.setValue(rng);
+	
+	// Hips
+	var rng = Math.floor(Math.random() * 100) + 1;
+	mySlider3.setValue(rng);
+	
+	// Genital Size
+	var rng = Math.floor(Math.random() * 100) + 1;
+	mySlider2.setValue(rng);
+	
+	// Libido
+	var rng = Math.floor(Math.random() * 100) + 1;
+	mySlider7.setValue(rng);
+	
+	// Sensitivity
+	var rng = Math.floor(Math.random() * 100) + 1;
+	mySlider11.setValue(rng);
+	
+	// Demeanor
+	var rng = Math.floor(Math.random() * 100) + 1;
+	mySlider12.setValue(rng);
+	
+	// Position Preference
+	var rng = Math.floor(Math.random() * 100) + 1;
+	mySlider10.setValue(rng);
+	
+	// Intelligence
+	var rng = Math.floor(Math.random() * 100) + 1;
+	mySlider16.setValue(rng);
+	
+	// Fluffiness
+	var rng = Math.floor(Math.random() * 100) + 1;
+	mySlider.setValue(rng);
+	
+	saveSettingsSlot0();
+}
+
+function showOrHideRandomizerButton() {
+	var yesorno = localStorage.getItem("Randomizer_Enabled");
+	if (yesorno === "Yes") {
+		document.getElementById("randomizeButton").style.display='block';
+		document.getElementById("randomizerCheckbox").checked = true;		
+	}
+	else {
+		document.getElementById("randomizeButton").style.display='none';	
+	}
+}
+
+function toggleRandomizer() {
+	var tickbox = document.getElementById("randomizerCheckbox");
+		if (tickbox.checked) {
+			var tickbox = "Yes"
+			localStorage.setItem("Randomizer_Enabled", tickbox);
+			document.getElementById("randomizeButton").style.display='block';
+		}
+		else {
+			var tickbox = "No"
+			localStorage.setItem("Randomizer_Enabled", tickbox);
+			document.getElementById("randomizeButton").style.display='none';
+		}
+}
+
+function showOrHideDevMenu() {
+	var yesorno = localStorage.getItem("DevMenu_Enabled");
+	if (yesorno === "Yes") {
+		document.getElementById("devMenuButton").style.display='block';
+		document.getElementById("devMenuCheckbox").checked = true;		
+	}
+	else {
+		document.getElementById("devMenuButton").style.display='none';	
+	}
+}
+
+function toggleDevMenu() {
+	var tickbox = document.getElementById("devMenuCheckbox");
+		if (tickbox.checked) {
+			var tickbox = "Yes"
+			localStorage.setItem("DevMenu_Enabled", tickbox);
+			document.getElementById("devMenuButton").style.display='block';
+		}
+		else {
+			var tickbox = "No"
+			localStorage.setItem("DevMenu_Enabled", tickbox);
+			document.getElementById("devMenuButton").style.display='none';
+		}
+}
+
+function showDevMenu() {
+		document.getElementById("devMenuButton").style.display = "none";
+		document.getElementById("goBackFromDevMenu").style.display = "block";		
+		document.getElementById("devMenuOptions").style.display='block';  
+	}
+	
+function goBackFromDevMenuFunction() {
+		document.getElementById("devMenuButton").style.display = "block";
+		document.getElementById("goBackFromDevMenu").style.display = "none";		
+		document.getElementById("devMenuOptions").style.display='none';  
+	}
+	
+function deleteLockPassword() {
+	localStorage.removeItem("Current_Password");	
 }
