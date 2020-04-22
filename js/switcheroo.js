@@ -49,7 +49,7 @@ function toggleFeedbackMenu() {
 	var x = document.getElementById("feedback");
 	if (x.style.maxHeight === "0px") {
 		x.style.borderTop = "3px solid #73728C";
-		x.style.maxHeight = "250px";
+		x.style.maxHeight = "254px";
 		x.style.marginTop = "10px";
 	} else {
 		x.style.borderTop = "0";
