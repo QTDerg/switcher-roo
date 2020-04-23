@@ -3273,9 +3273,81 @@ function randomizeCharacter() {
 		tickbox.checked = true;
 	}
 	
+	// Determine femininity/masculinity of a character
+	var bodytype = Math.floor(Math.random() * 100) + 1;
+	// Set sliders with feminine/masculine traits from -20 to -5 or 5 to 20 around that value
+	var range = 15;
+	var threshold = 5;
 	// Masculine/Feminine
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider6.setValue(rng);
+	var value = Math.floor(Math.random() * range) + threshold;
+	var addOrSubstract = Math.floor(Math.random() * 2) + 1;
+	if (addOrSubstract == 1) {
+		// Add value
+		var sliderValue = bodytype + value;		
+	}
+	else {
+		// Substract value
+		var sliderValue = bodytype - value;	
+	}
+	// Sliders have range of 0 to 100 so if value is under or over this range it needs to be normalized
+	if (sliderValue > 100) {
+		sliderValue = 100;
+	}
+	else if (sliderValue < 0) {
+		sliderValue = 0;
+	}
+	mySlider6.setValue(sliderValue);
+	
+	// Breast Size Female
+	var value = Math.floor(Math.random() * range) + threshold;
+	var addOrSubstract = Math.floor(Math.random() * 2) + 1;
+	if (addOrSubstract == 1) {
+		var sliderValue = bodytype + value;		
+	}
+	else {
+		var sliderValue = bodytype - value;	
+	}
+	if (sliderValue > 100) {
+		sliderValue = 100;
+	}
+	else if (sliderValue < 0) {
+		sliderValue = 0;
+	}
+	mySlider8.setValue(sliderValue);
+	
+	// Butt Size
+	var value = Math.floor(Math.random() * range) + threshold;
+	var addOrSubstract = Math.floor(Math.random() * 2) + 1;
+	if (addOrSubstract == 1) {
+		var sliderValue = bodytype + value;		
+	}
+	else {
+		var sliderValue = bodytype - value;	
+	}
+	if (sliderValue > 100) {
+		sliderValue = 100;
+	}
+	else if (sliderValue < 0) {
+		sliderValue = 0;
+	}
+	mySlider13.setValue(sliderValue);
+	
+	// Hips
+	var value = Math.floor(Math.random() * range) + threshold;
+	var addOrSubstract = Math.floor(Math.random() * 2) + 1;
+	if (addOrSubstract == 1) {
+		var sliderValue = bodytype + value;		
+	}
+	else {
+		var sliderValue = bodytype - value;	
+	}
+	if (sliderValue > 100) {
+		sliderValue = 100;
+	}
+	else if (sliderValue < 0) {
+		sliderValue = 0;
+	}
+	mySlider3.setValue(sliderValue);	
 	
 	// Thin/Thicc
 	var rng = Math.floor(Math.random() * 100) + 1;
@@ -3296,19 +3368,11 @@ function randomizeCharacter() {
 	// Custom Slider 3
 	var rng = Math.floor(Math.random() * 100) + 1;
 	mySlider19.setValue(rng);
-	
-	// Breast Size Female
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider8.setValue(rng);
-	
+		
 	// Breast Size Male
 	var rng = Math.floor(Math.random() * 100) + 1;
 	mySlider9.setValue(rng);
-	
-	// Butt Size
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider13.setValue(rng);
-	
+		
 	// Belly Size
 	var rng = Math.floor(Math.random() * 100) + 1;
 	mySlider14.setValue(rng);
@@ -3316,10 +3380,6 @@ function randomizeCharacter() {
 	// Belly Shape
 	var rng = Math.floor(Math.random() * 100) + 1;
 	mySlider15.setValue(rng);
-	
-	// Hips
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider3.setValue(rng);
 	
 	// Genital Size
 	var rng = Math.floor(Math.random() * 100) + 1;
