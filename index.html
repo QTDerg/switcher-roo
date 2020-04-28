@@ -1429,8 +1429,146 @@ We hope you'll be back soon!
 		</div>
 			
 	</div>
+	
+	
+	
+<div class="menuInanimateObjects" id="hairColorMenu">
+
+	<div class="speciesText">
+	Hair Color
+	</div>
+
+	<div class="selectMenuContainer">
+	
+	<div class="lines">
+		<img src="images/lines.png" height="15" width="20"> 
+	</div>
+	
+	<div class="speciesContainer" id="hairColorContainer">
+		
+		<div class="speciesCurrentContainer" id="hairColorCurrentContainer" onClick="hairColorLoadList();">
+		
+			<div class="speciesCurrent" id="hairColorCurrent">
+				Default
+			</div>
+				
+			<div class="speciesSelectTriangle">
+				<img src="images/speciesSelectTriangle.png"> 
+			</div>
+			
+		</div>
+		
+		<!--
+  _   _       _         ____      _                
+ | | | | __ _(_)_ __   / ___|___ | | ___  _ __ ___ 
+ | |_| |/ _` | | '__| | |   / _ \| |/ _ \| '__/ __|
+ |  _  | (_| | | |    | |__| (_) | | (_) | |  \__ \
+ |_| |_|\__,_|_|_|     \____\___/|_|\___/|_|  |___/
+                                                   
+		-->
+		
+		<div class="speciesCategorySelectorContainer" id="hairColorSelectorContainer">
+		
+			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromhairColorList();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" onClick="goToPredefinedHairColorsCategory();"><div class="speciesCategoryText">Predefined</div></div>
+			<div class="speciesCategory" onClick="sethairColorToCustom('Slot_One');"><div id="hairColorEntry1" class="speciesCategoryText">Empty</div><div id="customHairColorSwatch1" class="hairColorSwatchCustom"></div></div>
+			<div class="speciesCategory" onClick="sethairColorToCustom('Slot_Two');"><div id="hairColorEntry2" class="speciesCategoryText">Empty</div><div id="customHairColorSwatch2" class="hairColorSwatchCustom"></div></div>
+			<div class="speciesCategory" onClick="sethairColorToCustom('Slot_Three');"><div id="hairColorEntry3" class="speciesCategoryText">Empty</div><div id="customHairColorSwatch3" class="hairColorSwatchCustom"></div></div>
+			<div class="speciesCategory" onClick="sethairColorToCustom('Slot_Four');"><div id="hairColorEntry4" class="speciesCategoryText">Empty</div><div id="customHairColorSwatch4" class="hairColorSwatchCustom"></div></div>
+			<div class="speciesCategory" onClick="sethairColorToCustom('Slot_Five');"><div id="hairColorEntry5" class="speciesCategoryText">Empty</div><div id="customHairColorSwatch5" class="hairColorSwatchCustom"></div></div>
+			<div class="speciesCategory" onClick="sethairColorToCustom('Slot_Six');"><div id="hairColorEntry6" class="speciesCategoryText">Empty</div><div id="customHairColorSwatch6" class="hairColorSwatchCustom"></div></div>
+			<div class="speciesCategory" onClick="sethairColorToCustom('Slot_Seven');"><div id="hairColorEntry7" class="speciesCategoryText">Empty</div><div id="customHairColorSwatch7" class="hairColorSwatchCustom"></div></div>
+			<div class="speciesCategory" onClick="sethairColorToCustom('Slot_Eight');"><div id="hairColorEntry8" class="speciesCategoryText">Empty</div><div id="customHairColorSwatch8" class="hairColorSwatchCustom"></div></div>
+			<div class="speciesCategory" onClick="sethairColorToCustom('Slot_Nine');"><div id="hairColorEntry9" class="speciesCategoryText">Empty</div><div id="customHairColorSwatch9" class="hairColorSwatchCustom"></div></div>
+			<div class="speciesCategoryLast" onClick="sethairColorToCustom('Slot_Ten');"><div id="hairColorEntry10" class="speciesCategoryText">Empty</div><div id="customHairColorSwatch10" class="hairColorSwatchCustom"></div></div>
+			
+		</div>
+		
+		<!--
+  ____               _       __ _                _ 
+ |  _ \ _ __ ___  __| | ___ / _(_)_ __   ___  __| |
+ | |_) | '__/ _ \/ _` |/ _ \ |_| | '_ \ / _ \/ _` |
+ |  __/| | |  __/ (_| |  __/  _| | | | |  __/ (_| |
+ |_|   |_|  \___|\__,_|\___|_| |_|_| |_|\___|\__,_|
+                                                   
+		-->
+		
+		<div class="speciesSelector" id="hairColorSelectorPredefined">
+		
+			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromPredefinedHairColorsCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategoryButtonEnd"><div class="categoryText">⥢</div></div>
+			<div class="speciesCategoryName"><div class="categoryText">Predefined</div></div>
+			<div class="speciesCategoryButtonEnd"><div class="categoryText">⥤</div></div>
+			<div class="speciesEntryLeft" onClick="setHairColorTo('Black', '#090806');"><div class="speciesEntryText">Black<div class="hairColorSwatchPrefefined swatchBlack"></div></div></div>
+			<div class="speciesEntryRight" onClick="setHairColorTo('Blonde 1', '#dccbba');"><div class="speciesEntryText">Blonde 1<div class="hairColorSwatchPrefefined swatchBlonde1"></div></div></div>
+			<div class="speciesEntryLeft" onClick="setHairColorTo('Blonde 2', '#debc99');"><div class="speciesEntryText">Blonde 2<div class="hairColorSwatchPrefefined swatchBlonde2"></div></div></div>
+			<div class="speciesEntryRight" onClick="setHairColorTo('Blonde 3', '#e9d0bc');"><div class="speciesEntryText">Blonde 3<div class="hairColorSwatchPrefefined swatchBlonde3"></div></div></div>
+			<div class="speciesEntryLeft" onClick="setHairColorTo('Brown 1', '#5a4545');"><div class="speciesEntryText">Brown 1<div class="hairColorSwatchPrefefined swatchBrown1"></div></div></div>
+			<div class="speciesEntryRight" onClick="setHairColorTo('Brown 2', '#6a4e42');"><div class="speciesEntryText">Brown 2<div class="hairColorSwatchPrefefined swatchBrown2"></div></div></div>
+			<div class="speciesEntryLeft" onClick="setHairColorTo('Brown 3', '#a7856a');"><div class="speciesEntryText">Brown 3<div class="hairColorSwatchPrefefined swatchBrown3"></div></div></div>
+			<div class="speciesEntryRight" onClick="setHairColorTo('Gray 1', '#71635a');"><div class="speciesEntryText">Gray 1<div class="hairColorSwatchPrefefined swatchGray1"></div></div></div>
+			<div class="speciesEntryLeft" onClick="setHairColorTo('Gray 2', '#b7a69e');"><div class="speciesEntryText">Gray 2<div class="hairColorSwatchPrefefined swatchGray2"></div></div></div>
+			<div class="speciesEntryRight" onClick="setHairColorTo('Gray 3', '#d6c4c2');"><div class="speciesEntryText">Gray 3<div class="hairColorSwatchPrefefined swatchGray3"></div></div></div>
+			<div class="speciesEntryLeft" onClick="setHairColorTo('Red 1', '#8d4a43');"><div class="speciesEntryText">Red 1<div class="hairColorSwatchPrefefined swatchRed1"></div></div></div>
+			<div class="speciesEntryRight" onClick="setHairColorTo('Red 2', '#b55239');"><div class="speciesEntryText">Red 2<div class="hairColorSwatchPrefefined swatchRed2"></div></div></div>
+			<div class="speciesEntryLeft" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryRight" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryLeft" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryRight" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryLeft" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryRight" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryLeft" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryRight" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryLeft" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryRight" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryLeft" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryRight" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryLeft" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryRight" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryLeftLast" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryRightLast" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>			
+			
+		</div>
+	
+	</div>
+	
+	<div class="hairColorSwatchCurrent" id="hairColorSwatch" onClick="hairColorLoadList();">
+
+	</div>
+</div> 
+
+</div>
+
+<script>
+	document.getElementById("hairColorSelectorContainer").style.display = "none";
+	document.getElementById("hairColorSelectorPredefined").style.display = "none";
+</script>
  
 
+	<div class="menuSlider" id="hairLenghtSlider">
+		<div class="linesMenuSlider">
+			<img src="images/lines.png" height="17" width="23"> 
+			</div>
+			
+			<div class="textinmenuLeft">
+			Short	
+			</div>
+	
+			<div class="textinmenuCenter">
+			Hair Lenght
+			</div>
+	
+			<div class="textinmenuRight">
+			Long
+			</div>
+
+		<div id="sliderhairlenght" class="slider">			
+			 <script>
+				var mySlider20 = new dhtmlXSlider(sliderhairlenght, 315, null, false, 0, 100, 50, 1);				
+			</script>
+		</div>
+			
+	</div>
   
  
 	<div class="menuSlider" id="genitalSizeSlider">
@@ -1456,7 +1594,7 @@ We hope you'll be back soon!
 			</script>
 		</div>
 			
-	</div>	
+	</div>
 	
 	<div class="species menuSlider" id="cockTypeMenu">
 	
@@ -1617,34 +1755,80 @@ We hope you'll be back soon!
 			
 	</div>
 	
-	<div class="menuSlider" id="fluffinessSlider">
-			<div class="linesMenuSlider">
-				<img src="images/lines.png" height="17" width="23"> 
-			</div>
-			
-			<div class="textinmenuLeft">
-			Short-Hair	
-			</div>
+	<div class="menuSlider" id="sexualitySlider">
+		<div class="linesMenuSlider">
+			<img src="images/lines.png" height="17" width="23"> 
+		</div>
+		
+		<div class="textinmenuLeft">
+		Straight
+		</div>
 	
-			<div class="textinmenuCenter">
-			Fluffiness
-			</div>
+		<div class="textinmenuCenter">
+		Sexuality
+		</div>
 	
-			<div class="textinmenuRight">
-			Fluff-ball
-			</div>
-			
-			<div id="sliderfluff" class="slider">			
-				<script>
-				var mySlider = new dhtmlXSlider(sliderfluff, 315, null, false, 0, 100, 50, 1);				
-				</script>
-			</div>
+		<div class="textinmenuRight">
+		Gay
+		</div>
+				
+		<div id="sliderSexuality" class="slider">			
+			 <script>
+				var mySlider21 = new dhtmlXSlider(sliderSexuality, 315, null, false, 0, 100, 50, 1);							
+			</script>
+		</div>
 			
 	</div>
-
-	<script>
-	//	document.getElementById("AdvancedSettingsContainer").style.display='none';  
-	</script>
+	
+	<div class="menuSlider" id="fluffinessSlider">
+		<div class="linesMenuSlider">
+			<img src="images/lines.png" height="17" width="23"> 
+		</div>
+			
+		<div class="textinmenuLeft">
+		Short-Hair	
+		</div>
+	
+		<div class="textinmenuCenter">
+		Fluffiness
+		</div>
+	
+		<div class="textinmenuRight">
+		Fluff-ball
+		</div>
+		
+		<div id="sliderfluff" class="slider">			
+			<script>
+			var mySlider = new dhtmlXSlider(sliderfluff, 315, null, false, 0, 100, 50, 1);				
+			</script>
+		</div>
+			
+	</div>
+	
+	<div class="menuSlider" id="feralAnthroSlider">
+		<div class="linesMenuSlider">
+			<img src="images/lines.png" height="17" width="23"> 
+		</div>
+			
+		<div class="textinmenuLeft">
+		Feral	
+		</div>
+	
+		<div class="textinmenuCenter">
+		&nbsp;
+		</div>
+	
+		<div class="textinmenuRight">
+		Anthro
+		</div>
+		
+		<div id="sliderferalanthro" class="slider">			
+			<script>
+			var mySlider22 = new dhtmlXSlider(sliderferalanthro, 315, null, false, 0, 100, 50, 1);				
+			</script>
+		</div>
+			
+	</div>
 	
 </div>
 
@@ -1655,7 +1839,7 @@ We hope you'll be back soon!
 			<img src="images/arrow.png" height="17" width="23">
 	</div>
 	
-	&nbsp;&nbsp;Add/Remove Sliders
+	&nbsp;&nbsp;Configure Advanced Settings
 </div>
 
 <div id="addRemoveSlidersContainer">
@@ -1691,6 +1875,24 @@ We hope you'll be back soon!
 
 		<label class="container">Hips
 			<input type="checkbox" id="hipsSliderCheckbox" onClick="toggleHipsSlider()">
+			<span class="checkbox"></span>  
+		</label>
+		
+	</div>
+	
+	<div class="option">
+
+		<label class="container">Hair Color
+			<input type="checkbox" id="hairColorMenuCheckbox" onClick="toggleHairColorMenu()">
+			<span class="checkbox"></span>  
+		</label>
+		
+	</div>
+	
+	<div class="option">
+
+		<label class="container">Hair Lenght
+			<input type="checkbox" id="hairLenghtSliderCheckbox" onClick="toggleHairLenghtSlider()">
 			<span class="checkbox"></span>  
 		</label>
 		
@@ -1758,6 +1960,15 @@ We hope you'll be back soon!
 		</label>
 		
 	</div>
+	
+	<div class="option">
+
+		<label class="container">Sexuality
+			<input type="checkbox" id="sexualitySliderCheckbox" onClick="toggleSexualitySlider()">
+			<span class="checkbox"></span>  
+		</label>
+		
+	</div>
 
 	<div class="option">
 
@@ -1767,9 +1978,16 @@ We hope you'll be back soon!
 		</label>
 		
 	</div>	
-<script>
-//	document.getElementById("addRemoveSlidersContainer").style.display='none';  
-</script>	
+	
+	<div class="option">
+
+		<label class="container">Feral/Anthro
+			<input type="checkbox" id="feralAnthroSliderCheckbox" onClick="toggleFeralAnthroSlider()">
+			<span class="checkbox"></span>  
+		</label>
+		
+	</div>	
+	
 </div>
 
 <div class="menuAS" id="advancedSettings3" onclick="toggleCustomSlidersMenu()">
@@ -2161,6 +2379,168 @@ document.getElementById("COContainerSlot92").style.display='none';
 document.getElementById("COContainerSlot102").style.display='none';
 </script>
 
+<div class="menuAS" id="advancedSettings6" onclick="toggleHairColorsMenu()">
+	<div class="linesAS">
+			<img src="images/lines.png" height="17" width="23"> 
+			&nbsp;
+			<img src="images/arrow.png" height="17" width="23">
+	</div>
+	
+	&nbsp;&nbsp;Define Hair Colors
+</div>
+
+<div id="defineHairColorsContainer">
+
+	<div id="hairColorTutorial">
+	Value | Name eg. #843acf | Purple
+	</div>
+
+	<div id="CHContainerSlot11"> <!-- Custom Hair Container Slot 1-1 -->
+		<div class="CSSlotDiv">Slot 1 -&nbsp;</div>
+		<div class="CSNameDiv" id="hairColorName1">HairColor</div>
+		<button type="button" class="buttonOpenLock" id="buttonCHSlot1" onclick="changeCHSlot1()">Change</button>
+	</div>
+	
+	<div id="CHContainerSlot12"> <!-- Custom Hair Container Slot 1-2 -->
+		<input id="hairColorValueSlot1TextField" class="hairColorTextField" value="">
+		<input id="hairColorNameSlot1TextField" class="hairColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCHSlot1()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCHSlot1()">Go Back</button>
+	</div>
+	
+	<div id="CHContainerSlot21">
+		<div class="CSSlotDiv">Slot 2 -&nbsp;</div>
+		<div class="CSNameDiv" id="hairColorName2">HairColor</div>
+		<button type="button" class="buttonOpenLock" id="buttonCHSlot2" onclick="changeCHSlot2()">Change</button>
+	</div>
+	
+	<div id="CHContainerSlot22">
+		<input id="hairColorValueSlot2TextField" class="hairColorTextField" value="">
+		<input id="hairColorNameSlot2TextField" class="hairColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCHSlot2()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCHSlot2()">Go Back</button>
+	</div>
+	
+	<div id="CHContainerSlot31">
+		<div class="CSSlotDiv">Slot 3 -&nbsp;</div>
+		<div class="CSNameDiv" id="hairColorName3">HairColor</div>
+		<button type="button" class="buttonOpenLock" id="buttonCHSlot3" onclick="changeCHSlot3()">Change</button>
+	</div>
+	
+	<div id="CHContainerSlot32">
+		<input id="hairColorValueSlot3TextField" class="hairColorTextField" value="">
+		<input id="hairColorNameSlot3TextField" class="hairColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCHSlot3()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCHSlot3()">Go Back</button>
+	</div>
+	
+	<div id="CHContainerSlot41">
+		<div class="CSSlotDiv">Slot 4 -&nbsp;</div>
+		<div class="CSNameDiv" id="hairColorName4">HairColor</div>
+		<button type="button" class="buttonOpenLock" id="buttonCHSlot4" onclick="changeCHSlot4()">Change</button>
+	</div>
+	
+	<div id="CHContainerSlot42">
+		<input id="hairColorValueSlot4TextField" class="hairColorTextField" value="">
+		<input id="hairColorNameSlot4TextField" class="hairColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCHSlot4()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCHSlot4()">Go Back</button>
+	</div>
+	
+	<div id="CHContainerSlot51">
+		<div class="CSSlotDiv">Slot 5 -&nbsp;</div>
+		<div class="CSNameDiv" id="hairColorName5">HairColor</div>
+		<button type="button" class="buttonOpenLock" id="buttonCHSlot5" onclick="changeCHSlot5()">Change</button>
+	</div>
+	
+	<div id="CHContainerSlot52">
+		<input id="hairColorValueSlot5TextField" class="hairColorTextField" value="">
+		<input id="hairColorNameSlot5TextField" class="hairColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCHSlot5()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCHSlot5()">Go Back</button>
+	</div>
+	
+	<div id="CHContainerSlot61">
+		<div class="CSSlotDiv">Slot 6 -&nbsp;</div>
+		<div class="CSNameDiv" id="hairColorName6">HairColor</div>
+		<button type="button" class="buttonOpenLock" id="buttonCHSlot6" onclick="changeCHSlot6()">Change</button>
+	</div>
+	
+	<div id="CHContainerSlot62">
+		<input id="hairColorValueSlot6TextField" class="hairColorTextField" value="">
+		<input id="hairColorNameSlot6TextField" class="hairColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCHSlot6()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCHSlot6()">Go Back</button>
+	</div>
+	
+	<div id="CHContainerSlot71">
+		<div class="CSSlotDiv">Slot 7 -&nbsp;</div>
+		<div class="CSNameDiv" id="hairColorName7">HairColor</div>
+		<button type="button" class="buttonOpenLock" id="buttonCHSlot7" onclick="changeCHSlot7()">Change</button>
+	</div>
+	
+	<div id="CHContainerSlot72">
+		<input id="hairColorValueSlot7TextField" class="hairColorTextField" value="">
+		<input id="hairColorNameSlot7TextField" class="hairColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCHSlot7()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCHSlot7()">Go Back</button>
+	</div>
+	
+	<div id="CHContainerSlot81">
+		<div class="CSSlotDiv">Slot 8 -&nbsp;</div>
+		<div class="CSNameDiv" id="hairColorName8">HairColor</div>
+		<button type="button" class="buttonOpenLock" id="buttonCHSlot8" onclick="changeCHSlot8()">Change</button>
+	</div>
+	
+	<div id="CHContainerSlot82">
+		<input id="hairColorValueSlot8TextField" class="hairColorTextField" value="">
+		<input id="hairColorNameSlot8TextField" class="hairColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCHSlot8()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCHSlot8()">Go Back</button>
+	</div>
+	
+	<div id="CHContainerSlot91">
+		<div class="CSSlotDiv">Slot 9 -&nbsp;</div>
+		<div class="CSNameDiv" id="hairColorName9">HairColor</div>
+		<button type="button" class="buttonOpenLock" id="buttonCHSlot9" onclick="changeCHSlot9()">Change</button>
+	</div>
+	
+	<div id="CHContainerSlot92">
+		<input id="hairColorValueSlot9TextField" class="hairColorTextField" value="">
+		<input id="hairColorNameSlot9TextField" class="hairColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCHSlot9()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCHSlot9()">Go Back</button>
+	</div>
+	
+	<div id="CHContainerSlot101">
+		<div class="CSSlotDiv">Slot 10 -&nbsp;</div>
+		<div class="CSNameDiv" id="hairColorName10">HairColor</div>
+		<button type="button" class="buttonOpenLock" id="buttonCHSlot10" onclick="changeCHSlot10()">Change</button>
+	</div>
+	
+	<div id="CHContainerSlot102">
+		<input id="hairColorValueSlot10TextField" class="hairColorTextField" value="">
+		<input id="hairColorNameSlot10TextField" class="hairColorTextField" value="">
+		<button type="button" class="buttonOpenLock" onclick="setCHSlot10()">Set</button>
+		<button type="button" class="buttonOpenLock" onclick="goBackCHSlot10()">Go Back</button>
+	</div>
+
+</div>
+
+<script>
+document.getElementById("CHContainerSlot12").style.display='none';
+document.getElementById("CHContainerSlot22").style.display='none';
+document.getElementById("CHContainerSlot32").style.display='none';
+document.getElementById("CHContainerSlot42").style.display='none';
+document.getElementById("CHContainerSlot52").style.display='none';
+document.getElementById("CHContainerSlot62").style.display='none';
+document.getElementById("CHContainerSlot72").style.display='none';
+document.getElementById("CHContainerSlot82").style.display='none';
+document.getElementById("CHContainerSlot92").style.display='none';
+document.getElementById("CHContainerSlot102").style.display='none';
+//document.getElementById("hairColorTutorial").style.display='none';
+</script>
+
 <div id="ButtonsContainer">
 
 <!--
@@ -2327,7 +2707,16 @@ document.getElementById("goBack").style.display='none';
 			<br>
 			
 			<div>
-			<label class="container">Hide username button
+			<label class="container">Hide Lock Password button
+				<input type="checkbox" id="lockPasswordCheckbox" onclick="hideLockPasswordButton()">
+				<span class="checkbox"></span>  
+			</label>
+			</div>
+			
+			<br>
+			
+			<div>
+			<label class="container">Hide Username button
 				<input type="checkbox" id="hideUsernameCheckbox" onclick="hideUsernameFuntion()">
 				<span class="checkbox"></span>  
 			</label>
@@ -2336,7 +2725,7 @@ document.getElementById("goBack").style.display='none';
 			<br>
 			
 			<div>
-			<label class="container">Hide feedback button
+			<label class="container">Hide Feedback button
 				<input type="checkbox" id="hideFeedbackCheckbox" onclick="hideFeedbackButton()">
 				<span class="checkbox"></span>  
 			</label>
@@ -2416,7 +2805,7 @@ document.getElementById("goBackFromDevMenu").style.display='none';
 	</div>
 	
 <div class="applybutton" id="lockSettingsPasswordButton">
-<button class="apply" onclick="openLockSettingsPasswordMenu()">Lock Settings Password</button>
+<button class="apply" onclick="openLockSettingsPasswordMenu()">Lock Password</button>
 </div>
 
 <div class="lockSettingsPasswordMenu" id="lockSettingsPasswordMenu">
@@ -2527,7 +2916,7 @@ PWA Integration <br> SRThrowaway
 </a>
 
 Sliders by <a href="https://dhtmlx.com/">DHTMLX</a> under GNU GPL<br>
-Ver 0.6.2.1K2 <!--Please use letters for versioning, unless update is small.--><br>
+Ver 0.6.2.1L <!--Please use letters for versioning, unless update is small.--><br>
 <a href="changelog.html">Changelog</a>
 </div>
 
@@ -2580,18 +2969,17 @@ DM me on <br> Reddit
 
 <div class="footer">
 
-<div class="githubSource">
 <a href="https://github.com/QTDerg/switcher-roo">
+<div class="githubSource">
 <img src="images/githubSource.png" width="160" height="60">
-</a>
 </div>
+</a>
 
-
-<div class="addToDevice">
 <a href="guide.html">
-<img src="images/addToDevice.png" width="175" height="70">
-</a>
+<div class="addToDevice">
+<img src="images/addToDevice.png" width="160" height="60">
 </div>
+</a>
 
 </div>
 
@@ -2713,6 +3101,25 @@ mySlider19.attachEvent("onSlideEnd", function() {
 	showProcessingAnimation();
 });
 
+mySlider20.attachEvent("onSlideEnd", function() {
+   	var hairLenght = mySlider20.getValue();
+	localStorage.setItem("Slot0_Hair_Lenght", hairLenght);
+	showProcessingAnimation();
+});
+
+mySlider21.attachEvent("onSlideEnd", function() {
+   	var sexuality = mySlider21.getValue();
+	localStorage.setItem("Slot0_Sexuality", sexuality);
+	showProcessingAnimation();
+});
+
+mySlider22.attachEvent("onSlideEnd", function() {
+   	var feralAnthro = mySlider22.getValue();
+	localStorage.setItem("Slot0_Feral_Anthro", feralAnthro);
+	showProcessingAnimation();
+});
+
+// Functions that need to execute on startup to bring app to state user left in in
 loadPreviousState();
 loadSliderSettings();
 visitCounter();
@@ -2733,6 +3140,9 @@ loadInanimateObjectStatus();
 showOrHideRandomizerButton();
 showOrHideDevMenu();
 showOrHideFeedbackButton();
+loadHairColorsOnStartup();
+loadHairColorStatus();
+showOrHideLockPasswordButton();
 
 </script>				
 

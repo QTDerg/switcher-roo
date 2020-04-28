@@ -34,6 +34,9 @@
 	var bellySize = mySlider14.getValue();
 	var bellyShape = mySlider15.getValue();
 	var intelligence = mySlider16.getValue();
+	var hairLenght = mySlider20.getValue();
+	var sexuality = mySlider21.getValue();
+	var feralAnthro = mySlider22.getValue();
 	
 	var cockType = document.getElementById('cockType').value 
 	
@@ -78,6 +81,9 @@
 	localStorage.setItem("Slot4_Custom_Slider1_Enabled", isCS1Enabled);	
 	localStorage.setItem("Slot4_Custom_Slider2_Enabled", isCS2Enabled);	
 	localStorage.setItem("Slot4_Custom_Slider3_Enabled", isCS3Enabled);	
+	
+	var hairColor = localStorage.getItem("Slot0_Hair_Color");
+	var swatchColor = localStorage.getItem("Slot0_Swatch_Color");
  
 	localStorage.setItem("Slot4_Species", settingSpecies);	
 	localStorage.setItem("Slot4_Inanimate_Object", inanimateObject);
@@ -100,6 +106,11 @@
 	localStorage.setItem("Slot4_Belly_Shape", bellyShape);
 	localStorage.setItem("Slot4_Intelligence", intelligence);
 	localStorage.setItem("Slot4_Cock_Type", cockType);
+	localStorage.setItem("Slot4_Hair_Color", hairColor);
+	localStorage.setItem("Slot4_Swatch_Color", swatchColor);
+	localStorage.setItem("Slot4_Hair_Lenght", hairLenght);
+	localStorage.setItem("Slot4_Sexuality", sexuality);
+	localStorage.setItem("Slot4_Feral_Anthro", feralAnthro);
 	
 	document.getElementById("settingsLoadedPopup").style.display = "block";	
 	document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Saved:" + " " + settingSex + " " + settingSpecies;
@@ -203,6 +214,15 @@
 		var intelligence = localStorage.getItem("Slot4_Intelligence");
 		mySlider16.setValue(intelligence);
 		
+		var hairLenght = localStorage.getItem("Slot4_Hair_Lenght");
+		mySlider20.setValue(hairLenght);
+		
+		var sexuality = localStorage.getItem("Slot4_Sexuality");
+		mySlider21.setValue(sexuality);
+		
+		var feralAnthro = localStorage.getItem("Slot4_Feral_Anthro");
+		mySlider22.setValue(feralAnthro);
+		
 		var cockType = localStorage.getItem("Slot4_Cock_Type");
 		var element2 = document.getElementById("cockType");
 		element2.value = cockType; 
@@ -212,6 +232,7 @@
 			document.getElementById("showAdvancedSettings4b").style.display = "none";
 			var breastSizeMale = localStorage.getItem("Slot4_Breast_Size_Male");
 			mySlider9.setValue(breastSizeMale);
+			showOrHideBreastSizeMaleSlider();
 		}
  		else {
 			document.getElementById("showAdvancedSettings4b").style.display = "block";
@@ -285,6 +306,12 @@
 			document.getElementById("customSlider3Checkbox").checked = true;
 			localStorage.setItem("Custom_Slider3_Enabled", "Yes");
 		}
+		
+		var hairColor = localStorage.getItem("Slot4_Hair_Color");
+		var swatchColor = localStorage.getItem("Slot4_Swatch_Color");
+		
+		document.getElementById('hairColorCurrent').innerHTML = hairColor;
+		document.getElementById('hairColorSwatch').style.backgroundColor = swatchColor;
 		
 		document.getElementById("settingsLoadedPopup").style.display = "block";	
 		document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Loaded:" + " " + Sex + " " + Species;

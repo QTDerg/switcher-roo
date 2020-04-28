@@ -677,32 +677,42 @@ select:disabled::-ms-expand {
 	float: left;
 	border-bottom: 3px solid #73728C;
 	overflow: hidden;
-	transition-duration: 1s;
+	transition-duration: 0.75s;
+	transition-timing-function: ease-in-out;
 }
 #CustomSlidersContainer {
 	float: left;
 	overflow: hidden;
-	transition-duration: 1s;
+	transition-duration: 0.75s;
+	transition-timing-function: ease-in-out;
 }
 #CustomSpeciesContainer {
 	float: left;
 	overflow: hidden;
-	transition-duration: 1s;
+	transition-duration: 0.75s;
+	transition-timing-function: ease-in-out;
 	width: 100%;
 }
-#CSContainerSlot101, #CSContainerSlot102 {
+#CSContainerSlot101, #CSContainerSlot102, #COContainerSlot101, #COContainerSlot102, #CHContainerSlot101, #CHContainerSlot102 {
 	border-bottom: 3px solid #73728C;
 }
 #defineInanimateObjectsContainer {
 	float: left;
-	margin-bottom: 10px;
 	overflow: hidden;
-	transition-duration: 1s;
+	transition-duration: 0.75s;
+	transition-timing-function: ease-in-out;
 	width: 100%;
 }
-#COContainerSlot101, #COContainerSlot102 {
-	border-bottom: 3px solid #73728C;
+
+#defineHairColorsContainer {
+	float: left;
+	margin-bottom: 10px;
+	overflow: hidden;
+	transition-duration: 0.75s;
+	transition-timing-function: ease-in-out;
+	width: 100%;
 }
+
 #ButtonsContainer {
 	margin-top: 100px;
 }
@@ -836,16 +846,18 @@ select:disabled::-ms-expand {
 	font-size: 20px;
 	overflow: hidden;
 	max-height: 0px;
-	transition-duration: 1s;
+	transition-duration: 0.75s;
 	border-top: 0px none;
+	transition-timing-function: ease-in-out;
 }
 .feedback {
 	text-align: center;
 	font-size: 20px;
 	overflow: hidden;
 	max-height: 0px;
-	transition-duration: 1s;
+	transition-duration: 0.75s;
 	border-top: 0px none;
+	transition-timing-function: ease-in-out;
 }
 
 .adminbutton {
@@ -1296,6 +1308,15 @@ select:disabled::-ms-expand {
 	font-size: 22px;
 }
 
+.hairColorTextField {
+	background: #59568f;
+	border: 1px solid #8280b3; 
+	color: #282640;
+	width: 30%;
+	padding: 5px;
+	font-size: 22px;
+}
+
 .PasswordTextFieldOpenLock {
 	background: #59568f;
 	border: 1px solid #8280b3; 
@@ -1504,18 +1525,32 @@ a:active {
 }
 
 .footer {
-	margin-left: 15px;
+	margin-left: 10px;
 	margin-top: 10px;
 	height: 70px;
 }
 
 .githubSource {
 	float: left;
-	width: 45%;
+	width: 47%;
+	border-radius: 8px;
+	background-color: #59568f;
+	border: 2px solid #282640;
+	transition: 0.75s;
 }
 
 .addToDevice {
 	float: left;
+	border-radius: 8px;
+	background-color: #59568f;
+	margin-left: 5px;
+	border: 2px solid #282640;
+	transition: 0.75s;
+}
+
+.addToDevice:hover, .githubSource:hover {
+	border: 2px solid #59568f;
+	background-color: #3b395e;
 }
 
 .CSSlotDiv {
@@ -1525,3 +1560,47 @@ a:active {
 	float:left;
 	margin-right: 15px;
 }
+
+.hairColorSwatchCurrent {
+	width: 28px;
+	height: 28px;
+	background-color: #3b395e;
+	border-radius: 14px;
+	float: left;
+	margin-top: 3px;
+	margin-left: 13px;
+	cursor:pointer;	
+}
+
+.hairColorSwatchPrefefined {
+	width: 20px;
+	height: 20px;
+	background-color: #3b395e;
+	margin-right: 5px;
+	float: right;
+	border-radius: 10px;
+}
+
+.hairColorSwatchCustom {
+	position: relative;
+	top: -20px;
+	width: 20px;
+	height: 20px;
+	background-color: #3b395e;
+	margin-right: 5px;
+	float: right;
+	border-radius: 10px;
+}
+
+.swatchBlack 	{	background-color: #090806;	}
+.swatchBlonde1	{	background-color: #dccbba;	}
+.swatchBlonde2	{	background-color: #debc99;	}
+.swatchBlonde3	{	background-color: #e9d0bc;	}
+.swatchBrown1	{	background-color: #5a4545;	}
+.swatchBrown2 	{	background-color: #6a4e42;	}
+.swatchBrown3 	{	background-color: #a7856a;	}
+.swatchGray1 	{	background-color: #71635a;	}
+.swatchGray2 	{	background-color: #b7a69e;	}
+.swatchGray3 	{	background-color: #d6c4c2;	}
+.swatchRed1 	{	background-color: #8d4a43;	}
+.swatchRed2 	{	background-color: #b55239;	}

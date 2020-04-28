@@ -35,6 +35,9 @@
 	var bellySize = mySlider14.getValue();
 	var bellyShape = mySlider15.getValue();
 	var intelligence = mySlider16.getValue();
+	var hairLenght = mySlider20.getValue();
+	var sexuality = mySlider21.getValue();
+	var feralAnthro = mySlider22.getValue();
 	
 	var cockType = document.getElementById('cockType').value 
  
@@ -59,6 +62,9 @@
 	localStorage.setItem("Slot0_Belly_Shape", bellyShape);
 	localStorage.setItem("Slot0_Intelligence", intelligence);
 	localStorage.setItem("Slot0_Cock_Type", cockType);
+	localStorage.setItem("Slot0_Hair_Lenght", hairLenght);
+	localStorage.setItem("Slot0_Sexuality", sexuality);
+	localStorage.setItem("Slot0_Feral_Anthro", feralAnthro);
 	
 	var custom1 = mySlider17.getValue();
 	var custom2 = mySlider18.getValue();
@@ -91,4 +97,9 @@
 	localStorage.setItem("Custom_Slider3_LeftText", leftText);	
 	localStorage.setItem("Custom_Slider3_CenterText", centerText);	
 	localStorage.setItem("Custom_Slider3_RightText", rightText);	
+	
+	var hairColor = document.getElementById('hairColorCurrent').innerHTML;
+	var swatchColor = document.getElementById('hairColorSwatch').style.backgroundColor;
+	localStorage.setItem("Slot0_Hair_Color", hairColor);
+	localStorage.setItem("Slot0_Swatch_Color", swatchColor);
 }   
