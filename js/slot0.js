@@ -18,6 +18,14 @@
 	else {
 		var tickbox = "No"
 	}
+	
+	var tickbox2 = document.getElementById("pregnancyLockCheckbox");
+	if (tickbox2.checked) {
+		var tickbox2 = "Yes"
+	}
+	else {
+		var tickbox2 = "No"
+	}
  
 	var bodyType1 = mySlider6.getValue();
 	var bodyType2 = mySlider5.getValue();
@@ -38,6 +46,7 @@
 	var hairLenght = mySlider20.getValue();
 	var sexuality = mySlider21.getValue();
 	var feralAnthro = mySlider22.getValue();
+	var fertility = mySlider23.getValue();
 	
 	var cockType = document.getElementById('cockType').value 
  
@@ -65,6 +74,8 @@
 	localStorage.setItem("Slot0_Hair_Lenght", hairLenght);
 	localStorage.setItem("Slot0_Sexuality", sexuality);
 	localStorage.setItem("Slot0_Feral_Anthro", feralAnthro);
+	localStorage.setItem("Slot0_Pregnancy_Lock_Box_Ticked", tickbox2);
+	localStorage.setItem("Slot0_Fertility", fertility);
 	
 	var custom1 = mySlider17.getValue();
 	var custom2 = mySlider18.getValue();

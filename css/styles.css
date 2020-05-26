@@ -299,7 +299,7 @@ div {
 	margin-right: auto;	
 	left: 0;
 	right: 84.5%;	
-	top: 353px;
+	top: 347px;
 	opacity: 1;
 }
 
@@ -651,6 +651,18 @@ select:disabled::-ms-expand {
 	overflow: hidden;
 	width: 100%;
 }
+.menuSliderFertility {
+	border-bottom: 3px solid #73728C;	
+	text-align: center;
+	height: 96px;
+	margin-top:2px;
+}
+.fertilitySliderArrow {
+	margin-top: 18px;
+	float:left;
+	right: 9px;
+	position: relative;
+}
 .adaptClothing {
 	text-align: left;
 	height: 47px;
@@ -750,6 +762,13 @@ select:disabled::-ms-expand {
 	margin-top: 15px;
 	height:30px;
 	margin-left:9px;
+	font-size:18px;
+}
+.menutextFertility{
+	float: left;
+	text-align: center;	
+	margin-top: 15px;
+	height:30px;
 	font-size:18px;
 }
 .optionsCheckboxes{

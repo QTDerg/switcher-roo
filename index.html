@@ -1780,6 +1780,43 @@ We hope you'll be back soon!
 			
 	</div>
 	
+	<div class="menuSliderFertility" id="fertilitySlider">
+		<div class="linesMenuSlider">
+			<img src="images/lines.png" height="17" width="23"> 
+		</div>
+		
+		<div class="textinmenuLeft">
+		Safe
+		</div>
+	
+		<div class="textinmenuCenter">
+		Fertility
+		</div>
+	
+		<div class="textinmenuRight">
+		Fertile
+		</div>
+				
+		<div id="sliderFertility" class="slider">			
+			 <script>
+				var mySlider23 = new dhtmlXSlider(sliderFertility, 315, null, false, 0, 100, 50, 1);							
+			</script>
+		</div>
+		
+		
+		<div class="fertilitySliderArrow">
+			<img src="images/arrowRight.png" height="17" width="17"> 
+		</div>
+			
+		<div class="menutextFertility">
+			<label class="container" id="pregnancyLockCheckboxContainer">Pregnancy lock
+				<input type="checkbox" id="pregnancyLockCheckbox" onclick="savePregnancyLockCheckbox()">
+				<span class="checkbox"></span>  
+			</label>
+		</div>
+		
+	</div>
+	
 	<div class="menuSlider" id="fluffinessSlider">
 		<div class="linesMenuSlider">
 			<img src="images/lines.png" height="17" width="23"> 
@@ -1965,6 +2002,15 @@ We hope you'll be back soon!
 
 		<label class="container">Sexuality
 			<input type="checkbox" id="sexualitySliderCheckbox" onClick="toggleSexualitySlider()">
+			<span class="checkbox"></span>  
+		</label>
+		
+	</div>
+	
+	<div class="option">
+
+		<label class="container">Fertility
+			<input type="checkbox" id="fertilitySliderCheckbox" onClick="toggleFertilitySlider()">
 			<span class="checkbox"></span>  
 		</label>
 		
@@ -2239,7 +2285,7 @@ document.getElementById("CSContainerSlot102").style.display='none';
 			<img src="images/arrow.png" height="17" width="23">
 	</div>
 	
-	&nbsp;&nbsp;Inanimate Objects
+	&nbsp;&nbsp;Define Inanimate Objects
 </div>
 
 <div id="defineInanimateObjectsContainer">
@@ -3116,6 +3162,12 @@ mySlider21.attachEvent("onSlideEnd", function() {
 mySlider22.attachEvent("onSlideEnd", function() {
    	var feralAnthro = mySlider22.getValue();
 	localStorage.setItem("Slot0_Feral_Anthro", feralAnthro);
+	showProcessingAnimation();
+});
+
+mySlider23.attachEvent("onSlideEnd", function() {
+   	var fertility = mySlider23.getValue();
+	localStorage.setItem("Slot0_Fertility", fertility);
 	showProcessingAnimation();
 });
 

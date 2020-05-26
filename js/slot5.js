@@ -17,6 +17,14 @@
 	else {
 		var tickbox = "No"
 	}
+	
+	var tickbox2 = document.getElementById("pregnancyLockCheckbox");
+	if (tickbox2.checked) {
+		var tickbox2 = "Yes"
+	}
+	else {
+		var tickbox2 = "No"
+	}
  
 	var bodyType1 = mySlider6.getValue();
 	var bodyType2 = mySlider5.getValue();
@@ -37,6 +45,7 @@
 	var hairLenght = mySlider20.getValue();
 	var sexuality = mySlider21.getValue();
 	var feralAnthro = mySlider22.getValue();
+	var fertility = mySlider23.getValue();
 	
 	var cockType = document.getElementById('cockType').value 
 	
@@ -111,6 +120,8 @@
 	localStorage.setItem("Slot5_Hair_Lenght", hairLenght);
 	localStorage.setItem("Slot5_Sexuality", sexuality);
 	localStorage.setItem("Slot5_Feral_Anthro", feralAnthro);
+	localStorage.setItem("Slot5_Pregnancy_Lock_Box_Ticked", tickbox2);
+	localStorage.setItem("Slot5_Fertility", fertility);
 	
 	document.getElementById("settingsLoadedPopup").style.display = "block";	
 	document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Saved:" + " " + settingSex + " " + settingSpecies;
@@ -157,9 +168,21 @@
 		}
  
 		var AC_Box_Ticked = localStorage.getItem("Slot5_AC_Box_Ticked");
-		if (AC_Box_Ticked == "Yes") {
-			var tickbox = document.getElementById("adaptClothingCheckbox");
+		var tickbox = document.getElementById("adaptClothingCheckbox");
+		if (AC_Box_Ticked == "Yes") {			
 			tickbox.checked = true;
+		}
+		else {
+			tickbox.checked = false;
+		}
+		
+		var Fertility_Box_Ticked = localStorage.getItem("Slot5_Pregnancy_Lock_Box_Ticked");
+		var tickbox2 = document.getElementById("pregnancyLockCheckbox");
+		if (Fertility_Box_Ticked == "Yes") {			
+			tickbox2.checked = true;
+		}
+		else {
+			tickbox2.checked = false;
 		}
  
 		var bodyType1 = localStorage.getItem("Slot5_Body_Type1");
@@ -222,6 +245,9 @@
 		
 		var feralAnthro = localStorage.getItem("Slot5_Feral_Anthro");
 		mySlider22.setValue(feralAnthro);
+		
+		var fertility = localStorage.getItem("Slot5_Fertility");
+		mySlider23.setValue(fertility);
 		
 		var cockType = localStorage.getItem("Slot5_Cock_Type");
 		var element2 = document.getElementById("cockType");

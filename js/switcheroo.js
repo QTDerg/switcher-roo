@@ -1,7 +1,7 @@
 function toggleAdvancedSettingsMenu() {
 	var x = document.getElementById("AdvancedSettingsContainer");
 	if (x.style.maxHeight === "0px") {
-		x.style.maxHeight = "1330px";
+		x.style.maxHeight = "1430px";
 	} else {
 		x.style.maxHeight = "0px";
 	}
@@ -10,7 +10,7 @@ function toggleAdvancedSettingsMenu() {
 function toggleAddRemoveSlidersMenu() {
 	var x = document.getElementById("addRemoveSlidersContainer");
 	if (x.style.maxHeight === "0px") {
-		x.style.maxHeight = "410px";
+		x.style.maxHeight = "470px";
 		x.style.borderBottom = "3px solid #73728C";
 	} else {
 		x.style.maxHeight = "0px";
@@ -778,6 +778,31 @@ function saveCheckbox() {
 	}
 }
 
+function savePregnancyLockCheckbox() {
+	var tickbox = document.getElementById("pregnancyLockCheckbox");
+	var areSettingsLocked = localStorage.getItem("Settings_Locked");
+	if (areSettingsLocked === "Yes") {
+		if (tickbox.checked) {
+			tickbox.checked = false;
+		}
+		else {
+			tickbox.checked = true;
+		}
+	}
+	else {
+	if (tickbox.checked) {
+		var tickbox = "Yes"
+		localStorage.setItem("Slot0_Pregnancy_Lock_Box_Ticked", tickbox);
+		showProcessingAnimation()
+	}
+	else {
+		var tickbox = "No"
+		localStorage.setItem("Slot0_Pregnancy_Lock_Box_Ticked", tickbox);
+		showProcessingAnimation()
+	} 
+	}
+}
+
 function showSaveSlotButtons() {
 	 document.getElementById("saveSlotButtons").style.display='block';  
 	 document.getElementById("saveSettingsButton").style.display='none';  
@@ -1185,8 +1210,36 @@ function loadPS27() {
 			loadPS28();
 		}		
 	}
+	
+function loadPS28() {
+		var Box_Ticked = localStorage.getItem("Slot0_Pregnancy_Lock_Box_Ticked");
+		if (Box_Ticked == null) {
+			loadPS29();
+		}	
+		else {
+			if (Box_Ticked == "Yes") {
+				var tickbox = document.getElementById("pregnancyLockCheckbox");
+				tickbox.checked = true;
+				loadPS29();
+			}
+			else {
+				loadPS29();
+			}	
+		}
+	}
+	
+function loadPS29() {
+		var fertility = localStorage.getItem("Slot0_Fertility");
+		if (fertility == null) {
+			loadPSLast();
+		}
+		else {
+			mySlider23.setValue(fertility);
+			loadPSLast();
+		}		
+	}
 		
-function loadPS28() { 		
+function loadPSLast() { 		
 		document.getElementById("AdvancedSettingsContainer").style.display='none'; 	
 	}
 
@@ -1398,6 +1451,19 @@ var tickbox = document.getElementById("feralAnthroSliderCheckbox");
 	localStorage.setItem("Feral_Anthro_Slider_Enabled", tickbox);
 }
 
+function toggleFertilitySlider() {
+var tickbox = document.getElementById("fertilitySliderCheckbox");
+	if (tickbox.checked) {
+		var tickbox = "Yes"
+		document.getElementById("fertilitySlider").style.display= 'block';
+	}
+	else {
+		var tickbox = "No"
+		document.getElementById("fertilitySlider").style.display= 'none';
+	}
+	localStorage.setItem("Fertility_Slider_Enabled", tickbox);
+}
+
 function toggleHairColorMenu() {
 var tickbox = document.getElementById("hairColorMenuCheckbox");
 	if (tickbox.checked) {
@@ -1430,6 +1496,7 @@ function loadSliderSettings() {
 	var sexualitySliderEnabled = localStorage.getItem("Sexuality_Slider_Enabled");
 	var feralAnthroSliderEnabled = localStorage.getItem("Feral_Anthro_Slider_Enabled");
 	var hairColorMenuEnabled = localStorage.getItem("Hair_Color_Menu_Enabled");
+	var fertilitySliderEnabled = localStorage.getItem("Fertility_Slider_Enabled");
 	
 	if (buttSizeSliderEnabled != "No") {// = Null or yes. Enabled on default.
 		document.getElementById("buttSizeSliderCheckbox").checked = true;
@@ -1584,6 +1651,19 @@ function loadSliderSettings() {
 	}
 	else {
 		document.getElementById("feralAnthroSlider").style.display= 'none';
+	}
+	
+	if (fertilitySliderEnabled != "No") {
+		if (fertilitySliderEnabled == null) {
+		document.getElementById("fertilitySlider").style.display= 'none';
+		document.getElementById("fertilitySliderCheckbox").checked = false;
+		}
+		else {
+		document.getElementById("fertilitySliderCheckbox").checked = true;
+		}
+	}
+	else {
+		document.getElementById("fertilitySlider").style.display= 'none';
 	}
 }
 
@@ -1758,7 +1838,7 @@ function showOrHideLockPasswordButton() {
 		document.getElementById("lockPasswordCheckbox").checked = true;		
 	}
 	else {
-		document.getElementById("lockSettingsPasswordButtons").style.display='block';	
+		document.getElementById("lockSettingsPasswordButton").style.display='block';	
 	}
 }
 
