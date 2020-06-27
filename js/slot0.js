@@ -1,14 +1,20 @@
-// Slot 0 is "current" state of the app. This function is triggered after loading settings from slots 1-5 and using Randomize function.
+// Slot 0 is "current" state of the app. This function is triggered after loading settings from slots 1-5, using Randomize function and importing App Status.
  function saveSettingsSlot0() {
 	var settingSpecies = document.getElementById("speciesCurrent").innerHTML;
 	var inanimateObject = document.getElementById("inanimateObjectsCurrent").innerHTML;
  
-	rbchoice = document.getElementById("radiobuttonMale");
-	if (rbchoice.checked) {
+	rbmale = document.getElementById("radiobuttonMale");
+	rbfemale = document.getElementById("radiobuttonFemale");
+	if (rbmale.checked) {
 		var settingSex = "Male"
 	}
-	else {
+	else if (rbfemale.checked) {
 		var settingSex = "Female"
+	}
+	else {
+		var settingSex = document.getElementById("thirdSexValue").innerHTML;
+		localStorage.setItem("Slot0_Third_Sex", settingSex);
+		checkThirdSexStatus();
 	}
  
 	var tickbox = document.getElementById("adaptClothingCheckbox");
@@ -26,7 +32,23 @@
 	else {
 		var tickbox2 = "No"
 	}
- 
+
+	var tickbox3 = document.getElementById("genitalsPenisCheckbox");
+	if (tickbox3.checked) {
+		var tickbox3 = "Yes"
+	}
+	else {
+		var tickbox3 = "No"
+	}
+	
+	var tickbox4 = document.getElementById("genitalsVaginaCheckbox");
+	if (tickbox4.checked) {
+		var tickbox4 = "Yes"
+	}
+	else {
+		var tickbox4 = "No"
+	}
+	
 	var bodyType1 = mySlider6.getValue();
 	var bodyType2 = mySlider5.getValue();
 	var bodyType3 = mySlider4.getValue();
@@ -48,7 +70,7 @@
 	var feralAnthro = mySlider22.getValue();
 	var fertility = mySlider23.getValue();
 	
-	var cockType = document.getElementById('cockType').value 
+	var cockType = document.getElementById("cockTypeCurrent").innerHTML;
  
 	localStorage.setItem("Slot0_Species", settingSpecies);	
 	localStorage.setItem("Slot0_Inanimate_Object", inanimateObject);	
@@ -76,6 +98,8 @@
 	localStorage.setItem("Slot0_Feral_Anthro", feralAnthro);
 	localStorage.setItem("Slot0_Pregnancy_Lock_Box_Ticked", tickbox2);
 	localStorage.setItem("Slot0_Fertility", fertility);
+	localStorage.setItem("Slot0_Genitals_Menu_Penis_Box_Ticked", tickbox3);
+	localStorage.setItem("Slot0_Genitals_Menu_Vagina_Box_Ticked", tickbox4);
 	
 	var custom1 = mySlider17.getValue();
 	var custom2 = mySlider18.getValue();
@@ -113,4 +137,6 @@
 	var swatchColor = document.getElementById('hairColorSwatch').style.backgroundColor;
 	localStorage.setItem("Slot0_Hair_Color", hairColor);
 	localStorage.setItem("Slot0_Swatch_Color", swatchColor);
+	
+	checkCharacterPreviewStatus();
 }   

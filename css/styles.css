@@ -12,15 +12,14 @@ body {
 }
 div {
 	border: 1px;
-	text-align: left;
-	
+	text-align: left;	
 }
 
 .speciesCurrent {
 	font-size: 17px;
 	float: left;
 	padding-left: 7px;
-	width: 90%;
+	width: 100%;
 	transition: 1s;
 	background-color: inherit;
 }
@@ -38,11 +37,13 @@ div {
 	margin-left: 7px;
 	transition: 1s;
 	cursor:pointer;
+	overflow: hidden;
 }
 
 .speciesSelectTriangle {
 	float: left;
 	width: 1%;
+	margin-left: -25px;
 }
 
 .search {
@@ -51,6 +52,14 @@ div {
 	margin-top: 3px;
 	margin-left: 13px;
 	cursor:pointer;
+}
+
+.magnifyingGlassIcon {
+	transition-duration: 0.5s;
+}
+
+.magnifyingGlassIcon:hover {
+	background-color: #59568f;
 }
 
 .speciesCategorySelectorContainer {
@@ -203,10 +212,6 @@ div {
 	text-align: inherit;
 }
 
-.downloadAPK {
-	text-align: center;
-	font-size: 30px	
-}
 .appWidthContainer {
 	width: 354px;
 	margin: 0 auto;	
@@ -217,8 +222,7 @@ div {
 .changelogWidthContainer {
 	width: 600px;
 	margin: 0 auto;	
-	border: 2px solid #000000;
-	
+	border: 2px solid #000000;	
 }
 
 .customSliderTextField {
@@ -232,24 +236,17 @@ div {
 	margin-left: 4px;
 }
 
-.setButton {
-	float: left;
-}
-
-.linktoMobile {
-	text-align: center;
-	font-size: 50px;
-}
-
 .statusBarContainer {
 	height: 18px;
 	background-color: #424242;
 	border-bottom: 2px solid #000000;
 }
+
 .coverageContainer {
 	width: 20%;
 	float: left;
 }
+
 .currentTime {
 	width: 60%;
 	float: left;
@@ -278,14 +275,17 @@ div {
 	width: 11%;
 	float: right;
 	text-align:right;
-	margin-right: 12px;
+	margin-right: 15px;
+	padding-top: 2px;
 }
+
 .secondSliderHandleContainer {
 	width: 510px;
 	z-index: 1;
 	position: absolute;
 	height: 1px;
 }
+
 .secondSliderHandle {
 	background-color: #FF4550;
 	border:1px solid #3b395e;
@@ -299,7 +299,7 @@ div {
 	margin-right: auto;	
 	left: 0;
 	right: 84.5%;	
-	top: 347px;
+	top: 344px;
 	opacity: 1;
 }
 
@@ -311,7 +311,6 @@ div {
 	width: 354px;
 	margin-left: auto;
 	margin-right: auto;
-
 	top: 70px;
 	opacity: 0.9;
 }
@@ -336,8 +335,7 @@ div {
 	position: absolute;
 	width: 354px;
 	margin-left: auto;
-	margin-right: auto;
-	
+	margin-right: auto;	
 	top: 287px;
 	opacity: 0.8;
 }
@@ -349,8 +347,7 @@ div {
 	position: absolute;
 	width: 354px;
 	margin-left: auto;
-	margin-right: auto;
-	
+	margin-right: auto;	
 	top: 193px;
 	opacity: 0.8;
 }
@@ -363,7 +360,6 @@ div {
 	width: 354px;
 	margin-left: auto;
 	margin-right: auto;
-
 	top: 130px;
 	opacity: 0.8;
 }
@@ -376,7 +372,6 @@ div {
 	width: 354px;
 	margin-left: auto;
 	margin-right: auto;
-
 	top: 172px;
 	opacity: 0.8;
 }
@@ -389,7 +384,6 @@ div {
 	width: 354px;
 	margin-left: auto;
 	margin-right: auto;
-
 	top: 172px;
 	opacity: 0.8;
 }
@@ -402,7 +396,6 @@ div {
 	width: 354px;
 	margin-left: auto;
 	margin-right: auto;
-
 	top: 192px;
 	opacity: 0.8;
 }
@@ -458,20 +451,25 @@ div {
 ::-webkit-scrollbar-thumb:hover {
   background: #59568f; 
 }
+
 .switcherLogo {
 	text-align: center;
 	height: 42.5px;
 	margin-top: 3px;
 }
+
 .container2 {
 	text-align: center;
 	height: 60px;
+	border-bottom: 3px solid #73728C;
 }
+
 .processingText {
 	height: 25px;
 	font-size: 22px;
 	text-align: center;
 }
+
 .rotate {
   animation: rotation 3s infinite linear;
 }
@@ -484,10 +482,13 @@ div {
     transform: rotate(359deg);
   }
 }
+
 .lockSettingsPasswordAndButtonContainer {
 	float: left;
-	width: 37.5%;	
+	width: 37.5%;
+	margin-left: 5px;
 }
+
 .lockSettingsImgClosed {
 	float: left;
 	width: 7.5%;	
@@ -495,6 +496,7 @@ div {
 	margin-top: 20px;
 	cursor: pointer;
 }
+
 .lockSettingsImgOpen {
 	float: left;
 	width: 7.5%;	
@@ -502,16 +504,21 @@ div {
 	margin-top: 20px;
 	cursor: pointer;
 }
+
 .lockSettings {
 	float: left;
 	width: 30%;	
 	margin-top: 35px;
 	font-size:17px;
 	cursor: pointer;
+	user-select: none;
 }
+
 .enterPassword {
 	text-align: center;
 	margin-top: 5px;
+	overflow: hidden;
+	transition-duration: 0.75s;
 }
 
 .processingContainer {
@@ -519,13 +526,17 @@ div {
 	width: 23.5%;
 	text-align: center;	
 }
+
 .logOut {
 	float: right;
 	width: 33%;
 	text-align: right;	
 	margin-top: 35px;
 	font-size:17px;
+	cursor: not-allowed;
+	user-select: none;
 }
+
 .adminPerms {
 	color: #ff1b1f;
 	text-align: center;
@@ -539,38 +550,45 @@ div {
 	padding-top:4px;
 	padding-left:9px;
 }
+
 .search {
 	width: 10%;
 	float: left;
 	margin-top: 2.5px;
 	
 }
+
 .speciesText {
 	width: 90%;
 	padding-left: 36px;
 	padding-top:2px;
 }
+
 .speciesTextSmall {
 	width: 90%;
 	font-size: 12px;
 	padding-left: 36px;
 	padding-top:2px;
 }
+
 .selectMenuContainer {
 	width: 100%;
 	height: 40px;
 	float: left;
 }
+
 .selectMenuContainer2 {
 	width: 100%;
 	height: 30px;
 	float: left;
 }
-.containerRBFemale {
+
+.containerRBFemaleAndOther {
 	width: 30%;
 	float:left;
 	margin-top:11px;
 }
+
 .containerRBMale {
 	width: 40%;
 	float:left;
@@ -580,8 +598,7 @@ div {
 
 /* body select.select_box */ 
 body select { 
-    display: block;
-    
+    display: block;    
     width: 95%; 
     height: 24px;
     border: 2px solid #9D9CAF;
@@ -631,11 +648,12 @@ select:disabled::-ms-expand {
 .menuSlider {
 	border-bottom: 3px solid #73728C;	
 	text-align: center;
-	height: 74px;
-	margin-top:2px;
+	max-height: 60px;
+	padding-bottom: 15px;
+	transition-duration: 0.5s;	
+	overflow: hidden;	
 }
-.menuFirst {
-	border-top: 3px solid #73728C;	
+.menuFirst {	
 	border-bottom: 3px solid #73728C;	
 	text-align: center;
 	height: 62px;
@@ -654,9 +672,118 @@ select:disabled::-ms-expand {
 .menuSliderFertility {
 	border-bottom: 3px solid #73728C;	
 	text-align: center;
-	height: 96px;
-	margin-top:2px;
+	max-height: 98px;
+	transition-duration: 0.5s;	
+	overflow: hidden;	
 }
+.menuCharacterPreview {
+	border-bottom: 3px solid #73728C;
+	text-align: center;
+	height: 680px;
+	padding: 25px;
+	padding-top: 5px;
+	overflow: hidden;
+}
+.characterPreviewDisplayContainer {
+	height: 400px;
+	margin: auto;
+	background-color: #282640;
+	border: 2px solid #59568f;
+	transition-duration: 0.5s;
+	position: relative;
+}
+.characterPreviewDisplayContainer:hover {
+	background-color: #59568f;
+	border: 2px solid #282640;
+}
+.characterPreviewDisplay {
+	position: absolute;
+	left: -25px;
+	top: -30px;
+	width: 337.5px;
+	height: 450px;
+	background-size: contain !important;
+}
+#displayBaseBottom {
+	background: url(../images/character_preview/ignitiothedragon/baseBottomLayers.png);
+}
+#displayHips {
+	background: url(../images/character_preview/ignitiothedragon/hips75.png);
+}
+#displayTits {
+	background: url(../images/character_preview/ignitiothedragon/tits0.png);	
+}
+#displayBaseTop {
+	background: url(../images/character_preview/ignitiothedragon/baseTopLayers.png);
+}
+#displayPreviewUnavailable {
+	background: url(../images/character_preview/previewUnavailable.png);
+}
+.characterPreviewDisplayFox {
+	position: absolute;
+	left: 25px;
+	top: -8px;
+	width: 255px;
+	height: 425px;
+	background-size: contain !important;
+}
+#displayFoxStatic {
+	background: url(../images/character_preview/fox/static.png);
+}
+#displayFoxMainColor {
+	background: url(../images/character_preview/fox/mainColor.png);
+}
+#displayFoxSecondaryColor {
+	background: url(../images/character_preview/fox/secondaryColor.png);
+}
+#displayFoxMarkings {
+	background: url(../images/character_preview/fox/markings.png);
+}
+#displayFoxLeftEye {
+	background: url(../images/character_preview/fox/lefteye.png);
+}
+#displayFoxRightEye {
+	background: url(../images/character_preview/fox/righteye.png);
+}
+#displayFoxPawpads {
+	background: url(../images/character_preview/fox/pawpads.png);
+}
+#displayFoxLineart {
+	background: url(../images/character_preview/fox/lineart.png);
+}
+
+.characterPreviewColorsEntryContainer {
+	float:left;
+	height: 30px;
+	width: 100%;
+	padding-top:5px;
+	padding-bottom:5px;
+	background-color: #282640;
+	transition-duration: 0.5s;
+	margin-bottom:5px;
+	cursor: pointer;
+	border-radius:5px;
+}
+.characterPreviewColorsEntryContainer:hover {
+	background-color: #59568f;
+}
+.characterPreviewColorsEntryContainer:active {
+	background-color: #69669A;
+	transition-duration: 0.1s;
+}
+.characterPreviewColorSwatch {
+	width: 26px;
+	height: 26px;
+	float:left;
+	background-color: #000;
+	border-radius: 14px;
+	margin-right: 10px;
+	cursor:pointer;
+	position: relative;
+	margin: 2px;
+	margin-left: 5px;
+}
+
 .fertilitySliderArrow {
 	margin-top: 18px;
 	float:left;
@@ -671,7 +798,6 @@ select:disabled::-ms-expand {
 	text-align: left;
 	height: 25px;
 	padding-top:5px;
-	float: left;
 	width: 100%;
 	cursor: pointer;
 	transition: 0.5s;
@@ -680,36 +806,42 @@ select:disabled::-ms-expand {
 .menuAS:hover {
 	background-color: #59568f;
 }
+
+.menuAS:active {
+	background-color: #69669A;
+}
+
+.imgArrow {
+	padding-bottom:1px;
+}
+.harpoonArrowImg {
+	padding-top:6px;
+}
 #AdvancedSettingsContainer {
-	float: left;
 	overflow: hidden;
 	transition-duration: 1s;
 }
 #addRemoveSlidersContainer {
-	float: left;
 	border-bottom: 3px solid #73728C;
 	overflow: hidden;
 	transition-duration: 0.75s;
 	transition-timing-function: ease-in-out;
 }
 #CustomSlidersContainer {
-	float: left;
 	overflow: hidden;
 	transition-duration: 0.75s;
 	transition-timing-function: ease-in-out;
 }
-#CustomSpeciesContainer {
-	float: left;
+#CustomSpeciesContainer, #defineCockTypesContainer {
 	overflow: hidden;
 	transition-duration: 0.75s;
 	transition-timing-function: ease-in-out;
 	width: 100%;
 }
-#CSContainerSlot101, #CSContainerSlot102, #COContainerSlot101, #COContainerSlot102, #CHContainerSlot101, #CHContainerSlot102 {
+#CSContainerSlot101, #CSContainerSlot102, #COContainerSlot101, #COContainerSlot102, #CHContainerSlot101, #CHContainerSlot102, #CTContainerSlot101, #CTContainerSlot102 {
 	border-bottom: 3px solid #73728C;
 }
 #defineInanimateObjectsContainer {
-	float: left;
 	overflow: hidden;
 	transition-duration: 0.75s;
 	transition-timing-function: ease-in-out;
@@ -717,17 +849,20 @@ select:disabled::-ms-expand {
 }
 
 #defineHairColorsContainer {
-	float: left;
-	margin-bottom: 10px;
 	overflow: hidden;
 	transition-duration: 0.75s;
 	transition-timing-function: ease-in-out;
 	width: 100%;
 }
 
-#ButtonsContainer {
-	margin-top: 100px;
+#ThirdSexContainer {
+	margin-bottom: 10px;
+	overflow: hidden;
+	transition-duration: 0.5s;
+	transition-timing-function: ease-in-out;
+	width: 100%;
 }
+
 .processingAnim {
 	text-align: center;
 	margin-top:5px;
@@ -743,11 +878,27 @@ select:disabled::-ms-expand {
 .linesMenuSlider
 {
 	display: block;
-	margin-top: 36px;	
+	margin-top: 37px;
 	width: 6%;
 	float: left;
 	margin-left: 2px;
 	}
+.linesGenitals
+{
+	display: block;
+	margin-top: 9px;	
+	width: 6%;
+	float: left;
+	margin-left: 2px;
+	}
+.menutextGenitals{
+	float: left;
+	text-align: center;	
+	margin-top: 6px;
+	height:30px;
+	margin-left:9px;
+	font-size:18px;
+}
 .linesAC
 {
 	display: block;
@@ -772,15 +923,15 @@ select:disabled::-ms-expand {
 	font-size:18px;
 }
 .optionsCheckboxes{
-	float: left;
 	text-align: center;	
 	margin-top: 15px;
 	margin-left:7px;
 	font-size:18px;
-	margin-bottom: 10px;
+	overflow: hidden;
+	max-height: 580px;
+	transition-duration: 0.75s;
 }
 .lockSettingsPasswordMenu{
-	float: left;	
 	margin-top: 15px;
 	margin-left:7px;
 	font-size:18px;
@@ -807,14 +958,14 @@ select:disabled::-ms-expand {
 	width: 7%;
 	float: left;
 	margin-left: 2px;
-	}
+}
 	
 .checkboxCustomSliders
 {
 	display: block;
 	float: left;
 	padding-left: 6px;
-	}
+}
 .addRemoveSlidersContainer {
 	height: 300px;
 }
@@ -830,14 +981,14 @@ select:disabled::-ms-expand {
 }
 .textinmenuLeft {
 	float: left;
-	width: 27.5%;
+	width: 28.5%;
 	text-align: left;
 	margin-left: 9px;
 	padding-top:8px;
 }
 .textinmenuCenter {
 	float: left;
-	width: 30%;
+	width: 29.5%;
 	text-align: center;
 	
 }
@@ -879,316 +1030,38 @@ select:disabled::-ms-expand {
 	transition-timing-function: ease-in-out;
 }
 
-.adminbutton {
-	text-align: center;
-	margin-top: 5px;
-}
-.toggleCreditsButton {
-	text-align: center;
-}
 .processingPasswordDiv {
 	text-align: center;
 	margin-top: 5px;
 }
-.accessDenied {
+
+.saveSlotButtonsContainer {
 	text-align: center;
 	margin-top: 5px;
-}
-.accessGrantedDiv {
-	text-align: center;
-	margin-top: 5px;
-}
-.apply {
-  position: relative;
-  background-color: #282640;
-  border: none;
-  font-size: 26px;
-  color: #FFFFFF;
-  padding: 10px;
-  width: 90%;
-  text-align: center;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.apply:after {
-  content: "";
-  background: #8280b3;
-  display: block;
-  position: absolute;
-  padding-top: 300%;
-  padding-left: 350%;
-  margin-left: -20px!important;
-  margin-top: -120%;
-  opacity: 0;
-  transition: all 1.8s
-}
-
-.apply:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s
-}
-.apply:hover {
-	background: #59568f; 
-}
-.applybutton {
-	text-align: center;
-	margin-top: 5px;
-}
-.slotCoverage2 {
-  position: relative;
-  background-color: #282640;
-  border: none;
-  font-size: 22px;
-  color: #FFFFFF;
-
-  text-align: center;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-  float: left;
-  margin-left: 8px;
-  margin-top:5px;
-}
-.slotCoverage {
-  position: relative;
-  background-color: #282640;
-  border: none;
-  font-size: 22px;
-  color: #FFFFFF;
-
-  text-align: center;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-  float: left;
-  margin-left: 8px;
-}
-.slot {
-  position: relative;
-  background-color: #282640;
-  border: none;
-  font-size: 17px;
-  color: #FFFFFF;
-  padding: 10px;
-  width: 46.5%;
-  text-align: center;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-  float: left;
-  margin-left: 8px;
-  height: 55px;
-  margin-bottom: 5px;
-}
-
-.slot:after {
-  content: "";
-  background: #8280b3;
-  display: block;
-  position: absolute;
-  padding-top: 300%;
-  padding-left: 350%;
-  margin-left: -20px!important;
-  margin-top: -120%;
-  opacity: 0;
-  transition: all 1.8s
-}
-
-.slot:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s
-}
-.slot:hover {
-	background: #59568f; 
-}
-.saveslotbutton {
-	text-align: center;
-	margin-top: 5px;
-	height: 220px;
 	color: #FF4550;
 	border: 3px solid #FF4550;
 	font-size: 30px;
+	overflow: hidden;
+	transition-duration: 0.75s;
+	transition-timing-function: ease-in-out;
 }
-.loadslotbutton {
+
+.loadSlotButtonsContainer {
 	text-align: center;
 	margin-top: 5px;
-	height: 220px;
 	color: #4845ff;
 	border: 3px solid #4845ff;
-	font-size: 30px;	
-}
-.admin {
-  position: relative;
-  background-color: #660002;
-  border: 1px solid #b30003;
-  font-size: 26px;
-  color: #FFFFFF;
-  padding: 10px;
-  width: 90%;
-  text-align: center;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.admin:after {
-  content: "";
-  background: #ff1b1f;
-  display: block;
-  position: absolute;
-  padding-top: 300%;
-  padding-left: 350%;
-  margin-left: -20px!important;
-  margin-top: -120%;
-  opacity: 0;
-  transition: all 1.8s
-}
-
-.admin:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s
-}
-.admin:hover {
-	background: #b30003; 
-}
-
-.accessGranted {
-  position: relative;
-  background-color: #29a329;
-  border: 1px solid #145214;
-  font-size: 26px;
-  color: #FFFFFF;
-  padding: 10px;
-  width: 90%;
-  text-align: center;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.accessGranted:after {
-  content: "";
-  background: #5cd65c;
-  display: block;
-  position: absolute;
-  padding-top: 300%;
-  padding-left: 350%;
-  margin-left: -20px!important;
-  margin-top: -120%;
-  opacity: 0;
-  transition: all 1.8s
-}
-
-.accessGranted:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s
-}
-.accessGranted:hover {
-	background: #33cc33; 
-}
-
-.loading {
-  position: relative;
-  background-color: #660002;
-  border: 1px solid #b30003;
-  font-size: 26px;
-  color: #FFFFFF;
-  padding: 10px;
-  width: 90%;
-  text-align: center;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.loading:after {
-  content: "";
-  background: #8280b3;
-  display: block;
-  position: absolute;
-  padding-top: 300%;
-  padding-left: 350%;
-  margin-left: -20px!important;
-  margin-top: -120%;
-  opacity: 0;
-  transition: all 1.8s
-}
-
-.loading:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s
-}
-
-.buttonSubmitPassword {
-  position: relative;
-  background-color: #ff1b1f;
-  border: 1px solid #b30003; 
-  font-size: 26px;
-  color: #FFFFFF;
-  padding: 10px;
-  width: 42%;
-  text-align: center;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.buttonSubmitPassword:after {
-  content: "";
-  background: #8280b3;
-  display: block;
-  position: absolute;
-  padding-top: 300%;
-  padding-left: 350%;
-  margin-left: -20px!important;
-  margin-top: -120%;
-  opacity: 0;
-  transition: all 1.8s
-}
-
-.buttonSubmitPassword:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s
-}
-.buttonSubmitPassword:hover {
-	background: #282640; 
+	font-size: 30px;
+	overflow: hidden;
+	transition-duration: 0.75s;
+	transition-timing-function: ease-in-out;
 }
 
 .passwordTextField {
 	background: #660002;
-	border: 1px solid #b30003; 
+	border: 2px solid #b30003; 
 	color: #ffffff;
-	width: 42%;
+	width: 84%;
 	padding: 10px;
 	font-size: 22px;
 }
@@ -1230,85 +1103,6 @@ select:disabled::-ms-expand {
 	background: #59568f; 
 }
 
-.buttonChangeBG {
-  position: relative;
-  background-color: #282640;
-  border: none; 
-  font-size: 16px;
-  color: #FFFFFF;
-  padding: 5px;
-  width: 18%;
-  text-align: center;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.buttonChangeBG:after {
-  content: "";
-  background: #8280b3;
-  display: block;
-  position: absolute;
-  padding-top: 300%;
-  padding-left: 350%;
-  margin-left: -20px!important;
-  margin-top: -120%;
-  opacity: 0;
-  transition: all 1.8s
-}
-
-.buttonChangeBG:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s
-}
-.buttonChangeBG:hover {
-	background: #59568f; 
-}
-
-
-.buttonChangeUsername {
-  position: relative;
-  background-color: #282640;
-  border: none; 
-  font-size: 26px;
-  color: #FFFFFF;
-  padding: 10px;
-  width: 18%;
-  text-align: center;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.buttonChangeUsername:after {
-  content: "";
-  background: #8280b3;
-  display: block;
-  position: absolute;
-  padding-top: 300%;
-  padding-left: 350%;
-  margin-left: -20px!important;
-  margin-top: -120%;
-  opacity: 0;
-  transition: all 1.8s
-}
-
-.buttonChangeUsername:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s
-}
-.buttonChangeUsername:hover {
-	background: #59568f; 
-}
-
 .usernameTextField {
 	background: #59568f;
 	border: 1px solid #8280b3; 
@@ -1344,53 +1138,23 @@ select:disabled::-ms-expand {
 	font-size: 22px;
 }
 
-.enterUsername {
+.enterUsernameContainer {
 	text-align: center;
 	margin-top: 5px;
+	transition-duration: 0.75s;
+	overflow: hidden;
+}
+
+.changeAppBGColorContainer {
+	text-align: center;
+	margin-top: 5px;
+	transition-duration: 0.75s;
+	overflow: hidden;
 }
 
 .enterFeedback {
 	text-align: center;
 	margin-top: 5px;
-}
-
-.buttonSendFeedback {
-  position: relative;
-  background-color: #282640;
-  border: none; 
-  font-size: 22px;
-  color: #FFFFFF;
-  padding: 10px;
-  width: 20%;
-  text-align: center;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.buttonSendFeedback:after {
-  content: "";
-  background: #8280b3;
-  display: block;
-  position: absolute;
-  padding-top: 300%;
-  padding-left: 350%;
-  margin-left: -20px!important;
-  margin-top: -120%;
-  opacity: 0;
-  transition: all 1.8s
-}
-
-.buttonSendFeedback:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s
-}
-.buttonSendFeedback:hover {
-	background: #59568f; 
 }
 
 .feedbackTextField {
@@ -1412,6 +1176,7 @@ select:disabled::-ms-expand {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  float: left;
 }
 
 /* Hide the browser's default checkbox */
@@ -1430,7 +1195,7 @@ select:disabled::-ms-expand {
   left: 0;
   height: 13px;
   width: 13px;
-  background-color: #3b395e;
+  background-color: transparent;
   border: 1.5px solid #fff;	
   margin-top: 4px;
 }
@@ -1442,7 +1207,7 @@ select:disabled::-ms-expand {
 
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkbox {
-  background-color: #3b395e;
+  background-color: transparent;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -1494,18 +1259,48 @@ a:active {
   text-decoration: none;
 }
 
+.devMenuOptions {
+	overflow: hidden;
+	transition-duration: 0.75s;
+}
+
+.optionCategory {
+	width: 100%;
+	float: left;
+	font-size: 30px;
+	background-color: #282640;
+	text-align: center;
+	transition-duration: 0.5s;
+	height: 40px;
+	cursor: default;
+}
+
+.optionCategory:hover {
+	font-size: 32px;
+	background-color: #59568f;
+}
+
 .option {
 	width: 40%;
 	float: left;	
 	padding-left: 30px;
-	padding-top: 15px;
-	padding-bottom: 15px;
+	padding-top: 7px;
 }
 
 .changelogVersion {
 	font-size: 30px;
-	border-top: 2px solid #282640;
+	border-top: 2px solid #59568f;
 	margin-top: 10px;
+	margin-bottom: 5px;
+	background-color: #282640;
+	transition-duration: 0.5s;
+	cursor: default;
+	text-align:center;
+}
+
+.changelogVersion:hover {
+	border-top: 2px solid #282640;
+	background-color: #59568f;
 }
 
 .creditsText {
@@ -1513,7 +1308,7 @@ a:active {
 	width: 74%;
 	float:left;
 	text-align: center;
-	padding-top: 7px;
+	padding-top: 10px;
 }
 
 .creditsAvatar {
@@ -1531,6 +1326,7 @@ a:active {
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
 	border: 2px solid #59568f;
+	background-color: #282640;
 }
 
 .creditsEntry:hover {
@@ -1541,12 +1337,9 @@ a:active {
 .footerContainer {
 	margin-top: 10px;
 	border-top: 3px solid #73728C;
-}
-
-.footer {
-	margin-left: 10px;
-	margin-top: 10px;
-	height: 70px;
+	padding-bottom: 10px;
+	overflow: hidden;
+	transition-duration: 0.75s;
 }
 
 .githubSource {
@@ -1623,3 +1416,435 @@ a:active {
 .swatchGray3 	{	background-color: #d6c4c2;	}
 .swatchRed1 	{	background-color: #8d4a43;	}
 .swatchRed2 	{	background-color: #b55239;	}
+
+.bigButton {
+	background-color: #282640;
+	border: 2px solid #59568f;
+	border-radius: 5px;
+	font-size: 26px;
+	font-weight: bold;
+	text-align: center;
+	padding: 10px;
+	width: 84%;
+	transition-duration: 0.75s;
+	margin: auto;
+	margin-top: 5px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.bigButton:hover {
+	background-color: #59568f;
+	border: 2px solid #282640 !important;
+	border-radius: 10px;
+}
+
+.bigButton:active {
+	background-color: #69669A;
+	border: 2px solid #59568f !important;
+	border-radius: 0px;
+	transition-duration: 0.25s;
+}
+
+.bigTextField {
+	background: #59568f;
+	border: 2px solid #282640; 
+	color: #282640;
+	width: 84%;
+	padding: 10px;
+	font-size: 26px;
+	border-radius: 5px;
+	margin-top: 5px;
+	margin-left: 16px;
+	font-family: Century Gothic;
+	transition-duration: 0.75s;
+}
+
+.bigTextField:hover {
+	background-color: #59568f;
+	border: 2px solid #282640 !important;
+	border-radius: 10px;
+}
+
+.bigTextField:active {
+	background-color: #69669A;
+	border: 2px solid #59568f !important;
+	border-radius: 0px;
+	transition-duration: 0.25s;
+}
+
+.bigButtonAdminMode {
+	background-color: #660002;
+	border: 2px solid #b30003;
+	border-radius: 5px;
+	font-size: 26px;
+	font-weight: bold;
+	text-align: center;
+	padding: 10px;
+	width: 84%;
+	transition-duration: 0.75s;
+	margin: auto;
+	margin-top: 5px;
+	cursor: pointer;
+	user-select: none;
+}
+
+.bigButtonAdminMode:hover {
+	background-color: #b30003;
+	border: 2px solid #660002 !important;
+	border-radius: 10px;	
+}
+
+.bigButtonAdminMode:active {
+	background-color: #db5c5e;
+	border: 2px solid #b30003;
+	border-radius: 0px;
+	transition-duration: 0.25s;
+}
+
+.mediumSlotButton {
+	background-color: #282640;
+	border: 2px solid #59568f;
+	border-radius: 5px;
+	font-size: 13px;
+	font-weight: bold;
+	text-align: center;
+	padding: 10px;
+	width: 40%;
+	transition-duration: 0.75s;
+	margin: auto;
+	margin-bottom: 5px;
+	cursor: pointer;
+	color: #fff;
+	float: left;
+	margin-left: 7px;
+	user-select: none;
+}
+
+.mediumSlotButton:hover {
+	background-color: #59568f;
+	border: 2px solid #282640 !important;
+	border-radius: 10px;
+}
+
+.mediumSlotButton:active {
+	background-color: #69669A;
+	border: 2px solid #59568f !important;
+	border-radius: 0px;
+	transition-duration: 0.25s;
+}
+
+.mediumButton {
+	background-color: #282640;
+	border: 2px solid #59568f;
+	border-radius: 5px;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	padding: 8px;
+	width: 37.5%;
+	transition-duration: 0.75s;
+	margin: auto;
+	margin-bottom: 5px;
+	cursor: pointer;
+	margin-left: 16px;
+	float: left;
+	user-select: none;
+}
+
+.mediumButton:hover {
+	background-color: #59568f;
+	border: 2px solid #282640 !important;
+	border-radius: 10px;
+}
+
+.mediumButton:active {
+	background-color: #69669A;
+	border: 2px solid #59568f !important;
+	border-radius: 0px;
+	transition-duration: 0.25s;
+}
+
+.mediumTextField {
+	background: #59568f;
+	border: 2px solid #282640; 
+	color: #282640;
+	width: 37.5%;
+	padding: 8px;
+	font-size: 20px;
+	border-radius: 5px;
+	margin-left: 16px;
+	float: left;
+	font-family: Century Gothic;
+	transition-duration: 0.75s;
+}
+
+.mediumTextField:hover {
+	background-color: #59568f;
+	border: 2px solid #282640 !important;
+	border-radius: 10px;
+}
+
+.mediumTextField:active {
+	background-color: #69669A;
+	border: 2px solid #59568f !important;
+	border-radius: 0px;
+	transition-duration: 0.25s;
+}
+
+.smallButton {
+	background-color: #282640;
+	border: 2px solid #59568f;
+	border-radius: 5px;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	transition-duration: 0.75s;
+	margin: auto;
+	cursor: pointer;
+	float: left;
+	margin-left: 6px;
+	padding-left: 8px;
+	padding-right: 8px;
+	user-select: none;
+}
+
+.smallButton:hover {
+	background-color: #59568f;
+	border: 2px solid #282640 !important;
+	border-radius: 10px;
+}
+
+.smallButton:active {
+	background-color: #69669A;
+	border: 2px solid #59568f !important;
+	border-radius: 0px;
+	transition-duration: 0.25s;
+}
+
+.processingPasswordDisplay {
+	background-color: #282640;
+	border: 2px solid #59568f;
+	border-radius: 3px;
+	font-size: 16px;
+	padding: 4px;
+	width: 87%;
+	margin: auto;
+	margin-top: 5px;
+}
+
+/* Create a custom radio button */
+.radiobuttonMale {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  background-color: #3b395e;
+  border-radius: 50%;
+  border: 1px solid #fff;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .radiobuttonMale {
+  background-color: #2658fb;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .radiobuttonMale {
+  background-color: #3b395e;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.radiobuttonMale:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .radiobuttonMale:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .radiobuttonMale:after {
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+}
+/* Create a custom radio button */
+.radiobuttonFemale {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  background-color: #3b395e;
+  border-radius: 50%;
+  border: 1px solid #fff;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .radiobuttonFemale {
+  background-color: #ff41ea;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .radiobuttonFemale {
+  background-color: #3b395e;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.radiobuttonFemale:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .radiobuttonFemale:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .radiobuttonFemale:after {
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+}
+
+/* Create a custom radio button */
+.radiobuttonMaleError {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  background-color: #3b395e;
+  border-radius: 50%;
+  border: 1px solid #FF4550;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .radiobuttonMaleError {
+  background-color: #2658fb;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .radiobuttonMaleError {
+  background-color: #3b395e;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.radiobuttonMaleError:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .radiobuttonMaleError:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .radiobuttonMaleError:after {
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #FF4550;
+}
+/* Create a custom radio button */
+.radiobuttonFemaleError {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  background-color: #3b395e;
+  border-radius: 50%;
+  border: 1px solid #FF4550;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .radiobuttonFemaleError {
+  background-color: #ff41ea;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .radiobuttonFemaleError {
+  background-color: #3b395e;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.radiobuttonFemaleError:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .radiobuttonFemaleError:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .radiobuttonFemaleError:after {
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #FF4550;
+}
+
+#peerID {
+	margin-top:5px;
+	background-color:#282640;
+	border-radius:5px;
+	transition-duration:0.5s;
+	margin-bottom:5px;
+	margin-left: 18px;
+	margin-right: 18px;
+	padding:10px;
+	cursor: pointer;
+	overflow-wrap: break-word;
+}
+#peerID:hover {
+	background-color:#59568f;
+}
+#peerID:active {
+	background-color:#69669A;
+	transition-duration:0.05s;
+}
+
+#appStatus {
+	margin-top:5px;
+	background-color:#282640;
+	border-radius:5px;
+	transition-duration:0.5s;
+	margin-bottom:5px;
+	margin-left: 18px;
+	margin-right: 18px;
+	padding:10px;
+	cursor: pointer;
+	overflow-wrap: break-word;
+	overflow-y: auto;
+	max-height: 77px;
+}
+#appStatus:hover {
+	background-color:#59568f;
+}
+#appStatus:active {
+	background-color:#69669A;
+	transition-duration:0.05s;
+}

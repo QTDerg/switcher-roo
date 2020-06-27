@@ -2,12 +2,16 @@
 	var settingSpecies = document.getElementById("speciesCurrent").innerHTML;
 	var inanimateObject = document.getElementById("inanimateObjectsCurrent").innerHTML;
  
-	rbchoice = document.getElementById("radiobuttonMale");
-	if (rbchoice.checked) {
+	rbmale = document.getElementById("radiobuttonMale");
+	rbfemale = document.getElementById("radiobuttonFemale");
+	if (rbmale.checked) {
 		var settingSex = "Male"
 	}
-	else {
+	else if (rbfemale.checked) {
 		var settingSex = "Female"
+	}
+	else {
+		var settingSex = document.getElementById("thirdSexValue").innerHTML;
 	}
  
 	var tickbox = document.getElementById("adaptClothingCheckbox");
@@ -24,6 +28,22 @@
 	}
 	else {
 		var tickbox2 = "No"
+	}
+	
+	var tickbox3 = document.getElementById("genitalsPenisCheckbox");
+	if (tickbox3.checked) {
+		var tickbox3 = "Yes"
+	}
+	else {
+		var tickbox3 = "No"
+	}
+	
+	var tickbox4 = document.getElementById("genitalsVaginaCheckbox");
+	if (tickbox4.checked) {
+		var tickbox4 = "Yes"
+	}
+	else {
+		var tickbox4 = "No"
 	}
  
 	var bodyType1 = mySlider6.getValue();
@@ -47,7 +67,7 @@
 	var feralAnthro = mySlider22.getValue();
 	var fertility = mySlider23.getValue();
 	
-	var cockType = document.getElementById('cockType').value 
+	var cockType = document.getElementById("cockTypeCurrent").innerHTML;
 	
 	var settingSex = functionBodyType(settingSex, bodyType1);
 
@@ -94,6 +114,32 @@
 	var hairColor = localStorage.getItem("Slot0_Hair_Color");
 	var swatchColor = localStorage.getItem("Slot0_Swatch_Color");
 	
+	var buttSizeSliderEnabled = localStorage.getItem("Butt_Size_Slider_Enabled");
+	var bellySizeSliderEnabled = localStorage.getItem("Belly_Size_Slider_Enabled");
+	var bellyShapeSliderEnabled = localStorage.getItem("Belly_Shape_Slider_Enabled");
+	var hipsSliderEnabled = localStorage.getItem("Hips_Slider_Enabled");
+	var genitalSizeSliderEnabled = localStorage.getItem("Genital_Size_Slider_Enabled");
+	var cockTypeMenuEnabled = localStorage.getItem("Cock_Type_Menu_Enabled");
+	var libidoSliderEnabled = localStorage.getItem("Libido_Slider_Enabled");
+	var sensitivitySliderEnabled = localStorage.getItem("Sensitivity_Slider_Enabled");
+	var demeanorSliderEnabled = localStorage.getItem("Demeanor_Slider_Enabled");
+	var positionPrefSliderEnabled = localStorage.getItem("Postion_Pref_Slider_Enabled");
+	var intelligenceSliderEnabled = localStorage.getItem("Intelligence_Slider_Enabled");
+	var fluffinessSliderEnabled = localStorage.getItem("Fluffiness_Slider_Enabled");
+	var hairLenghtSliderEnabled = localStorage.getItem("Hair_Lenght_Slider_Enabled");
+	var sexualitySliderEnabled = localStorage.getItem("Sexuality_Slider_Enabled");
+	var feralAnthroSliderEnabled = localStorage.getItem("Feral_Anthro_Slider_Enabled");
+	var hairColorMenuEnabled = localStorage.getItem("Hair_Color_Menu_Enabled");
+	var fertilitySliderEnabled = localStorage.getItem("Fertility_Slider_Enabled");
+	var genitalsMenuEnabled = localStorage.getItem("Genitals_Menu_Enabled");
+	var speciesMenuEnabled = localStorage.getItem("Species_Menu_Enabled");
+	var sexMenuEnabled = localStorage.getItem("Sex_Menu_Enabled");
+	var acMenuEnabled = localStorage.getItem("AC_Menu_Enabled");
+	var mascFemSliderEnabled = localStorage.getItem("MascFem_Slider_Enabled");
+	var thinThiccSliderEnabled = localStorage.getItem("ThinThicc_Slider_Enabled");
+	var smolTallSliderEnabled = localStorage.getItem("SmolTall_Slider_Enabled");
+	var inanimateObjectsMenuEnabled = localStorage.getItem("Inanimate_Objects_Enabled");
+	
 	localStorage.setItem("Slot2_Species", settingSpecies);	
 	localStorage.setItem("Slot2_Inanimate_Object", inanimateObject);
     localStorage.setItem("Slot2_Sex", settingSex);	
@@ -122,10 +168,37 @@
 	localStorage.setItem("Slot2_Feral_Anthro", feralAnthro);
 	localStorage.setItem("Slot2_Pregnancy_Lock_Box_Ticked", tickbox2);
 	localStorage.setItem("Slot2_Fertility", fertility);
+	localStorage.setItem("Slot2_Genitals_Menu_Penis_Box_Ticked", tickbox3);
+	localStorage.setItem("Slot2_Genitals_Menu_Vagina_Box_Ticked", tickbox4);
+	
+	localStorage.setItem("Slot2_Butt_Size_Slider_Enabled", buttSizeSliderEnabled);	
+	localStorage.setItem("Slot2_Belly_Size_Slider_Enabled", bellySizeSliderEnabled);		
+	localStorage.setItem("Slot2_Belly_Shape_Slider_Enabled", bellyShapeSliderEnabled);		
+	localStorage.setItem("Slot2_Hips_Slider_Enabled", hipsSliderEnabled);			
+	localStorage.setItem("Slot2_Genital_Size_Slider_Enabled", genitalSizeSliderEnabled);	
+	localStorage.setItem("Slot2_Cock_Type_Menu_Enabled", cockTypeMenuEnabled);			
+	localStorage.setItem("Slot2_Libido_Slider_Enabled", libidoSliderEnabled);			
+	localStorage.setItem("Slot2_Sensitivity_Slider_Enabled", sensitivitySliderEnabled);		
+	localStorage.setItem("Slot2_Demeanor_Slider_Enabled", demeanorSliderEnabled);		
+	localStorage.setItem("Slot2_Postion_Pref_Slider_Enabled", positionPrefSliderEnabled);	
+	localStorage.setItem("Slot2_Intelligence_Slider_Enabled", intelligenceSliderEnabled);	
+	localStorage.setItem("Slot2_Fluffiness_Slider_Enabled", fluffinessSliderEnabled);		
+	localStorage.setItem("Slot2_Hair_Lenght_Slider_Enabled", hairLenghtSliderEnabled);		
+	localStorage.setItem("Slot2_Sexuality_Slider_Enabled", sexualitySliderEnabled);		
+	localStorage.setItem("Slot2_Feral_Anthro_Slider_Enabled", feralAnthroSliderEnabled);	
+	localStorage.setItem("Slot2_Hair_Color_Menu_Enabled", hairColorMenuEnabled);		
+	localStorage.setItem("Slot2_Fertility_Slider_Enabled", fertilitySliderEnabled);		
+	localStorage.setItem("Slot2_Genitals_Menu_Enabled", genitalsMenuEnabled);			
+	localStorage.setItem("Slot2_Species_Menu_Enabled", speciesMenuEnabled);			
+	localStorage.setItem("Slot2_Sex_Menu_Enabled", sexMenuEnabled);				
+	localStorage.setItem("Slot2_AC_Menu_Enabled", acMenuEnabled);				
+	localStorage.setItem("Slot2_MascFem_Slider_Enabled", mascFemSliderEnabled);			
+	localStorage.setItem("Slot2_ThinThicc_Slider_Enabled", thinThiccSliderEnabled);		
+	localStorage.setItem("Slot2_SmolTall_Slider_Enabled", smolTallSliderEnabled);		
+	localStorage.setItem("Slot2_Inanimate_Objects_Enabled", inanimateObjectsMenuEnabled);
 	
 	document.getElementById("settingsLoadedPopup").style.display = "block";	
 	document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Saved:" + " " + settingSex + " " + settingSpecies;
-	//hideSaveSlotButtons();
 	checkSlots();	
 	setTimeout(hideLoadedPopup, 4000);
  }
@@ -143,7 +216,6 @@
 				if (Species == null) {
 			document.getElementById("settingsLoadedPopup").style.display = "block";	
 			document.getElementById('settingsLoadedPopup').innerHTML = ">Error: This slot is empty";
-			hideLoadSlotButtons();
 			setTimeout(hideLoadedPopup, 4000);			
 		}
 		else{
@@ -157,14 +229,15 @@
 		if (Sex == "Male" || Sex == "Femboy") {
 			rbmale = document.getElementById("radiobuttonMale");
 			rbmale.checked = true;
-			rbfemale = document.getElementById("radiobuttonFemale");
-			rbfemale.checked = false;
 		}
 		else if (Sex == "Female" || Sex == "Tomboy") {
 			rbfemale = document.getElementById("radiobuttonFemale");
 			rbfemale.checked = true;
-			rbmale = document.getElementById("radiobuttonMale");
-			rbmale.checked = false;
+		}
+		else {
+			document.getElementById('thirdSexValue').innerHTML = Sex;
+			rbother = document.getElementById("radiobuttonOther");
+			rbother.checked = true;
 		}
  
 		var AC_Box_Ticked = localStorage.getItem("Slot2_AC_Box_Ticked");
@@ -183,6 +256,24 @@
 		}
 		else {
 			tickbox2.checked = false;
+		}
+		
+		var Genitals_Penis_Box_Ticked = localStorage.getItem("Slot2_Genitals_Menu_Penis_Box_Ticked");
+		var tickbox3 = document.getElementById("genitalsPenisCheckbox");
+		if (Genitals_Penis_Box_Ticked == "Yes") {			
+			tickbox3.checked = true;
+		}
+		else {
+			tickbox3.checked = false;
+		}
+		
+		var Genitals_Vagina_Box_Ticked = localStorage.getItem("Slot2_Genitals_Menu_Vagina_Box_Ticked");
+		var tickbox4 = document.getElementById("genitalsVaginaCheckbox");
+		if (Genitals_Vagina_Box_Ticked == "Yes") {			
+			tickbox4.checked = true;
+		}
+		else {
+			tickbox4.checked = false;
 		}
  
 		var bodyType1 = localStorage.getItem("Slot2_Body_Type1");
@@ -250,8 +341,7 @@
 		mySlider23.setValue(fertility);
 		
 		var cockType = localStorage.getItem("Slot2_Cock_Type");
-		var element2 = document.getElementById("cockType");
-		element2.value = cockType; 
+		document.getElementById('cockTypeCurrent').innerHTML = cockType;
  
 		if (Sex == "Male" || Sex == "Femboy") {
 			document.getElementById("showAdvancedSettings4a").style.display = "block";
@@ -298,11 +388,7 @@
 		var isCS1Enabled = localStorage.getItem("Slot2_Custom_Slider1_Enabled");
 		var isCS2Enabled = localStorage.getItem("Slot2_Custom_Slider2_Enabled");
 		var isCS3Enabled = localStorage.getItem("Slot2_Custom_Slider3_Enabled");
-		
-		document.getElementById("custom1SliderMenu").style.display='block';
-		document.getElementById("custom2SliderMenu").style.display='block';
-		document.getElementById("custom3SliderMenu").style.display='block';
-		
+				
 		var CS1Value = localStorage.getItem("Slot2_Custom_Slider1_Value");
 		var CS2Value = localStorage.getItem("Slot2_Custom_Slider2_Value");
 		var CS3Value = localStorage.getItem("Slot2_Custom_Slider3_Value");
@@ -311,37 +397,75 @@
 		mySlider18.setValue(CS2Value);
 		mySlider19.setValue(CS3Value);
 		
-		if (isCS1Enabled != "Yes") {
-			document.getElementById("custom1SliderMenu").style.display='none';
-		}
-		if (isCS2Enabled != "Yes") {
-			document.getElementById("custom2SliderMenu").style.display='none';
-		}
-		if (isCS3Enabled != "Yes") {
-			document.getElementById("custom3SliderMenu").style.display='none';
-		}
-		if (isCS1Enabled == "Yes") {
-			document.getElementById("customSlider1Checkbox").checked = true;
-			localStorage.setItem("Custom_Slider1_Enabled", "Yes");
-		}
-		if (isCS2Enabled == "Yes") {
-			document.getElementById("customSlider2Checkbox").checked = true;
-			localStorage.setItem("Custom_Slider2_Enabled", "Yes");
-		}
-		if (isCS3Enabled == "Yes") {
-			document.getElementById("customSlider3Checkbox").checked = true;
-			localStorage.setItem("Custom_Slider3_Enabled", "Yes");
-		}
+		localStorage.setItem("Custom_Slider1_Enabled", isCS1Enabled);
+		localStorage.setItem("Custom_Slider2_Enabled", isCS2Enabled);
+		localStorage.setItem("Custom_Slider3_Enabled", isCS3Enabled);
 		
 		var hairColor = localStorage.getItem("Slot2_Hair_Color");
 		var swatchColor = localStorage.getItem("Slot2_Swatch_Color");
+		
+		var buttSizeSliderEnabled = localStorage.getItem("Slot2_Butt_Size_Slider_Enabled");
+		var bellySizeSliderEnabled = localStorage.getItem("Slot2_Belly_Size_Slider_Enabled");
+		var bellyShapeSliderEnabled = localStorage.getItem("Slot2_Belly_Shape_Slider_Enabled");
+		var hipsSliderEnabled = localStorage.getItem("Slot2_Hips_Slider_Enabled");
+		var genitalSizeSliderEnabled = localStorage.getItem("Slot2_Genital_Size_Slider_Enabled");
+		var cockTypeMenuEnabled = localStorage.getItem("Slot2_Cock_Type_Menu_Enabled");
+		var libidoSliderEnabled = localStorage.getItem("Slot2_Libido_Slider_Enabled");
+		var sensitivitySliderEnabled = localStorage.getItem("Slot2_Sensitivity_Slider_Enabled");
+		var demeanorSliderEnabled = localStorage.getItem("Slot2_Demeanor_Slider_Enabled");
+		var positionPrefSliderEnabled = localStorage.getItem("Slot2_Postion_Pref_Slider_Enabled");
+		var intelligenceSliderEnabled = localStorage.getItem("Slot2_Intelligence_Slider_Enabled");
+		var fluffinessSliderEnabled = localStorage.getItem("Slot2_Fluffiness_Slider_Enabled");
+		var hairLenghtSliderEnabled = localStorage.getItem("Slot2_Hair_Lenght_Slider_Enabled");
+		var sexualitySliderEnabled = localStorage.getItem("Slot2_Sexuality_Slider_Enabled");
+		var feralAnthroSliderEnabled = localStorage.getItem("Slot2_Feral_Anthro_Slider_Enabled");
+		var hairColorMenuEnabled = localStorage.getItem("Slot2_Hair_Color_Menu_Enabled");
+		var fertilitySliderEnabled = localStorage.getItem("Slot2_Fertility_Slider_Enabled");
+		var genitalsMenuEnabled = localStorage.getItem("Slot2_Genitals_Menu_Enabled");
+		var speciesMenuEnabled = localStorage.getItem("Slot2_Species_Menu_Enabled");
+		var sexMenuEnabled = localStorage.getItem("Slot2_Sex_Menu_Enabled");
+		var acMenuEnabled = localStorage.getItem("Slot2_AC_Menu_Enabled");
+		var mascFemSliderEnabled = localStorage.getItem("Slot2_MascFem_Slider_Enabled");
+		var thinThiccSliderEnabled = localStorage.getItem("Slot2_ThinThicc_Slider_Enabled");
+		var smolTallSliderEnabled = localStorage.getItem("Slot2_SmolTall_Slider_Enabled");
+		var inanimateObjectsMenuEnabled = localStorage.getItem("Slot2_Inanimate_Objects_Enabled");
+		
+		localStorage.setItem("Butt_Size_Slider_Enabled", buttSizeSliderEnabled);	
+		localStorage.setItem("Belly_Size_Slider_Enabled", bellySizeSliderEnabled);		
+		localStorage.setItem("Belly_Shape_Slider_Enabled", bellyShapeSliderEnabled);		
+		localStorage.setItem("Hips_Slider_Enabled", hipsSliderEnabled);			
+		localStorage.setItem("Genital_Size_Slider_Enabled", genitalSizeSliderEnabled);	
+		localStorage.setItem("Cock_Type_Menu_Enabled", cockTypeMenuEnabled);			
+		localStorage.setItem("Libido_Slider_Enabled", libidoSliderEnabled);			
+		localStorage.setItem("Sensitivity_Slider_Enabled", sensitivitySliderEnabled);		
+		localStorage.setItem("Demeanor_Slider_Enabled", demeanorSliderEnabled);		
+		localStorage.setItem("Postion_Pref_Slider_Enabled", positionPrefSliderEnabled);	
+		localStorage.setItem("Intelligence_Slider_Enabled", intelligenceSliderEnabled);	
+		localStorage.setItem("Fluffiness_Slider_Enabled", fluffinessSliderEnabled);		
+		localStorage.setItem("Hair_Lenght_Slider_Enabled", hairLenghtSliderEnabled);		
+		localStorage.setItem("Sexuality_Slider_Enabled", sexualitySliderEnabled);		
+		localStorage.setItem("Feral_Anthro_Slider_Enabled", feralAnthroSliderEnabled);	
+		localStorage.setItem("Hair_Color_Menu_Enabled", hairColorMenuEnabled);		
+		localStorage.setItem("Fertility_Slider_Enabled", fertilitySliderEnabled);		
+		localStorage.setItem("Genitals_Menu_Enabled", genitalsMenuEnabled);			
+		localStorage.setItem("Species_Menu_Enabled", speciesMenuEnabled);			
+		localStorage.setItem("Sex_Menu_Enabled", sexMenuEnabled);				
+		localStorage.setItem("AC_Menu_Enabled", acMenuEnabled);				
+		localStorage.setItem("MascFem_Slider_Enabled", mascFemSliderEnabled);			
+		localStorage.setItem("ThinThicc_Slider_Enabled", thinThiccSliderEnabled);		
+		localStorage.setItem("SmolTall_Slider_Enabled", smolTallSliderEnabled);		
+		localStorage.setItem("Inanimate_Objects_Enabled", inanimateObjectsMenuEnabled);		
+		
+		loadSliderSettings();
+		loadCustomSlidersValuesOnStartup1("Yes");
+		loadCustomSlidersValuesOnStartup2("Yes");
+		loadCustomSlidersValuesOnStartup3("Yes");
 		
 		document.getElementById('hairColorCurrent').innerHTML = hairColor;
 		document.getElementById('hairColorSwatch').style.backgroundColor = swatchColor;
 		
 		document.getElementById("settingsLoadedPopup").style.display = "block";	
 		document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Loaded:" + " " + Sex + " " + Species;
-		//hideLoadSlotButtons();
 		saveSettingsSlot0();
 		setTimeout(hideLoadedPopup, 4000);	
 		}
