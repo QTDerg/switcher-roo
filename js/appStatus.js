@@ -130,6 +130,14 @@ function exportAppStatus() {
 }
 
 function importAppStatus() {
+	var lock = document.getElementById("lockClosed");
+	if (lock.style.display === "block") {
+		document.getElementById("unblockSettingsOkayContainer").style.display='block'; 
+		document.getElementById("unblockSettingsOkay").style.display='block'; 
+		document.getElementById("unblockSettingsMessage").style.display='block'; 
+		document.getElementById("errorMessageContainer").style.display='block'; 
+	}
+	else {
 	var data = document.getElementById("importAppStatusTextField").value;	
 	var obj = JSON.parse(data);
 	
@@ -235,6 +243,7 @@ function importAppStatus() {
 	saveSettingsSlot0();
 	
 	setTimeout(hideAppStatusImportMessage, 1500);
+	}
 }
 
 function hideAppStatusImportMessage() {

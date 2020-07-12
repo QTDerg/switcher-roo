@@ -694,7 +694,7 @@ function showOptions() {
 	document.getElementById("goBack").style.border="2px solid #59568f";
 	document.getElementById("goBack").style.fontSize='26px';
 	document.getElementById("goBack").style.marginTop='5px';
-	document.getElementById("optionsList").style.maxHeight='685px';
+	document.getElementById("optionsList").style.maxHeight='700px';
 	document.getElementById("optionsList").style.marginTop='15px';	
 	}
 	
@@ -1402,14 +1402,6 @@ function saveCockType() {
 		var cockType = document.getElementById('cockType').value 
 		localStorage.setItem("Slot0_Cock_Type", cockType);
 	}
-
-function hideMobileDeviceMessage() {
-	document.getElementById("errorMessageContainer").style.display = "none";
-	document.getElementById("mobileDeviceMessage").style.display = "none";
-	document.getElementById("mobileDeviceOkayContainer").style.display = "none";
-	document.getElementById("mobileDeviceOkay").style.display= 'none';  
-	localStorage.setItem("Seen_Mobile_Device_Message", "Yes");		
-}
 
 function toggleButtSizeSlider() {
 var tickbox = document.getElementById("buttSizeSliderCheckbox");

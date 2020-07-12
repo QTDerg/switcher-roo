@@ -136,7 +136,7 @@ function error621ChangeSlider() {
 	<script>
 		document.getElementById("unblockSettingsMessage").style.display = "none";	
 	</script>
-	>Error: Please unblock settings to load settings
+	>Error: Please unblock settings to load/import settings
 	</div>
 	
 	<div class="errorMessageAlignLeft" id="error69Message">
@@ -155,13 +155,6 @@ function error621ChangeSlider() {
 	</script>
 	>Your battery is low. Click "Charge Battery" text or Switcher-Roo logo or there will be 1 in 33 chance every 10 seconds, that error will happen.
 	</div>
-
-	<div class="errorMessageAlignLeft" id="mobileDeviceMessage">
-	<script>
-		document.getElementById("mobileDeviceMessage").style.display = "none";	
-	</script>
-	>It appears you're using mobile device. If you're using Android you can download .apk version of this app that should look better on your device. Link is at bottom of the page.
-	</div>	
 		
 </div>
 
@@ -443,10 +436,14 @@ function error621ChangeSlider() {
   
 	<div class="processingContainer">  
 			<div class="processingAnim" id="processingAnim">
+			<!--
+			<div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+			-->
 			<img src="images/animation.png" class="rotate" height="50" width="50">
 			<script>
 			document.getElementById("processingAnim").style.display = "none";
 			</script>
+			
 			</div>
   
 	</div>
@@ -3439,7 +3436,7 @@ document.getElementById("goBack").style.marginTop='0px';
 			<br>
 			
 			<div>
-			<label class="container" style="color:#FF4550">Enable CONTROL | Warning: this function does not work.
+			<label class="container" style="color:#FF4550">Enable CONTROL | Warning: this function does not work. See Github for more info.
 				<input type="checkbox" id="CONTROLbuttonCheckbox" onclick="toggleCONTROLButton()">
 				<span class="checkbox"></span>  
 			</label>
