@@ -3144,8 +3144,6 @@ document.getElementById("CTContainerSlot102").style.display='none';
 
 <div id="ButtonsContainer">
 
-<!--<div class="bigButton" onClick="helloWorld()">Send hello world message</div>-->
-
 <div class="bigButton" id="applySettingsButton" onClick="showProcessingAnimation()">Apply settings</div>
 
 <div class="bigButton" id="appStatusButton" onClick="showAppStatusOptions()">Import/export settings</div>
@@ -3181,11 +3179,24 @@ document.getElementById("CTContainerSlot102").style.display='none';
 	</div>
 	<script>document.getElementById("appStatusExportOptionsContainer").style.maxHeight='0px';</script>
 
-<div class="bigButton" id="CONTROLButton" onClick="CONTROLshowChoice()">CONTROL</div>
+<div class="bigButton" id="CONTROLButton" onClick="CONTROLshowConnectToServer()">CONTROL</div>
+
+	<div id="CONTROLconnectToServerContainer" style="overflow:hidden;transition-duration:0.75s">
+	
+		<div id="CONTROLconnectToServerStatus" style="padding-left:18px;margin-top:5px;">Status:</div>
+		<div style="margin-top:5px"></div>
+		<div class="bigButton" onClick="connectToServer()">Connect to server</div>
+		<div style="margin-top:5px"></div>
+		<div class="mediumButton" onClick="CONTROLgoBack()">Go back</div>
+		<div class="mediumButton" onClick="CONTROLshowChoice()">Proceed</div>
+		<div style="padding-left:18px;margin-top:5px;">Click "Connect to server" button. Once you're connected you may proceed.</div>
+				
+	</div>
+	<script>document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='0px';</script>
 
 	<div id="CONTROLchoiceContainer" style="overflow:hidden;transition-duration:0.75s">
 	
-		<div class="bigButton" onClick="CONTROLgoBack()">Go back</div>
+		<div class="bigButton" onClick="CONTROLgoBackFromChoice()">Go back</div>
 		<div style="padding-left:18px;margin-top:5px;margin-bottom:5px;">Choose your role:</div>
 		<div class="mediumButton" onClick="CONTROLshowConnectOptions()">Master</div>
 		<div class="mediumButton" onClick="CONTROLshowReveiveOptions()">Sub</div>
@@ -3199,7 +3210,8 @@ document.getElementById("CTContainerSlot102").style.display='none';
 		<input id="connectToPeerTextField" class="bigTextField" value="">
 		<div style="margin-top:5px"></div>
 		<div class="mediumButton" onClick="CONTROLgoBackFromConnectOptions()">Go back</div>
-		<div class="mediumButton" id="connectToSomeoneButton" onClick="connectToSomeone()">Connect</div>
+		<div class="mediumButton" onClick="join()">Join</div>
+		<div style="padding-left:18px;margin-top:5px;">Remember to save your current settings!</div>
 				
 	</div>
 	<script>document.getElementById("CONTROLconnectContainer").style.maxHeight='0px';</script>
@@ -3208,32 +3220,50 @@ document.getElementById("CTContainerSlot102").style.display='none';
 	
 		<div id="peerIDCopyMessage" style="padding-left:18px;margin-top:5px;">Your peer ID: (click to copy)</div>
 		<div id="peerID" onClick="CONTROLcopyPeerID('peerID')">&nbsp;</div>
-		<div class="mediumButton" onClick="CONTROLgoBackFromReceiveOptions()">Go back</div>
-		<div class="mediumButton" id="getPeerIDButton" onClick="getPeerID()">Get peer ID</div>
+		<div class="mediumButton" id="CONTROLgoBackFromHostOptionsButton" onClick="CONTROLgoBackFromReceiveOptions()">Go back</div>
+		<div class="mediumButton" id="CONTROLhostSessionButton" onClick="host()">Host</div>
 				
 	</div>
 	<script>document.getElementById("CONTROLreceiveContainer").style.maxHeight='0px';</script>
 	
-	<div id="CONTROLmasterContainer" style="overflow:hidden;transition-duration:0.75s">
+	<div id="CONTROLmasterContainer" style="overflow:hidden;transition-duration:0.75s;border:3px solid rgb(255, 69, 80);">
 	
-		<div id="CONTROLmasterMessage" style="padding-left:18px;margin-top:5px;">CONTROL session is active. You're master.</div>
-		<div id="CONTROLmasterMessageSubName" style="padding-left:18px;margin-top:5px;">You have control over !USERNAME!</div>
-		<div style="padding-left:18px;margin-top:5px;">Change your sub lock password:</div>
+		<div style="margin-top:5px;text-align:center;font-size:30px;color:#ff4500">CONTROL panel</div>
+		<div id="CONTROLmasterMessage" style="padding-left:18px;margin-top:5px;font-size:16px">CONTROL session is active. You're master.</div>
+		<div id="CONTROLmasterMessageSubName" style="padding-left:18px;margin-top:5px;">You're connected to !USERNAME!.</div>
+		<div style="padding-left:18px;margin-top:5px;">Change your sub's lock password:</div>
 		<div class="bigButton" onClick="CONTROLgoToChangeSubLockPassword()">Lock Password</div>
 		<div style="padding-left:18px;margin-top:5px;">Lock/Unlock settings:</div>
+		<div style="margin-top:5px"></div>
+		<div style="height:45px">
 		<div class="mediumButton" onClick="CONTROLunlockSubsSettings()">Unlock</div>
-		<div class="mediumButton" onClick="CONTROLlockSubsSettings()">Lock</div>		
-				
+		<div class="mediumButton" onClick="CONTROLlockSubsSettings()">Lock</div>
+		</div>
+		<div class="bigButtonAdminMode" onClick="CONTROLturnAdminMode()">Toggle Admin Mode</div>
+		
+		<div style="margin-top:5px"></div>
+		
 	</div>
-	<script>document.getElementById("CONTROLmasterContainer").style.maxHeight='0px';</script>
+	<script>document.getElementById("CONTROLmasterContainer").style.maxHeight='0px';document.getElementById("CONTROLmasterContainer").style.border='0';</script>
 	
 	<div id="CONTROLsubContainer" style="overflow:hidden;transition-duration:0.75s">
 	
 		<div id="CONTROLsubMessage" style="padding-left:18px;margin-top:5px;">CONTROL session is active. You're sub.</div>
-		<div id="CONTROLsubMessageMasterName" style="padding-left:18px;margin-top:5px;">You're under !USERNAME!s control.</div>
+		<div id="CONTROLsubMessageMasterName" style="padding-left:18px;margin-top:5px;">!USERNAME! is connected to you.</div>
 				
 	</div>
 	<script>document.getElementById("CONTROLsubContainer").style.maxHeight='0px';</script>
+	
+	<div id="CONTROLchangeSubsPasswordContainer" style="overflow:hidden;transition-duration:0.75s">
+		
+		<div id="CONTROLchangeSubsPasswordMessage" style="padding-left:18px;margin-top:5px;">Enter password:</div>
+		<input id="CONTROLchangeSubsPasswordTextField" class="bigTextField" value="">
+		<div style="margin-top:5px"></div>
+		<div class="mediumButton" onClick="goBackCONTROLchangeSubsPassword()">Cancel</div>
+		<div class="mediumButton" onClick="CONTROLchangeSubsPassword()">Proceed</div>
+		
+	</div>
+	<script>document.getElementById("CONTROLchangeSubsPasswordContainer").style.maxHeight='0px';</script>
 
 <div class="bigButton" id="randomizeButton" onClick="randomizeCharacter()">Randomize</div>
 
@@ -3302,6 +3332,14 @@ document.getElementById("goBack").style.marginTop='0px';
 </script>
 
 		<div class="optionsCheckboxes" id="optionsList">
+		
+			<div>
+			<label class="container">Enable CONTROL
+				<input type="checkbox" id="CONTROLbuttonCheckbox" onclick="toggleCONTROLButton()">
+				<span class="checkbox"></span>  
+			</label>
+			</div>
+			<br>
 		
 			<div>
 			<label class="container">Enable Randomizer
@@ -3430,14 +3468,6 @@ document.getElementById("goBack").style.marginTop='0px';
 			<div>
 			<label class="container">(Experimental) Show Change App Background button
 				<input type="checkbox" id="appBackgroundCheckbox" onclick="toggleAppBackgroundButton()">
-				<span class="checkbox"></span>  
-			</label>
-			</div>
-			<br>
-			
-			<div>
-			<label class="container" style="color:#FF4550">Enable CONTROL | Warning: this function does not work. See Github for more info.
-				<input type="checkbox" id="CONTROLbuttonCheckbox" onclick="toggleCONTROLButton()">
 				<span class="checkbox"></span>  
 			</label>
 			</div>
@@ -3715,7 +3745,7 @@ Add app <br> to your device
 <div class="creditsEntry">
 
 <div class="creditsText">
-Version 0.6.2.1m <br> Click to see changelog
+Version 0.6.2.1n <br> Click to see changelog
 </div>
 <div class="creditsAvatar">             
 <img src="images/favicon-upscaled-512.png" width="70" height="70" class="avatar">

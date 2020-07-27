@@ -2686,6 +2686,13 @@ function makeCustomSlider1() {
 		document.getElementById("custom1SliderMenu").style.maxHeight= '60px';
 		document.getElementById("custom1SliderMenu").style.borderBottom= '3px solid #73728C';
 		document.getElementById("custom1SliderMenu").style.paddingBottom= '15px';
+		if (controlsessionactive === "Yes") {
+			conn.send({firstParam: "changeSliderName", secondParam: "Custom1Left", thirdParam: leftText});
+			conn.send({firstParam: "changeSliderName", secondParam: "Custom1Middle", thirdParam: centerText});
+			conn.send({firstParam: "changeSliderName", secondParam: "Custom1Right", thirdParam: rightText});
+			conn.send({firstParam: "optionEnabled", secondParam: "custom1", thirdParam: "Yes"});
+			conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
+		}
 	}
 
 function makeCustomSlider2() {
@@ -2712,6 +2719,13 @@ function makeCustomSlider2() {
 		document.getElementById("custom2SliderMenu").style.maxHeight= '60px';
 		document.getElementById("custom2SliderMenu").style.borderBottom= '3px solid #73728C';
 		document.getElementById("custom2SliderMenu").style.paddingBottom= '15px';
+		if (controlsessionactive === "Yes") {
+			conn.send({firstParam: "changeSliderName", secondParam: "Custom2Left", thirdParam: leftText});
+			conn.send({firstParam: "changeSliderName", secondParam: "Custom2Middle", thirdParam: centerText});
+			conn.send({firstParam: "changeSliderName", secondParam: "Custom2Right", thirdParam: rightText});
+			conn.send({firstParam: "optionEnabled", secondParam: "custom2", thirdParam: "Yes"});
+			conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
+		}
 	}
 
 function makeCustomSlider3() {
@@ -2738,6 +2752,13 @@ function makeCustomSlider3() {
 		document.getElementById("custom3SliderMenu").style.maxHeight= '60px';
 		document.getElementById("custom3SliderMenu").style.borderBottom= '3px solid #73728C';
 		document.getElementById("custom3SliderMenu").style.paddingBottom= '15px';
+		if (controlsessionactive === "Yes") {
+			conn.send({firstParam: "changeSliderName", secondParam: "Custom3Left", thirdParam: leftText});
+			conn.send({firstParam: "changeSliderName", secondParam: "Custom3Middle", thirdParam: centerText});
+			conn.send({firstParam: "changeSliderName", secondParam: "Custom3Right", thirdParam: rightText});
+			conn.send({firstParam: "optionEnabled", secondParam: "custom3", thirdParam: "Yes"});
+			conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
+		}
 	}
 
 function toggleCustomSlider1() {
@@ -3643,12 +3664,12 @@ function showOrHideCONTROLButton() {
 	}
 }
 
-function CONTROLshowChoice() {
+function CONTROLshowConnectToServer() {
 	document.getElementById("CONTROLButton").style.padding='0px';
 	document.getElementById("CONTROLButton").style.border='0';
 	document.getElementById("CONTROLButton").style.fontSize='0px';
 	document.getElementById("CONTROLButton").style.marginTop='0px';
-	document.getElementById("CONTROLchoiceContainer").style.maxHeight='140px';
+	document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='230px';
 }
 
 function CONTROLgoBack() {
@@ -3656,12 +3677,22 @@ function CONTROLgoBack() {
 	document.getElementById("CONTROLButton").style.border="2px solid #59568f";
 	document.getElementById("CONTROLButton").style.fontSize='26px';
 	document.getElementById("CONTROLButton").style.marginTop='5px';
+	document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='0px';
+}
+
+function CONTROLshowChoice() {
+	document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='0px';
+	document.getElementById("CONTROLchoiceContainer").style.maxHeight='140px';
+}
+
+function CONTROLgoBackFromChoice() {
+	document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='230px';
 	document.getElementById("CONTROLchoiceContainer").style.maxHeight='0px';
 }
 
 function CONTROLshowConnectOptions() {
 	document.getElementById("CONTROLchoiceContainer").style.maxHeight='0px';
-	document.getElementById("CONTROLconnectContainer").style.maxHeight='140px';
+	document.getElementById("CONTROLconnectContainer").style.maxHeight='170px';
 }
 
 function CONTROLgoBackFromConnectOptions() {
@@ -3671,12 +3702,24 @@ function CONTROLgoBackFromConnectOptions() {
 
 function CONTROLshowReveiveOptions() {
 	document.getElementById("CONTROLchoiceContainer").style.maxHeight='0px';
-	document.getElementById("CONTROLreceiveContainer").style.maxHeight='125px';
+	document.getElementById("CONTROLreceiveContainer").style.maxHeight='146px';
 }
 
 function CONTROLgoBackFromReceiveOptions() {
 	document.getElementById("CONTROLreceiveContainer").style.maxHeight='0px';
 	document.getElementById("CONTROLchoiceContainer").style.maxHeight='140px';
+}
+
+function CONTROLgoToChangeSubLockPassword() {
+	document.getElementById("CONTROLmasterContainer").style.maxHeight='0px';
+	document.getElementById("CONTROLmasterContainer").style.border='0';
+	document.getElementById("CONTROLchangeSubsPasswordContainer").style.maxHeight='139px';
+}
+
+function goBackCONTROLchangeSubsPassword() {
+	document.getElementById("CONTROLmasterContainer").style.maxHeight='320px';
+	document.getElementById("CONTROLmasterContainer").style.border='3px solid rgb(255, 69, 80)';
+	document.getElementById("CONTROLchangeSubsPasswordContainer").style.maxHeight='0px';
 }
 
 function CONTROLcopyPeerID (containerid) {

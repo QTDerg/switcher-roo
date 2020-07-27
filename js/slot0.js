@@ -1,4 +1,4 @@
-// Slot 0 is "current" state of the app. This function is triggered after loading settings from slots 1-5, using Randomize function and importing App Status.
+// Slot 0 is "current" state of the app. This function is triggered after loading settings from slots 1-5, using Randomize function, importing App Status and connecting to someone (using CONTROL).
  function saveSettingsSlot0() {
 	var settingSpecies = document.getElementById("speciesCurrent").innerHTML;
 	var inanimateObject = document.getElementById("inanimateObjectsCurrent").innerHTML;

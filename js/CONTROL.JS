@@ -1,67 +1,77 @@
 var peer;
 var conn;
 var master;
-var appSynchronized = "false"; // Set this to true once app have been synchronized on master side.
+var controlsessionactive;
 
-// Both peer.on('connection') (on sub side) and conn.on('open') (on master side) events never fire. These events should trigger when connection is established.
-function getPeerID() {
-	return; // Delete this
-	master = "false";
-	//peer = new Peer(); // uncomment this if you want to use official PeerJS server (warning: runs on a potato)
-	// or 
-	//peer = new Peer( {	host: 'localhost',	port: 9000,	path: '/myapp'}); // uncomment this if you want to use your own PeerJS server https://github.com/peers/peerjs-server
+function connectToServer() {
+	document.getElementById('CONTROLconnectToServerStatus').innerHTML = "Status: Connecting...";
+	document.getElementById("CONTROLconnectToServerStatus").style.color = "#fff";
+	peer = new Peer(); // Official PeerJS server (offline as of 27-07-2020)
+	// 
+	//peer = new Peer( {	host: 'localhost',	port: 9000,	path: '/myapp'}); // Uncomment this if you want to use your own PeerJS server https://github.com/peers/peerjs-server
+	
 	peer.on('open', function(id) {
 	document.getElementById('peerID').innerHTML = id;
-	});
-	
-	peer.on('connection', function(conn) { // This event should fire when peer receives connection.
-	console.log("someone connected to you");
-	test(); // A test function that logs "Hello world!" in console log after other person presses the button. Uncomment <!--<div class="bigButton" onClick="helloWorld()">Send hello world message</div>--> in index.html if you want to test this.
+	document.getElementById('CONTROLconnectToServerStatus').innerHTML = "Status: Connected!";
+	document.getElementById("CONTROLconnectToServerStatus").style.color = "#29a329";
 	});
 	
 	peer.on('error', function (err) {
     console.log(err);
+	document.getElementById('CONTROLconnectToServerStatus').innerHTML = "Status: " + err;
+	document.getElementById("CONTROLconnectToServerStatus").style.color = "#FF4550";
     });
-	
 }
 
-function connectToSomeone() {
-	return; // Delete this
-	master = "true";
-	//peer = new Peer(); // uncomment this if you want to use official PeerJS server (warning: runs on a potato)
-	// or 
-	//peer = new Peer( {	host: 'localhost',	port: 9000,	path: '/myapp'}); // uncomment this if you want to use your own PeerJS server https://github.com/peers/peerjs-server
+function host() { // Sub
+	master = "false";
+	
+	document.getElementById("peerIDCopyMessage").innerHTML = "Waiting for connection...";
+	
+	document.getElementById("CONTROLhostSessionButton").style.padding='0px';
+	document.getElementById("CONTROLhostSessionButton").style.border="0";
+	document.getElementById("CONTROLhostSessionButton").style.fontSize='0px';
+	document.getElementById("CONTROLhostSessionButton").style.marginBottom='0px';
+	document.getElementById("CONTROLhostSessionButton").style.marginLeft='0px';
+	document.getElementById("CONTROLgoBackFromHostOptionsButton").style.padding='0px';
+	document.getElementById("CONTROLgoBackFromHostOptionsButton").style.border="0";
+	document.getElementById("CONTROLgoBackFromHostOptionsButton").style.fontSize='0px';
+	document.getElementById("CONTROLgoBackFromHostOptionsButton").style.marginBottom='0px';
+	document.getElementById("CONTROLgoBackFromHostOptionsButton").style.marginLeft='0px';
+	
+	peer.on('connection', function(c) {
+		console.log("someone connected to you");
+		conn = c;
+		receiveData();		
+		sliderHandleAnimation();
+		showCONTROLmenus();
+		synchronizationSleep();
+		sendUsernameSleep();
+	});
+}
+
+function join() { // Master
+	master = "true";	
 	
 	var destinationPeerID = document.getElementById("connectToPeerTextField").value;
 	conn = peer.connect(destinationPeerID, {reliable:true});
 	
-	conn.on('open', function() { // This event should fire when connection is established.
+	conn.on('open', function() {
 		console.log("connection to someone established");
+		receiveData();
+		attachEvents();
+		showCONTROLmenus();
+		sendUsernameSleep();
+		controlsessionactive = "Yes";
 	});
-	
-	peer.on('error', function (err) {
-    console.log(err);
-    });
-	test(); // A test function that logs "Hello world!" in console log after other person presses the button. Uncomment <!--<div class="bigButton" onClick="helloWorld()">Send hello world message</div>--> in index.html if you want to test this.
 }
 
-function helloWorld() {
-	conn.send('Hello world!');
+function synchronizationSleep() { // Execute it 1s after connection has been achieved. For some reason it doesn't work immediately after connecting.
+	setTimeout(synchronization, 1000);
 }
 
-function test() {
-	conn.on('data', function(data) {
-    console.log(data);
-  });
-}
+function synchronization() {
 
-// Once connection is achieved execute these functions:
-// receiveData(), synchronization(), sliderHandleAnimation() and showCONTROLmenus() on sub side.
-// receiveData(), attachEvents() and showCONTROLmenus() on master side.
-
-function synchronization() { // Master (person who connects to someone) gets their app synchronized to sub (person who receives connection).
-	if (master === "false") {
-		// Sub sends state of their app to master.
 		// Slider values	
 		var bodyType1 = mySlider6.getValue();
 		var bodyType2 = mySlider5.getValue();
@@ -89,29 +99,29 @@ function synchronization() { // Master (person who connects to someone) gets the
 		var custom2 = mySlider18.getValue();
 		var custom3 = mySlider19.getValue();
 		
-		conn.send("manipulateSlider", "mascFem", bodyType1);
-		conn.send("manipulateSlider", "thinThicc", bodyType2);
-		conn.send("manipulateSlider", "smolTall", bodyType3);
-		conn.send("manipulateSlider", "hips", hips);
-		conn.send("manipulateSlider", "genitalSize", genitalSize);
-		conn.send("manipulateSlider", "fluffiness", fluffiness);
-		conn.send("manipulateSlider", "libido", libido);
-		conn.send("manipulateSlider", "domsub", domsub);
-		conn.send("manipulateSlider", "sensitivity", sensitivity);
-		conn.send("manipulateSlider", "assertiveShy", assertiveShy);
-		conn.send("manipulateSlider", "breastSizeMale", breastSizeMale);
-		conn.send("manipulateSlider", "breastSizeFemale", breastSizeFemale);
-		conn.send("manipulateSlider", "buttSize", buttSize);
-		conn.send("manipulateSlider", "bellySize", bellySize);
-		conn.send("manipulateSlider", "bellyShape", bellyShape);
-		conn.send("manipulateSlider", "intelligence", intelligence);
-		conn.send("manipulateSlider", "hairLenght", hairLenght);
-		conn.send("manipulateSlider", "sexuality", sexuality);
-		conn.send("manipulateSlider", "feralAnthro", feralAnthro);
-		conn.send("manipulateSlider", "fertility", fertility);
-		conn.send("manipulateSlider", "custom1", custom1);
-		conn.send("manipulateSlider", "custom2", custom2);
-		conn.send("manipulateSlider", "custom3", custom3);
+		conn.send({firstParam: "manipulateSlider", secondParam: "mascFem", thirdParam: bodyType1});
+		conn.send({firstParam: "manipulateSlider", secondParam: "thinThicc", thirdParam: bodyType2});
+		conn.send({firstParam: "manipulateSlider", secondParam: "smolTall", thirdParam: bodyType3});
+		conn.send({firstParam: "manipulateSlider", secondParam: "hips", thirdParam: hips});
+		conn.send({firstParam: "manipulateSlider", secondParam: "genitalSize", thirdParam: genitalSize});
+		conn.send({firstParam: "manipulateSlider", secondParam: "fluffiness", thirdParam: fluffiness});
+		conn.send({firstParam: "manipulateSlider", secondParam: "libido", thirdParam: libido});
+		conn.send({firstParam: "manipulateSlider", secondParam: "domsub", thirdParam: domsub});
+		conn.send({firstParam: "manipulateSlider", secondParam: "sensitivity", thirdParam: sensitivity});
+		conn.send({firstParam: "manipulateSlider", secondParam: "assertiveShy", thirdParam: assertiveShy});
+		conn.send({firstParam: "manipulateSlider", secondParam: "breastSizeMale", thirdParam: breastSizeMale});
+		conn.send({firstParam: "manipulateSlider", secondParam: "breastSizeFemale", thirdParam: breastSizeFemale});
+		conn.send({firstParam: "manipulateSlider", secondParam: "buttSize", thirdParam: buttSize});
+		conn.send({firstParam: "manipulateSlider", secondParam: "bellySize", thirdParam: bellySize});
+		conn.send({firstParam: "manipulateSlider", secondParam: "bellyShape", thirdParam: bellyShape});
+		conn.send({firstParam: "manipulateSlider", secondParam: "intelligence", thirdParam: intelligence});
+		conn.send({firstParam: "manipulateSlider", secondParam: "hairLenght", thirdParam: hairLenght});
+		conn.send({firstParam: "manipulateSlider", secondParam: "sexuality", thirdParam: sexuality});
+		conn.send({firstParam: "manipulateSlider", secondParam: "feralAnthro", thirdParam: feralAnthro});
+		conn.send({firstParam: "manipulateSlider", secondParam: "fertility", thirdParam: fertility});
+		conn.send({firstParam: "manipulateSlider", secondParam: "custom1", thirdParam: custom1});
+		conn.send({firstParam: "manipulateSlider", secondParam: "custom2", thirdParam: custom2});
+		conn.send({firstParam: "manipulateSlider", secondParam: "custom3", thirdParam: custom3});
 		
 		// Options
 		var species = document.getElementById("speciesCurrent").innerHTML;
@@ -122,33 +132,33 @@ function synchronization() { // Master (person who connects to someone) gets the
 		var sex = localStorage.getItem("Slot0_Sex");
 		var thirdSex = localStorage.getItem("Slot0_Third_Sex");
 		
-		conn.send("manipulateOption", "Species", species);		
-		conn.send("manipulateOption", "Inanimate_Object", inanimateObject);
-		conn.send("manipulateOption", "Cock_Type", cockType);
-		conn.send("manipulateOption", "Hair_Color", hairColor, swatchColor);
-		conn.send("manipulateOption", "Sex", sex);
-		conn.send("manipulateOption", "Third_Sex", thirdSex);
+		conn.send({firstParam: "manipulateOption", secondParam: "Species", thirdParam: species});		
+		conn.send({firstParam: "manipulateOption", secondParam: "Inanimate_Object", thirdParam: inanimateObject});
+		conn.send({firstParam: "manipulateOption", secondParam: "Cock_Type", thirdParam: cockType});
+		conn.send({firstParam: "manipulateOption", secondParam: "Hair_Color", thirdParam: hairColor, fourthParam: swatchColor});
+		conn.send({firstParam: "manipulateOption", secondParam: "Sex", thirdParam: sex});
+		conn.send({firstParam: "manipulateOption", secondParam: "Third_Sex", thirdParam: thirdSex});
 		
 		// Checkboxes		
 		var tickbox = document.getElementById("adaptClothingCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("manipulateTickbox", "Adapt_Clothing", tickbox);
+		conn.send({firstParam: "manipulateTickbox", secondParam: "Adapt_Clothing", thirdParam: tickbox});
 		
 		var tickbox = document.getElementById("genitalsPenisCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("manipulateTickbox", "Genitals_Penis", tickbox);
+		conn.send({firstParam: "manipulateTickbox", secondParam: "Genitals_Penis", thirdParam: tickbox});
 		
 		var tickbox = document.getElementById("genitalsVaginaCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("manipulateTickbox", "Genitals_Vagina", tickbox);
+		conn.send({firstParam: "manipulateTickbox", secondParam: "Genitals_Vagina", thirdParam: tickbox});
 		
 		var tickbox = document.getElementById("pregnancyLockCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("manipulateTickbox", "Pregnancy_Lock", tickbox);
+		conn.send({firstParam: "manipulateTickbox", secondParam: "Pregnancy_Lock", thirdParam: tickbox});
 		
 		// Custom sliders names
 		var leftTextCustom1 = document.getElementById("textinmenuLeftCS1").innerText;
@@ -163,17 +173,17 @@ function synchronization() { // Master (person who connects to someone) gets the
 		var centerTextCustom3 = document.getElementById("textinmenuCenterCS3").innerText;
 		var rightTextCustom3 = document.getElementById("textinmenuRightCS3").innerText;
 		
-		conn.send("changeSliderName", "Custom1Left", leftTextCustom1);
-		conn.send("changeSliderName", "Custom1Middle", centerTextCustom1);
-		conn.send("changeSliderName", "Custom1Right", rightTextCustom1);
+		conn.send({firstParam: "changeSliderName", secondParam: "Custom1Left", thirdParam: leftTextCustom1});
+		conn.send({firstParam: "changeSliderName", secondParam: "Custom1Middle", thirdParam: centerTextCustom1});
+		conn.send({firstParam: "changeSliderName", secondParam: "Custom1Right", thirdParam: rightTextCustom1});
 		
-		conn.send("changeSliderName", "Custom2Left", leftTextCustom2);
-		conn.send("changeSliderName", "Custom2Middle", centerTextCustom2);
-		conn.send("changeSliderName", "Custom2Right", rightTextCustom2);
+		conn.send({firstParam: "changeSliderName", secondParam: "Custom2Left", thirdParam: leftTextCustom2});
+		conn.send({firstParam: "changeSliderName", secondParam: "Custom2Middle", thirdParam: centerTextCustom2});
+		conn.send({firstParam: "changeSliderName", secondParam: "Custom2Right", thirdParam: rightTextCustom2});
 		
-		conn.send("changeSliderName", "Custom3Left", leftTextCustom3);
-		conn.send("changeSliderName", "Custom3Middle", centerTextCustom3);
-		conn.send("changeSliderName", "Custom3Right", rightTextCustom3);
+		conn.send({firstParam: "changeSliderName", secondParam: "Custom3Left", thirdParam: leftTextCustom3});
+		conn.send({firstParam: "changeSliderName", secondParam: "Custom3Middle", thirdParam: centerTextCustom3});
+		conn.send({firstParam: "changeSliderName", secondParam: "Custom3Right", thirdParam: rightTextCustom3});
 		
 		// Options/sliders visibility
 
@@ -206,147 +216,204 @@ function synchronization() { // Master (person who connects to someone) gets the
 		var isCS2Enabled = localStorage.getItem("Custom_Slider2_Enabled");
 		var isCS3Enabled = localStorage.getItem("Custom_Slider3_Enabled");
 		
-		conn.send("optionEnabled", "buttSize", buttSizeSliderEnabled);
-		conn.send("optionEnabled", "bellySize", bellySizeSliderEnabled);
-		conn.send("optionEnabled", "bellyShape", bellyShapeSliderEnabled);
-		conn.send("optionEnabled", "hips", hipsSliderEnabled);
-		conn.send("optionEnabled", "genitalSize", genitalSizeSliderEnabled);
-		conn.send("optionEnabled", "cockType", cockTypeMenuEnabled);
-		conn.send("optionEnabled", "libido", libidoSliderEnabled);
-		conn.send("optionEnabled", "sensitivity", sensitivitySliderEnabled);
-		conn.send("optionEnabled", "demeanor", demeanorSliderEnabled);
-		conn.send("optionEnabled", "positionPref", positionPrefSliderEnabled);
-		conn.send("optionEnabled", "intelligence", intelligenceSliderEnabled);
-		conn.send("optionEnabled", "fluffiness", fluffinessSliderEnabled);
-		conn.send("optionEnabled", "hairLenght", hairLenghtSliderEnabled);
-		conn.send("optionEnabled", "sexuality", sexualitySliderEnabled);
-		conn.send("optionEnabled", "feralAnthro", feralAnthroSliderEnabled);
-		conn.send("optionEnabled", "hairColor", hairColorMenuEnabled);
-		conn.send("optionEnabled", "fertility", fertilitySliderEnabled);
-		conn.send("optionEnabled", "genitalsMenu", genitalsMenuEnabled);
-		conn.send("optionEnabled", "speciesMenu", speciesMenuEnabled);
-		conn.send("optionEnabled", "sexMenu", sexMenuEnabled);
-		conn.send("optionEnabled", "acMenu", acMenuEnabled);
-		conn.send("optionEnabled", "mascFem", mascFemSliderEnabled);
-		conn.send("optionEnabled", "thinThicc", thinThiccSliderEnabled);
-		conn.send("optionEnabled", "smolTall", smolTallSliderEnabled);
-		conn.send("optionEnabled", "inanimateObjectsMenu", inanimateObjectsMenuEnabled);
-		conn.send("optionEnabled", "custom1", isCS1Enabled);
-		conn.send("optionEnabled", "custom2", isCS2Enabled);
-		conn.send("optionEnabled", "custom3", isCS3Enabled);
-		conn.send("optionEnabled", "fireLoadSliderSettingsFunction");
-		conn.send("appSynchronized");	
+		conn.send({firstParam: "optionEnabled", secondParam: "buttSize", thirdParam: buttSizeSliderEnabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "bellySize", thirdParam: bellySizeSliderEnabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "bellyShape", thirdParam: bellyShapeSliderEnabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "hips", thirdParam: hipsSliderEnabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "genitalSize", thirdParam: genitalSizeSliderEnabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "cockType", thirdParam: cockTypeMenuEnabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "libido", thirdParam: libidoSliderEnabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "sensitivity", thirdParam: sensitivitySliderEnabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "demeanor", thirdParam: demeanorSliderEnabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "positionPref", thirdParam: positionPrefSliderEnabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "intelligence", thirdParam: intelligenceSliderEnabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "fluffiness", thirdParam: fluffinessSliderEnabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "hairLenght", thirdParam: hairLenghtSliderEnabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "sexuality", thirdParam: sexualitySliderEnabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "feralAnthro", thirdParam: feralAnthroSliderEnabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "hairColor", thirdParam: hairColorMenuEnabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "fertility", thirdParam: fertilitySliderEnabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "genitalsMenu", thirdParam: genitalsMenuEnabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "speciesMenu", thirdParam: speciesMenuEnabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "sexMenu", thirdParam: sexMenuEnabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "acMenu", thirdParam: acMenuEnabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "mascFem", thirdParam: mascFemSliderEnabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "thinThicc", thirdParam: thinThiccSliderEnabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "smolTall", thirdParam: smolTallSliderEnabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "inanimateObjectsMenu", thirdParam: inanimateObjectsMenuEnabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "custom1", thirdParam: isCS1Enabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "custom2", thirdParam: isCS2Enabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "custom3", thirdParam: isCS3Enabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
+		
+		conn.send({firstParam: "Save_Settings"});
 	}
-	else {
-		return;
-	}
-}
 
-function receiveData() { // This is function for receiving data from Master.	
-	conn.on('data', function(firstParam, secondParam, thirdParam, fourthParam) {
-	if (master === "false" || appSynchronized === "false") { // It should execute on Master side till app is synchronized.
-		if (firstParam === "manipulateSlider") {
-			if (secondParam === "mascFem") 				{	mySlider6.setValue(thirdParam);		}
-			else if (secondParam === "thinThicc") 		{	mySlider5.setValue(thirdParam);		}
-			else if (secondParam === "smolTall") 		{	mySlider4.setValue(thirdParam);		}
-			else if (secondParam === "hips") 			{	mySlider3.setValue(thirdParam);		}	
-			else if (secondParam === "genitalSize") 	{	mySlider2.setValue(thirdParam);		}
-			else if (secondParam === "fluffiness")		{	mySlider.setValue(thirdParam);		}
-			else if (secondParam === "libido") 			{	mySlider7.setValue(thirdParam);		}
-			else if (secondParam === "domsub") 			{	mySlider10.setValue(thirdParam);	}
-			else if (secondParam === "sensitivity") 	{	mySlider11.setValue(thirdParam);	}
-			else if (secondParam === "assertiveShy") 	{	mySlider12.setValue(thirdParam);	}
-			else if (secondParam === "breastSizeMale") 	{	mySlider9.setValue(thirdParam);		}
-			else if (secondParam === "breastSizeFemale"){	mySlider8.setValue(thirdParam);		}
-			else if (secondParam === "buttSize") 		{	mySlider13.setValue(thirdParam);	}
-			else if (secondParam === "bellySize") 		{	mySlider14.setValue(thirdParam);	}
-			else if (secondParam === "bellyShape")		{	mySlider15.setValue(thirdParam);	}
-			else if (secondParam === "intelligence")	{	mySlider16.setValue(thirdParam);	}
-			else if (secondParam === "hairLenght") 		{	mySlider20.setValue(thirdParam);	}
-			else if (secondParam === "sexuality") 		{	mySlider21.setValue(thirdParam);	}
-			else if (secondParam === "feralAnthro") 	{	mySlider22.setValue(thirdParam);	}
-			else if (secondParam === "fertility") 		{	mySlider23.setValue(thirdParam);	}
-			else if (secondParam === "custom1") 		{	mySlider17.setValue(thirdParam);	}
-			else if (secondParam === "custom2") 		{	mySlider18.setValue(thirdParam);	}
-			else if (secondParam === "custom3") 		{	mySlider19.setValue(thirdParam);	}
+function receiveData() {	
+	conn.on('data', function(data) {
+		if (data.firstParam === "manipulateSlider") {
+			if (data.secondParam === "mascFem") 				{	mySlider6.setValue(data.thirdParam);	}
+			else if (data.secondParam === "thinThicc") 			{	mySlider5.setValue(data.thirdParam);	}
+			else if (data.secondParam === "smolTall") 			{	mySlider4.setValue(data.thirdParam);	}
+			else if (data.secondParam === "hips") 				{	mySlider3.setValue(data.thirdParam);	}	
+			else if (data.secondParam === "genitalSize") 		{	mySlider2.setValue(data.thirdParam);	}
+			else if (data.secondParam === "fluffiness")			{	mySlider.setValue(data.thirdParam);		}
+			else if (data.secondParam === "libido") 			{	mySlider7.setValue(data.thirdParam);	}
+			else if (data.secondParam === "domsub") 			{	mySlider10.setValue(data.thirdParam);	}
+			else if (data.secondParam === "sensitivity") 		{	mySlider11.setValue(data.thirdParam);	}
+			else if (data.secondParam === "assertiveShy") 		{	mySlider12.setValue(data.thirdParam);	}
+			else if (data.secondParam === "breastSizeMale") 	{	mySlider9.setValue(data.thirdParam);	}
+			else if (data.secondParam === "breastSizeFemale")	{	mySlider8.setValue(data.thirdParam);	}
+			else if (data.secondParam === "buttSize") 			{	mySlider13.setValue(data.thirdParam);	}
+			else if (data.secondParam === "bellySize") 			{	mySlider14.setValue(data.thirdParam);	}
+			else if (data.secondParam === "bellyShape")			{	mySlider15.setValue(data.thirdParam);	}
+			else if (data.secondParam === "intelligence")		{	mySlider16.setValue(data.thirdParam);	}
+			else if (data.secondParam === "hairLenght") 		{	mySlider20.setValue(data.thirdParam);	}
+			else if (data.secondParam === "sexuality") 			{	mySlider21.setValue(data.thirdParam);	}
+			else if (data.secondParam === "feralAnthro") 		{	mySlider22.setValue(data.thirdParam);	}
+			else if (data.secondParam === "fertility") 			{	mySlider23.setValue(data.thirdParam);	}
+			else if (data.secondParam === "custom1") 			{	mySlider17.setValue(data.thirdParam);	}
+			else if (data.secondParam === "custom2") 			{	mySlider18.setValue(data.thirdParam);	}
+			else if (data.secondParam === "custom3") 			{	mySlider19.setValue(data.thirdParam);	}
 		}
-		else if (firstParam === "manipulateOption") {
-			if (secondParam === "Species") 				{	document.getElementById('speciesCurrent').innerHTML = thirdParam; 				}
-			else if (secondParam === "Inanimate_Object"){	document.getElementById('inanimateObjectsCurrent').innerHTML = thirdParam; 		}
-			else if (secondParam === "Cock_Type")		{	document.getElementById('cockTypeCurrent').innerHTML = thirdParam; 				}
-			else if (secondParam === "Hair_Color") 		{	document.getElementById('hairColorCurrent').innerHTML = thirdParam;
-															document.getElementById('hairColorSwatch').style.backgroundColor = fourthParam;	}
-			else if (secondParam === "Sex") 			{
-				if (thirdParam === "Male") 				{	document.getElementById("radiobuttonMale").checked = true;		}
-				else if (thirdParam === "Female") 		{	document.getElementById("radiobuttonFemale").checked = true;	}
-				else if (thirdParam === "Other") 		{	document.getElementById("radiobuttonOther").checked = true;		}
+		else if (data.firstParam === "manipulateOption") {
+			if (data.secondParam === "Species") 				{	document.getElementById('speciesCurrent').innerHTML = data.thirdParam; 					}
+			else if (data.secondParam === "Inanimate_Object")	{	document.getElementById('inanimateObjectsCurrent').innerHTML = data.thirdParam; 		}
+			else if (data.secondParam === "Cock_Type")			{	document.getElementById('cockTypeCurrent').innerHTML = data.thirdParam; 				}
+			else if (data.secondParam === "Hair_Color") 		{	document.getElementById('hairColorCurrent').innerHTML = data.thirdParam;
+																	document.getElementById('hairColorSwatch').style.backgroundColor = data.fourthParam;	}
+			else if (data.secondParam === "Sex") 				{
+				if (data.thirdParam === "Male") 				{	document.getElementById("radiobuttonMale").checked = true;		}
+				else if (data.thirdParam === "Female") 			{	document.getElementById("radiobuttonFemale").checked = true;	}
+				else if (data.thirdParam === "Other") 			{	document.getElementById("radiobuttonOther").checked = true;		}
 			}
-			else if (secondParam === "Third_Sex") 		{
-				if (thirdParam != null) 				{	document.getElementById('thirdSexValue').innerHTML = thirdParam;
-															localStorage.setItem("Slot0_Third_Sex", thirdParam); 			}
-			}
-		}
-		else if (firstParam === "manipulateTickbox") {
-			if (secondParam === "Adapt_Clothing") {
-				if (thirdParam === "Yes") 	{	document.getElementById("adaptClothingCheckbox").checked = true;	}
-				else						{	document.getElementById("adaptClothingCheckbox").checked = false;	}
-			}
-			else if (secondParam === "Genitals_Penis") {
-				if (thirdParam === "Yes") 	{	document.getElementById("genitalsPenisCheckbox").checked = true;	}
-				else						{	document.getElementById("genitalsPenisCheckbox").checked = false;	}
-			}
-			else if (secondParam === "Genitals_Vagina") {
-				if (thirdParam === "Yes") 	{	document.getElementById("genitalsVaginaCheckbox").checked = true;	}
-				else						{	document.getElementById("genitalsVaginaCheckbox").checked = false;	}
-			}
-			else if (secondParam === "Pregnancy_Lock") {
-				if (thirdParam === "Yes") 	{	document.getElementById("pregnancyLockCheckbox").checked = true;	}
-				else						{	document.getElementById("pregnancyLockCheckbox").checked = false;	}
+			else if (data.secondParam === "Third_Sex") 			{
+				if (data.thirdParam != null) 					{	document.getElementById('thirdSexValue').innerHTML = data.thirdParam;
+																	localStorage.setItem("Slot0_Third_Sex", data.thirdParam); 			}
 			}
 		}
-		else if (firstParam === "optionEnabled") {
-			if (secondParam === "buttSize") 							{	localStorage.setItem("Butt_Size_Slider_Enabled", thirdParam);		}
-			else if (secondParam === "bellySize") 						{	localStorage.setItem("Belly_Size_Slider_Enabled", thirdParam);		}
-			else if (secondParam === "bellyShape") 						{	localStorage.setItem("Belly_Shape_Slider_Enabled", thirdParam);		}
-			else if (secondParam === "hips") 							{	localStorage.setItem("Hips_Slider_Enabled", thirdParam);			}
-			else if (secondParam === "genitalSize") 					{	localStorage.setItem("Genital_Size_Slider_Enabled", thirdParam);	}
-			else if (secondParam === "cockType") 						{	localStorage.setItem("Cock_Type_Menu_Enabled", thirdParam);			}
-			else if (secondParam === "libido") 							{	localStorage.setItem("Libido_Slider_Enabled", thirdParam);			}
-			else if (secondParam === "sensitivity") 					{	localStorage.setItem("Sensitivity_Slider_Enabled", thirdParam);		}
-			else if (secondParam === "demeanor") 						{	localStorage.setItem("Demeanor_Slider_Enabled", thirdParam);		}
-			else if (secondParam === "positionPref") 					{	localStorage.setItem("Postion_Pref_Slider_Enabled", thirdParam);	}
-			else if (secondParam === "intelligence") 					{	localStorage.setItem("Intelligence_Slider_Enabled", thirdParam);	}
-			else if (secondParam === "fluffiness") 						{	localStorage.setItem("Fluffiness_Slider_Enabled", thirdParam);		}
-			else if (secondParam === "hairLenght") 						{	localStorage.setItem("Hair_Lenght_Slider_Enabled", thirdParam);		}
-			else if (secondParam === "sexuality") 						{	localStorage.setItem("Sexuality_Slider_Enabled", thirdParam);		}
-			else if (secondParam === "feralAnthro") 					{	localStorage.setItem("Feral_Anthro_Slider_Enabled", thirdParam);	}
-			else if (secondParam === "hairColor") 						{	localStorage.setItem("Hair_Color_Menu_Enabled", thirdParam);		}
-			else if (secondParam === "fertility") 						{	localStorage.setItem("Fertility_Slider_Enabled", thirdParam);		}
-			else if (secondParam === "genitalsMenu") 					{	localStorage.setItem("Genitals_Menu_Enabled", thirdParam);			}
-			else if (secondParam === "speciesMenu") 					{	localStorage.setItem("Species_Menu_Enabled", thirdParam);			}
-			else if (secondParam === "sexMenu")							{	localStorage.setItem("Sex_Menu_Enabled", thirdParam);				}
-			else if (secondParam === "acMenu") 							{	localStorage.setItem("AC_Menu_Enabled", thirdParam);				}
-			else if (secondParam === "mascFem") 						{	localStorage.setItem("MascFem_Slider_Enabled", thirdParam);			}
-			else if (secondParam === "thinThicc") 						{	localStorage.setItem("ThinThicc_Slider_Enabled", thirdParam);		}
-			else if (secondParam === "smolTall") 						{	localStorage.setItem("SmolTall_Slider_Enabled", thirdParam);		}
-			else if (secondParam === "inanimateObjectsMenu") 			{	localStorage.setItem("Inanimate_Objects_Enabled", thirdParam);		}
-			else if (secondParam === "custom1") 						{	localStorage.setItem("Custom_Slider1_Enabled", thirdParam);			}
-			else if (secondParam === "custom2") 						{	localStorage.setItem("Custom_Slider2_Enabled", thirdParam);			}
-			else if (secondParam === "custom3") 						{	localStorage.setItem("Custom_Slider3_Enabled", thirdParam);			}
-			else if (secondParam === "fireLoadSliderSettingsFunction") 	{	loadSliderSettings();loadCustomSlidersValuesOnStartup1("Yes");
-																			loadCustomSlidersValuesOnStartup2("Yes");loadCustomSlidersValuesOnStartup3("Yes");	}
+		else if (data.firstParam === "manipulateTickbox") {
+			if (data.secondParam === "Adapt_Clothing") {
+				if (data.thirdParam === "Yes") 	{	document.getElementById("adaptClothingCheckbox").checked = true;	}
+				else							{	document.getElementById("adaptClothingCheckbox").checked = false;	}
+			}
+			else if (data.secondParam === "Genitals_Penis") {
+				if (data.thirdParam === "Yes") 	{	document.getElementById("genitalsPenisCheckbox").checked = true;	}
+				else							{	document.getElementById("genitalsPenisCheckbox").checked = false;	}
+			}
+			else if (data.secondParam === "Genitals_Vagina") {
+				if (data.thirdParam === "Yes") 	{	document.getElementById("genitalsVaginaCheckbox").checked = true;	}
+				else							{	document.getElementById("genitalsVaginaCheckbox").checked = false;	}
+			}
+			else if (data.secondParam === "Pregnancy_Lock") {
+				if (data.thirdParam === "Yes") 	{	document.getElementById("pregnancyLockCheckbox").checked = true;	}
+				else							{	document.getElementById("pregnancyLockCheckbox").checked = false;	}
+			}
 		}
-		else if (firstParam === "appSynchronized") {
-			appSynchronized = "true";
+		else if (data.firstParam === "optionEnabled") {
+			if (data.secondParam === "buttSize") 							{	localStorage.setItem("Butt_Size_Slider_Enabled", data.thirdParam);		}
+			else if (data.secondParam === "bellySize") 						{	localStorage.setItem("Belly_Size_Slider_Enabled", data.thirdParam);		}
+			else if (data.secondParam === "bellyShape") 					{	localStorage.setItem("Belly_Shape_Slider_Enabled", data.thirdParam);	}
+			else if (data.secondParam === "hips") 							{	localStorage.setItem("Hips_Slider_Enabled", data.thirdParam);			}
+			else if (data.secondParam === "genitalSize") 					{	localStorage.setItem("Genital_Size_Slider_Enabled", data.thirdParam);	}
+			else if (data.secondParam === "cockType") 						{	localStorage.setItem("Cock_Type_Menu_Enabled", data.thirdParam);		}
+			else if (data.secondParam === "libido") 						{	localStorage.setItem("Libido_Slider_Enabled", data.thirdParam);			}
+			else if (data.secondParam === "sensitivity") 					{	localStorage.setItem("Sensitivity_Slider_Enabled", data.thirdParam);	}
+			else if (data.secondParam === "demeanor") 						{	localStorage.setItem("Demeanor_Slider_Enabled", data.thirdParam);		}
+			else if (data.secondParam === "positionPref") 					{	localStorage.setItem("Postion_Pref_Slider_Enabled", data.thirdParam);	}
+			else if (data.secondParam === "intelligence") 					{	localStorage.setItem("Intelligence_Slider_Enabled", data.thirdParam);	}
+			else if (data.secondParam === "fluffiness") 					{	localStorage.setItem("Fluffiness_Slider_Enabled", data.thirdParam);		}
+			else if (data.secondParam === "hairLenght") 					{	localStorage.setItem("Hair_Lenght_Slider_Enabled", data.thirdParam);	}
+			else if (data.secondParam === "sexuality") 						{	localStorage.setItem("Sexuality_Slider_Enabled", data.thirdParam);		}
+			else if (data.secondParam === "feralAnthro") 					{	localStorage.setItem("Feral_Anthro_Slider_Enabled", data.thirdParam);	}
+			else if (data.secondParam === "hairColor") 						{	localStorage.setItem("Hair_Color_Menu_Enabled", data.thirdParam);		}
+			else if (data.secondParam === "fertility") 						{	localStorage.setItem("Fertility_Slider_Enabled", data.thirdParam);		}
+			else if (data.secondParam === "genitalsMenu") 					{	localStorage.setItem("Genitals_Menu_Enabled", data.thirdParam);			}
+			else if (data.secondParam === "speciesMenu") 					{	localStorage.setItem("Species_Menu_Enabled", data.thirdParam);			}
+			else if (data.secondParam === "sexMenu")						{	localStorage.setItem("Sex_Menu_Enabled", data.thirdParam);				}
+			else if (data.secondParam === "acMenu") 						{	localStorage.setItem("AC_Menu_Enabled", data.thirdParam);				}
+			else if (data.secondParam === "mascFem") 						{	localStorage.setItem("MascFem_Slider_Enabled", data.thirdParam);		}
+			else if (data.secondParam === "thinThicc") 						{	localStorage.setItem("ThinThicc_Slider_Enabled", data.thirdParam);		}
+			else if (data.secondParam === "smolTall") 						{	localStorage.setItem("SmolTall_Slider_Enabled", data.thirdParam);		}
+			else if (data.secondParam === "inanimateObjectsMenu") 			{	localStorage.setItem("Inanimate_Objects_Enabled", data.thirdParam);		}
+			else if (data.secondParam === "custom1") 						{	localStorage.setItem("Custom_Slider1_Enabled", data.thirdParam);		}
+			else if (data.secondParam === "custom2") 						{	localStorage.setItem("Custom_Slider2_Enabled", data.thirdParam);		}
+			else if (data.secondParam === "custom3") 						{	localStorage.setItem("Custom_Slider3_Enabled", data.thirdParam);		}
+			else if (data.secondParam === "fireLoadSliderSettingsFunction") {	loadSliderSettings();
+																				loadCustomSlidersValuesOnStartup1("Yes");
+																				loadCustomSlidersValuesOnStartup2("Yes");
+																				loadCustomSlidersValuesOnStartup3("Yes");								}
 		}
-	}
-		else {
-			return;
+		else if (data.firstParam === "changeSliderName") {
+			x = data.thirdParam;
+			if (x === "") { 
+				x = "&nbsp;"; 
+				}
+			if (data.secondParam === "Custom1Left") {	
+				document.getElementById('textinmenuLeftCS1').innerHTML = x;
+				localStorage.setItem("Custom_Slider1_LeftText", x);
+			}
+			else if (data.secondParam === "Custom1Middle") {	
+				document.getElementById('textinmenuCenterCS1').innerHTML = x;
+				localStorage.setItem("Custom_Slider1_CenterText", x);
+			}
+			else if (data.secondParam === "Custom1Right") {	
+				document.getElementById('textinmenuRightCS1').innerHTML = x;
+				localStorage.setItem("Custom_Slider1_RightText", x);
+			}
+			else if (data.secondParam === "Custom2Left") {	
+				document.getElementById('textinmenuLeftCS2').innerHTML = x;
+				localStorage.setItem("Custom_Slider2_LeftText", x);
+			}
+			else if (data.secondParam === "Custom2Middle") {	
+				document.getElementById('textinmenuCenterCS2').innerHTML = x;
+				localStorage.setItem("Custom_Slider2_CenterText", x);
+			}
+			else if (data.secondParam === "Custom2Right") {	
+				document.getElementById('textinmenuRightCS2').innerHTML = x;
+				localStorage.setItem("Custom_Slider2_RightText", x);
+			}
+			else if (data.secondParam === "Custom3Left") {	
+				document.getElementById('textinmenuLeftCS3').innerHTML = x;
+				localStorage.setItem("Custom_Slider3_LeftText", x);
+			}
+			else if (data.secondParam === "Custom3Middle") {	
+				document.getElementById('textinmenuCenterCS3').innerHTML = x;
+				localStorage.setItem("Custom_Slider3_CenterText", x);
+			}
+			else if (data.secondParam === "Custom3Right") {	
+				document.getElementById('textinmenuRightCS3').innerHTML = x;
+				localStorage.setItem("Custom_Slider3_RightText", x);
+			}
+		}
+		else if (data.firstParam === "Username") {
+			if (master === "true") {
+				document.getElementById('CONTROLmasterMessageSubName').innerHTML = "You're connected to " + data.secondParam + ".";
+			}
+			else {
+				document.getElementById('CONTROLsubMessageMasterName').innerHTML = data.secondParam + " is connected to you.";
+			}
+		}
+		else if (data.firstParam === "Unlock_Settings") {
+			openLockStage3();
+		}
+		else if (data.firstParam === "Lock_Settings") {
+			closeLock();
+		}
+		else if (data.firstParam === "Toggle_Admin_Mode") {
+			toggleAdminModeFunction();
+		}
+		else if (data.firstParam === "Change_Lock_Password") {
+			localStorage.setItem("Current_Password", data.secondParam);
+			localStorage.setItem("Lock_Settings_Password_Enabled", "Yes");
+		}
+		else if (data.firstParam === "Save_Settings") {
+			saveSettingsSlot0();
 		}
     });	
 }
 
-function attachEvents() { // Attach events to sliders/options/checkboxes. This function should execute only on master side.
+function attachEvents() {
 	if (master === "true") {
 		attachEventsToSliders();
 		attachEventsToOptions();
@@ -358,9 +425,13 @@ function attachEvents() { // Attach events to sliders/options/checkboxes. This f
 	}
 }
 
-function sliderHandleAnimation() { // Change css for sliders to one with slider handle animation on the sub side.
+function sliderHandleAnimation() {
 	if (master === "false") {
-		document.getElementById('defaultcss').href='css/dhtmlxsliderAnim.css';
+		var x = document.getElementsByClassName("dhxsl_runner");
+		var i;
+		for (i = 0; i < x.length; i++) {
+		x[i].style.transitionDuration = "0.5s";
+		}
 	}
 	else {
 		return;
@@ -374,90 +445,103 @@ function showCONTROLmenus() {
 	}
 	else {
 		document.getElementById("CONTROLconnectContainer").style.maxHeight='0px';
-		document.getElementById("CONTROLmasterContainer").style.maxHeight='200px';
+		document.getElementById("CONTROLmasterContainer").style.maxHeight='320px';
+		document.getElementById("CONTROLmasterContainer").style.border='3px solid rgb(255, 69, 80)';
 	}
 }
 
 function attachEventsToSliders() {
 	mySlider6.attachEvent("onSlideEnd", function() { // Masc/Fem slider
    	var value = mySlider6.getValue();
-	conn.send("manipulateSlider", "mascFem", value);
+	conn.send({firstParam: "manipulateSlider", secondParam:"mascFem", thirdParam: value});
 });
 	mySlider5.attachEvent("onSlideEnd", function() { // Thin/Thicc slider
    	var value = mySlider5.getValue();
-	conn.send("manipulateSlider", "thinThicc", value);
+	conn.send({firstParam: "manipulateSlider", secondParam:"thinThicc", thirdParam: value});
 });
 	mySlider4.attachEvent("onSlideEnd", function() { // Smol/Tall slider
    	var value = mySlider4.getValue();
-	conn.send("manipulateSlider", "smolTall", value);
+	conn.send({firstParam: "manipulateSlider", secondParam:"smolTall", thirdParam: value});
 });
 	mySlider3.attachEvent("onSlideEnd", function() { // Hips slider
    	var value = mySlider3.getValue();
-	conn.send("manipulateSlider", "hips", value);
+	conn.send({firstParam: "manipulateSlider", secondParam:"hips", thirdParam: value});
 });
 	mySlider2.attachEvent("onSlideEnd", function() { // Genital Size slider
    	var value = mySlider2.getValue();
-	conn.send("manipulateSlider", "genitalSize", value);
+	conn.send({firstParam: "manipulateSlider", secondParam:"genitalSize", thirdParam: value});
 });
 	mySlider.attachEvent("onSlideEnd", function() { // Fluffiness slider
    	var value = mySlider.getValue();
-	conn.send("manipulateSlider", "fluffiness", value);
+	conn.send({firstParam: "manipulateSlider", secondParam:"fluffiness", thirdParam: value});
 });
 	mySlider7.attachEvent("onSlideEnd", function() { // Libido slider
    	var value = mySlider7.getValue();
-	conn.send("manipulateSlider", "libido", value);
+	conn.send({firstParam: "manipulateSlider", secondParam:"libido", thirdParam: value});
 });
 	mySlider10.attachEvent("onSlideEnd", function() { // Position Preference slider
    	var value = mySlider10.getValue();
-	conn.send("manipulateSlider", "domsub", value);
+	conn.send({firstParam: "manipulateSlider", secondParam:"domsub", thirdParam: value});
 });
 	mySlider11.attachEvent("onSlideEnd", function() { // Sensitivity slider
    	var value = mySlider11.getValue();
-	conn.send("manipulateSlider", "sensitivity", value);
+	conn.send({firstParam: "manipulateSlider", secondParam:"sensitivity", thirdParam: value});
 });
 	mySlider12.attachEvent("onSlideEnd", function() { // Demeanor slider
    	var value = mySlider12.getValue();
-	conn.send("manipulateSlider", "assertiveShy", value);
+	conn.send({firstParam: "manipulateSlider", secondParam:"assertiveShy", thirdParam: value});
 });
 	mySlider9.attachEvent("onSlideEnd", function() { // Breast Size Male slider
    	var value = mySlider9.getValue();
-	conn.send("manipulateSlider", "breastSizeMale", value);
+	conn.send({firstParam: "manipulateSlider", secondParam:"breastSizeMale", thirdParam: value});
 });
 	mySlider8.attachEvent("onSlideEnd", function() { // Breast Size Female slider
    	var value = mySlider8.getValue();
-	conn.send("manipulateSlider", "breastSizeFemale", value);
+	conn.send({firstParam: "manipulateSlider", secondParam:"breastSizeFemale", thirdParam: value});
 });
 	mySlider13.attachEvent("onSlideEnd", function() { // Butt Size slider
    	var value = mySlider13.getValue();
-	conn.send("manipulateSlider", "buttSize", value);
+	conn.send({firstParam: "manipulateSlider", secondParam:"buttSize", thirdParam: value});
 });
 	mySlider14.attachEvent("onSlideEnd", function() { // Belly Size slider
    	var value = mySlider14.getValue();
-	conn.send("manipulateSlider", "bellySize", value);
+	conn.send({firstParam: "manipulateSlider", secondParam:"bellySize", thirdParam: value});
 });
 	mySlider15.attachEvent("onSlideEnd", function() { // Belly Shape slider
    	var value = mySlider15.getValue();
-	conn.send("manipulateSlider", "bellyShape", value);
+	conn.send({firstParam: "manipulateSlider", secondParam:"bellyShape", thirdParam: value});
 });
 	mySlider16.attachEvent("onSlideEnd", function() { // Intelligence slider
    	var value = mySlider16.getValue();
-	conn.send("manipulateSlider", "intelligence", value);
+	conn.send({firstParam: "manipulateSlider", secondParam:"intelligence", thirdParam: value});
 });
 	mySlider20.attachEvent("onSlideEnd", function() { // Hair Lenght slider
    	var value = mySlider20.getValue();
-	conn.send("manipulateSlider", "hairLenght", value);
+	conn.send({firstParam: "manipulateSlider", secondParam:"hairLenght", thirdParam: value});
 });
 	mySlider21.attachEvent("onSlideEnd", function() { // Sexuality slider
    	var value = mySlider21.getValue();
-	conn.send("manipulateSlider", "sexuality", value);
+	conn.send({firstParam: "manipulateSlider", secondParam:"sexuality", thirdParam: value});
 });
 	mySlider22.attachEvent("onSlideEnd", function() { // Feral/Anthro slider
    	var value = mySlider22.getValue();
-	conn.send("manipulateSlider", "feralAnthro", value);
+	conn.send({firstParam: "manipulateSlider", secondParam:"feralAnthro", thirdParam: value});
 });
 	mySlider23.attachEvent("onSlideEnd", function() { // Fertility slider
    	var value = mySlider23.getValue();
-	conn.send("manipulateSlider", "fertility", value);
+	conn.send({firstParam: "manipulateSlider", secondParam:"fertility", thirdParam: value});
+});
+	mySlider17.attachEvent("onSlideEnd", function() { // Custom 1 slider
+   	var value = mySlider17.getValue();
+	conn.send({firstParam: "manipulateSlider", secondParam:"custom1", thirdParam: value});
+});
+	mySlider18.attachEvent("onSlideEnd", function() { // Custom 2 slider
+   	var value = mySlider18.getValue();
+	conn.send({firstParam: "manipulateSlider", secondParam:"custom2", thirdParam: value});
+});
+	mySlider19.attachEvent("onSlideEnd", function() { // Custom 3 slider
+   	var value = mySlider19.getValue();
+	conn.send({firstParam: "manipulateSlider", secondParam:"custom3", thirdParam: value});
 });
 
 }
@@ -465,29 +549,29 @@ function attachEventsToSliders() {
 function attachEventsToOptions() {
 	document.getElementById("speciesCurrent").addEventListener('DOMSubtreeModified', function() {
 		var species = document.getElementById("speciesCurrent").innerHTML;
-		conn.send("manipulateOption", "Species", species);
+		conn.send({firstParam: "manipulateOption", secondParam: "Species", thirdParam: species});
 	});
 	document.getElementById("inanimateObjectsCurrent").addEventListener('DOMSubtreeModified', function() {
 		var inanimateObject = document.getElementById("inanimateObjectsCurrent").innerHTML;
-		conn.send("manipulateOption", "Inanimate_Object", inanimateObject);
+		conn.send({firstParam: "manipulateOption", secondParam: "Inanimate_Object", thirdParam: inanimateObject});
 	});
 	document.getElementById("cockTypeCurrent").addEventListener('DOMSubtreeModified', function() {
-		var inanimateObject = document.getElementById("cockTypeCurrent").innerHTML;
-		conn.send("manipulateOption", "Cock_Type", inanimateObject);
+		var cockType = document.getElementById("cockTypeCurrent").innerHTML;
+		conn.send({firstParam: "manipulateOption", secondParam: "Cock_Type", thirdParam: cockType});
 	});
 	document.getElementById("hairColorCurrent").addEventListener('DOMSubtreeModified', function() {
 		var hairColor = localStorage.getItem("Slot0_Hair_Color");
 		var swatchColor = localStorage.getItem("Slot0_Swatch_Color");
-		conn.send("manipulateOption", "Hair_Color", hairColor, swatchColor);
+		conn.send({firstParam: "manipulateOption", secondParam: "Hair_Color", thirdParam: hairColor, fourthParam: swatchColor});
 	});
 	document.getElementById("radiobuttonMale").addEventListener("click", function(){
-		conn.send("manipulateOption", "Sex", "Male");
+		conn.send({firstParam: "manipulateOption", secondParam: "Sex", thirdParam: "Male"});
 	});
 	document.getElementById("radiobuttonFemale").addEventListener("click", function(){
-		conn.send("manipulateOption", "Sex", "Female");
+		conn.send({firstParam: "manipulateOption", secondParam: "Sex", thirdParam: "Female"});
 	});
 	document.getElementById("radiobuttonOther").addEventListener("click", function(){
-		conn.send("manipulateOption", "Sex", "Other");
+		conn.send({firstParam: "manipulateOption", secondParam: "Sex", thirdParam: "Other"});
 	});
 }
 
@@ -496,25 +580,25 @@ function attachEventsToTickboxes() {
 		var tickbox = document.getElementById("adaptClothingCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("manipulateTickbox", "Adapt_Clothing", tickbox);
+		conn.send({firstParam: "manipulateTickbox", secondParam: "Adapt_Clothing", thirdParam: tickbox});
 	});
 	document.getElementById("genitalsPenisCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("genitalsPenisCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("manipulateTickbox", "Genitals_Penis", tickbox);
+		conn.send({firstParam: "manipulateTickbox", secondParam: "Genitals_Penis", thirdParam: tickbox});
 	});
 	document.getElementById("genitalsVaginaCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("genitalsVaginaCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("manipulateTickbox", "Genitals_Vagina", tickbox);
+		conn.send({firstParam: "manipulateTickbox", secondParam: "Genitals_Vagina", thirdParam: tickbox});
 	});
 	document.getElementById("pregnancyLockCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("pregnancyLockCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("manipulateTickbox", "Pregnancy_Lock", tickbox);
+		conn.send({firstParam: "manipulateTickbox", secondParam: "Pregnancy_Lock", thirdParam: tickbox});
 	});
 }
 
@@ -523,168 +607,239 @@ function attachEventsToVisibiltyOptions() {
 		var tickbox = document.getElementById("speciesCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "speciesMenu", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "speciesMenu", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("sexCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("sexCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "sexMenu", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "sexMenu", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("toggleAdaptClothingCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("toggleAdaptClothingCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "acMenu", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "acMenu", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("mascFemCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("mascFemCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "mascFem", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "mascFem", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("thinThiccCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("thinThiccCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "thinThicc", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "thinThicc", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("smolTallCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("smolTallCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "smolTall", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "smolTall", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("genitalsCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("genitalsCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "genitalsMenu", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "genitalsMenu", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("inanimateObjectsCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("inanimateObjectsCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "inanimateObjectsMenu", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "inanimateObjectsMenu", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("buttSizeSliderCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("buttSizeSliderCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "buttSize", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "buttSize", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("bellySizeSliderCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("bellySizeSliderCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "bellySize", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "bellySize", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("bellyShapeSliderCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("bellyShapeSliderCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "bellyShape", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "bellyShape", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("hipsSliderCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("hipsSliderCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "hips", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "hips", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("hairColorMenuCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("hairColorMenuCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "hairColor", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "hairColor", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("hairLenghtSliderCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("hairLenghtSliderCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "hairLenght", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "hairLenght", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("genitalSizeSliderCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("genitalSizeSliderCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "genitalSize", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "genitalSize", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("cockTypeMenuCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("cockTypeMenuCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "cockType", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "cockType", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("libidoSliderCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("libidoSliderCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "libido", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "libido", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("sensitivitySliderCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("sensitivitySliderCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "sensitivity", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "sensitivity", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("demeanorSliderCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("demeanorSliderCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "demeanor", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "demeanor", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("positionPreferenceSliderCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("positionPreferenceSliderCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "positionPref", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "positionPref", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("intelligenceSliderCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("intelligenceSliderCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "intelligence", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "intelligence", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("sexualitySliderCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("sexualitySliderCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "sexuality", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "sexuality", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("fertilitySliderCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("fertilitySliderCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "fertility", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "fertility", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("fluffinessSliderCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("fluffinessSliderCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "fluffiness", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "fluffiness", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("feralAnthroSliderCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("feralAnthroSliderCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "feralAnthro", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "feralAnthro", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("customSlider1Checkbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("customSlider1Checkbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "custom1", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "custom1", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("customSlider2Checkbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("customSlider2Checkbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "custom2", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "custom2", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("customSlider3Checkbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("customSlider3Checkbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
-		conn.send("optionEnabled", "custom3", tickbox);
+		conn.send({firstParam: "optionEnabled", secondParam: "custom3", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
+}
+
+function sendUsernameSleep() {
+	setTimeout(sendUsername, 1200);
+}
+
+function sendUsername() {
+	var username = localStorage.getItem("Username");
+	conn.send({firstParam: "Username", secondParam: username});
+}
+
+function CONTROLchangeSubsPassword() {
+	var password = document.getElementById("CONTROLchangeSubsPasswordTextField").value;
+	if (password === "") {
+		CONTROLpleaseProvidePassword();
+	}
+	else {
+		conn.send({firstParam: "Change_Lock_Password", secondParam: password});
+		goBackCONTROLchangeSubsPassword();
+	}
+}
+
+function CONTROLpleaseProvidePassword() {
+	document.getElementById('CONTROLchangeSubsPasswordMessage').innerHTML = ">Error: Please provide password!";
+	document.getElementById('CONTROLchangeSubsPasswordMessage').style.color = "#FF4550";
+	setTimeout (CONTROLpleaseProvidePasswordStage2, 2500);
+}
+
+function CONTROLpleaseProvidePasswordStage2() {
+	document.getElementById('CONTROLchangeSubsPasswordMessage').innerHTML = "Enter password:";
+	document.getElementById('CONTROLchangeSubsPasswordMessage').style.color = "#FFFFFF";
+}
+
+function CONTROLunlockSubsSettings() {
+	conn.send({firstParam: "Unlock_Settings"});
+}
+
+function CONTROLlockSubsSettings() {
+	conn.send({firstParam: "Lock_Settings"});
+}
+
+function CONTROLturnAdminMode() {
+	conn.send({firstParam: "Toggle_Admin_Mode"});
 }
