@@ -516,16 +516,6 @@ function hideProcessingAnimation() {
 		document.getElementById("processingAnim").style.display='none';   
 	}
 
-function breastSizeMaleFunction() {
-		document.getElementById("showAdvancedSettings4a").style.display = "block";
-		document.getElementById("showAdvancedSettings4b").style.display = "none";  
-	}
-
-function breastSizeFemaleFunction() {
-		document.getElementById("showAdvancedSettings4b").style.display = "block";
-		document.getElementById("showAdvancedSettings4a").style.display = "none";  
-	}
-
 function enterPasswordFunction(){
 	document.getElementById("adminbutton").style.padding='0px';
 	document.getElementById("adminbutton").style.border='0';
@@ -715,25 +705,39 @@ function saveSex(sex) {
 	if (sex === "Male") {
 		localStorage.setItem("Slot0_Sex", sex);
 		showProcessingAnimation();
-		document.getElementById("showAdvancedSettings4a").style.display='block'; 
-		document.getElementById("showAdvancedSettings4b").style.display='none';
+		document.getElementById("showAdvancedSettings4a").style.maxHeight= '60px';
+		document.getElementById("showAdvancedSettings4a").style.borderBottom= '3px solid #73728C';
+		document.getElementById("showAdvancedSettings4a").style.paddingBottom= '15px'; 
+		document.getElementById("showAdvancedSettings4b").style.maxHeight= '0';
+		document.getElementById("showAdvancedSettings4b").style.borderBottom= '0';
+		document.getElementById("showAdvancedSettings4b").style.paddingBottom= '0';
 		showOrHideBreastSizeMaleSlider();
 		showOrHideGenitalSizeFemaleSlider();
 	}
 	else if (sex === "Female") {
 		localStorage.setItem("Slot0_Sex", sex);
 		showProcessingAnimation();
-		document.getElementById("showAdvancedSettings4a").style.display='none';
-		document.getElementById("showAdvancedSettings4b").style.display='block';
+		document.getElementById("showAdvancedSettings4a").style.maxHeight= '0';
+		document.getElementById("showAdvancedSettings4a").style.borderBottom= '0';
+		document.getElementById("showAdvancedSettings4a").style.paddingBottom= '0';
+		document.getElementById("showAdvancedSettings4b").style.maxHeight= '60px';
+		document.getElementById("showAdvancedSettings4b").style.borderBottom= '3px solid #73728C';
+		document.getElementById("showAdvancedSettings4b").style.paddingBottom= '15px';
 		showOrHideGenitalSizeFemaleSlider();
 	}
 	else if (sex === "Other") {
 		var sex = document.getElementById("thirdSexValue").innerHTML;
 		localStorage.setItem("Slot0_Sex", sex);
 		showProcessingAnimation();
-		document.getElementById("showAdvancedSettings4a").style.display='none';
-		document.getElementById("showAdvancedSettings4b").style.display='block';
-		document.getElementById("genitalSizeSlider").style.display='block';
+		document.getElementById("showAdvancedSettings4a").style.maxHeight= '0';
+		document.getElementById("showAdvancedSettings4a").style.borderBottom= '0';
+		document.getElementById("showAdvancedSettings4a").style.paddingBottom= '0';
+		document.getElementById("showAdvancedSettings4b").style.maxHeight= '60px';
+		document.getElementById("showAdvancedSettings4b").style.borderBottom= '3px solid #73728C';
+		document.getElementById("showAdvancedSettings4b").style.paddingBottom= '15px';
+		document.getElementById("genitalSizeSlider").style.maxHeight= '60px';
+		document.getElementById("genitalSizeSlider").style.borderBottom= '3px solid #73728C';
+		document.getElementById("genitalSizeSlider").style.paddingBottom= '15px';
 	}
 	checkCharacterPreviewStatus();
 }
@@ -1170,12 +1174,18 @@ function loadPS19() {
 			if (Sex == "Male") {
 				var breastSizeMale = localStorage.getItem("Slot0_Breast_Size_Male");
 				if (breastSizeMale == null) {
-					document.getElementById("showAdvancedSettings4a").style.display = "block";
+					document.getElementById("showAdvancedSettings4a").style.maxHeight= '60px';
+					document.getElementById("showAdvancedSettings4a").style.borderBottom= '3px solid #73728C';
+					document.getElementById("showAdvancedSettings4a").style.paddingBottom= '15px';
 					loadPS20();
 				}
 				else {
-					document.getElementById("showAdvancedSettings4a").style.display = "block";
-					document.getElementById("showAdvancedSettings4b").style.display = "none";				
+					document.getElementById("showAdvancedSettings4a").style.maxHeight= '60px';
+					document.getElementById("showAdvancedSettings4a").style.borderBottom= '3px solid #73728C';
+					document.getElementById("showAdvancedSettings4a").style.paddingBottom= '15px';
+					document.getElementById("showAdvancedSettings4b").style.maxHeight= '0';
+					document.getElementById("showAdvancedSettings4b").style.borderBottom= '0';
+					document.getElementById("showAdvancedSettings4b").style.paddingBottom= '0';				
 					mySlider9.setValue(breastSizeMale);
 					loadPS20();
 				}
@@ -1183,12 +1193,18 @@ function loadPS19() {
 			else {
 				var breastSizeFemale = localStorage.getItem("Slot0_Breast_Size_Female");
 				if (breastSizeFemale == null) {
-					document.getElementById("showAdvancedSettings4b").style.display = "block";
+					document.getElementById("showAdvancedSettings4b").style.maxHeight= '60px';
+					document.getElementById("showAdvancedSettings4b").style.borderBottom= '3px solid #73728C';
+					document.getElementById("showAdvancedSettings4b").style.paddingBottom= '15px';
 					loadPS20();
 				}
 				else {
-					document.getElementById("showAdvancedSettings4b").style.display = "block";
-					document.getElementById("showAdvancedSettings4a").style.display = "none";				
+					document.getElementById("showAdvancedSettings4b").style.maxHeight= '60px';
+					document.getElementById("showAdvancedSettings4b").style.borderBottom= '3px solid #73728C';
+					document.getElementById("showAdvancedSettings4b").style.paddingBottom= '15px';
+					document.getElementById("showAdvancedSettings4a").style.maxHeight= '0';
+					document.getElementById("showAdvancedSettings4a").style.borderBottom= '0';
+					document.getElementById("showAdvancedSettings4a").style.paddingBottom= '0';				
 					mySlider8.setValue(breastSizeFemale);
 					loadPS20();
 				}

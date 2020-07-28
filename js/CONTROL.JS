@@ -6,9 +6,11 @@ var controlsessionactive;
 function connectToServer() {
 	document.getElementById('CONTROLconnectToServerStatus').innerHTML = "Status: Connecting...";
 	document.getElementById("CONTROLconnectToServerStatus").style.color = "#fff";
-	peer = new Peer(); // Official PeerJS server (offline as of 27-07-2020)
+	//peer = new Peer(); // Official PeerJS server (offline as of 27-07-2020)
 	// 
-	//peer = new Peer( {	host: 'localhost',	port: 9000,	path: '/myapp'}); // Uncomment this if you want to use your own PeerJS server https://github.com/peers/peerjs-server
+	//peer = new Peer( {	host: 'localhost',	port: 9000,	path: '/myapp'}); // PeerJS server running on localhost
+	//
+	peer = new Peer({		host: 'peerjs.92k.de',	port: 443,	secure: true	});	// PeerJS server hosted by Prior99@Github
 	
 	peer.on('open', function(id) {
 	document.getElementById('peerID').innerHTML = id;
@@ -40,7 +42,6 @@ function host() { // Sub
 	document.getElementById("CONTROLgoBackFromHostOptionsButton").style.marginLeft='0px';
 	
 	peer.on('connection', function(c) {
-		console.log("someone connected to you");
 		conn = c;
 		receiveData();		
 		sliderHandleAnimation();
@@ -57,7 +58,6 @@ function join() { // Master
 	conn = peer.connect(destinationPeerID, {reliable:true});
 	
 	conn.on('open', function() {
-		console.log("connection to someone established");
 		receiveData();
 		attachEvents();
 		showCONTROLmenus();
@@ -245,67 +245,103 @@ function synchronization() {
 		conn.send({firstParam: "optionEnabled", secondParam: "custom2", thirdParam: isCS2Enabled});
 		conn.send({firstParam: "optionEnabled", secondParam: "custom3", thirdParam: isCS3Enabled});
 		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
-		
-		conn.send({firstParam: "Save_Settings"});
+
 	}
 
 function receiveData() {	
 	conn.on('data', function(data) {
 		if (data.firstParam === "manipulateSlider") {
-			if (data.secondParam === "mascFem") 				{	mySlider6.setValue(data.thirdParam);	}
-			else if (data.secondParam === "thinThicc") 			{	mySlider5.setValue(data.thirdParam);	}
-			else if (data.secondParam === "smolTall") 			{	mySlider4.setValue(data.thirdParam);	}
-			else if (data.secondParam === "hips") 				{	mySlider3.setValue(data.thirdParam);	}	
-			else if (data.secondParam === "genitalSize") 		{	mySlider2.setValue(data.thirdParam);	}
-			else if (data.secondParam === "fluffiness")			{	mySlider.setValue(data.thirdParam);		}
-			else if (data.secondParam === "libido") 			{	mySlider7.setValue(data.thirdParam);	}
-			else if (data.secondParam === "domsub") 			{	mySlider10.setValue(data.thirdParam);	}
-			else if (data.secondParam === "sensitivity") 		{	mySlider11.setValue(data.thirdParam);	}
-			else if (data.secondParam === "assertiveShy") 		{	mySlider12.setValue(data.thirdParam);	}
-			else if (data.secondParam === "breastSizeMale") 	{	mySlider9.setValue(data.thirdParam);	}
-			else if (data.secondParam === "breastSizeFemale")	{	mySlider8.setValue(data.thirdParam);	}
-			else if (data.secondParam === "buttSize") 			{	mySlider13.setValue(data.thirdParam);	}
-			else if (data.secondParam === "bellySize") 			{	mySlider14.setValue(data.thirdParam);	}
-			else if (data.secondParam === "bellyShape")			{	mySlider15.setValue(data.thirdParam);	}
-			else if (data.secondParam === "intelligence")		{	mySlider16.setValue(data.thirdParam);	}
-			else if (data.secondParam === "hairLenght") 		{	mySlider20.setValue(data.thirdParam);	}
-			else if (data.secondParam === "sexuality") 			{	mySlider21.setValue(data.thirdParam);	}
-			else if (data.secondParam === "feralAnthro") 		{	mySlider22.setValue(data.thirdParam);	}
-			else if (data.secondParam === "fertility") 			{	mySlider23.setValue(data.thirdParam);	}
-			else if (data.secondParam === "custom1") 			{	mySlider17.setValue(data.thirdParam);	}
-			else if (data.secondParam === "custom2") 			{	mySlider18.setValue(data.thirdParam);	}
-			else if (data.secondParam === "custom3") 			{	mySlider19.setValue(data.thirdParam);	}
+			if (data.secondParam === "mascFem") 				{	mySlider6.setValue(data.thirdParam);localStorage.setItem("Slot0_Body_Type1", data.thirdParam);				}
+			else if (data.secondParam === "thinThicc") 			{	mySlider5.setValue(data.thirdParam);localStorage.setItem("Slot0_Body_Type2", data.thirdParam);				}
+			else if (data.secondParam === "smolTall") 			{	mySlider4.setValue(data.thirdParam);localStorage.setItem("Slot0_Body_Type3", data.thirdParam);				}
+			else if (data.secondParam === "hips") 				{	mySlider3.setValue(data.thirdParam);localStorage.setItem("Slot0_Hips", data.thirdParam);					}	
+			else if (data.secondParam === "genitalSize") 		{	mySlider2.setValue(data.thirdParam);localStorage.setItem("Slot0_Genital_Size", data.thirdParam);			}
+			else if (data.secondParam === "fluffiness")			{	mySlider.setValue(data.thirdParam);localStorage.setItem("Slot0_Fluffiness", data.thirdParam);				}
+			else if (data.secondParam === "libido") 			{	mySlider7.setValue(data.thirdParam);localStorage.setItem("Slot0_Libido", data.thirdParam);					}
+			else if (data.secondParam === "domsub") 			{	mySlider10.setValue(data.thirdParam);localStorage.setItem("Slot0_Position_Preference", data.thirdParam);	}
+			else if (data.secondParam === "sensitivity") 		{	mySlider11.setValue(data.thirdParam);localStorage.setItem("Slot0_Sensitivity", data.thirdParam);			}
+			else if (data.secondParam === "assertiveShy") 		{	mySlider12.setValue(data.thirdParam);localStorage.setItem("Slot0_Demeanor", data.thirdParam);				}
+			else if (data.secondParam === "breastSizeMale") 	{	mySlider9.setValue(data.thirdParam);localStorage.setItem("Slot0_Breast_Size_Male", data.thirdParam);		}
+			else if (data.secondParam === "breastSizeFemale")	{	mySlider8.setValue(data.thirdParam);localStorage.setItem("Slot0_Breast_Size_Female", data.thirdParam);		}
+			else if (data.secondParam === "buttSize") 			{	mySlider13.setValue(data.thirdParam);localStorage.setItem("Slot0_Butt_Size", data.thirdParam);				}
+			else if (data.secondParam === "bellySize") 			{	mySlider14.setValue(data.thirdParam);localStorage.setItem("Slot0_Belly_Size", data.thirdParam);				}
+			else if (data.secondParam === "bellyShape")			{	mySlider15.setValue(data.thirdParam);localStorage.setItem("Slot0_Belly_Shape", data.thirdParam);			}
+			else if (data.secondParam === "intelligence")		{	mySlider16.setValue(data.thirdParam);localStorage.setItem("Slot0_Intelligence", data.thirdParam);			}
+			else if (data.secondParam === "hairLenght") 		{	mySlider20.setValue(data.thirdParam);localStorage.setItem("Slot0_Hair_Lenght", data.thirdParam);			}
+			else if (data.secondParam === "sexuality") 			{	mySlider21.setValue(data.thirdParam);localStorage.setItem("Slot0_Sexuality", data.thirdParam);				}
+			else if (data.secondParam === "feralAnthro") 		{	mySlider22.setValue(data.thirdParam);localStorage.setItem("Slot0_Feral_Anthro", data.thirdParam);			}
+			else if (data.secondParam === "fertility") 			{	mySlider23.setValue(data.thirdParam);localStorage.setItem("Slot0_Fertility", data.thirdParam);				}
+			else if (data.secondParam === "custom1") 			{	mySlider17.setValue(data.thirdParam);localStorage.setItem("Slot0_Custom_Slider1_Value", data.thirdParam);	}
+			else if (data.secondParam === "custom2") 			{	mySlider18.setValue(data.thirdParam);localStorage.setItem("Slot0_Custom_Slider2_Value", data.thirdParam);	}
+			else if (data.secondParam === "custom3") 			{	mySlider19.setValue(data.thirdParam);localStorage.setItem("Slot0_Custom_Slider3_Value", data.thirdParam);	}
 		}
 		else if (data.firstParam === "manipulateOption") {
-			if (data.secondParam === "Species") 				{	document.getElementById('speciesCurrent').innerHTML = data.thirdParam; 					}
-			else if (data.secondParam === "Inanimate_Object")	{	document.getElementById('inanimateObjectsCurrent').innerHTML = data.thirdParam; 		}
-			else if (data.secondParam === "Cock_Type")			{	document.getElementById('cockTypeCurrent').innerHTML = data.thirdParam; 				}
-			else if (data.secondParam === "Hair_Color") 		{	document.getElementById('hairColorCurrent').innerHTML = data.thirdParam;
-																	document.getElementById('hairColorSwatch').style.backgroundColor = data.fourthParam;	}
+			if (data.secondParam === "Species") 				{	document.getElementById('speciesCurrent').innerHTML = data.thirdParam;localStorage.setItem("Slot0_Species", data.thirdParam);					}
+			else if (data.secondParam === "Inanimate_Object")	{	document.getElementById('inanimateObjectsCurrent').innerHTML = data.thirdParam;localStorage.setItem("Slot0_Inanimate_Object", data.thirdParam);	}
+			else if (data.secondParam === "Cock_Type")			{	document.getElementById('cockTypeCurrent').innerHTML = data.thirdParam;localStorage.setItem("Slot0_Cock_Type", data.thirdParam); 				}
+			else if (data.secondParam === "Hair_Color") 		{	document.getElementById('hairColorCurrent').innerHTML = data.thirdParam;localStorage.setItem("Slot0_Hair_Color", data.thirdParam);
+																	document.getElementById('hairColorSwatch').style.backgroundColor = data.fourthParam;localStorage.setItem("Slot0_Swatch_Color", data.fourthParam);	}
 			else if (data.secondParam === "Sex") 				{
-				if (data.thirdParam === "Male") 				{	document.getElementById("radiobuttonMale").checked = true;		}
-				else if (data.thirdParam === "Female") 			{	document.getElementById("radiobuttonFemale").checked = true;	}
-				else if (data.thirdParam === "Other") 			{	document.getElementById("radiobuttonOther").checked = true;		}
+				if (data.thirdParam === "Male") 				{	
+					document.getElementById("radiobuttonMale").checked = true;
+					localStorage.setItem("Slot0_Sex", data.thirdParam);
+					document.getElementById("showAdvancedSettings4a").style.maxHeight= '60px';
+					document.getElementById("showAdvancedSettings4a").style.borderBottom= '3px solid #73728C';
+					document.getElementById("showAdvancedSettings4a").style.paddingBottom= '15px';
+					document.getElementById("showAdvancedSettings4b").style.maxHeight= '0';
+					document.getElementById("showAdvancedSettings4b").style.borderBottom= '0';
+					document.getElementById("showAdvancedSettings4b").style.paddingBottom= '0';
+					showOrHideBreastSizeMaleSlider();
+					showOrHideGenitalSizeFemaleSlider();
+				}		
+				else if (data.thirdParam === "Female") 			{	
+					document.getElementById("radiobuttonFemale").checked = true;
+					localStorage.setItem("Slot0_Sex", data.thirdParam);
+					document.getElementById("showAdvancedSettings4a").style.maxHeight= '0';
+					document.getElementById("showAdvancedSettings4a").style.borderBottom= '0';
+					document.getElementById("showAdvancedSettings4a").style.paddingBottom= '0';
+					document.getElementById("showAdvancedSettings4b").style.maxHeight= '60px';
+					document.getElementById("showAdvancedSettings4b").style.borderBottom= '3px solid #73728C';
+					document.getElementById("showAdvancedSettings4b").style.paddingBottom= '15px';
+					showOrHideGenitalSizeFemaleSlider();
+				}				
+				else if (data.thirdParam === "Other") 			{	
+					document.getElementById("radiobuttonOther").checked = true;
+					localStorage.setItem("Slot0_Sex", data.thirdParam);
+					document.getElementById("showAdvancedSettings4a").style.maxHeight= '0';
+					document.getElementById("showAdvancedSettings4a").style.borderBottom= '0';
+					document.getElementById("showAdvancedSettings4a").style.paddingBottom= '0';
+					document.getElementById("showAdvancedSettings4b").style.maxHeight= '60px';
+					document.getElementById("showAdvancedSettings4b").style.borderBottom= '3px solid #73728C';
+					document.getElementById("showAdvancedSettings4b").style.paddingBottom= '15px';
+					document.getElementById("genitalSizeSlider").style.maxHeight= '60px';
+					document.getElementById("genitalSizeSlider").style.borderBottom= '3px solid #73728C';
+					document.getElementById("genitalSizeSlider").style.paddingBottom= '15px';																						
+				}
 			}
 			else if (data.secondParam === "Third_Sex") 			{
 				if (data.thirdParam != null) 					{	document.getElementById('thirdSexValue').innerHTML = data.thirdParam;
-																	localStorage.setItem("Slot0_Third_Sex", data.thirdParam); 			}
+																	localStorage.setItem("Slot0_Third_Sex", data.thirdParam);checkThirdSexStatus(); 	}
 			}
 		}
 		else if (data.firstParam === "manipulateTickbox") {
 			if (data.secondParam === "Adapt_Clothing") {
+				localStorage.setItem("Slot0_AC_Box_Ticked", data.thirdParam);
 				if (data.thirdParam === "Yes") 	{	document.getElementById("adaptClothingCheckbox").checked = true;	}
 				else							{	document.getElementById("adaptClothingCheckbox").checked = false;	}
 			}
 			else if (data.secondParam === "Genitals_Penis") {
+				localStorage.setItem("Slot0_Genitals_Menu_Penis_Box_Ticked", data.thirdParam);
 				if (data.thirdParam === "Yes") 	{	document.getElementById("genitalsPenisCheckbox").checked = true;	}
 				else							{	document.getElementById("genitalsPenisCheckbox").checked = false;	}
 			}
 			else if (data.secondParam === "Genitals_Vagina") {
+				localStorage.setItem("Slot0_Genitals_Menu_Vagina_Box_Ticked", data.thirdParam);
 				if (data.thirdParam === "Yes") 	{	document.getElementById("genitalsVaginaCheckbox").checked = true;	}
 				else							{	document.getElementById("genitalsVaginaCheckbox").checked = false;	}
 			}
 			else if (data.secondParam === "Pregnancy_Lock") {
+				localStorage.setItem("Slot0_Pregnancy_Lock_Box_Ticked", data.thirdParam);
 				if (data.thirdParam === "Yes") 	{	document.getElementById("pregnancyLockCheckbox").checked = true;	}
 				else							{	document.getElementById("pregnancyLockCheckbox").checked = false;	}
 			}
@@ -407,8 +443,8 @@ function receiveData() {
 			localStorage.setItem("Current_Password", data.secondParam);
 			localStorage.setItem("Lock_Settings_Password_Enabled", "Yes");
 		}
-		else if (data.firstParam === "Save_Settings") {
-			saveSettingsSlot0();
+		else if (data.firstParam === "toggleAdvSettings") {
+			toggleAdvancedSettingsMenu();
 		}
     });	
 }
@@ -572,6 +608,9 @@ function attachEventsToOptions() {
 	});
 	document.getElementById("radiobuttonOther").addEventListener("click", function(){
 		conn.send({firstParam: "manipulateOption", secondParam: "Sex", thirdParam: "Other"});
+	});
+	document.getElementById("advancedSettings").addEventListener("click", function(){
+		conn.send({firstParam: "toggleAdvSettings"});
 	});
 }
 
@@ -802,7 +841,7 @@ function attachEventsToVisibiltyOptions() {
 }
 
 function sendUsernameSleep() {
-	setTimeout(sendUsername, 1200);
+	setTimeout(sendUsername, 400);
 }
 
 function sendUsername() {
