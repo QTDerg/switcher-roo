@@ -3665,18 +3665,18 @@ function toggleCONTROLButton() {
 
 function showOrHideCONTROLButton() {
 	var yesorno = localStorage.getItem("CONTROL_Button_Enabled");
-	if (yesorno === "Yes") {
+	if (yesorno === "No") {
+		document.getElementById("CONTROLButton").style.padding='0px';
+		document.getElementById("CONTROLButton").style.border='0';
+		document.getElementById("CONTROLButton").style.fontSize='0px';
+		document.getElementById("CONTROLButton").style.marginTop='0px';				
+	}
+	else {
 		document.getElementById("CONTROLButton").style.padding='10px';
 		document.getElementById("CONTROLButton").style.border="2px solid #59568f";
 		document.getElementById("CONTROLButton").style.fontSize='26px';
 		document.getElementById("CONTROLButton").style.marginTop='5px';
-		document.getElementById("CONTROLbuttonCheckbox").checked = true;		
-	}
-	else {
-		document.getElementById("CONTROLButton").style.padding='0px';
-		document.getElementById("CONTROLButton").style.border='0';
-		document.getElementById("CONTROLButton").style.fontSize='0px';
-		document.getElementById("CONTROLButton").style.marginTop='0px';
+		document.getElementById("CONTROLbuttonCheckbox").checked = true;
 	}
 }
 
