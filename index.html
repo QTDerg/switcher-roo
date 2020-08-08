@@ -3220,6 +3220,7 @@ document.getElementById("CTContainerSlot102").style.display='none';
 		<div id="peerID" onClick="CONTROLcopyPeerID('peerID')">&nbsp;</div>
 		<div class="mediumButton" id="CONTROLgoBackFromHostOptionsButton" onClick="CONTROLgoBackFromReceiveOptions()">Go back</div>
 		<div class="mediumButton" id="CONTROLhostSessionButton" onClick="host()">Host</div>
+		<div id="controlSubTutorial" style="padding-left:18px;margin-top:5px;">Click "Host" button then send PeerID to person you want to connect to you</div>
 				
 	</div>
 	<script>document.getElementById("CONTROLreceiveContainer").style.maxHeight='0px';</script>
@@ -3228,7 +3229,7 @@ document.getElementById("CTContainerSlot102").style.display='none';
 	
 		<div style="margin-top:5px;text-align:center;font-size:30px;color:#ff4500">CONTROL panel</div>
 		<div id="CONTROLmasterMessage" style="padding-left:18px;margin-top:5px;font-size:16px">CONTROL session is active. You're master.</div>
-		<div id="CONTROLmasterMessageSubName" style="padding-left:18px;margin-top:5px;">You're connected to !USERNAME!.</div>
+		<div id="CONTROLmasterMessageSubName" style="padding-left:18px;margin-top:5px;">&nbsp;</div>
 		<div style="padding-left:18px;margin-top:5px;">Change your sub's lock password:</div>
 		<div class="bigButton" onClick="CONTROLgoToChangeSubLockPassword()">Lock Password</div>
 		<div style="padding-left:18px;margin-top:5px;">Lock/Unlock settings:</div>
@@ -3247,7 +3248,7 @@ document.getElementById("CTContainerSlot102").style.display='none';
 	<div id="CONTROLsubContainer" style="overflow:hidden;transition-duration:0.75s">
 	
 		<div id="CONTROLsubMessage" style="padding-left:18px;margin-top:5px;">CONTROL session is active. You're sub.</div>
-		<div id="CONTROLsubMessageMasterName" style="padding-left:18px;margin-top:5px;">!USERNAME! is connected to you.</div>
+		<div id="CONTROLsubMessageMasterName" style="padding-left:18px;margin-top:5px;">&nbsp;</div>
 				
 	</div>
 	<script>document.getElementById("CONTROLsubContainer").style.maxHeight='0px';</script>

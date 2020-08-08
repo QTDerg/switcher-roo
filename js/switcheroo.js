@@ -3718,7 +3718,7 @@ function CONTROLgoBackFromConnectOptions() {
 
 function CONTROLshowReveiveOptions() {
 	document.getElementById("CONTROLchoiceContainer").style.maxHeight='0px';
-	document.getElementById("CONTROLreceiveContainer").style.maxHeight='146px';
+	document.getElementById("CONTROLreceiveContainer").style.maxHeight='190px';
 }
 
 function CONTROLgoBackFromReceiveOptions() {
@@ -3739,6 +3739,13 @@ function goBackCONTROLchangeSubsPassword() {
 }
 
 function CONTROLcopyPeerID (containerid) {
+	var message = document.getElementById("peerIDCopyMessage").innerHTML;
+	if (isHosting == null) {
+		document.getElementById("peerIDCopyMessage").innerHTML = "Click 'Host' button!";
+		document.getElementById("peerIDCopyMessage").style.color = "#FF4550";
+		setTimeout(hideCopyPeerIDMessage, 1500, message);
+	}
+	else {	
 	// Create a new textarea element and give it id='temp_element'
 	var textarea = document.createElement('textarea')
 	textarea.id = 'temp_element'
@@ -3756,11 +3763,12 @@ function CONTROLcopyPeerID (containerid) {
 	document.body.removeChild(textarea)
 	document.getElementById("peerIDCopyMessage").innerHTML = "Copied!";
 	document.getElementById("peerIDCopyMessage").style.color = "#29a329";
-	setTimeout(hideCopyPeerIDMessage, 1500);
+	setTimeout(hideCopyPeerIDMessage, 1500, message);
+	}
 }
 
-function hideCopyPeerIDMessage() {
-	document.getElementById("peerIDCopyMessage").innerHTML = "Your peer ID: (click to copy)";
+function hideCopyPeerIDMessage(message) {
+	document.getElementById("peerIDCopyMessage").innerHTML = message;
 	document.getElementById("peerIDCopyMessage").style.color = "#fff";
 }
 

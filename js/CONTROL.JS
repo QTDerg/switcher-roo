@@ -2,6 +2,7 @@ var peer;
 var conn;
 var master;
 var controlsessionactive;
+var isHosting;
 
 function connectToServer() {
 	document.getElementById('CONTROLconnectToServerStatus').innerHTML = "Status: Connecting...";
@@ -27,8 +28,10 @@ function connectToServer() {
 
 function host() { // Sub
 	master = "false";
+	isHosting = "yes";	
 	
 	document.getElementById("peerIDCopyMessage").innerHTML = "Waiting for connection...";
+	document.getElementById("controlSubTutorial").style.display = "none";
 	
 	document.getElementById("CONTROLhostSessionButton").style.padding='0px';
 	document.getElementById("CONTROLhostSessionButton").style.border="0";
