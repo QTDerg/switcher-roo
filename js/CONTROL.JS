@@ -3,27 +3,38 @@ var conn;
 var master;
 var controlsessionactive;
 var isHosting;
+var isConnected;
 
 function connectToServer() {
+	if (peer == null) {
 	document.getElementById('CONTROLconnectToServerStatus').innerHTML = "Status: Connecting...";
 	document.getElementById("CONTROLconnectToServerStatus").style.color = "#fff";
 	//peer = new Peer(); // Official PeerJS server (offline as of 27-07-2020)
 	// 
-	//peer = new Peer( {	host: 'localhost',	port: 9000,	path: '/myapp'}); // PeerJS server running on localhost
+	//peer = new Peer( {	host: 'localhost',	port: 9000,	path: '/myapp'}); // PeerJS server running on localhost // peerjs --port 9000 --key peerjs --path /myapp
 	//
 	peer = new Peer({		host: 'peerjs.92k.de',	port: 443,	secure: true	});	// PeerJS server hosted by Prior99@Github
 	
 	peer.on('open', function(id) {
-	document.getElementById('peerID').innerHTML = id;
-	document.getElementById('CONTROLconnectToServerStatus').innerHTML = "Status: Connected!";
-	document.getElementById("CONTROLconnectToServerStatus").style.color = "#29a329";
+		document.getElementById('peerID').innerHTML = id;
+		document.getElementById('CONTROLconnectToServerStatus').innerHTML = "Status: Connected to PeerJS server!";
+		document.getElementById("CONTROLconnectToServerStatus").style.color = "#29a329";
+		document.getElementById('CONTROLconnectToPeerStatus').innerHTML = "Status: Connected to PeerJS server!";
+		document.getElementById("CONTROLconnectToPeerStatus").style.color = "#29a329";
+		isConnected = "yes";
 	});
 	
 	peer.on('error', function (err) {
-    console.log(err);
-	document.getElementById('CONTROLconnectToServerStatus').innerHTML = "Status: " + err;
-	document.getElementById("CONTROLconnectToServerStatus").style.color = "#FF4550";
+		console.log(err);
+		document.getElementById('CONTROLconnectToServerStatus').innerHTML = "Status: " + err;
+		document.getElementById("CONTROLconnectToServerStatus").style.color = "#FF4550";
+		document.getElementById('CONTROLconnectToPeerStatus').innerHTML = "Status: " + err;
+		document.getElementById("CONTROLconnectToPeerStatus").style.color = "#FF4550";
     });
+	}
+	else {
+		return;
+	}
 }
 
 function host() { // Sub
@@ -31,6 +42,7 @@ function host() { // Sub
 	isHosting = "yes";	
 	
 	document.getElementById("peerIDCopyMessage").innerHTML = "Waiting for connection...";
+	document.getElementById("peerIDCopyMessage").style.color = "#fff";
 	document.getElementById("controlSubTutorial").style.display = "none";
 	
 	document.getElementById("CONTROLhostSessionButton").style.padding='0px';
@@ -51,14 +63,18 @@ function host() { // Sub
 		showCONTROLmenus();
 		synchronizationSleep();
 		sendUsernameSleep();
+		connectionLostSubMessage();
 	});
 }
 
 function join() { // Master
-	master = "true";	
+	master = "true";
 	
 	var destinationPeerID = document.getElementById("connectToPeerTextField").value;
 	conn = peer.connect(destinationPeerID, {reliable:true});
+	
+	document.getElementById('CONTROLconnectToPeerStatus').innerHTML = "Status: Connecting...";
+	document.getElementById("CONTROLconnectToPeerStatus").style.color = "#fff";
 	
 	conn.on('open', function() {
 		receiveData();
@@ -66,6 +82,18 @@ function join() { // Master
 		showCONTROLmenus();
 		sendUsernameSleep();
 		controlsessionactive = "Yes";
+	});
+	
+	conn.on('close', function() { 
+		document.getElementById('CONTROLmasterMessage').innerHTML = "Connection has been lost. Please restart the app.";
+		document.getElementById("CONTROLmasterMessage").style.color = "#FF4550";
+	});
+}
+
+function connectionLostSubMessage() {
+	conn.on('close', function() { 
+		document.getElementById('CONTROLsubMessage').innerHTML = "Connection has been lost. Please restart the app.";
+		document.getElementById("CONTROLsubMessage").style.color = "#FF4550";
 	});
 }
 
@@ -484,7 +512,7 @@ function showCONTROLmenus() {
 	}
 	else {
 		document.getElementById("CONTROLconnectContainer").style.maxHeight='0px';
-		document.getElementById("CONTROLmasterContainer").style.maxHeight='320px';
+		document.getElementById("CONTROLmasterContainer").style.maxHeight='340px';
 		document.getElementById("CONTROLmasterContainer").style.border='3px solid rgb(255, 69, 80)';
 	}
 }
@@ -884,4 +912,122 @@ function CONTROLlockSubsSettings() {
 
 function CONTROLturnAdminMode() {
 	conn.send({firstParam: "Toggle_Admin_Mode"});
+}
+
+function CONTROLshowConnectToServer() {
+	document.getElementById("CONTROLButton").style.padding='0px';
+	document.getElementById("CONTROLButton").style.border='0';
+	document.getElementById("CONTROLButton").style.fontSize='0px';
+	document.getElementById("CONTROLButton").style.marginTop='0px';
+	document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='230px';
+}
+
+function CONTROLgoBack() {
+	document.getElementById("CONTROLButton").style.padding='10px';
+	document.getElementById("CONTROLButton").style.border="2px solid #59568f";
+	document.getElementById("CONTROLButton").style.fontSize='26px';
+	document.getElementById("CONTROLButton").style.marginTop='5px';
+	document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='0px';
+}
+
+function CONTROLshowChoice() {
+	if (isConnected == null) {
+		document.getElementById("CONTROLconnectToServerStatus").innerHTML = "Click 'Connect to server' button!";
+		document.getElementById("CONTROLconnectToServerStatus").style.color = "#FF4550";
+		setTimeout(hideConnectToServerMessage, 1500);
+	}
+	else {
+		document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='0px';
+		document.getElementById("CONTROLchoiceContainer").style.maxHeight='140px';
+	}
+}
+
+function hideConnectToServerMessage() {
+	if (isConnected == null) {
+		document.getElementById("CONTROLconnectToServerStatus").innerHTML = "Status:";
+		document.getElementById("CONTROLconnectToServerStatus").style.color = "#fff";
+	}
+	else {
+		return;
+	}	
+}
+
+function CONTROLgoBackFromChoice() {
+	document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='230px';
+	document.getElementById("CONTROLchoiceContainer").style.maxHeight='0px';
+}
+
+function CONTROLshowConnectOptions() {
+	document.getElementById("CONTROLchoiceContainer").style.maxHeight='0px';
+	document.getElementById("CONTROLconnectContainer").style.maxHeight='230px';
+}
+
+function CONTROLgoBackFromConnectOptions() {
+	document.getElementById("CONTROLconnectContainer").style.maxHeight='0px';
+	document.getElementById("CONTROLchoiceContainer").style.maxHeight='140px';
+}
+
+function CONTROLshowReveiveOptions() {
+	document.getElementById("CONTROLchoiceContainer").style.maxHeight='0px';
+	document.getElementById("CONTROLreceiveContainer").style.maxHeight='190px';
+}
+
+function CONTROLgoBackFromReceiveOptions() {
+	document.getElementById("CONTROLreceiveContainer").style.maxHeight='0px';
+	document.getElementById("CONTROLchoiceContainer").style.maxHeight='140px';
+}
+
+function CONTROLgoToChangeSubLockPassword() {
+	document.getElementById("CONTROLmasterContainer").style.maxHeight='0px';
+	document.getElementById("CONTROLmasterContainer").style.border='0';
+	document.getElementById("CONTROLchangeSubsPasswordContainer").style.maxHeight='139px';
+}
+
+function goBackCONTROLchangeSubsPassword() {
+	document.getElementById("CONTROLmasterContainer").style.maxHeight='340px';
+	document.getElementById("CONTROLmasterContainer").style.border='3px solid rgb(255, 69, 80)';
+	document.getElementById("CONTROLchangeSubsPasswordContainer").style.maxHeight='0px';
+}
+
+function CONTROLcopyPeerID (containerid) {
+	var message = document.getElementById("peerIDCopyMessage").innerHTML;
+	if (isHosting == null) {
+		document.getElementById("peerIDCopyMessage").innerHTML = "Click 'Host' button!";
+		document.getElementById("peerIDCopyMessage").style.color = "#FF4550";
+		setTimeout(hideCopyPeerIDMessage, 1500, message);
+	}
+	else {	
+	// Create a new textarea element and give it id='temp_element'
+	var textarea = document.createElement('textarea')
+	textarea.id = 'temp_element'
+	// Optional step to make less noise on the page, if any!
+	textarea.style.height = 0
+	// Now append it to your page somewhere, I chose <body>
+	document.body.appendChild(textarea)
+	// Give our textarea a value of whatever inside the div of id=containerid
+	textarea.value = document.getElementById(containerid).innerHTML
+	// Now copy whatever inside the textarea to clipboard
+	var selector = document.querySelector('#temp_element')
+	selector.select()
+	document.execCommand('copy')
+	// Remove the textarea
+	document.body.removeChild(textarea)
+	document.getElementById("peerIDCopyMessage").innerHTML = "Copied!";
+	document.getElementById("peerIDCopyMessage").style.color = "#29a329";
+	setTimeout(hideCopyPeerIDMessage, 1500, message);
+	}
+}
+
+function hideCopyPeerIDMessage(message) {
+	if (isHosting == null) {
+		document.getElementById("peerIDCopyMessage").innerHTML = message;
+		document.getElementById("peerIDCopyMessage").style.color = "#fff";
+	}
+	else if (message === "Waiting for connection...") {
+		document.getElementById("peerIDCopyMessage").innerHTML = "Waiting for connection...";
+		document.getElementById("peerIDCopyMessage").style.color = "#fff";
+	}
+	else {
+		return;
+	}
 }
