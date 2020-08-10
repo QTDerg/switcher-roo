@@ -13,7 +13,17 @@ function connectToServer() {
 	// 
 	//peer = new Peer( {	host: 'localhost',	port: 9000,	path: '/myapp'}); // PeerJS server running on localhost // peerjs --port 9000 --key peerjs --path /myapp
 	//
-	peer = new Peer({		host: 'peerjs.92k.de',	port: 443,	secure: true	});	// PeerJS server hosted by Prior99@Github
+	peer = new Peer({		// PeerJS server hosted by Prior99@Github
+		host: 'peerjs.92k.de',
+		port: 443,
+		secure: true,
+		config: {
+			iceServers: [
+				{ url: 'stun:stun.l.google.com:19302' },
+				{ url: 'turn:numb.viagenie.ca', username: 'webrtc@live.com', credential: 'muazkh'},
+			]
+		},		
+	});	
 	
 	peer.on('open', function(id) {
 		document.getElementById('peerID').innerHTML = id;
