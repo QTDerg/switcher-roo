@@ -9,21 +9,28 @@ function connectToServer() {
 	if (peer == null) {
 	document.getElementById('CONTROLconnectToServerStatus').innerHTML = "Status: Connecting...";
 	document.getElementById("CONTROLconnectToServerStatus").style.color = "#fff";
-	//peer = new Peer(); // Official PeerJS server (offline as of 27-07-2020)
-	// 
-	//peer = new Peer( {	host: 'localhost',	port: 9000,	path: '/myapp'}); // PeerJS server running on localhost // peerjs --port 9000 --key peerjs --path /myapp
-	//
-	peer = new Peer({		// PeerJS server hosted by Prior99@Github
-		host: 'peerjs.92k.de',
-		port: 443,
-		secure: true,
-		config: {
+	peer = new Peer({ // Official PeerJS server
+	config: {
 			iceServers: [
 				{ url: 'stun:stun.l.google.com:19302' },
 				{ url: 'turn:numb.viagenie.ca', username: 'webrtc@live.com', credential: 'muazkh'},
 			]
-		},		
-	});	
+		},	
+	}); 
+	// 
+	//peer = new Peer( {	host: 'localhost',	port: 9000,	path: '/myapp'}); // PeerJS server running on localhost // peerjs --port 9000 --key peerjs --path /myapp
+	//
+	//peer = new Peer({		// PeerJS server hosted by Prior99@Github (Offline as of 23-09-2020)
+	//	host: 'peerjs.92k.de',
+	//	port: 443,
+	//	secure: true,
+	//	config: {
+	//		iceServers: [
+	//			{ url: 'stun:stun.l.google.com:19302' },
+	//			{ url: 'turn:numb.viagenie.ca', username: 'webrtc@live.com', credential: 'muazkh'},
+	//		]
+	//	},		
+	//});	
 	
 	peer.on('open', function(id) {
 		document.getElementById('peerID').innerHTML = id;
