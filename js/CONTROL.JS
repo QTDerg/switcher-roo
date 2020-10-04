@@ -9,28 +9,28 @@ function connectToServer() {
 	if (peer == null) {
 	document.getElementById('CONTROLconnectToServerStatus').innerHTML = "Status: Connecting...";
 	document.getElementById("CONTROLconnectToServerStatus").style.color = "#fff";
-	peer = new Peer({ // Official PeerJS server
-	config: {
-			iceServers: [
-				{ url: 'stun:stun.l.google.com:19302' },
-				{ url: 'turn:numb.viagenie.ca', username: 'webrtc@live.com', credential: 'muazkh'},
-			]
-		},	
-	}); 
-	// 
-	//peer = new Peer( {	host: 'localhost',	port: 9000,	path: '/myapp'}); // PeerJS server running on localhost // peerjs --port 9000 --key peerjs --path /myapp
-	//
-	//peer = new Peer({		// PeerJS server hosted by Prior99@Github (Offline as of 23-09-2020)
-	//	host: 'peerjs.92k.de',
-	//	port: 443,
-	//	secure: true,
-	//	config: {
+	//peer = new Peer({ // Official PeerJS server // 04-10-2020 - server is unstable, giving "Server has reached its concurrent user limit". The other server seems to be online now so I'm switching to it.
+	//config: {
 	//		iceServers: [
 	//			{ url: 'stun:stun.l.google.com:19302' },
 	//			{ url: 'turn:numb.viagenie.ca', username: 'webrtc@live.com', credential: 'muazkh'},
 	//		]
-	//	},		
-	//});	
+	//	},	
+	//}); 
+	// 
+	//peer = new Peer( {	host: 'localhost',	port: 9000,	path: '/myapp'}); // PeerJS server running on localhost // peerjs --port 9000 --key peerjs --path /myapp
+	//
+	peer = new Peer({		// PeerJS server hosted by Prior99@Github // 04-10-2020 - server is online again
+		host: 'peerjs.92k.de',
+		port: 443,
+		secure: true,
+		config: {
+			iceServers: [
+				{ url: 'stun:stun.l.google.com:19302' },
+				{ url: 'turn:numb.viagenie.ca', username: 'webrtc@live.com', credential: 'muazkh'},
+			]
+		},		
+	});	
 	
 	peer.on('open', function(id) {
 		document.getElementById('peerID').innerHTML = id;
