@@ -7,47 +7,63 @@ var isConnected;
 
 function connectToServer() {
 	if (peer == null) {
-	document.getElementById('CONTROLconnectToServerStatus').innerHTML = "Status: Connecting...";
-	document.getElementById("CONTROLconnectToServerStatus").style.color = "#fff";
-	//peer = new Peer({ // Official PeerJS server // 04-10-2020 - server is unstable, giving "Server has reached its concurrent user limit". The other server seems to be online now so I'm switching to it.
-	//config: {
-	//		iceServers: [
-	//			{ url: 'stun:stun.l.google.com:19302' },
-	//			{ url: 'turn:numb.viagenie.ca', username: 'webrtc@live.com', credential: 'muazkh'},
-	//		]
-	//	},	
-	//}); 
-	// 
-	//peer = new Peer( {	host: 'localhost',	port: 9000,	path: '/myapp'}); // PeerJS server running on localhost // peerjs --port 9000 --key peerjs --path /myapp
-	//
-	peer = new Peer({		// PeerJS server hosted by Prior99@Github // 04-10-2020 - server is online again
-		host: 'peerjs.92k.de',
-		port: 443,
-		secure: true,
-		config: {
-			iceServers: [
-				{ url: 'stun:stun.l.google.com:19302' },
-				{ url: 'turn:numb.viagenie.ca', username: 'webrtc@live.com', credential: 'muazkh'},
-			]
-		},		
-	});	
+		var chosenPeerJSServer = 2;
+		// 0 = PeerJS server hosted on localhost.
+		// 1 = Official PeerJS server. Very unstable, often giving "Server has reached its concurrent user limit" error.
+		// 2 = PeerJS server hosted by Heroku. https://www.heroku.com/
+		
+		// Command to launch PeerJS server // peerjs --port 9000 --key peerjs --path /myapp
+		
+		if (chosenPeerJSServer == 0) {
+			peer = new Peer({	
+				host: 'localhost',	
+				port: 9000,	
+				path: '/myapp'
+			});
+		}
+		else if (chosenPeerJSServer == 1) {
+			peer = new Peer({
+				config: {
+					iceServers: [
+						{ url: 'stun:stun.l.google.com:19302' },
+						{ url: 'turn:numb.viagenie.ca', username: 'webrtc@live.com', credential: 'muazkh'},
+					]
+				},	
+			});
+		}
+		else if (chosenPeerJSServer == 2) {
+			peer = new Peer({
+				host: 'peerjs-server.herokuapp.com',
+				port: 443,
+				secure: true,
+				config: {
+					iceServers: [
+						{ url: 'stun:stun.l.google.com:19302' },
+						{ url: 'turn:numb.viagenie.ca', username: 'webrtc@live.com', credential: 'muazkh'},
+					]
+				},		
+			});
+		}
+		
+		document.getElementById('CONTROLconnectToServerStatus').innerHTML = "Status: Connecting...";
+		document.getElementById("CONTROLconnectToServerStatus").style.color = "#fff";
 	
-	peer.on('open', function(id) {
-		document.getElementById('peerID').innerHTML = id;
-		document.getElementById('CONTROLconnectToServerStatus').innerHTML = "Status: Connected to PeerJS server!";
-		document.getElementById("CONTROLconnectToServerStatus").style.color = "#29a329";
-		document.getElementById('CONTROLconnectToPeerStatus').innerHTML = "Status: Connected to PeerJS server!";
-		document.getElementById("CONTROLconnectToPeerStatus").style.color = "#29a329";
-		isConnected = "yes";
-	});
+		peer.on('open', function(id) {
+			document.getElementById('peerID').innerHTML = id;
+			document.getElementById('CONTROLconnectToServerStatus').innerHTML = "Status: Connected to PeerJS server!";
+			document.getElementById("CONTROLconnectToServerStatus").style.color = "#29a329";
+			document.getElementById('CONTROLconnectToPeerStatus').innerHTML = "Status: Connected to PeerJS server!";
+			document.getElementById("CONTROLconnectToPeerStatus").style.color = "#29a329";
+			isConnected = "yes";
+		});
 	
-	peer.on('error', function (err) {
-		console.log(err);
-		document.getElementById('CONTROLconnectToServerStatus').innerHTML = "Status: " + err;
-		document.getElementById("CONTROLconnectToServerStatus").style.color = "#FF4550";
-		document.getElementById('CONTROLconnectToPeerStatus').innerHTML = "Status: " + err;
-		document.getElementById("CONTROLconnectToPeerStatus").style.color = "#FF4550";
-    });
+		peer.on('error', function (err) {
+			console.log(err);
+			document.getElementById('CONTROLconnectToServerStatus').innerHTML = "Status: " + err;
+			document.getElementById("CONTROLconnectToServerStatus").style.color = "#FF4550";
+			document.getElementById('CONTROLconnectToPeerStatus').innerHTML = "Status: " + err;
+			document.getElementById("CONTROLconnectToPeerStatus").style.color = "#FF4550";
+		});
 	}
 	else {
 		return;
