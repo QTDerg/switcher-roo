@@ -770,12 +770,12 @@ function receiveData() {
 		}
 		else if (data.firstParam === "Character_Blushing") {
 			localStorage.setItem("CharViz_Character_Blushing", data.secondParam);
-			if (data.secondParam === "Yes") {	document.getElementById("charVizDisplayHeadBlush").style.backgroundImage = 'url(../images/charViz/heads/canine/blush.png)'; }
+			if (data.secondParam === "Yes") {	document.getElementById("charVizDisplayHeadBlush").style.backgroundImage = 'url(./images/charViz/heads/canine/blush.png)'; }
 			else {								document.getElementById("charVizDisplayHeadBlush").style.backgroundImage = '';												}
 		}
 		else if (data.firstParam === "putAccessoryOn") {
-			if (data.secondParam === "Folder") {	document.getElementById("charVizDisplayAccessoriesSlot2").style.backgroundImage = 'url("../images/charViz/bases/feminine/clothing/accessories/folder.png")'; 		}
-			else if (data.secondParam === "Choker") {	document.getElementById("charVizDisplayAccessoriesSlot3").style.backgroundImage = 'url("../images/charViz/bases/feminine/clothing/accessories/choker.png")';	}
+			if (data.secondParam === "Folder") {	document.getElementById("charVizDisplayAccessoriesSlot2").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/accessories/folder.png")'; 		}
+			else if (data.secondParam === "Choker") {	document.getElementById("charVizDisplayAccessoriesSlot3").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/accessories/choker.png")';	}
 		}
 		else if (data.firstParam === "initializeCharviz") {
 			initializeCharViz();

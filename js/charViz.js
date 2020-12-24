@@ -53,25 +53,25 @@ function initializeCharViz() {
 	if (species === 'African Wild Dog' || species === 'Arctic Fox' || species === 'Coyote' || species === 'Dog' || species === 'Ethiopian Wolf' || species === 'Fennec Fox' || species === 'Folf' || species === 'Fox' || species === 'Husky' || species === 'Maned Wolf' || species === 'Werewolf' || species === 'Wolf' || species === 'Wox' || species === 'Wusky') {
 		document.getElementById("charVizDisplayMessage").style.display = 'none';
 		// Set a base masks
-		document.getElementById("charVizDisplayBasePrimary").style.webkitMaskImage = 'url("../images/charViz/bases/feminine/fluffy/primary.png")';
-		document.getElementById("charVizDisplayBaseSecondary").style.webkitMaskImage = 'url("../images/charViz/bases/feminine/fluffy/secondary.png")';
-		document.getElementById("charVizDisplayBaseTertiary").style.webkitMaskImage = 'url("../images/charViz/bases/feminine/fluffy/tertiary.png")';
-		document.getElementById("charVizDisplayBaseMarkings").style.webkitMaskImage = 'url("../images/charViz/bases/feminine/fluffy/markings.png")';		
-		document.getElementById("charVizDisplayBaseLines").style.backgroundImage = 'url("../images/charViz/bases/feminine/fluffy/lines.png")';
+		document.getElementById("charVizDisplayBasePrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/primary.png")';
+		document.getElementById("charVizDisplayBaseSecondary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/secondary.png")';
+		document.getElementById("charVizDisplayBaseTertiary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/tertiary.png")';
+		document.getElementById("charVizDisplayBaseMarkings").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/markings.png")';		
+		document.getElementById("charVizDisplayBaseLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/fluffy/lines.png")';
 		
 		// Set tail
-		document.getElementById("charVizDisplayTailPrimary").style.webkitMaskImage = 'url("../images/charViz/tails/fluffy01/primary.png")';
-		document.getElementById("charVizDisplayTailSecondary").style.webkitMaskImage = 'url("../images/charViz/tails/fluffy01/secondary.png")';
-		document.getElementById("charVizDisplayTailTertiary").style.webkitMaskImage = 'url("../images/charViz/tails/fluffy01/tertiary.png")';
-		//document.getElementById("charVizDisplayTailMarkings").style.webkitMaskImage = 'url("../images/charViz/tails/fluffy01/markings.png")';
-		document.getElementById("charVizDisplayTailLines").style.backgroundImage = 'url("../images/charViz/tails/fluffy01/lines.png")';
+		document.getElementById("charVizDisplayTailPrimary").style.webkitMaskImage = 'url("./images/charViz/tails/fluffy01/primary.png")';
+		document.getElementById("charVizDisplayTailSecondary").style.webkitMaskImage = 'url("./images/charViz/tails/fluffy01/secondary.png")';
+		document.getElementById("charVizDisplayTailTertiary").style.webkitMaskImage = 'url("./images/charViz/tails/fluffy01/tertiary.png")';
+		//document.getElementById("charVizDisplayTailMarkings").style.webkitMaskImage = 'url("./images/charViz/tails/fluffy01/markings.png")';
+		document.getElementById("charVizDisplayTailLines").style.backgroundImage = 'url("./images/charViz/tails/fluffy01/lines.png")';
 		
 		// Set body morphs
 		// Breast size
-		document.getElementById("charVizDisplayBreastSizePrimary").style.webkitMaskImage = 'url(../images/charViz/bases/feminine/fluffy/breastSize/primary.png)';
-		document.getElementById("charVizDisplayBreastSizeSecondary").style.webkitMaskImage = 'url("../images/charViz/bases/feminine/fluffy/breastSize/secondary.png")';
-		document.getElementById("charVizDisplayBreastSizeMarkings").style.webkitMaskImage = 'url("../images/charViz/bases/feminine/fluffy/breastSize/markings.png")';
-		document.getElementById("charVizDisplayBreastSizeLines").style.backgroundImage = 'url(../images/charViz/bases/feminine/fluffy/breastSize/lines.png)';
+		document.getElementById("charVizDisplayBreastSizePrimary").style.webkitMaskImage = 'url(./images/charViz/bases/feminine/fluffy/breastSize/primary.png)';
+		document.getElementById("charVizDisplayBreastSizeSecondary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/breastSize/secondary.png")';
+		document.getElementById("charVizDisplayBreastSizeMarkings").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/breastSize/markings.png")';
+		document.getElementById("charVizDisplayBreastSizeLines").style.backgroundImage = 'url(./images/charViz/bases/feminine/fluffy/breastSize/lines.png)';
 		
 		var Sex = localStorage.getItem("Slot0_Sex");
 		
@@ -86,25 +86,25 @@ function initializeCharViz() {
 				
 		// Hips size
 		
-		document.getElementById("charVizDisplayHipsSizePrimary").style.webkitMaskImage = 'url(../images/charViz/bases/feminine/fluffy/hipsSize/primary.png)';
-		document.getElementById("charVizDisplayHipsSizeSecondary").style.webkitMaskImage = 'url("../images/charViz/bases/feminine/fluffy/hipsSize/secondary.png")';
-		document.getElementById("charVizDisplayHipsSizeMarkings").style.webkitMaskImage = 'url("../images/charViz/bases/feminine/fluffy/hipsSize/markings.png")';
-		document.getElementById("charVizDisplayHipsSizeLines").style.backgroundImage = 'url(../images/charViz/bases/feminine/fluffy/hipsSize/lines.png)';
+		document.getElementById("charVizDisplayHipsSizePrimary").style.webkitMaskImage = 'url(./images/charViz/bases/feminine/fluffy/hipsSize/primary.png)';
+		document.getElementById("charVizDisplayHipsSizeSecondary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/hipsSize/secondary.png")';
+		document.getElementById("charVizDisplayHipsSizeMarkings").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/hipsSize/markings.png")';
+		document.getElementById("charVizDisplayHipsSizeLines").style.backgroundImage = 'url(./images/charViz/bases/feminine/fluffy/hipsSize/lines.png)';
 
 		var hipsSize = mySlider3.getValue();
 		setHipsSizeBodyMorph(hipsSize);
 		
 		// Head
 		
-		document.getElementById("charVizDisplayHeadPrimary").style.webkitMaskImage = 'url(../images/charViz/heads/canine/primary.png)';
-		document.getElementById("charVizDisplayHeadSecondary").style.webkitMaskImage = 'url(../images/charViz/heads/canine/secondary.png)';
-		document.getElementById("charVizDisplayHeadTertiary").style.webkitMaskImage = 'url(../images/charViz/heads/canine/tertiary.png)';
-		document.getElementById("charVizDisplayHeadHair").style.webkitMaskImage = 'url(../images/charViz/heads/canine/hair.png)';
-		document.getElementById("charVizDisplayHeadScleras").style.backgroundImage = 'url(../images/charViz/heads/canine/scleras.png)';
-		document.getElementById("charVizDisplayHeadIrisLeft").style.webkitMaskImage = 'url(../images/charViz/heads/canine/irisLeft.png)';
-		document.getElementById("charVizDisplayHeadIrisRight").style.webkitMaskImage = 'url(../images/charViz/heads/canine/irisRight.png)';
-		document.getElementById("charVizDisplayHeadIrisShading").style.backgroundImage = 'url(../images/charViz/heads/canine/irisShading.png)';
-		document.getElementById("charVizDisplayHeadLines").style.backgroundImage = 'url(../images/charViz/heads/canine/lines.png)';
+		document.getElementById("charVizDisplayHeadPrimary").style.webkitMaskImage = 'url(./images/charViz/heads/canine/primary.png)';
+		document.getElementById("charVizDisplayHeadSecondary").style.webkitMaskImage = 'url(./images/charViz/heads/canine/secondary.png)';
+		document.getElementById("charVizDisplayHeadTertiary").style.webkitMaskImage = 'url(./images/charViz/heads/canine/tertiary.png)';
+		document.getElementById("charVizDisplayHeadHair").style.webkitMaskImage = 'url(./images/charViz/heads/canine/hair.png)';
+		document.getElementById("charVizDisplayHeadScleras").style.backgroundImage = 'url(./images/charViz/heads/canine/scleras.png)';
+		document.getElementById("charVizDisplayHeadIrisLeft").style.webkitMaskImage = 'url(./images/charViz/heads/canine/irisLeft.png)';
+		document.getElementById("charVizDisplayHeadIrisRight").style.webkitMaskImage = 'url(./images/charViz/heads/canine/irisRight.png)';
+		document.getElementById("charVizDisplayHeadIrisShading").style.backgroundImage = 'url(./images/charViz/heads/canine/irisShading.png)';
+		document.getElementById("charVizDisplayHeadLines").style.backgroundImage = 'url(./images/charViz/heads/canine/lines.png)';
 		
 		// Background Color
 		
@@ -121,7 +121,7 @@ function initializeCharViz() {
 		// Blush
 		
 		var blushing = localStorage.getItem("CharViz_Character_Blushing");
-		if (blushing === "Yes") {	document.getElementById("charVizDisplayHeadBlush").style.backgroundImage = 'url(../images/charViz/heads/canine/blush.png)'; }
+		if (blushing === "Yes") {	document.getElementById("charVizDisplayHeadBlush").style.backgroundImage = 'url(./images/charViz/heads/canine/blush.png)'; }
 	}
 	else {
 		flushCharViz();
@@ -434,87 +434,87 @@ function charVizInitializeEvents() {
 function charVizPutClothingOn(x, y) {
 	if (x === "Topwear") {
 		if (y === "None") {
-			document.getElementById("charVizDisplayTopwearPrimary").style.webkitMaskImage = 'url("../images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayTopwearSecondary").style.webkitMaskImage = 'url("../images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayTopwearPrimary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayTopwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
 			document.getElementById("charVizDisplayTopwearLines").style.backgroundImage = '';
 		}
 		else if (y === "Office Shirt") {
-			document.getElementById("charVizDisplayTopwearPrimary").style.webkitMaskImage = 'url("../images/charViz/bases/feminine/clothing/topwear/officeShirt/primary.png")';
-			document.getElementById("charVizDisplayTopwearSecondary").style.webkitMaskImage = 'url("../images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayTopwearLines").style.backgroundImage = 'url("../images/charViz/bases/feminine/clothing/topwear/officeShirt/lines.png")';
+			document.getElementById("charVizDisplayTopwearPrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/topwear/officeShirt/primary.png")';
+			document.getElementById("charVizDisplayTopwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayTopwearLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/topwear/officeShirt/lines.png")';
 		}		
 		else if (y === "T-Shirt") {
-			document.getElementById("charVizDisplayTopwearPrimary").style.webkitMaskImage = 'url("../images/charViz/bases/feminine/clothing/topwear/tShirt/primary.png")';
-			document.getElementById("charVizDisplayTopwearSecondary").style.webkitMaskImage = 'url("../images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayTopwearLines").style.backgroundImage = 'url("../images/charViz/bases/feminine/clothing/topwear/tShirt/lines.png")';
+			document.getElementById("charVizDisplayTopwearPrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/topwear/tShirt/primary.png")';
+			document.getElementById("charVizDisplayTopwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayTopwearLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/topwear/tShirt/lines.png")';
 		}
 		else if (y === "Crop Top") {
-			document.getElementById("charVizDisplayTopwearPrimary").style.webkitMaskImage = 'url("../images/charViz/bases/feminine/clothing/topwear/cropTop/primary.png")';
-			document.getElementById("charVizDisplayTopwearSecondary").style.webkitMaskImage = 'url("../images/charViz/bases/feminine/clothing/topwear/cropTop/secondary.png")';
-			document.getElementById("charVizDisplayTopwearLines").style.backgroundImage = 'url("../images/charViz/bases/feminine/clothing/topwear/cropTop/lines.png")';
+			document.getElementById("charVizDisplayTopwearPrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/topwear/cropTop/primary.png")';
+			document.getElementById("charVizDisplayTopwearSecondary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/topwear/cropTop/secondary.png")';
+			document.getElementById("charVizDisplayTopwearLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/topwear/cropTop/lines.png")';
 		}
 	}
 	else if (x === "Bottomwear") {
 		if (y === "None") {
-			document.getElementById("charVizDisplayBottomwearPrimary").style.webkitMaskImage = 'url("../images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayBottomwearSecondary").style.webkitMaskImage = 'url("../images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayBottomwearPrimary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayBottomwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
 			document.getElementById("charVizDisplayBottomwearLines").style.backgroundImage = '';
 		}
 		else if (y === "Pencil Skirt") {
-			document.getElementById("charVizDisplayBottomwearPrimary").style.webkitMaskImage = 'url("../images/charViz/bases/feminine/clothing/bottomwear/pencilSkirt/primary.png")';
-			document.getElementById("charVizDisplayBottomwearSecondary").style.webkitMaskImage = 'url("../images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayBottomwearLines").style.backgroundImage = 'url("../images/charViz/bases/feminine/clothing/bottomwear/pencilSkirt/lines.png")';
+			document.getElementById("charVizDisplayBottomwearPrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/bottomwear/pencilSkirt/primary.png")';
+			document.getElementById("charVizDisplayBottomwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayBottomwearLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/bottomwear/pencilSkirt/lines.png")';
 		}
 		else if (y === "Shorts") {
-			document.getElementById("charVizDisplayBottomwearPrimary").style.webkitMaskImage = 'url("../images/charViz/bases/feminine/clothing/bottomwear/shorts/primary.png")';
-			document.getElementById("charVizDisplayBottomwearSecondary").style.webkitMaskImage = 'url("../images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayBottomwearLines").style.backgroundImage = 'url("../images/charViz/bases/feminine/clothing/bottomwear/shorts/lines.png")';
+			document.getElementById("charVizDisplayBottomwearPrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/bottomwear/shorts/primary.png")';
+			document.getElementById("charVizDisplayBottomwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayBottomwearLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/bottomwear/shorts/lines.png")';
 		}
 		else if (y === "Leggings") {
-			document.getElementById("charVizDisplayBottomwearPrimary").style.webkitMaskImage = 'url("../images/charViz/bases/feminine/clothing/bottomwear/leggings/primary.png")';
-			document.getElementById("charVizDisplayBottomwearSecondary").style.webkitMaskImage = 'url("../images/charViz/bases/feminine/clothing/bottomwear/leggings/secondary.png")';
-			document.getElementById("charVizDisplayBottomwearLines").style.backgroundImage = 'url("../images/charViz/bases/feminine/clothing/bottomwear/leggings/lines.png")';
+			document.getElementById("charVizDisplayBottomwearPrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/bottomwear/leggings/primary.png")';
+			document.getElementById("charVizDisplayBottomwearSecondary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/bottomwear/leggings/secondary.png")';
+			document.getElementById("charVizDisplayBottomwearLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/bottomwear/leggings/lines.png")';
 		}
 	}
 	else if (x === "Armwear") {
 		if (y === "None") {
-			document.getElementById("charVizDisplayArmwearPrimary").style.webkitMaskImage = 'url("../images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayArmwearSecondary").style.webkitMaskImage = 'url("../images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayArmwearPrimary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayArmwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
 			document.getElementById("charVizDisplayArmwearLines").style.backgroundImage = '';
 		}
 		else if (y === "Arm Warmers") {
-			document.getElementById("charVizDisplayArmwearPrimary").style.webkitMaskImage = 'url("../images/charViz/bases/feminine/clothing/armwear/armWarmers/primary.png")';
-			document.getElementById("charVizDisplayArmwearSecondary").style.webkitMaskImage = 'url("../images/charViz/bases/feminine/clothing/armwear/armWarmers/secondary.png")';
-			document.getElementById("charVizDisplayArmwearLines").style.backgroundImage = 'url("../images/charViz/bases/feminine/clothing/armwear/armWarmers/lines.png")';
+			document.getElementById("charVizDisplayArmwearPrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/armwear/armWarmers/primary.png")';
+			document.getElementById("charVizDisplayArmwearSecondary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/armwear/armWarmers/secondary.png")';
+			document.getElementById("charVizDisplayArmwearLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/armwear/armWarmers/lines.png")';
 		}
 	}
 	else if (x === "Legwear") {
 		if (y === "None") {
-			document.getElementById("charVizDisplayLegwearPrimary").style.webkitMaskImage = 'url("../images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayLegwearSecondary").style.webkitMaskImage = 'url("../images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayLegwearPrimary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayLegwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
 			document.getElementById("charVizDisplayLegwearLines").style.backgroundImage = '';
 		}
 		else if (y === "Thigh Highs") {
-			document.getElementById("charVizDisplayLegwearPrimary").style.webkitMaskImage = 'url("../images/charViz/bases/feminine/clothing/legwear/thighHighs/primary.png")';
-			document.getElementById("charVizDisplayLegwearSecondary").style.webkitMaskImage = 'url("../images/charViz/bases/feminine/clothing/legwear/thighHighs/secondary.png")';
-			document.getElementById("charVizDisplayLegwearLines").style.backgroundImage = 'url("../images/charViz/bases/feminine/clothing/legwear/thighHighs/lines.png")';
+			document.getElementById("charVizDisplayLegwearPrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/legwear/thighHighs/primary.png")';
+			document.getElementById("charVizDisplayLegwearSecondary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/legwear/thighHighs/secondary.png")';
+			document.getElementById("charVizDisplayLegwearLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/legwear/thighHighs/lines.png")';
 		}
 		else if (y === "Pantyhose") {
-			document.getElementById("charVizDisplayLegwearPrimary").style.webkitMaskImage = 'url("../images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayLegwearSecondary").style.webkitMaskImage  = 'url("../images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayLegwearLines").style.backgroundImage = 'url("../images/charViz/bases/feminine/clothing/legwear/pantyhose/static.png")';
+			document.getElementById("charVizDisplayLegwearPrimary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayLegwearSecondary").style.webkitMaskImage  = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayLegwearLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/legwear/pantyhose/static.png")';
 		}
 	}
 	else if (x === "Underwear") {
 		if (y === "None") {
-			document.getElementById("charVizDisplayUnderwearPrimary").style.webkitMaskImage = 'url("../images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayUnderwearSecondary").style.webkitMaskImage = 'url("../images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayUnderwearPrimary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayUnderwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
 			document.getElementById("charVizDisplayUnderwearLines").style.backgroundImage = '';
 		}
 		else if (y === "Panties") {
-			document.getElementById("charVizDisplayUnderwearPrimary").style.webkitMaskImage = 'url("../images/charViz/bases/feminine/clothing/underwear/panties/primary.png")';
-			document.getElementById("charVizDisplayUnderwearSecondary").style.webkitMaskImage = 'url("../images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayUnderwearLines").style.backgroundImage = 'url("../images/charViz/bases/feminine/clothing/underwear/panties/lines.png")';
+			document.getElementById("charVizDisplayUnderwearPrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/underwear/panties/primary.png")';
+			document.getElementById("charVizDisplayUnderwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayUnderwearLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/underwear/panties/lines.png")';
 		}		
 	}
 	else if (x === "Accessories") {
@@ -522,7 +522,7 @@ function charVizPutClothingOn(x, y) {
 			document.getElementById("charVizDisplayAccessoriesSlot1").style.backgroundImage = '';
 		}
 		else if (y === "Glasses") {
-			document.getElementById("charVizDisplayAccessoriesSlot1").style.backgroundImage = 'url("../images/charViz/bases/feminine/clothing/accessories/glasses.png")';
+			document.getElementById("charVizDisplayAccessoriesSlot1").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/accessories/glasses.png")';
 		}
 	}
 	if (controlsessionactive === "Yes") { 
@@ -976,7 +976,7 @@ function charVizToggleBlush() {
 	var tickbox = document.getElementById("charVizBlushCheckbox");
 	if (tickbox.checked) {
 		var tickbox = "Yes"
-		document.getElementById("charVizDisplayHeadBlush").style.backgroundImage = 'url(../images/charViz/heads/canine/blush.png)';
+		document.getElementById("charVizDisplayHeadBlush").style.backgroundImage = 'url(./images/charViz/heads/canine/blush.png)';
 	}
 	else {
 		var tickbox = "No"
@@ -989,14 +989,14 @@ function charVizToggleBlush() {
 }
 
 function accessoryFolder() {
-	document.getElementById("charVizDisplayAccessoriesSlot2").style.backgroundImage = 'url("../images/charViz/bases/feminine/clothing/accessories/folder.png")';
+	document.getElementById("charVizDisplayAccessoriesSlot2").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/accessories/folder.png")';
 	if (controlsessionactive === "Yes") { 
 		conn.send({firstParam: "putAccessoryOn", secondParam: "Folder"});
 	}
 }
 
 function accessoryChoker() {
-	document.getElementById("charVizDisplayAccessoriesSlot3").style.backgroundImage = 'url("../images/charViz/bases/feminine/clothing/accessories/choker.png")';
+	document.getElementById("charVizDisplayAccessoriesSlot3").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/accessories/choker.png")';
 	if (controlsessionactive === "Yes") { 
 		conn.send({firstParam: "putAccessoryOn", secondParam: "Choker"});
 	}
