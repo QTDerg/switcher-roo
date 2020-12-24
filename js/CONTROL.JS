@@ -734,39 +734,49 @@ function receiveData() {
 				document.getElementById("charVizDisplayTailPrimary").style.backgroundColor = data.thirdParam;
 				document.getElementById("charVizDisplayHeadPrimary").style.backgroundColor = data.thirdParam;
 				document.getElementById("charVizPrimaryCharacterColorSwatch").style.backgroundColor = data.thirdParam;
+				localStorage.setItem("Slot0_Primary_Character_Color", data.thirdParam);
 			}
-			else if (data.secondParam === "Primary") {
+			else if (data.secondParam === "Secondary") {
 				document.getElementById("charVizDisplayBaseSecondary").style.backgroundColor = data.thirdParam;
 				document.getElementById("charVizDisplayBreastSizeSecondary").style.backgroundColor = data.thirdParam;
 				document.getElementById("charVizDisplayHipsSizeSecondary").style.backgroundColor = data.thirdParam;
 				document.getElementById("charVizDisplayTailSecondary").style.backgroundColor = data.thirdParam;
 				document.getElementById("charVizDisplayHeadSecondary").style.backgroundColor = data.thirdParam;
 				document.getElementById("charVizSecondaryCharacterColorSwatch").style.backgroundColor = data.thirdParam;
+				localStorage.setItem("Slot0_Secondary_Character_Color", data.thirdParam);
 			}
 			else if (data.secondParam === "Tertiary") {
 				document.getElementById("charVizDisplayBaseTertiary").style.backgroundColor = data.thirdParam;
 				document.getElementById("charVizDisplayTailTertiary").style.backgroundColor = data.thirdParam;
 				document.getElementById("charVizDisplayHeadTertiary").style.backgroundColor = data.thirdParam;
 				document.getElementById("charVizTertiaryCharacterColorSwatch").style.backgroundColor = data.thirdParam;
+				localStorage.setItem("Slot0_Tertiary_Character_Color", data.thirdParam);
 			}
 			else if (data.secondParam === "Markings") {
 				document.getElementById("charVizDisplayBaseMarkings").style.backgroundColor = data.thirdParam;	
 				document.getElementById("charVizDisplayBreastSizeMarkings").style.backgroundColor = data.thirdParam;
 				document.getElementById("charVizDisplayHipsSizeMarkings").style.backgroundColor = data.thirdParam;
 				document.getElementById("charVizMarkingsCharacterColorSwatch").style.backgroundColor = data.thirdParam;
+				localStorage.setItem("Slot0_Markings_Character_Color", data.thirdParam);
 			}
 			else if (data.secondParam === "Left Eye") {
 				document.getElementById("charVizLeftEyeCharacterColorSwatch").style.backgroundColor = data.thirdParam;
 				document.getElementById("charVizDisplayHeadIrisLeft").style.backgroundColor = data.thirdParam;
+				localStorage.setItem("Slot0_LeftEye_Character_Color", data.thirdParam);
 			}
 			else if (data.secondParam === "Right Eye") {
 				document.getElementById("charVizRightEyeCharacterColorSwatch").style.backgroundColor = data.thirdParam;
 				document.getElementById("charVizDisplayHeadIrisRight").style.backgroundColor = data.thirdParam;
+				localStorage.setItem("Slot0_RightEye_Character_Color", data.thirdParam);
 			}
 			else if (data.secondParam === "Hair") {
 				document.getElementById("charVizHairCharacterColorSwatch").style.backgroundColor = data.thirdParam;
 				document.getElementById("charVizDisplayHeadHair").style.backgroundColor = data.thirdParam;
+				localStorage.setItem("Slot0_Hair_Character_Color", data.thirdParam);
 			}
+		}
+		else if (data.firstParam === "setOutfitColor") {
+			return; // TODO
 		}
 		else if (data.firstParam === "Character_Blushing") {
 			localStorage.setItem("CharViz_Character_Blushing", data.secondParam);
@@ -829,6 +839,7 @@ function attachEvents() {
 		attachEventsToCustomTickboxes();
 		attachEventsToVisibiltyOptions();
 		attachEventsToCustomCheckboxesVisibiltyOptions();
+		attachEventsToColorPickers();
 	}
 	else {
 		return;
@@ -1278,6 +1289,23 @@ function attachEventsToCustomCheckboxesVisibiltyOptions() {
 		conn.send({firstParam: "customCheckboxEnabled", secondParam: "custom3", thirdParam: tickbox});
 		conn.send({firstParam: "customCheckboxEnabled", secondParam: "fireLoadCustomCheckboxesOnStartupFunction"});
 	});
+}
+
+function attachEventsToColorPickers() {
+	// Check if CharViz is on
+	var charVizEnabled = localStorage.getItem("CharViz_Enabled");
+	if (charVizEnabled === "Yes") {
+		// Character color picker
+		colorPicker.on('input:end', function(color) {
+			var activeColor = localStorage.getItem("CharViz_Active_Character_Color");
+			conn.send({firstParam: "setCharacterColor", secondParam: activeColor, thirdParam: color.hexString});
+		});
+		// Clothing color picker
+		colorPicker2.on('input:end', function(color) {
+			var activeColor = localStorage.getItem("CharViz_Active_Clothing_Color");
+			conn.send({firstParam: "setOutfitColor", secondParam: activeColor, thirdParam: color.hexString});
+		});
+	}
 }
 
 function sendUsernameSleep() {

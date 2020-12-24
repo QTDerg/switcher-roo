@@ -535,61 +535,125 @@ function charVizPutClothingOn(x, y) {
 function charVizSetClothingColors(x, y) {
 	var dontSetClothColors = localStorage.getItem("Dont_Set_Default_Clothing_Colors");
 	if (dontSetClothColors === "Yes") {
-		return; // TODO: Load custom cloth colors 
+		charVizLoadCustomClothingColors(x);
 	}
 	else {
 		if (x === "Topwear") {
 			if (y === "Office Shirt") {
 				document.getElementById("charVizDisplayTopwearPrimary").style.backgroundColor = '#F5F5F5';
+				document.getElementById("charVizTopwearPrimaryColorSwatch").style.backgroundColor = '#F5F5F5';
 			}
 			else if (y === "T-Shirt") {
 				document.getElementById("charVizDisplayTopwearPrimary").style.backgroundColor = '#5FBF5E';
+				document.getElementById("charVizTopwearPrimaryColorSwatch").style.backgroundColor = '#5FBF5E';
 			}
 			else if (y === "Crop Top") {
 				document.getElementById("charVizDisplayTopwearPrimary").style.backgroundColor = '#222';
 				document.getElementById("charVizDisplayTopwearSecondary").style.backgroundColor = '#F248D6';
+				document.getElementById("charVizTopwearPrimaryColorSwatch").style.backgroundColor = '#222';
+				document.getElementById("charVizTopwearSecondaryColorSwatch").style.backgroundColor = '#F248D6';
 			}
 		}
 		else if (x === "Bottomwear") {
 			if (y === "Pencil Skirt") {
 				document.getElementById("charVizDisplayBottomwearPrimary").style.backgroundColor = '#222';
+				document.getElementById("charVizBottomwearPrimaryColorSwatch").style.backgroundColor = '#222';
 			}
 			else if (y === "Shorts") {
 				document.getElementById("charVizDisplayBottomwearPrimary").style.backgroundColor = '#8BB2E0';
+				document.getElementById("charVizBottomwearPrimaryColorSwatch").style.backgroundColor = '#8BB2E0';
 			}
 			else if (y === "Leggings") {
-				document.getElementById("charVizDisplayBottomwearPrimary").style.backgroundColor = '#222';
+				document.getElementById("charVizDisplayBottomwearPrimary").style.backgroundColor = '#222';				
 				document.getElementById("charVizDisplayBottomwearSecondary").style.backgroundColor = '#F248D6';
+				document.getElementById("charVizBottomwearPrimaryColorSwatch").style.backgroundColor = '#222';
+				document.getElementById("charVizBottomwearSecondaryColorSwatch").style.backgroundColor = '#F248D6';
 			}
 		}
 		else if (x === "Armwear") {
 			if (y === "Arm Warmers") {
 				document.getElementById("charVizDisplayArmwearPrimary").style.backgroundColor = '#78219F';
 				document.getElementById("charVizDisplayArmwearSecondary").style.backgroundColor = '#2C2C2C';
+				document.getElementById("charVizArmwearPrimaryColorSwatch").style.backgroundColor = '#78219F';
+				document.getElementById("charVizArmwearSecondaryColorSwatch").style.backgroundColor = '#2C2C2C';
 			}
 		}
 		else if (x === "Legwear") {
 			if (y === "Thigh Highs") {
 				document.getElementById("charVizDisplayLegwearPrimary").style.backgroundColor = '#78219F';
 				document.getElementById("charVizDisplayLegwearSecondary").style.backgroundColor = '#2C2C2C';
+				document.getElementById("charVizLegwearPrimaryColorSwatch").style.backgroundColor = '#78219F';
+				document.getElementById("charVizLegwearSecondaryColorSwatch").style.backgroundColor = '#2C2C2C';
 			}
 		}
 		else if (x === "Underwear") {
 			if (y === "Panties") {
 				document.getElementById("charVizDisplayUnderwearPrimary").style.backgroundColor = '#FF6BEE';
+				document.getElementById("charVizUnderwearPrimaryColorSwatch").style.backgroundColor = '#FF6BEE';
 			}
 		}
 	}
 }
 
+function charVizLoadCustomClothingColors(x) {
+	if (x === "Topwear") {
+		var primaryColor = localStorage.getItem("Slot0_Topwear_Primary_Clothing_Color");
+		var secondaryColor = localStorage.getItem("Slot0_Topwear_Secondary_Clothing_Color");
+		document.getElementById("charVizDisplayTopwearPrimary").style.backgroundColor = primaryColor;
+		document.getElementById("charVizDisplayTopwearSecondary").style.backgroundColor = secondaryColor;
+		document.getElementById("charVizTopwearPrimaryColorSwatch").style.backgroundColor = primaryColor;
+		document.getElementById("charVizTopwearSecondaryColorSwatch").style.backgroundColor = secondaryColor;
+	}
+	else if (x === "Bottomwear") {
+		var primaryColor = localStorage.getItem("Slot0_Bottomwear_Primary_Clothing_Color");
+		var secondaryColor = localStorage.getItem("Slot0_Bottomwear_Secondary_Clothing_Color");
+		document.getElementById("charVizDisplayBottomwearPrimary").style.backgroundColor = primaryColor;
+		document.getElementById("charVizDisplayBottomwearSecondary").style.backgroundColor = secondaryColor;
+		document.getElementById("charVizBottomwearPrimaryColorSwatch").style.backgroundColor = primaryColor;
+		document.getElementById("charVizBottomwearSecondaryColorSwatch").style.backgroundColor = secondaryColor;
+	}
+	else if (x === "Armwear") {
+		var primaryColor = localStorage.getItem("Slot0_Armwear_Primary_Clothing_Color");
+		var secondaryColor = localStorage.getItem("Slot0_Armwear_Secondary_Clothing_Color");
+		document.getElementById("charVizDisplayArmwearPrimary").style.backgroundColor = primaryColor;
+		document.getElementById("charVizDisplayArmwearSecondary").style.backgroundColor = secondaryColor;
+		document.getElementById("charVizArmwearPrimaryColorSwatch").style.backgroundColor = primaryColor;
+		document.getElementById("charVizArmwearSecondaryColorSwatch").style.backgroundColor = secondaryColor;
+	}
+	else if (x === "Legwear") {
+		var primaryColor = localStorage.getItem("Slot0_Legwear_Primary_Clothing_Color");
+		var secondaryColor = localStorage.getItem("Slot0_Legwear_Secondary_Clothing_Color");
+		document.getElementById("charVizDisplayLegwearPrimary").style.backgroundColor = primaryColor;
+		document.getElementById("charVizDisplayLegwearSecondary").style.backgroundColor = secondaryColor;
+		document.getElementById("charVizLegwearPrimaryColorSwatch").style.backgroundColor = primaryColor;
+		document.getElementById("charVizLegwearSecondaryColorSwatch").style.backgroundColor = secondaryColor;
+	}
+	else if (x === "Underwear") {
+		var primaryColor = localStorage.getItem("Slot0_Underwear_Primary_Clothing_Color");
+		var secondaryColor = localStorage.getItem("Slot0_Underwear_Secondary_Clothing_Color");
+		document.getElementById("charVizDisplayUnderwearPrimary").style.backgroundColor = primaryColor;
+		document.getElementById("charVizDisplayUnderwearSecondary").style.backgroundColor = secondaryColor;
+		document.getElementById("charVizUnderwearPrimaryColorSwatch").style.backgroundColor = primaryColor;
+		document.getElementById("charVizUnderwearSecondaryColorSwatch").style.backgroundColor = secondaryColor;
+	}
+}
+
 function charVizPutOutfitOn(x) {
 	if (x === "Programmer") {
-		charVizPutClothingOn("Armwear", "Arm Warmers");
-		charVizPutClothingOn("Legwear", "Thigh Highs");
-		charVizPutClothingOn("Accessories", "Glasses");
-		charVizPutClothingOn("Underwear", "None");
 		charVizPutClothingOn("Topwear", "None");
 		charVizPutClothingOn("Bottomwear", "None");
+		charVizPutClothingOn("Armwear", "Arm Warmers");
+		charVizPutClothingOn("Legwear", "Thigh Highs");
+		charVizPutClothingOn("Underwear", "Panties");
+		charVizPutClothingOn("Accessories", "Glasses");
+	}
+	else if (x === "Secretary") {
+		charVizPutClothingOn("Topwear", "Office Shirt");
+		charVizPutClothingOn("Bottomwear", "Pencil Skirt");
+		charVizPutClothingOn("Armwear", "None");
+		charVizPutClothingOn("Legwear", "Pantyhose");
+		charVizPutClothingOn("Underwear", "Panties");
+		charVizPutClothingOn("Accessories", "Glasses");
 	}
 }
 
@@ -920,7 +984,7 @@ function toggleCharVizMenus(x) {
 	var height;
 	if (x == 0) {
 		menu = document.getElementById("charVizCharacterColorsContainer");
-		height = "220px"
+		height = "280px"
 	}
 	else if (x == 1) {
 		menu = document.getElementById("charVizClothingContainer");
@@ -928,7 +992,7 @@ function toggleCharVizMenus(x) {
 	}
 	else if (x == 2) {
 		menu = document.getElementById("charVizClothingColorsContainer");
-		height = "400px"
+		height = "480px"
 	}
 	else if (x == 3) {
 		menu = document.getElementById("charVizOptionsContainer");

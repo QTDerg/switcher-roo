@@ -74,6 +74,26 @@ function exportAppStatus() {
 	var centerTextCustom5 = document.getElementById("textinmenuCenterCS5").innerText;
 	var rightTextCustom5 = document.getElementById("textinmenuRightCS5").innerText;
 	
+	// Custom Checkboxes
+	
+	var CC1label = localStorage.getItem("Slot0_Custom_Checkbox1_Label");
+	var CC1value1 = localStorage.getItem("Slot0_Custom_Checkbox1_Value1");
+	var CC1value2 = localStorage.getItem("Slot0_Custom_Checkbox1_Value2");
+	var CC1ticked1 = localStorage.getItem("Slot0_Custom_Checkbox1_Value1_Ticked");
+	var CC1ticked2 = localStorage.getItem("Slot0_Custom_Checkbox1_Value2_Ticked");
+	
+	var CC2label = localStorage.getItem("Slot0_Custom_Checkbox2_Label");
+	var CC2value1 = localStorage.getItem("Slot0_Custom_Checkbox2_Value1");
+	var CC2value2 = localStorage.getItem("Slot0_Custom_Checkbox2_Value2");
+	var CC2ticked1 = localStorage.getItem("Slot0_Custom_Checkbox2_Value1_Ticked");
+	var CC2ticked2 = localStorage.getItem("Slot0_Custom_Checkbox2_Value2_Ticked");
+	
+	var CC3label = localStorage.getItem("Slot0_Custom_Checkbox3_Label");
+	var CC3value1 = localStorage.getItem("Slot0_Custom_Checkbox3_Value1");
+	var CC3value2 = localStorage.getItem("Slot0_Custom_Checkbox3_Value2");
+	var CC3ticked1 = localStorage.getItem("Slot0_Custom_Checkbox3_Value1_Ticked");
+	var CC3ticked2 = localStorage.getItem("Slot0_Custom_Checkbox3_Value2_Ticked");
+	
 	// Options/sliders visibility
 	
 	var buttSizeSliderEnabled = localStorage.getItem("Butt_Size_Slider_Enabled");
@@ -89,7 +109,6 @@ function exportAppStatus() {
 	var intelligenceSliderEnabled = localStorage.getItem("Intelligence_Slider_Enabled");
 	var fluffinessSliderEnabled = localStorage.getItem("Fluffiness_Slider_Enabled");
 	var hairLenghtSliderEnabled = localStorage.getItem("Hair_Lenght_Slider_Enabled");
-	var sexualitySliderEnabled = localStorage.getItem("Sexuality_Slider_Enabled");
 	var feralAnthroSliderEnabled = localStorage.getItem("Feral_Anthro_Slider_Enabled");
 	var hairColorMenuEnabled = localStorage.getItem("Hair_Color_Menu_Enabled");
 	var fertilitySliderEnabled = localStorage.getItem("Fertility_Slider_Enabled");
@@ -106,6 +125,9 @@ function exportAppStatus() {
 	var isCS3Enabled = localStorage.getItem("Custom_Slider3_Enabled");
 	var isCS4Enabled = localStorage.getItem("Custom_Slider4_Enabled");
 	var isCS5Enabled = localStorage.getItem("Custom_Slider5_Enabled");
+	var isCC1Enabled = localStorage.getItem("Slot0_Custom_Checkbox1_Enabled");
+	var isCC2Enabled = localStorage.getItem("Slot0_Custom_Checkbox2_Enabled");
+	var isCC3Enabled = localStorage.getItem("Slot0_Custom_Checkbox3_Enabled");
 	
 	var obj = {
     bodyType1: bodyType1,
@@ -158,6 +180,21 @@ function exportAppStatus() {
 	rightTextCustom3: rightTextCustom3,
 	rightTextCustom4: rightTextCustom4,
 	rightTextCustom5: rightTextCustom5,
+	CC1label: CC1label,
+	CC2label: CC2label,
+	CC3label: CC3label,
+	CC1value1: CC1value1,
+	CC2value1: CC2value1,
+	CC3value1: CC3value1,
+	CC1value2: CC1value2,
+	CC2value2: CC2value2,
+	CC3value2: CC3value2,
+	CC1ticked1: CC1ticked1,
+	CC2ticked1: CC2ticked1,
+	CC3ticked1: CC3ticked1,
+	CC1ticked2: CC1ticked2,
+	CC2ticked2: CC2ticked2,
+	CC3ticked2: CC3ticked2,	
 	buttSizeSliderEnabled: buttSizeSliderEnabled,
 	bellySizeSliderEnabled: bellySizeSliderEnabled,
 	bellyShapeSliderEnabled: bellyShapeSliderEnabled,
@@ -187,6 +224,9 @@ function exportAppStatus() {
 	isCS3Enabled: isCS3Enabled,
 	isCS4Enabled: isCS4Enabled,
 	isCS5Enabled: isCS5Enabled,
+	isCC1Enabled: isCC1Enabled,
+	isCC2Enabled: isCC2Enabled,
+	isCC3Enabled: isCC3Enabled,
 	
 	};
 	
@@ -278,6 +318,26 @@ function importAppStatus() {
 	document.getElementById('textinmenuCenterCS5').innerHTML = obj.centerTextCustom5;
 	document.getElementById('textinmenuRightCS5').innerHTML = obj.rightTextCustom5;
 	
+	// Custom Checkboxes
+	
+	localStorage.setItem("Slot0_Custom_Checkbox1_Label", obj.CC1label);
+	localStorage.setItem("Slot0_Custom_Checkbox1_Value1", obj.CC1value1);
+	localStorage.setItem("Slot0_Custom_Checkbox1_Value2", obj.CC1value2);
+	localStorage.setItem("Slot0_Custom_Checkbox1_Value1_Ticked", obj.CC1ticked1);
+	localStorage.setItem("Slot0_Custom_Checkbox1_Value2_Ticked", obj.CC1ticked2);
+		
+	localStorage.setItem("Slot0_Custom_Checkbox2_Label", obj.CC2label);
+	localStorage.setItem("Slot0_Custom_Checkbox2_Value1", obj.CC2value1);
+	localStorage.setItem("Slot0_Custom_Checkbox2_Value2", obj.CC2value2);
+	localStorage.setItem("Slot0_Custom_Checkbox2_Value1_Ticked", obj.CC2ticked1);
+	localStorage.setItem("Slot0_Custom_Checkbox2_Value2_Ticked", obj.CC2ticked2);
+		
+	localStorage.setItem("Slot0_Custom_Checkbox3_Label", obj.CC3label);
+	localStorage.setItem("Slot0_Custom_Checkbox3_Value1", obj.CC3value1);
+	localStorage.setItem("Slot0_Custom_Checkbox3_Value2",  obj.CC3value2);
+	localStorage.setItem("Slot0_Custom_Checkbox3_Value1_Ticked", obj.CC3ticked1);
+	localStorage.setItem("Slot0_Custom_Checkbox3_Value2_Ticked", obj.CC3ticked2);
+	
 	localStorage.setItem("Butt_Size_Slider_Enabled", obj.buttSizeSliderEnabled);	
 	localStorage.setItem("Belly_Size_Slider_Enabled", obj.bellySizeSliderEnabled);		
 	localStorage.setItem("Belly_Shape_Slider_Enabled", obj.bellyShapeSliderEnabled);		
@@ -306,7 +366,10 @@ function importAppStatus() {
 	localStorage.setItem("Custom_Slider2_Enabled", obj.isCS2Enabled);		
 	localStorage.setItem("Custom_Slider3_Enabled", obj.isCS3Enabled);	
 	localStorage.setItem("Custom_Slider4_Enabled", obj.isCS4Enabled);	
-	localStorage.setItem("Custom_Slider5_Enabled", obj.isCS5Enabled);	
+	localStorage.setItem("Custom_Slider5_Enabled", obj.isCS5Enabled);
+	localStorage.setItem("Slot0_Custom_Checkbox1_Enabled", obj.isCC1Enabled);
+	localStorage.setItem("Slot0_Custom_Checkbox2_Enabled", obj.isCC2Enabled);
+	localStorage.setItem("Slot0_Custom_Checkbox3_Enabled", obj.isCC3Enabled);
 	
 	document.getElementById("appStatusImportMessage").innerHTML = "Imported successfully!";
 	document.getElementById("appStatusImportMessage").style.color = "#29a329";
@@ -317,6 +380,7 @@ function importAppStatus() {
 	loadCustomSlidersValuesOnStartup3("Yes");
 	loadCustomSlidersValuesOnStartup4("Yes");
 	loadCustomSlidersValuesOnStartup5("Yes");
+	loadCustomCheckboxesOnStartup();
 	
 	saveSettingsSlot0();
 	

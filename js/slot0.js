@@ -135,6 +135,4 @@
 	var swatchColor = document.getElementById('hairColorSwatch').style.backgroundColor;
 	localStorage.setItem("Slot0_Hair_Color", hairColor);
 	localStorage.setItem("Slot0_Swatch_Color", swatchColor);
-	
-	checkCharacterPreviewStatus();
 }   
