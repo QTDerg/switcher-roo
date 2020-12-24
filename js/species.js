@@ -45,7 +45,7 @@ function setSpeciesTo(Species) {
 	localStorage.setItem("Slot0_Species", Species);
 	closeCategoryMenu();
 	goBackFromCategoryList();
-	checkCharacterPreviewStatus();
+	initializeCharViz();
 	showProcessingAnimation();
 }
 

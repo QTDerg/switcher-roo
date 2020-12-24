@@ -17,10 +17,10 @@
 <link rel="stylesheet" href="css/styles.css?v=1.0">  
 <link rel="stylesheet" type="text/css" href="css/dhtmlxslider.css" id="defaultcss"/>
 <link rel="icon" type="image/png" href="images/favicon.png">
-<link rel="apple-touch-icon" href="touch-icon-iphone.png">
-<link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad.png">
-<link rel="apple-touch-icon" sizes="180x180" href="touch-icon-iphone-retina.png">
-<link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png">
+<link rel="apple-touch-icon" href="images/touch-icon-iphone.png">
+<link rel="apple-touch-icon" sizes="152x152" href="images/touch-icon-ipad.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/touch-icon-iphone-retina.png">
+<link rel="apple-touch-icon" sizes="167x167" href="images/touch-icon-ipad-retina.png">
 
 <script src="js/dhtmlxslider.js"></script>
 <script src="js/switcheroo.js"></script>
@@ -34,12 +34,13 @@
 <script src="js/inanimateObjects.js"></script>
 <script src="js/hairColors.js"></script>
 <script src="js/ppTypes.js"></script>
-<script src="js/filterGenerator.js"></script>
 <script src="js/iro.min.js"></script>
 <script src="js/color-scheme.min.js"></script>
 <script src="js/peerjs.min.js"></script>
 <script src="js/CONTROL.JS"></script>
 <script src="js/appStatus.js"></script>
+<script src="js/creativeMode.js"></script>
+<script src="js/charViz.js"></script>
 <script src="pwabuilder-sw.js"></script>
 <script>
 // This is the "Offline copy of pages" service worker
@@ -156,7 +157,7 @@ function error621ChangeSlider() {
 	<script>
 		document.getElementById("lowBatteryMessage").style.display = "none";	
 	</script>
-	>Your battery is low. Click "Charge Battery" text or Switcher-Roo logo or there will be 1 in 33 chance every 10 seconds, that error will happen.
+	>Your battery is low. Click Switcher-Roo logo or there will be 3 in 100 chance every 20 seconds, that error will happen.
 	</div>
 		
 </div>
@@ -316,10 +317,7 @@ function error621ChangeSlider() {
 	</div>
 	
 	<div class="currentTime" id="currentTime">
-	6:21 PM
-		<script>
-		currentTime();
-		</script>		
+	6:21 PM	
 	</div>	
 	
 	<div class="welcomeUserMessage" id="welcomeUserMessage">
@@ -328,15 +326,8 @@ function error621ChangeSlider() {
 		document.getElementById("welcomeUserMessage").style.display = "none";	
 		</script>		
 	</div>	
-	
-	<div class="chargeBattery" id="chargeBattery" onclick="batteryCharge()">
-		Charge battery!
-		<script>
-		document.getElementById("chargeBattery").style.display = "none";	
-		</script>
-	</div>
-			
-	<div class="batteryContainer">		
+				
+	<div class="batteryContainer" onClick="batteryCharge()">		
 		
 		<div id="battery_full">
 			<img src="images/battery_full.png" height="14" width="40" align="right">
@@ -393,7 +384,7 @@ function error621ChangeSlider() {
 <!-- Status bar stuff ends here-->
 
 <div class="switcherLogo" onclick="batteryCharge()">
-  <img src="images/logo.png" height="41" width="250" alt="logo"> 
+  <img id="switcherLogo" src="images/logo.png" height="41" width="250" alt="logo"> 
 </div>
   
   <div class="adminPerms" id="adminPermsText">
@@ -439,19 +430,33 @@ function error621ChangeSlider() {
   
 	<div class="processingContainer">  
 			<div class="processingAnim" id="processingAnim">
+			
+			<div id="newProcessingAnimation" style="text-align:center">
 			<!--
 			<div class="lds-ring"><div></div><div></div><div></div><div></div></div>
 			-->
+			<div class="sk-chase">
+				<div class="sk-chase-dot"></div>
+				<div class="sk-chase-dot"></div>
+				<div class="sk-chase-dot"></div>
+				<div class="sk-chase-dot"></div>
+				<div class="sk-chase-dot"></div>
+				<div class="sk-chase-dot"></div>
+			</div>
+			</div>
+			<div id="oldProcessingAnimation" style="text-align:center">
 			<img src="images/animation.png" class="rotate" height="50" width="50">
+			</div>
 			<script>
 			document.getElementById("processingAnim").style.display = "none";
+			document.getElementById("newProcessingAnimation").style.display = "none";
 			</script>
 			
 			</div>
   
 	</div>
   
-	<div class="logOut" <!--onClick="logOut()"-->
+	<div class="logOut">
 	Log out&nbsp;&nbsp;</a>
 	</div>
 	
@@ -1048,6 +1053,45 @@ function error621ChangeSlider() {
 	document.getElementById("inanimateObjectsSelectorContainer").style.display = "none";
 	document.getElementById("inanimateObjectsMenu").style.display = "none";
 </script>
+
+<div class="menuInanimateObjects" id="customDropdownMenu">
+
+	<div class="speciesText" id="customDropdownLabel">
+	Label
+	</div>
+
+	<div class="selectMenuContainer">
+	
+	<div class="lines">
+		<img src="images/lines.png" height="17" width="23"> 
+	</div>
+	
+	<div class="speciesContainer">
+		
+		<div class="speciesCurrentContainer">
+		
+			<div class="speciesCurrent" id="customDropdownValue">
+				Value
+			</div>
+				
+			<div class="speciesSelectTriangle">
+				<img src="images/speciesSelectTriangle.png" height="14" width="18"> 
+			</div>
+			
+		</div>
+			
+	</div>
+	
+	<div class="search">
+		<img src="images/search.png" class="magnifyingGlassIcon" height="28" width="28"> 
+	</div>
+</div> 
+
+</div>
+
+<script>
+	document.getElementById("customDropdownMenu").style.display = "none";
+</script>
   
 <div class="menu" id="sexMenu">
 
@@ -1167,6 +1211,84 @@ document.getElementById("sexMenuError").style.display = "none";
 			</label>
 		</div>
 		
+</div>
+
+<div class="menu" id="customCheckbox1Menu" style="display:none;">
+
+	<div class="speciesText" id="customCheckbox1LabelMenu">
+	&nbsp;
+	</div>
+	
+		<div class="linesGenitals">
+			<img src="images/lines.png" height="17" width="23"> 
+		</div>
+		
+		<div class="menutextGenitals">
+			<label class="container" id="CC1value1Container"><div id="CC1value1">&nbsp;</div>
+				<input type="checkbox" id="CC1value1Checkbox" onclick="saveCheckboxCustom1Value1()">
+				<span class="checkbox"></span>  
+			</label>
+		</div>
+		
+		<div class="menutextGenitals" style="margin-left:78px" id="secondCheckboxCC1">
+			<label class="container" id="CC1value2Container"><div id="CC1value2">&nbsp;</div>
+				<input type="checkbox" id="CC1value2Checkbox" onclick="saveCheckboxCustom1Value2()">
+				<span class="checkbox"></span>  
+			</label>
+		</div>
+			  
+</div>
+
+<div class="menu" id="customCheckbox2Menu" style="display:none;">
+
+	<div class="speciesText" id="customCheckbox2LabelMenu">
+	&nbsp;
+	</div>
+	
+		<div class="linesGenitals">
+			<img src="images/lines.png" height="17" width="23"> 
+		</div>
+		
+		<div class="menutextGenitals">
+			<label class="container" id="CC2value1Container"><div id="CC2value1">&nbsp;</div>
+				<input type="checkbox" id="CC2value1Checkbox" onclick="saveCheckboxCustom2Value1()">
+				<span class="checkbox"></span>  
+			</label>
+		</div>
+		
+		<div class="menutextGenitals" style="margin-left:78px" id="secondCheckboxCC2">
+			<label class="container" id="CC2value2Container"><div id="CC2value2">&nbsp;</div>
+				<input type="checkbox" id="CC2value2Checkbox" onclick="saveCheckboxCustom2Value2()">
+				<span class="checkbox"></span>  
+			</label>
+		</div>
+			  
+</div>
+
+<div class="menu" id="customCheckbox3Menu" style="display:none;">
+
+	<div class="speciesText" id="customCheckbox3LabelMenu">
+	&nbsp;
+	</div>
+	
+		<div class="linesGenitals">
+			<img src="images/lines.png" height="17" width="23"> 
+		</div>
+		
+		<div class="menutextGenitals">
+			<label class="container" id="CC3value1Container"><div id="CC3value1">&nbsp;</div>
+				<input type="checkbox" id="CC3value1Checkbox" onclick="saveCheckboxCustom3Value1()">
+				<span class="checkbox"></span>  
+			</label>
+		</div>
+		
+		<div class="menutextGenitals" style="margin-left:78px" id="secondCheckboxCC3">
+			<label class="container" id="CC3value2Container"><div id="CC3value2">&nbsp;</div>
+				<input type="checkbox" id="CC3value2Checkbox" onclick="saveCheckboxCustom3Value2()">
+				<span class="checkbox"></span>  
+			</label>
+		</div>
+			  
 </div>
 
 <div class="error621" id="error621">
@@ -1344,164 +1466,655 @@ We hope you'll be back soon!
 			
 </div>
 
-<div class="menuCharacterPreview" id="menuCharacterPreview">
-
-	<div style="padding-bottom:5px;">Character Preview</div>
-
-	<div class="characterPreviewDisplayContainer" id="characterPreviewDisplayContainer" style="display:none">
-		
-		<div id="characterPreviewDragonDisplayContainer">
-		<div class="characterPreviewDisplay" id="displayBaseBottom"></div>
-		<div class="characterPreviewDisplay" id="displayTits"></div>
-		<div class="characterPreviewDisplay" id="displayHips"></div>
-		<div class="characterPreviewDisplay" id="displayBaseTop"></div>		
-		</div>
-		
-		<div id="characterPreviewFoxDisplayContainer">
-		
-		<div class="characterPreviewDisplayFox" id="displayFoxStatic"></div>
-		<div class="characterPreviewDisplayFox" id="displayFoxMainColor"></div>
-		<div class="characterPreviewDisplayFox" id="displayFoxSecondaryColor"></div>
-		<div class="characterPreviewDisplayFox" id="displayFoxMarkings"></div>
-		<div class="characterPreviewDisplayFox" id="displayFoxLeftEye"></div>	
-		<div class="characterPreviewDisplayFox" id="displayFoxRightEye"></div>	
-		<div class="characterPreviewDisplayFox" id="displayFoxPawpads"></div>	
-		<div class="characterPreviewDisplayFox" id="displayFoxLineart"></div>
-		</div>
-		
+<div class="menuSlider" id="custom4SliderMenu" style="max-height:0;border-bottom:0;padding-bottom:0">
+	<div class="linesMenuSlider">
+			<img src="images/lines.png" height="17" width="23"> 
 	</div>
 	
-	<div style="font-size:10px;margin-top:5px;height:23px;" id="characterPreviewDragonFeatureSupportMessage">Body Morphs support: Breast Size, Hips<br>Color customization support: N/A</div>
+	<div class="textinmenuLeft" id="textinmenuLeftCS4">
+	&nbsp;	
+	</div>
 	
-	<div style="margin-top:5px;height:290px;" id="characterPreviewColorsContainer">
+	<div class="textinmenuCenter" id="textinmenuCenterCS4">
+	Custom4
+	</div>
 	
-		<div style="float: left;width: 48%;height:200px;overflow-y:auto;">
+	<div class="textinmenuRight" id="textinmenuRightCS4">
+	&nbsp;
+	</div>
 	
-		<div class="characterPreviewColorsEntryContainer" onClick="setActiveColor('Main')">
-		<div class="characterPreviewColorSwatch" id="characterPreviewMainColorSwatch" style="background-color:#000"></div>
-		<div style="float:left;margin: 3px;">Main</div>
+	<div id="sliderCustom4" class="slider">			
+			 <script>
+				var mySlider24 = new dhtmlXSlider(sliderCustom4, 315, null, false, 0, 100, 50, 1);
+			</script>
+	</div>
+			
+</div>
+
+<div class="menuSlider" id="custom5SliderMenu" style="max-height:0;border-bottom:0;padding-bottom:0">
+	<div class="linesMenuSlider">
+			<img src="images/lines.png" height="17" width="23"> 
+	</div>
+	
+	<div class="textinmenuLeft" id="textinmenuLeftCS5">
+	&nbsp;	
+	</div>
+	
+	<div class="textinmenuCenter" id="textinmenuCenterCS5">
+	Custom4
+	</div>
+	
+	<div class="textinmenuRight" id="textinmenuRightCS5">
+	&nbsp;
+	</div>
+	
+	<div id="sliderCustom5" class="slider">			
+			 <script>
+				var mySlider25 = new dhtmlXSlider(sliderCustom5, 315, null, false, 0, 100, 50, 1);
+			</script>
+	</div>
+			
+</div>
+
+<div class="menuCharViz" id="menuCharViz">
+
+	<div class="charVizDisplayContainer">
+	
+		<!--<div class="charVizDisplay" id="charVizDisplaytest"></div> -->
+		
+		<!-- Primary, Secondary, Tertiary refers to colors. "charVizDisplay<bodypartname>" classes are flushing it's content with For Loop.
+		Note: In HTML stuff at the bottom gets rendered on top. -->
+		
+		<!-- Tail -->
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayTail" id="charVizDisplayTailPrimary"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayTail" id="charVizDisplayTailTertiary"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayTail" id="charVizDisplayTailSecondary"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayTail" id="charVizDisplayTailMarkings"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayTail" id="charVizDisplayTailLines"></div>
+		
+		<!-- Hair in the background -->
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBackHair" id="charVizDisplayHairBackPrimary"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBackHair" id="charVizDisplayHairBackLines"></div>
+				
+		<!-- Hips Size Body Morph -->
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHipsSize charVizSpritesheetM" id="charVizDisplayHipsSizePrimary"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHipsSize charVizSpritesheetM" id="charVizDisplayHipsSizeMarkings"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHipsSize charVizSpritesheetM" id="charVizDisplayHipsSizeSecondary"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHipsSize charVizSpritesheetL" id="charVizDisplayHipsSizeLines"></div>
+		
+		<!-- Breast Size Body Morph -->
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBreastSize charVizSpritesheetM" id="charVizDisplayBreastSizePrimary"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBreastSize charVizSpritesheetM" id="charVizDisplayBreastSizeMarkings"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBreastSize charVizSpritesheetM" id="charVizDisplayBreastSizeSecondary"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBreastSize charVizSpritesheetL" id="charVizDisplayBreastSizeLines"></div>
+		
+		<!-- Base -->
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBase" id="charVizDisplayBasePrimary"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBase" id="charVizDisplayBaseTertiary"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBase" id="charVizDisplayBaseMarkings"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBase" id="charVizDisplayBaseSecondary"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBase" id="charVizDisplayBaseLines"></div>
+		
+		<!-- Head -->
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadPrimary"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadSecondary"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadTertiary"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadBlush"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadHair"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadScleras"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadIrisLeft"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadIrisRight"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadIrisShading"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadLines"></div>
+		
+		<!-- Hair in the front -->
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayFrontHair" id="charVizDisplayHairFrontPrimary"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayFrontHair" id="charVizDisplayHairFrontLines"></div>
+		
+		<!-- Clothing -->
+		
+		<!-- Underwear -->
+		<div class="charVizDisplay charVizDisplayCloth charVizDisplayUnderwear charVizSpritesheetM" id="charVizDisplayUnderwearPrimary"></div>
+		<div class="charVizDisplay charVizDisplayCloth charVizDisplayUnderwear charVizSpritesheetM" id="charVizDisplayUnderwearSecondary"></div>
+		<div class="charVizDisplay charVizDisplayCloth charVizDisplayUnderwear charVizSpritesheetL" id="charVizDisplayUnderwearLines"></div>
+		
+		<!-- Legwear -->
+		<div class="charVizDisplay charVizDisplayCloth charVizDisplayLegwear charVizSpritesheetM" id="charVizDisplayLegwearPrimary"></div>
+		<div class="charVizDisplay charVizDisplayCloth charVizDisplayLegwear charVizSpritesheetM" id="charVizDisplayLegwearSecondary"></div>
+		<div class="charVizDisplay charVizDisplayCloth charVizDisplayLegwear charVizSpritesheetL" id="charVizDisplayLegwearLines"></div>
+		
+		<!-- Armwear -->
+		<div class="charVizDisplay charVizDisplayCloth charVizDisplayArmwear charVizSpritesheetM" id="charVizDisplayArmwearPrimary"></div>
+		<div class="charVizDisplay charVizDisplayCloth charVizDisplayArmwear charVizSpritesheetM" id="charVizDisplayArmwearSecondary"></div>
+		<div class="charVizDisplay charVizDisplayCloth charVizDisplayArmwear charVizSpritesheetL" id="charVizDisplayArmwearLines"></div>
+		
+		<!-- Bottomwear -->
+		<div class="charVizDisplay charVizDisplayCloth charVizDisplayBottomwear charVizSpritesheetM" id="charVizDisplayBottomwearPrimary"></div>
+		<div class="charVizDisplay charVizDisplayCloth charVizDisplayBottomwear charVizSpritesheetM" id="charVizDisplayBottomwearSecondary"></div>
+		<div class="charVizDisplay charVizDisplayCloth charVizDisplayBottomwear charVizSpritesheetL" id="charVizDisplayBottomwearLines"></div>
+		
+		<!-- Topwear -->
+		<div class="charVizDisplay charVizDisplayCloth charVizDisplayTopwear charVizSpritesheetM" id="charVizDisplayTopwearPrimary"></div>
+		<div class="charVizDisplay charVizDisplayCloth charVizDisplayTopwear charVizSpritesheetM" id="charVizDisplayTopwearSecondary"></div>
+		<div class="charVizDisplay charVizDisplayCloth charVizDisplayTopwear charVizSpritesheetL" id="charVizDisplayTopwearLines"></div>
+		
+		<div class="charVizDisplay charVizDisplayCloth charVizDisplayAccessories" id="charVizDisplayAccessoriesSlot1"></div>
+		<div class="charVizDisplay charVizDisplayCloth charVizDisplayAccessories" id="charVizDisplayAccessoriesSlot2"></div>
+		<div class="charVizDisplay charVizDisplayCloth charVizDisplayAccessories" id="charVizDisplayAccessoriesSlot3"></div>
+		
+		<div class="charVizDisplay" id="charVizDisplayMessage">Species unsupported</div>
+			
+	</div>
+	
+</div>
+
+<div class="menuAS" id="charVizCharacterColorsToggler" onclick="toggleCharVizMenus(0)">
+	<div class="linesAS">
+			<img src="images/lines.png" height="17" width="23"> 
+			&nbsp;
+			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
+	</div>
+	
+	&nbsp;&nbsp;Character Colors
+</div>
+
+<div id="charVizCharacterColorsContainer">
+
+		<div style="float: left;width: 48%;height:220px;overflow-y:auto;">
+	
+		<div class="charVizColorsEntryContainer" onClick="setActiveColor('Primary')" id="charColorSwatchContainer1">
+		<div class="charVizColorSwatch" id="charVizPrimaryCharacterColorSwatch" style="background-color:#000"></div>
+		<div style="float:left;margin: 3px;">Primary</div>
 		</div>
 		
-		<div class="characterPreviewColorsEntryContainer" onClick="setActiveColor('Secondary')">
-		<div class="characterPreviewColorSwatch" id="characterPreviewSecondaryColorSwatch" style="background-color:#000"></div>
+		<div class="charVizColorsEntryContainer" onClick="setActiveColor('Secondary')" id="charColorSwatchContainer2">
+		<div class="charVizColorSwatch" id="charVizSecondaryCharacterColorSwatch" style="background-color:#000"></div>
 		<div style="float:left;margin: 3px;">Secondary</div>
 		</div>
 		
-		<div class="characterPreviewColorsEntryContainer" onClick="setActiveColor('Markings')">
-		<div class="characterPreviewColorSwatch" id="characterPreviewMarkingsColorSwatch" style="background-color:#000"></div>
+		<div class="charVizColorsEntryContainer" onClick="setActiveColor('Tertiary')" id="charColorSwatchContainer3">
+		<div class="charVizColorSwatch" id="charVizTertiaryCharacterColorSwatch" style="background-color:#000"></div>
+		<div style="float:left;margin: 3px;">Tertiary</div>
+		</div>
+		
+		<div class="charVizColorsEntryContainer" onClick="setActiveColor('Markings')" id="charColorSwatchContainer4">
+		<div class="charVizColorSwatch" id="charVizMarkingsCharacterColorSwatch" style="background-color:#000"></div>
 		<div style="float:left;margin: 3px;">Markings</div>
 		</div>
 		
-		<div class="characterPreviewColorsEntryContainer" onClick="setActiveColor('Left Eye')">
-		<div class="characterPreviewColorSwatch" id="characterPreviewLeftEyeColorSwatch" style="background-color:#000"></div>
+		<div class="charVizColorsEntryContainer" onClick="setActiveColor('Left Eye')" id="charColorSwatchContainer5">
+		<div class="charVizColorSwatch" id="charVizLeftEyeCharacterColorSwatch" style="background-color:#000"></div>
 		<div style="float:left;margin: 3px;">Left Eye</div>
 		</div>
 		
-		<div class="characterPreviewColorsEntryContainer" onClick="setActiveColor('Right Eye')">
-		<div class="characterPreviewColorSwatch" id="characterPreviewRightEyeColorSwatch" style="background-color:#000"></div>
+		<div class="charVizColorsEntryContainer" onClick="setActiveColor('Right Eye')" id="charColorSwatchContainer6">
+		<div class="charVizColorSwatch" id="charVizRightEyeCharacterColorSwatch" style="background-color:#000"></div>
 		<div style="float:left;margin: 3px;">Right Eye</div>
 		</div>
 		
-		<div class="characterPreviewColorsEntryContainer" onClick="setActiveColor('Pawpads')">
-		<div class="characterPreviewColorSwatch" id="characterPreviewPawpadsColorSwatch" style="background-color:#000"></div>
-		<div style="float:left;margin: 3px;">Pawpads</div>
+		<div class="charVizColorsEntryContainer" onClick="setActiveColor('Hair')" id="charColorSwatchContainer7">
+		<div class="charVizColorSwatch" id="charVizHairCharacterColorSwatch" style="background-color:#000"></div>
+		<div style="float:left;margin: 3px;">Hair</div>
 		</div>
 		
 		</div>
 				
-		<div id="characterPreviewMainColorPicker" style="float:right;height:200px;"></div>
+		<div id="charVizCharacterColorsColorPicker" style="float:right;"></div>
 		
 		<script>
-		var colorPicker = new iro.ColorPicker("#characterPreviewMainColorPicker", {
-		width: 150,
+		var colorPicker = new iro.ColorPicker("#charVizCharacterColorsColorPicker", {
+		width: 170,
 		color: "rgb(255, 0, 0)",
 		borderWidth: 2,
 		borderColor: "#59568f",
+		layout: [
+			{
+				component: iro.ui.Box,
+			},
+			{
+				component: iro.ui.Slider,
+				options: {
+					sliderType: 'hue'
+				}
+			}
+		]
 		});
-		colorPicker.on('color:change', function(color) {
-		var changed = localStorage.getItem("Active_Color_Changed");
-		if (changed === "Yes") {
-		localStorage.removeItem("Active_Color_Changed");
-		return;
-		}
-		else {
-		var activeColor = localStorage.getItem("Character_Preview_Active_Color");
-			if (activeColor === "Main") {
-				document.getElementById("characterPreviewMainColorSwatch").style.backgroundColor = color.hexString;
-				calculateFilter(activeColor, color.hexString);
-				localStorage.setItem("Slot0_Character_Preview_Main_Color", color.hexString);
-				document.getElementById('activeColorRGBCodeMessage').innerHTML = color.hexString;
+		colorPicker.on('color:change', function(color) {		
+		var activeColor = localStorage.getItem("CharViz_Active_Character_Color");
+			if (activeColor === "Primary") {
+				document.getElementById("charVizPrimaryCharacterColorSwatch").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayBasePrimary").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayBreastSizePrimary").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayHipsSizePrimary").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayTailPrimary").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayHeadPrimary").style.backgroundColor = color.hexString;
+				localStorage.setItem("Slot0_Primary_Character_Color", color.hexString);
 			}
 			else if (activeColor === "Secondary") {
-				document.getElementById("characterPreviewSecondaryColorSwatch").style.backgroundColor = color.hexString;
-				calculateFilter(activeColor, color.hexString);
-				localStorage.setItem("Slot0_Character_Preview_Secondary_Color", color.hexString);
-				document.getElementById('activeColorRGBCodeMessage').innerHTML = color.hexString;
+				document.getElementById("charVizSecondaryCharacterColorSwatch").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayBaseSecondary").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayBreastSizeSecondary").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayHipsSizeSecondary").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayTailSecondary").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayHeadSecondary").style.backgroundColor = color.hexString;
+				localStorage.setItem("Slot0_Secondary_Character_Color", color.hexString);
+			}
+			else if (activeColor === "Tertiary") {
+				document.getElementById("charVizTertiaryCharacterColorSwatch").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayBaseTertiary").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayTailTertiary").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayHeadTertiary").style.backgroundColor = color.hexString;
+				localStorage.setItem("Slot0_Tertiary_Character_Color", color.hexString);
 			}
 			else if (activeColor === "Markings") {
-				document.getElementById("characterPreviewMarkingsColorSwatch").style.backgroundColor = color.hexString;
-				calculateFilter(activeColor, color.hexString);
-				localStorage.setItem("Slot0_Character_Preview_Markings_Color", color.hexString);
-				document.getElementById('activeColorRGBCodeMessage').innerHTML = color.hexString;
+				document.getElementById("charVizMarkingsCharacterColorSwatch").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayBaseMarkings").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayBreastSizeMarkings").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayHipsSizeMarkings").style.backgroundColor = color.hexString;
+				localStorage.setItem("Slot0_Markings_Character_Color", color.hexString);
 			}
 			else if (activeColor === "Left Eye") {
-				document.getElementById("characterPreviewLeftEyeColorSwatch").style.backgroundColor = color.hexString;
-				calculateFilter(activeColor, color.hexString);
-				localStorage.setItem("Slot0_Character_Preview_Left_Eye_Color", color.hexString);
-				document.getElementById('activeColorRGBCodeMessage').innerHTML = color.hexString;
+				document.getElementById("charVizLeftEyeCharacterColorSwatch").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayHeadIrisLeft").style.backgroundColor = color.hexString;
+				localStorage.setItem("Slot0_LeftEye_Character_Color", color.hexString);
 			}
 			else if (activeColor === "Right Eye") {
-				document.getElementById("characterPreviewRightEyeColorSwatch").style.backgroundColor = color.hexString;
-				calculateFilter(activeColor, color.hexString);
-				localStorage.setItem("Slot0_Character_Preview_Right_Eye_Color", color.hexString);
-				document.getElementById('activeColorRGBCodeMessage').innerHTML = color.hexString;
+				document.getElementById("charVizRightEyeCharacterColorSwatch").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayHeadIrisRight").style.backgroundColor = color.hexString;
+				localStorage.setItem("Slot0_RightEye_Character_Color", color.hexString);
 			}
-			else if (activeColor === "Pawpads") {
-				document.getElementById("characterPreviewPawpadsColorSwatch").style.backgroundColor = color.hexString;
-				calculateFilter(activeColor, color.hexString);
-				localStorage.setItem("Slot0_Character_Preview_Pawpads_Color", color.hexString);
-				document.getElementById('activeColorRGBCodeMessage').innerHTML = color.hexString;
+			else if (activeColor === "Hair") {
+				document.getElementById("charVizHairCharacterColorSwatch").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayHeadHair").style.backgroundColor = color.hexString;
+				localStorage.setItem("Slot0_Hair_Character_Color", color.hexString);
 			}
-		}
+		
+		});
+		</script>
+
+</div>
+
+<div class="menuAS" id="charVizClothToggler" onclick="toggleCharVizMenus(1)">
+	<div class="linesAS">
+			<img src="images/lines.png" height="17" width="23"> 
+			&nbsp;
+			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
+	</div>
+	
+	&nbsp;&nbsp;Clothing
+</div>
+
+<div id="charVizClothingContainer">
+
+	<div class="speciesContainer" style="margin-top:10px;margin-left:50px;margin-bottom:10px;">
+
+	<div class="speciesCategorySelectorContainer" id="charVizClothingCategorySelectorContainer">
+		
+		<div class="speciesCategory" onClick="charVizClothingGoToCategory('Topwear');"><div class="speciesCategoryText">Topwear</div></div>
+		<div class="speciesCategory" onClick="charVizClothingGoToCategory('Bottomwear');"><div class="speciesCategoryText">Bottomwear</div></div>
+		<div class="speciesCategory" onClick="charVizClothingGoToCategory('Armwear');"><div class="speciesCategoryText">Armwear</div></div>
+		<div class="speciesCategory" onClick="charVizClothingGoToCategory('Legwear');"><div class="speciesCategoryText">Legwear</div></div>
+		<div class="speciesCategory" onClick="charVizClothingGoToCategory('Footwear');"><div class="speciesCategoryText">Footwear</div></div>
+		<div class="speciesCategory" onClick="charVizClothingGoToCategory('Underwear');"><div class="speciesCategoryText">Underwear</div></div>
+		<div class="speciesCategory" onClick="charVizClothingGoToCategory('Outfits');"><div class="speciesCategoryText">Outfits</div></div>
+		<div class="speciesCategory" onClick="charVizClothingGoToCategory('Accessories');"><div class="speciesCategoryText">Accessories</div></div>
+		<div class="speciesCategory" onClick="charVizClothingGoToCategory('none');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategoryLast" onClick="charVizClothingGoToCategory('none');"><div class="speciesCategoryText">Empty</div></div>
+			
+	</div>
+	
+	<div class="speciesCategorySelectorContainer" id="charVizClothingTopwearSelectorContainer">
+		
+		<div class="speciesCategory" onClick="charVizClothingGoBack('Topwear');"><div class="speciesCategoryText">Go back</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Topwear', 'None');"><div class="speciesCategoryText">None</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Topwear', 'Office Shirt');"><div class="speciesCategoryText">Office Shirt</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Topwear', 'T-Shirt');"><div class="speciesCategoryText">T-Shirt</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Topwear', 'Crop Top');"><div class="speciesCategoryText">Crop Top</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Topwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Topwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Topwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Topwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategoryLast" onClick="charVizPutClothingOn('Topwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+			
+	</div>
+	
+	<div class="speciesCategorySelectorContainer" id="charVizClothingBottomwearSelectorContainer">
+		
+		<div class="speciesCategory" onClick="charVizClothingGoBack('Bottomwear');"><div class="speciesCategoryText">Go back</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Bottomwear', 'None');"><div class="speciesCategoryText">None</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Bottomwear', 'Pencil Skirt');"><div class="speciesCategoryText">Pencil Skirt</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Bottomwear', 'Shorts');"><div class="speciesCategoryText">Shorts</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Bottomwear', 'Leggings');"><div class="speciesCategoryText">Leggings</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Bottomwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Bottomwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Bottomwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Bottomwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategoryLast" onClick="charVizPutClothingOn('Bottomwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+			
+	</div>
+	
+	<div class="speciesCategorySelectorContainer" id="charVizClothingArmwearSelectorContainer">
+		
+		<div class="speciesCategory" onClick="charVizClothingGoBack('Armwear');"><div class="speciesCategoryText">Go back</div></div>		
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Armwear', 'None');"><div class="speciesCategoryText">None</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Armwear', 'Arm Warmers');"><div class="speciesCategoryText">Arm Warmers</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Armwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Armwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Armwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Armwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Armwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Armwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategoryLast" onClick="charVizPutClothingOn('Armwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+			
+	</div>
+	
+	<div class="speciesCategorySelectorContainer" id="charVizClothingLegwearSelectorContainer">
+		
+		<div class="speciesCategory" onClick="charVizClothingGoBack('Legwear');"><div class="speciesCategoryText">Go back</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Legwear', 'None');"><div class="speciesCategoryText">None</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Legwear', 'Thigh Highs');"><div class="speciesCategoryText">Thigh Highs</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Legwear', 'Pantyhose');"><div class="speciesCategoryText">Pantyhose</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Legwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Legwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Legwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Legwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Legwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategoryLast" onClick="charVizPutClothingOn('Legwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+			
+	</div>
+	
+	<div class="speciesCategorySelectorContainer" id="charVizClothingFootwearSelectorContainer">
+		
+		<div class="speciesCategory" onClick="charVizClothingGoBack('Footwear');"><div class="speciesCategoryText">Go back</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Footwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Footwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Footwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Footwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Footwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Footwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Footwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Footwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategoryLast" onClick="charVizPutClothingOn('Footwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+			
+	</div>
+	
+	<div class="speciesCategorySelectorContainer" id="charVizClothingUnderwearSelectorContainer">
+		
+		<div class="speciesCategory" onClick="charVizClothingGoBack('Underwear');"><div class="speciesCategoryText">Go back</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Underwear', 'None');"><div class="speciesCategoryText">None</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Underwear', 'Panties');"><div class="speciesCategoryText">Panties</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Underwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Underwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Underwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Underwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Underwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Underwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategoryLast" onClick="charVizPutClothingOn('Underwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+			
+	</div>
+	
+	<div class="speciesCategorySelectorContainer" id="charVizClothingOutfitsSelectorContainer">
+		
+		<div class="speciesCategory" onClick="charVizClothingGoBack('Outfits');"><div class="speciesCategoryText">Go back</div></div>
+		<div class="speciesCategory" onClick="charVizPutOutfitOn('Programmer');"><div class="speciesCategoryText">Programmer</div></div>
+		<div class="speciesCategory" onClick="charVizPutOutfitOn('Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutOutfitOn('Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutOutfitOn('Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutOutfitOn('Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutOutfitOn('Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutOutfitOn('Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutOutfitOn('Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategoryLast" onClick="charVizPutOutfitOn('Clothname');"><div class="speciesCategoryText">Empty</div></div>
+			
+	</div>
+	
+	<div class="speciesCategorySelectorContainer" id="charVizClothingAccessoriesSelectorContainer">
+		
+		<div class="speciesCategory" onClick="charVizClothingGoBack('Accessories');"><div class="speciesCategoryText">Go back</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Accessories', 'None');"><div class="speciesCategoryText">None</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Accessories', 'Glasses');"><div class="speciesCategoryText">Glasses</div></div>
+		<div class="speciesCategory" onClick="accessoryFolder();"><div class="speciesCategoryText">Folder</div></div>
+		<div class="speciesCategory" onClick="accessoryChoker();"><div class="speciesCategoryText">Choker</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Accessories', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Accessories', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Accessories', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Accessories', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategoryLast" onClick="charVizPutClothingOn('Accessories', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+			
+	</div>
+	
+	</div>
+	
+	<script>
+	// Hide the containers
+	document.getElementById("charVizClothingTopwearSelectorContainer").style.display= 'none';
+	document.getElementById("charVizClothingBottomwearSelectorContainer").style.display= 'none';
+	document.getElementById("charVizClothingArmwearSelectorContainer").style.display= 'none';
+	document.getElementById("charVizClothingLegwearSelectorContainer").style.display= 'none';
+	document.getElementById("charVizClothingFootwearSelectorContainer").style.display= 'none';
+	document.getElementById("charVizClothingUnderwearSelectorContainer").style.display= 'none';
+	document.getElementById("charVizClothingOutfitsSelectorContainer").style.display= 'none';
+	document.getElementById("charVizClothingAccessoriesSelectorContainer").style.display= 'none';
+	
+	</script>
+
+
+</div>
+
+<div class="menuAS" id="charVizClothColorsToggler" onclick="toggleCharVizMenus(2)">
+	<div class="linesAS">
+			<img src="images/lines.png" height="17" width="23"> 
+			&nbsp;
+			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
+	</div>
+	
+	&nbsp;&nbsp;Clothing Colors
+</div>
+
+<div id="charVizClothingColorsContainer">
+
+	<div style="float: left;width: 48%;height:220px;overflow-y:auto;">
+	
+		<div class="charVizColorsEntryContainer" onClick="setActiveClothingColor('Topwear Primary')" id="clothingColorSwatchContainer1">
+		<div class="charVizColorSwatch" id="charVizTopwearPrimaryColorSwatch" style="background-color:#000"></div>
+		<div style="float:left;margin: 3px;">Topwear P</div>
+		</div>
+		
+		<div class="charVizColorsEntryContainer" onClick="setActiveClothingColor('Topwear Secondary')" id="clothingColorSwatchContainer2">
+		<div class="charVizColorSwatch" id="charVizTopwearSecondaryColorSwatch" style="background-color:#000"></div>
+		<div style="float:left;margin: 3px;">Topwear S</div>
+		</div>
+		
+		<div class="charVizColorsEntryContainer" onClick="setActiveClothingColor('Bottomwear Primary')" id="clothingColorSwatchContainer3">
+		<div class="charVizColorSwatch" id="charVizBottomwearPrimaryColorSwatch" style="background-color:#000"></div>
+		<div style="float:left;margin: 3px;">Bttmwear P</div>
+		</div>
+		
+		<div class="charVizColorsEntryContainer" onClick="setActiveClothingColor('Bottomwear Secondary')" id="clothingColorSwatchContainer4">
+		<div class="charVizColorSwatch" id="charVizBottomwearSecondaryColorSwatch" style="background-color:#000"></div>
+		<div style="float:left;margin: 3px;">Bttmwear S</div>
+		</div>
+		
+		<div class="charVizColorsEntryContainer" onClick="setActiveClothingColor('Armwear Primary')" id="clothingColorSwatchContainer5">
+		<div class="charVizColorSwatch" id="charVizArmwearPrimaryColorSwatch" style="background-color:#000"></div>
+		<div style="float:left;margin: 3px;">Armwear P</div>
+		</div>
+		
+		<div class="charVizColorsEntryContainer" onClick="setActiveClothingColor('Armwear Secondary')" id="clothingColorSwatchContainer6">
+		<div class="charVizColorSwatch" id="charVizArmwearSecondaryColorSwatch" style="background-color:#000"></div>
+		<div style="float:left;margin: 3px;">Armwear S</div>
+		</div>
+		
+		<div class="charVizColorsEntryContainer" onClick="setActiveClothingColor('Legwear Primary')" id="clothingColorSwatchContainer7">
+		<div class="charVizColorSwatch" id="charVizLegwearPrimaryColorSwatch" style="background-color:#000"></div>
+		<div style="float:left;margin: 3px;">Legwear P</div>
+		</div>
+		
+		<div class="charVizColorsEntryContainer" onClick="setActiveClothingColor('Legwear Secondary')" id="clothingColorSwatchContainer8">
+		<div class="charVizColorSwatch" id="charVizLegwearSecondaryColorSwatch" style="background-color:#000"></div>
+		<div style="float:left;margin: 3px;">Legwear S</div>
+		</div>
+		
+		<div class="charVizColorsEntryContainer" onClick="setActiveClothingColor('Underwear Primary')" id="clothingColorSwatchContainer9">
+		<div class="charVizColorSwatch" id="charVizUnderwearPrimaryColorSwatch" style="background-color:#000"></div>
+		<div style="float:left;margin: 3px;">Underwear P</div>
+		</div>
+		
+		<div class="charVizColorsEntryContainer" onClick="setActiveClothingColor('Underwear Secondary')" id="clothingColorSwatchContainer10">
+		<div class="charVizColorSwatch" id="charVizUnderwearSecondaryColorSwatch" style="background-color:#000"></div>
+		<div style="float:left;margin: 3px;">Underwear S</div>
+		</div>
+		
+		</div>
+				
+		<div id="charVizClothingColorsColorPicker" style="float:right;"></div>
+		
+		<script>
+		var colorPicker2 = new iro.ColorPicker("#charVizClothingColorsColorPicker", {
+		width: 170,
+		color: "rgb(255, 0, 0)",
+		borderWidth: 2,
+		borderColor: "#59568f",
+		layout: [
+			{
+				component: iro.ui.Box,
+			},
+			{
+				component: iro.ui.Slider,
+				options: {
+					sliderType: 'hue'
+				}
+			}
+		]
+		});
+		colorPicker2.on('color:change', function(color) {		
+		var activeColor = localStorage.getItem("CharViz_Active_Clothing_Color");
+			if (activeColor === "Topwear Primary") {
+				document.getElementById("charVizTopwearPrimaryColorSwatch").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayTopwearPrimary").style.backgroundColor = color.hexString;
+				localStorage.setItem("Slot0_Topwear_Primary_Clothing_Color", color.hexString);
+			}
+			else if (activeColor === "Topwear Secondary") {
+				document.getElementById("charVizTopwearSecondaryColorSwatch").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayTopwearSecondary").style.backgroundColor = color.hexString;
+				localStorage.setItem("Slot0_Topwear_Secondary_Clothing_Color", color.hexString);
+			}
+			else if (activeColor === "Bottomwear Primary") {
+				document.getElementById("charVizBottomwearPrimaryColorSwatch").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayBottomwearPrimary").style.backgroundColor = color.hexString;
+				localStorage.setItem("Slot0_Bottomwear_Primary_Clothing_Color", color.hexString);
+			}
+			else if (activeColor === "Bottomwear Secondary") {
+				document.getElementById("charVizBottomwearSecondaryColorSwatch").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayBottomwearSecondary").style.backgroundColor = color.hexString;
+				localStorage.setItem("Slot0_Bottomwear_Secondary_Clothing_Color", color.hexString);
+			}
+			else if (activeColor === "Armwear Primary") {
+				document.getElementById("charVizArmwearPrimaryColorSwatch").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayArmwearPrimary").style.backgroundColor = color.hexString;
+				localStorage.setItem("Slot0_Armwear_Primary_Clothing_Color", color.hexString);
+			}
+			else if (activeColor === "Armwear Secondary") {
+				document.getElementById("charVizArmwearSecondaryColorSwatch").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayArmwearSecondary").style.backgroundColor = color.hexString;
+				localStorage.setItem("Slot0_Armwear_Secondary_Clothing_Color", color.hexString);
+			}
+			else if (activeColor === "Legwear Primary") {
+				document.getElementById("charVizLegwearPrimaryColorSwatch").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayLegwearPrimary").style.backgroundColor = color.hexString;
+				localStorage.setItem("Slot0_Legwear_Primary_Clothing_Color", color.hexString);
+			}
+			else if (activeColor === "Legwear Secondary") {
+				document.getElementById("charVizLegwearSecondaryColorSwatch").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayLegwearSecondary").style.backgroundColor = color.hexString;
+				localStorage.setItem("Slot0_Legwear_Secondary_Clothing_Color", color.hexString);
+			}
+			else if (activeColor === "Underwear Primary") {
+				document.getElementById("charVizUnderwearPrimaryColorSwatch").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayUnderwearPrimary").style.backgroundColor = color.hexString;
+				localStorage.setItem("Slot0_Underwear_Primary_Clothing_Color", color.hexString);
+			}
+			else if (activeColor === "Underwear Secondary") {
+				document.getElementById("charVizUnderwearSecondaryColorSwatch").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayUnderwearSecondary").style.backgroundColor = color.hexString;
+				localStorage.setItem("Slot0_Underwear_Secondary_Clothing_Color", color.hexString);
+			}
+		
 		});
 		</script>
 		
-		<div style="float:left;width:44%;padding-top:10px;padding-left:16px;">
+</div>
 
-		<label class="container">Markings
-			<input type="checkbox" id="markingsCheckbox" onClick="toggleCharacterPreviewMarkings()">
+<div class="menuAS" id="charVizOptionToggler" onclick="toggleCharVizMenus(3)">
+	<div class="linesAS">
+			<img src="images/lines.png" height="17" width="23"> 
+			&nbsp;
+			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
+	</div>
+	
+	&nbsp;&nbsp;CharViz Options
+</div>
+
+<div id="charVizOptionsContainer">
+
+	<div style="padding-left:18px;margin-top:5px;">Set background color:</div>
+
+	<div style="height:100px">
+	<div class="mediumButton" onClick="charVizSetBGColor(0)">Default</div>
+	<div class="mediumButton" onClick="charVizSetBGColor(1)">White</div>
+	<div class="mediumButton" onClick="charVizSetBGColor(2)">AMOLED</div>
+	<div class="mediumButton" onClick="charVizSetBGColor(3)">Dark</div>
+	</div>
+
+	<div style="height: 50px; margin-left:10px;">
+		<label class="container">When putting on a piece of clothing, don't set it's default colors
+			<input type="checkbox" id="clothColoringOnDefaultCheckbox" onclick="toggleClothColoringOnDefault()">
 			<span class="checkbox"></span>  
 		</label>
-		
-		</div>
-		
-		<div class="mediumButton" onClick="randomizeCharacterColors()">Random</div>
-		
-		<div style="padding-bottom:5px;float:left;width:70%;" id="activeColorMessage">Active color: none</div>
-		
-		<div style="padding-bottom:5px;float:left;width:30%;" id="activeColorRGBCodeMessage">&nbsp;</div>
-		
-		<div style="font-size:10px;float:left;" id="colorLossMessage">&nbsp;</div>
-		
-		<div style="font-size:10px;float:left;" id="characterPreviewFeatureSupportMessage">Body Morphs support: N/A<br>Color customization support: Main, Secondary, Markings, Left Eye, Right Eye, Pawpads</div>
-		
-		<div style="margin-top:5px;float:left;width:100%"></div>		
-		
-		<div class="mediumButton" onClick="resetCharacterColors()">Reset</div>
-		
-		<div class="mediumButton" onClick="rerunLastColor()">Rerun</div>
-		
 	</div>
 	
-	<div class="characterPreviewDisplayContainer" id="characterPreviewUnavalailableDisplayContainer">
-		
-		<div class="characterPreviewDisplay" id="displayPreviewUnavailable"></div>	
-		
+	<div style="height: 50px; margin-left:10px;">
+		<label class="container">Blush
+			<input type="checkbox" id="charVizBlushCheckbox" onclick="charVizToggleBlush()">
+			<span class="checkbox"></span>  
+		</label>
+	</div>
+ 
+	<div class="bigButtonAdminMode" onClick="charVizResetCharacterColors()">Reset Char Colors</div>
+
+</div>
+
+<div class="menuAS" id="charVizCreditsToggler" onclick="toggleCharVizMenus(4)">
+	<div class="linesAS">
+			<img src="images/lines.png" height="17" width="23"> 
+			&nbsp;
+			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
 	</div>
 	
-	<div style="padding-bottom:5px;padding-top:5px;">Note: This function is in prototype / proof of concept state. If you're an artist and want to help develop this feature please follow this link:
-	<a href="https://drive.google.com/drive/folders/15SH4fvY7Uqn1_QNuk0Md7Yib9OOZutju?usp=sharing">https://drive.google.com/drive/...</a></div>
-	
+	&nbsp;&nbsp;CharViz Credits
+</div>
+
+<div id="charVizCreditsContainer">
+<div class = "charVizCreditsEntry" style="text-align: center; background-color: #b30003;margin-top:0">
+Listed alphabetically:
+</div>
+
+<a href="https://artbreeder.com">
+<div class = "charVizCreditsEntryContainer">
+	<div class = "charVizCreditsAuthor">Artbreeder.com</div>
+	<div class = "charVizCreditsAvatar"><img src="images/avatar_terminator.jpg" width="40" height="40" class="charVizAvatar"></div>
+	<div class = "charVizCreditsContributions">Heads - Canine</div>
+</div>
+</a>
+
+<a href="https://twitter.com/qtderg">
+<div class = "charVizCreditsEntryContainer">
+	<div class = "charVizCreditsAuthor">qtderg</div>
+	<div class = "charVizCreditsAvatar"><img src="images/avatar_qtderg.png" width="40" height="40" class="charVizAvatar"></div>
+	<div class = "charVizCreditsContributions">Bases - Fluffy feminine with Hips Size and Breast Size body morphs (5 keyframes) <br> Tails - Fluffy 01 <br> Clothes - Arm Warmers, Thigh Highs, Panties, Pantyhose, Pencil Skirt, Crop Top, Leggings, T-Shirt, Shorts, Glasses</div>
+</div>
+</a>
+
 </div>
   
 <div class="menuAS" id="advancedSettings" onclick="toggleAdvancedSettingsMenu()">
@@ -2072,31 +2685,6 @@ We hope you'll be back soon!
 			
 	</div>
 	
-	<div class="menuSlider" id="sexualitySlider">
-		<div class="linesMenuSlider">
-			<img src="images/lines.png" height="17" width="23"> 
-		</div>
-		
-		<div class="textinmenuLeft">
-		Straight
-		</div>
-	
-		<div class="textinmenuCenter">
-		Sexuality
-		</div>
-	
-		<div class="textinmenuRight">
-		Gay
-		</div>
-				
-		<div id="sliderSexuality" class="slider">			
-			 <script>
-				var mySlider21 = new dhtmlXSlider(sliderSexuality, 315, null, false, 0, 100, 50, 1);							
-			</script>
-		</div>
-			
-	</div>
-	
 	<div class="menuSliderFertility" id="fertilitySlider">
 		<div class="linesMenuSlider">
 			<img src="images/lines.png" height="17" width="23"> 
@@ -2390,16 +2978,7 @@ We hope you'll be back soon!
 		</label>
 		
 	</div>
-	
-	<div class="option">
-
-		<label class="container">Sexuality
-			<input type="checkbox" id="sexualitySliderCheckbox" onClick="toggleSexualitySlider()">
-			<span class="checkbox"></span>  
-		</label>
 		
-	</div>
-	
 	<div class="option">
 
 		<label class="container">Fertility
@@ -2514,8 +3093,147 @@ We hope you'll be back soon!
 		
 		</div>
 		
+		<div class="menu">
+
+			<div class="speciesText">
+			Slider 4
+			</div>
+	
+			<div class="selectMenuContainer2">
+				<div class="checkboxCustomSliders">
+					<label class="container">
+						<input type="checkbox" id="customSlider4Checkbox" onClick="toggleCustomSlider4()">
+						<span class="checkbox"></span>  
+					</label>
+				</div>
+							
+				<input id="slider4LeftText" class="customSliderTextField">
+				<input id="slider4CenterText" class="customSliderTextField">
+				<input id="slider4RightText" class="customSliderTextField">
+				
+				<div class="smallButton" onClick="makeCustomSlider4()">Set</div>
+					
+			</div>
+		
+		</div>
+		
+		<div class="menu">
+
+			<div class="speciesText">
+			Slider 5
+			</div>
+	
+			<div class="selectMenuContainer2">
+				<div class="checkboxCustomSliders">
+					<label class="container">
+						<input type="checkbox" id="customSlider5Checkbox" onClick="toggleCustomSlider5()">
+						<span class="checkbox"></span>  
+					</label>
+				</div>
+							
+				<input id="slider5LeftText" class="customSliderTextField">
+				<input id="slider5CenterText" class="customSliderTextField">
+				<input id="slider5RightText" class="customSliderTextField">
+				
+				<div class="smallButton" onClick="makeCustomSlider5()">Set</div>
+					
+			</div>
+		
+		</div>
+		
 		<div id="customSliderTutorial">
 			Input text in text fields then click "Set" button to make a custom slider. Checkbox on the left is for hiding/unhiding a slider.
+		</div>
+	
+</div>
+
+<div class="menuAS" id="advancedSettings3b" onclick="toggleCustomCheckboxesMenu()">
+	<div class="linesAS">
+			<img src="images/lines.png" height="17" width="23"> 
+			&nbsp;
+			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
+	</div>
+	
+	&nbsp;&nbsp;Create Custom Checkboxes
+</div>
+
+<div id="CustomCheckboxesContainer">
+			
+		<div class="menu">
+			
+			<div class="speciesText">
+			Checkbox 1
+			</div>
+	
+			<div class="selectMenuContainer2">
+				<div class="checkboxCustomSliders">
+					<label class="container">
+						<input type="checkbox" id="customCheckbox1Checkbox" onClick="toggleCustomCheckbox1()">
+						<span class="checkbox"></span>  
+					</label>
+				</div>
+					
+				<input id="customCheckbox1Label" class="customSliderTextField">
+				<input id="customCheckbox1Value1" class="customSliderTextField">
+				<input id="customCheckbox1Value2" class="customSliderTextField">
+				
+				
+				<div class="smallButton" onClick="makeCustomCheckbox1()">Set</div>
+					
+			</div>
+		
+		</div>
+
+		<div class="menu">
+
+			<div class="speciesText">
+			Checkbox 2
+			</div>
+	
+			<div class="selectMenuContainer2">
+				<div class="checkboxCustomSliders">
+					<label class="container">
+						<input type="checkbox" id="customCheckbox2Checkbox" onClick="toggleCustomCheckbox2()">
+						<span class="checkbox"></span>  
+					</label>
+				</div>
+				
+				<input id="customCheckbox2Label" class="customSliderTextField">
+				<input id="customCheckbox2Value1" class="customSliderTextField">
+				<input id="customCheckbox2Value2" class="customSliderTextField">
+				
+				<div class="smallButton" onClick="makeCustomCheckbox2()">Set</div>
+				
+			</div>
+		
+		</div>
+		
+		<div class="menu">
+
+			<div class="speciesText">
+			Checkbox 3
+			</div>
+	
+			<div class="selectMenuContainer2">
+				<div class="checkboxCustomSliders">
+					<label class="container">
+						<input type="checkbox" id="customCheckbox3Checkbox" onClick="toggleCustomCheckbox3()">
+						<span class="checkbox"></span>  
+					</label>
+				</div>
+							
+				<input id="customCheckbox3Label" class="customSliderTextField">
+				<input id="customCheckbox3Value1" class="customSliderTextField">
+				<input id="customCheckbox3Value2" class="customSliderTextField">
+				
+				<div class="smallButton" onClick="makeCustomCheckbox3()">Set</div>
+					
+			</div>
+		
+		</div>
+		
+		<div id="customSliderTutorial">
+			Left text field is for checkbox label. The other two are for checkboxes values. You can leave respective text field(s) blank if you don't want a label and/or only 1 checkbox in menu.
 		</div>
 	
 </div>
@@ -3141,13 +3859,230 @@ document.getElementById("CTContainerSlot102").style.display='none';
 	<div class="mediumButton" onClick="setThirdSex()">Set</div>
 
 </div>
+
+<div class="menuAS" id="advancedSettings9" onclick="toggleRenamePresetsMenu()">
+	<div class="linesAS">
+			<img src="images/lines.png" height="17" width="23"> 
+			&nbsp;
+			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
+	</div>
+	
+	&nbsp;&nbsp;Rename Presets
+</div>
+
+<div id="renamePresetsContainer">
+
+	<div class="renamePresetsContainer2">
+	<div id="renamePresetsSlot1Message" class="renamePresetsText">Slot 1 - Empty slot</div>
+	<div class="renamePresetsTickboxContainer">
+		<label class="container">Lock
+			<input type="checkbox" id="lockPresetName1Checkbox" onclick="lockPresetName1()">
+			<span class="checkbox"></span>  
+		</label>
+	</div>
+	<input id="presetName1TextField" class="mediumTextField" value="">
+	<div class="mediumButton" id="setPresetName1Button" onClick="setPresetName1()">Set</div>
+	</div>
+	
+	<div class="renamePresetsContainer2">
+	<div id="renamePresetsSlot2Message" class="renamePresetsText">Slot 2 - Empty slot</div>
+	<div class="renamePresetsTickboxContainer">
+		<label class="container">Lock
+			<input type="checkbox" id="lockPresetName2Checkbox" onclick="lockPresetName2()">
+			<span class="checkbox"></span>  
+		</label>
+	</div>
+	<input id="presetName2TextField" class="mediumTextField" value="">
+	<div class="mediumButton" id="setPresetName2Button" onClick="setPresetName2()">Set</div>
+	</div>
+	
+	<div class="renamePresetsContainer2">
+	<div id="renamePresetsSlot3Message" class="renamePresetsText">Slot 3 - Empty slot</div>
+	<div class="renamePresetsTickboxContainer">
+		<label class="container">Lock
+			<input type="checkbox" id="lockPresetName3Checkbox" onclick="lockPresetName3()">
+			<span class="checkbox"></span>  
+		</label>
+	</div>
+	<input id="presetName3TextField" class="mediumTextField" value="">
+	<div class="mediumButton" id="setPresetName3Button" onClick="setPresetName3()">Set</div>
+	</div>
+	
+	<div class="renamePresetsContainer2">
+	<div id="renamePresetsSlot4Message" class="renamePresetsText">Slot 4 - Empty slot</div>
+	<div class="renamePresetsTickboxContainer">
+		<label class="container">Lock
+			<input type="checkbox" id="lockPresetName4Checkbox" onclick="lockPresetName4()">
+			<span class="checkbox"></span>  
+		</label>
+	</div>
+	<input id="presetName4TextField" class="mediumTextField" value="">
+	<div class="mediumButton" id="setPresetName4Button" onClick="setPresetName4()">Set</div>
+	</div>
+	
+	<div class="renamePresetsContainer2">
+	<div id="renamePresetsSlot5Message" class="renamePresetsText">Slot 5 - Empty slot</div>
+	<div class="renamePresetsTickboxContainer">
+		<label class="container">Lock
+			<input type="checkbox" id="lockPresetName5Checkbox" onclick="lockPresetName5()">
+			<span class="checkbox"></span>  
+		</label>
+	</div>
+	<input id="presetName5TextField" class="mediumTextField" value="">
+	<div class="mediumButton" id="setPresetName5Button" onClick="setPresetName5()">Set</div>
+	</div>
+	
+	<div style="padding-left:18px;border-bottom: 3px solid #73728C;">Input preset name in the text field and click "Set" button. If you don't want preset name to be overwriten when saving a preset, tick a "Lock" checkbox.</div>
+	
+</div>
+
+<div class="menuAS" id="advancedSettings10" onclick="toggleBatteryDrainOptions()">
+	<div class="linesAS">
+			<img src="images/lines.png" height="17" width="23"> 
+			&nbsp;
+			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
+	</div>
+	
+	&nbsp;&nbsp;Battery Drain Options
+</div>
+
+	<div id="batteryDrainOptionsContainer">
+		<div style="margin-left: 20px; margin-top: 10px">
+			<label class="container">Disable battery draining
+				<input type="checkbox" id="disableBatteryCheckbox" onclick="disableBatteryFuntion()">
+				<span class="checkbox"></span>  
+			</label>
+		</div>
 		
+		<div style="margin-top:50px"></div>
+		<div id="batteryDrainMessage" style="padding-left:18px;margin-top:5px;">When battery is low there is 3 in 100 chance every 20 seconds that error will occur.</div>
+		
+		<div style="padding-left:18px;margin-top:5px;">Adjust chance (min 3):</div>
+		<input class="mediumTextField" id="batteryDrainAdjustErrorChanceTextField" value="">
+		<div class="mediumButton" onClick="batteryDrainAdjustErrorChance()">Set</div>
+		
+		<div style="padding-left:18px;margin-top:5px;">Adjust interval (in seconds):</div>
+		<input class="mediumTextField" id="batteryDrainAdjustErrorIntervalTextField" value="">
+		<div class="mediumButton" onClick="batteryDrainAdjustErrorInterval()">Set</div>
+		
+		<div style="margin-top:55px"></div>		
+		<div class="bigButton" onClick="batteryDrainReset()">Reset to defaults</div>
+			
+	</div>
+
+<div class="menuAS" id="advancedSettings11" onclick="toggleCreativeModeMenu()">
+	<div class="linesAS">
+			<img src="images/lines.png" height="17" width="23"> 
+			&nbsp;
+			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
+	</div>
+	
+	&nbsp;&nbsp;Creative Mode
+</div>
+
+<div class="menuAS" id="creativeModeStatusBarToggle" onclick="toggleCreativeModeStatusBarMenu()">
+	<div class="linesAS">
+			<img src="images/lines.png" height="17" width="23"> 
+			&nbsp;
+			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
+	</div>
+	
+	&nbsp;&nbsp;Status bar
+</div>
+	
+	<div id="creativeModeStatusBarContainer">
+		<div style="padding-left:18px;">Coverage</div>
+		<div class="mediumButton" onClick="creativeModeChangeCoverage(1)">1/4</div>
+		<div class="mediumButton" onClick="creativeModeChangeCoverage(2)">2/4</div>
+		<div class="mediumButton" onClick="creativeModeChangeCoverage(3)">3/4</div>
+		<div class="mediumButton" onClick="creativeModeChangeCoverage(4)">4/4</div>
+		
+		<div style="padding-left:18px;">Time (e.g. 6:21 PM)</div>
+		
+		<input class="mediumTextField" id="creativeModeChangeTimeTextField" value="">
+		<div class="mediumButton" onClick="creativeModeChangeTime()">Set</div>
+		
+		<div style="padding-left:18px;">Battery</div>
+		
+		<div class="mediumButton" onClick="creativeModeChangeBatteryStatus(1)">Full</div>
+		<div class="mediumButton" onClick="creativeModeChangeBatteryStatus(2)">3/4</div>
+		<div class="mediumButton" onClick="creativeModeChangeBatteryStatus(3)">Half</div>
+		<div class="mediumButton" onClick="creativeModeChangeBatteryStatus(4)">1/4</div>
+		<div class="mediumButton" onClick="creativeModeChangeBatteryStatus(5)">Low</div>
+		
+		<div style="margin-top:150px"></div>
+		<div style="padding-left:18px;">Battery charging</div>
+		
+		<div class="mediumButton" onClick="creativeModeChangeBatteryStatus(6)">3/4</div>
+		<div class="mediumButton" onClick="creativeModeChangeBatteryStatus(7)">Half</div>
+		<div class="mediumButton" onClick="creativeModeChangeBatteryStatus(8)">1/4</div>
+		<div class="mediumButton" onClick="creativeModeChangeBatteryStatus(9)">Low</div>
+		
+
+	</div>
+
+<div class="menuAS" id="creativeModeCustomErrorToggle" onclick="toggleCreativeModeCustomErrorMenu()">
+	<div class="linesAS">
+			<img src="images/lines.png" height="17" width="23"> 
+			&nbsp;
+			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
+	</div>
+	
+	&nbsp;&nbsp;Custom error msg/notification
+</div>
+	
+	<div id="creativeModeCustomErrorContainer">
+	Something will be there
+	</div>
+
+<div class="menuAS" id="creativeModeCustomDropdownToggle" onclick="toggleCreativeModeCustomDropdownMenu()">
+	<div class="linesAS">
+			<img src="images/lines.png" height="17" width="23"> 
+			&nbsp;
+			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
+	</div>
+	
+	&nbsp;&nbsp;Custom dropdown menu
+</div>
+	
+	<div id="creativeModeCustomDropdownContainer">
+	
+	<div style="height: 120px">
+	<div class="renamePresetsText">&nbsp;</div>
+	<div class="renamePresetsTickboxContainer">
+		<label class="container">Enable
+			<input type="checkbox" id="enableCustomDropdownMenuCheckbox" onclick="toggleCustomDropdownMenu()">
+			<span class="checkbox"></span>  
+		</label>
+	</div>
+	
+	<input id="customDropdownMenuLabelTextField" class="mediumTextField" value="">
+	<div class="mediumButton" onClick="setCustomDropdownMenuLabel()">Set label</div>
+	
+	<input id="customDropdownMenuValueTextField" class="mediumTextField" value="">
+	<div class="mediumButton" onClick="setCustomDropdownMenuValue()">Set value</div>
+	</div>
+	
+	<div style="padding-left:18px;margin-top:5px;">Note: changes made in Creative Mode (status bar, custom error/notification, custom dropdown) will not persist upon restarting the app.</div>
+	
+	</div>
+	
+	
+	
+<script>
+// Hide Creative Mode menus
+document.getElementById("creativeModeStatusBarToggle").style.display='none';
+document.getElementById("creativeModeCustomErrorToggle").style.display='none';
+document.getElementById("creativeModeCustomDropdownToggle").style.display='none';
+</script>
+		
+<div style="height:10px"></div>
 
 <div id="ButtonsContainer">
 
 <div class="bigButton" id="applySettingsButton" onClick="showProcessingAnimation()">Apply settings</div>
 
-<div class="bigButton" id="appStatusButton" onClick="showAppStatusOptions()">Import/export settings</div>
+<div class="bigButton" id="appStatusButton" onClick="showAppStatusOptions()">Import/Export Preset</div>
 
 	<div id="appStatusChoiceContainer" style="overflow:hidden;transition-duration:0.75s">
 	
@@ -3161,7 +4096,7 @@ document.getElementById("CTContainerSlot102").style.display='none';
 	
 	<div id="appStatusImportOptionsContainer" style="overflow:hidden;transition-duration:0.75s">
 	
-		<div id="appStatusImportMessage" style="padding-left:18px;margin-top:5px;">Insert app settings and click Import</div>
+		<div id="appStatusImportMessage" style="padding-left:18px;margin-top:5px;">Insert App Preset and click Import</div>
 		<input id="importAppStatusTextField" class="bigTextField" value="">
 		<div style="margin-top:5px"></div>
 		<div class="mediumButton" onClick="appStatusGoBackFromImportOptions()">Go back</div>
@@ -3172,14 +4107,14 @@ document.getElementById("CTContainerSlot102").style.display='none';
 	
 	<div id="appStatusExportOptionsContainer" style="overflow:hidden;transition-duration:0.75s">
 	
-		<div id="appStatusCopyMessage" style="padding-left:18px;margin-top:5px;">App settings: (click to copy)</div>
+		<div id="appStatusCopyMessage" style="padding-left:18px;margin-top:5px;">App Preset: (click to copy)</div>
 		<div id="appStatus" onClick="appStatusCopy('appStatus')">&nbsp;</div>
 		<div class="mediumButton" onClick="appStatusGoBackFromExportOptions()">Go back</div>
 		<div class="mediumButton" onClick="exportAppStatus()">Export</div>
 				
 	</div>
 	<script>document.getElementById("appStatusExportOptionsContainer").style.maxHeight='0px';</script>
-
+	
 <div class="bigButton" id="CONTROLButton" onClick="CONTROLshowConnectToServer()">CONTROL</div>
 
 	<div id="CONTROLconnectToServerContainer" style="overflow:hidden;transition-duration:0.75s">
@@ -3190,7 +4125,7 @@ document.getElementById("CTContainerSlot102").style.display='none';
 		<div style="margin-top:5px"></div>
 		<div class="mediumButton" onClick="CONTROLgoBack()">Go back</div>
 		<div class="mediumButton" onClick="CONTROLshowChoice()">Proceed</div>
-		<div style="padding-left:18px;margin-top:5px;">Click "Connect to server" button. Once you're connected you may proceed.</div>
+		<div style="padding-left:18px;margin-top:5px;">Click "Connect to server" button. Once you're connected you may proceed. <br> It is recommended that you set an username first.</div>
 				
 	</div>
 	<script>document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='0px';</script>
@@ -3242,7 +4177,6 @@ document.getElementById("CTContainerSlot102").style.display='none';
 		<div class="mediumButton" onClick="CONTROLunlockSubsSettings()">Unlock</div>
 		<div class="mediumButton" onClick="CONTROLlockSubsSettings()">Lock</div>
 		</div>
-		<div class="bigButtonAdminMode" onClick="CONTROLturnAdminMode()">Toggle Admin Mode</div>
 		
 		<div style="margin-top:5px"></div>
 		
@@ -3290,7 +4224,7 @@ document.getElementById("CTContainerSlot102").style.display='none';
 <div class="processingPasswordDisplay" id="processingPasswordDisplay">>Processing</div>
 <script>document.getElementById("processingPasswordDisplay").style.display='none';</script>
 
-<div class="bigButton" id="saveSettingsButton" onClick="showSaveSlotButtons()">Save settings</div>
+<div class="bigButton" id="saveSettingsButton" onClick="showSaveSlotButtons()">Save presets</div>
 
 	<div class="saveSlotButtonsContainer" id="saveSlotButtons">
 		Save<br>
@@ -3307,7 +4241,7 @@ document.getElementById("CTContainerSlot102").style.display='none';
 		</script>
 	</div>
 
-<div class="bigButton" id="loadSettingsButton" onClick="showLoadSlotButtons()">Load settings</div>
+<div class="bigButton" id="loadSettingsButton" onClick="showLoadSlotButtons()">Load presets</div>
 
 	<div class="loadSlotButtonsContainer" id="loadSlotButtons">
 		Load<br>
@@ -3323,6 +4257,81 @@ document.getElementById("CTContainerSlot102").style.display='none';
 			document.getElementById("loadSlotButtons").style.maxHeight='0';  
 		</script>
 	</div>
+	
+<div class="bigButton" id="hideMenusButton" onClick="showHideMenus()">Hide Menus</div>
+
+<div class="bigButton" id="goBackHideMenusButton" onClick="goBackFromHideMenus()">Go back</div>
+<script>
+document.getElementById("goBackHideMenusButton").style.padding='0px';
+document.getElementById("goBackHideMenusButton").style.border='0';
+document.getElementById("goBackHideMenusButton").style.fontSize='0px';
+document.getElementById("goBackHideMenusButton").style.marginTop='0px';
+</script>
+
+<div class="optionsCheckboxes" id="hideMenusCheckboxesContainer">
+		
+	<div>
+		<label class="container">Hide "Advanced Settings"
+			<input type="checkbox" id="hideAdvancedSettingsCheckbox" onclick="hideAdvancedSettings()">
+			<span class="checkbox"></span>  
+		</label>
+	</div>
+	<br>
+	
+	<div>
+		<label class="container">Hide "Configure Options and Sliders"
+			<input type="checkbox" id="hideConfigureOptionsAndSlidersCheckbox" onclick="hideConfigureOptionsAndSliders()">
+			<span class="checkbox"></span>  
+		</label>
+	</div>
+	<br>
+	
+	<div>
+		<label class="container">Hide "Create Custom Sliders"
+			<input type="checkbox" id="hideCreateCustomSlidersCheckbox" onclick="hideCreateCustomSliders()">
+			<span class="checkbox"></span>  
+		</label>
+	</div>
+	<br>
+	
+	<div>
+		<label class="container">Hide "Create Custom Checkboxes"
+			<input type="checkbox" id="hideCreateCustomCheckboxesCheckbox" onclick="hideCreateCustomCheckboxes()">
+			<span class="checkbox"></span>  
+		</label>
+	</div>
+	<br>
+	
+	<div>
+		<label class="container">Hide "Create Custom Species"
+			<input type="checkbox" id="hideCreateCustomSpeciesCheckbox" onclick="hideCreateCustomSpecies()">
+			<span class="checkbox"></span>  
+		</label>
+	</div>
+	<br>
+	
+	<div>
+		<label class="container">Hide "Rename Presets"
+			<input type="checkbox" id="hideRenamePresetsCheckbox" onclick="hideRenamePresets()">
+			<span class="checkbox"></span>  
+		</label>
+	</div>
+	<br>
+	
+	<div>
+		<label class="container">Hide every menu
+			<input type="checkbox" id="hideEveryMenuCheckbox" onclick="hideEveryMenu()">
+			<span class="checkbox"></span>  
+		</label>
+	</div>
+	<br>
+	
+</div>
+	
+<script>
+	document.getElementById("hideMenusCheckboxesContainer").style.maxHeight='0';
+	document.getElementById("hideMenusCheckboxesContainer").style.marginTop='0';
+</script>
 
 <div class="bigButton" id="preferences" onClick="showOptions()">Options</div>
 
@@ -3343,6 +4352,14 @@ document.getElementById("goBack").style.marginTop='0px';
 			</label>
 			</div>
 			<br>
+			
+			<div>
+			<label class="container">Enable CharViz (Beta) &nbsp;&nbsp;&nbsp;
+				<input type="checkbox" id="charVizCheckbox" onclick="toggleCharViz()">
+				<span class="checkbox"></span>  
+			</label>
+			</div>
+			<br>
 		
 			<div>
 			<label class="container">Enable Randomizer
@@ -3353,16 +4370,16 @@ document.getElementById("goBack").style.marginTop='0px';
 			<br>
 			
 			<div>
-			<label class="container">Enable App Settings sharing
-				<input type="checkbox" id="appStatusCheckbox" onclick="toggleAppStatus()">
+			<label class="container">Change App Appearance when Settings are locked
+				<input type="checkbox" id="appAppearanceCheckbox" onclick="toggleAppAppearance()">
 				<span class="checkbox"></span>  
 			</label>
 			</div>
 			<br>
 			
 			<div>
-			<label class="container">(Experimental) Enable Character Preview
-				<input type="checkbox" id="characterPreviewCheckbox" onclick="toggleCharacterPreview()">
+			<label class="container">Enable App Presets sharing
+				<input type="checkbox" id="appStatusCheckbox" onclick="toggleAppStatus()">
 				<span class="checkbox"></span>  
 			</label>
 			</div>
@@ -3375,26 +4392,18 @@ document.getElementById("goBack").style.marginTop='0px';
 			</label>
 			</div>
 			<br>
-
+			
 			<div>
 			<label class="container">Show Breast Size slider when Male Sex is selected
 				<input type="checkbox" id="showBreastSizeMaleCheckbox" onclick="toggleBreastSizeMaleOption()">
 				<span class="checkbox"></span>  
 			</label>
 			</div>
-
-			<br>
-			<div>
-			<label class="container">Show Genital Size slider when Female Sex is selected
-				<input type="checkbox" id="showGenitalSizeFemaleCheckbox" onclick="toggleGenitalSizeFemaleOption()">
-				<span class="checkbox"></span>  
-			</label>
-			</div>
 			<br>
 			
 			<div>
-			<label class="container">Disable battery draining
-				<input type="checkbox" id="disableBatteryCheckbox" onclick="disableBatteryFuntion()">
+			<label class="container">Show Genital Size slider when Female Sex is selected
+				<input type="checkbox" id="showGenitalSizeFemaleCheckbox" onclick="toggleGenitalSizeFemaleOption()">
 				<span class="checkbox"></span>  
 			</label>
 			</div>
@@ -3409,12 +4418,19 @@ document.getElementById("goBack").style.marginTop='0px';
 			<br>
 			
 			<div>
-			<label class="container">Hide footer
-				<input type="checkbox" id="hideFooterCheckbox" onclick="hideFooter()">
+			<label class="container">Modern logo and "Processing" animation
+				<input type="checkbox" id="newStyleCheckbox" onclick="toggleNewStyle()">
 				<span class="checkbox"></span>  
 			</label>
 			</div>
+			<br>
 			
+			<div>
+			<label class="container">Show Battery Drain menu
+				<input type="checkbox" id="batteryDrainCheckbox" onclick="toggleBatteryDrainMenu()">
+				<span class="checkbox"></span>  
+			</label>
+			</div>
 			<br>
 			
 			<div>
@@ -3422,8 +4438,7 @@ document.getElementById("goBack").style.marginTop='0px';
 				<input type="checkbox" id="lockPasswordCheckbox" onclick="hideLockPasswordButton()">
 				<span class="checkbox"></span>  
 			</label>
-			</div>
-			
+			</div>			
 			<br>
 			
 			<div>
@@ -3431,8 +4446,7 @@ document.getElementById("goBack").style.marginTop='0px';
 				<input type="checkbox" id="hideUsernameCheckbox" onclick="hideUsernameFuntion()">
 				<span class="checkbox"></span>  
 			</label>
-			</div>
-			
+			</div>			
 			<br>
 			
 			<div>
@@ -3440,17 +4454,32 @@ document.getElementById("goBack").style.marginTop='0px';
 				<input type="checkbox" id="hideFeedbackCheckbox" onclick="hideFeedbackButton()">
 				<span class="checkbox"></span>  
 			</label>
-			</div>
-			
+			</div>			
 			<br>
 						
 			<div>
-			<label class="container">Turn off user greetings
+			<label class="container">Turn off User Greetings
 				<input type="checkbox" id="hideUGCheckbox" onclick="toggleUserGreetings()">
 				<span class="checkbox"></span>  
 			</label>
 			</div>
-			<br>			
+			<br>
+
+			<div>
+			<label class="container">Enable Creative Mode
+				<input type="checkbox" id="creativeModeCheckbox" onclick="toggleCreativeMode()">
+				<span class="checkbox"></span>  
+			</label>
+			</div>
+			<br>
+			
+			<div>
+			<label class="container">Show Hide Menus button
+				<input type="checkbox" id="hideMenusCheckbox" onclick="toggleHideMenusButton()">
+				<span class="checkbox"></span>  
+			</label>
+			</div>
+			<br>
 			
 			<div>
 			<label class="container">Show Developer Menu button
@@ -3469,7 +4498,15 @@ document.getElementById("goBack").style.marginTop='0px';
 			<br>
 			
 			<div>
-			<label class="container">(Experimental) Show Change App Background button
+			<label class="container">Hide Footer
+				<input type="checkbox" id="hideFooterCheckbox" onclick="hideFooter()">
+				<span class="checkbox"></span>  
+			</label>
+			</div>
+			<br>
+			
+			<div>
+			<label class="container">Enable changing App Background
 				<input type="checkbox" id="appBackgroundCheckbox" onclick="toggleAppBackgroundButton()">
 				<span class="checkbox"></span>  
 			</label>
@@ -3674,43 +4711,17 @@ Sliders .js script <br> DHTMLX
 
 <div class="feedback" id="feedback">
 
-<a href="https://github.com/QTDerg/switcher-roo/issues/1"> 
+<a href="https://curiouscat.me/qtderg"> 
 <div class="creditsEntry">
 
 <div class="creditsText">
-Feedback thread <br> on Github
+Leave your feedback <br> on Curious Cat
 </div>
 <div class="creditsAvatar">              
-<img src="images/githubLogo.png" width="70" height="70" class="avatar">
+<img src="images/curiouscat_logo.png" width="70" height="70" class="avatar">
 </div>
 </div>
 
-</a>
-
-<a href="https://twitter.com/qtderg">  
-<div class="creditsEntry">
-
-<div class="creditsText">
-DM me on <br> Twitter
-</div>
-<div class="creditsAvatar">            
-<img src="images/Twitter_Logo_WhiteOnBlue.png" width="70" height="70" class="avatar">
-</div>
-</div>
-
-</a>
-
-<a href="https://www.reddit.com/message/compose?to=qtderg&subject=Switcher-Roo Feedback"> 
-<div class="creditsEntry">
-
-<div class="creditsText">
-DM me on <br> Reddit
-</div>
-<div class="creditsAvatar">              
-<img src="images/Reddit_Mark_OnDark.png" width="70" height="70" class="avatar">
-</div>
-
-</div>
 </a>
 
 </div>
@@ -3748,7 +4759,7 @@ Add app <br> to your device
 <div class="creditsEntry">
 
 <div class="creditsText">
-Version 0.6.2.1n <br> Click to see changelog
+Version 0.6.2.1o <br> Click to see changelog
 </div>
 <div class="creditsAvatar">             
 <img src="images/favicon-upscaled-512.png" width="70" height="70" class="avatar">
@@ -3881,12 +4892,6 @@ mySlider20.attachEvent("onSlideEnd", function() {
 	showProcessingAnimation();
 });
 
-mySlider21.attachEvent("onSlideEnd", function() {
-   	var sexuality = mySlider21.getValue();
-	localStorage.setItem("Slot0_Sexuality", sexuality);
-	showProcessingAnimation();
-});
-
 mySlider22.attachEvent("onSlideEnd", function() {
    	var feralAnthro = mySlider22.getValue();
 	localStorage.setItem("Slot0_Feral_Anthro", feralAnthro);
@@ -3899,9 +4904,22 @@ mySlider23.attachEvent("onSlideEnd", function() {
 	showProcessingAnimation();
 });
 
+mySlider24.attachEvent("onSlideEnd", function() {
+   	var custom4 = mySlider24.getValue();
+	localStorage.setItem("Slot0_Custom_Slider4_Value", custom4);
+	showProcessingAnimation();
+});
+
+mySlider25.attachEvent("onSlideEnd", function() {
+   	var custom5 = mySlider25.getValue();
+	localStorage.setItem("Slot0_Custom_Slider5_Value", custom5);
+	showProcessingAnimation();
+});
+
 // Functions that need to execute on startup to bring app to state user left in in
 loadPreviousState();
 loadSliderSettings();
+checkAppAppearanceWhenLockedStatusOnStartup();
 visitCounter();
 visitAdmin();
 checkSlots();
@@ -3909,6 +4927,7 @@ welcomeUser();
 showOrHideBreastSizeMaleSlider();
 showOrHideGenitalSizeFemaleSlider();
 loadCustomSlidersOnStartup();
+loadCustomCheckboxesOnStartup();
 setContainersHeightToZero();
 lockSettingsOnStartup();
 loadCustomSpeciesOnStartup();
@@ -3925,16 +4944,22 @@ showOrHideApplySettingsButton();
 showOrHideFooter();
 showOrHideThirdSexMenu();
 showOrHideAppBackgroundButton();
-showOrHideCharacterPreviewMenu();
 showOrHideCONTROLButton();
 showOrHideAppStatusButton();
+showOrHideCreativeModeMenu();
+showOrHideBatteryDrainMenu();
+showOrHideHideMenusButton();
 setBGColorOnInit();
 setAppBGColorOnInit();
 checkThirdSexStatus();
 checkUsername();
 checkLockPasswordStatus();
-loadCharacterPreviewColorStatus();
-
+oldOrNewStyle();
+checkLockPresetNameStatus();
+displayBatteryDrainSettings();
+showOrHideMenus();
+currentTime();
+charVizStartup();
 </script>		
 
 </div>

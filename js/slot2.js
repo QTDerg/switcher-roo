@@ -63,7 +63,6 @@
 	var bellyShape = mySlider15.getValue();
 	var intelligence = mySlider16.getValue();
 	var hairLenght = mySlider20.getValue();
-	var sexuality = mySlider21.getValue();
 	var feralAnthro = mySlider22.getValue();
 	var fertility = mySlider23.getValue();
 	
@@ -74,10 +73,14 @@
 	var custom1 = mySlider17.getValue();
 	var custom2 = mySlider18.getValue();
 	var custom3 = mySlider19.getValue();
+	var custom4 = mySlider24.getValue();
+	var custom5 = mySlider25.getValue();
  
 	localStorage.setItem("Slot2_Custom_Slider1_Value", custom1);	
 	localStorage.setItem("Slot2_Custom_Slider2_Value", custom2);	
 	localStorage.setItem("Slot2_Custom_Slider3_Value", custom3);
+	localStorage.setItem("Slot2_Custom_Slider4_Value", custom4);
+	localStorage.setItem("Slot2_Custom_Slider5_Value", custom5);
 
 	var leftText = document.getElementById("textinmenuLeftCS1").innerText;
 	var centerText = document.getElementById("textinmenuCenterCS1").innerText;
@@ -101,15 +104,35 @@
 	
 	localStorage.setItem("Slot2_Custom_Slider3_LeftText", leftText);	
 	localStorage.setItem("Slot2_Custom_Slider3_CenterText", centerText);	
-	localStorage.setItem("Slot2_Custom_Slider3_RightText", rightText);	
+	localStorage.setItem("Slot2_Custom_Slider3_RightText", rightText);
+	
+	var leftText = document.getElementById("textinmenuLeftCS4").innerText;
+	var centerText = document.getElementById("textinmenuCenterCS4").innerText;
+	var rightText = document.getElementById("textinmenuRightCS4").innerText;
+	
+	localStorage.setItem("Slot2_Custom_Slider4_LeftText", leftText);	
+	localStorage.setItem("Slot2_Custom_Slider4_CenterText", centerText);	
+	localStorage.setItem("Slot2_Custom_Slider4_RightText", rightText);
+	
+	var leftText = document.getElementById("textinmenuLeftCS5").innerText;
+	var centerText = document.getElementById("textinmenuCenterCS5").innerText;
+	var rightText = document.getElementById("textinmenuRightCS5").innerText;
+	
+	localStorage.setItem("Slot2_Custom_Slider5_LeftText", leftText);	
+	localStorage.setItem("Slot2_Custom_Slider5_CenterText", centerText);	
+	localStorage.setItem("Slot2_Custom_Slider5_RightText", rightText);
 	
 	var isCS1Enabled = localStorage.getItem("Custom_Slider1_Enabled");
 	var isCS2Enabled = localStorage.getItem("Custom_Slider2_Enabled");
 	var isCS3Enabled = localStorage.getItem("Custom_Slider3_Enabled");
+	var isCS4Enabled = localStorage.getItem("Custom_Slider4_Enabled");
+	var isCS5Enabled = localStorage.getItem("Custom_Slider5_Enabled");
 
 	localStorage.setItem("Slot2_Custom_Slider1_Enabled", isCS1Enabled);	
 	localStorage.setItem("Slot2_Custom_Slider2_Enabled", isCS2Enabled);	
 	localStorage.setItem("Slot2_Custom_Slider3_Enabled", isCS3Enabled);	
+	localStorage.setItem("Slot2_Custom_Slider4_Enabled", isCS4Enabled);
+	localStorage.setItem("Slot2_Custom_Slider5_Enabled", isCS5Enabled);
 	
 	var hairColor = localStorage.getItem("Slot0_Hair_Color");
 	var swatchColor = localStorage.getItem("Slot0_Swatch_Color");
@@ -127,7 +150,6 @@
 	var intelligenceSliderEnabled = localStorage.getItem("Intelligence_Slider_Enabled");
 	var fluffinessSliderEnabled = localStorage.getItem("Fluffiness_Slider_Enabled");
 	var hairLenghtSliderEnabled = localStorage.getItem("Hair_Lenght_Slider_Enabled");
-	var sexualitySliderEnabled = localStorage.getItem("Sexuality_Slider_Enabled");
 	var feralAnthroSliderEnabled = localStorage.getItem("Feral_Anthro_Slider_Enabled");
 	var hairColorMenuEnabled = localStorage.getItem("Hair_Color_Menu_Enabled");
 	var fertilitySliderEnabled = localStorage.getItem("Fertility_Slider_Enabled");
@@ -139,6 +161,54 @@
 	var thinThiccSliderEnabled = localStorage.getItem("ThinThicc_Slider_Enabled");
 	var smolTallSliderEnabled = localStorage.getItem("SmolTall_Slider_Enabled");
 	var inanimateObjectsMenuEnabled = localStorage.getItem("Inanimate_Objects_Enabled");
+	
+	// Checkboxes
+	
+	var label = localStorage.getItem("Slot0_Custom_Checkbox1_Label");
+	var value1 = localStorage.getItem("Slot0_Custom_Checkbox1_Value1");
+	var value2 = localStorage.getItem("Slot0_Custom_Checkbox1_Value2");
+	var ticked1 = localStorage.getItem("Slot0_Custom_Checkbox1_Value1_Ticked");
+	var ticked2 = localStorage.getItem("Slot0_Custom_Checkbox1_Value2_Ticked");
+	
+	localStorage.setItem("Slot2_Custom_Checkbox1_Label", label);
+	localStorage.setItem("Slot2_Custom_Checkbox1_Value1", value1);
+	localStorage.setItem("Slot2_Custom_Checkbox1_Value2", value2);
+	localStorage.setItem("Slot2_Custom_Checkbox1_Value1_Ticked", ticked1);
+	localStorage.setItem("Slot2_Custom_Checkbox1_Value2_Ticked", ticked2);
+	
+	var label = localStorage.getItem("Slot0_Custom_Checkbox2_Label");
+	var value1 = localStorage.getItem("Slot0_Custom_Checkbox2_Value1");
+	var value2 = localStorage.getItem("Slot0_Custom_Checkbox2_Value2");
+	var ticked1 = localStorage.getItem("Slot0_Custom_Checkbox2_Value1_Ticked");
+	var ticked2 = localStorage.getItem("Slot0_Custom_Checkbox2_Value2_Ticked");
+	
+	localStorage.setItem("Slot2_Custom_Checkbox2_Label", label);
+	localStorage.setItem("Slot2_Custom_Checkbox2_Value1", value1);
+	localStorage.setItem("Slot2_Custom_Checkbox2_Value2", value2);
+	localStorage.setItem("Slot2_Custom_Checkbox2_Value1_Ticked", ticked1);
+	localStorage.setItem("Slot2_Custom_Checkbox2_Value2_Ticked", ticked2);	
+	
+	var label = localStorage.getItem("Slot0_Custom_Checkbox3_Label");
+	var value1 = localStorage.getItem("Slot0_Custom_Checkbox3_Value1");
+	var value2 = localStorage.getItem("Slot0_Custom_Checkbox3_Value2");
+	var ticked1 = localStorage.getItem("Slot0_Custom_Checkbox3_Value1_Ticked");
+	var ticked2 = localStorage.getItem("Slot0_Custom_Checkbox3_Value2_Ticked");
+	
+	localStorage.setItem("Slot2_Custom_Checkbox3_Label", label);
+	localStorage.setItem("Slot2_Custom_Checkbox3_Value1", value1);
+	localStorage.setItem("Slot2_Custom_Checkbox3_Value2", value2);
+	localStorage.setItem("Slot2_Custom_Checkbox3_Value1_Ticked", ticked1);
+	localStorage.setItem("Slot2_Custom_Checkbox3_Value2_Ticked", ticked2);
+	
+	var CC1Enabled = localStorage.getItem("Slot0_Custom_Checkbox1_Enabled");
+	var CC2Enabled = localStorage.getItem("Slot0_Custom_Checkbox2_Enabled");
+	var CC3Enabled = localStorage.getItem("Slot0_Custom_Checkbox3_Enabled");
+	
+	localStorage.setItem("Slot2_Custom_Checkbox1_Enabled", CC1Enabled);
+	localStorage.setItem("Slot2_Custom_Checkbox2_Enabled", CC2Enabled);
+	localStorage.setItem("Slot2_Custom_Checkbox3_Enabled", CC3Enabled);
+
+	// Checkboxes end
 	
 	localStorage.setItem("Slot2_Species", settingSpecies);	
 	localStorage.setItem("Slot2_Inanimate_Object", inanimateObject);
@@ -164,7 +234,6 @@
 	localStorage.setItem("Slot2_Hair_Color", hairColor);
 	localStorage.setItem("Slot2_Swatch_Color", swatchColor);
 	localStorage.setItem("Slot2_Hair_Lenght", hairLenght);
-	localStorage.setItem("Slot2_Sexuality", sexuality);
 	localStorage.setItem("Slot2_Feral_Anthro", feralAnthro);
 	localStorage.setItem("Slot2_Pregnancy_Lock_Box_Ticked", tickbox2);
 	localStorage.setItem("Slot2_Fertility", fertility);
@@ -183,8 +252,7 @@
 	localStorage.setItem("Slot2_Postion_Pref_Slider_Enabled", positionPrefSliderEnabled);	
 	localStorage.setItem("Slot2_Intelligence_Slider_Enabled", intelligenceSliderEnabled);	
 	localStorage.setItem("Slot2_Fluffiness_Slider_Enabled", fluffinessSliderEnabled);		
-	localStorage.setItem("Slot2_Hair_Lenght_Slider_Enabled", hairLenghtSliderEnabled);		
-	localStorage.setItem("Slot2_Sexuality_Slider_Enabled", sexualitySliderEnabled);		
+	localStorage.setItem("Slot2_Hair_Lenght_Slider_Enabled", hairLenghtSliderEnabled);			
 	localStorage.setItem("Slot2_Feral_Anthro_Slider_Enabled", feralAnthroSliderEnabled);	
 	localStorage.setItem("Slot2_Hair_Color_Menu_Enabled", hairColorMenuEnabled);		
 	localStorage.setItem("Slot2_Fertility_Slider_Enabled", fertilitySliderEnabled);		
@@ -197,8 +265,14 @@
 	localStorage.setItem("Slot2_SmolTall_Slider_Enabled", smolTallSliderEnabled);		
 	localStorage.setItem("Slot2_Inanimate_Objects_Enabled", inanimateObjectsMenuEnabled);
 	
+	var presetNameLocked = localStorage.getItem("Slot2_Preset_Name_Locked");	
+	if (presetNameLocked != "Yes") {
+		localStorage.setItem("Slot2_Preset_Name", settingSex + " " + settingSpecies);
+	}	
+	var presetName = localStorage.getItem("Slot2_Preset_Name");
+	
 	document.getElementById("settingsLoadedPopup").style.display = "block";	
-	document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Saved:" + " " + settingSex + " " + settingSpecies;
+	document.getElementById('settingsLoadedPopup').innerHTML = ">Preset Saved:" + " " + presetName;
 	checkSlots();	
 	setTimeout(hideLoadedPopup, 4000);
  }
@@ -331,9 +405,6 @@
 		var hairLenght = localStorage.getItem("Slot2_Hair_Lenght");
 		mySlider20.setValue(hairLenght);
 		
-		var sexuality = localStorage.getItem("Slot2_Sexuality");
-		mySlider21.setValue(sexuality);
-		
 		var feralAnthro = localStorage.getItem("Slot2_Feral_Anthro");
 		mySlider22.setValue(feralAnthro);
 		
@@ -385,24 +456,49 @@
 		document.getElementById('textinmenuCenterCS3').innerHTML = centerText;	
 		document.getElementById('textinmenuRightCS3').innerHTML = rightText;
 		
+		var leftText = localStorage.getItem("Slot2_Custom_Slider4_LeftText");
+		var centerText = localStorage.getItem("Slot2_Custom_Slider4_CenterText");
+		var rightText = localStorage.getItem("Slot2_Custom_Slider4_RightText");
+		document.getElementById('textinmenuLeftCS4').innerHTML = leftText;
+		document.getElementById('textinmenuCenterCS4').innerHTML = centerText;
+		document.getElementById('textinmenuRightCS4').innerHTML = rightText;
+		
+		var leftText = localStorage.getItem("Slot2_Custom_Slider5_LeftText");
+		var centerText = localStorage.getItem("Slot2_Custom_Slider5_CenterText");
+		var rightText = localStorage.getItem("Slot2_Custom_Slider5_RightText");
+		document.getElementById('textinmenuLeftCS5').innerHTML = leftText;
+		document.getElementById('textinmenuCenterCS5').innerHTML = centerText;
+		document.getElementById('textinmenuRightCS5').innerHTML = rightText;
+		
 		var isCS1Enabled = localStorage.getItem("Slot2_Custom_Slider1_Enabled");
 		var isCS2Enabled = localStorage.getItem("Slot2_Custom_Slider2_Enabled");
 		var isCS3Enabled = localStorage.getItem("Slot2_Custom_Slider3_Enabled");
+		var isCS4Enabled = localStorage.getItem("Slot2_Custom_Slider4_Enabled");
+		var isCS5Enabled = localStorage.getItem("Slot2_Custom_Slider5_Enabled");
 				
 		var CS1Value = localStorage.getItem("Slot2_Custom_Slider1_Value");
 		var CS2Value = localStorage.getItem("Slot2_Custom_Slider2_Value");
 		var CS3Value = localStorage.getItem("Slot2_Custom_Slider3_Value");
+		var CS4Value = localStorage.getItem("Slot2_Custom_Slider4_Value");
+		var CS5Value = localStorage.getItem("Slot2_Custom_Slider5_Value");
 		
 		mySlider17.setValue(CS1Value);
 		mySlider18.setValue(CS2Value);
 		mySlider19.setValue(CS3Value);
+		mySlider24.setValue(CS4Value);
+		mySlider25.setValue(CS5Value);
 		
 		localStorage.setItem("Custom_Slider1_Enabled", isCS1Enabled);
 		localStorage.setItem("Custom_Slider2_Enabled", isCS2Enabled);
 		localStorage.setItem("Custom_Slider3_Enabled", isCS3Enabled);
+		localStorage.setItem("Custom_Slider4_Enabled", isCS4Enabled);
+		localStorage.setItem("Custom_Slider5_Enabled", isCS5Enabled);
 		
 		var hairColor = localStorage.getItem("Slot2_Hair_Color");
 		var swatchColor = localStorage.getItem("Slot2_Swatch_Color");
+		
+		document.getElementById('hairColorCurrent').innerHTML = hairColor;
+		document.getElementById('hairColorSwatch').style.backgroundColor = swatchColor;
 		
 		var buttSizeSliderEnabled = localStorage.getItem("Slot2_Butt_Size_Slider_Enabled");
 		var bellySizeSliderEnabled = localStorage.getItem("Slot2_Belly_Size_Slider_Enabled");
@@ -417,7 +513,6 @@
 		var intelligenceSliderEnabled = localStorage.getItem("Slot2_Intelligence_Slider_Enabled");
 		var fluffinessSliderEnabled = localStorage.getItem("Slot2_Fluffiness_Slider_Enabled");
 		var hairLenghtSliderEnabled = localStorage.getItem("Slot2_Hair_Lenght_Slider_Enabled");
-		var sexualitySliderEnabled = localStorage.getItem("Slot2_Sexuality_Slider_Enabled");
 		var feralAnthroSliderEnabled = localStorage.getItem("Slot2_Feral_Anthro_Slider_Enabled");
 		var hairColorMenuEnabled = localStorage.getItem("Slot2_Hair_Color_Menu_Enabled");
 		var fertilitySliderEnabled = localStorage.getItem("Slot2_Fertility_Slider_Enabled");
@@ -442,8 +537,7 @@
 		localStorage.setItem("Postion_Pref_Slider_Enabled", positionPrefSliderEnabled);	
 		localStorage.setItem("Intelligence_Slider_Enabled", intelligenceSliderEnabled);	
 		localStorage.setItem("Fluffiness_Slider_Enabled", fluffinessSliderEnabled);		
-		localStorage.setItem("Hair_Lenght_Slider_Enabled", hairLenghtSliderEnabled);		
-		localStorage.setItem("Sexuality_Slider_Enabled", sexualitySliderEnabled);		
+		localStorage.setItem("Hair_Lenght_Slider_Enabled", hairLenghtSliderEnabled);			
 		localStorage.setItem("Feral_Anthro_Slider_Enabled", feralAnthroSliderEnabled);	
 		localStorage.setItem("Hair_Color_Menu_Enabled", hairColorMenuEnabled);		
 		localStorage.setItem("Fertility_Slider_Enabled", fertilitySliderEnabled);		
@@ -454,18 +548,67 @@
 		localStorage.setItem("MascFem_Slider_Enabled", mascFemSliderEnabled);			
 		localStorage.setItem("ThinThicc_Slider_Enabled", thinThiccSliderEnabled);		
 		localStorage.setItem("SmolTall_Slider_Enabled", smolTallSliderEnabled);		
-		localStorage.setItem("Inanimate_Objects_Enabled", inanimateObjectsMenuEnabled);		
+		localStorage.setItem("Inanimate_Objects_Enabled", inanimateObjectsMenuEnabled);
+		
+		// Checkboxes
+		
+		var label = localStorage.getItem("Slot2_Custom_Checkbox1_Label");
+		var value1 = localStorage.getItem("Slot2_Custom_Checkbox1_Value1");
+		var value2 = localStorage.getItem("Slot2_Custom_Checkbox1_Value2");
+		var ticked1 = localStorage.getItem("Slot2_Custom_Checkbox1_Value1_Ticked");
+		var ticked2 = localStorage.getItem("Slot2_Custom_Checkbox1_Value2_Ticked");
+		
+		localStorage.setItem("Slot0_Custom_Checkbox1_Label", label);
+		localStorage.setItem("Slot0_Custom_Checkbox1_Value1", value1);
+		localStorage.setItem("Slot0_Custom_Checkbox1_Value2", value2);
+		localStorage.setItem("Slot0_Custom_Checkbox1_Value1_Ticked", ticked1);
+		localStorage.setItem("Slot0_Custom_Checkbox1_Value2_Ticked", ticked2);
+		
+		var label = localStorage.getItem("Slot2_Custom_Checkbox2_Label");
+		var value1 = localStorage.getItem("Slot2_Custom_Checkbox2_Value1");
+		var value2 = localStorage.getItem("Slot2_Custom_Checkbox2_Value2");
+		var ticked1 = localStorage.getItem("Slot2_Custom_Checkbox2_Value1_Ticked");
+		var ticked2 = localStorage.getItem("Slot2_Custom_Checkbox2_Value2_Ticked");
+		
+		localStorage.setItem("Slot0_Custom_Checkbox2_Label", label);
+		localStorage.setItem("Slot0_Custom_Checkbox2_Value1", value1);
+		localStorage.setItem("Slot0_Custom_Checkbox2_Value2", value2);
+		localStorage.setItem("Slot0_Custom_Checkbox2_Value1_Ticked", ticked1);
+		localStorage.setItem("Slot0_Custom_Checkbox2_Value2_Ticked", ticked2);
+		
+		var label = localStorage.getItem("Slot2_Custom_Checkbox3_Label");
+		var value1 = localStorage.getItem("Slot2_Custom_Checkbox3_Value1");
+		var value2 = localStorage.getItem("Slot2_Custom_Checkbox3_Value2");
+		var ticked1 = localStorage.getItem("Slot2_Custom_Checkbox3_Value1_Ticked");
+		var ticked2 = localStorage.getItem("Slot2_Custom_Checkbox3_Value2_Ticked");
+		
+		localStorage.setItem("Slot0_Custom_Checkbox3_Label", label);
+		localStorage.setItem("Slot0_Custom_Checkbox3_Value1", value1);
+		localStorage.setItem("Slot0_Custom_Checkbox3_Value2", value2);
+		localStorage.setItem("Slot0_Custom_Checkbox3_Value1_Ticked", ticked1);
+		localStorage.setItem("Slot0_Custom_Checkbox3_Value2_Ticked", ticked2);
+		
+		var CC1Enabled = localStorage.getItem("Slot2_Custom_Checkbox1_Enabled");
+		var CC2Enabled = localStorage.getItem("Slot2_Custom_Checkbox2_Enabled");
+		var CC3Enabled = localStorage.getItem("Slot2_Custom_Checkbox3_Enabled");
+	
+		localStorage.setItem("Slot0_Custom_Checkbox1_Enabled", CC1Enabled);
+		localStorage.setItem("Slot0_Custom_Checkbox2_Enabled", CC2Enabled);
+		localStorage.setItem("Slot0_Custom_Checkbox3_Enabled", CC3Enabled);
+		
+		// Checkboxes end
 		
 		loadSliderSettings();
 		loadCustomSlidersValuesOnStartup1("Yes");
 		loadCustomSlidersValuesOnStartup2("Yes");
 		loadCustomSlidersValuesOnStartup3("Yes");
+		loadCustomSlidersValuesOnStartup4("Yes");
+		loadCustomSlidersValuesOnStartup5("Yes");
+		loadCustomCheckboxesOnStartup();
 		
-		document.getElementById('hairColorCurrent').innerHTML = hairColor;
-		document.getElementById('hairColorSwatch').style.backgroundColor = swatchColor;
-		
+		var presetName = localStorage.getItem("Slot2_Preset_Name");
 		document.getElementById("settingsLoadedPopup").style.display = "block";	
-		document.getElementById('settingsLoadedPopup').innerHTML = ">Settings Loaded:" + " " + Sex + " " + Species;
+		document.getElementById('settingsLoadedPopup').innerHTML = ">Preset Loaded:" + " " + presetName;
 		saveSettingsSlot0();
 		setTimeout(hideLoadedPopup, 4000);	
 		}

@@ -10,7 +10,7 @@ function connectToServer() {
 		var chosenPeerJSServer = 2;
 		// 0 = PeerJS server hosted on localhost.
 		// 1 = Official PeerJS server. Very unstable, often giving "Server has reached its concurrent user limit" error.
-		// 2 = PeerJS server hosted by Heroku. https://www.heroku.com/
+		// 2 = PeerJS server hosted on Heroku. https://www.heroku.com/
 		
 		// Command to launch PeerJS server // peerjs --port 9000 --key peerjs --path /myapp
 		
@@ -135,7 +135,7 @@ function synchronizationSleep() { // Execute it 1s after connection has been ach
 }
 
 function synchronization() {
-
+	
 		// Slider values	
 		var bodyType1 = mySlider6.getValue();
 		var bodyType2 = mySlider5.getValue();
@@ -154,7 +154,6 @@ function synchronization() {
 		var bellyShape = mySlider15.getValue();
 		var intelligence = mySlider16.getValue();
 		var hairLenght = mySlider20.getValue();
-		var sexuality = mySlider21.getValue();
 		var feralAnthro = mySlider22.getValue();
 		var fertility = mySlider23.getValue();
 		
@@ -180,7 +179,6 @@ function synchronization() {
 		conn.send({firstParam: "manipulateSlider", secondParam: "bellyShape", thirdParam: bellyShape});
 		conn.send({firstParam: "manipulateSlider", secondParam: "intelligence", thirdParam: intelligence});
 		conn.send({firstParam: "manipulateSlider", secondParam: "hairLenght", thirdParam: hairLenght});
-		conn.send({firstParam: "manipulateSlider", secondParam: "sexuality", thirdParam: sexuality});
 		conn.send({firstParam: "manipulateSlider", secondParam: "feralAnthro", thirdParam: feralAnthro});
 		conn.send({firstParam: "manipulateSlider", secondParam: "fertility", thirdParam: fertility});
 		conn.send({firstParam: "manipulateSlider", secondParam: "custom1", thirdParam: custom1});
@@ -224,6 +222,73 @@ function synchronization() {
 		else 				{	var tickbox = "No"	}
 		conn.send({firstParam: "manipulateTickbox", secondParam: "Pregnancy_Lock", thirdParam: tickbox});
 		
+		// Custom checkboxes state (ticked/not ticked)		
+		var tickbox = document.getElementById("CC1value1Checkbox");
+		if (tickbox.checked){	var tickbox = "Yes"	}
+		else 				{	var tickbox = "No"	}
+		conn.send({firstParam: "manipulateCustomTickbox", secondParam: "Custom_Checkbox1_Value1", thirdParam: tickbox});
+				
+		var tickbox = document.getElementById("CC1value2Checkbox");
+		if (tickbox.checked){	var tickbox = "Yes"	}
+		else 				{	var tickbox = "No"	}
+		conn.send({firstParam: "manipulateCustomTickbox", secondParam: "Custom_Checkbox1_Value2", thirdParam: tickbox});
+
+		var tickbox = document.getElementById("CC2value1Checkbox");
+		if (tickbox.checked){	var tickbox = "Yes"	}
+		else 				{	var tickbox = "No"	}
+		conn.send({firstParam: "manipulateCustomTickbox", secondParam: "Custom_Checkbox2_Value1", thirdParam: tickbox});
+
+		var tickbox = document.getElementById("CC2value2Checkbox");
+		if (tickbox.checked){	var tickbox = "Yes"	}
+		else 				{	var tickbox = "No"	}
+		conn.send({firstParam: "manipulateCustomTickbox", secondParam: "Custom_Checkbox2_Value2", thirdParam: tickbox});
+
+		var tickbox = document.getElementById("CC3value1Checkbox");
+		if (tickbox.checked){	var tickbox = "Yes"	}
+		else 				{	var tickbox = "No"	}
+		conn.send({firstParam: "manipulateCustomTickbox", secondParam: "Custom_Checkbox3_Value1", thirdParam: tickbox});
+
+		var tickbox = document.getElementById("CC3value2Checkbox");
+		if (tickbox.checked){	var tickbox = "Yes"	}
+		else 				{	var tickbox = "No"	}
+		conn.send({firstParam: "manipulateCustomTickbox", secondParam: "Custom_Checkbox3_Value2", thirdParam: tickbox});
+		
+		// Custom checkboxes visibility
+		
+		var isCC1Enabled = localStorage.getItem("Slot0_Custom_Checkbox1_Enabled");
+		var isCC2Enabled = localStorage.getItem("Slot0_Custom_Checkbox2_Enabled");
+		var isCC3Enabled = localStorage.getItem("Slot0_Custom_Checkbox3_Enabled");
+		
+		conn.send({firstParam: "customCheckboxEnabled", secondParam: "custom1", thirdParam: isCC1Enabled});
+		conn.send({firstParam: "customCheckboxEnabled", secondParam: "custom2", thirdParam: isCC2Enabled});
+		conn.send({firstParam: "customCheckboxEnabled", secondParam: "custom3", thirdParam: isCC3Enabled});
+		
+		// Custom checkboxes labels and value names
+		
+		var CC1label = localStorage.getItem("Slot0_Custom_Checkbox1_Label");
+		var CC1value1 = localStorage.getItem("Slot0_Custom_Checkbox1_Value1");
+		var CC1value2 = localStorage.getItem("Slot0_Custom_Checkbox1_Value2");
+		
+		var CC2label = localStorage.getItem("Slot0_Custom_Checkbox1_Label");
+		var CC2value1 = localStorage.getItem("Slot0_Custom_Checkbox2_Value1");
+		var CC2value2 = localStorage.getItem("Slot0_Custom_Checkbox2_Value2");
+		
+		var CC3label = localStorage.getItem("Slot0_Custom_Checkbox3_Label");
+		var CC3value1 = localStorage.getItem("Slot0_Custom_Checkbox3_Value1");
+		var CC3value2 = localStorage.getItem("Slot0_Custom_Checkbox3_Value2");
+		
+		conn.send({firstParam: "changeCustomCheckbox", secondParam: "Custom1Label", thirdParam: CC1label});
+		conn.send({firstParam: "changeCustomCheckbox", secondParam: "Custom1Value1", thirdParam: CC1value1});
+		conn.send({firstParam: "changeCustomCheckbox", secondParam: "Custom1Value2", thirdParam: CC1value2});
+		
+		conn.send({firstParam: "changeCustomCheckbox", secondParam: "Custom2Label", thirdParam: CC2label});
+		conn.send({firstParam: "changeCustomCheckbox", secondParam: "Custom2Value1", thirdParam: CC2value1});
+		conn.send({firstParam: "changeCustomCheckbox", secondParam: "Custom2Value2", thirdParam: CC2value2});
+		
+		conn.send({firstParam: "changeCustomCheckbox", secondParam: "Custom3Label", thirdParam: CC3label});
+		conn.send({firstParam: "changeCustomCheckbox", secondParam: "Custom3Value1", thirdParam: CC3value1});
+		conn.send({firstParam: "changeCustomCheckbox", secondParam: "Custom3Value2", thirdParam: CC3value2});
+
 		// Custom sliders names
 		var leftTextCustom1 = document.getElementById("textinmenuLeftCS1").innerText;
 		var centerTextCustom1 = document.getElementById("textinmenuCenterCS1").innerText;
@@ -237,6 +302,14 @@ function synchronization() {
 		var centerTextCustom3 = document.getElementById("textinmenuCenterCS3").innerText;
 		var rightTextCustom3 = document.getElementById("textinmenuRightCS3").innerText;
 		
+		var leftTextCustom4 = document.getElementById("textinmenuLeftCS4").innerText;
+		var centerTextCustom4 = document.getElementById("textinmenuCenterCS4").innerText;
+		var rightTextCustom4 = document.getElementById("textinmenuRightCS4").innerText;
+		
+		var leftTextCustom5 = document.getElementById("textinmenuLeftCS5").innerText;
+		var centerTextCustom5 = document.getElementById("textinmenuCenterCS5").innerText;
+		var rightTextCustom5 = document.getElementById("textinmenuRightCS5").innerText;
+		
 		conn.send({firstParam: "changeSliderName", secondParam: "Custom1Left", thirdParam: leftTextCustom1});
 		conn.send({firstParam: "changeSliderName", secondParam: "Custom1Middle", thirdParam: centerTextCustom1});
 		conn.send({firstParam: "changeSliderName", secondParam: "Custom1Right", thirdParam: rightTextCustom1});
@@ -248,6 +321,14 @@ function synchronization() {
 		conn.send({firstParam: "changeSliderName", secondParam: "Custom3Left", thirdParam: leftTextCustom3});
 		conn.send({firstParam: "changeSliderName", secondParam: "Custom3Middle", thirdParam: centerTextCustom3});
 		conn.send({firstParam: "changeSliderName", secondParam: "Custom3Right", thirdParam: rightTextCustom3});
+		
+		conn.send({firstParam: "changeSliderName", secondParam: "Custom4Left", thirdParam: leftTextCustom4});
+		conn.send({firstParam: "changeSliderName", secondParam: "Custom4Middle", thirdParam: centerTextCustom4});
+		conn.send({firstParam: "changeSliderName", secondParam: "Custom4Right", thirdParam: rightTextCustom4});
+		
+		conn.send({firstParam: "changeSliderName", secondParam: "Custom5Left", thirdParam: leftTextCustom5});
+		conn.send({firstParam: "changeSliderName", secondParam: "Custom5Middle", thirdParam: centerTextCustom5});
+		conn.send({firstParam: "changeSliderName", secondParam: "Custom5Right", thirdParam: rightTextCustom5});
 		
 		// Options/sliders visibility
 
@@ -279,6 +360,8 @@ function synchronization() {
 		var isCS1Enabled = localStorage.getItem("Custom_Slider1_Enabled");
 		var isCS2Enabled = localStorage.getItem("Custom_Slider2_Enabled");
 		var isCS3Enabled = localStorage.getItem("Custom_Slider3_Enabled");
+		var isCS4Enabled = localStorage.getItem("Custom_Slider4_Enabled");
+		var isCS5Enabled = localStorage.getItem("Custom_Slider5_Enabled");
 		
 		conn.send({firstParam: "optionEnabled", secondParam: "buttSize", thirdParam: buttSizeSliderEnabled});
 		conn.send({firstParam: "optionEnabled", secondParam: "bellySize", thirdParam: bellySizeSliderEnabled});
@@ -308,8 +391,79 @@ function synchronization() {
 		conn.send({firstParam: "optionEnabled", secondParam: "custom1", thirdParam: isCS1Enabled});
 		conn.send({firstParam: "optionEnabled", secondParam: "custom2", thirdParam: isCS2Enabled});
 		conn.send({firstParam: "optionEnabled", secondParam: "custom3", thirdParam: isCS3Enabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "custom4", thirdParam: isCS4Enabled});
+		conn.send({firstParam: "optionEnabled", secondParam: "custom5", thirdParam: isCS5Enabled});
 		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
-
+		
+		conn.send({firstParam: "customCheckboxEnabled", secondParam: "fireLoadCustomCheckboxesOnStartupFunction"});
+		
+		// Admin mode status sync
+		
+		var isAdminModeOn = localStorage.getItem("Admin_mode_on");
+		conn.send({firstParam: "Admin_Mode_Status", secondParam: isAdminModeOn});
+		
+		// CharViz sync
+		
+		var charVizEnabled = localStorage.getItem("CharViz_Enabled");
+		if (charVizEnabled === "Yes") {
+			
+			conn.send({firstParam: "initializeCharviz"});
+			// Clothing
+		
+			var topwear = localStorage.getItem("Slot0_CharViz_Topwear");
+			var bottomwear = localStorage.getItem("Slot0_CharViz_Bottomwear");
+			var armwear = localStorage.getItem("Slot0_CharViz_Armwear");
+			var legwear = localStorage.getItem("Slot0_CharViz_Legwear");	
+			var underwear = localStorage.getItem("Slot0_CharViz_Underwear");
+			var accessories = localStorage.getItem("Slot0_CharViz_Accessories");
+			
+			if (topwear == null) 		{	topwear = "None"; 		}
+			if (bottomwear == null) 	{	bottomwear = "None"; 	}
+			if (armwear == null) 		{	armwear = "None"; 		}
+			if (legwear == null) 		{	legwear = "None"; 		}
+			if (underwear == null) 		{	underwear = "None"; 	}
+			if (accessories == null) 	{	accessories = "None"; 	}
+			
+			conn.send({firstParam: "putClothingOn", secondParam: "Topwear", thirdParam: topwear});
+			conn.send({firstParam: "putClothingOn", secondParam: "Bottomwear", thirdParam: bottomwear});
+			conn.send({firstParam: "putClothingOn", secondParam: "Armwear", thirdParam: armwear});
+			conn.send({firstParam: "putClothingOn", secondParam: "Legwear", thirdParam: legwear});
+			conn.send({firstParam: "putClothingOn", secondParam: "Underwear", thirdParam: underwear});
+			conn.send({firstParam: "putClothingOn", secondParam: "Accessories", thirdParam: accessories});
+			
+			// Character colors
+			
+			var primaryCharColor = document.getElementById("charVizDisplayBasePrimary").style.backgroundColor;
+			var secondaryCharColor = document.getElementById("charVizDisplayBaseSecondary").style.backgroundColor;
+			var tertiaryCharColor = document.getElementById("charVizDisplayTailTertiary").style.backgroundColor;
+			var markingsCharColor = document.getElementById("charVizDisplayBaseMarkings").style.backgroundColor;
+			var leftEyeCharColor = document.getElementById("charVizDisplayHeadIrisLeft").style.backgroundColor;
+			var rightEyeCharColor = document.getElementById("charVizDisplayHeadIrisRight").style.backgroundColor;
+			var hairCharColor = document.getElementById("charVizDisplayHeadHair").style.backgroundColor;
+			
+			conn.send({firstParam: "setCharacterColor", secondParam: "Primary", thirdParam: primaryCharColor});
+			conn.send({firstParam: "setCharacterColor", secondParam: "Secondary", thirdParam: secondaryCharColor});
+			conn.send({firstParam: "setCharacterColor", secondParam: "Tertiary", thirdParam: tertiaryCharColor});
+			conn.send({firstParam: "setCharacterColor", secondParam: "Markings", thirdParam: markingsCharColor});
+			conn.send({firstParam: "setCharacterColor", secondParam: "Left Eye", thirdParam: leftEyeCharColor});
+			conn.send({firstParam: "setCharacterColor", secondParam: "Right Eye", thirdParam: rightEyeCharColor});
+			conn.send({firstParam: "setCharacterColor", secondParam: "Hair", thirdParam: hairCharColor});
+			
+			// Blush
+			
+			var isBlushing = localStorage.getItem("CharViz_Character_Blushing");
+			conn.send({firstParam: "Character_Blushing", secondParam: isBlushing});
+			
+			// Breast Size body morph
+			
+			if (sex == "Male" || sex == "Femboy") {
+				conn.send({firstParam: "manipulateSlider", secondParam: "breastSizeMale", thirdParam: breastSizeMale});
+			}
+			else {
+				conn.send({firstParam: "manipulateSlider", secondParam: "breastSizeFemale", thirdParam: breastSizeFemale});
+			}
+		}
+		
 	}
 
 function receiveData() {	
@@ -318,15 +472,18 @@ function receiveData() {
 			if (data.secondParam === "mascFem") 				{	mySlider6.setValue(data.thirdParam);localStorage.setItem("Slot0_Body_Type1", data.thirdParam);				}
 			else if (data.secondParam === "thinThicc") 			{	mySlider5.setValue(data.thirdParam);localStorage.setItem("Slot0_Body_Type2", data.thirdParam);				}
 			else if (data.secondParam === "smolTall") 			{	mySlider4.setValue(data.thirdParam);localStorage.setItem("Slot0_Body_Type3", data.thirdParam);				}
-			else if (data.secondParam === "hips") 				{	mySlider3.setValue(data.thirdParam);localStorage.setItem("Slot0_Hips", data.thirdParam);					}	
+			else if (data.secondParam === "hips") 				{	mySlider3.setValue(data.thirdParam);localStorage.setItem("Slot0_Hips", data.thirdParam);					
+																	var x = localStorage.getItem("CharViz_Enabled");if (x === "Yes"){setHipsSizeBodyMorph(data.thirdParam);   }	}	
 			else if (data.secondParam === "genitalSize") 		{	mySlider2.setValue(data.thirdParam);localStorage.setItem("Slot0_Genital_Size", data.thirdParam);			}
 			else if (data.secondParam === "fluffiness")			{	mySlider.setValue(data.thirdParam);localStorage.setItem("Slot0_Fluffiness", data.thirdParam);				}
 			else if (data.secondParam === "libido") 			{	mySlider7.setValue(data.thirdParam);localStorage.setItem("Slot0_Libido", data.thirdParam);					}
 			else if (data.secondParam === "domsub") 			{	mySlider10.setValue(data.thirdParam);localStorage.setItem("Slot0_Position_Preference", data.thirdParam);	}
 			else if (data.secondParam === "sensitivity") 		{	mySlider11.setValue(data.thirdParam);localStorage.setItem("Slot0_Sensitivity", data.thirdParam);			}
 			else if (data.secondParam === "assertiveShy") 		{	mySlider12.setValue(data.thirdParam);localStorage.setItem("Slot0_Demeanor", data.thirdParam);				}
-			else if (data.secondParam === "breastSizeMale") 	{	mySlider9.setValue(data.thirdParam);localStorage.setItem("Slot0_Breast_Size_Male", data.thirdParam);		}
-			else if (data.secondParam === "breastSizeFemale")	{	mySlider8.setValue(data.thirdParam);localStorage.setItem("Slot0_Breast_Size_Female", data.thirdParam);		}
+			else if (data.secondParam === "breastSizeMale") 	{	mySlider9.setValue(data.thirdParam);localStorage.setItem("Slot0_Breast_Size_Male", data.thirdParam);	
+																	var x = localStorage.getItem("CharViz_Enabled");if (x === "Yes"){setBreastSizeBodyMorph(data.thirdParam); }	}
+			else if (data.secondParam === "breastSizeFemale")	{	mySlider8.setValue(data.thirdParam);localStorage.setItem("Slot0_Breast_Size_Female", data.thirdParam);		
+																	var x = localStorage.getItem("CharViz_Enabled");if (x === "Yes"){setBreastSizeBodyMorph(data.thirdParam); }	}
 			else if (data.secondParam === "buttSize") 			{	mySlider13.setValue(data.thirdParam);localStorage.setItem("Slot0_Butt_Size", data.thirdParam);				}
 			else if (data.secondParam === "bellySize") 			{	mySlider14.setValue(data.thirdParam);localStorage.setItem("Slot0_Belly_Size", data.thirdParam);				}
 			else if (data.secondParam === "bellyShape")			{	mySlider15.setValue(data.thirdParam);localStorage.setItem("Slot0_Belly_Shape", data.thirdParam);			}
@@ -338,6 +495,8 @@ function receiveData() {
 			else if (data.secondParam === "custom1") 			{	mySlider17.setValue(data.thirdParam);localStorage.setItem("Slot0_Custom_Slider1_Value", data.thirdParam);	}
 			else if (data.secondParam === "custom2") 			{	mySlider18.setValue(data.thirdParam);localStorage.setItem("Slot0_Custom_Slider2_Value", data.thirdParam);	}
 			else if (data.secondParam === "custom3") 			{	mySlider19.setValue(data.thirdParam);localStorage.setItem("Slot0_Custom_Slider3_Value", data.thirdParam);	}
+			else if (data.secondParam === "custom4") 			{	mySlider24.setValue(data.thirdParam);localStorage.setItem("Slot0_Custom_Slider4_Value", data.thirdParam);	}
+			else if (data.secondParam === "custom5") 			{	mySlider25.setValue(data.thirdParam);localStorage.setItem("Slot0_Custom_Slider5_Value", data.thirdParam);	}
 		}
 		else if (data.firstParam === "manipulateOption") {
 			if (data.secondParam === "Species") 				{	document.getElementById('speciesCurrent').innerHTML = data.thirdParam;localStorage.setItem("Slot0_Species", data.thirdParam);					}
@@ -410,6 +569,38 @@ function receiveData() {
 				else							{	document.getElementById("pregnancyLockCheckbox").checked = false;	}
 			}
 		}
+		else if (data.firstParam === "manipulateCustomTickbox") {
+			if (data.secondParam === "Custom_Checkbox1_Value1") {
+				localStorage.setItem("Slot0_Custom_Checkbox1_Value1_Ticked", data.thirdParam);
+				if (data.thirdParam === "Yes") 	{	document.getElementById("CC1value1Checkbox").checked = true;	}
+				else							{	document.getElementById("CC1value1Checkbox").checked = false;	}
+			}
+			else if (data.secondParam === "Custom_Checkbox1_Value2") {
+				localStorage.setItem("Slot0_Custom_Checkbox1_Value2_Ticked", data.thirdParam);
+				if (data.thirdParam === "Yes") 	{	document.getElementById("CC1value2Checkbox").checked = true;	}
+				else							{	document.getElementById("CC1value2Checkbox").checked = false;	}
+			}
+			else if (data.secondParam === "Custom_Checkbox2_Value1") {
+				localStorage.setItem("Slot0_Custom_Checkbox2_Value1_Ticked", data.thirdParam);
+				if (data.thirdParam === "Yes") 	{	document.getElementById("CC2value1Checkbox").checked = true;	}
+				else							{	document.getElementById("CC2value1Checkbox").checked = false;	}
+			}
+			else if (data.secondParam === "Custom_Checkbox2_Value2") {
+				localStorage.setItem("Slot0_Custom_Checkbox2_Value2_Ticked", data.thirdParam);
+				if (data.thirdParam === "Yes") 	{	document.getElementById("CC2value2Checkbox").checked = true;	}
+				else							{	document.getElementById("CC2value2Checkbox").checked = false;	}
+			}
+			else if (data.secondParam === "Custom_Checkbox3_Value1") {
+				localStorage.setItem("Slot0_Custom_Checkbox3_Value1_Ticked", data.thirdParam);
+				if (data.thirdParam === "Yes") 	{	document.getElementById("CC3value1Checkbox").checked = true;	}
+				else							{	document.getElementById("CC3value1Checkbox").checked = false;	}
+			}
+			else if (data.secondParam === "Custom_Checkbox3_Value2") {
+				localStorage.setItem("Slot0_Custom_Checkbox3_Value2_Ticked", data.thirdParam);
+				if (data.thirdParam === "Yes") 	{	document.getElementById("CC3value2Checkbox").checked = true;	}
+				else							{	document.getElementById("CC3value2Checkbox").checked = false;	}
+			}
+		}
 		else if (data.firstParam === "optionEnabled") {
 			if (data.secondParam === "buttSize") 							{	localStorage.setItem("Butt_Size_Slider_Enabled", data.thirdParam);		}
 			else if (data.secondParam === "bellySize") 						{	localStorage.setItem("Belly_Size_Slider_Enabled", data.thirdParam);		}
@@ -439,10 +630,31 @@ function receiveData() {
 			else if (data.secondParam === "custom1") 						{	localStorage.setItem("Custom_Slider1_Enabled", data.thirdParam);		}
 			else if (data.secondParam === "custom2") 						{	localStorage.setItem("Custom_Slider2_Enabled", data.thirdParam);		}
 			else if (data.secondParam === "custom3") 						{	localStorage.setItem("Custom_Slider3_Enabled", data.thirdParam);		}
+			else if (data.secondParam === "custom4") 						{	localStorage.setItem("Custom_Slider4_Enabled", data.thirdParam);		}
+			else if (data.secondParam === "custom5") 						{	localStorage.setItem("Custom_Slider5_Enabled", data.thirdParam);		}
 			else if (data.secondParam === "fireLoadSliderSettingsFunction") {	loadSliderSettings();
 																				loadCustomSlidersValuesOnStartup1("Yes");
 																				loadCustomSlidersValuesOnStartup2("Yes");
-																				loadCustomSlidersValuesOnStartup3("Yes");								}
+																				loadCustomSlidersValuesOnStartup3("Yes");
+																				loadCustomSlidersValuesOnStartup4("Yes");
+																				loadCustomSlidersValuesOnStartup5("Yes");								}																			
+		}
+		else if (data.firstParam === "customCheckboxEnabled") {
+			if (data.secondParam === "custom1")										{	localStorage.setItem("Slot0_Custom_Checkbox1_Enabled", data.thirdParam);		}
+			else if (data.secondParam === "custom2")								{	localStorage.setItem("Slot0_Custom_Checkbox2_Enabled", data.thirdParam);		}
+			else if (data.secondParam === "custom3")								{	localStorage.setItem("Slot0_Custom_Checkbox3_Enabled", data.thirdParam);		}
+			else if (data.secondParam === "fireLoadCustomCheckboxesOnStartupFunction")	{	loadCustomCheckboxesOnStartup();											}
+		}
+		else if (data.firstParam === "changeCustomCheckbox") {
+			if (data.secondParam === "Custom1Label")							{	localStorage.setItem("Slot0_Custom_Checkbox1_Label", data.thirdParam);		}
+			else if (data.secondParam === "Custom1Value1")						{	localStorage.setItem("Slot0_Custom_Checkbox1_Value1", data.thirdParam);		}
+			else if (data.secondParam === "Custom1Value2")						{	localStorage.setItem("Slot0_Custom_Checkbox1_Value2", data.thirdParam);		}
+			else if (data.secondParam === "Custom2Label")						{	localStorage.setItem("Slot0_Custom_Checkbox2_Label", data.thirdParam);		}
+			else if (data.secondParam === "Custom2Value1")						{	localStorage.setItem("Slot0_Custom_Checkbox2_Value1", data.thirdParam);		}
+			else if (data.secondParam === "Custom2Value2")						{	localStorage.setItem("Slot0_Custom_Checkbox2_Value2", data.thirdParam);		}
+			else if (data.secondParam === "Custom3Label")						{	localStorage.setItem("Slot0_Custom_Checkbox3_Label", data.thirdParam);		}
+			else if (data.secondParam === "Custom3Value1")						{	localStorage.setItem("Slot0_Custom_Checkbox3_Value1", data.thirdParam);		}
+			else if (data.secondParam === "Custom3Value2")						{	localStorage.setItem("Slot0_Custom_Checkbox3_Value2", data.thirdParam);		}
 		}
 		else if (data.firstParam === "changeSliderName") {
 			x = data.thirdParam;
@@ -485,7 +697,90 @@ function receiveData() {
 				document.getElementById('textinmenuRightCS3').innerHTML = x;
 				localStorage.setItem("Custom_Slider3_RightText", x);
 			}
+			else if (data.secondParam === "Custom4Left") {	
+				document.getElementById('textinmenuLeftCS4').innerHTML = x;
+				localStorage.setItem("Custom_Slider4_LeftText", x);
+			}
+			else if (data.secondParam === "Custom4Middle") {	
+				document.getElementById('textinmenuCenterCS4').innerHTML = x;
+				localStorage.setItem("Custom_Slider4_CenterText", x);
+			}
+			else if (data.secondParam === "Custom4Right") {	
+				document.getElementById('textinmenuRightCS4').innerHTML = x;
+				localStorage.setItem("Custom_Slider4_RightText", x);
+			}
+			else if (data.secondParam === "Custom5Left") {	
+				document.getElementById('textinmenuLeftCS5').innerHTML = x;
+				localStorage.setItem("Custom_Slider5_LeftText", x);
+			}
+			else if (data.secondParam === "Custom5Middle") {	
+				document.getElementById('textinmenuCenterCS5').innerHTML = x;
+				localStorage.setItem("Custom_Slider5_CenterText", x);
+			}
+			else if (data.secondParam === "Custom5Right") {	
+				document.getElementById('textinmenuRightCS5').innerHTML = x;
+				localStorage.setItem("Custom_Slider5_RightText", x);
+			}
 		}
+		// CharViz related stuff
+		else if (data.firstParam === "putClothingOn") {
+			charVizPutClothingOn(data.secondParam, data.thirdParam);
+		}
+		else if (data.firstParam === "setCharacterColor") {
+			if (data.secondParam === "Primary") {
+				document.getElementById("charVizDisplayBasePrimary").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayBreastSizePrimary").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayHipsSizePrimary").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayTailPrimary").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayHeadPrimary").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizPrimaryCharacterColorSwatch").style.backgroundColor = data.thirdParam;
+			}
+			else if (data.secondParam === "Primary") {
+				document.getElementById("charVizDisplayBaseSecondary").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayBreastSizeSecondary").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayHipsSizeSecondary").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayTailSecondary").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayHeadSecondary").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizSecondaryCharacterColorSwatch").style.backgroundColor = data.thirdParam;
+			}
+			else if (data.secondParam === "Tertiary") {
+				document.getElementById("charVizDisplayBaseTertiary").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayTailTertiary").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayHeadTertiary").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizTertiaryCharacterColorSwatch").style.backgroundColor = data.thirdParam;
+			}
+			else if (data.secondParam === "Markings") {
+				document.getElementById("charVizDisplayBaseMarkings").style.backgroundColor = data.thirdParam;	
+				document.getElementById("charVizDisplayBreastSizeMarkings").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayHipsSizeMarkings").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizMarkingsCharacterColorSwatch").style.backgroundColor = data.thirdParam;
+			}
+			else if (data.secondParam === "Left Eye") {
+				document.getElementById("charVizLeftEyeCharacterColorSwatch").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayHeadIrisLeft").style.backgroundColor = data.thirdParam;
+			}
+			else if (data.secondParam === "Right Eye") {
+				document.getElementById("charVizRightEyeCharacterColorSwatch").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayHeadIrisRight").style.backgroundColor = data.thirdParam;
+			}
+			else if (data.secondParam === "Hair") {
+				document.getElementById("charVizHairCharacterColorSwatch").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayHeadHair").style.backgroundColor = data.thirdParam;
+			}
+		}
+		else if (data.firstParam === "Character_Blushing") {
+			localStorage.setItem("CharViz_Character_Blushing", data.secondParam);
+			if (data.secondParam === "Yes") {	document.getElementById("charVizDisplayHeadBlush").style.backgroundImage = 'url(../images/charViz/heads/canine/blush.png)'; }
+			else {								document.getElementById("charVizDisplayHeadBlush").style.backgroundImage = '';												}
+		}
+		else if (data.firstParam === "putAccessoryOn") {
+			if (data.secondParam === "Folder") {	document.getElementById("charVizDisplayAccessoriesSlot2").style.backgroundImage = 'url("../images/charViz/bases/feminine/clothing/accessories/folder.png")'; 		}
+			else if (data.secondParam === "Choker") {	document.getElementById("charVizDisplayAccessoriesSlot3").style.backgroundImage = 'url("../images/charViz/bases/feminine/clothing/accessories/choker.png")';	}
+		}
+		else if (data.firstParam === "initializeCharviz") {
+			initializeCharViz();
+		}
+		// CharViz related stuff end
 		else if (data.firstParam === "Username") {
 			if (master === "true") {
 				document.getElementById('CONTROLmasterMessageSubName').innerHTML = "You're connected to " + data.secondParam + ".";
@@ -510,7 +805,20 @@ function receiveData() {
 		else if (data.firstParam === "toggleAdvSettings") {
 			toggleAdvancedSettingsMenu();
 		}
-    });	
+		else if (data.firstParam === "Admin_Mode_Status") {
+			var isAdminOn = document.getElementById("adminPermsText");
+			if (data.secondParam === "Yes") {
+				isAdminOn.style.display = "block";
+				document.getElementById('defaultcss').href='css/admindhtmlxslider.css';
+				localStorage.setItem("Admin_mode_on", "Yes");
+			}
+			else {
+				isAdminOn.style.display = "none";
+				document.getElementById('defaultcss').href='css/dhtmlxslider.css';
+				localStorage.setItem("Admin_mode_on", "No");				
+			}
+		}	
+	});
 }
 
 function attachEvents() {
@@ -518,7 +826,9 @@ function attachEvents() {
 		attachEventsToSliders();
 		attachEventsToOptions();
 		attachEventsToTickboxes();
+		attachEventsToCustomTickboxes();
 		attachEventsToVisibiltyOptions();
+		attachEventsToCustomCheckboxesVisibiltyOptions();
 	}
 	else {
 		return;
@@ -619,10 +929,6 @@ function attachEventsToSliders() {
    	var value = mySlider20.getValue();
 	conn.send({firstParam: "manipulateSlider", secondParam:"hairLenght", thirdParam: value});
 });
-	mySlider21.attachEvent("onSlideEnd", function() { // Sexuality slider
-   	var value = mySlider21.getValue();
-	conn.send({firstParam: "manipulateSlider", secondParam:"sexuality", thirdParam: value});
-});
 	mySlider22.attachEvent("onSlideEnd", function() { // Feral/Anthro slider
    	var value = mySlider22.getValue();
 	conn.send({firstParam: "manipulateSlider", secondParam:"feralAnthro", thirdParam: value});
@@ -702,6 +1008,45 @@ function attachEventsToTickboxes() {
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
 		conn.send({firstParam: "manipulateTickbox", secondParam: "Pregnancy_Lock", thirdParam: tickbox});
+	});
+}
+
+function attachEventsToCustomTickboxes() {
+	document.getElementById("CC1value1Checkbox").addEventListener("click", function(){
+		var tickbox = document.getElementById("CC1value1Checkbox");
+		if (tickbox.checked){	var tickbox = "Yes"	}
+		else 				{	var tickbox = "No"	}
+		conn.send({firstParam: "manipulateCustomTickbox", secondParam: "Custom_Checkbox1_Value1", thirdParam: tickbox});
+	});
+	document.getElementById("CC1value2Checkbox").addEventListener("click", function(){
+		var tickbox = document.getElementById("CC1value2Checkbox");
+		if (tickbox.checked){	var tickbox = "Yes"	}
+		else 				{	var tickbox = "No"	}
+		conn.send({firstParam: "manipulateCustomTickbox", secondParam: "Custom_Checkbox1_Value2", thirdParam: tickbox});
+	});
+	document.getElementById("CC2value1Checkbox").addEventListener("click", function(){
+		var tickbox = document.getElementById("CC2value1Checkbox");
+		if (tickbox.checked){	var tickbox = "Yes"	}
+		else 				{	var tickbox = "No"	}
+		conn.send({firstParam: "manipulateCustomTickbox", secondParam: "Custom_Checkbox2_Value1", thirdParam: tickbox});
+	});
+	document.getElementById("CC2value2Checkbox").addEventListener("click", function(){
+		var tickbox = document.getElementById("CC2value2Checkbox");
+		if (tickbox.checked){	var tickbox = "Yes"	}
+		else 				{	var tickbox = "No"	}
+		conn.send({firstParam: "manipulateCustomTickbox", secondParam: "Custom_Checkbox2_Value2", thirdParam: tickbox});
+	});
+	document.getElementById("CC3value1Checkbox").addEventListener("click", function(){
+		var tickbox = document.getElementById("CC3value1Checkbox");
+		if (tickbox.checked){	var tickbox = "Yes"	}
+		else 				{	var tickbox = "No"	}
+		conn.send({firstParam: "manipulateCustomTickbox", secondParam: "Custom_Checkbox3_Value1", thirdParam: tickbox});
+	});
+	document.getElementById("CC3value2Checkbox").addEventListener("click", function(){
+		var tickbox = document.getElementById("CC3value2Checkbox");
+		if (tickbox.checked){	var tickbox = "Yes"	}
+		else 				{	var tickbox = "No"	}
+		conn.send({firstParam: "manipulateCustomTickbox", secondParam: "Custom_Checkbox3_Value2", thirdParam: tickbox});
 	});
 }
 
@@ -853,13 +1198,6 @@ function attachEventsToVisibiltyOptions() {
 		conn.send({firstParam: "optionEnabled", secondParam: "intelligence", thirdParam: tickbox});
 		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
-	document.getElementById("sexualitySliderCheckbox").addEventListener("click", function(){
-		var tickbox = document.getElementById("sexualitySliderCheckbox");
-		if (tickbox.checked){	var tickbox = "Yes"	}
-		else 				{	var tickbox = "No"	}
-		conn.send({firstParam: "optionEnabled", secondParam: "sexuality", thirdParam: tickbox});
-		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
-	});
 	document.getElementById("fertilitySliderCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("fertilitySliderCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
@@ -902,6 +1240,44 @@ function attachEventsToVisibiltyOptions() {
 		conn.send({firstParam: "optionEnabled", secondParam: "custom3", thirdParam: tickbox});
 		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
+	document.getElementById("customSlider4Checkbox").addEventListener("click", function(){
+		var tickbox = document.getElementById("customSlider4Checkbox");
+		if (tickbox.checked){	var tickbox = "Yes"	}
+		else 				{	var tickbox = "No"	}
+		conn.send({firstParam: "optionEnabled", secondParam: "custom4", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
+	});
+	document.getElementById("customSlider5Checkbox").addEventListener("click", function(){
+		var tickbox = document.getElementById("customSlider5Checkbox");
+		if (tickbox.checked){	var tickbox = "Yes"	}
+		else 				{	var tickbox = "No"	}
+		conn.send({firstParam: "optionEnabled", secondParam: "custom5", thirdParam: tickbox});
+		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
+	});
+}
+
+function attachEventsToCustomCheckboxesVisibiltyOptions() {
+	document.getElementById("customCheckbox1Checkbox").addEventListener("click", function(){
+		var tickbox = document.getElementById("customCheckbox1Checkbox");
+		if (tickbox.checked){	var tickbox = "Yes"	}
+		else 				{	var tickbox = "No"	}
+		conn.send({firstParam: "customCheckboxEnabled", secondParam: "custom1", thirdParam: tickbox});
+		conn.send({firstParam: "customCheckboxEnabled", secondParam: "fireLoadCustomCheckboxesOnStartupFunction"});
+	});
+	document.getElementById("customCheckbox2Checkbox").addEventListener("click", function(){
+		var tickbox = document.getElementById("customCheckbox1Checkbox");
+		if (tickbox.checked){	var tickbox = "Yes"	}
+		else 				{	var tickbox = "No"	}
+		conn.send({firstParam: "customCheckboxEnabled", secondParam: "custom2", thirdParam: tickbox});
+		conn.send({firstParam: "customCheckboxEnabled", secondParam: "fireLoadCustomCheckboxesOnStartupFunction"});
+	});
+	document.getElementById("customCheckbox3Checkbox").addEventListener("click", function(){
+		var tickbox = document.getElementById("customCheckbox1Checkbox");
+		if (tickbox.checked){	var tickbox = "Yes"	}
+		else 				{	var tickbox = "No"	}
+		conn.send({firstParam: "customCheckboxEnabled", secondParam: "custom3", thirdParam: tickbox});
+		conn.send({firstParam: "customCheckboxEnabled", secondParam: "fireLoadCustomCheckboxesOnStartupFunction"});
+	});
 }
 
 function sendUsernameSleep() {
@@ -941,10 +1317,6 @@ function CONTROLunlockSubsSettings() {
 
 function CONTROLlockSubsSettings() {
 	conn.send({firstParam: "Lock_Settings"});
-}
-
-function CONTROLturnAdminMode() {
-	conn.send({firstParam: "Toggle_Admin_Mode"});
 }
 
 function CONTROLshowConnectToServer() {

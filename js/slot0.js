@@ -66,7 +66,6 @@
 	var bellyShape = mySlider15.getValue();
 	var intelligence = mySlider16.getValue();
 	var hairLenght = mySlider20.getValue();
-	var sexuality = mySlider21.getValue();
 	var feralAnthro = mySlider22.getValue();
 	var fertility = mySlider23.getValue();
 	
@@ -94,7 +93,6 @@
 	localStorage.setItem("Slot0_Intelligence", intelligence);
 	localStorage.setItem("Slot0_Cock_Type", cockType);
 	localStorage.setItem("Slot0_Hair_Lenght", hairLenght);
-	localStorage.setItem("Slot0_Sexuality", sexuality);
 	localStorage.setItem("Slot0_Feral_Anthro", feralAnthro);
 	localStorage.setItem("Slot0_Pregnancy_Lock_Box_Ticked", tickbox2);
 	localStorage.setItem("Slot0_Fertility", fertility);

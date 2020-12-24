@@ -17,7 +17,6 @@ function exportAppStatus() {
 	var bellyShape = mySlider15.getValue();
 	var intelligence = mySlider16.getValue();
 	var hairLenght = mySlider20.getValue();
-	var sexuality = mySlider21.getValue();
 	var feralAnthro = mySlider22.getValue();
 	var fertility = mySlider23.getValue();
 	
@@ -25,6 +24,8 @@ function exportAppStatus() {
 	var custom1 = mySlider17.getValue();
 	var custom2 = mySlider18.getValue();
 	var custom3 = mySlider19.getValue();
+	var custom4 = mySlider24.getValue();
+	var custom5 = mySlider25.getValue();
 	
 	// Options
 	var species = document.getElementById("speciesCurrent").innerHTML;
@@ -65,6 +66,14 @@ function exportAppStatus() {
 	var centerTextCustom3 = document.getElementById("textinmenuCenterCS3").innerText;
 	var rightTextCustom3 = document.getElementById("textinmenuRightCS3").innerText;
 	
+	var leftTextCustom4 = document.getElementById("textinmenuLeftCS4").innerText;
+	var centerTextCustom4 = document.getElementById("textinmenuCenterCS4").innerText;
+	var rightTextCustom4 = document.getElementById("textinmenuRightCS4").innerText;
+	
+	var leftTextCustom5 = document.getElementById("textinmenuLeftCS5").innerText;
+	var centerTextCustom5 = document.getElementById("textinmenuCenterCS5").innerText;
+	var rightTextCustom5 = document.getElementById("textinmenuRightCS5").innerText;
+	
 	// Options/sliders visibility
 	
 	var buttSizeSliderEnabled = localStorage.getItem("Butt_Size_Slider_Enabled");
@@ -95,32 +104,89 @@ function exportAppStatus() {
 	var isCS1Enabled = localStorage.getItem("Custom_Slider1_Enabled");
 	var isCS2Enabled = localStorage.getItem("Custom_Slider2_Enabled");
 	var isCS3Enabled = localStorage.getItem("Custom_Slider3_Enabled");
+	var isCS4Enabled = localStorage.getItem("Custom_Slider4_Enabled");
+	var isCS5Enabled = localStorage.getItem("Custom_Slider5_Enabled");
 	
 	var obj = {
-    bodyType1: bodyType1,	bodyType2: bodyType2,	bodyType3: bodyType3,
-	hips: hips,	genitalSize: genitalSize,	fluffiness: fluffiness,
-	libido: libido,	domsub: domsub,	sensitivity: sensitivity,
-	assertiveShy: assertiveShy,	breastSizeMale: breastSizeMale,
-	breastSizeFemale: breastSizeFemale,    buttSize: buttSize,
-	bellySize: bellySize,	bellyShape: bellyShape,
-	intelligence: intelligence,	hairLenght: hairLenght,
-	sexuality: sexuality,	feralAnthro: feralAnthro,	fertility: fertility,
-	custom1: custom1,	custom2: custom2,	custom3: custom3,
-	species: species,	inanimateObject: inanimateObject,	cockType: cockType,
-	hairColor: hairColor,	swatchColor: swatchColor,	sex: sex,	thirdSex: thirdSex,
-	tickbox1: tickbox1,	tickbox2: tickbox2,	tickbox3: tickbox3,	tickbox4: tickbox4,
-	leftTextCustom1: leftTextCustom1, leftTextCustom2: leftTextCustom2, leftTextCustom3: leftTextCustom3,
-	centerTextCustom1: centerTextCustom1, centerTextCustom2: centerTextCustom2, centerTextCustom3: centerTextCustom3,
-	rightTextCustom1: rightTextCustom1, rightTextCustom2: rightTextCustom2, rightTextCustom3: rightTextCustom3,
-	buttSizeSliderEnabled: buttSizeSliderEnabled,	bellySizeSliderEnabled: bellySizeSliderEnabled,	bellyShapeSliderEnabled: bellyShapeSliderEnabled,
-	hipsSliderEnabled: hipsSliderEnabled,	genitalSizeSliderEnabled: genitalSizeSliderEnabled,	cockTypeMenuEnabled: cockTypeMenuEnabled,
-	libidoSliderEnabled: libidoSliderEnabled,	sensitivitySliderEnabled: sensitivitySliderEnabled,	demeanorSliderEnabled: demeanorSliderEnabled,
-	positionPrefSliderEnabled: positionPrefSliderEnabled,	intelligenceSliderEnabled: intelligenceSliderEnabled,	fluffinessSliderEnabled: fluffinessSliderEnabled,
-	hairLenghtSliderEnabled: hairLenghtSliderEnabled,	sexualitySliderEnabled: sexualitySliderEnabled,	feralAnthroSliderEnabled: feralAnthroSliderEnabled,
-	hairColorMenuEnabled: hairColorMenuEnabled,	fertilitySliderEnabled: fertilitySliderEnabled,	genitalsMenuEnabled: genitalsMenuEnabled,
-	speciesMenuEnabled: speciesMenuEnabled,	sexMenuEnabled: sexMenuEnabled,	acMenuEnabled: acMenuEnabled,	mascFemSliderEnabled: mascFemSliderEnabled,
-	thinThiccSliderEnabled: thinThiccSliderEnabled,	smolTallSliderEnabled: smolTallSliderEnabled,	inanimateObjectsMenuEnabled: inanimateObjectsMenuEnabled,
-	isCS1Enabled: isCS1Enabled,	isCS2Enabled: isCS2Enabled,	isCS3Enabled: isCS3Enabled,
+    bodyType1: bodyType1,
+	bodyType2: bodyType2,
+	bodyType3: bodyType3,
+	hips: hips,
+	genitalSize: genitalSize,
+	fluffiness: fluffiness,
+	libido: libido,
+	domsub: domsub,
+	sensitivity: sensitivity,
+	assertiveShy: assertiveShy,
+	breastSizeMale: breastSizeMale,
+	breastSizeFemale: breastSizeFemale,
+    buttSize: buttSize,
+	bellySize: bellySize,
+	bellyShape: bellyShape,
+	intelligence: intelligence,
+	hairLenght: hairLenght,
+	feralAnthro: feralAnthro,
+	fertility: fertility,
+	custom1: custom1,
+	custom2: custom2,
+	custom3: custom3,
+	custom4: custom4,
+	custom5: custom5,
+	species: species,
+	inanimateObject: inanimateObject,
+	cockType: cockType,
+	hairColor: hairColor,
+	swatchColor: swatchColor,
+	sex: sex,
+	thirdSex: thirdSex,
+	tickbox1: tickbox1,
+	tickbox2: tickbox2,
+	tickbox3: tickbox3,
+	tickbox4: tickbox4,
+	leftTextCustom1: leftTextCustom1,
+	leftTextCustom2: leftTextCustom2,
+	leftTextCustom3: leftTextCustom3,
+	leftTextCustom4: leftTextCustom4,
+	leftTextCustom5: leftTextCustom5,
+	centerTextCustom1: centerTextCustom1,
+	centerTextCustom2: centerTextCustom2,
+	centerTextCustom3: centerTextCustom3,
+	centerTextCustom4: centerTextCustom4,
+	centerTextCustom5: centerTextCustom5,
+	rightTextCustom1: rightTextCustom1,
+	rightTextCustom2: rightTextCustom2,
+	rightTextCustom3: rightTextCustom3,
+	rightTextCustom4: rightTextCustom4,
+	rightTextCustom5: rightTextCustom5,
+	buttSizeSliderEnabled: buttSizeSliderEnabled,
+	bellySizeSliderEnabled: bellySizeSliderEnabled,
+	bellyShapeSliderEnabled: bellyShapeSliderEnabled,
+	hipsSliderEnabled: hipsSliderEnabled,
+	genitalSizeSliderEnabled: genitalSizeSliderEnabled,
+	cockTypeMenuEnabled: cockTypeMenuEnabled,
+	libidoSliderEnabled: libidoSliderEnabled,
+	sensitivitySliderEnabled: sensitivitySliderEnabled,
+	demeanorSliderEnabled: demeanorSliderEnabled,
+	positionPrefSliderEnabled: positionPrefSliderEnabled,
+	intelligenceSliderEnabled: intelligenceSliderEnabled,
+	fluffinessSliderEnabled: fluffinessSliderEnabled,
+	hairLenghtSliderEnabled: hairLenghtSliderEnabled,
+	feralAnthroSliderEnabled: feralAnthroSliderEnabled,
+	hairColorMenuEnabled: hairColorMenuEnabled,
+	fertilitySliderEnabled: fertilitySliderEnabled,
+	genitalsMenuEnabled: genitalsMenuEnabled,
+	speciesMenuEnabled: speciesMenuEnabled,
+	sexMenuEnabled: sexMenuEnabled,
+	acMenuEnabled: acMenuEnabled,
+	mascFemSliderEnabled: mascFemSliderEnabled,
+	thinThiccSliderEnabled: thinThiccSliderEnabled,
+	smolTallSliderEnabled: smolTallSliderEnabled,
+	inanimateObjectsMenuEnabled: inanimateObjectsMenuEnabled,
+	isCS1Enabled: isCS1Enabled,
+	isCS2Enabled: isCS2Enabled,
+	isCS3Enabled: isCS3Enabled,
+	isCS4Enabled: isCS4Enabled,
+	isCS5Enabled: isCS5Enabled,
 	
 	};
 	
@@ -158,13 +224,14 @@ function importAppStatus() {
 	mySlider15.setValue(obj.bellyShape);
 	mySlider16.setValue(obj.intelligence);
 	mySlider20.setValue(obj.hairLenght);
-	mySlider21.setValue(obj.sexuality);
 	mySlider22.setValue(obj.feralAnthro);
 	mySlider23.setValue(obj.fertility);
 	
 	mySlider17.setValue(obj.custom1);
 	mySlider18.setValue(obj.custom2);
 	mySlider19.setValue(obj.custom3);
+	mySlider24.setValue(obj.custom4);
+	mySlider25.setValue(obj.custom5);
 	
 	document.getElementById('speciesCurrent').innerHTML = obj.species;
 	document.getElementById('inanimateObjectsCurrent').innerHTML = obj.inanimateObject;
@@ -199,9 +266,17 @@ function importAppStatus() {
 	document.getElementById('textinmenuCenterCS2').innerHTML = obj.centerTextCustom2;	
 	document.getElementById('textinmenuRightCS2').innerHTML = obj.rightTextCustom2;
 		
-	document.getElementById('textinmenuLeftCS3').innerHTML = obj.leftTextCustom3;	
-	document.getElementById('textinmenuCenterCS3').innerHTML = obj.centerTextCustom3;	
+	document.getElementById('textinmenuLeftCS3').innerHTML = obj.leftTextCustom3;
+	document.getElementById('textinmenuCenterCS3').innerHTML = obj.centerTextCustom3;
 	document.getElementById('textinmenuRightCS3').innerHTML = obj.rightTextCustom3;
+	
+	document.getElementById('textinmenuLeftCS4').innerHTML = obj.leftTextCustom4;
+	document.getElementById('textinmenuCenterCS4').innerHTML = obj.centerTextCustom4;
+	document.getElementById('textinmenuRightCS4').innerHTML = obj.rightTextCustom4;
+	
+	document.getElementById('textinmenuLeftCS5').innerHTML = obj.leftTextCustom5;
+	document.getElementById('textinmenuCenterCS5').innerHTML = obj.centerTextCustom5;
+	document.getElementById('textinmenuRightCS5').innerHTML = obj.rightTextCustom5;
 	
 	localStorage.setItem("Butt_Size_Slider_Enabled", obj.buttSizeSliderEnabled);	
 	localStorage.setItem("Belly_Size_Slider_Enabled", obj.bellySizeSliderEnabled);		
@@ -215,8 +290,7 @@ function importAppStatus() {
 	localStorage.setItem("Postion_Pref_Slider_Enabled", obj.positionPrefSliderEnabled);	
 	localStorage.setItem("Intelligence_Slider_Enabled", obj.intelligenceSliderEnabled);	
 	localStorage.setItem("Fluffiness_Slider_Enabled", obj.fluffinessSliderEnabled);		
-	localStorage.setItem("Hair_Lenght_Slider_Enabled", obj.hairLenghtSliderEnabled);		
-	localStorage.setItem("Sexuality_Slider_Enabled", obj.sexualitySliderEnabled);		
+	localStorage.setItem("Hair_Lenght_Slider_Enabled", obj.hairLenghtSliderEnabled);			
 	localStorage.setItem("Feral_Anthro_Slider_Enabled", obj.feralAnthroSliderEnabled);	
 	localStorage.setItem("Hair_Color_Menu_Enabled", obj.hairColorMenuEnabled);		
 	localStorage.setItem("Fertility_Slider_Enabled", obj.fertilitySliderEnabled);		
@@ -230,7 +304,9 @@ function importAppStatus() {
 	localStorage.setItem("Inanimate_Objects_Enabled", obj.inanimateObjectsMenuEnabled);		
 	localStorage.setItem("Custom_Slider1_Enabled", obj.isCS1Enabled);			
 	localStorage.setItem("Custom_Slider2_Enabled", obj.isCS2Enabled);		
-	localStorage.setItem("Custom_Slider3_Enabled", obj.isCS3Enabled);			
+	localStorage.setItem("Custom_Slider3_Enabled", obj.isCS3Enabled);	
+	localStorage.setItem("Custom_Slider4_Enabled", obj.isCS4Enabled);	
+	localStorage.setItem("Custom_Slider5_Enabled", obj.isCS5Enabled);	
 	
 	document.getElementById("appStatusImportMessage").innerHTML = "Imported successfully!";
 	document.getElementById("appStatusImportMessage").style.color = "#29a329";
@@ -239,6 +315,8 @@ function importAppStatus() {
 	loadCustomSlidersValuesOnStartup1("Yes");
 	loadCustomSlidersValuesOnStartup2("Yes");
 	loadCustomSlidersValuesOnStartup3("Yes");
+	loadCustomSlidersValuesOnStartup4("Yes");
+	loadCustomSlidersValuesOnStartup5("Yes");
 	
 	saveSettingsSlot0();
 	
