@@ -4545,6 +4545,13 @@ document.getElementById("goBack").style.marginTop='0px';
 	<div class="bigButton" onClick="MSSError()">Trigger Multi Sex Select Error</div>	
 	<div class="bigButton" onClick="devMenuDeleteLockPassword()">Delete Lock Password</div>	
 	<div class="bigButton" onClick="goToChangeBGColorOptions()">Change background color (Desktop only)</div>
+	<div style = "border: 3px solid #FF4550;">
+	<div style="padding-left:18px;margin-top:5px;">Reset app (current state)</div>
+	<div class="bigButtonAdminMode" onClick="resetAppCurrent()" id="resetAppCurrentButton">Reset App</div>
+	
+	<div style="padding-left:18px;margin-top:5px;">Reset app (including saved presets)</div>
+	<div class="bigButtonAdminMode" onClick="resetAppAll()" id="resetAppAllButton">Reset App</div>
+	</div>
 	
 	</div>
 	<script>document.getElementById("devMenuOptions").style.maxHeight='0px';</script>	

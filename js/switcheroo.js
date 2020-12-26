@@ -3298,7 +3298,7 @@ function goToChangeBGColorOptions() {
 
 function goBackFromChangeBGColorOptions() {
 	document.getElementById("changeBGColorOptions").style.maxHeight='0px';
-	document.getElementById("devMenuOptions").style.maxHeight='530px';
+	document.getElementById("devMenuOptions").style.maxHeight='710px';
 }
 
 function changeBGDefault() {
@@ -4826,7 +4826,7 @@ function showDevMenu() {
 		document.getElementById("devMenuButton").style.border='0';
 		document.getElementById("devMenuButton").style.fontSize='0px';
 		document.getElementById("devMenuButton").style.marginTop='0px';
-		document.getElementById("devMenuOptions").style.maxHeight='530px';
+		document.getElementById("devMenuOptions").style.maxHeight='710px';
 	}
 	
 function goBackFromDevMenuFunction() {
@@ -5457,4 +5457,163 @@ var tickbox = document.getElementById("hideEveryMenuCheckbox");
 	localStorage.setItem("Configure_Options_And_Sliders_Hidden", tickbox);
 	localStorage.setItem("Advanced_Settings_Hidden", tickbox);
 	showOrHideMenus();
+}
+
+function resetAppAll() {
+	var x = document.getElementById("resetAppAllButton").innerHTML;
+	if (x === "Are you sure?") {
+		localStorage.clear();
+		document.getElementById('resetAppAllButton').innerHTML = "Please restart app!";
+		buttonFlash1(0);
+	}
+	else {
+		document.getElementById('resetAppAllButton').innerHTML = "Are you sure?";
+	}
+}
+
+function buttonFlash1(x) {
+	if (x == 0) {
+		document.getElementById('resetAppAllButton').style.backgroundColor = "#b30003";
+		setTimeout(buttonFlash1, 500, 69);
+	}
+	else {
+		document.getElementById('resetAppAllButton').style.backgroundColor = "#660002";
+		setTimeout(buttonFlash1, 500, 0);
+	}
+}
+
+function resetAppCurrent() {
+	var x = document.getElementById("resetAppCurrentButton").innerHTML;
+	if (x === "Are you sure?") {
+		wipeCurrentAppState();
+		document.getElementById('resetAppCurrentButton').innerHTML = "Please restart app!";
+		buttonFlash2(0);
+	}
+	else {
+		document.getElementById('resetAppCurrentButton').innerHTML = "Are you sure?";
+	}
+}
+
+function buttonFlash2(x) {
+	if (x == 0) {
+		document.getElementById('resetAppCurrentButton').style.backgroundColor = "#b30003";
+		setTimeout(buttonFlash2, 500, 69);
+	}
+	else {
+		document.getElementById('resetAppCurrentButton').style.backgroundColor = "#660002";
+		setTimeout(buttonFlash2, 500, 0);
+	}
+}
+
+function wipeCurrentAppState() {	
+	localStorage.removeItem("Slot0_Species");
+	localStorage.removeItem("Slot0_Inanimate_Object");
+	localStorage.removeItem("Slot0_Sex");
+	localStorage.removeItem("Slot0_Third_Sex");
+	localStorage.removeItem("Slot0_AC_Box_Ticked");
+	localStorage.removeItem("Slot0_Body_Type1");
+	localStorage.removeItem("Slot0_Body_Type2");
+	localStorage.removeItem("Slot0_Body_Type3");
+	localStorage.removeItem("Slot0_Hips");
+	localStorage.removeItem("Slot0_Genital_Size");
+	localStorage.removeItem("Slot0_Fluffiness");
+	localStorage.removeItem("Slot0_Libido");
+	localStorage.removeItem("Slot0_Position_Preference");
+	localStorage.removeItem("Slot0_Sensitivity");
+	localStorage.removeItem("Slot0_Demeanor");
+	localStorage.removeItem("Slot0_Breast_Size_Male");
+	localStorage.removeItem("Slot0_Breast_Size_Female");
+	localStorage.removeItem("Slot0_Butt_Size");
+	localStorage.removeItem("Slot0_Belly_Size");
+	localStorage.removeItem("Slot0_Belly_Shape");
+	localStorage.removeItem("Slot0_Intelligence");
+	localStorage.removeItem("Slot0_Cock_Type");
+	localStorage.removeItem("Slot0_Hair_Lenght");
+	localStorage.removeItem("Slot0_Feral_Anthro");
+	localStorage.removeItem("Slot0_Pregnancy_Lock_Box_Ticked");
+	localStorage.removeItem("Slot0_Fertility");
+	localStorage.removeItem("Slot0_Genitals_Menu_Penis_Box_Ticked");
+	localStorage.removeItem("Slot0_Genitals_Menu_Vagina_Box_Ticked");
+	
+	localStorage.removeItem("Slot0_Hair_Color");
+	localStorage.removeItem("Slot0_Swatch_Color");
+	
+	localStorage.removeItem("Butt_Size_Slider_Enabled");
+	localStorage.removeItem("Belly_Size_Slider_Enabled");
+	localStorage.removeItem("Belly_Shape_Slider_Enabled");
+	localStorage.removeItem("Hips_Slider_Enabled");
+	localStorage.removeItem("Genital_Size_Slider_Enabled");
+	localStorage.removeItem("Cock_Type_Menu_Enabled");
+	localStorage.removeItem("Libido_Slider_Enabled");
+	localStorage.removeItem("Sensitivity_Slider_Enabled");
+	localStorage.removeItem("Demeanor_Slider_Enabled");
+	localStorage.removeItem("Postion_Pref_Slider_Enabled");
+	localStorage.removeItem("Intelligence_Slider_Enabled");
+	localStorage.removeItem("Fluffiness_Slider_Enabled");
+	localStorage.removeItem("Hair_Lenght_Slider_Enabled");
+	localStorage.removeItem("Feral_Anthro_Slider_Enabled");
+	localStorage.removeItem("Hair_Color_Menu_Enabled");
+	localStorage.removeItem("Fertility_Slider_Enabled");
+	localStorage.removeItem("Genitals_Menu_Enabled");
+	localStorage.removeItem("Species_Menu_Enabled");
+	localStorage.removeItem("Sex_Menu_Enabled");
+	localStorage.removeItem("AC_Menu_Enabled");
+	localStorage.removeItem("MascFem_Slider_Enabled");
+	localStorage.removeItem("ThinThicc_Slider_Enabled");
+	localStorage.removeItem("SmolTall_Slider_Enabled");
+	localStorage.removeItem("Inanimate_Objects_Enabled");
+	
+	localStorage.removeItem("Slot0_Custom_Slider1_Value");
+	localStorage.removeItem("Slot0_Custom_Slider2_Value");
+	localStorage.removeItem("Slot0_Custom_Slider3_Value");
+	localStorage.removeItem("Slot0_Custom_Slider4_Value");
+	localStorage.removeItem("Slot0_Custom_Slider5_Value");
+	
+	localStorage.removeItem("Custom_Slider1_LeftText");
+	localStorage.removeItem("Custom_Slider1_CenterText");
+	localStorage.removeItem("Custom_Slider1_RightText");
+	
+	localStorage.removeItem("Custom_Slider2_LeftText");
+	localStorage.removeItem("Custom_Slider2_CenterText");
+	localStorage.removeItem("Custom_Slider2_RightText");
+	
+	localStorage.removeItem("Custom_Slider3_LeftText");
+	localStorage.removeItem("Custom_Slider3_CenterText");
+	localStorage.removeItem("Custom_Slider3_RightText");
+	
+	localStorage.removeItem("Custom_Slider4_LeftText");
+	localStorage.removeItem("Custom_Slider4_CenterText");
+	localStorage.removeItem("Custom_Slider4_RightText");
+	
+	localStorage.removeItem("Custom_Slider5_LeftText");
+	localStorage.removeItem("Custom_Slider5_CenterText");
+	localStorage.removeItem("Custom_Slider5_RightText");
+	
+	localStorage.removeItem("Custom_Slider1_Enabled");
+	localStorage.removeItem("Custom_Slider2_Enabled");
+	localStorage.removeItem("Custom_Slider3_Enabled");
+	localStorage.removeItem("Custom_Slider4_Enabled");
+	localStorage.removeItem("Custom_Slider5_Enabled");
+	
+	localStorage.removeItem("Slot0_Custom_Checkbox1_Label");
+	localStorage.removeItem("Slot0_Custom_Checkbox1_Value1");
+	localStorage.removeItem("Slot0_Custom_Checkbox1_Value2");
+	localStorage.removeItem("Slot0_Custom_Checkbox1_Value1_Ticked");
+	localStorage.removeItem("Slot0_Custom_Checkbox1_Value2_Ticked");
+	
+	localStorage.removeItem("Slot0_Custom_Checkbox2_Label");
+	localStorage.removeItem("Slot0_Custom_Checkbox2_Value1");
+	localStorage.removeItem("Slot0_Custom_Checkbox2_Value2");
+	localStorage.removeItem("Slot0_Custom_Checkbox2_Value1_Ticked");
+	localStorage.removeItem("Slot0_Custom_Checkbox2_Value2_Ticked");
+	
+	localStorage.removeItem("Slot0_Custom_Checkbox3_Label");
+	localStorage.removeItem("Slot0_Custom_Checkbox3_Value1");
+	localStorage.removeItem("Slot0_Custom_Checkbox3_Value2");
+	localStorage.removeItem("Slot0_Custom_Checkbox3_Value1_Ticked");
+	localStorage.removeItem("Slot0_Custom_Checkbox3_Value2_Ticked");
+	
+	localStorage.removeItem("Slot0_Custom_Checkbox1_Enabled");
+	localStorage.removeItem("Slot0_Custom_Checkbox2_Enabled");
+	localStorage.removeItem("Slot0_Custom_Checkbox3_Enabled");	
 }
