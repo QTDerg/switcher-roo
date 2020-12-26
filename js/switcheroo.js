@@ -547,7 +547,6 @@ function openLockStage3() {
 	mySlider18.enable();
 	mySlider19.enable();
 	mySlider20.enable();
-	mySlider21.enable();
 	mySlider22.enable();
 	mySlider23.enable();
 	document.getElementById("radiobuttonMale").disabled = false;
@@ -580,7 +579,6 @@ function closeLock() {
 	mySlider18.disable();
 	mySlider19.disable();
 	mySlider20.disable();
-	mySlider21.disable();
 	mySlider22.disable();
 	mySlider23.disable();
 	document.getElementById("radiobuttonMale").disabled = true;
@@ -2041,23 +2039,6 @@ var tickbox = document.getElementById("hairLenghtSliderCheckbox");
 		document.getElementById("hairLenghtSlider").style.paddingBottom= '0';
 	}
 	localStorage.setItem("Hair_Lenght_Slider_Enabled", tickbox);
-}
-
-function toggleSexualitySlider() {
-var tickbox = document.getElementById("sexualitySliderCheckbox");
-	if (tickbox.checked) {
-		var tickbox = "Yes"
-		document.getElementById("sexualitySlider").style.maxHeight= '60px';
-		document.getElementById("sexualitySlider").style.borderBottom= '3px solid #73728C';
-		document.getElementById("sexualitySlider").style.paddingBottom= '15px';
-	}
-	else {
-		var tickbox = "No"
-		document.getElementById("sexualitySlider").style.maxHeight= '0';
-		document.getElementById("sexualitySlider").style.borderBottom= '0';
-		document.getElementById("sexualitySlider").style.paddingBottom= '0';
-	}
-	localStorage.setItem("Sexuality_Slider_Enabled", tickbox);
 }
 
 function toggleFeralAnthroSlider() {

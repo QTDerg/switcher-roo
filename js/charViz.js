@@ -854,6 +854,7 @@ function setNaturalColorScheme(species, x) {
 	else if (species === "Coyote") 		{	primaryColor = "#FFDEAD";secondaryColor = "#FFF8DC";tertiaryColor = "#696969";markingsColor = "#800000"; eyeColor = "#A52A2A"; hairColor = "#A0522D";	}
 	else if (species === "Wolf") 		{	primaryColor = "#808080";secondaryColor = "#FFF0F5";tertiaryColor = "#778899";markingsColor = "#708090"; eyeColor = "#00BFFF"; hairColor = "#333333";	}
 	else if (species === "Husky") 		{	primaryColor = "#404040";secondaryColor = "#FFF0F5";tertiaryColor = "#A9A9A9";markingsColor = "#C0C0C0"; eyeColor = "#40E0D0"; hairColor = "#00CED1";	}
+	else { return; }
 
 	if (x == 0) {
 		document.getElementById("charVizDisplayBasePrimary").style.backgroundColor = primaryColor;
