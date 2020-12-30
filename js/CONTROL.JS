@@ -449,6 +449,30 @@ function synchronization() {
 			conn.send({firstParam: "setCharacterColor", secondParam: "Right Eye", thirdParam: rightEyeCharColor});
 			conn.send({firstParam: "setCharacterColor", secondParam: "Hair", thirdParam: hairCharColor});
 			
+			// Outfit colors
+			
+			var primaryTopwearColor = document.getElementById("charVizDisplayTopwearPrimary").style.backgroundColor;
+			var secondaryTopwearColor = document.getElementById("charVizDisplayTopwearSecondary").style.backgroundColor;
+			var primaryBottomwearColor = document.getElementById("charVizDisplayBottomwearPrimary").style.backgroundColor;
+			var secondaryBottomwearColor = document.getElementById("charVizDisplayBottomwearSecondary").style.backgroundColor;
+			var primaryArmearColor = document.getElementById("charVizDisplayArmwearPrimary").style.backgroundColor;
+			var secondaryArmwearColor = document.getElementById("charVizDisplayArmwearSecondary").style.backgroundColor;
+			var primaryLegwearColor = document.getElementById("charVizDisplayLegwearPrimary").style.backgroundColor;
+			var secondaryLegwearColor = document.getElementById("charVizDisplayLegwearSecondary").style.backgroundColor;
+			var primaryUnderwearColor = document.getElementById("charVizDisplayUnderwearPrimary").style.backgroundColor;
+			var secondaryUnderwearColor = document.getElementById("charVizDisplayUnderwearSecondary").style.backgroundColor;			
+			
+			conn.send({firstParam: "setOutfitColor", secondParam: "Topwear Primary", thirdParam: primaryTopwearColor});
+			conn.send({firstParam: "setOutfitColor", secondParam: "Topwear Secondary", thirdParam: secondaryTopwearColor});
+			conn.send({firstParam: "setOutfitColor", secondParam: "Bottomwear Primary", thirdParam: primaryBottomwearColor});
+			conn.send({firstParam: "setOutfitColor", secondParam: "Bottomwear Secondary", thirdParam: secondaryBottomwearColor});
+			conn.send({firstParam: "setOutfitColor", secondParam: "Armwear Primary", thirdParam: primaryArmearColor});
+			conn.send({firstParam: "setOutfitColor", secondParam: "Armwear Secondary", thirdParam: secondaryArmwearColor});
+			conn.send({firstParam: "setOutfitColor", secondParam: "Legwear Primary", thirdParam: primaryLegwearColor});
+			conn.send({firstParam: "setOutfitColor", secondParam: "Legwear Secondary", thirdParam: secondaryLegwearColor});
+			conn.send({firstParam: "setOutfitColor", secondParam: "Underwear Primary", thirdParam: primaryUnderwearColor});
+			conn.send({firstParam: "setOutfitColor", secondParam: "Underwear Secondary", thirdParam: secondaryUnderwearColor});
+			
 			// Blush
 			
 			var isBlushing = localStorage.getItem("CharViz_Character_Blushing");
@@ -489,7 +513,6 @@ function receiveData() {
 			else if (data.secondParam === "bellyShape")			{	mySlider15.setValue(data.thirdParam);localStorage.setItem("Slot0_Belly_Shape", data.thirdParam);			}
 			else if (data.secondParam === "intelligence")		{	mySlider16.setValue(data.thirdParam);localStorage.setItem("Slot0_Intelligence", data.thirdParam);			}
 			else if (data.secondParam === "hairLenght") 		{	mySlider20.setValue(data.thirdParam);localStorage.setItem("Slot0_Hair_Lenght", data.thirdParam);			}
-			else if (data.secondParam === "sexuality") 			{	mySlider21.setValue(data.thirdParam);localStorage.setItem("Slot0_Sexuality", data.thirdParam);				}
 			else if (data.secondParam === "feralAnthro") 		{	mySlider22.setValue(data.thirdParam);localStorage.setItem("Slot0_Feral_Anthro", data.thirdParam);			}
 			else if (data.secondParam === "fertility") 			{	mySlider23.setValue(data.thirdParam);localStorage.setItem("Slot0_Fertility", data.thirdParam);				}
 			else if (data.secondParam === "custom1") 			{	mySlider17.setValue(data.thirdParam);localStorage.setItem("Slot0_Custom_Slider1_Value", data.thirdParam);	}
@@ -615,7 +638,6 @@ function receiveData() {
 			else if (data.secondParam === "intelligence") 					{	localStorage.setItem("Intelligence_Slider_Enabled", data.thirdParam);	}
 			else if (data.secondParam === "fluffiness") 					{	localStorage.setItem("Fluffiness_Slider_Enabled", data.thirdParam);		}
 			else if (data.secondParam === "hairLenght") 					{	localStorage.setItem("Hair_Lenght_Slider_Enabled", data.thirdParam);	}
-			else if (data.secondParam === "sexuality") 						{	localStorage.setItem("Sexuality_Slider_Enabled", data.thirdParam);		}
 			else if (data.secondParam === "feralAnthro") 					{	localStorage.setItem("Feral_Anthro_Slider_Enabled", data.thirdParam);	}
 			else if (data.secondParam === "hairColor") 						{	localStorage.setItem("Hair_Color_Menu_Enabled", data.thirdParam);		}
 			else if (data.secondParam === "fertility") 						{	localStorage.setItem("Fertility_Slider_Enabled", data.thirdParam);		}
@@ -776,7 +798,56 @@ function receiveData() {
 			}
 		}
 		else if (data.firstParam === "setOutfitColor") {
-			return; // TODO
+			if (data.secondParam === "Topwear Primary") {
+				document.getElementById("charVizTopwearPrimaryColorSwatch").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayTopwearPrimary").style.backgroundColor = data.thirdParam;
+				localStorage.setItem("Slot0_Topwear_Primary_Clothing_Color", data.thirdParam);
+			}
+			else if (data.secondParam === "Topwear Secondary") {
+				document.getElementById("charVizTopwearSecondaryColorSwatch").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayTopwearSecondary").style.backgroundColor = data.thirdParam;
+				localStorage.setItem("Slot0_Topwear_Secondary_Clothing_Color", data.thirdParam);
+			}
+			else if (data.secondParam === "Bottomwear Primary") {
+				document.getElementById("charVizBottomwearPrimaryColorSwatch").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayBottomwearPrimary").style.backgroundColor = data.thirdParam;
+				localStorage.setItem("Slot0_Bottomwear_Primary_Clothing_Color", data.thirdParam);
+			}
+			else if (data.secondParam === "Bottomwear Secondary") {
+				document.getElementById("charVizBottomwearSecondaryColorSwatch").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayBottomwearSecondary").style.backgroundColor = data.thirdParam;
+				localStorage.setItem("Slot0_Bottomwear_Secondary_Clothing_Color", data.thirdParam);
+			}
+			else if (data.secondParam === "Armwear Primary") {
+				document.getElementById("charVizArmwearPrimaryColorSwatch").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayArmwearPrimary").style.backgroundColor = data.thirdParam;
+				localStorage.setItem("Slot0_Armwear_Primary_Clothing_Color", data.thirdParam);
+			}
+			else if (data.secondParam === "Armwear Secondary") {
+				document.getElementById("charVizArmwearSecondaryColorSwatch").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayArmwearSecondary").style.backgroundColor = data.thirdParam;
+				localStorage.setItem("Slot0_Armwear_Secondary_Clothing_Color", data.thirdParam);
+			}
+			else if (data.secondParam === "Legwear Primary") {
+				document.getElementById("charVizLegwearPrimaryColorSwatch").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayLegwearPrimary").style.backgroundColor = data.thirdParam;
+				localStorage.setItem("Slot0_Legwear_Primary_Clothing_Color", data.thirdParam);
+			}
+			else if (data.secondParam === "Legwear Secondary") {
+				document.getElementById("charVizLegwearSecondaryColorSwatch").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayLegwearSecondary").style.backgroundColor = data.thirdParam;
+				localStorage.setItem("Slot0_Legwear_Secondary_Clothing_Color", data.thirdParam);
+			}
+			else if (data.secondParam === "Underwear Primary") {
+				document.getElementById("charVizUnderwearPrimaryColorSwatch").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayUnderwearPrimary").style.backgroundColor = data.thirdParam;
+				localStorage.setItem("Slot0_Underwear_Primary_Clothing_Color", data.thirdParam);
+			}
+			else if (data.secondParam === "Underwear Secondary") {
+				document.getElementById("charVizUnderwearSecondaryColorSwatch").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayUnderwearSecondary").style.backgroundColor = data.thirdParam;
+				localStorage.setItem("Slot0_Underwear_Secondary_Clothing_Color", data.thirdParam);
+			}
 		}
 		else if (data.firstParam === "Character_Blushing") {
 			localStorage.setItem("CharViz_Character_Blushing", data.secondParam);

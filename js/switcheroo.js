@@ -5033,7 +5033,7 @@ function appStatusGoBack() {
 
 function appStatusShowImportOptions() {
 	document.getElementById("appStatusChoiceContainer").style.maxHeight='0px';
-	document.getElementById("appStatusImportOptionsContainer").style.maxHeight='140px';
+	document.getElementById("appStatusImportOptionsContainer").style.maxHeight='185px';
 }
 
 function appStatusGoBackFromImportOptions() {

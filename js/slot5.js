@@ -265,6 +265,80 @@
 	localStorage.setItem("Slot5_SmolTall_Slider_Enabled", smolTallSliderEnabled);		
 	localStorage.setItem("Slot5_Inanimate_Objects_Enabled", inanimateObjectsMenuEnabled);
 	
+	// CharViz Stuff
+	var charVizEnabled = localStorage.getItem("CharViz_Enabled");
+		if (charVizEnabled === "Yes") {
+
+			var topwear = localStorage.getItem("Slot0_CharViz_Topwear");
+			var bottomwear = localStorage.getItem("Slot0_CharViz_Bottomwear");
+			var armwear = localStorage.getItem("Slot0_CharViz_Armwear");
+			var legwear = localStorage.getItem("Slot0_CharViz_Legwear");	
+			var underwear = localStorage.getItem("Slot0_CharViz_Underwear");
+			var accessories = localStorage.getItem("Slot0_CharViz_Accessories");
+			
+			if (topwear == null) 		{	topwear = "None"; 		}
+			if (bottomwear == null) 	{	bottomwear = "None"; 	}
+			if (armwear == null) 		{	armwear = "None"; 		}
+			if (legwear == null) 		{	legwear = "None"; 		}
+			if (underwear == null) 		{	underwear = "None"; 	}
+			if (accessories == null) 	{	accessories = "None"; 	}
+			
+			localStorage.setItem("Slot5_CharViz_Topwear", topwear);
+			localStorage.setItem("Slot5_CharViz_Bottomwear", bottomwear);
+			localStorage.setItem("Slot5_CharViz_Armwear", armwear);
+			localStorage.setItem("Slot5_CharViz_Legwear", legwear);
+			localStorage.setItem("Slot5_CharViz_Underwear", underwear);
+			localStorage.setItem("Slot5_CharViz_Accessories", accessories);
+			
+			// Character colors
+			
+			var primaryCharColor = document.getElementById("charVizDisplayBasePrimary").style.backgroundColor;
+			var secondaryCharColor = document.getElementById("charVizDisplayBaseSecondary").style.backgroundColor;
+			var tertiaryCharColor = document.getElementById("charVizDisplayTailTertiary").style.backgroundColor;
+			var markingsCharColor = document.getElementById("charVizDisplayBaseMarkings").style.backgroundColor;
+			var leftEyeCharColor = document.getElementById("charVizDisplayHeadIrisLeft").style.backgroundColor;
+			var rightEyeCharColor = document.getElementById("charVizDisplayHeadIrisRight").style.backgroundColor;
+			var hairCharColor = document.getElementById("charVizDisplayHeadHair").style.backgroundColor;
+			
+			localStorage.setItem("Slot5_Primary_Character_Color", primaryCharColor);
+			localStorage.setItem("Slot5_Secondary_Character_Color", secondaryCharColor);
+			localStorage.setItem("Slot5_Tertiary_Character_Color", tertiaryCharColor);
+			localStorage.setItem("Slot5_Markings_Character_Color", markingsCharColor);
+			localStorage.setItem("Slot5_LeftEye_Character_Color", leftEyeCharColor);
+			localStorage.setItem("Slot5_RightEye_Character_Color", rightEyeCharColor);
+			localStorage.setItem("Slot5_Hair_Character_Color", hairCharColor);
+			
+			// Outfit colors
+			
+			var primaryTopwearColor = document.getElementById("charVizDisplayTopwearPrimary").style.backgroundColor;
+			var secondaryTopwearColor = document.getElementById("charVizDisplayTopwearSecondary").style.backgroundColor;
+			var primaryBottomwearColor = document.getElementById("charVizDisplayBottomwearPrimary").style.backgroundColor;
+			var secondaryBottomwearColor = document.getElementById("charVizDisplayBottomwearSecondary").style.backgroundColor;
+			var primaryArmearColor = document.getElementById("charVizDisplayArmwearPrimary").style.backgroundColor;
+			var secondaryArmwearColor = document.getElementById("charVizDisplayArmwearSecondary").style.backgroundColor;
+			var primaryLegwearColor = document.getElementById("charVizDisplayLegwearPrimary").style.backgroundColor;
+			var secondaryLegwearColor = document.getElementById("charVizDisplayLegwearSecondary").style.backgroundColor;
+			var primaryUnderwearColor = document.getElementById("charVizDisplayUnderwearPrimary").style.backgroundColor;
+			var secondaryUnderwearColor = document.getElementById("charVizDisplayUnderwearSecondary").style.backgroundColor;			
+			
+			localStorage.setItem("Slot5_Topwear_Primary_Clothing_Color", primaryTopwearColor);
+			localStorage.setItem("Slot5_Topwear_Secondary_Clothing_Color", secondaryTopwearColor);
+			localStorage.setItem("Slot5_Bottomwear_Primary_Clothing_Color", primaryTopwearColor);
+			localStorage.setItem("Slot5_Bottomwear_Secondary_Clothing_Color", secondaryTopwearColor);
+			localStorage.setItem("Slot5_Armwear_Primary_Clothing_Color", primaryTopwearColor);
+			localStorage.setItem("Slot5_Armwear_Secondary_Clothing_Color", secondaryTopwearColor);
+			localStorage.setItem("Slot5_Legwear_Primary_Clothing_Color", primaryTopwearColor);
+			localStorage.setItem("Slot5_Legwear_Secondary_Clothing_Color", secondaryTopwearColor);
+			localStorage.setItem("Slot5_Underwear_Primary_Clothing_Color", primaryTopwearColor);
+			localStorage.setItem("Slot5_Underwear_Secondary_Clothing_Color", secondaryTopwearColor);
+			
+			// Blush
+			
+			var isBlushing = localStorage.getItem("CharViz_Character_Blushing");
+			localStorage.setItem("Slot5_Character_Blushing", isBlushing);
+			
+		}
+	
 	var presetNameLocked = localStorage.getItem("Slot5_Preset_Name_Locked");	
 	if (presetNameLocked != "Yes") {
 		localStorage.setItem("Slot5_Preset_Name", settingSex + " " + settingSpecies);
@@ -596,7 +670,81 @@
 		localStorage.setItem("Slot0_Custom_Checkbox2_Enabled", CC2Enabled);
 		localStorage.setItem("Slot0_Custom_Checkbox3_Enabled", CC3Enabled);
 		
-		// Checkboxes end		
+		// CharViz Stuff
+		var charVizEnabled = localStorage.getItem("CharViz_Enabled");
+		if (charVizEnabled === "Yes") {
+			
+			var topwear = localStorage.getItem("Slot5_CharViz_Topwear");
+			var bottomwear = localStorage.getItem("Slot5_CharViz_Bottomwear");
+			var armwear = localStorage.getItem("Slot5_CharViz_Armwear");
+			var legwear = localStorage.getItem("Slot5_CharViz_Legwear");	
+			var underwear = localStorage.getItem("Slot5_CharViz_Underwear");
+			var accessories = localStorage.getItem("Slot5_CharViz_Accessories");
+			
+			if (topwear == null) 		{	topwear = "None"; 		}
+			if (bottomwear == null) 	{	bottomwear = "None"; 	}
+			if (armwear == null) 		{	armwear = "None"; 		}
+			if (legwear == null) 		{	legwear = "None"; 		}
+			if (underwear == null) 		{	underwear = "None"; 	}
+			if (accessories == null) 	{	accessories = "None"; 	}
+			
+			localStorage.setItem("Slot0_CharViz_Topwear", topwear);
+			localStorage.setItem("Slot0_CharViz_Bottomwear", bottomwear);
+			localStorage.setItem("Slot0_CharViz_Armwear", armwear);
+			localStorage.setItem("Slot0_CharViz_Legwear", legwear);
+			localStorage.setItem("Slot0_CharViz_Underwear", underwear);
+			localStorage.setItem("Slot0_CharViz_Accessories", accessories);
+			
+			// Character colors
+			
+			var primaryCharColor = localStorage.getItem("Slot5_Primary_Character_Color");
+			var secondaryCharColor = localStorage.getItem("Slot5_Secondary_Character_Color");
+			var tertiaryCharColor = localStorage.getItem("Slot5_Tertiary_Character_Color");
+			var markingsCharColor = localStorage.getItem("Slot5_Markings_Character_Color");
+			var leftEyeCharColor = localStorage.getItem("Slot5_LeftEye_Character_Color");
+			var rightEyeCharColor = localStorage.getItem("Slot5_RightEye_Character_Color");
+			var hairCharColor = localStorage.getItem("Slot5_Hair_Character_Color");
+			
+			localStorage.setItem("Slot0_Primary_Character_Color", primaryCharColor);
+			localStorage.setItem("Slot0_Secondary_Character_Color", secondaryCharColor);
+			localStorage.setItem("Slot0_Tertiary_Character_Color", tertiaryCharColor);
+			localStorage.setItem("Slot0_Markings_Character_Color", markingsCharColor);
+			localStorage.setItem("Slot0_LeftEye_Character_Color", leftEyeCharColor);
+			localStorage.setItem("Slot0_RightEye_Character_Color", rightEyeCharColor);
+			localStorage.setItem("Slot0_Hair_Character_Color", hairCharColor);
+			
+			// Outfit colors
+			
+			var primaryTopwearColor = localStorage.getItem("Slot5_Topwear_Primary_Clothing_Color");
+			var secondaryTopwearColor = localStorage.getItem("Slot5_Topwear_Secondary_Clothing_Color");
+			var primaryBottomwearColor = localStorage.getItem("Slot5_Bottomwear_Primary_Clothing_Color");
+			var secondaryBottomwearColor = localStorage.getItem("Slot5_Bottomwear_Secondary_Clothing_Color");
+			var primaryArmearColor = localStorage.getItem("Slot5_Armwear_Primary_Clothing_Color");
+			var secondaryArmwearColor = localStorage.getItem("Slot5_Armwear_Secondary_Clothing_Color");
+			var primaryLegwearColor = localStorage.getItem("Slot5_Legwear_Primary_Clothing_Color");
+			var secondaryLegwearColor = localStorage.getItem("Slot5_Legwear_Secondary_Clothing_Color");
+			var primaryUnderwearColor = localStorage.getItem("Slot5_Underwear_Primary_Clothing_Color");
+			var secondaryUnderwearColor = localStorage.getItem("Slot5_Underwear_Secondary_Clothing_Color");
+			
+			localStorage.setItem("Slot0_Topwear_Primary_Clothing_Color", primaryTopwearColor);
+			localStorage.setItem("Slot0_Topwear_Secondary_Clothing_Color", secondaryTopwearColor);
+			localStorage.setItem("Slot0_Bottomwear_Primary_Clothing_Color", primaryTopwearColor);
+			localStorage.setItem("Slot0_Bottomwear_Secondary_Clothing_Color", secondaryTopwearColor);
+			localStorage.setItem("Slot0_Armwear_Primary_Clothing_Color", primaryTopwearColor);
+			localStorage.setItem("Slot0_Armwear_Secondary_Clothing_Color", secondaryTopwearColor);
+			localStorage.setItem("Slot0_Legwear_Primary_Clothing_Color", primaryTopwearColor);
+			localStorage.setItem("Slot0_Legwear_Secondary_Clothing_Color", secondaryTopwearColor);
+			localStorage.setItem("Slot0_Underwear_Primary_Clothing_Color", primaryTopwearColor);
+			localStorage.setItem("Slot0_Underwear_Secondary_Clothing_Color", secondaryTopwearColor);
+			
+			// Blush
+			
+			var isBlushing = localStorage.getItem("Slot5_Character_Blushing");
+			localStorage.setItem("CharViz_Character_Blushing", isBlushing);
+			
+			initializeCharViz();
+			
+		}
 		
 		loadSliderSettings();
 		loadCustomSlidersValuesOnStartup1("Yes");

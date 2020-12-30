@@ -2053,11 +2053,7 @@ We hope you'll be back soon!
 			<div class = "mediumButton" onClick="charVizCopyClothingColor()">Copy</div>
 			<div class = "mediumButton" onClick="charVizPasteClothingColor()">Paste</div>		
 		</div>-->
-		
-		<div style="padding:10px;float:left">
-		Tip: If you want custom clothes colors to load, tick "When putting on a piece of clothing, don't set it's default colors" in CharViz Options. The drawback is that if you put on clothing of type you didn't customize colors before, it will be invisible until you set it's colors manually. I know it's a mess and I'm thinking of better solution.
-		</div>
-		
+				
 </div>
 
 <div class="menuAS" id="charVizOptionToggler" onclick="toggleCharVizMenus(3)">
@@ -2081,13 +2077,6 @@ We hope you'll be back soon!
 	<div class="mediumButton" onClick="charVizSetBGColor(3)">Dark</div>
 	</div>
 
-	<div style="height: 50px; margin-left:10px;">
-		<label class="container">When putting on a piece of clothing, don't set it's default colors
-			<input type="checkbox" id="clothColoringOnDefaultCheckbox" onclick="toggleClothColoringOnDefault()">
-			<span class="checkbox"></span>  
-		</label>
-	</div>
-	
 	<div style="height: 50px; margin-left:10px;">
 		<label class="container">Blush
 			<input type="checkbox" id="charVizBlushCheckbox" onclick="charVizToggleBlush()">
@@ -4116,6 +4105,7 @@ document.getElementById("creativeModeCustomDropdownToggle").style.display='none'
 		<div style="margin-top:5px"></div>
 		<div class="mediumButton" onClick="appStatusGoBackFromImportOptions()">Go back</div>
 		<div class="mediumButton" onClick="importAppStatus()">Import</div>
+		<div style="padding-left:18px;margin-top:5px;">Remember to save your current preset before importing!</div>
 				
 	</div>
 	<script>document.getElementById("appStatusImportOptionsContainer").style.maxHeight='0px';</script>
@@ -4550,7 +4540,7 @@ document.getElementById("goBack").style.marginTop='0px';
 	<div class="bigButtonAdminMode" onClick="resetAppCurrent()" id="resetAppCurrentButton">Reset App</div>
 	
 	<div style="padding-left:18px;margin-top:5px;">Reset app (including saved presets)</div>
-	<div class="bigButtonAdminMode" onClick="resetAppAll()" id="resetAppAllButton">Reset App</div>
+	<div class="bigButtonAdminMode" onClick="resetAppAll()" id="resetAppAllButton">Reset App (Full Wipe)</div>
 	</div>
 	
 	</div>

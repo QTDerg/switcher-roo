@@ -129,6 +129,50 @@ function exportAppStatus() {
 	var isCC2Enabled = localStorage.getItem("Slot0_Custom_Checkbox2_Enabled");
 	var isCC3Enabled = localStorage.getItem("Slot0_Custom_Checkbox3_Enabled");
 	
+	// CharViz stuff
+	// Clothes
+	
+	var topwear = localStorage.getItem("Slot0_CharViz_Topwear");
+	var bottomwear = localStorage.getItem("Slot0_CharViz_Bottomwear");
+	var armwear = localStorage.getItem("Slot0_CharViz_Armwear");
+	var legwear = localStorage.getItem("Slot0_CharViz_Legwear");	
+	var underwear = localStorage.getItem("Slot0_CharViz_Underwear");
+	var accessories = localStorage.getItem("Slot0_CharViz_Accessories");
+	
+	if (topwear == null) 		{	topwear = "None"; 		}
+	if (bottomwear == null) 	{	bottomwear = "None"; 	}
+	if (armwear == null) 		{	armwear = "None"; 		}
+	if (legwear == null) 		{	legwear = "None"; 		}
+	if (underwear == null) 		{	underwear = "None"; 	}
+	if (accessories == null) 	{	accessories = "None"; 	}
+
+	// Character colors
+		
+	var primaryCharColor = localStorage.getItem("Slot0_Primary_Character_Color");
+	var secondaryCharColor = localStorage.getItem("Slot0_Secondary_Character_Color");
+	var tertiaryCharColor = localStorage.getItem("Slot0_Tertiary_Character_Color");
+	var markingsCharColor = localStorage.getItem("Slot0_Markings_Character_Color");
+	var leftEyeCharColor = localStorage.getItem("Slot0_LeftEye_Character_Color");
+	var rightEyeCharColor = localStorage.getItem("Slot0_RightEye_Character_Color");
+	var hairCharColor = localStorage.getItem("Slot0_Hair_Character_Color");
+
+	// Outfit colors
+	
+	var primaryTopwearColor = localStorage.getItem("Slot0_Topwear_Primary_Clothing_Color");
+	var secondaryTopwearColor = localStorage.getItem("Slot0_Topwear_Secondary_Clothing_Color");
+	var primaryBottomwearColor = localStorage.getItem("Slot0_Bottomwear_Primary_Clothing_Color");
+	var secondaryBottomwearColor = localStorage.getItem("Slot0_Bottomwear_Secondary_Clothing_Color");
+	var primaryArmearColor = localStorage.getItem("Slot0_Armwear_Primary_Clothing_Color");
+	var secondaryArmwearColor = localStorage.getItem("Slot0_Armwear_Secondary_Clothing_Color");
+	var primaryLegwearColor = localStorage.getItem("Slot0_Legwear_Primary_Clothing_Color");
+	var secondaryLegwearColor = localStorage.getItem("Slot0_Legwear_Secondary_Clothing_Color");
+	var primaryUnderwearColor = localStorage.getItem("Slot0_Underwear_Primary_Clothing_Color");
+	var secondaryUnderwearColor = localStorage.getItem("Slot0_Underwear_Secondary_Clothing_Color");
+
+	// Blush
+			
+	var isBlushing = localStorage.getItem("Slot0_Character_Blushing");
+		
 	var obj = {
     bodyType1: bodyType1,
 	bodyType2: bodyType2,
@@ -227,7 +271,30 @@ function exportAppStatus() {
 	isCC1Enabled: isCC1Enabled,
 	isCC2Enabled: isCC2Enabled,
 	isCC3Enabled: isCC3Enabled,
-	
+	topwear: topwear,
+	bottomwear: bottomwear,
+	armwear: armwear,
+	legwear: legwear,
+	underwear: underwear,
+	accessories: accessories,
+	primaryCharColor: primaryCharColor,
+	secondaryCharColor: secondaryCharColor,
+	tertiaryCharColor: tertiaryCharColor,
+	markingsCharColor: markingsCharColor,
+	leftEyeCharColor: leftEyeCharColor,
+	rightEyeCharColor: rightEyeCharColor,
+	hairCharColor: hairCharColor,	
+	primaryTopwearColor: primaryTopwearColor,
+	secondaryTopwearColor: secondaryTopwearColor,
+	primaryBottomwearColor: primaryBottomwearColor,
+	secondaryBottomwearColor: secondaryBottomwearColor,
+	primaryArmearColor: primaryArmearColor,
+	secondaryArmwearColor: secondaryArmwearColor,
+	primaryLegwearColor: primaryLegwearColor,
+	secondaryLegwearColor: secondaryLegwearColor,
+	primaryUnderwearColor: primaryUnderwearColor,
+	secondaryUnderwearColor: secondaryUnderwearColor,
+	isBlushing: isBlushing,
 	};
 	
 	var json = JSON.stringify(obj);
@@ -370,6 +437,46 @@ function importAppStatus() {
 	localStorage.setItem("Slot0_Custom_Checkbox1_Enabled", obj.isCC1Enabled);
 	localStorage.setItem("Slot0_Custom_Checkbox2_Enabled", obj.isCC2Enabled);
 	localStorage.setItem("Slot0_Custom_Checkbox3_Enabled", obj.isCC3Enabled);
+	
+	var charVizEnabled = localStorage.getItem("CharViz_Enabled");
+	if (charVizEnabled === "Yes") {
+		
+		localStorage.setItem("Slot0_CharViz_Topwear", obj.topwear);
+		localStorage.setItem("Slot0_CharViz_Bottomwear", obj.bottomwear);
+		localStorage.setItem("Slot0_CharViz_Armwear", obj.armwear);
+		localStorage.setItem("Slot0_CharViz_Legwear", obj.legwear);
+		localStorage.setItem("Slot0_CharViz_Underwear", obj.underwear);
+		localStorage.setItem("Slot0_CharViz_Accessories", obj.accessories);
+		
+		// Character colors
+		
+		localStorage.setItem("Slot0_Primary_Character_Color", obj.primaryCharColor);
+		localStorage.setItem("Slot0_Secondary_Character_Color", obj.secondaryCharColor);
+		localStorage.setItem("Slot0_Tertiary_Character_Color", obj.tertiaryCharColor);
+		localStorage.setItem("Slot0_Markings_Character_Color", obj.markingsCharColor);
+		localStorage.setItem("Slot0_LeftEye_Character_Color", obj.leftEyeCharColor);
+		localStorage.setItem("Slot0_RightEye_Character_Color", obj.rightEyeCharColor);
+		localStorage.setItem("Slot0_Hair_Character_Color", obj.hairCharColor);
+		
+		// Outfit colors
+		
+		localStorage.setItem("Slot0_Topwear_Primary_Clothing_Color", obj.primaryTopwearColor);
+		localStorage.setItem("Slot0_Topwear_Secondary_Clothing_Color", obj.secondaryTopwearColor);
+		localStorage.setItem("Slot0_Bottomwear_Primary_Clothing_Color", obj.primaryTopwearColor);
+		localStorage.setItem("Slot0_Bottomwear_Secondary_Clothing_Color", obj.secondaryTopwearColor);
+		localStorage.setItem("Slot0_Armwear_Primary_Clothing_Color", obj.primaryTopwearColor);
+		localStorage.setItem("Slot0_Armwear_Secondary_Clothing_Color", obj.secondaryTopwearColor);
+		localStorage.setItem("Slot0_Legwear_Primary_Clothing_Color", obj.primaryTopwearColor);
+		localStorage.setItem("Slot0_Legwear_Secondary_Clothing_Color", obj.secondaryTopwearColor);
+		localStorage.setItem("Slot0_Underwear_Primary_Clothing_Color", obj.primaryTopwearColor);
+		localStorage.setItem("Slot0_Underwear_Secondary_Clothing_Color", obj.secondaryTopwearColor);
+		
+		// Blush
+		
+		localStorage.setItem("CharViz_Character_Blushing", obj.isBlushing);
+
+		initializeCharViz();
+	}
 	
 	document.getElementById("appStatusImportMessage").innerHTML = "Imported successfully!";
 	document.getElementById("appStatusImportMessage").style.color = "#29a329";
