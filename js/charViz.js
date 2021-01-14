@@ -50,7 +50,7 @@ function initializeCharViz() {
 	// Species
 	var species = localStorage.getItem("Slot0_Species");
 	// Currently only canine species are supported
-	if (species === 'African Wild Dog' || species === 'Arctic Fox' || species === 'Coyote' || species === 'Dog' || species === 'Ethiopian Wolf' || species === 'Fennec Fox' || species === 'Folf' || species === 'Fox' || species === 'Husky' || species === 'Maned Wolf' || species === 'Werewolf' || species === 'Wolf' || species === 'Wox' || species === 'Wusky') {
+	if (species === 'African Wild Dog' || species === 'Arctic Fox' || species === 'Coyote' || species === 'Dog' || species === 'Ethiopian Wolf' || species === 'Fennec Fox' || species === 'Folf' || species === 'Fox' || species === 'Husky' || species === 'Maned Wolf' || species === 'Werewolf' || species === 'Wolf' || species === 'Wox' || species === 'Wusky' || species === 'Sergal') {
 		document.getElementById("charVizDisplayMessage").style.display = 'none';
 		// Set base masks
 		document.getElementById("charVizDisplayBasePrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/primary.png")';
@@ -117,6 +117,20 @@ function initializeCharViz() {
 		
 		var blushing = localStorage.getItem("CharViz_Character_Blushing");
 		if (blushing === "Yes") {	document.getElementById("charVizDisplayHeadBlush").style.backgroundImage = 'url(./images/charViz/heads/canine/blush.png)'; }
+		
+		// Cheesehead
+		if (species === "Sergal") {
+			document.getElementById("charVizDisplayHeadBlush").style.backgroundImage = '';
+			document.getElementById("charVizDisplayHeadPrimary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayHeadSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayHeadTertiary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayHeadHair").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayHeadScleras").style.backgroundImage = '';
+			document.getElementById("charVizDisplayHeadIrisLeft").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayHeadIrisRight").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayHeadIrisShading").style.backgroundImage = '';
+			document.getElementById("charVizDisplayHeadLines").style.backgroundImage = 'url(./images/charViz/cheesehead.png)';
+		}
 	}
 	else {
 		flushCharViz();
