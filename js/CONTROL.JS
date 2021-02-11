@@ -4,6 +4,7 @@ var master;
 var controlsessionactive;
 var isHosting;
 var isConnected;
+var synchronizationComplete;
 
 function connectToServer() {
 	if (peer == null) {
@@ -97,6 +98,7 @@ function host() { // Sub
 		synchronizationSleep();
 		sendUsernameSleep();
 		connectionLostSubMessage();
+		setTimeout(clearChangelog, 1500);
 	});
 }
 
@@ -154,13 +156,14 @@ function synchronization() {
 		var bellyShape = mySlider15.getValue();
 		var intelligence = mySlider16.getValue();
 		var hairLenght = mySlider20.getValue();
-		var feralAnthro = mySlider22.getValue();
 		var fertility = mySlider23.getValue();
 		
 		// Custom slider values
 		var custom1 = mySlider17.getValue();
 		var custom2 = mySlider18.getValue();
 		var custom3 = mySlider19.getValue();
+		var custom4 = mySlider24.getValue();
+		var custom5 = mySlider25.getValue();
 		
 		conn.send({firstParam: "manipulateSlider", secondParam: "mascFem", thirdParam: bodyType1});
 		conn.send({firstParam: "manipulateSlider", secondParam: "thinThicc", thirdParam: bodyType2});
@@ -179,25 +182,23 @@ function synchronization() {
 		conn.send({firstParam: "manipulateSlider", secondParam: "bellyShape", thirdParam: bellyShape});
 		conn.send({firstParam: "manipulateSlider", secondParam: "intelligence", thirdParam: intelligence});
 		conn.send({firstParam: "manipulateSlider", secondParam: "hairLenght", thirdParam: hairLenght});
-		conn.send({firstParam: "manipulateSlider", secondParam: "feralAnthro", thirdParam: feralAnthro});
 		conn.send({firstParam: "manipulateSlider", secondParam: "fertility", thirdParam: fertility});
 		conn.send({firstParam: "manipulateSlider", secondParam: "custom1", thirdParam: custom1});
 		conn.send({firstParam: "manipulateSlider", secondParam: "custom2", thirdParam: custom2});
 		conn.send({firstParam: "manipulateSlider", secondParam: "custom3", thirdParam: custom3});
+		conn.send({firstParam: "manipulateSlider", secondParam: "custom4", thirdParam: custom4});
+		conn.send({firstParam: "manipulateSlider", secondParam: "custom5", thirdParam: custom5});
 		
 		// Options
 		var species = document.getElementById("speciesCurrent").innerHTML;
 		var inanimateObject = document.getElementById("inanimateObjectsCurrent").innerHTML;
 		var cockType = document.getElementById("cockTypeCurrent").innerHTML;
-		var hairColor = localStorage.getItem("Slot0_Hair_Color");
-		var swatchColor = localStorage.getItem("Slot0_Swatch_Color");
 		var sex = localStorage.getItem("Slot0_Sex");
 		var thirdSex = localStorage.getItem("Slot0_Third_Sex");
 		
 		conn.send({firstParam: "manipulateOption", secondParam: "Species", thirdParam: species});		
 		conn.send({firstParam: "manipulateOption", secondParam: "Inanimate_Object", thirdParam: inanimateObject});
 		conn.send({firstParam: "manipulateOption", secondParam: "Cock_Type", thirdParam: cockType});
-		conn.send({firstParam: "manipulateOption", secondParam: "Hair_Color", thirdParam: hairColor, fourthParam: swatchColor});
 		conn.send({firstParam: "manipulateOption", secondParam: "Sex", thirdParam: sex});
 		conn.send({firstParam: "manipulateOption", secondParam: "Third_Sex", thirdParam: thirdSex});
 		
@@ -253,8 +254,7 @@ function synchronization() {
 		else 				{	var tickbox = "No"	}
 		conn.send({firstParam: "manipulateCustomTickbox", secondParam: "Custom_Checkbox3_Value2", thirdParam: tickbox});
 		
-		// Custom checkboxes visibility
-		
+		// Custom checkboxes visibility		
 		var isCC1Enabled = localStorage.getItem("Slot0_Custom_Checkbox1_Enabled");
 		var isCC2Enabled = localStorage.getItem("Slot0_Custom_Checkbox2_Enabled");
 		var isCC3Enabled = localStorage.getItem("Slot0_Custom_Checkbox3_Enabled");
@@ -263,8 +263,7 @@ function synchronization() {
 		conn.send({firstParam: "customCheckboxEnabled", secondParam: "custom2", thirdParam: isCC2Enabled});
 		conn.send({firstParam: "customCheckboxEnabled", secondParam: "custom3", thirdParam: isCC3Enabled});
 		
-		// Custom checkboxes labels and value names
-		
+		// Custom checkboxes labels and value names		
 		var CC1label = localStorage.getItem("Slot0_Custom_Checkbox1_Label");
 		var CC1value1 = localStorage.getItem("Slot0_Custom_Checkbox1_Value1");
 		var CC1value2 = localStorage.getItem("Slot0_Custom_Checkbox1_Value2");
@@ -289,7 +288,7 @@ function synchronization() {
 		conn.send({firstParam: "changeCustomCheckbox", secondParam: "Custom3Value1", thirdParam: CC3value1});
 		conn.send({firstParam: "changeCustomCheckbox", secondParam: "Custom3Value2", thirdParam: CC3value2});
 
-		// Custom sliders names
+		// Custom sliders labels
 		var leftTextCustom1 = document.getElementById("textinmenuLeftCS1").innerText;
 		var centerTextCustom1 = document.getElementById("textinmenuCenterCS1").innerText;
 		var rightTextCustom1 = document.getElementById("textinmenuRightCS1").innerText;
@@ -331,7 +330,6 @@ function synchronization() {
 		conn.send({firstParam: "changeSliderName", secondParam: "Custom5Right", thirdParam: rightTextCustom5});
 		
 		// Options/sliders visibility
-
 		var buttSizeSliderEnabled = localStorage.getItem("Butt_Size_Slider_Enabled");
 		var bellySizeSliderEnabled = localStorage.getItem("Belly_Size_Slider_Enabled");
 		var bellyShapeSliderEnabled = localStorage.getItem("Belly_Shape_Slider_Enabled");
@@ -346,8 +344,6 @@ function synchronization() {
 		var fluffinessSliderEnabled = localStorage.getItem("Fluffiness_Slider_Enabled");
 		var hairLenghtSliderEnabled = localStorage.getItem("Hair_Lenght_Slider_Enabled");
 		var sexualitySliderEnabled = localStorage.getItem("Sexuality_Slider_Enabled");
-		var feralAnthroSliderEnabled = localStorage.getItem("Feral_Anthro_Slider_Enabled");
-		var hairColorMenuEnabled = localStorage.getItem("Hair_Color_Menu_Enabled");
 		var fertilitySliderEnabled = localStorage.getItem("Fertility_Slider_Enabled");
 		var genitalsMenuEnabled = localStorage.getItem("Genitals_Menu_Enabled");
 		var speciesMenuEnabled = localStorage.getItem("Species_Menu_Enabled");
@@ -377,8 +373,6 @@ function synchronization() {
 		conn.send({firstParam: "optionEnabled", secondParam: "fluffiness", thirdParam: fluffinessSliderEnabled});
 		conn.send({firstParam: "optionEnabled", secondParam: "hairLenght", thirdParam: hairLenghtSliderEnabled});
 		conn.send({firstParam: "optionEnabled", secondParam: "sexuality", thirdParam: sexualitySliderEnabled});
-		conn.send({firstParam: "optionEnabled", secondParam: "feralAnthro", thirdParam: feralAnthroSliderEnabled});
-		conn.send({firstParam: "optionEnabled", secondParam: "hairColor", thirdParam: hairColorMenuEnabled});
 		conn.send({firstParam: "optionEnabled", secondParam: "fertility", thirdParam: fertilitySliderEnabled});
 		conn.send({firstParam: "optionEnabled", secondParam: "genitalsMenu", thirdParam: genitalsMenuEnabled});
 		conn.send({firstParam: "optionEnabled", secondParam: "speciesMenu", thirdParam: speciesMenuEnabled});
@@ -397,19 +391,37 @@ function synchronization() {
 		
 		conn.send({firstParam: "customCheckboxEnabled", secondParam: "fireLoadCustomCheckboxesOnStartupFunction"});
 		
-		// Admin mode status sync
-		
+		// Admin mode status sync		
 		var isAdminModeOn = localStorage.getItem("Admin_mode_on");
 		conn.send({firstParam: "Admin_Mode_Status", secondParam: isAdminModeOn});
 		
-		// CharViz sync
-		
+		// CharViz sync		
 		var charVizEnabled = localStorage.getItem("CharViz_Enabled");
 		if (charVizEnabled === "Yes") {
 			
-			conn.send({firstParam: "initializeCharviz"});
-			// Clothing
-		
+			// Character parts
+			var body = localStorage.getItem("Slot0_CharViz_Body");
+			var head = localStorage.getItem("Slot0_CharViz_Head");
+			var tail = localStorage.getItem("Slot0_CharViz_Tail");
+			var wings = localStorage.getItem("Slot0_CharViz_Wings");
+			var pupils = localStorage.getItem("Slot0_CharViz_Pupils");
+			
+			conn.send({firstParam: "changeCharacterPart", secondParam: "Body", thirdParam: body});
+			conn.send({firstParam: "changeCharacterPart", secondParam: "Head", thirdParam: head});
+			conn.send({firstParam: "changeCharacterPart", secondParam: "Tail", thirdParam: tail});
+			conn.send({firstParam: "changeCharacterPart", secondParam: "Wings", thirdParam: wings});
+			conn.send({firstParam: "changeCharacterPart", secondParam: "Pupils", thirdParam: pupils});
+			
+			// Character patterns
+			var secondary = localStorage.getItem("Slot0_CharViz_Secondary");
+			var tertiary = localStorage.getItem("Slot0_CharViz_Tertiary");
+			var markings = localStorage.getItem("Slot0_CharViz_Markings");
+			
+			conn.send({firstParam: "changeCharacterPattern", secondParam: "Secondary", thirdParam: secondary});
+			conn.send({firstParam: "changeCharacterPattern", secondParam: "Tertiary", thirdParam: tertiary});
+			conn.send({firstParam: "changeCharacterPattern", secondParam: "Markings", thirdParam: markings});
+			
+			// Clothing		
 			var topwear = localStorage.getItem("Slot0_CharViz_Topwear");
 			var bottomwear = localStorage.getItem("Slot0_CharViz_Bottomwear");
 			var armwear = localStorage.getItem("Slot0_CharViz_Armwear");
@@ -431,15 +443,16 @@ function synchronization() {
 			conn.send({firstParam: "putClothingOn", secondParam: "Underwear", thirdParam: underwear});
 			conn.send({firstParam: "putClothingOn", secondParam: "Accessories", thirdParam: accessories});
 			
-			// Character colors
-			
+			// Character colors			
 			var primaryCharColor = document.getElementById("charVizDisplayBasePrimary").style.backgroundColor;
 			var secondaryCharColor = document.getElementById("charVizDisplayBaseSecondary").style.backgroundColor;
 			var tertiaryCharColor = document.getElementById("charVizDisplayTailTertiary").style.backgroundColor;
 			var markingsCharColor = document.getElementById("charVizDisplayBaseMarkings").style.backgroundColor;
 			var leftEyeCharColor = document.getElementById("charVizDisplayHeadIrisLeft").style.backgroundColor;
 			var rightEyeCharColor = document.getElementById("charVizDisplayHeadIrisRight").style.backgroundColor;
-			var hairCharColor = document.getElementById("charVizDisplayHeadHair").style.backgroundColor;
+			var hairCharColor = document.getElementById("charVizDisplayHeadHairPrimary").style.backgroundColor;
+			var leftScleraCharColor = document.getElementById("charVizDisplayHeadScleraLeft").style.backgroundColor;
+			var rightScleraCharColor = document.getElementById("charVizDisplayHeadScleraRight").style.backgroundColor;
 			
 			conn.send({firstParam: "setCharacterColor", secondParam: "Primary", thirdParam: primaryCharColor});
 			conn.send({firstParam: "setCharacterColor", secondParam: "Secondary", thirdParam: secondaryCharColor});
@@ -448,9 +461,10 @@ function synchronization() {
 			conn.send({firstParam: "setCharacterColor", secondParam: "Left Eye", thirdParam: leftEyeCharColor});
 			conn.send({firstParam: "setCharacterColor", secondParam: "Right Eye", thirdParam: rightEyeCharColor});
 			conn.send({firstParam: "setCharacterColor", secondParam: "Hair", thirdParam: hairCharColor});
+			conn.send({firstParam: "setCharacterColor", secondParam: "Left Sclera", thirdParam: leftScleraCharColor});
+			conn.send({firstParam: "setCharacterColor", secondParam: "Right Sclera", thirdParam: rightScleraCharColor});
 			
-			// Outfit colors
-			
+			// Outfit colors			
 			var primaryTopwearColor = document.getElementById("charVizDisplayTopwearPrimary").style.backgroundColor;
 			var secondaryTopwearColor = document.getElementById("charVizDisplayTopwearSecondary").style.backgroundColor;
 			var primaryBottomwearColor = document.getElementById("charVizDisplayBottomwearPrimary").style.backgroundColor;
@@ -472,33 +486,31 @@ function synchronization() {
 			conn.send({firstParam: "setOutfitColor", secondParam: "Legwear Secondary", thirdParam: secondaryLegwearColor});
 			conn.send({firstParam: "setOutfitColor", secondParam: "Underwear Primary", thirdParam: primaryUnderwearColor});
 			conn.send({firstParam: "setOutfitColor", secondParam: "Underwear Secondary", thirdParam: secondaryUnderwearColor});
-			
-			// Blush
-			
-			var isBlushing = localStorage.getItem("CharViz_Character_Blushing");
-			conn.send({firstParam: "Character_Blushing", secondParam: isBlushing});
-			
-			// Breast Size body morph
-			
+						
+			// Breast Size body morph			
 			if (sex == "Male" || sex == "Femboy") {
 				conn.send({firstParam: "manipulateSlider", secondParam: "breastSizeMale", thirdParam: breastSizeMale});
 			}
 			else {
 				conn.send({firstParam: "manipulateSlider", secondParam: "breastSizeFemale", thirdParam: breastSizeFemale});
 			}
+			
+			conn.send({firstParam: "initializeCharviz"});
 		}
-		
+		conn.send({firstParam: "Synchronization_Complete"});
 	}
 
 function receiveData() {	
 	conn.on('data', function(data) {
+		if (master != "true") { CONTROLchangelog(data) }
 		if (data.firstParam === "manipulateSlider") {
 			if (data.secondParam === "mascFem") 				{	mySlider6.setValue(data.thirdParam);localStorage.setItem("Slot0_Body_Type1", data.thirdParam);				}
-			else if (data.secondParam === "thinThicc") 			{	mySlider5.setValue(data.thirdParam);localStorage.setItem("Slot0_Body_Type2", data.thirdParam);				}
+			else if (data.secondParam === "thinThicc") 			{	mySlider5.setValue(data.thirdParam);localStorage.setItem("Slot0_Body_Type2", data.thirdParam);				
+																	var x = localStorage.getItem("CharViz_Enabled");if (x === "Yes"){setThinThiccBodyMorph(data.thirdParam);  }	}
 			else if (data.secondParam === "smolTall") 			{	mySlider4.setValue(data.thirdParam);localStorage.setItem("Slot0_Body_Type3", data.thirdParam);				}
-			else if (data.secondParam === "hips") 				{	mySlider3.setValue(data.thirdParam);localStorage.setItem("Slot0_Hips", data.thirdParam);					
-																	var x = localStorage.getItem("CharViz_Enabled");if (x === "Yes"){setHipsSizeBodyMorph(data.thirdParam);   }	}	
-			else if (data.secondParam === "genitalSize") 		{	mySlider2.setValue(data.thirdParam);localStorage.setItem("Slot0_Genital_Size", data.thirdParam);			}
+			else if (data.secondParam === "hips") 				{	mySlider3.setValue(data.thirdParam);localStorage.setItem("Slot0_Hips", data.thirdParam);					}	
+			else if (data.secondParam === "genitalSize") 		{	mySlider2.setValue(data.thirdParam);localStorage.setItem("Slot0_Genital_Size", data.thirdParam);
+																	var x = localStorage.getItem("CharViz_Enabled");if (x === "Yes"){setGenitalSize(data.thirdParam); }			}
 			else if (data.secondParam === "fluffiness")			{	mySlider.setValue(data.thirdParam);localStorage.setItem("Slot0_Fluffiness", data.thirdParam);				}
 			else if (data.secondParam === "libido") 			{	mySlider7.setValue(data.thirdParam);localStorage.setItem("Slot0_Libido", data.thirdParam);					}
 			else if (data.secondParam === "domsub") 			{	mySlider10.setValue(data.thirdParam);localStorage.setItem("Slot0_Position_Preference", data.thirdParam);	}
@@ -512,8 +524,8 @@ function receiveData() {
 			else if (data.secondParam === "bellySize") 			{	mySlider14.setValue(data.thirdParam);localStorage.setItem("Slot0_Belly_Size", data.thirdParam);				}
 			else if (data.secondParam === "bellyShape")			{	mySlider15.setValue(data.thirdParam);localStorage.setItem("Slot0_Belly_Shape", data.thirdParam);			}
 			else if (data.secondParam === "intelligence")		{	mySlider16.setValue(data.thirdParam);localStorage.setItem("Slot0_Intelligence", data.thirdParam);			}
-			else if (data.secondParam === "hairLenght") 		{	mySlider20.setValue(data.thirdParam);localStorage.setItem("Slot0_Hair_Lenght", data.thirdParam);			}
-			else if (data.secondParam === "feralAnthro") 		{	mySlider22.setValue(data.thirdParam);localStorage.setItem("Slot0_Feral_Anthro", data.thirdParam);			}
+			else if (data.secondParam === "hairLenght") 		{	mySlider20.setValue(data.thirdParam);localStorage.setItem("Slot0_Hair_Lenght", data.thirdParam);			
+																	var x = localStorage.getItem("CharViz_Enabled");if (x === "Yes"){setHairLenght(data.thirdParam); }			}
 			else if (data.secondParam === "fertility") 			{	mySlider23.setValue(data.thirdParam);localStorage.setItem("Slot0_Fertility", data.thirdParam);				}
 			else if (data.secondParam === "custom1") 			{	mySlider17.setValue(data.thirdParam);localStorage.setItem("Slot0_Custom_Slider1_Value", data.thirdParam);	}
 			else if (data.secondParam === "custom2") 			{	mySlider18.setValue(data.thirdParam);localStorage.setItem("Slot0_Custom_Slider2_Value", data.thirdParam);	}
@@ -525,9 +537,8 @@ function receiveData() {
 			if (data.secondParam === "Species") 				{	document.getElementById('speciesCurrent').innerHTML = data.thirdParam;localStorage.setItem("Slot0_Species", data.thirdParam);					}
 			else if (data.secondParam === "Inanimate_Object")	{	document.getElementById('inanimateObjectsCurrent').innerHTML = data.thirdParam;localStorage.setItem("Slot0_Inanimate_Object", data.thirdParam);	}
 			else if (data.secondParam === "Cock_Type")			{	document.getElementById('cockTypeCurrent').innerHTML = data.thirdParam;localStorage.setItem("Slot0_Cock_Type", data.thirdParam); 				}
-			else if (data.secondParam === "Hair_Color") 		{	document.getElementById('hairColorCurrent').innerHTML = data.thirdParam;localStorage.setItem("Slot0_Hair_Color", data.thirdParam);
-																	document.getElementById('hairColorSwatch').style.backgroundColor = data.fourthParam;localStorage.setItem("Slot0_Swatch_Color", data.fourthParam);	}
 			else if (data.secondParam === "Sex") 				{
+				var uwu;
 				if (data.thirdParam === "Male") 				{	
 					document.getElementById("radiobuttonMale").checked = true;
 					localStorage.setItem("Slot0_Sex", data.thirdParam);
@@ -539,6 +550,7 @@ function receiveData() {
 					document.getElementById("showAdvancedSettings4b").style.paddingBottom= '0';
 					showOrHideBreastSizeMaleSlider();
 					showOrHideGenitalSizeFemaleSlider();
+					uwu = mySlider9.getValue();
 				}		
 				else if (data.thirdParam === "Female") 			{	
 					document.getElementById("radiobuttonFemale").checked = true;
@@ -550,6 +562,7 @@ function receiveData() {
 					document.getElementById("showAdvancedSettings4b").style.borderBottom= '3px solid #73728C';
 					document.getElementById("showAdvancedSettings4b").style.paddingBottom= '15px';
 					showOrHideGenitalSizeFemaleSlider();
+					uwu = mySlider8.getValue();
 				}				
 				else if (data.thirdParam === "Other") 			{	
 					document.getElementById("radiobuttonOther").checked = true;
@@ -562,8 +575,10 @@ function receiveData() {
 					document.getElementById("showAdvancedSettings4b").style.paddingBottom= '15px';
 					document.getElementById("genitalSizeSlider").style.maxHeight= '60px';
 					document.getElementById("genitalSizeSlider").style.borderBottom= '3px solid #73728C';
-					document.getElementById("genitalSizeSlider").style.paddingBottom= '15px';																						
+					document.getElementById("genitalSizeSlider").style.paddingBottom= '15px';
+					uwu = mySlider8.getValue();
 				}
+				setBreastSizeBodyMorph(uwu);
 			}
 			else if (data.secondParam === "Third_Sex") 			{
 				if (data.thirdParam != null) 					{	document.getElementById('thirdSexValue').innerHTML = data.thirdParam;
@@ -745,25 +760,33 @@ function receiveData() {
 			}
 		}
 		// CharViz related stuff
+		else if (data.firstParam === "changeCharacterPart") {
+			saveCharacterPart(data.secondParam, data.thirdParam);
+		}
+		else if (data.firstParam === "changeCharacterPattern") {
+			saveCharacterPattern(data.secondParam, data.thirdParam);
+		}
 		else if (data.firstParam === "putClothingOn") {
 			charVizPutClothingOn(data.secondParam, data.thirdParam);
 		}
 		else if (data.firstParam === "setCharacterColor") {
 			if (data.secondParam === "Primary") {
 				document.getElementById("charVizDisplayBasePrimary").style.backgroundColor = data.thirdParam;
-				document.getElementById("charVizDisplayBreastSizePrimary").style.backgroundColor = data.thirdParam;
-				document.getElementById("charVizDisplayHipsSizePrimary").style.backgroundColor = data.thirdParam;
 				document.getElementById("charVizDisplayTailPrimary").style.backgroundColor = data.thirdParam;
 				document.getElementById("charVizDisplayHeadPrimary").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayBreastSizePrimary").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayWingsPrimary").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayInanimateTFprimary").style.backgroundColor = data.thirdParam;
 				document.getElementById("charVizPrimaryCharacterColorSwatch").style.backgroundColor = data.thirdParam;
 				localStorage.setItem("Slot0_Primary_Character_Color", data.thirdParam);
 			}
 			else if (data.secondParam === "Secondary") {
 				document.getElementById("charVizDisplayBaseSecondary").style.backgroundColor = data.thirdParam;
 				document.getElementById("charVizDisplayBreastSizeSecondary").style.backgroundColor = data.thirdParam;
-				document.getElementById("charVizDisplayHipsSizeSecondary").style.backgroundColor = data.thirdParam;
 				document.getElementById("charVizDisplayTailSecondary").style.backgroundColor = data.thirdParam;
 				document.getElementById("charVizDisplayHeadSecondary").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayGenitalsSecondary").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayInanimateTFsecondary").style.backgroundColor = data.thirdParam;
 				document.getElementById("charVizSecondaryCharacterColorSwatch").style.backgroundColor = data.thirdParam;
 				localStorage.setItem("Slot0_Secondary_Character_Color", data.thirdParam);
 			}
@@ -777,7 +800,8 @@ function receiveData() {
 			else if (data.secondParam === "Markings") {
 				document.getElementById("charVizDisplayBaseMarkings").style.backgroundColor = data.thirdParam;	
 				document.getElementById("charVizDisplayBreastSizeMarkings").style.backgroundColor = data.thirdParam;
-				document.getElementById("charVizDisplayHipsSizeMarkings").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayWingsMarkings").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayGenitalsMarkings").style.backgroundColor = data.thirdParam;
 				document.getElementById("charVizMarkingsCharacterColorSwatch").style.backgroundColor = data.thirdParam;
 				localStorage.setItem("Slot0_Markings_Character_Color", data.thirdParam);
 			}
@@ -793,19 +817,32 @@ function receiveData() {
 			}
 			else if (data.secondParam === "Hair") {
 				document.getElementById("charVizHairCharacterColorSwatch").style.backgroundColor = data.thirdParam;
-				document.getElementById("charVizDisplayHeadHair").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayHeadHairPrimary").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayHairBackPrimary").style.backgroundColor = data.thirdParam;
 				localStorage.setItem("Slot0_Hair_Character_Color", data.thirdParam);
+			}
+			else if (data.secondParam === "Left Sclera") {
+				document.getElementById("charVizLeftScleraCharacterColorSwatch").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayHeadScleraLeft").style.backgroundColor = data.thirdParam;
+				localStorage.setItem("Slot0_LeftSclera_Character_Color", data.thirdParam);
+			}
+			else if (data.secondParam === "Right Sclera") {
+				document.getElementById("charVizRightScleraCharacterColorSwatch").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayHeadScleraRight").style.backgroundColor = data.thirdParam;
+				localStorage.setItem("Slot0_RightSclera_Character_Color", data.thirdParam);
 			}
 		}
 		else if (data.firstParam === "setOutfitColor") {
 			if (data.secondParam === "Topwear Primary") {
 				document.getElementById("charVizTopwearPrimaryColorSwatch").style.backgroundColor = data.thirdParam;
 				document.getElementById("charVizDisplayTopwearPrimary").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayTopwearBreastSizePrimary").style.backgroundColor = data.thirdParam;
 				localStorage.setItem("Slot0_Topwear_Primary_Clothing_Color", data.thirdParam);
 			}
 			else if (data.secondParam === "Topwear Secondary") {
 				document.getElementById("charVizTopwearSecondaryColorSwatch").style.backgroundColor = data.thirdParam;
 				document.getElementById("charVizDisplayTopwearSecondary").style.backgroundColor = data.thirdParam;
+				document.getElementById("charVizDisplayTopwearBreastSizeSecondary").style.backgroundColor = data.thirdParam;
 				localStorage.setItem("Slot0_Topwear_Secondary_Clothing_Color", data.thirdParam);
 			}
 			else if (data.secondParam === "Bottomwear Primary") {
@@ -849,17 +886,17 @@ function receiveData() {
 				localStorage.setItem("Slot0_Underwear_Secondary_Clothing_Color", data.thirdParam);
 			}
 		}
-		else if (data.firstParam === "Character_Blushing") {
-			localStorage.setItem("CharViz_Character_Blushing", data.secondParam);
-			if (data.secondParam === "Yes") {	document.getElementById("charVizDisplayHeadBlush").style.backgroundImage = 'url(./images/charViz/heads/canine/blush.png)'; }
-			else {								document.getElementById("charVizDisplayHeadBlush").style.backgroundImage = '';												}
-		}
-		else if (data.firstParam === "putAccessoryOn") {
-			if (data.secondParam === "Folder") {	document.getElementById("charVizDisplayAccessoriesSlot2").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/accessories/folder.png")'; 		}
-			else if (data.secondParam === "Choker") {	document.getElementById("charVizDisplayAccessoriesSlot3").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/accessories/choker.png")';	}
-		}
 		else if (data.firstParam === "initializeCharviz") {
 			initializeCharViz();
+		}
+		else if (data.firstParam === "loadCharacterParts") {
+			loadCharacterParts();
+		}
+		else if (data.firstParam === "loadCharacterPatterns") {
+			loadCharacterPatterns();
+		}
+		else if (data.firstParam === "loadCharacterGenitals") {
+			loadCharacterGenitals();
 		}
 		// CharViz related stuff end
 		else if (data.firstParam === "Username") {
@@ -898,9 +935,41 @@ function receiveData() {
 				document.getElementById('defaultcss').href='css/dhtmlxslider.css';
 				localStorage.setItem("Admin_mode_on", "No");				
 			}
-		}	
+		}
+		else if (data.firstParam === "Synchronization_Complete") {
+			synchronizationComplete = "Yes";
+		}			
 	});
 }
+
+function CONTROLchangelog(data) {
+	var logEntry;
+	if (data.firstParam === "manipulateSlider") 			{	logEntry = data.secondParam + " slider set to " + data.thirdParam			}
+	else if (data.firstParam === "manipulateOption") 		{	logEntry = "Changed " + data.secondParam + " to " + data.thirdParam			}
+	else if (data.firstParam === "manipulateTickbox") 		{	logEntry = data.secondParam + " checkbox ticked: " + data.thirdParam		}
+	else if (data.firstParam === "manipulateCustomTickbox") {	logEntry = data.secondParam + " ticked: " + data.thirdParam					}
+	else if (data.firstParam === "optionEnabled") {				if 		(data.secondParam === "fireLoadSliderSettingsFunction") { return; }
+																else {	logEntry = data.secondParam + " slider/option enabled: " + data.thirdParam 	}}
+	else if (data.firstParam === "customCheckboxEnabled") {		if 		(data.secondParam === "fireLoadCustomCheckboxesOnStartupFunction") { return; }
+																else {	logEntry = data.secondParam + " checkbox enabled: " + data.thirdParam 		}}
+	else if (data.firstParam === "changeCustomCheckbox") 	{	logEntry = data.secondParam + " (checkbox): " + data.thirdParam				}
+	else if (data.firstParam === "changeSliderName") 		{	logEntry = data.secondParam + " slider label: " + data.thirdParam			}
+	//else if (data.firstParam === "putClothingOn") 			{	if		(data.secondaParam === "None") { return; }
+	//															else {	logEntry = "Clothing: " + data.secondParam + " " + data.thirdParam	} }
+	else if (data.firstParam === "setCharacterColor") 		{	logEntry = data.secondParam + " character color set to " + data.thirdParam	}
+	else if (data.firstParam === "setOutfitColor") 			{	logEntry = data.secondParam + " clothing color set to " + data.thirdParam	}
+	else if (data.firstParam === "Unlock_Settings") 		{	logEntry = "Settings unlocked"												}
+	else if (data.firstParam === "Lock_Settings") 			{	logEntry = "Settings locked"												}
+	else if (data.firstParam === "Toggle_Admin_Mode") 		{	logEntry = "Toggled Admin Mode"												}
+	else if (data.firstParam === "Change_Lock_Password") 	{	logEntry = "Changed lock password"											}
+	else if (data.firstParam === "toggleAdvSettings") 		{	logEntry = "Toggled Advanced Settings"										}
+		
+	if (logEntry == null) { return; }
+	var logHistory = document.getElementById("CONTROLchangelog").innerHTML;
+	document.getElementById("CONTROLchangelog").innerHTML = logEntry + "<br>" + logHistory;
+}
+
+function clearChangelog() {	document.getElementById("CONTROLchangelog").innerHTML = "&nbsp;" }
 
 function attachEvents() {
 	if (master === "true") {
@@ -933,7 +1002,7 @@ function sliderHandleAnimation() {
 function showCONTROLmenus() {
 	if (master === "false") {
 		document.getElementById("CONTROLreceiveContainer").style.maxHeight='0px';
-		document.getElementById("CONTROLsubContainer").style.maxHeight='200px';
+		document.getElementById("CONTROLsubContainer").style.maxHeight='210px';
 	}
 	else {
 		document.getElementById("CONTROLconnectContainer").style.maxHeight='0px';
@@ -1011,10 +1080,6 @@ function attachEventsToSliders() {
    	var value = mySlider20.getValue();
 	conn.send({firstParam: "manipulateSlider", secondParam:"hairLenght", thirdParam: value});
 });
-	mySlider22.attachEvent("onSlideEnd", function() { // Feral/Anthro slider
-   	var value = mySlider22.getValue();
-	conn.send({firstParam: "manipulateSlider", secondParam:"feralAnthro", thirdParam: value});
-});
 	mySlider23.attachEvent("onSlideEnd", function() { // Fertility slider
    	var value = mySlider23.getValue();
 	conn.send({firstParam: "manipulateSlider", secondParam:"fertility", thirdParam: value});
@@ -1031,27 +1096,18 @@ function attachEventsToSliders() {
    	var value = mySlider19.getValue();
 	conn.send({firstParam: "manipulateSlider", secondParam:"custom3", thirdParam: value});
 });
+	mySlider24.attachEvent("onSlideEnd", function() { // Custom 4 slider
+   	var value = mySlider24.getValue();
+	conn.send({firstParam: "manipulateSlider", secondParam:"custom4", thirdParam: value});
+});
+	mySlider25.attachEvent("onSlideEnd", function() { // Custom 5 slider
+   	var value = mySlider25.getValue();
+	conn.send({firstParam: "manipulateSlider", secondParam:"custom5", thirdParam: value});
+});
 
 }
 
 function attachEventsToOptions() {
-	document.getElementById("speciesCurrent").addEventListener('DOMSubtreeModified', function() {
-		var species = document.getElementById("speciesCurrent").innerHTML;
-		conn.send({firstParam: "manipulateOption", secondParam: "Species", thirdParam: species});
-	});
-	document.getElementById("inanimateObjectsCurrent").addEventListener('DOMSubtreeModified', function() {
-		var inanimateObject = document.getElementById("inanimateObjectsCurrent").innerHTML;
-		conn.send({firstParam: "manipulateOption", secondParam: "Inanimate_Object", thirdParam: inanimateObject});
-	});
-	document.getElementById("cockTypeCurrent").addEventListener('DOMSubtreeModified', function() {
-		var cockType = document.getElementById("cockTypeCurrent").innerHTML;
-		conn.send({firstParam: "manipulateOption", secondParam: "Cock_Type", thirdParam: cockType});
-	});
-	document.getElementById("hairColorCurrent").addEventListener('DOMSubtreeModified', function() {
-		var hairColor = localStorage.getItem("Slot0_Hair_Color");
-		var swatchColor = localStorage.getItem("Slot0_Swatch_Color");
-		conn.send({firstParam: "manipulateOption", secondParam: "Hair_Color", thirdParam: hairColor, fourthParam: swatchColor});
-	});
 	document.getElementById("radiobuttonMale").addEventListener("click", function(){
 		conn.send({firstParam: "manipulateOption", secondParam: "Sex", thirdParam: "Male"});
 	});
@@ -1217,13 +1273,6 @@ function attachEventsToVisibiltyOptions() {
 		conn.send({firstParam: "optionEnabled", secondParam: "hips", thirdParam: tickbox});
 		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
-	document.getElementById("hairColorMenuCheckbox").addEventListener("click", function(){
-		var tickbox = document.getElementById("hairColorMenuCheckbox");
-		if (tickbox.checked){	var tickbox = "Yes"	}
-		else 				{	var tickbox = "No"	}
-		conn.send({firstParam: "optionEnabled", secondParam: "hairColor", thirdParam: tickbox});
-		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
-	});
 	document.getElementById("hairLenghtSliderCheckbox").addEventListener("click", function(){
 		var tickbox = document.getElementById("hairLenghtSliderCheckbox");
 		if (tickbox.checked){	var tickbox = "Yes"	}
@@ -1292,13 +1341,6 @@ function attachEventsToVisibiltyOptions() {
 		if (tickbox.checked){	var tickbox = "Yes"	}
 		else 				{	var tickbox = "No"	}
 		conn.send({firstParam: "optionEnabled", secondParam: "fluffiness", thirdParam: tickbox});
-		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
-	});
-	document.getElementById("feralAnthroSliderCheckbox").addEventListener("click", function(){
-		var tickbox = document.getElementById("feralAnthroSliderCheckbox");
-		if (tickbox.checked){	var tickbox = "Yes"	}
-		else 				{	var tickbox = "No"	}
-		conn.send({firstParam: "optionEnabled", secondParam: "feralAnthro", thirdParam: tickbox});
 		conn.send({firstParam: "optionEnabled", secondParam: "fireLoadSliderSettingsFunction"});
 	});
 	document.getElementById("customSlider1Checkbox").addEventListener("click", function(){

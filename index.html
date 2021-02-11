@@ -32,7 +32,6 @@
 <script src="js/slot5.js"></script>
 <script src="js/species.js"></script>
 <script src="js/inanimateObjects.js"></script>
-<script src="js/hairColors.js"></script>
 <script src="js/ppTypes.js"></script>
 <script src="js/iro.min.js"></script>
 <script src="js/color-scheme.min.js"></script>
@@ -41,6 +40,7 @@
 <script src="js/appStatus.js"></script>
 <script src="js/creativeMode.js"></script>
 <script src="js/charViz.js"></script>
+<script src="js/randomizer.js"></script>
 <script src="pwabuilder-sw.js"></script>
 <script>
 // This is the "Offline copy of pages" service worker
@@ -1036,7 +1036,8 @@ function error621ChangeSlider() {
 			<div class="speciesCategory" id="inanimateObjectEntry7" onClick="setInanimateObjectToCustom('Slot_Seven');"><div class="speciesCategoryText">Empty</div></div>
 			<div class="speciesCategory" id="inanimateObjectEntry8" onClick="setInanimateObjectToCustom('Slot_Eight');"><div class="speciesCategoryText">Empty</div></div>
 			<div class="speciesCategory" id="inanimateObjectEntry9" onClick="setInanimateObjectToCustom('Slot_Nine');"><div class="speciesCategoryText">Empty</div></div>
-			<div class="speciesCategoryLast" id="inanimateObjectEntry10" onClick="setInanimateObjectToCustom('Slot_Ten');"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" id="inanimateObjectEntry10" onClick="setInanimateObjectToCustom('Slot_Ten');"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategoryLast" onClick="funniestShitIveEverSeen();"><div class="speciesCategoryText">Pickle</div></div>
 			
 		</div>
 	
@@ -1520,11 +1521,9 @@ We hope you'll be back soon!
 
 	<div class="charVizDisplayContainer">
 	
-		<!--<div class="charVizDisplay" id="charVizDisplaytest"></div> -->
-		
 		<!-- Primary, Secondary, Tertiary refers to colors. "charVizDisplay<bodypartname>" classes are flushing it's content with For Loop.
 		Note: In HTML stuff at the bottom gets rendered on top. -->
-		
+				
 		<!-- Tail -->
 		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayTail" id="charVizDisplayTailPrimary"></div>
 		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayTail" id="charVizDisplayTailTertiary"></div>
@@ -1532,44 +1531,54 @@ We hope you'll be back soon!
 		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayTail" id="charVizDisplayTailMarkings"></div>
 		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayTail" id="charVizDisplayTailLines"></div>
 		
-		<!-- Hair in the background -->
-		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBackHair" id="charVizDisplayHairBackPrimary"></div>
-		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBackHair" id="charVizDisplayHairBackLines"></div>
-				
-		<!-- Hips Size Body Morph -->
-		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHipsSize charVizSpritesheetM" id="charVizDisplayHipsSizePrimary"></div>
-		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHipsSize charVizSpritesheetM" id="charVizDisplayHipsSizeMarkings"></div>
-		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHipsSize charVizSpritesheetM" id="charVizDisplayHipsSizeSecondary"></div>
-		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHipsSize charVizSpritesheetL" id="charVizDisplayHipsSizeLines"></div>
+		<!-- Wings -->
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayWings" id="charVizDisplayWingsMarkings"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayWings" id="charVizDisplayWingsPrimary"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayWings" id="charVizDisplayWingsLines"></div>
 		
-		<!-- Breast Size Body Morph -->
-		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBreastSize charVizSpritesheetM" id="charVizDisplayBreastSizePrimary"></div>
-		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBreastSize charVizSpritesheetM" id="charVizDisplayBreastSizeMarkings"></div>
-		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBreastSize charVizSpritesheetM" id="charVizDisplayBreastSizeSecondary"></div>
-		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBreastSize charVizSpritesheetL" id="charVizDisplayBreastSizeLines"></div>
+		<!-- Hair in the background -->
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBackHair charVizSpritesheetM" id="charVizDisplayHairBackPrimary"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBackHair charVizSpritesheetL" id="charVizDisplayHairBackLines"></div>
 		
 		<!-- Base -->
-		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBase" id="charVizDisplayBasePrimary"></div>
-		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBase" id="charVizDisplayBaseTertiary"></div>
-		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBase" id="charVizDisplayBaseMarkings"></div>
-		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBase" id="charVizDisplayBaseSecondary"></div>
-		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBase" id="charVizDisplayBaseLines"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBase charVizSpritesheetM" id="charVizDisplayBasePrimary"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBase charVizSpritesheetM" id="charVizDisplayBaseTertiary"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBase charVizSpritesheetM" id="charVizDisplayBaseMarkings"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBase charVizSpritesheetM" id="charVizDisplayBaseSecondary"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBase charVizSpritesheetL" id="charVizDisplayBaseLines"></div>
+		
+		<!-- Genitals -->		
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayGenitals charVizSpritesheetM" id="charVizDisplayGenitalsSecondary"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayGenitals charVizSpritesheetM" id="charVizDisplayGenitalsMarkings"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayGenitals charVizSpritesheetL" id="charVizDisplayGenitalsLines"></div>
+		
+		<!-- Armwear -->
+		<div class="charVizDisplay charVizDisplayCloth charVizDisplayArmwear charVizSpritesheetM" id="charVizDisplayArmwearPrimary"></div>
+		<div class="charVizDisplay charVizDisplayCloth charVizDisplayArmwear charVizSpritesheetM" id="charVizDisplayArmwearSecondary"></div>
+		<div class="charVizDisplay charVizDisplayCloth charVizDisplayArmwear charVizSpritesheetL" id="charVizDisplayArmwearLines"></div>
+		
+		<!-- Breast Size Body Morph -->
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBreastSize charVizSpritesheetM" id="charVizDisplayBreastSizeMarkings"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBreastSize charVizSpritesheetM" id="charVizDisplayBreastSizePrimary"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBreastSize charVizSpritesheetM" id="charVizDisplayBreastSizeSecondary"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayBreastSize charVizSpritesheetL" id="charVizDisplayBreastSizeLines"></div>
 		
 		<!-- Head -->
 		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadPrimary"></div>
 		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadSecondary"></div>
 		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadTertiary"></div>
-		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadBlush"></div>
-		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadHair"></div>
-		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadScleras"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadScleraLeft"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadScleraRight"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadSclerasShading"></div>
 		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadIrisLeft"></div>
 		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadIrisRight"></div>
-		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadIrisShading"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadIrisesShading"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadPupils"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadEyelashesAndHighlights"></div>
 		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadLines"></div>
-		
-		<!-- Hair in the front -->
-		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayFrontHair" id="charVizDisplayHairFrontPrimary"></div>
-		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayFrontHair" id="charVizDisplayHairFrontLines"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead charVizSpritesheetM" id="charVizDisplayHeadHairPrimary"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead charVizSpritesheetL" id="charVizDisplayHeadHairLines"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayHead" id="charVizDisplayHeadMisc"></div>
 		
 		<!-- Clothing -->
 		
@@ -1583,27 +1592,37 @@ We hope you'll be back soon!
 		<div class="charVizDisplay charVizDisplayCloth charVizDisplayLegwear charVizSpritesheetM" id="charVizDisplayLegwearSecondary"></div>
 		<div class="charVizDisplay charVizDisplayCloth charVizDisplayLegwear charVizSpritesheetL" id="charVizDisplayLegwearLines"></div>
 		
-		<!-- Armwear -->
-		<div class="charVizDisplay charVizDisplayCloth charVizDisplayArmwear charVizSpritesheetM" id="charVizDisplayArmwearPrimary"></div>
-		<div class="charVizDisplay charVizDisplayCloth charVizDisplayArmwear charVizSpritesheetM" id="charVizDisplayArmwearSecondary"></div>
-		<div class="charVizDisplay charVizDisplayCloth charVizDisplayArmwear charVizSpritesheetL" id="charVizDisplayArmwearLines"></div>
-		
 		<!-- Bottomwear -->
 		<div class="charVizDisplay charVizDisplayCloth charVizDisplayBottomwear charVizSpritesheetM" id="charVizDisplayBottomwearPrimary"></div>
 		<div class="charVizDisplay charVizDisplayCloth charVizDisplayBottomwear charVizSpritesheetM" id="charVizDisplayBottomwearSecondary"></div>
 		<div class="charVizDisplay charVizDisplayCloth charVizDisplayBottomwear charVizSpritesheetL" id="charVizDisplayBottomwearLines"></div>
 		
-		<!-- Topwear -->
+		<!-- Topwear Thin/Thicc Morphs -->
 		<div class="charVizDisplay charVizDisplayCloth charVizDisplayTopwear charVizSpritesheetM" id="charVizDisplayTopwearPrimary"></div>
 		<div class="charVizDisplay charVizDisplayCloth charVizDisplayTopwear charVizSpritesheetM" id="charVizDisplayTopwearSecondary"></div>
 		<div class="charVizDisplay charVizDisplayCloth charVizDisplayTopwear charVizSpritesheetL" id="charVizDisplayTopwearLines"></div>
+		
+		<!-- Topwear Breast Size Morphs -->
+		<div class="charVizDisplay charVizDisplayCloth charVizDisplayTopwear charVizSpritesheetM" id="charVizDisplayTopwearBreastSizePrimary"></div>
+		<div class="charVizDisplay charVizDisplayCloth charVizDisplayTopwear charVizSpritesheetM" id="charVizDisplayTopwearBreastSizeSecondary"></div>
+		<div class="charVizDisplay charVizDisplayCloth charVizDisplayTopwear charVizSpritesheetL" id="charVizDisplayTopwearBreastSizeLines"></div>
 		
 		<div class="charVizDisplay charVizDisplayCloth charVizDisplayAccessories" id="charVizDisplayAccessoriesSlot1"></div>
 		<div class="charVizDisplay charVizDisplayCloth charVizDisplayAccessories" id="charVizDisplayAccessoriesSlot2"></div>
 		<div class="charVizDisplay charVizDisplayCloth charVizDisplayAccessories" id="charVizDisplayAccessoriesSlot3"></div>
 		
-		<div class="charVizDisplay" id="charVizDisplayMessage">Species unsupported</div>
+		<!-- Inanimate TFs -->
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayInanimateTF" id="charVizDisplayInanimateTFprimary"></div>
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayInanimateTF" id="charVizDisplayInanimateTFsecondary"></div>		
+		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayInanimateTF" id="charVizDisplayInanimateTFlines"></div>
+		
+		<div class="charVizDisplay" id="charVizDisplayMessage">Species unsupported<div style="font-size:16px;padding-left: 15px;padding-top:150px">Supported species are listed in readme</div></div>
 			
+	</div>
+	
+	<div id="randomizeCharacterButtonsContainer" style="top:10px;position:relative">	
+		<div class="mediumButton" onClick="randomizeCharacterColors()">Colors</div>	
+		<div class="mediumButton" onClick="randomizeCharacter()">Randomize</div>
 	</div>
 	
 </div>
@@ -1642,6 +1661,11 @@ We hope you'll be back soon!
 		<div style="float:left;margin: 3px;">Markings</div>
 		</div>
 		
+		<div class="charVizColorsEntryContainer" onClick="setActiveColor('Hair')" id="charColorSwatchContainer7">
+		<div class="charVizColorSwatch" id="charVizHairCharacterColorSwatch" style="background-color:#000"></div>
+		<div style="float:left;margin: 3px;">Hair</div>
+		</div>
+		
 		<div class="charVizColorsEntryContainer" onClick="setActiveColor('Left Eye')" id="charColorSwatchContainer5">
 		<div class="charVizColorSwatch" id="charVizLeftEyeCharacterColorSwatch" style="background-color:#000"></div>
 		<div style="float:left;margin: 3px;">Left Eye</div>
@@ -1652,9 +1676,14 @@ We hope you'll be back soon!
 		<div style="float:left;margin: 3px;">Right Eye</div>
 		</div>
 		
-		<div class="charVizColorsEntryContainer" onClick="setActiveColor('Hair')" id="charColorSwatchContainer7">
-		<div class="charVizColorSwatch" id="charVizHairCharacterColorSwatch" style="background-color:#000"></div>
-		<div style="float:left;margin: 3px;">Hair</div>
+		<div class="charVizColorsEntryContainer" onClick="setActiveColor('Left Sclera')" id="charColorSwatchContainer8">
+		<div class="charVizColorSwatch" id="charVizLeftScleraCharacterColorSwatch" style="background-color:#000"></div>
+		<div style="float:left;margin: 3px;">Left Sclera</div>
+		</div>
+		
+		<div class="charVizColorsEntryContainer" onClick="setActiveColor('Right Sclera')" id="charColorSwatchContainer9">
+		<div class="charVizColorSwatch" id="charVizRightScleraCharacterColorSwatch" style="background-color:#000"></div>
+		<div style="float:left;margin: 3px;">Right Sclera</div>
 		</div>
 		
 		</div>
@@ -1681,22 +1710,25 @@ We hope you'll be back soon!
 		});
 		colorPicker.on('color:change', function(color) {		
 		var activeColor = localStorage.getItem("CharViz_Active_Character_Color");
+			document.getElementById("charVizCurrentCharColorHex").innerHTML = color.hexString;
 			if (activeColor === "Primary") {
 				document.getElementById("charVizPrimaryCharacterColorSwatch").style.backgroundColor = color.hexString;
 				document.getElementById("charVizDisplayBasePrimary").style.backgroundColor = color.hexString;
-				document.getElementById("charVizDisplayBreastSizePrimary").style.backgroundColor = color.hexString;
-				document.getElementById("charVizDisplayHipsSizePrimary").style.backgroundColor = color.hexString;
 				document.getElementById("charVizDisplayTailPrimary").style.backgroundColor = color.hexString;
 				document.getElementById("charVizDisplayHeadPrimary").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayBreastSizePrimary").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayWingsPrimary").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayInanimateTFprimary").style.backgroundColor = color.hexString;
 				localStorage.setItem("Slot0_Primary_Character_Color", color.hexString);
 			}
 			else if (activeColor === "Secondary") {
 				document.getElementById("charVizSecondaryCharacterColorSwatch").style.backgroundColor = color.hexString;
 				document.getElementById("charVizDisplayBaseSecondary").style.backgroundColor = color.hexString;
 				document.getElementById("charVizDisplayBreastSizeSecondary").style.backgroundColor = color.hexString;
-				document.getElementById("charVizDisplayHipsSizeSecondary").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayGenitalsSecondary").style.backgroundColor = color.hexString;
 				document.getElementById("charVizDisplayTailSecondary").style.backgroundColor = color.hexString;
 				document.getElementById("charVizDisplayHeadSecondary").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayInanimateTFsecondary").style.backgroundColor = color.hexString;
 				localStorage.setItem("Slot0_Secondary_Character_Color", color.hexString);
 			}
 			else if (activeColor === "Tertiary") {
@@ -1710,7 +1742,8 @@ We hope you'll be back soon!
 				document.getElementById("charVizMarkingsCharacterColorSwatch").style.backgroundColor = color.hexString;
 				document.getElementById("charVizDisplayBaseMarkings").style.backgroundColor = color.hexString;
 				document.getElementById("charVizDisplayBreastSizeMarkings").style.backgroundColor = color.hexString;
-				document.getElementById("charVizDisplayHipsSizeMarkings").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayWingsMarkings").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayGenitalsMarkings").style.backgroundColor = color.hexString;
 				localStorage.setItem("Slot0_Markings_Character_Color", color.hexString);
 			}
 			else if (activeColor === "Left Eye") {
@@ -1725,18 +1758,30 @@ We hope you'll be back soon!
 			}
 			else if (activeColor === "Hair") {
 				document.getElementById("charVizHairCharacterColorSwatch").style.backgroundColor = color.hexString;
-				document.getElementById("charVizDisplayHeadHair").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayHeadHairPrimary").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayHairBackPrimary").style.backgroundColor = color.hexString;
 				localStorage.setItem("Slot0_Hair_Character_Color", color.hexString);
+			}
+			else if (activeColor === "Left Sclera") {
+				document.getElementById("charVizLeftScleraCharacterColorSwatch").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayHeadScleraLeft").style.backgroundColor = color.hexString;
+				localStorage.setItem("Slot0_LeftSclera_Character_Color", color.hexString);
+			}
+			else if (activeColor === "Right Sclera") {
+				document.getElementById("charVizRightScleraCharacterColorSwatch").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayHeadScleraRight").style.backgroundColor = color.hexString;
+				localStorage.setItem("Slot0_RightSclera_Character_Color", color.hexString);
 			}
 		
 		});
 		</script>
-		<!--
+
 		<div style="float:left;width:100%;margin-top:10px">
-			<div class = "mediumButton" onClick="charVizCopyCharacterColor()">Copy</div>
-			<div class = "mediumButton" onClick="charVizPasteCharacterColor()">Paste</div>		
+			<div class="mediumButton" id="charVizCurrentCharColorHex" style="background-color: transparent !important;border: 2px solid transparent !important;cursor: default;user-select: all;">#</div>
+			<input id="charVizPasteCharColorTextField" style="margin-bottom: 5px" class="mediumTextField" value="#">
+			<div class="mediumButton" onClick="charVizCopyColor('charVizCurrentCharColorHex')">Copy</div>			
+			<div class="mediumButton" onClick="charVizPasteColor('Character')">Paste</div>
 		</div>
-		-->
 
 </div>
 
@@ -1774,13 +1819,13 @@ We hope you'll be back soon!
 		<div class="speciesCategory" onClick="charVizClothingGoBack('Topwear');"><div class="speciesCategoryText">Go back</div></div>
 		<div class="speciesCategory" onClick="charVizPutClothingOn('Topwear', 'None');"><div class="speciesCategoryText">None</div></div>
 		<div class="speciesCategory" onClick="charVizPutClothingOn('Topwear', 'Office Shirt');"><div class="speciesCategoryText">Office Shirt</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Topwear', 'T-Shirt');"><div class="speciesCategoryText">T-Shirt</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Topwear', 'Office Shirt (tucked)');"><div class="speciesCategoryText">Office Shirt (tucked)</div></div>
 		<div class="speciesCategory" onClick="charVizPutClothingOn('Topwear', 'Crop Top');"><div class="speciesCategoryText">Crop Top</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Topwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Topwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Topwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Topwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategoryLast" onClick="charVizPutClothingOn('Topwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Topwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Topwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Topwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Topwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategoryLast" onClick="charVizPutClothingOn('Topwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
 			
 	</div>
 	
@@ -1791,11 +1836,11 @@ We hope you'll be back soon!
 		<div class="speciesCategory" onClick="charVizPutClothingOn('Bottomwear', 'Pencil Skirt');"><div class="speciesCategoryText">Pencil Skirt</div></div>
 		<div class="speciesCategory" onClick="charVizPutClothingOn('Bottomwear', 'Shorts');"><div class="speciesCategoryText">Shorts</div></div>
 		<div class="speciesCategory" onClick="charVizPutClothingOn('Bottomwear', 'Leggings');"><div class="speciesCategoryText">Leggings</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Bottomwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Bottomwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Bottomwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Bottomwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategoryLast" onClick="charVizPutClothingOn('Bottomwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Bottomwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Bottomwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Bottomwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Bottomwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategoryLast" onClick="charVizPutClothingOn('Bottomwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
 			
 	</div>
 	
@@ -1804,13 +1849,13 @@ We hope you'll be back soon!
 		<div class="speciesCategory" onClick="charVizClothingGoBack('Armwear');"><div class="speciesCategoryText">Go back</div></div>		
 		<div class="speciesCategory" onClick="charVizPutClothingOn('Armwear', 'None');"><div class="speciesCategoryText">None</div></div>
 		<div class="speciesCategory" onClick="charVizPutClothingOn('Armwear', 'Arm Warmers');"><div class="speciesCategoryText">Arm Warmers</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Armwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Armwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Armwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Armwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Armwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Armwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategoryLast" onClick="charVizPutClothingOn('Armwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Armwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Armwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Armwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Armwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Armwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Armwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategoryLast" onClick="charVizPutClothingOn('Armwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
 			
 	</div>
 	
@@ -1819,28 +1864,28 @@ We hope you'll be back soon!
 		<div class="speciesCategory" onClick="charVizClothingGoBack('Legwear');"><div class="speciesCategoryText">Go back</div></div>
 		<div class="speciesCategory" onClick="charVizPutClothingOn('Legwear', 'None');"><div class="speciesCategoryText">None</div></div>
 		<div class="speciesCategory" onClick="charVizPutClothingOn('Legwear', 'Thigh Highs');"><div class="speciesCategoryText">Thigh Highs</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Legwear', 'Thigh Highs (no stripes)');"><div class="speciesCategoryText">Thigh Highs (no stripes)</div></div>
 		<div class="speciesCategory" onClick="charVizPutClothingOn('Legwear', 'Pantyhose');"><div class="speciesCategoryText">Pantyhose</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Legwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Legwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Legwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Legwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Legwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategoryLast" onClick="charVizPutClothingOn('Legwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Legwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Legwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Legwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Legwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategoryLast" onClick="charVizPutClothingOn('Legwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
 			
 	</div>
 	
 	<div class="speciesCategorySelectorContainer" id="charVizClothingFootwearSelectorContainer">
 		
 		<div class="speciesCategory" onClick="charVizClothingGoBack('Footwear');"><div class="speciesCategoryText">Go back</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Footwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Footwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Footwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Footwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Footwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Footwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Footwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Footwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategoryLast" onClick="charVizPutClothingOn('Footwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Footwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Footwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Footwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Footwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Footwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Footwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Footwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Footwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategoryLast" onClick="charVizPutClothingOn('Footwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
 			
 	</div>
 	
@@ -1849,28 +1894,28 @@ We hope you'll be back soon!
 		<div class="speciesCategory" onClick="charVizClothingGoBack('Underwear');"><div class="speciesCategoryText">Go back</div></div>
 		<div class="speciesCategory" onClick="charVizPutClothingOn('Underwear', 'None');"><div class="speciesCategoryText">None</div></div>
 		<div class="speciesCategory" onClick="charVizPutClothingOn('Underwear', 'Panties');"><div class="speciesCategoryText">Panties</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Underwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Underwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Underwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Underwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Underwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Underwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategoryLast" onClick="charVizPutClothingOn('Underwear', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Underwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Underwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Underwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Underwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Underwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Underwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategoryLast" onClick="charVizPutClothingOn('Underwear', 'None');"><div class="speciesCategoryText">Empty</div></div>
 			
 	</div>
 	
 	<div class="speciesCategorySelectorContainer" id="charVizClothingOutfitsSelectorContainer">
 		
 		<div class="speciesCategory" onClick="charVizClothingGoBack('Outfits');"><div class="speciesCategoryText">Go back</div></div>
+		<div class="speciesCategory" onClick="charVizPutOutfitOn('None');"><div class="speciesCategoryText">None</div></div>
 		<div class="speciesCategory" onClick="charVizPutOutfitOn('Programmer');"><div class="speciesCategoryText">Programmer</div></div>
 		<div class="speciesCategory" onClick="charVizPutOutfitOn('Secretary');"><div class="speciesCategoryText">Secretary</div></div>
-		<div class="speciesCategory" onClick="charVizPutOutfitOn('Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutOutfitOn('Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutOutfitOn('Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutOutfitOn('Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutOutfitOn('Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutOutfitOn('Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategoryLast" onClick="charVizPutOutfitOn('Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutOutfitOn('None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutOutfitOn('None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutOutfitOn('None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutOutfitOn('None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutOutfitOn('None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategoryLast" onClick="charVizPutOutfitOn('None');"><div class="speciesCategoryText">Empty</div></div>
 			
 	</div>
 	
@@ -1879,13 +1924,13 @@ We hope you'll be back soon!
 		<div class="speciesCategory" onClick="charVizClothingGoBack('Accessories');"><div class="speciesCategoryText">Go back</div></div>
 		<div class="speciesCategory" onClick="charVizPutClothingOn('Accessories', 'None');"><div class="speciesCategoryText">None</div></div>
 		<div class="speciesCategory" onClick="charVizPutClothingOn('Accessories', 'Glasses');"><div class="speciesCategoryText">Glasses</div></div>
-		<div class="speciesCategory" onClick="accessoryFolder();"><div class="speciesCategoryText">Folder</div></div>
-		<div class="speciesCategory" onClick="accessoryChoker();"><div class="speciesCategoryText">Choker</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Accessories', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Accessories', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Accessories', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategory" onClick="charVizPutClothingOn('Accessories', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
-		<div class="speciesCategoryLast" onClick="charVizPutClothingOn('Accessories', 'Clothname');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Accessories', 'None');"><div class="speciesCategoryText">None</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Accessories', 'None');"><div class="speciesCategoryText">None</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Accessories', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Accessories', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Accessories', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="charVizPutClothingOn('Accessories', 'None');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategoryLast" onClick="charVizPutClothingOn('Accessories', 'None');"><div class="speciesCategoryText">Empty</div></div>
 			
 	</div>
 	
@@ -1900,8 +1945,7 @@ We hope you'll be back soon!
 	document.getElementById("charVizClothingFootwearSelectorContainer").style.display= 'none';
 	document.getElementById("charVizClothingUnderwearSelectorContainer").style.display= 'none';
 	document.getElementById("charVizClothingOutfitsSelectorContainer").style.display= 'none';
-	document.getElementById("charVizClothingAccessoriesSelectorContainer").style.display= 'none';
-	
+	document.getElementById("charVizClothingAccessoriesSelectorContainer").style.display= 'none';	
 	</script>
 
 
@@ -1995,14 +2039,17 @@ We hope you'll be back soon!
 		});
 		colorPicker2.on('color:change', function(color) {		
 		var activeColor = localStorage.getItem("CharViz_Active_Clothing_Color");
+			document.getElementById("charVizCurrentClothColorHex").innerHTML = color.hexString;
 			if (activeColor === "Topwear Primary") {
 				document.getElementById("charVizTopwearPrimaryColorSwatch").style.backgroundColor = color.hexString;
 				document.getElementById("charVizDisplayTopwearPrimary").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayTopwearBreastSizePrimary").style.backgroundColor = color.hexString;
 				localStorage.setItem("Slot0_Topwear_Primary_Clothing_Color", color.hexString);
 			}
 			else if (activeColor === "Topwear Secondary") {
 				document.getElementById("charVizTopwearSecondaryColorSwatch").style.backgroundColor = color.hexString;
 				document.getElementById("charVizDisplayTopwearSecondary").style.backgroundColor = color.hexString;
+				document.getElementById("charVizDisplayTopwearBreastSizeSecondary").style.backgroundColor = color.hexString;
 				localStorage.setItem("Slot0_Topwear_Secondary_Clothing_Color", color.hexString);
 			}
 			else if (activeColor === "Bottomwear Primary") {
@@ -2048,12 +2095,180 @@ We hope you'll be back soon!
 		
 		});
 		</script>
-		<!--
+		
 		<div style="float:left;width:100%;margin-top:10px">
-			<div class = "mediumButton" onClick="charVizCopyClothingColor()">Copy</div>
-			<div class = "mediumButton" onClick="charVizPasteClothingColor()">Paste</div>		
-		</div>-->
+			<div class="mediumButton" id="charVizCurrentClothColorHex" style="background-color: transparent !important;border: 2px solid transparent !important;cursor: default;user-select: all;">#</div>
+			<input id="charVizPasteClothColorTextField" style="margin-bottom: 5px" class="mediumTextField" value="#">
+			<div class="mediumButton" onClick="charVizCopyColor('charVizCurrentClothColorHex')">Copy</div>			
+			<div class="mediumButton" onClick="charVizPasteColor('Clothing')">Paste</div>
+		</div>
 				
+</div>
+
+<div class="menuAS" id="charVizPickerToggler" onclick="toggleCharVizMenus(6)">
+	<div class="linesAS">
+			<img src="images/lines.png" height="17" width="23"> 
+			&nbsp;
+			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
+	</div>
+	
+	&nbsp;&nbsp;Character Part & Pattern Picker
+</div>
+
+<div id="charVizPickerContainer">
+
+<div class="speciesContainer" style="margin-top:10px;margin-left:50px;margin-bottom:10px;">
+
+	<div class="speciesCategorySelectorContainer" id="charVizPickerSelectorContainer">
+		
+		<div class="speciesCategory" onClick="charVizPickerGoToCategory('Body');"><div class="speciesCategoryText">Body</div></div>
+		<div class="speciesCategory" onClick="charVizPickerGoToCategory('Head');"><div class="speciesCategoryText">Head</div></div>
+		<div class="speciesCategory" onClick="charVizPickerGoToCategory('Tail');"><div class="speciesCategoryText">Tail</div></div>
+		<div class="speciesCategory" onClick="charVizPickerGoToCategory('Wings');"><div class="speciesCategoryText">Wings</div></div>
+		<div class="speciesCategory" onClick="charVizPickerGoToCategory('Pupils');"><div class="speciesCategoryText">Pupils type</div></div>
+		<div class="speciesCategory" onClick="charVizPickerGoToCategory('Secondary');"><div class="speciesCategoryText">Secondary body color pttrn</div></div>
+		<div class="speciesCategory" onClick="charVizPickerGoToCategory('Tertiary');"><div class="speciesCategoryText">Tertiary body color pattern</div></div>
+		<div class="speciesCategory" onClick="charVizPickerGoToCategory('Markings');"><div class="speciesCategoryText">Markings body pattern</div></div>
+		<div class="speciesCategory" onClick="charVizPickerGoToCategory('none');"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategoryLast" onClick="charVizPickerGoToCategory('none');"><div class="speciesCategoryText">Empty</div></div>
+			
+	</div>
+	
+	<div class="speciesCategorySelectorContainer" id="charVizPickerBodySelectorContainer">
+		
+		<div class="speciesCategory" onClick="charVizPickerGoBack('Body');"><div class="speciesCategoryText">Go back</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Body', 'Fluffy'); loadCharacterParts()"><div class="speciesCategoryText">Fluffy</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Body', 'Scaly'); loadCharacterParts()"><div class="speciesCategoryText">Scaly</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Body', 'Scaly underthigh'); loadCharacterParts()"><div class="speciesCategoryText">Scaly underthigh</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Body', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Body', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Body', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Body', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Body', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategoryLast" onClick="saveCharacterPart('Body', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+			
+	</div>
+	
+	<div class="speciesCategorySelectorContainer" id="charVizPickerHeadSelectorContainer">
+		
+		<div class="speciesCategory" onClick="charVizPickerGoBack('Head');"><div class="speciesCategoryText">Go back</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Head', 'Canine'); loadCharacterParts()"><div class="speciesCategoryText">Canine</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Head', 'Scalie'); loadCharacterParts()"><div class="speciesCategoryText">Scalie</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Head', 'Dragon'); loadCharacterParts()"><div class="speciesCategoryText">Dragon</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Head', 'Shark'); loadCharacterParts()"><div class="speciesCategoryText">Shark</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Head', 'Sergal'); loadCharacterParts()"><div class="speciesCategoryText">Sergal</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Head', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Head', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Head', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategoryLast" onClick="saveCharacterPart('Head', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+			
+	</div>
+	
+	<div class="speciesCategorySelectorContainer" id="charVizPickerTailSelectorContainer">
+		
+		<div class="speciesCategory" onClick="charVizPickerGoBack('Tail');"><div class="speciesCategoryText">Go back</div></div>		
+		<div class="speciesCategory" onClick="saveCharacterPart('Tail', 'Canine'); loadCharacterParts()"><div class="speciesCategoryText">Canine</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Tail', 'Scaly'); loadCharacterParts()"><div class="speciesCategoryText">Scaly</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Tail', 'Shark'); loadCharacterParts()"><div class="speciesCategoryText">Shark</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Tail', 'Feline'); loadCharacterParts()"><div class="speciesCategoryText">Feline</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Tail', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Tail', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Tail', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Tail', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategoryLast" onClick="saveCharacterPart('Tail', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+			
+	</div>
+	
+	<div class="speciesCategorySelectorContainer" id="charVizPickerWingsSelectorContainer">
+		
+		<div class="speciesCategory" onClick="charVizPickerGoBack('Wings');"><div class="speciesCategoryText">Go back</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Wings', 'None'); loadCharacterParts()"><div class="speciesCategoryText">None</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Wings', 'Dragon'); loadCharacterParts()"><div class="speciesCategoryText">Dragon</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Wings', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Wings', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Wings', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Wings', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Wings', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Wings', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategoryLast" onClick="saveCharacterPart('Wings', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+			
+	</div>
+	
+	<div class="speciesCategorySelectorContainer" id="charVizPickerPupilsSelectorContainer">
+		
+		<div class="speciesCategory" onClick="charVizPickerGoBack('Pupils');"><div class="speciesCategoryText">Go back</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Pupils', 'Default'); loadCharacterParts()"><div class="speciesCategoryText">Default</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Pupils', 'Reptile'); loadCharacterParts()"><div class="speciesCategoryText">Reptile</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Pupils', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Pupils', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Pupils', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Pupils', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Pupils', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPart('Pupils', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategoryLast" onClick="saveCharacterPart('Pupils', 'PartName'); loadCharacterParts()"><div class="speciesCategoryText">Empty</div></div>
+			
+	</div>
+	
+	<div class="speciesCategorySelectorContainer" id="charVizPickerSecondaryPatternSelectorContainer">
+		
+		<div class="speciesCategory" onClick="charVizPickerGoBack('Secondary');"><div class="speciesCategoryText">Go back</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPattern('Secondary', 'None'); loadCharacterPatterns()"><div class="speciesCategoryText">None</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPattern('Secondary', 'Belly, underthigh, fingers'); loadCharacterPatterns()"><div class="speciesCategoryText">Belly, underthigh, fingers</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPattern('Secondary', 'Belly, fingers'); loadCharacterPatterns()"><div class="speciesCategoryText">Belly, fingers</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPattern('Secondary', 'Belly, underthigh'); loadCharacterPatterns()"><div class="speciesCategoryText">Belly, underthigh</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPattern('Secondary', 'Belly'); loadCharacterPatterns()"><div class="speciesCategoryText">Belly</div></div>		
+		<div class="speciesCategory" onClick="saveCharacterPattern('Secondary', 'PatternName'); loadCharacterPatterns()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPattern('Secondary', 'PatternName'); loadCharacterPatterns()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPattern('Secondary', 'PatternName'); loadCharacterPatterns()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategoryLast" onClick="saveCharacterPattern('Secondary', 'PatternName'); loadCharacterPatterns()"><div class="speciesCategoryText">Empty</div></div>
+			
+	</div>
+	
+	<div class="speciesCategorySelectorContainer" id="charVizPickerTertiaryPatternSelectorContainer">
+		
+		<div class="speciesCategory" onClick="charVizPickerGoBack('Tertiary');"><div class="speciesCategoryText">Go back</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPattern('Tertiary', 'None'); loadCharacterPatterns()"><div class="speciesCategoryText">None</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPattern('Tertiary', 'Hands and legs'); loadCharacterPatterns()"><div class="speciesCategoryText">Hands and legs</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPattern('Tertiary', 'PatternName'); loadCharacterPatterns()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPattern('Tertiary', 'PatternName'); loadCharacterPatterns()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPattern('Tertiary', 'PatternName'); loadCharacterPatterns()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPattern('Tertiary', 'PatternName'); loadCharacterPatterns()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPattern('Tertiary', 'PatternName'); loadCharacterPatterns()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPattern('Tertiary', 'PatternName'); loadCharacterPatterns()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategoryLast" onClick="saveCharacterPattern('Tertiary', 'PatternName'); loadCharacterPatterns()"><div class="speciesCategoryText">Empty</div></div>
+			
+	</div>
+	
+	<div class="speciesCategorySelectorContainer" id="charVizPickerMarkingsPatternSelectorContainer">
+		
+		<div class="speciesCategory" onClick="charVizPickerGoBack('Markings');"><div class="speciesCategoryText">Go back</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPattern('Markings', 'None'); loadCharacterPatterns()"><div class="speciesCategoryText">None</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPattern('Markings', 'Line'); loadCharacterPatterns()"><div class="speciesCategoryText">Line</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPattern('Markings', 'Line underthigh'); loadCharacterPatterns()"><div class="speciesCategoryText">Line underthigh</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPattern('Markings', 'PatternName'); loadCharacterPatterns()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPattern('Markings', 'PatternName'); loadCharacterPatterns()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPattern('Markings', 'PatternName'); loadCharacterPatterns()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPattern('Markings', 'PatternName'); loadCharacterPatterns()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategory" onClick="saveCharacterPattern('Markings', 'PatternName'); loadCharacterPatterns()"><div class="speciesCategoryText">Empty</div></div>
+		<div class="speciesCategoryLast" onClick="saveCharacterPattern('Markings', 'PatternName'); loadCharacterPatterns()"><div class="speciesCategoryText">Empty</div></div>
+			
+	</div>
+
+	</div>
+
+	<script>
+	// Hide the containers
+	document.getElementById("charVizPickerBodySelectorContainer").style.display= 'none';
+	document.getElementById("charVizPickerHeadSelectorContainer").style.display= 'none';
+	document.getElementById("charVizPickerTailSelectorContainer").style.display= 'none';
+	document.getElementById("charVizPickerWingsSelectorContainer").style.display= 'none';
+	document.getElementById("charVizPickerPupilsSelectorContainer").style.display= 'none';
+	document.getElementById("charVizPickerSecondaryPatternSelectorContainer").style.display= 'none';
+	document.getElementById("charVizPickerTertiaryPatternSelectorContainer").style.display= 'none';
+	document.getElementById("charVizPickerMarkingsPatternSelectorContainer").style.display= 'none';
+	</script>
+
+
 </div>
 
 <div class="menuAS" id="charVizOptionToggler" onclick="toggleCharVizMenus(3)">
@@ -2068,6 +2283,68 @@ We hope you'll be back soon!
 
 <div id="charVizOptionsContainer">
 
+	<div style="padding:15px;height:360px;padding-top:5px;padding-bottom:5px">
+	
+		<div>
+			<label class="container">Enable Character Part & Pattern Picker
+				<input type="checkbox" id="enablePickerCheckbox" onclick="toggleCharVizOption(1)">
+				<span class="checkbox"></span>  
+			</label>
+		</div>
+		<br>
+		
+		<div>
+			<label class="container">Set default color scheme when changing species
+				<input type="checkbox" id="setNaturalColorsCheckbox" onclick="toggleCharVizOption(2)">
+				<span class="checkbox"></span>  
+			</label>
+		</div>
+		<br>
+		
+		<div>
+			<label class="container">Randomizer affects character color scheme
+				<input type="checkbox" id="randomizerAffectsCharColorsCheckbox" onclick="toggleCharVizOption(3)">
+				<span class="checkbox"></span>  
+			</label>
+		</div>
+		<br>
+		
+		<div>
+			<label class="container">Randomizer affects clothing
+				<input type="checkbox" id="randomizerAffectsClothingCheckbox" onclick="toggleCharVizOption(4)">
+				<span class="checkbox"></span>  
+			</label>
+		</div>
+		<br>
+		
+		<div>
+			<label class="container">Randomizer generates only species supported by CharViz
+				<input type="checkbox" id="randomizerGeneratesCharVizSpeciesCheckbox" onclick="toggleCharVizOption(5)">
+				<span class="checkbox"></span>  
+			</label>
+		</div>
+		<br>
+		
+		<div>
+			<label class="container">Show Genitals
+				<input type="checkbox" id="showGenitalsCheckbox" onclick="toggleCharVizOption(6)">
+				<span class="checkbox"></span>  
+			</label>
+		</div>
+		<br>
+		
+		<div>
+			<label class="container">Show buttons to randomize colors and character under character display
+				<input type="checkbox" id="displayRandomizersCheckbox" onclick="toggleCharVizOption(7)">
+				<span class="checkbox"></span>  
+			</label>
+		</div>
+		
+	</div>
+
+	<div class="bigButton" onClick="randomizeCharacterColors()">Random Char Colors</div>
+	<div class="bigButtonAdminMode" id="charVizResetCharColorsButton" onClick="charVizResetCharacterColors()">Reset Char Colors</div>
+	
 	<div style="padding-left:18px;margin-top:5px;">Set background color:</div>
 
 	<div style="height:100px">
@@ -2076,15 +2353,6 @@ We hope you'll be back soon!
 	<div class="mediumButton" onClick="charVizSetBGColor(2)">AMOLED</div>
 	<div class="mediumButton" onClick="charVizSetBGColor(3)">Dark</div>
 	</div>
-
-	<div style="height: 50px; margin-left:10px;">
-		<label class="container">Blush
-			<input type="checkbox" id="charVizBlushCheckbox" onclick="charVizToggleBlush()">
-			<span class="checkbox"></span>  
-		</label>
-	</div>
- 
-	<div class="bigButtonAdminMode" onClick="charVizResetCharacterColors()">Reset Char Colors</div>
 
 </div>
 
@@ -2107,7 +2375,7 @@ Listed alphabetically:
 <div class = "charVizCreditsEntryContainer">
 	<div class = "charVizCreditsAuthor">Artbreeder.com</div>
 	<div class = "charVizCreditsAvatar"><img src="images/avatar_terminator.jpg" width="40" height="40" class="charVizAvatar"></div>
-	<div class = "charVizCreditsContributions">Heads - Canine</div>
+	<div class = "charVizCreditsContributions">Generated a portrait image which was used as base for head shapes</div>
 </div>
 </a>
 
@@ -2115,10 +2383,42 @@ Listed alphabetically:
 <div class = "charVizCreditsEntryContainer">
 	<div class = "charVizCreditsAuthor">qtderg</div>
 	<div class = "charVizCreditsAvatar"><img src="images/avatar_qtderg.png" width="40" height="40" class="charVizAvatar"></div>
-	<div class = "charVizCreditsContributions">Bases - Fluffy feminine with Hips Size and Breast Size body morphs (5 keyframes) <br> Tails - Fluffy 01 <br> Clothes - Arm Warmers, Thigh Highs, Panties, Pantyhose, Pencil Skirt, Crop Top, Leggings, T-Shirt, Shorts, Glasses</div>
+	<div class = "charVizCreditsContributions">Bases - Fluffy & Scaly (5 Thin/Thicc & Breast Size keyframes) <br> Heads - Canine, Dragon, Scalie, Shark <br> Tails - Canine, Feline, Scaly, Shark <br> Wings - Dragon <br> Hairstyles - Default (Medium & Long) <br> Cocks - Humanoid (5 keyframes) <br> Clothes - Arm Warmers, Thigh Highs, Panties, Pantyhose, Pencil Skirt, Crop Top, Leggings, Shorts, Glasses</div>
 </div>
 </a>
 
+</div>
+
+<div class="menuAS" id="charVizReadmeToggler" onclick="toggleCharVizMenus(5)">
+	<div class="linesAS">
+			<img src="images/lines.png" height="17" width="23"> 
+			&nbsp;
+			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
+	</div>
+	
+	&nbsp;&nbsp;CharViz Readme
+</div>
+
+<div id="charVizReadmeContainer" style="font-size:14px">
+
+	•If you want to contribute, please follow this link: <a href="https://drive.google.com/drive/folders/15SH4fvY7Uqn1_QNuk0Md7Yib9OOZutju?usp=sharing">
+	<div style="background-color:#282640;padding:10px;border-radius:10px;margin:5px;overflow:hidden">https://drive.google.com/drive/folders/15SH4fvY7Uqn1_QNuk0Md7Yib9OOZutju?usp=sharing</div></a>
+	•Supported species:<br>
+	-Canidae family (foxes, wolves, dogs etc.)<br>
+	-Scalies<br>
+	-Dragon<br>
+	-Shark<br>
+	•Sliders/options affecting the character:<br>
+	-Thin/Thicc slider<br>
+	-Breast Size slider<br>
+	-Hair Lenght slider<br>
+	-Cock Type option<br>
+	-Genital Size slider<br>	
+	•When Character Part & Pattern Picker is enabled, changing species does not alter appearance of character<br>
+	•Available cocks:<br>
+	-Humanoid<br>
+	•Cock color is tied to markings color
+		
 </div>
   
 <div class="menuAS" id="advancedSettings" onclick="toggleAdvancedSettingsMenu()">
@@ -2283,121 +2583,6 @@ Listed alphabetically:
 			
 	</div>
 	
-	
-	
-<div class="menuInanimateObjects" id="hairColorMenu">
-
-	<div class="speciesText">
-	Hair Color
-	</div>
-
-	<div class="selectMenuContainer">
-	
-	<div class="lines">
-		<img src="images/lines.png" height="15" width="20"> 
-	</div>
-	
-	<div class="speciesContainer" id="hairColorContainer">
-		
-		<div class="speciesCurrentContainer" id="hairColorCurrentContainer" onClick="hairColorLoadList();">
-		
-			<div class="speciesCurrent" id="hairColorCurrent">
-				Default
-			</div>
-				
-			<div class="speciesSelectTriangle">
-				<img src="images/speciesSelectTriangle.png" height="14" width="18"> 
-			</div>
-			
-		</div>
-		
-		<!--
-  _   _       _         ____      _                
- | | | | __ _(_)_ __   / ___|___ | | ___  _ __ ___ 
- | |_| |/ _` | | '__| | |   / _ \| |/ _ \| '__/ __|
- |  _  | (_| | | |    | |__| (_) | | (_) | |  \__ \
- |_| |_|\__,_|_|_|     \____\___/|_|\___/|_|  |___/
-                                                   
-		-->
-		
-		<div class="speciesCategorySelectorContainer" id="hairColorSelectorContainer">
-		
-			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromhairColorList();"><div class="speciesCategoryText">Go Back</div></div>
-			<div class="speciesCategory" onClick="goToPredefinedHairColorsCategory();"><div class="speciesCategoryText">Predefined</div></div>
-			<div class="speciesCategory" onClick="sethairColorToCustom('Slot_One');"><div id="hairColorEntry1" class="speciesCategoryText">Empty</div><div id="customHairColorSwatch1" class="hairColorSwatchCustom"></div></div>
-			<div class="speciesCategory" onClick="sethairColorToCustom('Slot_Two');"><div id="hairColorEntry2" class="speciesCategoryText">Empty</div><div id="customHairColorSwatch2" class="hairColorSwatchCustom"></div></div>
-			<div class="speciesCategory" onClick="sethairColorToCustom('Slot_Three');"><div id="hairColorEntry3" class="speciesCategoryText">Empty</div><div id="customHairColorSwatch3" class="hairColorSwatchCustom"></div></div>
-			<div class="speciesCategory" onClick="sethairColorToCustom('Slot_Four');"><div id="hairColorEntry4" class="speciesCategoryText">Empty</div><div id="customHairColorSwatch4" class="hairColorSwatchCustom"></div></div>
-			<div class="speciesCategory" onClick="sethairColorToCustom('Slot_Five');"><div id="hairColorEntry5" class="speciesCategoryText">Empty</div><div id="customHairColorSwatch5" class="hairColorSwatchCustom"></div></div>
-			<div class="speciesCategory" onClick="sethairColorToCustom('Slot_Six');"><div id="hairColorEntry6" class="speciesCategoryText">Empty</div><div id="customHairColorSwatch6" class="hairColorSwatchCustom"></div></div>
-			<div class="speciesCategory" onClick="sethairColorToCustom('Slot_Seven');"><div id="hairColorEntry7" class="speciesCategoryText">Empty</div><div id="customHairColorSwatch7" class="hairColorSwatchCustom"></div></div>
-			<div class="speciesCategory" onClick="sethairColorToCustom('Slot_Eight');"><div id="hairColorEntry8" class="speciesCategoryText">Empty</div><div id="customHairColorSwatch8" class="hairColorSwatchCustom"></div></div>
-			<div class="speciesCategory" onClick="sethairColorToCustom('Slot_Nine');"><div id="hairColorEntry9" class="speciesCategoryText">Empty</div><div id="customHairColorSwatch9" class="hairColorSwatchCustom"></div></div>
-			<div class="speciesCategoryLast" onClick="sethairColorToCustom('Slot_Ten');"><div id="hairColorEntry10" class="speciesCategoryText">Empty</div><div id="customHairColorSwatch10" class="hairColorSwatchCustom"></div></div>
-			
-		</div>
-		
-		<!--
-  ____               _       __ _                _ 
- |  _ \ _ __ ___  __| | ___ / _(_)_ __   ___  __| |
- | |_) | '__/ _ \/ _` |/ _ \ |_| | '_ \ / _ \/ _` |
- |  __/| | |  __/ (_| |  __/  _| | | | |  __/ (_| |
- |_|   |_|  \___|\__,_|\___|_| |_|_| |_|\___|\__,_|
-                                                   
-		-->
-		
-		<div class="speciesSelector" id="hairColorSelectorPredefined">
-		
-			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromPredefinedHairColorsCategory();"><div class="speciesCategoryText">Go Back</div></div>
-			<div class="speciesCategoryButtonEnd"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
-			<div class="speciesCategoryName"><div class="categoryText">Predefined</div></div>
-			<div class="speciesCategoryButtonEnd"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
-			<div class="speciesEntryLeft" onClick="setHairColorTo('Black', '#090806');"><div class="speciesEntryText">Black<div class="hairColorSwatchPrefefined swatchBlack"></div></div></div>
-			<div class="speciesEntryRight" onClick="setHairColorTo('Blonde 1', '#dccbba');"><div class="speciesEntryText">Blonde 1<div class="hairColorSwatchPrefefined swatchBlonde1"></div></div></div>
-			<div class="speciesEntryLeft" onClick="setHairColorTo('Blonde 2', '#debc99');"><div class="speciesEntryText">Blonde 2<div class="hairColorSwatchPrefefined swatchBlonde2"></div></div></div>
-			<div class="speciesEntryRight" onClick="setHairColorTo('Blonde 3', '#e9d0bc');"><div class="speciesEntryText">Blonde 3<div class="hairColorSwatchPrefefined swatchBlonde3"></div></div></div>
-			<div class="speciesEntryLeft" onClick="setHairColorTo('Brown 1', '#5a4545');"><div class="speciesEntryText">Brown 1<div class="hairColorSwatchPrefefined swatchBrown1"></div></div></div>
-			<div class="speciesEntryRight" onClick="setHairColorTo('Brown 2', '#6a4e42');"><div class="speciesEntryText">Brown 2<div class="hairColorSwatchPrefefined swatchBrown2"></div></div></div>
-			<div class="speciesEntryLeft" onClick="setHairColorTo('Brown 3', '#a7856a');"><div class="speciesEntryText">Brown 3<div class="hairColorSwatchPrefefined swatchBrown3"></div></div></div>
-			<div class="speciesEntryRight" onClick="setHairColorTo('Gray 1', '#71635a');"><div class="speciesEntryText">Gray 1<div class="hairColorSwatchPrefefined swatchGray1"></div></div></div>
-			<div class="speciesEntryLeft" onClick="setHairColorTo('Gray 2', '#b7a69e');"><div class="speciesEntryText">Gray 2<div class="hairColorSwatchPrefefined swatchGray2"></div></div></div>
-			<div class="speciesEntryRight" onClick="setHairColorTo('Gray 3', '#d6c4c2');"><div class="speciesEntryText">Gray 3<div class="hairColorSwatchPrefefined swatchGray3"></div></div></div>
-			<div class="speciesEntryLeft" onClick="setHairColorTo('Red 1', '#8d4a43');"><div class="speciesEntryText">Red 1<div class="hairColorSwatchPrefefined swatchRed1"></div></div></div>
-			<div class="speciesEntryRight" onClick="setHairColorTo('Red 2', '#b55239');"><div class="speciesEntryText">Red 2<div class="hairColorSwatchPrefefined swatchRed2"></div></div></div>
-			<div class="speciesEntryLeft" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryRight" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryLeft" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryRight" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryLeft" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryRight" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryLeft" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryRight" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryLeft" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryRight" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryLeft" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryRight" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryLeft" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryRight" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryLeftLast" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryRightLast" onClick="setHairColorTo('Empty', '#3b395e');"><div class="speciesEntryText">Empty</div></div>			
-			
-		</div>
-	
-	</div>
-	
-	<div class="hairColorSwatchCurrent" id="hairColorSwatch" onClick="hairColorLoadList();">
-
-	</div>
-</div> 
-
-</div>
-
-<script>
-	document.getElementById("hairColorSelectorContainer").style.display = "none";
-	document.getElementById("hairColorSelectorPredefined").style.display = "none";
-</script>
- 
-
 	<div class="menuSlider" id="hairLenghtSlider">
 		<div class="linesMenuSlider">
 			<img src="images/lines.png" height="17" width="23"> 
@@ -2487,63 +2672,17 @@ Listed alphabetically:
 		<div class="speciesCategorySelectorContainer" id="cockTypeSelectorContainer">
 		
 			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromcockTypeList();"><div class="speciesCategoryText">Go Back</div></div>
-			<div class="speciesCategory" onClick="goToPredefinedcockTypesCategory();"><div class="speciesCategoryText">Predefined</div></div>
-			<div class="speciesCategory" onClick="setcockTypeToCustom('Slot_One');"><div id="cockTypeEntry1" class="speciesCategoryText">Empty</div></div>
-			<div class="speciesCategory" onClick="setcockTypeToCustom('Slot_Two');"><div id="cockTypeEntry2" class="speciesCategoryText">Empty</div></div>
-			<div class="speciesCategory" onClick="setcockTypeToCustom('Slot_Three');"><div id="cockTypeEntry3" class="speciesCategoryText">Empty</div></div>
-			<div class="speciesCategory" onClick="setcockTypeToCustom('Slot_Four');"><div id="cockTypeEntry4" class="speciesCategoryText">Empty</div></div>
-			<div class="speciesCategory" onClick="setcockTypeToCustom('Slot_Five');"><div id="cockTypeEntry5" class="speciesCategoryText">Empty</div></div>
-			<div class="speciesCategory" onClick="setcockTypeToCustom('Slot_Six');"><div id="cockTypeEntry6" class="speciesCategoryText">Empty</div></div>
-			<div class="speciesCategory" onClick="setcockTypeToCustom('Slot_Seven');"><div id="cockTypeEntry7" class="speciesCategoryText">Empty</div></div>
-			<div class="speciesCategory" onClick="setcockTypeToCustom('Slot_Eight');"><div id="cockTypeEntry8" class="speciesCategoryText">Empty</div></div>
-			<div class="speciesCategory" onClick="setcockTypeToCustom('Slot_Nine');"><div id="cockTypeEntry9" class="speciesCategoryText">Empty</div></div>
-			<div class="speciesCategoryLast" onClick="setcockTypeToCustom('Slot_Ten');"><div id="cockTypeEntry10" class="speciesCategoryText">Empty</div></div>
-			
-		</div>
-		
-		<!--
-  ____               _       __ _                _ 
- |  _ \ _ __ ___  __| | ___ / _(_)_ __   ___  __| |
- | |_) | '__/ _ \/ _` |/ _ \ |_| | '_ \ / _ \/ _` |
- |  __/| | |  __/ (_| |  __/  _| | | | |  __/ (_| |
- |_|   |_|  \___|\__,_|\___|_| |_|_| |_|\___|\__,_|
-                                                   
-		-->
-		
-		<div class="speciesSelector" id="cockTypeSelectorPredefined">
-		
-			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromPredefinedCockTypesCategory();"><div class="speciesCategoryText">Go Back</div></div>
-			<div class="speciesCategoryButtonEnd"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
-			<div class="speciesCategoryName"><div class="categoryText">Predefined</div></div>
-			<div class="speciesCategoryButtonEnd"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
-			<div class="speciesEntryLeft" onClick="setcockTypeTo('Canine');"><div class="speciesEntryText">Canine</div></div>
-			<div class="speciesEntryRight" onClick="setcockTypeTo('Equine');"><div class="speciesEntryText">Equine</div></div>
-			<div class="speciesEntryLeft" onClick="setcockTypeTo('Feline');"><div class="speciesEntryText">Feline</div></div>
-			<div class="speciesEntryRight" onClick="setcockTypeTo('Humanoid');"><div class="speciesEntryText">Humanoid</div></div>
-			<div class="speciesEntryLeft" onClick="setcockTypeTo('Empty');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryRight" onClick="setcockTypeTo('Empty');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryLeft" onClick="setcockTypeTo('Empty');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryRight" onClick="setcockTypeTo('Empty');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryLeft" onClick="setcockTypeTo('Empty');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryRight" onClick="setcockTypeTo('Empty');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryLeft" onClick="setcockTypeTo('Empty');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryRight" onClick="setcockTypeTo('Empty');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryLeft" onClick="setcockTypeTo('Empty');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryRight" onClick="setcockTypeTo('Empty');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryLeft" onClick="setcockTypeTo('Empty');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryRight" onClick="setcockTypeTo('Empty');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryLeft" onClick="setcockTypeTo('Empty');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryRight" onClick="setcockTypeTo('Empty');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryLeft" onClick="setcockTypeTo('Empty');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryRight" onClick="setcockTypeTo('Empty');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryLeft" onClick="setcockTypeTo('Empty');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryRight" onClick="setcockTypeTo('Empty');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryLeft" onClick="setcockTypeTo('Empty');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryRight" onClick="setcockTypeTo('Empty');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryLeft" onClick="setcockTypeTo('Empty');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryRight" onClick="setcockTypeTo('Empty');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryLeftLast" onClick="setcockTypeTo('Empty');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryRightLast" onClick="setcockTypeTo('Empty');"><div class="speciesEntryText">Empty</div></div>			
+			<div class="speciesCategory" onClick="setcockTypeTo('None');"><div class="speciesCategoryText">None</div></div>
+			<div class="speciesCategory" onClick="setcockTypeTo('Canine');"><div class="speciesCategoryText">Canine</div></div>
+			<div class="speciesCategory" onClick="setcockTypeTo('Equine');"><div id="cockTypeEntry2" class="speciesCategoryText">Equine</div></div>
+			<div class="speciesCategory" onClick="setcockTypeTo('Feline');"><div id="cockTypeEntry3" class="speciesCategoryText">Feline</div></div>
+			<div class="speciesCategory" onClick="setcockTypeTo('Humanoid');"><div id="cockTypeEntry4" class="speciesCategoryText">Humanoid</div></div>
+			<div class="speciesCategory" onClick="setcockTypeTo('None');"><div id="cockTypeEntry5" class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" onClick="setcockTypeTo('None');"><div id="cockTypeEntry6" class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" onClick="setcockTypeTo('None');"><div id="cockTypeEntry7" class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" onClick="setcockTypeTo('None');"><div id="cockTypeEntry8" class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" onClick="setcockTypeTo('None');"><div id="cockTypeEntry9" class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategoryLast" onClick="setcockTypeTo('None');"><div id="cockTypeEntry10" class="speciesCategoryText">Empty</div></div>
 			
 		</div>
 	
@@ -2557,7 +2696,6 @@ Listed alphabetically:
 
 	<script>
 		document.getElementById("cockTypeSelectorContainer").style.display = "none";
-		document.getElementById("cockTypeSelectorPredefined").style.display = "none";
 	</script>
 
 	</div>
@@ -2649,7 +2787,7 @@ Listed alphabetically:
 		</div>
 	
 		<div class="textinmenuPP">
-		Position Preference
+		&nbsp;
 		</div>
 	
 		<div class="textinmenuRight">
@@ -2746,31 +2884,6 @@ Listed alphabetically:
 		<div id="sliderfluff" class="slider">			
 			<script>
 			var mySlider = new dhtmlXSlider(sliderfluff, 315, null, false, 0, 100, 50, 1);				
-			</script>
-		</div>
-			
-	</div>
-	
-	<div class="menuSlider" id="feralAnthroSlider">
-		<div class="linesMenuSlider">
-			<img src="images/lines.png" height="17" width="23"> 
-		</div>
-			
-		<div class="textinmenuLeft">
-		Feral	
-		</div>
-	
-		<div class="textinmenuCenter">
-		&nbsp;
-		</div>
-	
-		<div class="textinmenuRight">
-		Anthro
-		</div>
-		
-		<div id="sliderferalanthro" class="slider">			
-			<script>
-			var mySlider22 = new dhtmlXSlider(sliderferalanthro, 315, null, false, 0, 100, 50, 1);				
 			</script>
 		</div>
 			
@@ -2904,15 +3017,6 @@ Listed alphabetically:
 	
 	<div class="option">
 
-		<label class="container">Hair Color
-			<input type="checkbox" id="hairColorMenuCheckbox" onClick="toggleHairColorMenu()">
-			<span class="checkbox"></span>  
-		</label>
-		
-	</div>
-	
-	<div class="option">
-
 		<label class="container">Hair Lenght
 			<input type="checkbox" id="hairLenghtSliderCheckbox" onClick="toggleHairLenghtSlider()">
 			<span class="checkbox"></span>  
@@ -2967,7 +3071,7 @@ Listed alphabetically:
 
 	<div class="option">
 
-		<label class="container">Position Pref.
+		<label class="container">Dom/Sub
 			<input type="checkbox" id="positionPreferenceSliderCheckbox" onClick="togglePositionPreferenceSlider()">
 			<span class="checkbox"></span>  
 		</label>
@@ -2996,15 +3100,6 @@ Listed alphabetically:
 
 		<label class="container">Fluffiness
 			<input type="checkbox" id="fluffinessSliderCheckbox" onClick="toggleFluffinessSlider()">
-			<span class="checkbox"></span>  
-		</label>
-		
-	</div>	
-	
-	<div class="option">
-
-		<label class="container">Feral/Anthro
-			<input type="checkbox" id="feralAnthroSliderCheckbox" onClick="toggleFeralAnthroSlider()">
 			<span class="checkbox"></span>  
 		</label>
 		
@@ -3536,315 +3631,6 @@ document.getElementById("COContainerSlot92").style.display='none';
 document.getElementById("COContainerSlot102").style.display='none';
 </script>
 
-<div class="menuAS" id="advancedSettings6" onclick="toggleHairColorsMenu()">
-	<div class="linesAS">
-			<img src="images/lines.png" height="17" width="23"> 
-			&nbsp;
-			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
-	</div>
-	
-	&nbsp;&nbsp;Define Hair Colors
-</div>
-
-<div id="defineHairColorsContainer">
-
-	<div id="hairColorTutorial">
-	Value | Name eg. #843acf | Purple
-	</div>
-
-	<div id="CHContainerSlot11"> <!-- Custom Hair Container Slot 1-1 -->
-		<div class="CSSlotDiv">Slot 1 -&nbsp;</div>
-		<div class="CSNameDiv" id="hairColorName1">HairColor</div>
-		<button type="button" class="buttonOpenLock" id="buttonCHSlot1" onclick="changeCHSlot1()">Change</button>
-	</div>
-	
-	<div id="CHContainerSlot12"> <!-- Custom Hair Container Slot 1-2 -->
-		<input id="hairColorValueSlot1TextField" class="hairColorTextField" value="">
-		<input id="hairColorNameSlot1TextField" class="hairColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCHSlot1()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCHSlot1()">Go Back</button>
-	</div>
-	
-	<div id="CHContainerSlot21">
-		<div class="CSSlotDiv">Slot 2 -&nbsp;</div>
-		<div class="CSNameDiv" id="hairColorName2">HairColor</div>
-		<button type="button" class="buttonOpenLock" id="buttonCHSlot2" onclick="changeCHSlot2()">Change</button>
-	</div>
-	
-	<div id="CHContainerSlot22">
-		<input id="hairColorValueSlot2TextField" class="hairColorTextField" value="">
-		<input id="hairColorNameSlot2TextField" class="hairColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCHSlot2()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCHSlot2()">Go Back</button>
-	</div>
-	
-	<div id="CHContainerSlot31">
-		<div class="CSSlotDiv">Slot 3 -&nbsp;</div>
-		<div class="CSNameDiv" id="hairColorName3">HairColor</div>
-		<button type="button" class="buttonOpenLock" id="buttonCHSlot3" onclick="changeCHSlot3()">Change</button>
-	</div>
-	
-	<div id="CHContainerSlot32">
-		<input id="hairColorValueSlot3TextField" class="hairColorTextField" value="">
-		<input id="hairColorNameSlot3TextField" class="hairColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCHSlot3()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCHSlot3()">Go Back</button>
-	</div>
-	
-	<div id="CHContainerSlot41">
-		<div class="CSSlotDiv">Slot 4 -&nbsp;</div>
-		<div class="CSNameDiv" id="hairColorName4">HairColor</div>
-		<button type="button" class="buttonOpenLock" id="buttonCHSlot4" onclick="changeCHSlot4()">Change</button>
-	</div>
-	
-	<div id="CHContainerSlot42">
-		<input id="hairColorValueSlot4TextField" class="hairColorTextField" value="">
-		<input id="hairColorNameSlot4TextField" class="hairColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCHSlot4()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCHSlot4()">Go Back</button>
-	</div>
-	
-	<div id="CHContainerSlot51">
-		<div class="CSSlotDiv">Slot 5 -&nbsp;</div>
-		<div class="CSNameDiv" id="hairColorName5">HairColor</div>
-		<button type="button" class="buttonOpenLock" id="buttonCHSlot5" onclick="changeCHSlot5()">Change</button>
-	</div>
-	
-	<div id="CHContainerSlot52">
-		<input id="hairColorValueSlot5TextField" class="hairColorTextField" value="">
-		<input id="hairColorNameSlot5TextField" class="hairColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCHSlot5()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCHSlot5()">Go Back</button>
-	</div>
-	
-	<div id="CHContainerSlot61">
-		<div class="CSSlotDiv">Slot 6 -&nbsp;</div>
-		<div class="CSNameDiv" id="hairColorName6">HairColor</div>
-		<button type="button" class="buttonOpenLock" id="buttonCHSlot6" onclick="changeCHSlot6()">Change</button>
-	</div>
-	
-	<div id="CHContainerSlot62">
-		<input id="hairColorValueSlot6TextField" class="hairColorTextField" value="">
-		<input id="hairColorNameSlot6TextField" class="hairColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCHSlot6()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCHSlot6()">Go Back</button>
-	</div>
-	
-	<div id="CHContainerSlot71">
-		<div class="CSSlotDiv">Slot 7 -&nbsp;</div>
-		<div class="CSNameDiv" id="hairColorName7">HairColor</div>
-		<button type="button" class="buttonOpenLock" id="buttonCHSlot7" onclick="changeCHSlot7()">Change</button>
-	</div>
-	
-	<div id="CHContainerSlot72">
-		<input id="hairColorValueSlot7TextField" class="hairColorTextField" value="">
-		<input id="hairColorNameSlot7TextField" class="hairColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCHSlot7()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCHSlot7()">Go Back</button>
-	</div>
-	
-	<div id="CHContainerSlot81">
-		<div class="CSSlotDiv">Slot 8 -&nbsp;</div>
-		<div class="CSNameDiv" id="hairColorName8">HairColor</div>
-		<button type="button" class="buttonOpenLock" id="buttonCHSlot8" onclick="changeCHSlot8()">Change</button>
-	</div>
-	
-	<div id="CHContainerSlot82">
-		<input id="hairColorValueSlot8TextField" class="hairColorTextField" value="">
-		<input id="hairColorNameSlot8TextField" class="hairColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCHSlot8()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCHSlot8()">Go Back</button>
-	</div>
-	
-	<div id="CHContainerSlot91">
-		<div class="CSSlotDiv">Slot 9 -&nbsp;</div>
-		<div class="CSNameDiv" id="hairColorName9">HairColor</div>
-		<button type="button" class="buttonOpenLock" id="buttonCHSlot9" onclick="changeCHSlot9()">Change</button>
-	</div>
-	
-	<div id="CHContainerSlot92">
-		<input id="hairColorValueSlot9TextField" class="hairColorTextField" value="">
-		<input id="hairColorNameSlot9TextField" class="hairColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCHSlot9()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCHSlot9()">Go Back</button>
-	</div>
-	
-	<div id="CHContainerSlot101">
-		<div class="CSSlotDiv">Slot 10 -&nbsp;</div>
-		<div class="CSNameDiv" id="hairColorName10">HairColor</div>
-		<button type="button" class="buttonOpenLock" id="buttonCHSlot10" onclick="changeCHSlot10()">Change</button>
-	</div>
-	
-	<div id="CHContainerSlot102">
-		<input id="hairColorValueSlot10TextField" class="hairColorTextField" value="">
-		<input id="hairColorNameSlot10TextField" class="hairColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCHSlot10()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCHSlot10()">Go Back</button>
-	</div>
-
-</div>
-
-<script>
-document.getElementById("CHContainerSlot12").style.display='none';
-document.getElementById("CHContainerSlot22").style.display='none';
-document.getElementById("CHContainerSlot32").style.display='none';
-document.getElementById("CHContainerSlot42").style.display='none';
-document.getElementById("CHContainerSlot52").style.display='none';
-document.getElementById("CHContainerSlot62").style.display='none';
-document.getElementById("CHContainerSlot72").style.display='none';
-document.getElementById("CHContainerSlot82").style.display='none';
-document.getElementById("CHContainerSlot92").style.display='none';
-document.getElementById("CHContainerSlot102").style.display='none';
-//document.getElementById("hairColorTutorial").style.display='none';
-</script>
-
-<div class="menuAS" id="advancedSettings7" onclick="toggleCockTypesMenu()">
-	<div class="linesAS">
-			<img src="images/lines.png" height="17" width="23"> 
-			&nbsp;
-			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
-	</div>
-	
-	&nbsp;&nbsp;Define Cock Types
-</div>
-
-<div id="defineCockTypesContainer">
-
-	<div id="CTContainerSlot11"> <!-- (Custom) Cock Types Container Slot 1-1 -->
-		<div class="CSSlotDiv">Slot 1 -&nbsp;</div>
-		<div class="CSNameDiv" id="cockTypeName1">ObjectName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCTSlot1" onclick="changeCTSlot1()">Change</button>
-	</div>
-	
-	<div id="CTContainerSlot12"> <!-- (Custom) Cock Types Container Slot 1-2 -->
-		<input id="cockTypeSlot1TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCTSlot1()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCTSlot1()">Go Back</button>
-	</div>
-	
-	<div id="CTContainerSlot21">
-		<div class="CSSlotDiv">Slot 2 -&nbsp;</div>
-		<div class="CSNameDiv" id="cockTypeName2">ObjectName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCTSlot2" onclick="changeCTSlot2()">Change</button>
-	</div>
-	
-	<div id="CTContainerSlot22">
-		<input id="cockTypeSlot2TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCTSlot2()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCTSlot2()">Go Back</button>
-	</div>
-	
-	<div id="CTContainerSlot31">
-		<div class="CSSlotDiv">Slot 3 -&nbsp;</div>
-		<div class="CSNameDiv" id="cockTypeName3">ObjectName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCTSlot3" onclick="changeCTSlot3()">Change</button>
-	</div>
-	
-	<div id="CTContainerSlot32">
-		<input id="cockTypeSlot3TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCTSlot3()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCTSlot3()">Go Back</button>
-	</div>
-	
-	<div id="CTContainerSlot41">
-		<div class="CSSlotDiv">Slot 4 -&nbsp;</div>
-		<div class="CSNameDiv" id="cockTypeName4">ObjectName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCTSlot4" onclick="changeCTSlot4()">Change</button>
-	</div>
-	
-	<div id="CTContainerSlot42">
-		<input id="cockTypeSlot4TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCTSlot4()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCTSlot4()">Go Back</button>
-	</div>
-	
-	<div id="CTContainerSlot51">
-		<div class="CSSlotDiv">Slot 5 -&nbsp;</div>
-		<div class="CSNameDiv" id="cockTypeName5">ObjectName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCTSlot5" onclick="changeCTSlot5()">Change</button>
-	</div>
-	
-	<div id="CTContainerSlot52">
-		<input id="cockTypeSlot5TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCTSlot5()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCTSlot5()">Go Back</button>
-	</div>
-	
-	<div id="CTContainerSlot61">
-		<div class="CSSlotDiv">Slot 6 -&nbsp;</div>
-		<div class="CSNameDiv" id="cockTypeName6">ObjectName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCTSlot6" onclick="changeCTSlot6()">Change</button>
-	</div>
-	
-	<div id="CTContainerSlot62">
-		<input id="cockTypeSlot6TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCTSlot6()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCTSlot6()">Go Back</button>
-	</div>
-	
-	<div id="CTContainerSlot71">
-		<div class="CSSlotDiv">Slot 7 -&nbsp;</div>
-		<div class="CSNameDiv" id="cockTypeName7">ObjectName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCTSlot7" onclick="changeCTSlot7()">Change</button>
-	</div>
-	
-	<div id="CTContainerSlot72">
-		<input id="cockTypeSlot7TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCTSlot7()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCTSlot7()">Go Back</button>
-	</div>
-	
-	<div id="CTContainerSlot81">
-		<div class="CSSlotDiv">Slot 8 -&nbsp;</div>
-		<div class="CSNameDiv" id="cockTypeName8">ObjectName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCTSlot8" onclick="changeCTSlot8()">Change</button>
-	</div>
-	
-	<div id="CTContainerSlot82">
-		<input id="cockTypeSlot8TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCTSlot8()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCTSlot8()">Go Back</button>
-	</div>
-	
-	<div id="CTContainerSlot91">
-		<div class="CSSlotDiv">Slot 9 -&nbsp;</div>
-		<div class="CSNameDiv" id="cockTypeName9">ObjectName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCTSlot9" onclick="changeCTSlot9()">Change</button>
-	</div>
-	
-	<div id="CTContainerSlot92">
-		<input id="cockTypeSlot9TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCTSlot9()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCTSlot9()">Go Back</button>
-	</div>
-	
-	<div id="CTContainerSlot101">
-		<div class="CSSlotDiv">Slot 10 -&nbsp;</div>
-		<div class="CSNameDiv" id="cockTypeName10">ObjectName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCTSlot10" onclick="changeCTSlot10()">Change</button>
-	</div>
-	
-	<div id="CTContainerSlot102">
-		<input id="cockTypeSlot10TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCTSlot10()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCTSlot10()">Go Back</button>
-	</div>
-
-</div>
-
-<script>
-document.getElementById("CTContainerSlot12").style.display='none';
-document.getElementById("CTContainerSlot22").style.display='none';
-document.getElementById("CTContainerSlot32").style.display='none';
-document.getElementById("CTContainerSlot42").style.display='none';
-document.getElementById("CTContainerSlot52").style.display='none';
-document.getElementById("CTContainerSlot62").style.display='none';
-document.getElementById("CTContainerSlot72").style.display='none';
-document.getElementById("CTContainerSlot82").style.display='none';
-document.getElementById("CTContainerSlot92").style.display='none';
-document.getElementById("CTContainerSlot102").style.display='none';
-</script>
-
 <div class="menuAS" id="advancedSettings8" onclick="toggleThirdSexMenu()">
 	<div class="linesAS">
 			<img src="images/lines.png" height="17" width="23"> 
@@ -4190,6 +3976,10 @@ document.getElementById("creativeModeCustomDropdownToggle").style.display='none'
 	
 	<div id="CONTROLsubContainer" style="overflow:hidden;transition-duration:0.75s">
 	
+		<div class="CONTROLchangelogContainer">
+			<div style="text-align:center; float:left; width: 100%; padding-top:5px; padding-bottom:5px;"> CONTROL Changelog </div>
+			<div id="CONTROLchangelog" class="CONTROLchangelog"> &nbsp;</div>
+		</div>
 		<div id="CONTROLsubMessage" style="padding-left:18px;margin-top:5px;">CONTROL session is active. You're sub.</div>
 		<div id="CONTROLsubMessageMasterName" style="padding-left:18px;margin-top:5px;">&nbsp;</div>
 				
@@ -4771,7 +4561,7 @@ Add app <br> to your device
 <div class="creditsEntry">
 
 <div class="creditsText">
-Version 0.6.2.1o <br> Click to see changelog
+Version 0.6.2.1p <br> Click to see changelog
 </div>
 <div class="creditsAvatar">             
 <img src="images/favicon-upscaled-512.png" width="70" height="70" class="avatar">
@@ -4904,12 +4694,6 @@ mySlider20.attachEvent("onSlideEnd", function() {
 	showProcessingAnimation();
 });
 
-mySlider22.attachEvent("onSlideEnd", function() {
-   	var feralAnthro = mySlider22.getValue();
-	localStorage.setItem("Slot0_Feral_Anthro", feralAnthro);
-	showProcessingAnimation();
-});
-
 mySlider23.attachEvent("onSlideEnd", function() {
    	var fertility = mySlider23.getValue();
 	localStorage.setItem("Slot0_Fertility", fertility);
@@ -4945,9 +4729,6 @@ lockSettingsOnStartup();
 loadCustomSpeciesOnStartup();
 loadInanimateObjectsOnStartup();
 loadInanimateObjectStatus();
-loadHairColorsOnStartup();
-loadHairColorStatus();
-loadCockTypesOnStartup();
 showOrHideRandomizerButton();
 showOrHideDevMenuButton();
 showOrHideFeedbackButton();
@@ -4972,6 +4753,7 @@ displayBatteryDrainSettings();
 showOrHideMenus();
 currentTime();
 charVizStartup();
+loadCharVizOptions();
 </script>		
 
 </div>

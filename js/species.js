@@ -45,7 +45,24 @@ function setSpeciesTo(Species) {
 	localStorage.setItem("Slot0_Species", Species);
 	closeCategoryMenu();
 	goBackFromCategoryList();
-	initializeCharViz();
+	if (controlsessionactive === "Yes") {
+		conn.send({firstParam: "manipulateOption", secondParam: "Species", thirdParam: Species});
+	}
+	
+	var charVizEnabled = localStorage.getItem("CharViz_Enabled");	
+	if (charVizEnabled === "Yes") {
+		var pickerEnabled = localStorage.getItem("Character_Part_And_Pattern_Picker_Enabled");	
+		var setNatColorScheme = localStorage.getItem("CharViz_Set_Natural_Color_Scheme");
+		var firstTime = localStorage.getItem("First_Time_Setting_Color"); // This is needed, cause when user for the first time launches CharViz would see only blank lineart
+		if (setNatColorScheme === "Yes" || firstTime != "No") {
+			setNaturalColorScheme(Species);
+			localStorage.setItem("First_Time_Setting_Color", "No");
+		}
+		if (pickerEnabled != "Yes") {
+			saveCharacterPartPreset(Species);
+			initializeCharViz();
+		}		
+	}
 	showProcessingAnimation();
 }
 

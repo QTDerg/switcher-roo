@@ -8,7 +8,7 @@ function inanimateObjectsLoadList() {
 		document.getElementById("inanimateObjectsSearch").style.display= 'none';
 		document.getElementById("inanimateObjectsSelectorContainer").style.display= 'block';
 		document.getElementById('inanimateObjectsContainer').style.width = "80%";
-		document.getElementById('inanimateObjectsMenu').style.height = "415px";
+		document.getElementById('inanimateObjectsMenu').style.height = "440px";
 	}
 }
 
@@ -24,6 +24,10 @@ function setInanimateObjectTo(Object) {
 	document.getElementById('inanimateObjectsCurrent').innerHTML = Object;
 	localStorage.setItem("Slot0_Inanimate_Object", Object);
 	goBackFromInanimateObjectsList();
+	
+	if (controlsessionactive === "Yes") {
+		conn.send({firstParam: "manipulateOption", secondParam: "Inanimate_Object", thirdParam: Object});
+	}
 	showProcessingAnimation();
 }
 

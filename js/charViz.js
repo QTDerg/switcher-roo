@@ -1,3 +1,7 @@
+const supportedSpecies = ['African Wild Dog', 'Arctic Fox', 'Coyote', 'Dog', 'Ethiopian Wolf', 'Fennec Fox', 'Folf', 'Fox', 'Husky', 'Maned Wolf', 'Werewolf', 'Wolf', 'Wox', 'Wusky', 'Alligator', 'Crocodile', 'Dinosaur', 'Raptor', 'Snake', 'Lizard', 'Shark', 'Dragon', 'Argonian', 'Kobold'];
+const canineSpecies = ['African Wild Dog', 'Arctic Fox', 'Coyote', 'Dog', 'Ethiopian Wolf', 'Fennec Fox', 'Folf', 'Fox', 'Husky', 'Maned Wolf', 'Werewolf', 'Wolf', 'Wox', 'Wusky'];
+const scalySpecies = ['Alligator', 'Crocodile', 'Dinosaur', 'Raptor', 'Snake', 'Lizard', 'Argonian', 'Kobold'];
+
 function toggleCharViz() {
 var tickbox = document.getElementById("charVizCheckbox");
 	if (tickbox.checked) {
@@ -8,7 +12,15 @@ var tickbox = document.getElementById("charVizCheckbox");
 		document.getElementById("charVizClothColorsToggler").style.display = 'block';
 		document.getElementById("charVizOptionToggler").style.display = 'block';
 		document.getElementById("charVizCreditsToggler").style.display = 'block';
+		document.getElementById("charVizReadmeToggler").style.display = 'block';
+		localStorage.setItem("CharViz_Enabled", tickbox);
 		initializeCharViz();
+		var Species = localStorage.getItem("Slot0_Species");
+		setSpeciesTo(Species);
+		var x1 = localStorage.getItem("Character_Part_And_Pattern_Picker_Enabled");
+		if (x1 === "Yes") {
+			document.getElementById("charVizPickerToggler").style.display = 'block';
+		}
 	}
 	else {
 		var tickbox = "No"
@@ -18,8 +30,10 @@ var tickbox = document.getElementById("charVizCheckbox");
 		document.getElementById("charVizClothColorsToggler").style.display = 'none';
 		document.getElementById("charVizOptionToggler").style.display = 'none';
 		document.getElementById("charVizCreditsToggler").style.display = 'none';
+		document.getElementById("charVizReadmeToggler").style.display = 'none';
+		document.getElementById("charVizPickerToggler").style.display = 'none';
+		localStorage.setItem("CharViz_Enabled", tickbox);
 	}
-	localStorage.setItem("CharViz_Enabled", tickbox);
 }
 
 function charVizStartup() {
@@ -31,6 +45,7 @@ function charVizStartup() {
 		document.getElementById("charVizClothColorsToggler").style.display = 'block';
 		document.getElementById("charVizOptionToggler").style.display = 'block';
 		document.getElementById("charVizCreditsToggler").style.display = 'block';
+		document.getElementById("charVizReadmeToggler").style.display = 'block';
 		document.getElementById("charVizCheckbox").checked = true;
 		initializeCharViz();
 	}
@@ -41,40 +56,28 @@ function charVizStartup() {
 		document.getElementById("charVizClothColorsToggler").style.display = 'none';
 		document.getElementById("charVizOptionToggler").style.display = 'none';
 		document.getElementById("charVizCreditsToggler").style.display = 'none';
+		document.getElementById("charVizReadmeToggler").style.display = 'none';
 	}
 }
 
 var charVizEventsInitialized;
 
-function initializeCharViz() {
-	// Species
-	var species = localStorage.getItem("Slot0_Species");
-	// Currently only canine species are supported
-	if (species === 'African Wild Dog' || species === 'Arctic Fox' || species === 'Coyote' || species === 'Dog' || species === 'Ethiopian Wolf' || species === 'Fennec Fox' || species === 'Folf' || species === 'Fox' || species === 'Husky' || species === 'Maned Wolf' || species === 'Werewolf' || species === 'Wolf' || species === 'Wox' || species === 'Wusky' || species === 'Sergal') {
+function initializeCharViz() {	
+	// Check if species are supported or Character Part & Pattern Picker is enabled
+	var chosenSpecies = document.getElementById("speciesCurrent").innerHTML;
+	var pickerEnabled = localStorage.getItem("Character_Part_And_Pattern_Picker_Enabled");
+	if (supportedSpecies.includes(chosenSpecies) || pickerEnabled === "Yes") {
 		document.getElementById("charVizDisplayMessage").style.display = 'none';
-		// Set base masks
-		document.getElementById("charVizDisplayBasePrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/primary.png")';
-		document.getElementById("charVizDisplayBaseSecondary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/secondary.png")';
-		document.getElementById("charVizDisplayBaseTertiary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/tertiary.png")';
-		document.getElementById("charVizDisplayBaseMarkings").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/markings.png")';		
-		document.getElementById("charVizDisplayBaseLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/fluffy/lines.png")';
+		loadSharedAssets();
+		loadCharacterParts();
+		loadCharacterPatterns();
+		loadCharacterColors();
+		loadCharacterClothing();
+		loadCharacterGenitals();
 		
-		// Set tail
-		document.getElementById("charVizDisplayTailPrimary").style.webkitMaskImage = 'url("./images/charViz/tails/fluffy01/primary.png")';
-		document.getElementById("charVizDisplayTailSecondary").style.webkitMaskImage = 'url("./images/charViz/tails/fluffy01/secondary.png")';
-		document.getElementById("charVizDisplayTailTertiary").style.webkitMaskImage = 'url("./images/charViz/tails/fluffy01/tertiary.png")';
-		//document.getElementById("charVizDisplayTailMarkings").style.webkitMaskImage = 'url("./images/charViz/tails/fluffy01/markings.png")';
-		document.getElementById("charVizDisplayTailLines").style.backgroundImage = 'url("./images/charViz/tails/fluffy01/lines.png")';
-		
-		// Set body morphs
-		// Breast size
-		document.getElementById("charVizDisplayBreastSizePrimary").style.webkitMaskImage = 'url(./images/charViz/bases/feminine/fluffy/breastSize/primary.png)';
-		document.getElementById("charVizDisplayBreastSizeSecondary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/breastSize/secondary.png")';
-		document.getElementById("charVizDisplayBreastSizeMarkings").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/breastSize/markings.png")';
-		document.getElementById("charVizDisplayBreastSizeLines").style.backgroundImage = 'url(./images/charViz/bases/feminine/fluffy/breastSize/lines.png)';
-		
+		// Breast Size
 		var Sex = localStorage.getItem("Slot0_Sex");
-		
+			
 		if (Sex == "Male" || Sex == "Femboy") {
 			var breastSize = mySlider9.getValue();
 		}
@@ -84,61 +87,299 @@ function initializeCharViz() {
 		
 		setBreastSizeBodyMorph(breastSize);
 				
-		// Hips size
+		// Thin/Thicc			
+		var thinThicc = mySlider5.getValue();
+		setThinThiccBodyMorph(thinThicc);
 		
-		document.getElementById("charVizDisplayHipsSizePrimary").style.webkitMaskImage = 'url(./images/charViz/bases/feminine/fluffy/hipsSize/primary.png)';
-		document.getElementById("charVizDisplayHipsSizeSecondary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/hipsSize/secondary.png")';
-		document.getElementById("charVizDisplayHipsSizeMarkings").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/hipsSize/markings.png")';
-		document.getElementById("charVizDisplayHipsSizeLines").style.backgroundImage = 'url(./images/charViz/bases/feminine/fluffy/hipsSize/lines.png)';
+		// Hair Lenght
+		var hairLenght = mySlider20.getValue();
+		setHairLenght(hairLenght);
+		
+		// Genital Size
+		var genitalSize = mySlider2.getValue();
+		setGenitalSize(genitalSize);
+		
+		document.getElementById("charVizDisplayInanimateTFprimary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+		document.getElementById("charVizDisplayInanimateTFsecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+		document.getElementById("charVizDisplayInanimateTFlines").style.backgroundImage = '';
 
-		var hipsSize = mySlider3.getValue();
-		setHipsSizeBodyMorph(hipsSize);
-		
-		// Head
-		
-		document.getElementById("charVizDisplayHeadPrimary").style.webkitMaskImage = 'url(./images/charViz/heads/canine/primary.png)';
-		document.getElementById("charVizDisplayHeadSecondary").style.webkitMaskImage = 'url(./images/charViz/heads/canine/secondary.png)';
-		document.getElementById("charVizDisplayHeadTertiary").style.webkitMaskImage = 'url(./images/charViz/heads/canine/tertiary.png)';
-		document.getElementById("charVizDisplayHeadHair").style.webkitMaskImage = 'url(./images/charViz/heads/canine/hair.png)';
-		document.getElementById("charVizDisplayHeadScleras").style.backgroundImage = 'url(./images/charViz/heads/canine/scleras.png)';
-		document.getElementById("charVizDisplayHeadIrisLeft").style.webkitMaskImage = 'url(./images/charViz/heads/canine/irisLeft.png)';
-		document.getElementById("charVizDisplayHeadIrisRight").style.webkitMaskImage = 'url(./images/charViz/heads/canine/irisRight.png)';
-		document.getElementById("charVizDisplayHeadIrisShading").style.backgroundImage = 'url(./images/charViz/heads/canine/irisShading.png)';
-		document.getElementById("charVizDisplayHeadLines").style.backgroundImage = 'url(./images/charViz/heads/canine/lines.png)';
-		
-		// Background Color
-		
-		var bgcolor = localStorage.getItem("CharViz_Background_Color");
-		if (bgcolor != null) {
-			charVizSetBGColor(bgcolor);
+		if (charVizEventsInitialized === "Yes") {
+			return;
 		}
-				
-		// Blush
-		
-		var blushing = localStorage.getItem("CharViz_Character_Blushing");
-		if (blushing === "Yes") {	document.getElementById("charVizDisplayHeadBlush").style.backgroundImage = 'url(./images/charViz/heads/canine/blush.png)'; }
-		
-		// Cheesehead
-		if (species === "Sergal") {
-			document.getElementById("charVizDisplayHeadBlush").style.backgroundImage = '';
-			document.getElementById("charVizDisplayHeadPrimary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayHeadSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayHeadTertiary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayHeadHair").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayHeadScleras").style.backgroundImage = '';
-			document.getElementById("charVizDisplayHeadIrisLeft").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayHeadIrisRight").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayHeadIrisShading").style.backgroundImage = '';
-			document.getElementById("charVizDisplayHeadLines").style.backgroundImage = 'url(./images/charViz/cheesehead.png)';
+		else {
+			charVizInitializeEvents(); // Events for Thin/Thicc, Breast Size, Hair Lenght and Genital Size sliders
+			charVizEventsInitialized = "Yes";
 		}
 	}
 	else {
 		flushCharViz();
 		document.getElementById("charVizDisplayMessage").style.display = 'block';
-		return;
 	}
-	// Check if character is wearing clothes, if yes then setup cloth masks
+	// Background Color			
+	var bgcolor = localStorage.getItem("CharViz_Background_Color");
+	if (bgcolor != null) {
+		charVizSetBGColor(bgcolor);
+	}		
+}
+
+function loadSharedAssets() {
+	// Eyes
+	document.getElementById("charVizDisplayHeadScleraLeft").style.webkitMaskImage = 'url(./images/charViz/heads/sharedAssets/eyes/left/scleraColor.png)';
+	document.getElementById("charVizDisplayHeadScleraRight").style.webkitMaskImage = 'url(./images/charViz/heads/sharedAssets/eyes/right/scleraColor.png)';
+	document.getElementById("charVizDisplayHeadSclerasShading").style.backgroundImage = 'url(./images/charViz/heads/sharedAssets/eyes/sclerasShading.png)';
+	document.getElementById("charVizDisplayHeadIrisLeft").style.webkitMaskImage = 'url(./images/charViz/heads/sharedAssets/eyes/left/irisColor.png)';
+	document.getElementById("charVizDisplayHeadIrisRight").style.webkitMaskImage = 'url(./images/charViz/heads/sharedAssets/eyes/right/irisColor.png)';
+	document.getElementById("charVizDisplayHeadIrisesShading").style.backgroundImage = 'url(./images/charViz/heads/sharedAssets/eyes/irisesShading.png)';
+	document.getElementById("charVizDisplayHeadEyelashesAndHighlights").style.backgroundImage = 'url(./images/charViz/heads/sharedAssets/eyes/eyelashesAndHighlights.png)';
 	
+	// Hair
+	document.getElementById("charVizDisplayHairBackPrimary").style.webkitMaskImage = 'url("./images/charViz/hairBack/default/primary.png")';
+	document.getElementById("charVizDisplayHairBackLines").style.backgroundImage = 'url(./images/charViz/hairBack/default/lines.png)';
+}
+
+function loadCharacterParts() {
+	var body = localStorage.getItem("Slot0_CharViz_Body");
+	var head = localStorage.getItem("Slot0_CharViz_Head");
+	var tail = localStorage.getItem("Slot0_CharViz_Tail");
+	var wings = localStorage.getItem("Slot0_CharViz_Wings");
+	var pupils = localStorage.getItem("Slot0_CharViz_Pupils");
+
+	// Bodies
+	if (body === "Fluffy") {
+		document.getElementById("charVizDisplayBasePrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/primary.png")';
+		document.getElementById("charVizDisplayBaseLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/fluffy/lines.png")';
+		document.getElementById("charVizDisplayBreastSizePrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/breastSize/primary.png")';
+		document.getElementById("charVizDisplayBreastSizeLines").style.backgroundImage = 'url(./images/charViz/bases/feminine/fluffy/breastSize/lines.png)';
+	}
+	else if (body === "Scaly") {
+		document.getElementById("charVizDisplayBasePrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/scaly/primary.png")';
+		document.getElementById("charVizDisplayBaseLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/scaly/lines/linesDefault.png")';
+		document.getElementById("charVizDisplayBreastSizePrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/scaly/breastSize/primary.png")';
+		document.getElementById("charVizDisplayBreastSizeLines").style.backgroundImage = 'url(./images/charViz/bases/feminine/scaly/breastSize/lines.png)';
+	}
+	else if (body === "Scaly underthigh") {
+		document.getElementById("charVizDisplayBasePrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/scaly/primary.png")';
+		document.getElementById("charVizDisplayBaseLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/scaly/lines/linesUnderthigh.png")';
+		document.getElementById("charVizDisplayBreastSizePrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/scaly/breastSize/primary.png")';
+		document.getElementById("charVizDisplayBreastSizeLines").style.backgroundImage = 'url(./images/charViz/bases/feminine/scaly/breastSize/lines.png)';
+	}
+	
+	// Heads
+	if (head === "Canine") {
+		document.getElementById("charVizDisplayHeadPrimary").style.webkitMaskImage = 'url(./images/charViz/heads/canine/primary.png)';
+		document.getElementById("charVizDisplayHeadSecondary").style.webkitMaskImage = 'url(./images/charViz/heads/canine/secondary.png)';
+		document.getElementById("charVizDisplayHeadTertiary").style.webkitMaskImage = 'url(./images/charViz/heads/canine/tertiary.png)';
+		document.getElementById("charVizDisplayHeadLines").style.backgroundImage = 'url(./images/charViz/heads/canine/lines.png)';
+		document.getElementById("charVizDisplayHeadMisc").style.backgroundImage = 'url(./images/charViz/heads/canine/mouthEyebrows.png)';
+		// Hair
+		document.getElementById("charVizDisplayHeadHairPrimary").style.webkitMaskImage = 'url("./images/charViz/heads/canine/hair/default/primary.png")';
+		document.getElementById("charVizDisplayHeadHairLines").style.backgroundImage = 'url(./images/charViz/heads/canine/hair/default/lines.png)';		
+	}
+	if (head === "Scalie") {
+		document.getElementById("charVizDisplayHeadPrimary").style.webkitMaskImage = 'url(./images/charViz/heads/scalie/primary.png)';
+		document.getElementById("charVizDisplayHeadSecondary").style.webkitMaskImage = 'url(./images/charViz/heads/scalie/secondary.png)';
+		document.getElementById("charVizDisplayHeadTertiary").style.webkitMaskImage = 'url("./images/charViz/blankImage.png")';
+		document.getElementById("charVizDisplayHeadLines").style.backgroundImage = 'url(./images/charViz/heads/scalie/lines.png)';
+		document.getElementById("charVizDisplayHeadMisc").style.backgroundImage = 'url(./images/charViz/heads/scalie/mouthEyebrowsNose.png)';
+		// Hair
+		document.getElementById("charVizDisplayHeadHairPrimary").style.webkitMaskImage = 'url("./images/charViz/heads/scalie/hair/default/primary.png")';
+		document.getElementById("charVizDisplayHeadHairLines").style.backgroundImage = 'url(./images/charViz/heads/scalie/hair/default/lines.png)';		
+	}
+	if (head === "Dragon") {
+		document.getElementById("charVizDisplayHeadPrimary").style.webkitMaskImage = 'url(./images/charViz/heads/dragon/primary.png)';
+		document.getElementById("charVizDisplayHeadSecondary").style.webkitMaskImage = 'url(./images/charViz/heads/dragon/secondary.png)';
+		document.getElementById("charVizDisplayHeadTertiary").style.webkitMaskImage = 'url(./images/charViz/heads/dragon/tertiary.png)';
+		document.getElementById("charVizDisplayHeadLines").style.backgroundImage = 'url(./images/charViz/heads/dragon/lines.png)';
+		document.getElementById("charVizDisplayHeadMisc").style.backgroundImage = 'url(./images/charViz/heads/dragon/mouthEyebrowsNose.png)';
+		// Hair
+		document.getElementById("charVizDisplayHeadHairPrimary").style.webkitMaskImage = 'url("./images/charViz/heads/dragon/hair/default/primary.png")';
+		document.getElementById("charVizDisplayHeadHairLines").style.backgroundImage = 'url(./images/charViz/heads/dragon/hair/default/lines.png)';		
+	}
+	if (head === "Shark") {
+		document.getElementById("charVizDisplayHeadPrimary").style.webkitMaskImage = 'url(./images/charViz/heads/shark/primary.png)';
+		document.getElementById("charVizDisplayHeadSecondary").style.webkitMaskImage = 'url(./images/charViz/heads/shark/secondary.png)';
+		document.getElementById("charVizDisplayHeadTertiary").style.webkitMaskImage = 'url("./images/charViz/blankImage.png")';
+		document.getElementById("charVizDisplayHeadLines").style.backgroundImage = 'url(./images/charViz/heads/shark/lines.png)';
+		document.getElementById("charVizDisplayHeadMisc").style.backgroundImage = 'url(./images/charViz/heads/shark/mouthEyebrowsNose.png)';
+		// Hair
+		document.getElementById("charVizDisplayHeadHairPrimary").style.webkitMaskImage = 'url("./images/charViz/heads/shark/hair/default/primary.png")';
+		document.getElementById("charVizDisplayHeadHairLines").style.backgroundImage = 'url(./images/charViz/heads/shark/hair/default/lines.png)';		
+	}
+	if (head === "Sergal") {
+		document.getElementById("charVizDisplayHeadPrimary").style.webkitMaskImage = 'url("./images/charViz/blankImage.png")';
+		document.getElementById("charVizDisplayHeadSecondary").style.webkitMaskImage = 'url("./images/charViz/blankImage.png")';
+		document.getElementById("charVizDisplayHeadTertiary").style.webkitMaskImage = 'url("./images/charViz/blankImage.png")';
+		document.getElementById("charVizDisplayHeadLines").style.backgroundImage = 'url(./images/charViz/heads/sergal/sergal.png)';
+		document.getElementById("charVizDisplayHeadMisc").style.backgroundImage = '';
+		// Hair
+		document.getElementById("charVizDisplayHeadHairPrimary").style.webkitMaskImage = 'url("./images/charViz/heads/scalie/hair/default/primary.png")';
+		document.getElementById("charVizDisplayHeadHairLines").style.backgroundImage = 'url(./images/charViz/heads/scalie/hair/default/lines.png)';		
+	}
+	
+	// Tails
+	if (tail === "Canine") {
+		document.getElementById("charVizDisplayTailPrimary").style.webkitMaskImage = 'url("./images/charViz/tails/canine/primary.png")';
+		document.getElementById("charVizDisplayTailSecondary").style.webkitMaskImage = 'url("./images/charViz/tails/canine/secondary.png")';
+		document.getElementById("charVizDisplayTailTertiary").style.webkitMaskImage = 'url("./images/charViz/tails/canine/tertiary.png")';
+		document.getElementById("charVizDisplayTailLines").style.backgroundImage = 'url("./images/charViz/tails/canine/lines.png")';
+	}
+	if (tail === "Scaly") {
+		document.getElementById("charVizDisplayTailPrimary").style.webkitMaskImage = 'url("./images/charViz/tails/scaly/primary.png")';
+		document.getElementById("charVizDisplayTailSecondary").style.webkitMaskImage = 'url("./images/charViz/tails/scaly/secondary.png")';
+		document.getElementById("charVizDisplayTailTertiary").style.webkitMaskImage = 'url("./images/charViz/blankImage.png")';
+		document.getElementById("charVizDisplayTailLines").style.backgroundImage = 'url("./images/charViz/tails/scaly/lines.png")';
+	}
+	if (tail === "Shark") {
+		document.getElementById("charVizDisplayTailPrimary").style.webkitMaskImage = 'url("./images/charViz/tails/shark/primary.png")';
+		document.getElementById("charVizDisplayTailSecondary").style.webkitMaskImage = 'url("./images/charViz/tails/shark/secondary.png")';
+		document.getElementById("charVizDisplayTailTertiary").style.webkitMaskImage = 'url("./images/charViz/blankImage.png")';
+		document.getElementById("charVizDisplayTailLines").style.backgroundImage = 'url("./images/charViz/tails/shark/lines.png")';
+	}
+	if (tail === "Feline") {
+		document.getElementById("charVizDisplayTailPrimary").style.webkitMaskImage = 'url("./images/charViz/tails/feline/primary.png")';
+		document.getElementById("charVizDisplayTailSecondary").style.webkitMaskImage = 'url("./images/charViz/blankImage.png")';
+		document.getElementById("charVizDisplayTailTertiary").style.webkitMaskImage = 'url("./images/charViz/blankImage.png")';
+		document.getElementById("charVizDisplayTailLines").style.backgroundImage = 'url("./images/charViz/tails/feline/lines.png")';
+	}
+	
+	// Wings
+	if (wings === "None") {
+		document.getElementById("charVizDisplayWingsPrimary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+		document.getElementById("charVizDisplayWingsMarkings").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+		document.getElementById("charVizDisplayWingsLines").style.backgroundImage = '';
+	}
+	else if (wings === "Dragon") {
+		document.getElementById("charVizDisplayWingsPrimary").style.webkitMaskImage = 'url("./images/charViz/wings/dragon/primary.png")';
+		document.getElementById("charVizDisplayWingsMarkings").style.webkitMaskImage = 'url("./images/charViz/wings/dragon/markings.png")';
+		document.getElementById("charVizDisplayWingsLines").style.backgroundImage = 'url("./images/charViz/wings/dragon/lines.png")';
+	}
+	
+	// Pupils
+	if (pupils === "Default") {
+		document.getElementById("charVizDisplayHeadPupils").style.backgroundImage = 'url(./images/charViz/heads/sharedAssets/eyes/pupilsDefault.png)';
+	}
+	else if (pupils === "Reptile") {
+		document.getElementById("charVizDisplayHeadPupils").style.backgroundImage = 'url(./images/charViz/heads/sharedAssets/eyes/pupilsReptile.png)';
+	}
+		
+}
+
+function loadCharacterPatterns() {
+	var secondary = localStorage.getItem("Slot0_CharViz_Secondary");
+	var tertiary = localStorage.getItem("Slot0_CharViz_Tertiary");
+	var markings = localStorage.getItem("Slot0_CharViz_Markings");
+	
+	// Secondary
+	if (secondary === "None") {
+		document.getElementById("charVizDisplayBreastSizeSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+		document.getElementById("charVizDisplayBaseSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+	}
+	else if (secondary === "Belly, underthigh, fingers") {
+		document.getElementById("charVizDisplayBreastSizeSecondary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/breastSize/secondary.png")';
+		document.getElementById("charVizDisplayBaseSecondary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/secondary/countershadedBellyUnderthigh.png")';
+	}
+	else if (secondary === "Belly, fingers") {
+		document.getElementById("charVizDisplayBreastSizeSecondary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/breastSize/secondary.png")';
+		document.getElementById("charVizDisplayBaseSecondary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/secondary/countershadedBelly.png")';
+	}
+	else if (secondary === "Belly, underthigh") {
+		document.getElementById("charVizDisplayBreastSizeSecondary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/breastSize/secondary.png")';
+		document.getElementById("charVizDisplayBaseSecondary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/scaly/secondary/countershadedBellyUnderthigh.png")';
+	}
+	else if (secondary === "Belly") {
+		document.getElementById("charVizDisplayBreastSizeSecondary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/breastSize/secondary.png")';
+		document.getElementById("charVizDisplayBaseSecondary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/scaly/secondary/countershadedBelly.png")';
+	}
+	
+	// Tertiary
+	if (tertiary === "None") {
+		document.getElementById("charVizDisplayBaseTertiary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+	}
+	if (tertiary === "Hands and legs") {
+		document.getElementById("charVizDisplayBaseTertiary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/tertiary/handsLegs.png")';
+	}
+	
+	// Markings
+	if (markings === "None") {
+		document.getElementById("charVizDisplayBreastSizeMarkings").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+		document.getElementById("charVizDisplayBaseMarkings").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+	}
+	else if (markings === "Line") {
+		document.getElementById("charVizDisplayBreastSizeMarkings").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/breastSize/markings/lineAlongBelly.png")';
+		document.getElementById("charVizDisplayBaseMarkings").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/markings/lineAlongBelly.png")';
+	}
+	else if (markings === "Line underthigh") {
+		document.getElementById("charVizDisplayBreastSizeMarkings").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/breastSize/markings/lineAlongBelly.png")';
+		document.getElementById("charVizDisplayBaseMarkings").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/fluffy/markings/lineAlongBellyUnderthigh.png")';
+	}
+}
+
+function loadCharacterColors() {
+	var primaryCharColor = localStorage.getItem("Slot0_Primary_Character_Color");
+	var secondaryCharColor = localStorage.getItem("Slot0_Secondary_Character_Color");
+	var tertiaryCharColor = localStorage.getItem("Slot0_Tertiary_Character_Color");
+	var markingsCharColor = localStorage.getItem("Slot0_Markings_Character_Color");
+	var leftEyeCharColor = localStorage.getItem("Slot0_LeftEye_Character_Color");
+	var rightEyeCharColor = localStorage.getItem("Slot0_RightEye_Character_Color");
+	var hairCharColor = localStorage.getItem("Slot0_Hair_Character_Color");
+	var leftScleraCharColor = localStorage.getItem("Slot0_LeftSclera_Character_Color");
+	var rightScleraCharColor = localStorage.getItem("Slot0_RightSclera_Character_Color");
+		
+	// Primary
+	document.getElementById("charVizDisplayBasePrimary").style.backgroundColor = primaryCharColor;
+	document.getElementById("charVizDisplayTailPrimary").style.backgroundColor = primaryCharColor;
+	document.getElementById("charVizDisplayHeadPrimary").style.backgroundColor = primaryCharColor;
+	document.getElementById("charVizDisplayBreastSizePrimary").style.backgroundColor = primaryCharColor;
+	document.getElementById("charVizDisplayWingsPrimary").style.backgroundColor = primaryCharColor;
+	document.getElementById("charVizDisplayInanimateTFprimary").style.backgroundColor = primaryCharColor;
+	document.getElementById("charVizPrimaryCharacterColorSwatch").style.backgroundColor = primaryCharColor;
+	
+	// Secondary
+	document.getElementById("charVizDisplayBaseSecondary").style.backgroundColor = secondaryCharColor;
+	document.getElementById("charVizDisplayBreastSizeSecondary").style.backgroundColor = secondaryCharColor;
+	document.getElementById("charVizDisplayGenitalsSecondary").style.backgroundColor = secondaryCharColor;
+	document.getElementById("charVizDisplayTailSecondary").style.backgroundColor = secondaryCharColor;
+	document.getElementById("charVizDisplayHeadSecondary").style.backgroundColor = secondaryCharColor;
+	document.getElementById("charVizDisplayInanimateTFsecondary").style.backgroundColor = secondaryCharColor;
+	document.getElementById("charVizSecondaryCharacterColorSwatch").style.backgroundColor = secondaryCharColor;
+	
+	// Tertiary
+	document.getElementById("charVizDisplayBaseTertiary").style.backgroundColor = tertiaryCharColor;
+	document.getElementById("charVizDisplayTailTertiary").style.backgroundColor = tertiaryCharColor;
+	document.getElementById("charVizDisplayHeadTertiary").style.backgroundColor = tertiaryCharColor;
+	document.getElementById("charVizTertiaryCharacterColorSwatch").style.backgroundColor = tertiaryCharColor;
+
+	// Markings
+	document.getElementById("charVizDisplayBaseMarkings").style.backgroundColor = markingsCharColor;		
+	document.getElementById("charVizDisplayBreastSizeMarkings").style.backgroundColor = markingsCharColor;
+	document.getElementById("charVizDisplayWingsMarkings").style.backgroundColor = markingsCharColor;
+	document.getElementById("charVizDisplayGenitalsMarkings").style.backgroundColor = markingsCharColor;
+	document.getElementById("charVizMarkingsCharacterColorSwatch").style.backgroundColor = markingsCharColor;
+
+	// Left Eye
+	document.getElementById("charVizLeftEyeCharacterColorSwatch").style.backgroundColor = leftEyeCharColor;
+	document.getElementById("charVizDisplayHeadIrisLeft").style.backgroundColor = leftEyeCharColor;
+
+	// Right Eye
+	document.getElementById("charVizRightEyeCharacterColorSwatch").style.backgroundColor = rightEyeCharColor;
+	document.getElementById("charVizDisplayHeadIrisRight").style.backgroundColor = rightEyeCharColor;
+
+	// Hair
+	document.getElementById("charVizHairCharacterColorSwatch").style.backgroundColor = hairCharColor;
+	document.getElementById("charVizDisplayHeadHairPrimary").style.backgroundColor = hairCharColor;
+	document.getElementById("charVizDisplayHairBackPrimary").style.backgroundColor = hairCharColor;
+
+	// Left Sclera
+	document.getElementById("charVizLeftScleraCharacterColorSwatch").style.backgroundColor = leftScleraCharColor;
+	document.getElementById("charVizDisplayHeadScleraLeft").style.backgroundColor = leftScleraCharColor;
+
+	// Right Sclera
+	document.getElementById("charVizRightScleraCharacterColorSwatch").style.backgroundColor = rightScleraCharColor;
+	document.getElementById("charVizDisplayHeadScleraRight").style.backgroundColor = rightScleraCharColor;
+
+}
+
+function loadCharacterClothing() {
 	var topwear = localStorage.getItem("Slot0_CharViz_Topwear");
 	var bottomwear = localStorage.getItem("Slot0_CharViz_Bottomwear");
 	var armwear = localStorage.getItem("Slot0_CharViz_Armwear");
@@ -159,91 +400,108 @@ function initializeCharViz() {
 	charVizPutClothingOn("Legwear", legwear, "Yes");
 	charVizPutClothingOn("Underwear", underwear, "Yes");
 	charVizPutClothingOn("Accessories", accessories, "Yes");
-	
-	// Check character colors. If none is set then set to it's species natural colors
-	var primaryCharColor = localStorage.getItem("Slot0_Primary_Character_Color");
-	var secondaryCharColor = localStorage.getItem("Slot0_Secondary_Character_Color");
-	var tertiaryCharColor = localStorage.getItem("Slot0_Tertiary_Character_Color");
-	var markingsCharColor = localStorage.getItem("Slot0_Markings_Character_Color");
-	var leftEyeCharColor = localStorage.getItem("Slot0_LeftEye_Character_Color");
-	var rightEyeCharColor = localStorage.getItem("Slot0_RightEye_Character_Color");
-	var hairCharColor = localStorage.getItem("Slot0_Hair_Character_Color");
-	
-	if (primaryCharColor == null) {		
-		setNaturalColorScheme(species, 0);
-	}
-	if (secondaryCharColor == null) {		
-		setNaturalColorScheme(species, 1);
-	}
-	if (tertiaryCharColor == null) {		
-		setNaturalColorScheme(species, 2);
-	}
-	if (markingsCharColor == null) {
-		setNaturalColorScheme(species, 3);
-	}
-	if (leftEyeCharColor == null) {
-		setNaturalColorScheme(species, 4);
-	}
-	if (rightEyeCharColor == null) {
-		setNaturalColorScheme(species, 5);
-	}
-	if (hairCharColor == null) {
-		setNaturalColorScheme(species, 6);
-	}
-	
-	if (primaryCharColor != null) {
-		document.getElementById("charVizDisplayBasePrimary").style.backgroundColor = primaryCharColor;
-		document.getElementById("charVizDisplayBreastSizePrimary").style.backgroundColor = primaryCharColor;
-		document.getElementById("charVizDisplayHipsSizePrimary").style.backgroundColor = primaryCharColor;
-		document.getElementById("charVizDisplayTailPrimary").style.backgroundColor = primaryCharColor;
-		document.getElementById("charVizDisplayHeadPrimary").style.backgroundColor = primaryCharColor;
-		document.getElementById("charVizPrimaryCharacterColorSwatch").style.backgroundColor = primaryCharColor;
-	}
-	
-	if (secondaryCharColor != null) {	
-		document.getElementById("charVizDisplayBaseSecondary").style.backgroundColor = secondaryCharColor;
-		document.getElementById("charVizDisplayBreastSizeSecondary").style.backgroundColor = secondaryCharColor;
-		document.getElementById("charVizDisplayHipsSizeSecondary").style.backgroundColor = secondaryCharColor;
-		document.getElementById("charVizDisplayTailSecondary").style.backgroundColor = secondaryCharColor;
-		document.getElementById("charVizDisplayHeadSecondary").style.backgroundColor = secondaryCharColor;
-		document.getElementById("charVizSecondaryCharacterColorSwatch").style.backgroundColor = secondaryCharColor;
-	}
-	
-	if (tertiaryCharColor != null) {
-		document.getElementById("charVizDisplayBaseTertiary").style.backgroundColor = tertiaryCharColor;
-		document.getElementById("charVizDisplayTailTertiary").style.backgroundColor = tertiaryCharColor;
-		document.getElementById("charVizDisplayHeadTertiary").style.backgroundColor = tertiaryCharColor;
-		document.getElementById("charVizTertiaryCharacterColorSwatch").style.backgroundColor = tertiaryCharColor;
-	}
-	
-	if (markingsCharColor != null) {
-		document.getElementById("charVizDisplayBaseMarkings").style.backgroundColor = markingsCharColor;		
-		document.getElementById("charVizDisplayBreastSizeMarkings").style.backgroundColor = markingsCharColor;		
-		document.getElementById("charVizDisplayHipsSizeMarkings").style.backgroundColor = markingsCharColor;		
-		//document.getElementById("charVizDisplayTailMarkings").style.backgroundColor = markingsCharColor;
-		document.getElementById("charVizMarkingsCharacterColorSwatch").style.backgroundColor = markingsCharColor;
-	}
-	if (leftEyeCharColor != null) {
-		document.getElementById("charVizLeftEyeCharacterColorSwatch").style.backgroundColor = leftEyeCharColor;
-		document.getElementById("charVizDisplayHeadIrisLeft").style.backgroundColor = leftEyeCharColor;
-	}
-	
-	if (rightEyeCharColor != null) {
-		document.getElementById("charVizRightEyeCharacterColorSwatch").style.backgroundColor = rightEyeCharColor;
-		document.getElementById("charVizDisplayHeadIrisRight").style.backgroundColor = rightEyeCharColor;
-	}
-	
-	if (hairCharColor != null) {
-		document.getElementById("charVizHairCharacterColorSwatch").style.backgroundColor = hairCharColor;
-		document.getElementById("charVizDisplayHeadHair").style.backgroundColor = hairCharColor;
-	}
+}
 
-	if (charVizEventsInitialized === "Yes") {
-		return;
+function loadCharacterGenitals() {
+	var showGenitals = localStorage.getItem("CharViz_Show_Genitals");
+	if (showGenitals === "Yes") {
+		var cockType = localStorage.getItem("Slot0_Cock_Type");
+		if (cockType === "Humanoid") {
+			document.getElementById("charVizDisplayGenitalsSecondary").style.webkitMaskImage = 'url("./images/charViz/genitals/pp/humanoid/secondary.png")';
+			document.getElementById("charVizDisplayGenitalsMarkings").style.webkitMaskImage = 'url("./images/charViz/genitals/pp/humanoid/markings.png")';
+			document.getElementById("charVizDisplayGenitalsLines").style.backgroundImage = 'url(./images/charViz/genitals/pp/humanoid/lines.png)';
+		}
+		else {
+			document.getElementById("charVizDisplayGenitalsSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayGenitalsMarkings").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayGenitalsLines").style.backgroundImage = '';
+		}
 	}
 	else {
-		charVizInitializeEvents(); // Events for hips and breast size sliders
-		charVizEventsInitialized = "Yes";
+		document.getElementById("charVizDisplayGenitalsSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+		document.getElementById("charVizDisplayGenitalsMarkings").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+		document.getElementById("charVizDisplayGenitalsLines").style.backgroundImage = '';
+	}
+}
+
+function funniestShitIveEverSeen() {
+	flushCharViz();
+	var primaryCharColor = localStorage.getItem("Slot0_Primary_Character_Color");
+	var secondaryCharColor = localStorage.getItem("Slot0_Secondary_Character_Color");
+	document.getElementById("charVizDisplayInanimateTFprimary").style.backgroundColor = primaryCharColor;
+	document.getElementById("charVizDisplayInanimateTFsecondary").style.backgroundColor = secondaryCharColor;
+	document.getElementById("charVizDisplayInanimateTFprimary").style.webkitMaskImage = 'url("./images/charViz/inanimateTFs/pickle/primary.png")';
+	document.getElementById("charVizDisplayInanimateTFsecondary").style.webkitMaskImage = 'url("./images/charViz/inanimateTFs/pickle/secondary.png")';
+	document.getElementById("charVizDisplayInanimateTFlines").style.backgroundImage = 'url(./images/charViz/inanimateTFs/pickle/lines.png)';
+	document.getElementById('inanimateObjectsCurrent').innerHTML = "Pickle";
+	localStorage.setItem("Slot0_Inanimate_Object", "Pickle");
+	goBackFromInanimateObjectsList();
+	showProcessingAnimation();
+}
+
+function saveCharacterPartPreset(x) {
+	// Canine species
+	if (canineSpecies.includes(x)) {
+		saveCharacterPart("Body", "Fluffy");
+		saveCharacterPart("Head", "Canine");
+		saveCharacterPart("Tail", "Canine");
+		saveCharacterPart("Wings", "None");
+		saveCharacterPart("Pupils", "Default");
+		saveCharacterPattern("Secondary", "Belly, underthigh, fingers");
+		saveCharacterPattern("Tertiary", "Hands and legs");
+		saveCharacterPattern("Markings", "Line underthigh");
+	}
+	// Scaly species
+	else if (scalySpecies.includes(x)) {
+		saveCharacterPart("Body", "Scaly");
+		saveCharacterPart("Head", "Scalie");
+		saveCharacterPart("Tail", "Scaly");
+		saveCharacterPart("Wings", "None");
+		saveCharacterPart("Pupils", "Reptile");
+		saveCharacterPattern("Secondary", "Belly");
+		saveCharacterPattern("Tertiary", "None");
+		saveCharacterPattern("Markings", "Line");
+	}
+	// Dragon
+	else if (x === "Dragon") {
+		saveCharacterPart("Body", "Scaly");
+		saveCharacterPart("Head", "Dragon");
+		saveCharacterPart("Tail", "Scaly");
+		saveCharacterPart("Wings", "Dragon");
+		saveCharacterPart("Pupils", "Reptile");
+		saveCharacterPattern("Secondary", "Belly");
+		saveCharacterPattern("Tertiary", "None");
+		saveCharacterPattern("Markings", "Line");
+	}
+	// Shark
+	else if (x === "Shark") {
+		saveCharacterPart("Body", "Fluffy");
+		saveCharacterPart("Head", "Shark");
+		saveCharacterPart("Tail", "Shark");
+		saveCharacterPart("Wings", "None");
+		saveCharacterPart("Pupils", "Reptile");
+		saveCharacterPattern("Secondary", "Belly, underthigh");
+		saveCharacterPattern("Tertiary", "None");
+		saveCharacterPattern("Markings", "Line underthigh");
+	}
+}
+
+// Just save it to local storage and loading function will do the heavy lifting
+function saveCharacterPart(x, y) {
+	if (y === "PartName") { return }
+	localStorage.setItem("Slot0_CharViz_" + x, y);
+	if (controlsessionactive === "Yes" && synchronizationComplete === "Yes") {
+		conn.send({firstParam: "changeCharacterPart", secondParam: x, thirdParam: y});
+		conn.send({firstParam: "loadCharacterParts"});
+	}
+}
+
+function saveCharacterPattern(x, y) {
+	if (y === "PatternName") { return }
+	localStorage.setItem("Slot0_CharViz_" + x, y);
+	if (controlsessionactive === "Yes" && synchronizationComplete === "Yes") {
+		conn.send({firstParam: "changeCharacterPattern", secondParam: x, thirdParam: y});
+		conn.send({firstParam: "loadCharacterPatterns"});
 	}
 }
 
@@ -255,12 +513,9 @@ function setBreastSizeBodyMorph(breastSize) {
 		document.getElementById("charVizDisplayBreastSizeLines").style.setProperty("background-position", "0% 50%", "important");
 		
 		// Clothing:
-		document.getElementById("charVizDisplayTopwearPrimary").style.setProperty("-webkit-mask-position", "0% 50%", "important");
-		document.getElementById("charVizDisplayTopwearSecondary").style.setProperty("-webkit-mask-position", "0% 50%", "important");
-		document.getElementById("charVizDisplayTopwearLines").style.setProperty("background-position", "0% 50%", "important");
-		document.getElementById("charVizDisplayArmwearPrimary").style.setProperty("-webkit-mask-position", "0% 50%", "important");
-		document.getElementById("charVizDisplayArmwearSecondary").style.setProperty("-webkit-mask-position", "0% 50%", "important");
-		document.getElementById("charVizDisplayArmwearLines").style.setProperty("background-position", "0% 50%", "important");
+		document.getElementById("charVizDisplayTopwearBreastSizePrimary").style.setProperty("-webkit-mask-position", "0% 50%", "important");
+		document.getElementById("charVizDisplayTopwearBreastSizeSecondary").style.setProperty("-webkit-mask-position", "0% 50%", "important");
+		document.getElementById("charVizDisplayTopwearBreastSizeLines").style.setProperty("background-position", "0% 50%", "important");
 	}
 	else if (breastSize >= 6 && breastSize <=30) {
 		document.getElementById("charVizDisplayBreastSizePrimary").style.setProperty("-webkit-mask-position", "25% 50%", "important");
@@ -269,12 +524,9 @@ function setBreastSizeBodyMorph(breastSize) {
 		document.getElementById("charVizDisplayBreastSizeLines").style.setProperty("background-position", "25% 50%", "important");
 		
 		// Clothing:
-		document.getElementById("charVizDisplayTopwearPrimary").style.setProperty("-webkit-mask-position", "25% 50%", "important");
-		document.getElementById("charVizDisplayTopwearSecondary").style.setProperty("-webkit-mask-position", "25% 50%", "important");
-		document.getElementById("charVizDisplayTopwearLines").style.setProperty("background-position", "25% 50%", "important");
-		document.getElementById("charVizDisplayArmwearPrimary").style.setProperty("-webkit-mask-position", "25% 50%", "important");
-		document.getElementById("charVizDisplayArmwearSecondary").style.setProperty("-webkit-mask-position", "25% 50%", "important");
-		document.getElementById("charVizDisplayArmwearLines").style.setProperty("background-position", "25% 50%", "important");
+		document.getElementById("charVizDisplayTopwearBreastSizePrimary").style.setProperty("-webkit-mask-position", "25% 50%", "important");
+		document.getElementById("charVizDisplayTopwearBreastSizeSecondary").style.setProperty("-webkit-mask-position", "25% 50%", "important");
+		document.getElementById("charVizDisplayTopwearBreastSizeLines").style.setProperty("background-position", "25% 50%", "important");
 	}
 	else if (breastSize >= 31 && breastSize <=55) {
 		document.getElementById("charVizDisplayBreastSizePrimary").style.setProperty("-webkit-mask-position", "50% 50%", "important");
@@ -283,12 +535,9 @@ function setBreastSizeBodyMorph(breastSize) {
 		document.getElementById("charVizDisplayBreastSizeLines").style.setProperty("background-position", "50% 50%", "important");
 		
 		// Clothing:
-		document.getElementById("charVizDisplayTopwearPrimary").style.setProperty("-webkit-mask-position", "50% 50%", "important");
-		document.getElementById("charVizDisplayTopwearSecondary").style.setProperty("-webkit-mask-position", "50% 50%", "important");
-		document.getElementById("charVizDisplayTopwearLines").style.setProperty("background-position", "50% 50%", "important");
-		document.getElementById("charVizDisplayArmwearPrimary").style.setProperty("-webkit-mask-position", "50% 50%", "important");
-		document.getElementById("charVizDisplayArmwearSecondary").style.setProperty("-webkit-mask-position", "50% 50%", "important");
-		document.getElementById("charVizDisplayArmwearLines").style.setProperty("background-position", "50% 50%", "important");
+		document.getElementById("charVizDisplayTopwearBreastSizePrimary").style.setProperty("-webkit-mask-position", "50% 50%", "important");
+		document.getElementById("charVizDisplayTopwearBreastSizeSecondary").style.setProperty("-webkit-mask-position", "50% 50%", "important");
+		document.getElementById("charVizDisplayTopwearBreastSizeLines").style.setProperty("background-position", "50% 50%", "important");
 	}
 	else if (breastSize >= 56 && breastSize <=80) {
 		document.getElementById("charVizDisplayBreastSizePrimary").style.setProperty("-webkit-mask-position", "75% 50%", "important");
@@ -297,12 +546,9 @@ function setBreastSizeBodyMorph(breastSize) {
 		document.getElementById("charVizDisplayBreastSizeLines").style.setProperty("background-position", "75% 50%", "important");
 		
 		// Clothing:
-		document.getElementById("charVizDisplayTopwearPrimary").style.setProperty("-webkit-mask-position", "75% 50%", "important");
-		document.getElementById("charVizDisplayTopwearSecondary").style.setProperty("-webkit-mask-position", "75% 50%", "important");
-		document.getElementById("charVizDisplayTopwearLines").style.setProperty("background-position", "75% 50%", "important");
-		document.getElementById("charVizDisplayArmwearPrimary").style.setProperty("-webkit-mask-position", "75% 50%", "important");
-		document.getElementById("charVizDisplayArmwearSecondary").style.setProperty("-webkit-mask-position", "75% 50%", "important");
-		document.getElementById("charVizDisplayArmwearLines").style.setProperty("background-position", "75% 50%", "important");
+		document.getElementById("charVizDisplayTopwearBreastSizePrimary").style.setProperty("-webkit-mask-position", "75% 50%", "important");
+		document.getElementById("charVizDisplayTopwearBreastSizeSecondary").style.setProperty("-webkit-mask-position", "75% 50%", "important");
+		document.getElementById("charVizDisplayTopwearBreastSizeLines").style.setProperty("background-position", "75% 50%", "important");
 	}
 	else if (breastSize >= 81) {
 		document.getElementById("charVizDisplayBreastSizePrimary").style.setProperty("-webkit-mask-position", "100% 50%", "important");
@@ -311,26 +557,30 @@ function setBreastSizeBodyMorph(breastSize) {
 		document.getElementById("charVizDisplayBreastSizeLines").style.setProperty("background-position", "100% 50%", "important");
 		
 		// Clothing:
-		document.getElementById("charVizDisplayTopwearPrimary").style.setProperty("-webkit-mask-position", "100% 50%", "important");
-		document.getElementById("charVizDisplayTopwearSecondary").style.setProperty("-webkit-mask-position", "100% 50%", "important");
-		document.getElementById("charVizDisplayTopwearLines").style.setProperty("background-position", "100% 50%", "important");
-		document.getElementById("charVizDisplayArmwearPrimary").style.setProperty("-webkit-mask-position", "100% 50%", "important");
-		document.getElementById("charVizDisplayArmwearSecondary").style.setProperty("-webkit-mask-position", "100% 50%", "important");
-		document.getElementById("charVizDisplayArmwearLines").style.setProperty("background-position", "100% 50%", "important");
+		document.getElementById("charVizDisplayTopwearBreastSizePrimary").style.setProperty("-webkit-mask-position", "100% 50%", "important");
+		document.getElementById("charVizDisplayTopwearBreastSizeSecondary").style.setProperty("-webkit-mask-position", "100% 50%", "important");
+		document.getElementById("charVizDisplayTopwearBreastSizeLines").style.setProperty("background-position", "100% 50%", "important");
 	}
 }
 
-function setHipsSizeBodyMorph(hipsSize) {
-	if (hipsSize <= 20) {
-		document.getElementById("charVizDisplayHipsSizePrimary").style.setProperty("-webkit-mask-position", "0% 50%", "important");
-		document.getElementById("charVizDisplayHipsSizeSecondary").style.setProperty("-webkit-mask-position", "0% 50%", "important");
-		document.getElementById("charVizDisplayHipsSizeMarkings").style.setProperty("-webkit-mask-position", "0% 50%", "important");
-		document.getElementById("charVizDisplayHipsSizeLines").style.setProperty("background-position", "0% 50%", "important");
+function setThinThiccBodyMorph(thinThicc) {
+	if (thinThicc <= 20) {
+		document.getElementById("charVizDisplayBasePrimary").style.setProperty("-webkit-mask-position", "0% 50%", "important");
+		document.getElementById("charVizDisplayBaseSecondary").style.setProperty("-webkit-mask-position", "0% 50%", "important");
+		document.getElementById("charVizDisplayBaseTertiary").style.setProperty("-webkit-mask-position", "0% 50%", "important");
+		document.getElementById("charVizDisplayBaseMarkings").style.setProperty("-webkit-mask-position", "0% 50%", "important");
+		document.getElementById("charVizDisplayBaseLines").style.setProperty("background-position", "0% 50%", "important");
 		
 		// Clothing:
+		document.getElementById("charVizDisplayTopwearPrimary").style.setProperty("-webkit-mask-position", "0% 50%", "important");
+		document.getElementById("charVizDisplayTopwearSecondary").style.setProperty("-webkit-mask-position", "0% 50%", "important");
+		document.getElementById("charVizDisplayTopwearLines").style.setProperty("background-position", "0% 50%", "important");
 		document.getElementById("charVizDisplayBottomwearPrimary").style.setProperty("-webkit-mask-position", "0% 50%", "important");
 		document.getElementById("charVizDisplayBottomwearSecondary").style.setProperty("-webkit-mask-position", "0% 50%", "important");
 		document.getElementById("charVizDisplayBottomwearLines").style.setProperty("background-position", "0% 50%", "important");
+		document.getElementById("charVizDisplayArmwearPrimary").style.setProperty("-webkit-mask-position", "0% 50%", "important");
+		document.getElementById("charVizDisplayArmwearSecondary").style.setProperty("-webkit-mask-position", "0% 50%", "important");
+		document.getElementById("charVizDisplayArmwearLines").style.setProperty("background-position", "0% 50%", "important");
 		document.getElementById("charVizDisplayLegwearPrimary").style.setProperty("-webkit-mask-position", "0% 50%", "important");
 		document.getElementById("charVizDisplayLegwearSecondary").style.setProperty("-webkit-mask-position", "0% 50%", "important");
 		document.getElementById("charVizDisplayLegwearLines").style.setProperty("background-position", "0% 50%", "important");
@@ -338,16 +588,23 @@ function setHipsSizeBodyMorph(hipsSize) {
 		document.getElementById("charVizDisplayUnderwearSecondary").style.setProperty("-webkit-mask-position", "0% 50%", "important");
 		document.getElementById("charVizDisplayUnderwearLines").style.setProperty("background-position", "0% 50%", "important");
 	}
-	else if (hipsSize >= 21 && hipsSize <=40) {
-		document.getElementById("charVizDisplayHipsSizePrimary").style.setProperty("-webkit-mask-position", "25% 50%", "important");
-		document.getElementById("charVizDisplayHipsSizeSecondary").style.setProperty("-webkit-mask-position", "25% 50%", "important");
-		document.getElementById("charVizDisplayHipsSizeMarkings").style.setProperty("-webkit-mask-position", "25% 50%", "important");
-		document.getElementById("charVizDisplayHipsSizeLines").style.setProperty("background-position", "25% 50%", "important");
+	else if (thinThicc >= 21 && thinThicc <=40) {
+		document.getElementById("charVizDisplayBasePrimary").style.setProperty("-webkit-mask-position", "25% 50%", "important");
+		document.getElementById("charVizDisplayBaseSecondary").style.setProperty("-webkit-mask-position", "25% 50%", "important");
+		document.getElementById("charVizDisplayBaseTertiary").style.setProperty("-webkit-mask-position", "25% 50%", "important");
+		document.getElementById("charVizDisplayBaseMarkings").style.setProperty("-webkit-mask-position", "25% 50%", "important");
+		document.getElementById("charVizDisplayBaseLines").style.setProperty("background-position", "25% 50%", "important");
 		
 		// Clothing:
+		document.getElementById("charVizDisplayTopwearPrimary").style.setProperty("-webkit-mask-position", "25% 50%", "important");
+		document.getElementById("charVizDisplayTopwearSecondary").style.setProperty("-webkit-mask-position", "25% 50%", "important");
+		document.getElementById("charVizDisplayTopwearLines").style.setProperty("background-position", "25% 50%", "important");
 		document.getElementById("charVizDisplayBottomwearPrimary").style.setProperty("-webkit-mask-position", "25% 50%", "important");
 		document.getElementById("charVizDisplayBottomwearSecondary").style.setProperty("-webkit-mask-position", "25% 50%", "important");
 		document.getElementById("charVizDisplayBottomwearLines").style.setProperty("background-position", "25% 50%", "important");
+		document.getElementById("charVizDisplayArmwearPrimary").style.setProperty("-webkit-mask-position", "25% 50%", "important");
+		document.getElementById("charVizDisplayArmwearSecondary").style.setProperty("-webkit-mask-position", "25% 50%", "important");
+		document.getElementById("charVizDisplayArmwearLines").style.setProperty("background-position", "25% 50%", "important");
 		document.getElementById("charVizDisplayLegwearPrimary").style.setProperty("-webkit-mask-position", "25% 50%", "important");
 		document.getElementById("charVizDisplayLegwearSecondary").style.setProperty("-webkit-mask-position", "25% 50%", "important");
 		document.getElementById("charVizDisplayLegwearLines").style.setProperty("background-position", "25% 50%", "important");
@@ -355,16 +612,23 @@ function setHipsSizeBodyMorph(hipsSize) {
 		document.getElementById("charVizDisplayUnderwearSecondary").style.setProperty("-webkit-mask-position", "25% 50%", "important");
 		document.getElementById("charVizDisplayUnderwearLines").style.setProperty("background-position", "25% 50%", "important");
 	}
-	else if (hipsSize >= 41 && hipsSize <=60) {
-		document.getElementById("charVizDisplayHipsSizePrimary").style.setProperty("-webkit-mask-position", "50% 50%", "important");
-		document.getElementById("charVizDisplayHipsSizeSecondary").style.setProperty("-webkit-mask-position", "50% 50%", "important");
-		document.getElementById("charVizDisplayHipsSizeMarkings").style.setProperty("-webkit-mask-position", "50% 50%", "important");
-		document.getElementById("charVizDisplayHipsSizeLines").style.setProperty("background-position", "50% 50%", "important");
+	else if (thinThicc >= 41 && thinThicc <=60) {
+		document.getElementById("charVizDisplayBasePrimary").style.setProperty("-webkit-mask-position", "50% 50%", "important");
+		document.getElementById("charVizDisplayBaseSecondary").style.setProperty("-webkit-mask-position", "50% 50%", "important");
+		document.getElementById("charVizDisplayBaseTertiary").style.setProperty("-webkit-mask-position", "50% 50%", "important");
+		document.getElementById("charVizDisplayBaseMarkings").style.setProperty("-webkit-mask-position", "50% 50%", "important");
+		document.getElementById("charVizDisplayBaseLines").style.setProperty("background-position", "50% 50%", "important");
 		
 		// Clothing:
+		document.getElementById("charVizDisplayTopwearPrimary").style.setProperty("-webkit-mask-position", "50% 50%", "important");
+		document.getElementById("charVizDisplayTopwearSecondary").style.setProperty("-webkit-mask-position", "50% 50%", "important");
+		document.getElementById("charVizDisplayTopwearLines").style.setProperty("background-position", "50% 50%", "important");
 		document.getElementById("charVizDisplayBottomwearPrimary").style.setProperty("-webkit-mask-position", "50% 50%", "important");
 		document.getElementById("charVizDisplayBottomwearSecondary").style.setProperty("-webkit-mask-position", "50% 50%", "important");
 		document.getElementById("charVizDisplayBottomwearLines").style.setProperty("background-position", "50% 50%", "important");
+		document.getElementById("charVizDisplayArmwearPrimary").style.setProperty("-webkit-mask-position", "50% 50%", "important");
+		document.getElementById("charVizDisplayArmwearSecondary").style.setProperty("-webkit-mask-position", "50% 50%", "important");
+		document.getElementById("charVizDisplayArmwearLines").style.setProperty("background-position", "50% 50%", "important");
 		document.getElementById("charVizDisplayLegwearPrimary").style.setProperty("-webkit-mask-position", "50% 50%", "important");
 		document.getElementById("charVizDisplayLegwearSecondary").style.setProperty("-webkit-mask-position", "50% 50%", "important");
 		document.getElementById("charVizDisplayLegwearLines").style.setProperty("background-position", "50% 50%", "important");
@@ -372,16 +636,23 @@ function setHipsSizeBodyMorph(hipsSize) {
 		document.getElementById("charVizDisplayUnderwearSecondary").style.setProperty("-webkit-mask-position", "50% 50%", "important");
 		document.getElementById("charVizDisplayUnderwearLines").style.setProperty("background-position", "50% 50%", "important");
 	}
-	else if (hipsSize >= 61 && hipsSize <=80) {
-		document.getElementById("charVizDisplayHipsSizePrimary").style.setProperty("-webkit-mask-position", "75% 50%", "important");
-		document.getElementById("charVizDisplayHipsSizeSecondary").style.setProperty("-webkit-mask-position", "75% 50%", "important");
-		document.getElementById("charVizDisplayHipsSizeMarkings").style.setProperty("-webkit-mask-position", "75% 50%", "important");
-		document.getElementById("charVizDisplayHipsSizeLines").style.setProperty("background-position", "75% 50%", "important");
+	else if (thinThicc >= 61 && thinThicc <=80) {
+		document.getElementById("charVizDisplayBasePrimary").style.setProperty("-webkit-mask-position", "75% 50%", "important");
+		document.getElementById("charVizDisplayBaseSecondary").style.setProperty("-webkit-mask-position", "75% 50%", "important");
+		document.getElementById("charVizDisplayBaseTertiary").style.setProperty("-webkit-mask-position", "75% 50%", "important");
+		document.getElementById("charVizDisplayBaseMarkings").style.setProperty("-webkit-mask-position", "75% 50%", "important");
+		document.getElementById("charVizDisplayBaseLines").style.setProperty("background-position", "75% 50%", "important");
 		
 		// Clothing:
+		document.getElementById("charVizDisplayTopwearPrimary").style.setProperty("-webkit-mask-position", "75% 50%", "important");
+		document.getElementById("charVizDisplayTopwearSecondary").style.setProperty("-webkit-mask-position", "75% 50%", "important");
+		document.getElementById("charVizDisplayTopwearLines").style.setProperty("background-position", "75% 50%", "important");
 		document.getElementById("charVizDisplayBottomwearPrimary").style.setProperty("-webkit-mask-position", "75% 50%", "important");
 		document.getElementById("charVizDisplayBottomwearSecondary").style.setProperty("-webkit-mask-position", "75% 50%", "important");
 		document.getElementById("charVizDisplayBottomwearLines").style.setProperty("background-position", "75% 50%", "important");
+		document.getElementById("charVizDisplayArmwearPrimary").style.setProperty("-webkit-mask-position", "75% 50%", "important");
+		document.getElementById("charVizDisplayArmwearSecondary").style.setProperty("-webkit-mask-position", "75% 50%", "important");
+		document.getElementById("charVizDisplayArmwearLines").style.setProperty("background-position", "75% 50%", "important");
 		document.getElementById("charVizDisplayLegwearPrimary").style.setProperty("-webkit-mask-position", "75% 50%", "important");
 		document.getElementById("charVizDisplayLegwearSecondary").style.setProperty("-webkit-mask-position", "75% 50%", "important");
 		document.getElementById("charVizDisplayLegwearLines").style.setProperty("background-position", "75% 50%", "important");
@@ -389,16 +660,23 @@ function setHipsSizeBodyMorph(hipsSize) {
 		document.getElementById("charVizDisplayUnderwearSecondary").style.setProperty("-webkit-mask-position", "75% 50%", "important");
 		document.getElementById("charVizDisplayUnderwearLines").style.setProperty("background-position", "75% 50%", "important");
 	}
-	else if (hipsSize >= 81) {
-		document.getElementById("charVizDisplayHipsSizePrimary").style.setProperty("-webkit-mask-position", "100% 50%", "important");
-		document.getElementById("charVizDisplayHipsSizeSecondary").style.setProperty("-webkit-mask-position", "100% 50%", "important");
-		document.getElementById("charVizDisplayHipsSizeMarkings").style.setProperty("-webkit-mask-position", "100% 50%", "important");
-		document.getElementById("charVizDisplayHipsSizeLines").style.setProperty("background-position", "100% 50%", "important");
+	else if (thinThicc >= 81) {
+		document.getElementById("charVizDisplayBasePrimary").style.setProperty("-webkit-mask-position", "100% 50%", "important");
+		document.getElementById("charVizDisplayBaseSecondary").style.setProperty("-webkit-mask-position", "100% 50%", "important");
+		document.getElementById("charVizDisplayBaseTertiary").style.setProperty("-webkit-mask-position", "100% 50%", "important");
+		document.getElementById("charVizDisplayBaseMarkings").style.setProperty("-webkit-mask-position", "100% 50%", "important");
+		document.getElementById("charVizDisplayBaseLines").style.setProperty("background-position", "100% 50%", "important");
 		
 		// Clothing:
+		document.getElementById("charVizDisplayTopwearPrimary").style.setProperty("-webkit-mask-position", "100% 50%", "important");
+		document.getElementById("charVizDisplayTopwearSecondary").style.setProperty("-webkit-mask-position", "100% 50%", "important");
+		document.getElementById("charVizDisplayTopwearLines").style.setProperty("background-position", "100% 50%", "important");
 		document.getElementById("charVizDisplayBottomwearPrimary").style.setProperty("-webkit-mask-position", "100% 50%", "important");
 		document.getElementById("charVizDisplayBottomwearSecondary").style.setProperty("-webkit-mask-position", "100% 50%", "important");
 		document.getElementById("charVizDisplayBottomwearLines").style.setProperty("background-position", "100% 50%", "important");
+		document.getElementById("charVizDisplayArmwearPrimary").style.setProperty("-webkit-mask-position", "100% 50%", "important");
+		document.getElementById("charVizDisplayArmwearSecondary").style.setProperty("-webkit-mask-position", "100% 50%", "important");
+		document.getElementById("charVizDisplayArmwearLines").style.setProperty("background-position", "100% 50%", "important");
 		document.getElementById("charVizDisplayLegwearPrimary").style.setProperty("-webkit-mask-position", "100% 50%", "important");
 		document.getElementById("charVizDisplayLegwearSecondary").style.setProperty("-webkit-mask-position", "100% 50%", "important");
 		document.getElementById("charVizDisplayLegwearLines").style.setProperty("background-position", "100% 50%", "important");
@@ -408,10 +686,59 @@ function setHipsSizeBodyMorph(hipsSize) {
 	}
 }
 
+function setHairLenght(hairLenght) {				
+	if (hairLenght <= 29) {	
+		document.getElementById("charVizDisplayHeadHairPrimary").style.setProperty("-webkit-mask-position", "0% 50%", "important");
+		document.getElementById("charVizDisplayHeadHairLines").style.setProperty("background-position", "0% 50%", "important");
+		document.getElementById("charVizDisplayHairBackPrimary").style.setProperty("-webkit-mask-position", "0% 50%", "important");
+		document.getElementById("charVizDisplayHairBackLines").style.setProperty("background-position", "0% 50%", "important");
+	}
+	else if (hairLenght >= 30 && hairLenght <=74) {
+		document.getElementById("charVizDisplayHeadHairPrimary").style.setProperty("-webkit-mask-position", "25% 50%", "important");
+		document.getElementById("charVizDisplayHeadHairLines").style.setProperty("background-position", "25% 50%", "important");
+		document.getElementById("charVizDisplayHairBackPrimary").style.setProperty("-webkit-mask-position", "25% 50%", "important");
+		document.getElementById("charVizDisplayHairBackLines").style.setProperty("background-position", "25% 50%", "important");
+		}
+	else { 
+		document.getElementById("charVizDisplayHeadHairPrimary").style.setProperty("-webkit-mask-position", "50% 50%", "important");
+		document.getElementById("charVizDisplayHeadHairLines").style.setProperty("background-position", "50% 50%", "important");
+		document.getElementById("charVizDisplayHairBackPrimary").style.setProperty("-webkit-mask-position", "50% 50%", "important");
+		document.getElementById("charVizDisplayHairBackLines").style.setProperty("background-position", "50% 50%", "important");
+	}
+}
+
+function setGenitalSize(genitalSize) {
+	if (genitalSize <= 5) {
+		document.getElementById("charVizDisplayGenitalsSecondary").style.setProperty("-webkit-mask-position", "0% 50%", "important");
+		document.getElementById("charVizDisplayGenitalsMarkings").style.setProperty("-webkit-mask-position", "0% 50%", "important");
+		document.getElementById("charVizDisplayGenitalsLines").style.setProperty("background-position", "0% 50%", "important");
+	}
+	else if (genitalSize >= 6 && genitalSize <=30) {
+		document.getElementById("charVizDisplayGenitalsSecondary").style.setProperty("-webkit-mask-position", "25% 50%", "important");
+		document.getElementById("charVizDisplayGenitalsMarkings").style.setProperty("-webkit-mask-position", "25% 50%", "important");
+		document.getElementById("charVizDisplayGenitalsLines").style.setProperty("background-position", "25% 50%", "important");
+	}
+	else if (genitalSize >= 31 && genitalSize <=55) {
+		document.getElementById("charVizDisplayGenitalsSecondary").style.setProperty("-webkit-mask-position", "50% 50%", "important");
+		document.getElementById("charVizDisplayGenitalsMarkings").style.setProperty("-webkit-mask-position", "50% 50%", "important");
+		document.getElementById("charVizDisplayGenitalsLines").style.setProperty("background-position", "50% 50%", "important");
+	}
+	else if (genitalSize >= 56 && genitalSize <=80) {
+		document.getElementById("charVizDisplayGenitalsSecondary").style.setProperty("-webkit-mask-position", "75% 50%", "important");
+		document.getElementById("charVizDisplayGenitalsMarkings").style.setProperty("-webkit-mask-position", "75% 50%", "important");
+		document.getElementById("charVizDisplayGenitalsLines").style.setProperty("background-position", "75% 50%", "important");
+	}
+	else if (genitalSize >= 81) {
+		document.getElementById("charVizDisplayGenitalsSecondary").style.setProperty("-webkit-mask-position", "100% 50%", "important");
+		document.getElementById("charVizDisplayGenitalsMarkings").style.setProperty("-webkit-mask-position", "100% 50%", "important");
+		document.getElementById("charVizDisplayGenitalsLines").style.setProperty("background-position", "100% 50%", "important");
+	}
+}
+
 function charVizInitializeEvents() {
-	mySlider3.attachEvent("onChange", function() {
-   	var x = mySlider3.getValue();
-	setHipsSizeBodyMorph(x);
+	mySlider5.attachEvent("onChange", function() {
+   	var x = mySlider5.getValue();
+	setThinThiccBodyMorph(x);
 });
 	mySlider9.attachEvent("onChange", function() {
    	var x = mySlider9.getValue();
@@ -421,74 +748,99 @@ function charVizInitializeEvents() {
    	var x = mySlider8.getValue();
 	setBreastSizeBodyMorph(x);
 });
+	mySlider20.attachEvent("onChange", function() {
+   	var x = mySlider20.getValue();
+	setHairLenght(x);
+});
+	mySlider2.attachEvent("onChange", function() {
+   	var x = mySlider2.getValue();
+	setGenitalSize(x);
+});
 }
 
 function charVizPutClothingOn(x, y, z) {
 	if (x === "Topwear") {
-		if (y === "None") {
+		if (y === "Office Shirt") {			
+			document.getElementById("charVizDisplayTopwearPrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/topwear/officeShirt/thinThicc/default/primary.png")';
+			document.getElementById("charVizDisplayTopwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayTopwearLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/topwear/officeShirt/thinThicc/default/lines.png")';
+			document.getElementById("charVizDisplayTopwearBreastSizePrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/topwear/officeShirt/breastSize/primary.png")';
+			document.getElementById("charVizDisplayTopwearBreastSizeSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayTopwearBreastSizeLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/topwear/officeShirt/breastSize/lines.png")';
+		}
+		else if (y === "Office Shirt (tucked)") {
+			document.getElementById("charVizDisplayTopwearPrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/topwear/officeShirt/thinThicc/tucked/primary.png")';
+			document.getElementById("charVizDisplayTopwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayTopwearLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/topwear/officeShirt/thinThicc/tucked/lines.png")';
+			document.getElementById("charVizDisplayTopwearBreastSizePrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/topwear/officeShirt/breastSize/primary.png")';
+			document.getElementById("charVizDisplayTopwearBreastSizeSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayTopwearBreastSizeLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/topwear/officeShirt/breastSize/lines.png")';
+		}
+		else if (y === "Crop Top") {
+			document.getElementById("charVizDisplayTopwearPrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/topwear/cropTop/thinThicc/primary.png")';
+			document.getElementById("charVizDisplayTopwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayTopwearLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/topwear/cropTop/thinThicc/lines.png")';
+			document.getElementById("charVizDisplayTopwearBreastSizePrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/topwear/cropTop/breastSize/primary.png")';
+			document.getElementById("charVizDisplayTopwearBreastSizeSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayTopwearBreastSizeLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/topwear/cropTop/breastSize/lines.png")';
+		}
+		else {
 			document.getElementById("charVizDisplayTopwearPrimary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
 			document.getElementById("charVizDisplayTopwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
 			document.getElementById("charVizDisplayTopwearLines").style.backgroundImage = '';
-		}
-		else if (y === "Office Shirt") {
-			document.getElementById("charVizDisplayTopwearPrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/topwear/officeShirt/primary.png")';
-			document.getElementById("charVizDisplayTopwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayTopwearLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/topwear/officeShirt/lines.png")';
-		}		
-		else if (y === "T-Shirt") {
-			document.getElementById("charVizDisplayTopwearPrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/topwear/tShirt/primary.png")';
-			document.getElementById("charVizDisplayTopwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayTopwearLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/topwear/tShirt/lines.png")';
-		}
-		else if (y === "Crop Top") {
-			document.getElementById("charVizDisplayTopwearPrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/topwear/cropTop/primary.png")';
-			document.getElementById("charVizDisplayTopwearSecondary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/topwear/cropTop/secondary.png")';
-			document.getElementById("charVizDisplayTopwearLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/topwear/cropTop/lines.png")';
+			document.getElementById("charVizDisplayTopwearBreastSizePrimary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayTopwearBreastSizeSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayTopwearBreastSizeLines").style.backgroundImage = '';
 		}
 	}
-	else if (x === "Bottomwear") {
-		if (y === "None") {
-			document.getElementById("charVizDisplayBottomwearPrimary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayBottomwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayBottomwearLines").style.backgroundImage = '';
-		}
-		else if (y === "Pencil Skirt") {
+	else if (x === "Bottomwear") {		
+		if (y === "Pencil Skirt") {
 			document.getElementById("charVizDisplayBottomwearPrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/bottomwear/pencilSkirt/primary.png")';
 			document.getElementById("charVizDisplayBottomwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
 			document.getElementById("charVizDisplayBottomwearLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/bottomwear/pencilSkirt/lines.png")';
 		}
 		else if (y === "Shorts") {
 			document.getElementById("charVizDisplayBottomwearPrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/bottomwear/shorts/primary.png")';
-			document.getElementById("charVizDisplayBottomwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayBottomwearSecondary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/bottomwear/shorts/secondary.png")';
 			document.getElementById("charVizDisplayBottomwearLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/bottomwear/shorts/lines.png")';
 		}
 		else if (y === "Leggings") {
 			document.getElementById("charVizDisplayBottomwearPrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/bottomwear/leggings/primary.png")';
-			document.getElementById("charVizDisplayBottomwearSecondary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/bottomwear/leggings/secondary.png")';
+			document.getElementById("charVizDisplayBottomwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
 			document.getElementById("charVizDisplayBottomwearLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/bottomwear/leggings/lines.png")';
 		}
-	}
-	else if (x === "Armwear") {
-		if (y === "None") {
-			document.getElementById("charVizDisplayArmwearPrimary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayArmwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayArmwearLines").style.backgroundImage = '';
+		else {
+			document.getElementById("charVizDisplayBottomwearPrimary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayBottomwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayBottomwearLines").style.backgroundImage = '';
 		}
-		else if (y === "Arm Warmers") {
+	}
+	else if (x === "Armwear") {		
+		if (y === "Arm Warmers") {
 			document.getElementById("charVizDisplayArmwearPrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/armwear/armWarmers/primary.png")';
 			document.getElementById("charVizDisplayArmwearSecondary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/armwear/armWarmers/secondary.png")';
 			document.getElementById("charVizDisplayArmwearLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/armwear/armWarmers/lines.png")';
 		}
-	}
-	else if (x === "Legwear") {
-		if (y === "None") {
-			document.getElementById("charVizDisplayLegwearPrimary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayLegwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayLegwearLines").style.backgroundImage = '';
+		else if (y === "Arm Warmers (no stripes)") {
+			document.getElementById("charVizDisplayArmwearPrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/armwear/armWarmers/primary.png")';
+			document.getElementById("charVizDisplayArmwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayArmwearLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/armwear/armWarmers/lines.png")';
 		}
-		else if (y === "Thigh Highs") {
+		else {
+			document.getElementById("charVizDisplayArmwearPrimary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayArmwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayArmwearLines").style.backgroundImage = '';
+		}
+	}
+	else if (x === "Legwear") {		
+		if (y === "Thigh Highs") {
 			document.getElementById("charVizDisplayLegwearPrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/legwear/thighHighs/primary.png")';
 			document.getElementById("charVizDisplayLegwearSecondary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/legwear/thighHighs/secondary.png")';
+			document.getElementById("charVizDisplayLegwearLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/legwear/thighHighs/lines.png")';
+		}
+		else if (y === "Thigh Highs (no stripes)") {
+			document.getElementById("charVizDisplayLegwearPrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/legwear/thighHighs/primary.png")';
+			document.getElementById("charVizDisplayLegwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
 			document.getElementById("charVizDisplayLegwearLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/legwear/thighHighs/lines.png")';
 		}
 		else if (y === "Pantyhose") {
@@ -496,25 +848,30 @@ function charVizPutClothingOn(x, y, z) {
 			document.getElementById("charVizDisplayLegwearSecondary").style.webkitMaskImage  = 'url("./images/charViz/blankMask.png")';
 			document.getElementById("charVizDisplayLegwearLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/legwear/pantyhose/static.png")';
 		}
+		else {
+			document.getElementById("charVizDisplayLegwearPrimary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayLegwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayLegwearLines").style.backgroundImage = '';
+		}
 	}
-	else if (x === "Underwear") {
-		if (y === "None") {
+	else if (x === "Underwear") {		
+		if (y === "Panties") {
+			document.getElementById("charVizDisplayUnderwearPrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/underwear/panties/primary.png")';
+			document.getElementById("charVizDisplayUnderwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
+			document.getElementById("charVizDisplayUnderwearLines").style.backgroundImage = '';
+		}
+		else {
 			document.getElementById("charVizDisplayUnderwearPrimary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
 			document.getElementById("charVizDisplayUnderwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
 			document.getElementById("charVizDisplayUnderwearLines").style.backgroundImage = '';
 		}
-		else if (y === "Panties") {
-			document.getElementById("charVizDisplayUnderwearPrimary").style.webkitMaskImage = 'url("./images/charViz/bases/feminine/clothing/underwear/panties/primary.png")';
-			document.getElementById("charVizDisplayUnderwearSecondary").style.webkitMaskImage = 'url("./images/charViz/blankMask.png")';
-			document.getElementById("charVizDisplayUnderwearLines").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/underwear/panties/lines.png")';
-		}		
 	}
-	else if (x === "Accessories") {
-		if (y === "None") {
-			document.getElementById("charVizDisplayAccessoriesSlot1").style.backgroundImage = '';
-		}
-		else if (y === "Glasses") {
+	else if (x === "Accessories") {		
+		if (y === "Glasses") {
 			document.getElementById("charVizDisplayAccessoriesSlot1").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/accessories/glasses.png")';
+		}
+		else {
+			document.getElementById("charVizDisplayAccessoriesSlot1").style.backgroundImage = '';
 		}
 	}
 	if (controlsessionactive === "Yes") { 
@@ -531,23 +888,17 @@ function charVizSetDefaultClothingColors(x, y, z) {
 	else {
 		// This function should only execute when putting on a new piece of clothing (to set it's default colors)
 		if (x === "Topwear") {
-			if (y === "Office Shirt") {
+			if (y === "Office Shirt" || y === "Office Shirt (tucked)") {
 				document.getElementById("charVizDisplayTopwearPrimary").style.backgroundColor = '#F5F5F5';
+				document.getElementById("charVizDisplayTopwearBreastSizePrimary").style.backgroundColor = '#F5F5F5';
 				document.getElementById("charVizTopwearPrimaryColorSwatch").style.backgroundColor = '#F5F5F5';
 				localStorage.setItem("Slot0_Topwear_Primary_Clothing_Color", '#F5F5F5');
 			}
-			else if (y === "T-Shirt") {
-				document.getElementById("charVizDisplayTopwearPrimary").style.backgroundColor = '#5FBF5E';
-				document.getElementById("charVizTopwearPrimaryColorSwatch").style.backgroundColor = '#5FBF5E';
-				localStorage.setItem("Slot0_Topwear_Primary_Clothing_Color", '#5FBF5E');
-			}
 			else if (y === "Crop Top") {
-				document.getElementById("charVizDisplayTopwearPrimary").style.backgroundColor = '#222';
-				document.getElementById("charVizDisplayTopwearSecondary").style.backgroundColor = '#F248D6';
-				document.getElementById("charVizTopwearPrimaryColorSwatch").style.backgroundColor = '#222';
-				document.getElementById("charVizTopwearSecondaryColorSwatch").style.backgroundColor = '#F248D6';
-				localStorage.setItem("Slot0_Topwear_Primary_Clothing_Color", '#222');
-				localStorage.setItem("Slot0_Topwear_Secondary_Clothing_Color", '#F248D6');
+				document.getElementById("charVizDisplayTopwearPrimary").style.backgroundColor = '#FF6BEE';
+				document.getElementById("charVizDisplayTopwearBreastSizePrimary").style.backgroundColor = '#FF6BEE';
+				document.getElementById("charVizTopwearPrimaryColorSwatch").style.backgroundColor = '#FF6BEE';
+				localStorage.setItem("Slot0_Topwear_Primary_Clothing_Color", '#FF6BEE');
 			}
 		}
 		else if (x === "Bottomwear") {
@@ -557,17 +908,17 @@ function charVizSetDefaultClothingColors(x, y, z) {
 				localStorage.setItem("Slot0_Bottomwear_Primary_Clothing_Color", '#222');
 			}
 			else if (y === "Shorts") {
-				document.getElementById("charVizDisplayBottomwearPrimary").style.backgroundColor = '#8BB2E0';
-				document.getElementById("charVizBottomwearPrimaryColorSwatch").style.backgroundColor = '#8BB2E0';
-				localStorage.setItem("Slot0_Bottomwear_Primary_Clothing_Color", '#8BB2E0');
+				document.getElementById("charVizDisplayBottomwearPrimary").style.backgroundColor = '#84beeb';
+				document.getElementById("charVizDisplayBottomwearSecondary").style.backgroundColor = '#222';
+				document.getElementById("charVizBottomwearPrimaryColorSwatch").style.backgroundColor = '#84beeb';
+				document.getElementById("charVizBottomwearSecondaryColorSwatch").style.backgroundColor = '#222';
+				localStorage.setItem("Slot0_Bottomwear_Primary_Clothing_Color", '#84beeb');
+				localStorage.setItem("Slot0_Bottomwear_Secondary_Clothing_Color", '#222');
 			}
 			else if (y === "Leggings") {
-				document.getElementById("charVizDisplayBottomwearPrimary").style.backgroundColor = '#222';				
-				document.getElementById("charVizDisplayBottomwearSecondary").style.backgroundColor = '#F248D6';
-				document.getElementById("charVizBottomwearPrimaryColorSwatch").style.backgroundColor = '#222';
-				document.getElementById("charVizBottomwearSecondaryColorSwatch").style.backgroundColor = '#F248D6';
-				localStorage.setItem("Slot0_Bottomwear_Primary_Clothing_Color", '#222');
-				localStorage.setItem("Slot0_Bottomwear_Secondary_Clothing_Color", '#F248D6');
+				document.getElementById("charVizDisplayBottomwearPrimary").style.backgroundColor = '#ed5cc5';
+				document.getElementById("charVizBottomwearPrimaryColorSwatch").style.backgroundColor = '#ed5cc5';
+				localStorage.setItem("Slot0_Bottomwear_Primary_Clothing_Color", '#ed5cc5');
 			}
 		}
 		else if (x === "Armwear") {
@@ -579,6 +930,11 @@ function charVizSetDefaultClothingColors(x, y, z) {
 				localStorage.setItem("Slot0_Armwear_Primary_Clothing_Color", '#78219F');
 				localStorage.setItem("Slot0_Armwear_Secondary_Clothing_Color", '#2C2C2C');
 			}
+			else if (y === "Arm Warmers (no stripes)") {
+				document.getElementById("charVizDisplayArmwearPrimary").style.backgroundColor = '#2C2C2C';
+				document.getElementById("charVizArmwearPrimaryColorSwatch").style.backgroundColor = '#2C2C2C';
+				localStorage.setItem("Slot0_Armwear_Primary_Clothing_Color", '#2C2C2C');
+			}
 		}
 		else if (x === "Legwear") {
 			if (y === "Thigh Highs") {
@@ -588,6 +944,11 @@ function charVizSetDefaultClothingColors(x, y, z) {
 				document.getElementById("charVizLegwearSecondaryColorSwatch").style.backgroundColor = '#2C2C2C';
 				localStorage.setItem("Slot0_Legwear_Primary_Clothing_Color", '#78219F');
 				localStorage.setItem("Slot0_Legwear_Secondary_Clothing_Color", '#2C2C2C');
+			}
+			else if (y === "Thigh Highs (no stripes)") {
+				document.getElementById("charVizDisplayLegwearPrimary").style.backgroundColor = '#2C2C2C';
+				document.getElementById("charVizLegwearPrimaryColorSwatch").style.backgroundColor = '#2C2C2C';
+				localStorage.setItem("Slot0_Legwear_Primary_Clothing_Color", '#2C2C2C');
 			}
 		}
 		else if (x === "Underwear") {
@@ -605,7 +966,9 @@ function charVizLoadSavedClothingColors(x) {
 		var primaryColor = localStorage.getItem("Slot0_Topwear_Primary_Clothing_Color");
 		var secondaryColor = localStorage.getItem("Slot0_Topwear_Secondary_Clothing_Color");
 		document.getElementById("charVizDisplayTopwearPrimary").style.backgroundColor = primaryColor;
+		document.getElementById("charVizDisplayTopwearBreastSizePrimary").style.backgroundColor = primaryColor;
 		document.getElementById("charVizDisplayTopwearSecondary").style.backgroundColor = secondaryColor;
+		document.getElementById("charVizDisplayTopwearBreastSizeSecondary").style.backgroundColor = secondaryColor;
 		document.getElementById("charVizTopwearPrimaryColorSwatch").style.backgroundColor = primaryColor;
 		document.getElementById("charVizTopwearSecondaryColorSwatch").style.backgroundColor = secondaryColor;
 	}
@@ -644,8 +1007,16 @@ function charVizLoadSavedClothingColors(x) {
 }
 
 function charVizPutOutfitOn(x) {
-	if (x === "Programmer") {
+	if (x === "None") {
 		charVizPutClothingOn("Topwear", "None");
+		charVizPutClothingOn("Bottomwear", "None");
+		charVizPutClothingOn("Armwear", "None");
+		charVizPutClothingOn("Legwear", "None");
+		charVizPutClothingOn("Underwear", "None");
+		charVizPutClothingOn("Accessories", "None");
+	}
+	else if (x === "Programmer") {
+		charVizPutClothingOn("Topwear", "Crop Top");
 		charVizPutClothingOn("Bottomwear", "None");
 		charVizPutClothingOn("Armwear", "Arm Warmers");
 		charVizPutClothingOn("Legwear", "Thigh Highs");
@@ -653,13 +1024,38 @@ function charVizPutOutfitOn(x) {
 		charVizPutClothingOn("Accessories", "Glasses");
 	}
 	else if (x === "Secretary") {
-		charVizPutClothingOn("Topwear", "Office Shirt");
+		charVizPutClothingOn("Topwear", "Office Shirt (tucked)");
 		charVizPutClothingOn("Bottomwear", "Pencil Skirt");
 		charVizPutClothingOn("Armwear", "None");
 		charVizPutClothingOn("Legwear", "Pantyhose");
 		charVizPutClothingOn("Underwear", "Panties");
 		charVizPutClothingOn("Accessories", "Glasses");
 	}
+}
+
+function componentFromStr(numStr, percent) {
+    var num = Math.max(0, parseInt(numStr, 10));
+    return percent ?
+        Math.floor(255 * Math.min(100, num) / 100) : Math.min(255, num);
+}
+
+function rgbToHex(rgb) {
+    var rgbRegex = /^rgb\(\s*(-?\d+)(%?)\s*,\s*(-?\d+)(%?)\s*,\s*(-?\d+)(%?)\s*\)$/;
+    var result, r, g, b, hex = "";
+    if ( (result = rgbRegex.exec(rgb)) ) {
+        r = componentFromStr(result[1], result[2]);
+        g = componentFromStr(result[3], result[4]);
+        b = componentFromStr(result[5], result[6]);
+
+        hex = "#" + (0x1000000 + (r << 16) + (g << 8) + b).toString(16).slice(1);
+    }
+    return hex;	
+}
+
+function rgbToHex2(rgb) {
+	rgb = "rgb("+rgb+")";
+	var hex = rgbToHex(rgb);
+	return hex;
 }
 
 function setActiveColor(color) {
@@ -671,41 +1067,45 @@ function setActiveColor(color) {
 
 	localStorage.setItem("CharViz_Active_Character_Color", color);
 	
-	if (color === "Primary") {
+	if (color === "Primary") {		
 		document.getElementById("charColorSwatchContainer1").style.backgroundColor = "#59568f";
-		var swatchColor = document.getElementById("charVizPrimaryCharacterColorSwatch").style.backgroundColor;
-		colorPicker.color.rgbString = swatchColor;
+		var swatchColor = document.getElementById("charVizPrimaryCharacterColorSwatch").style.backgroundColor;		
 	}
 	else if (color === "Secondary") {
 		document.getElementById("charColorSwatchContainer2").style.backgroundColor = "#59568f";
-		var swatchColor = document.getElementById("charVizSecondaryCharacterColorSwatch").style.backgroundColor;
-		colorPicker.color.rgbString = swatchColor;
+		var swatchColor = document.getElementById("charVizSecondaryCharacterColorSwatch").style.backgroundColor;		
 	}
 	else if (color === "Tertiary") {
 		document.getElementById("charColorSwatchContainer3").style.backgroundColor = "#59568f";
-		var swatchColor = document.getElementById("charVizTertiaryCharacterColorSwatch").style.backgroundColor;
-		colorPicker.color.rgbString = swatchColor;
+		var swatchColor = document.getElementById("charVizTertiaryCharacterColorSwatch").style.backgroundColor;		
 	}
 	else if (color === "Markings") {
 		document.getElementById("charColorSwatchContainer4").style.backgroundColor = "#59568f";
-		var swatchColor = document.getElementById("charVizMarkingsCharacterColorSwatch").style.backgroundColor;
-		colorPicker.color.rgbString = swatchColor;
+		var swatchColor = document.getElementById("charVizMarkingsCharacterColorSwatch").style.backgroundColor;		
 	}
 	else if (color === "Left Eye") {
 		document.getElementById("charColorSwatchContainer5").style.backgroundColor = "#59568f";
-		var swatchColor = document.getElementById("charVizLeftEyeCharacterColorSwatch").style.backgroundColor;
-		colorPicker.color.rgbString = swatchColor;
+		var swatchColor = document.getElementById("charVizLeftEyeCharacterColorSwatch").style.backgroundColor;		
 	}
 	else if (color === "Right Eye") {
 		document.getElementById("charColorSwatchContainer6").style.backgroundColor = "#59568f";
-		var swatchColor = document.getElementById("charVizRightEyeCharacterColorSwatch").style.backgroundColor;
-		colorPicker.color.rgbString = swatchColor;
+		var swatchColor = document.getElementById("charVizRightEyeCharacterColorSwatch").style.backgroundColor;		
 	}
 	else if (color === "Hair") {
 		document.getElementById("charColorSwatchContainer7").style.backgroundColor = "#59568f";
-		var swatchColor = document.getElementById("charVizHairCharacterColorSwatch").style.backgroundColor;
-		colorPicker.color.rgbString = swatchColor;
+		var swatchColor = document.getElementById("charVizHairCharacterColorSwatch").style.backgroundColor;		
 	}
+	else if (color === "Left Sclera") {
+		document.getElementById("charColorSwatchContainer8").style.backgroundColor = "#59568f";
+		var swatchColor = document.getElementById("charVizLeftScleraCharacterColorSwatch").style.backgroundColor;		
+	}
+	else if (color === "Right Sclera") {
+		document.getElementById("charColorSwatchContainer9").style.backgroundColor = "#59568f";
+		var swatchColor = document.getElementById("charVizRightScleraCharacterColorSwatch").style.backgroundColor;		
+	}
+	colorPicker.color.rgbString = swatchColor;
+	var hexCode = rgbToHex(swatchColor);
+	document.getElementById("charVizCurrentCharColorHex").innerHTML = hexCode;
 }
 
 function setActiveClothingColor(color) {
@@ -719,55 +1119,187 @@ function setActiveClothingColor(color) {
 	
 	if (color === "Topwear Primary") {
 		document.getElementById("clothingColorSwatchContainer1").style.backgroundColor = "#59568f";
-		var swatchColor = document.getElementById("charVizTopwearPrimaryColorSwatch").style.backgroundColor;
-		colorPicker2.color.rgbString = swatchColor;
+		var swatchColor = document.getElementById("charVizTopwearPrimaryColorSwatch").style.backgroundColor;		
 	}
 	else if (color === "Topwear Secondary") {
 		document.getElementById("clothingColorSwatchContainer2").style.backgroundColor = "#59568f";
 		var swatchColor = document.getElementById("charVizTopwearSecondaryColorSwatch").style.backgroundColor;
-		colorPicker2.color.rgbString = swatchColor;
 	}
 	else if (color === "Bottomwear Primary") {
 		document.getElementById("clothingColorSwatchContainer3").style.backgroundColor = "#59568f";
 		var swatchColor = document.getElementById("charVizBottomwearPrimaryColorSwatch").style.backgroundColor;
-		colorPicker2.color.rgbString = swatchColor;
 	}
 	else if (color === "Bottomwear Secondary") {
 		document.getElementById("clothingColorSwatchContainer4").style.backgroundColor = "#59568f";
 		var swatchColor = document.getElementById("charVizBottomwearSecondaryColorSwatch").style.backgroundColor;
-		colorPicker2.color.rgbString = swatchColor;
 	}
 	else if (color === "Armwear Primary") {
 		document.getElementById("clothingColorSwatchContainer5").style.backgroundColor = "#59568f";
 		var swatchColor = document.getElementById("charVizArmwearPrimaryColorSwatch").style.backgroundColor;
-		colorPicker2.color.rgbString = swatchColor;
 	}
 	else if (color === "Armwear Secondary") {
 		document.getElementById("clothingColorSwatchContainer6").style.backgroundColor = "#59568f";
 		var swatchColor = document.getElementById("charVizArmwearSecondaryColorSwatch").style.backgroundColor;
-		colorPicker2.color.rgbString = swatchColor;
 	}
 	else if (color === "Legwear Primary") {
 		document.getElementById("clothingColorSwatchContainer7").style.backgroundColor = "#59568f";
 		var swatchColor = document.getElementById("charVizLegwearPrimaryColorSwatch").style.backgroundColor;
-		colorPicker2.color.rgbString = swatchColor;
 	}
 	else if (color === "Legwear Secondary") {
 		document.getElementById("clothingColorSwatchContainer8").style.backgroundColor = "#59568f";
 		var swatchColor = document.getElementById("charVizLegwearSecondaryColorSwatch").style.backgroundColor;
-		colorPicker2.color.rgbString = swatchColor;
 	}
 	else if (color === "Underwear Primary") {
 		document.getElementById("clothingColorSwatchContainer9").style.backgroundColor = "#59568f";
 		var swatchColor = document.getElementById("charVizUnderwearPrimaryColorSwatch").style.backgroundColor;
-		colorPicker2.color.rgbString = swatchColor;
 	}
 	else if (color === "Underwear Secondary") {
 		document.getElementById("clothingColorSwatchContainer10").style.backgroundColor = "#59568f";
 		var swatchColor = document.getElementById("charVizUnderwearSecondaryColorSwatch").style.backgroundColor;
-		colorPicker2.color.rgbString = swatchColor;
 	}
+	colorPicker2.color.rgbString = swatchColor;
+	var hexCode = rgbToHex(swatchColor);
+	document.getElementById("charVizCurrentClothColorHex").innerHTML = hexCode;
+}
 
+function charVizCopyColor (containerid) {
+	var copiedColor = document.getElementById(containerid).innerHTML;
+	document.getElementById("charVizPasteCharColorTextField").value = copiedColor;
+	document.getElementById("charVizPasteClothColorTextField").value = copiedColor;
+	// Create a new textarea element and give it id='temp_element'
+	var textarea = document.createElement('textarea')
+	textarea.id = 'temp_element'
+	// Optional step to make less noise on the page, if any!
+	textarea.style.height = 0
+	// Now append it to your page somewhere, I chose <body>
+	document.body.appendChild(textarea)
+	// Give our textarea a value of whatever inside the div of id=containerid
+	textarea.value = document.getElementById(containerid).innerHTML
+	// Now copy whatever inside the textarea to clipboard
+	var selector = document.querySelector('#temp_element')
+	selector.select()
+	document.execCommand('copy')
+	// Remove the textarea
+	document.body.removeChild(textarea)	
+}
+
+function charVizPasteColor (x) {
+	var colorToPaste;
+	if (x === "Character") { colorToPaste = document.getElementById("charVizPasteCharColorTextField").value; }
+	else { colorToPaste = document.getElementById("charVizPasteClothColorTextField").value; }
+	
+	if (x === "Character") {
+		colorPicker.color.hexString = colorToPaste;
+		var activeColor = localStorage.getItem("CharViz_Active_Character_Color");		
+		if (activeColor === "Primary") {
+			document.getElementById("charVizPrimaryCharacterColorSwatch").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayBasePrimary").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayTailPrimary").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayHeadPrimary").style.backgroundColor = colorToPaste;
+			localStorage.setItem("Slot0_Primary_Character_Color", colorToPaste);
+		}
+		else if (activeColor === "Secondary") {
+			document.getElementById("charVizSecondaryCharacterColorSwatch").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayBaseSecondary").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayBreastSizeSecondary").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayTailSecondary").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayHeadSecondary").style.backgroundColor = colorToPaste;
+			localStorage.setItem("Slot0_Secondary_Character_Color", colorToPaste);
+		}
+		else if (activeColor === "Tertiary") {
+			document.getElementById("charVizTertiaryCharacterColorSwatch").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayBaseTertiary").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayTailTertiary").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayHeadTertiary").style.backgroundColor = colorToPaste;
+			localStorage.setItem("Slot0_Tertiary_Character_Color", colorToPaste);
+		}
+		else if (activeColor === "Markings") {
+			document.getElementById("charVizMarkingsCharacterColorSwatch").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayBaseMarkings").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayBreastSizeMarkings").style.backgroundColor = colorToPaste;
+			localStorage.setItem("Slot0_Markings_Character_Color", colorToPaste);
+		}
+		else if (activeColor === "Left Eye") {
+			document.getElementById("charVizLeftEyeCharacterColorSwatch").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayHeadIrisLeft").style.backgroundColor = colorToPaste;
+			localStorage.setItem("Slot0_LeftEye_Character_Color", colorToPaste);
+		}
+		else if (activeColor === "Right Eye") {
+			document.getElementById("charVizRightEyeCharacterColorSwatch").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayHeadIrisRight").style.backgroundColor = colorToPaste;
+			localStorage.setItem("Slot0_RightEye_Character_Color", colorToPaste);
+		}
+		else if (activeColor === "Hair") {
+			document.getElementById("charVizHairCharacterColorSwatch").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayHeadHairPrimary").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayHairBackPrimary").style.backgroundColor = colorToPaste;
+			localStorage.setItem("Slot0_Hair_Character_Color", colorToPaste);
+		}
+		else if (activeColor === "Left Sclera") {
+			document.getElementById("charVizLeftScleraCharacterColorSwatch").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayHeadScleraLeft").style.backgroundColor = colorToPaste;
+			localStorage.setItem("Slot0_LeftSclera_Character_Color", colorToPaste);
+		}
+		else if (activeColor === "Right Sclera") {
+			document.getElementById("charVizRightScleraCharacterColorSwatch").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayHeadScleraRight").style.backgroundColor = colorToPaste;
+			localStorage.setItem("Slot0_RightSclera_Character_Color", colorToPaste);
+		}
+	}
+	else {
+		colorPicker2.color.hexString = colorToPaste;
+		var activeColor = localStorage.getItem("CharViz_Active_Clothing_Color");
+		if (activeColor === "Topwear Primary") {
+			document.getElementById("charVizTopwearPrimaryColorSwatch").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayTopwearPrimary").style.backgroundColor = colorToPaste;
+			localStorage.setItem("Slot0_Topwear_Primary_Clothing_Color", colorToPaste);
+		}
+		else if (activeColor === "Topwear Secondary") {
+			document.getElementById("charVizTopwearSecondaryColorSwatch").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayTopwearSecondary").style.backgroundColor = colorToPaste;
+			localStorage.setItem("Slot0_Topwear_Secondary_Clothing_Color", colorToPaste);
+		}
+		else if (activeColor === "Bottomwear Primary") {
+			document.getElementById("charVizBottomwearPrimaryColorSwatch").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayBottomwearPrimary").style.backgroundColor = colorToPaste;
+			localStorage.setItem("Slot0_Bottomwear_Primary_Clothing_Color", colorToPaste);
+		}
+		else if (activeColor === "Bottomwear Secondary") {
+			document.getElementById("charVizBottomwearSecondaryColorSwatch").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayBottomwearSecondary").style.backgroundColor = colorToPaste;
+			localStorage.setItem("Slot0_Bottomwear_Secondary_Clothing_Color", colorToPaste);
+		}
+		else if (activeColor === "Armwear Primary") {
+			document.getElementById("charVizArmwearPrimaryColorSwatch").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayArmwearPrimary").style.backgroundColor = colorToPaste;
+			localStorage.setItem("Slot0_Armwear_Primary_Clothing_Color", colorToPaste);
+		}
+		else if (activeColor === "Armwear Secondary") {
+			document.getElementById("charVizArmwearSecondaryColorSwatch").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayArmwearSecondary").style.backgroundColor = colorToPaste;
+			localStorage.setItem("Slot0_Armwear_Secondary_Clothing_Color", colorToPaste);
+		}
+		else if (activeColor === "Legwear Primary") {
+			document.getElementById("charVizLegwearPrimaryColorSwatch").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayLegwearPrimary").style.backgroundColor = colorToPaste;
+			localStorage.setItem("Slot0_Legwear_Primary_Clothing_Color", colorToPaste);
+		}
+		else if (activeColor === "Legwear Secondary") {
+			document.getElementById("charVizLegwearSecondaryColorSwatch").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayLegwearSecondary").style.backgroundColor = colorToPaste;
+			localStorage.setItem("Slot0_Legwear_Secondary_Clothing_Color", colorToPaste);
+		}
+		else if (activeColor === "Underwear Primary") {
+			document.getElementById("charVizUnderwearPrimaryColorSwatch").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayUnderwearPrimary").style.backgroundColor = colorToPaste;
+			localStorage.setItem("Slot0_Underwear_Primary_Clothing_Color", colorToPaste);
+		}
+		else if (activeColor === "Underwear Secondary") {
+			document.getElementById("charVizUnderwearSecondaryColorSwatch").style.backgroundColor = colorToPaste;
+			document.getElementById("charVizDisplayUnderwearSecondary").style.backgroundColor = colorToPaste;
+			localStorage.setItem("Slot0_Underwear_Secondary_Clothing_Color", colorToPaste);
+		}
+	}
 }
 
 function flushCharViz() {
@@ -848,71 +1380,87 @@ function flushCloth(y) {
 	}
 }
 
-function setNaturalColorScheme(species, x) {
+function setNaturalColorScheme(species) {
 	var primaryColor;
 	var secondaryColor;
 	var tertiaryColor;
 	var markingsColor;
+	var eyeColor;
+	var hairColor;
+	var scleraColor = "#ffffff";
 	
 	if (species === "Fox") 				{	primaryColor = "#ffaf1a";secondaryColor = "#FFF0F5";tertiaryColor = "#202120";markingsColor = "#9400D3"; eyeColor = "#00FF7F"; hairColor = "#A52A2A";	}
 	else if (species === "Arctic Fox") 	{	primaryColor = "#87CEFA";secondaryColor = "#FFF0F5";tertiaryColor = "#4682B4";markingsColor = "#4169E1"; eyeColor = "#20B2AA"; hairColor = "#6495ED";	}
 	else if (species === "Coyote") 		{	primaryColor = "#FFDEAD";secondaryColor = "#FFF8DC";tertiaryColor = "#696969";markingsColor = "#800000"; eyeColor = "#A52A2A"; hairColor = "#A0522D";	}
 	else if (species === "Wolf") 		{	primaryColor = "#808080";secondaryColor = "#FFF0F5";tertiaryColor = "#778899";markingsColor = "#708090"; eyeColor = "#00BFFF"; hairColor = "#333333";	}
 	else if (species === "Husky") 		{	primaryColor = "#404040";secondaryColor = "#FFF0F5";tertiaryColor = "#A9A9A9";markingsColor = "#C0C0C0"; eyeColor = "#40E0D0"; hairColor = "#00CED1";	}
-	else { return; }
+	else if (species === "Dragon") 		{	primaryColor = "#7e1e9f";secondaryColor = "#f9bf28";tertiaryColor = "#f9bf28";markingsColor = "#f9bf28"; eyeColor = "#7e1e9f"; hairColor = "#b658f0";	}
+	else { randomizeCharacterColors(); return; }
+	
+	localStorage.setItem("Slot0_Primary_Character_Color", primaryColor);
+	localStorage.setItem("Slot0_Secondary_Character_Color", secondaryColor);
+	localStorage.setItem("Slot0_Tertiary_Character_Color", tertiaryColor);
+	localStorage.setItem("Slot0_Markings_Character_Color", markingsColor);
+	localStorage.setItem("Slot0_LeftEye_Character_Color", eyeColor);
+	localStorage.setItem("Slot0_RightEye_Character_Color", eyeColor);
+	localStorage.setItem("Slot0_Hair_Character_Color", hairColor);
+	localStorage.setItem("Slot0_LeftSclera_Character_Color", scleraColor);
+	localStorage.setItem("Slot0_RightSclera_Character_Color", scleraColor);
 
-	if (x == 0) {
-		document.getElementById("charVizDisplayBasePrimary").style.backgroundColor = primaryColor;
-		document.getElementById("charVizDisplayBreastSizePrimary").style.backgroundColor = primaryColor;
-		document.getElementById("charVizDisplayHipsSizePrimary").style.backgroundColor = primaryColor;
-		document.getElementById("charVizDisplayTailPrimary").style.backgroundColor = primaryColor;
-		document.getElementById("charVizDisplayHeadPrimary").style.backgroundColor = primaryColor;
-		document.getElementById("charVizPrimaryCharacterColorSwatch").style.backgroundColor = primaryColor;
-	}
-	else if (x == 1) {
-		document.getElementById("charVizDisplayBaseSecondary").style.backgroundColor = secondaryColor;
-		document.getElementById("charVizDisplayBreastSizeSecondary").style.backgroundColor = secondaryColor;
-		document.getElementById("charVizDisplayHipsSizeSecondary").style.backgroundColor = secondaryColor;
-		document.getElementById("charVizDisplayTailSecondary").style.backgroundColor = secondaryColor;
-		document.getElementById("charVizDisplayHeadSecondary").style.backgroundColor = secondaryColor;
-		document.getElementById("charVizSecondaryCharacterColorSwatch").style.backgroundColor = secondaryColor;
-	}
-	else if (x == 2) {				
-		document.getElementById("charVizDisplayBaseTertiary").style.backgroundColor = tertiaryColor;
-		document.getElementById("charVizDisplayTailTertiary").style.backgroundColor = tertiaryColor;
-		document.getElementById("charVizDisplayHeadTertiary").style.backgroundColor = tertiaryColor;
-		document.getElementById("charVizTertiaryCharacterColorSwatch").style.backgroundColor = tertiaryColor;
-	}
-	else if (x == 3) {
-		document.getElementById("charVizDisplayBaseMarkings").style.backgroundColor = markingsColor;
-		document.getElementById("charVizDisplayBreastSizeMarkings").style.backgroundColor = markingsColor;
-		document.getElementById("charVizDisplayHipsSizeMarkings").style.backgroundColor = markingsColor;
-		//document.getElementById("charVizDisplayTailMarkings").style.backgroundColor = x;
-		document.getElementById("charVizMarkingsCharacterColorSwatch").style.backgroundColor = markingsColor;
-	}
-	else if (x == 4) {
-		document.getElementById("charVizLeftEyeCharacterColorSwatch").style.backgroundColor = eyeColor;
-		document.getElementById("charVizDisplayHeadIrisLeft").style.backgroundColor = eyeColor;
-	}
-	else if (x == 5) {
-		document.getElementById("charVizRightEyeCharacterColorSwatch").style.backgroundColor = eyeColor;
-		document.getElementById("charVizDisplayHeadIrisRight").style.backgroundColor = eyeColor;
-	}
-	else if (x == 6) {
-		document.getElementById("charVizHairCharacterColorSwatch").style.backgroundColor = hairColor;
-		document.getElementById("charVizDisplayHeadHair").style.backgroundColor = hairColor;
-	}
+	document.getElementById("charVizDisplayBasePrimary").style.backgroundColor = primaryColor;
+	document.getElementById("charVizDisplayTailPrimary").style.backgroundColor = primaryColor;
+	document.getElementById("charVizDisplayHeadPrimary").style.backgroundColor = primaryColor;
+	document.getElementById("charVizDisplayWingsPrimary").style.backgroundColor = primaryColor;
+	document.getElementById("charVizDisplayBreastSizePrimary").style.backgroundColor = primaryColor;
+	document.getElementById("charVizDisplayInanimateTFprimary").style.backgroundColor = primaryColor;
+	document.getElementById("charVizPrimaryCharacterColorSwatch").style.backgroundColor = primaryColor;
+
+	document.getElementById("charVizDisplayBaseSecondary").style.backgroundColor = secondaryColor;
+	document.getElementById("charVizDisplayBreastSizeSecondary").style.backgroundColor = secondaryColor;
+	document.getElementById("charVizDisplayTailSecondary").style.backgroundColor = secondaryColor;
+	document.getElementById("charVizDisplayHeadSecondary").style.backgroundColor = secondaryColor;
+	document.getElementById("charVizDisplayGenitalsSecondary").style.backgroundColor = secondaryColor;
+	document.getElementById("charVizDisplayInanimateTFsecondary").style.backgroundColor = secondaryColor;
+	document.getElementById("charVizSecondaryCharacterColorSwatch").style.backgroundColor = secondaryColor;
+			
+	document.getElementById("charVizDisplayBaseTertiary").style.backgroundColor = tertiaryColor;
+	document.getElementById("charVizDisplayTailTertiary").style.backgroundColor = tertiaryColor;
+	document.getElementById("charVizDisplayHeadTertiary").style.backgroundColor = tertiaryColor;
+	document.getElementById("charVizTertiaryCharacterColorSwatch").style.backgroundColor = tertiaryColor;
+
+	document.getElementById("charVizDisplayBaseMarkings").style.backgroundColor = markingsColor;
+	document.getElementById("charVizDisplayBreastSizeMarkings").style.backgroundColor = markingsColor;
+	document.getElementById("charVizDisplayWingsMarkings").style.backgroundColor = markingsColor;
+	document.getElementById("charVizDisplayGenitalsMarkings").style.backgroundColor = markingsColor;
+	document.getElementById("charVizMarkingsCharacterColorSwatch").style.backgroundColor = markingsColor;
+
+	document.getElementById("charVizLeftEyeCharacterColorSwatch").style.backgroundColor = eyeColor;
+	document.getElementById("charVizDisplayHeadIrisLeft").style.backgroundColor = eyeColor;
+
+	document.getElementById("charVizRightEyeCharacterColorSwatch").style.backgroundColor = eyeColor;
+	document.getElementById("charVizDisplayHeadIrisRight").style.backgroundColor = eyeColor;
+
+	document.getElementById("charVizHairCharacterColorSwatch").style.backgroundColor = hairColor;
+	document.getElementById("charVizDisplayHeadHairPrimary").style.backgroundColor = hairColor;
+	document.getElementById("charVizDisplayHairBackPrimary").style.backgroundColor = hairColor;
+	
+	document.getElementById("charVizLeftScleraCharacterColorSwatch").style.backgroundColor = scleraColor;
+	document.getElementById("charVizRightScleraCharacterColorSwatch").style.backgroundColor = scleraColor;
+	document.getElementById("charVizDisplayHeadScleraLeft").style.backgroundColor = scleraColor;
+	document.getElementById("charVizDisplayHeadScleraRight").style.backgroundColor = scleraColor;
+
 }
 
 function charVizResetCharacterColors() {
-	localStorage.removeItem("Slot0_Primary_Character_Color");
-	localStorage.removeItem("Slot0_Secondary_Character_Color");
-	localStorage.removeItem("Slot0_Tertiary_Character_Color");
-	localStorage.removeItem("Slot0_Markings_Character_Color");
-	localStorage.removeItem("Slot0_LeftEye_Character_Color");
-	localStorage.removeItem("Slot0_RightEye_Character_Color");
-	localStorage.removeItem("Slot0_Hair_Character_Color");
-	initializeCharViz();
+	var x = document.getElementById("charVizResetCharColorsButton").innerHTML;
+	if (x === "Are you sure?") {
+		var Species = localStorage.getItem("Slot0_Species");
+		setNaturalColorScheme(Species);
+		document.getElementById('charVizResetCharColorsButton').innerHTML = "Reset Char Colors";
+	}
+	else {
+		document.getElementById('charVizResetCharColorsButton').innerHTML = "Are you sure?";
+	}	
 }
 
 function charVizClothingGoToCategory(x) {
@@ -985,12 +1533,82 @@ function charVizClothingGoBack(x) {
 	}
 }
 
+function charVizPickerGoToCategory(x) {
+	if (x === "Body") {
+		document.getElementById("charVizPickerSelectorContainer").style.display= 'none';
+		document.getElementById("charVizPickerBodySelectorContainer").style.display= 'block';
+	}
+	else if (x === "Head") {
+		document.getElementById("charVizPickerSelectorContainer").style.display= 'none';
+		document.getElementById("charVizPickerHeadSelectorContainer").style.display= 'block';
+	}
+	else if (x === "Tail") {
+		document.getElementById("charVizPickerSelectorContainer").style.display= 'none';
+		document.getElementById("charVizPickerTailSelectorContainer").style.display= 'block';
+	}
+	else if (x === "Wings") {
+		document.getElementById("charVizPickerSelectorContainer").style.display= 'none';
+		document.getElementById("charVizPickerWingsSelectorContainer").style.display= 'block';
+	}
+	else if (x === "Pupils") {
+		document.getElementById("charVizPickerSelectorContainer").style.display= 'none';
+		document.getElementById("charVizPickerPupilsSelectorContainer").style.display= 'block';
+	}
+	else if (x === "Secondary") {
+		document.getElementById("charVizPickerSelectorContainer").style.display= 'none';
+		document.getElementById("charVizPickerSecondaryPatternSelectorContainer").style.display= 'block';
+	}
+	else if (x === "Tertiary") {
+		document.getElementById("charVizPickerSelectorContainer").style.display= 'none';
+		document.getElementById("charVizPickerTertiaryPatternSelectorContainer").style.display= 'block';
+	}
+	else if (x === "Markings") {
+		document.getElementById("charVizPickerSelectorContainer").style.display= 'none';
+		document.getElementById("charVizPickerMarkingsPatternSelectorContainer").style.display= 'block';
+	}
+}
+
+function charVizPickerGoBack(x) {
+	if (x === "Body") {
+		document.getElementById("charVizPickerBodySelectorContainer").style.display= 'none';
+		document.getElementById("charVizPickerSelectorContainer").style.display= 'block';
+	}
+	else if (x === "Head") {
+		document.getElementById("charVizPickerHeadSelectorContainer").style.display= 'none';
+		document.getElementById("charVizPickerSelectorContainer").style.display= 'block';
+	}
+	else if (x === "Tail") {
+		document.getElementById("charVizPickerTailSelectorContainer").style.display= 'none';
+		document.getElementById("charVizPickerSelectorContainer").style.display= 'block';
+	}
+	else if (x === "Wings") {
+		document.getElementById("charVizPickerWingsSelectorContainer").style.display= 'none';
+		document.getElementById("charVizPickerSelectorContainer").style.display= 'block';
+	}
+	else if (x === "Pupils") {
+		document.getElementById("charVizPickerPupilsSelectorContainer").style.display= 'none';
+		document.getElementById("charVizPickerSelectorContainer").style.display= 'block';
+	}
+	else if (x === "Secondary") {
+		document.getElementById("charVizPickerSecondaryPatternSelectorContainer").style.display= 'none';
+		document.getElementById("charVizPickerSelectorContainer").style.display= 'block';
+	}
+	else if (x === "Tertiary") {
+		document.getElementById("charVizPickerTertiaryPatternSelectorContainer").style.display= 'none';
+		document.getElementById("charVizPickerSelectorContainer").style.display= 'block';
+	}
+	else if (x === "Markings") {
+		document.getElementById("charVizPickerMarkingsPatternSelectorContainer").style.display= 'none';
+		document.getElementById("charVizPickerSelectorContainer").style.display= 'block';
+	}
+}
+
 function toggleCharVizMenus(x) {
 	var menu;
 	var height;
 	if (x == 0) {
 		menu = document.getElementById("charVizCharacterColorsContainer");
-		height = "220px"
+		height = "330px"
 	}
 	else if (x == 1) {
 		menu = document.getElementById("charVizClothingContainer");
@@ -998,15 +1616,23 @@ function toggleCharVizMenus(x) {
 	}
 	else if (x == 2) {
 		menu = document.getElementById("charVizClothingColorsContainer");
-		height = "220px"
+		height = "330px"
 	}
 	else if (x == 3) {
 		menu = document.getElementById("charVizOptionsContainer");
-		height = "240px"
+		height = "630px"
 	}
 	else if (x == 4) {
 		menu = document.getElementById("charVizCreditsContainer");
-		height = "380px"
+		height = "470px"
+	}
+	else if (x == 5) {
+		menu = document.getElementById("charVizReadmeContainer");
+		height = "450px"
+	}
+	else if (x == 6) {
+		menu = document.getElementById("charVizPickerContainer");
+		height = "350px"
 	}
 	if (menu.style.maxHeight === "0px") {
 		menu.style.maxHeight = height;
@@ -1018,56 +1644,98 @@ function toggleCharVizMenus(x) {
 function charVizSetBGColor(x) {
 	if (x == 0) {
 		document.getElementsByClassName("charVizDisplayContainer")[0].style.backgroundColor = "#282640";
+		document.getElementById("charVizDisplayMessage").style.backgroundColor = "#282640";
 	}
 	else if (x == 1) {
 		document.getElementsByClassName("charVizDisplayContainer")[0].style.backgroundColor = "#fff";
+		document.getElementById("charVizDisplayMessage").style.backgroundColor = "#fff";
 	}
 	else if (x == 2) {
 		document.getElementsByClassName("charVizDisplayContainer")[0].style.backgroundColor = "#000";
+		document.getElementById("charVizDisplayMessage").style.backgroundColor = "#000";
 	}
 	else if (x == 3) {
 		document.getElementsByClassName("charVizDisplayContainer")[0].style.backgroundColor = "#222";
+		document.getElementById("charVizDisplayMessage").style.backgroundColor = "#222";
 	}
 	localStorage.setItem("CharViz_Background_Color", x);
 }
 
-function toggleClothColoringOnDefault() {
-	var tickbox = document.getElementById("clothColoringOnDefaultCheckbox");
-	if (tickbox.checked) {
-		var tickbox = "Yes"
+function loadCharVizOptions() {	// Loads CharViz specific options on startup
+	var x1 = localStorage.getItem("Character_Part_And_Pattern_Picker_Enabled");
+	var x2 = localStorage.getItem("CharViz_Set_Natural_Color_Scheme");
+	var x3 = localStorage.getItem("Randomizer_Affects_Char_Colors");
+	var x4 = localStorage.getItem("Randomizer_Affects_Clothing");
+	var x5 = localStorage.getItem("Randomizer_Generates_Supported_Species");
+	var x6 = localStorage.getItem("CharViz_Show_Genitals");
+	var x7 = localStorage.getItem("CharViz_Display_Randomizers");
+	
+	// Tick the checkboxes
+	if (x1 === "Yes")	{	document.getElementById("enablePickerCheckbox").checked = true;							}
+	if (x2 === "Yes")	{	document.getElementById("setNaturalColorsCheckbox").checked = true;						}
+	if (x3 === "Yes")	{	document.getElementById("randomizerAffectsCharColorsCheckbox").checked = true;			}
+	if (x4 === "Yes")	{	document.getElementById("randomizerAffectsClothingCheckbox").checked = true;			}
+	if (x5 === "Yes")	{	document.getElementById("randomizerGeneratesCharVizSpeciesCheckbox").checked = true;	}
+	if (x6 === "Yes")	{	document.getElementById("showGenitalsCheckbox").checked = true;							}
+	if (x7 === "Yes")	{	document.getElementById("displayRandomizersCheckbox").checked = true;					}
+	
+	// Show or hide Picker toggler
+	var charVizEnabled = localStorage.getItem("CharViz_Enabled");
+	if (charVizEnabled === "Yes" && x1 === "Yes") {
+		document.getElementById("charVizPickerToggler").style.display = 'block';
 	}
 	else {
-		var tickbox = "No"
+		document.getElementById("charVizPickerToggler").style.display = 'none';
 	}
-	localStorage.setItem("Dont_Set_Default_Clothing_Colors", tickbox);
+
+	// Show or hide containers with 2 randomize buttons
+	if (x7 === "Yes")		{	document.getElementById("randomizeCharacterButtonsContainer").style.display = 'block';	}
+	else					{	document.getElementById("randomizeCharacterButtonsContainer").style.display = 'none';	}
 }
 
-function charVizToggleBlush() {
-	var tickbox = document.getElementById("charVizBlushCheckbox");
-	if (tickbox.checked) {
-		var tickbox = "Yes"
-		document.getElementById("charVizDisplayHeadBlush").style.backgroundImage = 'url(./images/charViz/heads/canine/blush.png)';
+function toggleCharVizOption(x) {
+	// 1 - Enable Character Part & Pattern Picker
+	// 2 - Set default color scheme when changing species
+	// 3 - Randomizer affects character color scheme
+	// 4 - Randomizer affects clothing
+	// 5 - Randomizer generates only species supported by CharViz
+	// 6 - Show Genitals
+	// 7 - Show buttons to randomize colors and character under character display
+	
+	var tickbox
+	if (x == 1) 		{ 	tickbox = document.getElementById("enablePickerCheckbox"); 						}
+	else if (x == 2) 	{ 	tickbox = document.getElementById("setNaturalColorsCheckbox"); 					}
+	else if (x == 3) 	{ 	tickbox = document.getElementById("randomizerAffectsCharColorsCheckbox"); 		}
+	else if (x == 4) 	{ 	tickbox = document.getElementById("randomizerAffectsClothingCheckbox"); 		}
+	else if (x == 5) 	{ 	tickbox = document.getElementById("randomizerGeneratesCharVizSpeciesCheckbox"); }
+	else if (x == 6) 	{ 	tickbox = document.getElementById("showGenitalsCheckbox"); 						}
+	else if (x == 7) 	{ 	tickbox = document.getElementById("displayRandomizersCheckbox"); 				}
+	
+	var y;
+	if (tickbox.checked){	y = "Yes" 	}
+	else				{	y = "No"	}
+	
+	// Save to localStorage
+	if (x == 1) 		{ 	localStorage.setItem("Character_Part_And_Pattern_Picker_Enabled", y);	}
+	else if (x == 2) 	{ 	localStorage.setItem("CharViz_Set_Natural_Color_Scheme", y); 			}
+	else if (x == 3) 	{ 	localStorage.setItem("Randomizer_Affects_Char_Colors", y);				}
+	else if (x == 4) 	{ 	localStorage.setItem("Randomizer_Affects_Clothing", y);					}
+	else if (x == 5) 	{ 	localStorage.setItem("Randomizer_Generates_Supported_Species", y);		}
+	else if (x == 6) 	{ 	localStorage.setItem("CharViz_Show_Genitals", y);						}
+	else if (x == 7) 	{ 	localStorage.setItem("CharViz_Display_Randomizers", y);					}
+	
+	// Show or hide Picker toggler	
+	if (x == 1) {
+		if (y === "Yes"){	document.getElementById("charVizPickerToggler").style.display = 'block';}
+		else			{	document.getElementById("charVizPickerToggler").style.display = 'none';	}
 	}
-	else {
-		var tickbox = "No"
-		document.getElementById("charVizDisplayHeadBlush").style.backgroundImage = '';
-	}
-	localStorage.setItem("CharViz_Character_Blushing", tickbox);
-	if (controlsessionactive === "Yes") { 
-		conn.send({firstParam: "Character_Blushing", secondParam: tickbox});
-	}
-}
-
-function accessoryFolder() {
-	document.getElementById("charVizDisplayAccessoriesSlot2").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/accessories/folder.png")';
-	if (controlsessionactive === "Yes") { 
-		conn.send({firstParam: "putAccessoryOn", secondParam: "Folder"});
-	}
-}
-
-function accessoryChoker() {
-	document.getElementById("charVizDisplayAccessoriesSlot3").style.backgroundImage = 'url("./images/charViz/bases/feminine/clothing/accessories/choker.png")';
-	if (controlsessionactive === "Yes") { 
-		conn.send({firstParam: "putAccessoryOn", secondParam: "Choker"});
+	
+	// Show or hide Genitals 		
+	if (x == 6)			{	loadCharacterGenitals();	}
+	
+	// Show or hide containers with 2 randomize buttons
+	if (x == 7) {
+		if (y === "Yes"){	document.getElementById("randomizeCharacterButtonsContainer").style.display = 'block';	}
+		else			{	document.getElementById("randomizeCharacterButtonsContainer").style.display = 'none';	}
 	}
 }

@@ -1,7 +1,7 @@
- function saveSettingsSlot5() {
+function saveSettingsSlot5() {
 	var settingSpecies = document.getElementById("speciesCurrent").innerHTML;
 	var inanimateObject = document.getElementById("inanimateObjectsCurrent").innerHTML;
- 
+	
 	rbmale = document.getElementById("radiobuttonMale");
 	rbfemale = document.getElementById("radiobuttonFemale");
 	if (rbmale.checked) {
@@ -63,7 +63,6 @@
 	var bellyShape = mySlider15.getValue();
 	var intelligence = mySlider16.getValue();
 	var hairLenght = mySlider20.getValue();
-	var feralAnthro = mySlider22.getValue();
 	var fertility = mySlider23.getValue();
 	
 	var cockType = document.getElementById("cockTypeCurrent").innerHTML;
@@ -76,8 +75,8 @@
 	var custom4 = mySlider24.getValue();
 	var custom5 = mySlider25.getValue();
  
-	localStorage.setItem("Slot5_Custom_Slider1_Value", custom1);	
-	localStorage.setItem("Slot5_Custom_Slider2_Value", custom2);	
+	localStorage.setItem("Slot5_Custom_Slider1_Value", custom1);
+	localStorage.setItem("Slot5_Custom_Slider2_Value", custom2);
 	localStorage.setItem("Slot5_Custom_Slider3_Value", custom3);
 	localStorage.setItem("Slot5_Custom_Slider4_Value", custom4);
 	localStorage.setItem("Slot5_Custom_Slider5_Value", custom5);
@@ -87,7 +86,7 @@
 	var rightText = document.getElementById("textinmenuRightCS1").innerText;
 	
 	localStorage.setItem("Slot5_Custom_Slider1_LeftText", leftText);	
-	localStorage.setItem("Slot5_Custom_Slider1_CenterText", centerText);
+	localStorage.setItem("Slot5_Custom_Slider1_CenterText", centerText);	
 	localStorage.setItem("Slot5_Custom_Slider1_RightText", rightText);	
 	
 	var leftText = document.getElementById("textinmenuLeftCS2").innerText;
@@ -104,7 +103,7 @@
 	
 	localStorage.setItem("Slot5_Custom_Slider3_LeftText", leftText);	
 	localStorage.setItem("Slot5_Custom_Slider3_CenterText", centerText);	
-	localStorage.setItem("Slot5_Custom_Slider3_RightText", rightText);	
+	localStorage.setItem("Slot5_Custom_Slider3_RightText", rightText);
 	
 	var leftText = document.getElementById("textinmenuLeftCS4").innerText;
 	var centerText = document.getElementById("textinmenuCenterCS4").innerText;
@@ -121,7 +120,7 @@
 	localStorage.setItem("Slot5_Custom_Slider5_LeftText", leftText);	
 	localStorage.setItem("Slot5_Custom_Slider5_CenterText", centerText);	
 	localStorage.setItem("Slot5_Custom_Slider5_RightText", rightText);
-	
+
 	var isCS1Enabled = localStorage.getItem("Custom_Slider1_Enabled");
 	var isCS2Enabled = localStorage.getItem("Custom_Slider2_Enabled");
 	var isCS3Enabled = localStorage.getItem("Custom_Slider3_Enabled");
@@ -133,9 +132,6 @@
 	localStorage.setItem("Slot5_Custom_Slider3_Enabled", isCS3Enabled);	
 	localStorage.setItem("Slot5_Custom_Slider4_Enabled", isCS4Enabled);
 	localStorage.setItem("Slot5_Custom_Slider5_Enabled", isCS5Enabled);
-	
-	var hairColor = localStorage.getItem("Slot0_Hair_Color");
-	var swatchColor = localStorage.getItem("Slot0_Swatch_Color");
 	
 	var buttSizeSliderEnabled = localStorage.getItem("Butt_Size_Slider_Enabled");
 	var bellySizeSliderEnabled = localStorage.getItem("Belly_Size_Slider_Enabled");
@@ -150,8 +146,6 @@
 	var intelligenceSliderEnabled = localStorage.getItem("Intelligence_Slider_Enabled");
 	var fluffinessSliderEnabled = localStorage.getItem("Fluffiness_Slider_Enabled");
 	var hairLenghtSliderEnabled = localStorage.getItem("Hair_Lenght_Slider_Enabled");
-	var feralAnthroSliderEnabled = localStorage.getItem("Feral_Anthro_Slider_Enabled");
-	var hairColorMenuEnabled = localStorage.getItem("Hair_Color_Menu_Enabled");
 	var fertilitySliderEnabled = localStorage.getItem("Fertility_Slider_Enabled");
 	var genitalsMenuEnabled = localStorage.getItem("Genitals_Menu_Enabled");
 	var speciesMenuEnabled = localStorage.getItem("Species_Menu_Enabled");
@@ -209,7 +203,7 @@
 	localStorage.setItem("Slot5_Custom_Checkbox3_Enabled", CC3Enabled);
 
 	// Checkboxes end
- 
+		
 	localStorage.setItem("Slot5_Species", settingSpecies);	
 	localStorage.setItem("Slot5_Inanimate_Object", inanimateObject);
     localStorage.setItem("Slot5_Sex", settingSex);	
@@ -231,10 +225,7 @@
 	localStorage.setItem("Slot5_Belly_Shape", bellyShape);
 	localStorage.setItem("Slot5_Intelligence", intelligence);
 	localStorage.setItem("Slot5_Cock_Type", cockType);
-	localStorage.setItem("Slot5_Hair_Color", hairColor);
-	localStorage.setItem("Slot5_Swatch_Color", swatchColor);
 	localStorage.setItem("Slot5_Hair_Lenght", hairLenght);
-	localStorage.setItem("Slot5_Feral_Anthro", feralAnthro);
 	localStorage.setItem("Slot5_Pregnancy_Lock_Box_Ticked", tickbox2);
 	localStorage.setItem("Slot5_Fertility", fertility);
 	localStorage.setItem("Slot5_Genitals_Menu_Penis_Box_Ticked", tickbox3);
@@ -252,9 +243,7 @@
 	localStorage.setItem("Slot5_Postion_Pref_Slider_Enabled", positionPrefSliderEnabled);	
 	localStorage.setItem("Slot5_Intelligence_Slider_Enabled", intelligenceSliderEnabled);	
 	localStorage.setItem("Slot5_Fluffiness_Slider_Enabled", fluffinessSliderEnabled);		
-	localStorage.setItem("Slot5_Hair_Lenght_Slider_Enabled", hairLenghtSliderEnabled);		
-	localStorage.setItem("Slot5_Feral_Anthro_Slider_Enabled", feralAnthroSliderEnabled);	
-	localStorage.setItem("Slot5_Hair_Color_Menu_Enabled", hairColorMenuEnabled);		
+	localStorage.setItem("Slot5_Hair_Lenght_Slider_Enabled", hairLenghtSliderEnabled);	
 	localStorage.setItem("Slot5_Fertility_Slider_Enabled", fertilitySliderEnabled);		
 	localStorage.setItem("Slot5_Genitals_Menu_Enabled", genitalsMenuEnabled);			
 	localStorage.setItem("Slot5_Species_Menu_Enabled", speciesMenuEnabled);			
@@ -263,12 +252,35 @@
 	localStorage.setItem("Slot5_MascFem_Slider_Enabled", mascFemSliderEnabled);			
 	localStorage.setItem("Slot5_ThinThicc_Slider_Enabled", thinThiccSliderEnabled);		
 	localStorage.setItem("Slot5_SmolTall_Slider_Enabled", smolTallSliderEnabled);		
-	localStorage.setItem("Slot5_Inanimate_Objects_Enabled", inanimateObjectsMenuEnabled);
+	localStorage.setItem("Slot5_Inanimate_Objects_Enabled", inanimateObjectsMenuEnabled);		
 	
 	// CharViz Stuff
 	var charVizEnabled = localStorage.getItem("CharViz_Enabled");
 		if (charVizEnabled === "Yes") {
-
+			
+			// Character parts
+			var body = localStorage.getItem("Slot0_CharViz_Body");
+			var head = localStorage.getItem("Slot0_CharViz_Head");
+			var tail = localStorage.getItem("Slot0_CharViz_Tail");
+			var wings = localStorage.getItem("Slot0_CharViz_Wings");
+			var pupils = localStorage.getItem("Slot0_CharViz_Pupils");
+			
+			localStorage.setItem("Slot5_CharViz_Body", body);
+			localStorage.setItem("Slot5_CharViz_Head", head);
+			localStorage.setItem("Slot5_CharViz_Tail", tail);
+			localStorage.setItem("Slot5_CharViz_Wings", wings);
+			localStorage.setItem("Slot5_CharViz_Pupils", pupils);
+			
+			// Character patterns
+			var secondary = localStorage.getItem("Slot0_CharViz_Secondary");
+			var tertiary = localStorage.getItem("Slot0_CharViz_Tertiary");
+			var markings = localStorage.getItem("Slot0_CharViz_Markings");
+			
+			localStorage.setItem("Slot5_CharViz_Secondary", secondary);
+			localStorage.setItem("Slot5_CharViz_Tertiary", tertiary);
+			localStorage.setItem("Slot5_CharViz_Markings", markings);
+	
+			// Clothes			
 			var topwear = localStorage.getItem("Slot0_CharViz_Topwear");
 			var bottomwear = localStorage.getItem("Slot0_CharViz_Bottomwear");
 			var armwear = localStorage.getItem("Slot0_CharViz_Armwear");
@@ -290,15 +302,16 @@
 			localStorage.setItem("Slot5_CharViz_Underwear", underwear);
 			localStorage.setItem("Slot5_CharViz_Accessories", accessories);
 			
-			// Character colors
-			
+			// Character colors			
 			var primaryCharColor = document.getElementById("charVizDisplayBasePrimary").style.backgroundColor;
 			var secondaryCharColor = document.getElementById("charVizDisplayBaseSecondary").style.backgroundColor;
 			var tertiaryCharColor = document.getElementById("charVizDisplayTailTertiary").style.backgroundColor;
 			var markingsCharColor = document.getElementById("charVizDisplayBaseMarkings").style.backgroundColor;
 			var leftEyeCharColor = document.getElementById("charVizDisplayHeadIrisLeft").style.backgroundColor;
 			var rightEyeCharColor = document.getElementById("charVizDisplayHeadIrisRight").style.backgroundColor;
-			var hairCharColor = document.getElementById("charVizDisplayHeadHair").style.backgroundColor;
+			var hairCharColor = document.getElementById("charVizDisplayHeadHairPrimary").style.backgroundColor;
+			var leftScleraCharColor = document.getElementById("charVizDisplayHeadScleraLeft").style.backgroundColor;
+			var rightScleraCharColor = document.getElementById("charVizDisplayHeadScleraRight").style.backgroundColor;
 			
 			localStorage.setItem("Slot5_Primary_Character_Color", primaryCharColor);
 			localStorage.setItem("Slot5_Secondary_Character_Color", secondaryCharColor);
@@ -307,9 +320,10 @@
 			localStorage.setItem("Slot5_LeftEye_Character_Color", leftEyeCharColor);
 			localStorage.setItem("Slot5_RightEye_Character_Color", rightEyeCharColor);
 			localStorage.setItem("Slot5_Hair_Character_Color", hairCharColor);
+			localStorage.setItem("Slot5_LeftSclera_Character_Color", leftScleraCharColor);
+			localStorage.setItem("Slot5_RightSclera_Character_Color", rightScleraCharColor);
 			
-			// Outfit colors
-			
+			// Outfit colors			
 			var primaryTopwearColor = document.getElementById("charVizDisplayTopwearPrimary").style.backgroundColor;
 			var secondaryTopwearColor = document.getElementById("charVizDisplayTopwearSecondary").style.backgroundColor;
 			var primaryBottomwearColor = document.getElementById("charVizDisplayBottomwearPrimary").style.backgroundColor;
@@ -332,11 +346,6 @@
 			localStorage.setItem("Slot5_Underwear_Primary_Clothing_Color", primaryTopwearColor);
 			localStorage.setItem("Slot5_Underwear_Secondary_Clothing_Color", secondaryTopwearColor);
 			
-			// Blush
-			
-			var isBlushing = localStorage.getItem("CharViz_Character_Blushing");
-			localStorage.setItem("Slot5_Character_Blushing", isBlushing);
-			
 		}
 	
 	var presetNameLocked = localStorage.getItem("Slot5_Preset_Name_Locked");	
@@ -351,7 +360,7 @@
 	setTimeout(hideLoadedPopup, 4000);
  }
    
- function loadSettingsSlot5() {
+function loadSettingsSlot5() {
 	var lock = document.getElementById("lockClosed");
 	if (lock.style.display === "block") {
 		document.getElementById("unblockSettingsOkayContainer").style.display='block'; 
@@ -361,7 +370,7 @@
 	}
 	else {
 		var Species = localStorage.getItem("Slot5_Species");
-				if (Species == null) {
+		if (Species == null) {
 			document.getElementById("settingsLoadedPopup").style.display = "block";	
 			document.getElementById('settingsLoadedPopup').innerHTML = ">Error: This slot is empty";
 			setTimeout(hideLoadedPopup, 4000);			
@@ -387,6 +396,7 @@
 			rbother = document.getElementById("radiobuttonOther");
 			rbother.checked = true;
 		}
+		localStorage.setItem("Slot0_Sex", Sex);
  
 		var AC_Box_Ticked = localStorage.getItem("Slot5_AC_Box_Ticked");
 		var tickbox = document.getElementById("adaptClothingCheckbox");
@@ -432,17 +442,7 @@
  
 		var bodyType3 = localStorage.getItem("Slot5_Body_Type3");
 		mySlider4.setValue(bodyType3);
-		
-		var xx = document.getElementById("AdvancedSettingsContainer");
-			if (xx.style.display === "none") {
-				var open = "no"
-			}
-			else {
-				var open = "yes"		
-			}
- 
-		document.getElementById("AdvancedSettingsContainer").style.display='block'; 
-  
+		  
 		var hips = localStorage.getItem("Slot5_Hips");
 		mySlider3.setValue(hips);
  
@@ -478,10 +478,7 @@
 		
 		var hairLenght = localStorage.getItem("Slot5_Hair_Lenght");
 		mySlider20.setValue(hairLenght);
-		
-		var feralAnthro = localStorage.getItem("Slot5_Feral_Anthro");
-		mySlider22.setValue(feralAnthro);
-		
+						
 		var fertility = localStorage.getItem("Slot5_Fertility");
 		mySlider23.setValue(fertility);
 		
@@ -501,14 +498,7 @@
 			var breastSizeFemale = localStorage.getItem("Slot5_Breast_Size_Female");
 			mySlider8.setValue(breastSizeFemale);
 		}
- 
-		if (open =="no") {
-			document.getElementById("AdvancedSettingsContainer").style.display='none'; 
-		}
-		else {
-			document.getElementById("AdvancedSettingsContainer").style.display='block';
-		}
-		
+				
 		var leftText = localStorage.getItem("Slot5_Custom_Slider1_LeftText");
 		var centerText = localStorage.getItem("Slot5_Custom_Slider1_CenterText");
 		var rightText = localStorage.getItem("Slot5_Custom_Slider1_RightText");
@@ -549,7 +539,7 @@
 		var isCS3Enabled = localStorage.getItem("Slot5_Custom_Slider3_Enabled");
 		var isCS4Enabled = localStorage.getItem("Slot5_Custom_Slider4_Enabled");
 		var isCS5Enabled = localStorage.getItem("Slot5_Custom_Slider5_Enabled");
-				
+		
 		var CS1Value = localStorage.getItem("Slot5_Custom_Slider1_Value");
 		var CS2Value = localStorage.getItem("Slot5_Custom_Slider2_Value");
 		var CS3Value = localStorage.getItem("Slot5_Custom_Slider3_Value");
@@ -568,12 +558,6 @@
 		localStorage.setItem("Custom_Slider4_Enabled", isCS4Enabled);
 		localStorage.setItem("Custom_Slider5_Enabled", isCS5Enabled);
 		
-		var hairColor = localStorage.getItem("Slot5_Hair_Color");
-		var swatchColor = localStorage.getItem("Slot5_Swatch_Color");
-		
-		document.getElementById('hairColorCurrent').innerHTML = hairColor;
-		document.getElementById('hairColorSwatch').style.backgroundColor = swatchColor;
-		
 		var buttSizeSliderEnabled = localStorage.getItem("Slot5_Butt_Size_Slider_Enabled");
 		var bellySizeSliderEnabled = localStorage.getItem("Slot5_Belly_Size_Slider_Enabled");
 		var bellyShapeSliderEnabled = localStorage.getItem("Slot5_Belly_Shape_Slider_Enabled");
@@ -587,8 +571,6 @@
 		var intelligenceSliderEnabled = localStorage.getItem("Slot5_Intelligence_Slider_Enabled");
 		var fluffinessSliderEnabled = localStorage.getItem("Slot5_Fluffiness_Slider_Enabled");
 		var hairLenghtSliderEnabled = localStorage.getItem("Slot5_Hair_Lenght_Slider_Enabled");
-		var feralAnthroSliderEnabled = localStorage.getItem("Slot5_Feral_Anthro_Slider_Enabled");
-		var hairColorMenuEnabled = localStorage.getItem("Slot5_Hair_Color_Menu_Enabled");
 		var fertilitySliderEnabled = localStorage.getItem("Slot5_Fertility_Slider_Enabled");
 		var genitalsMenuEnabled = localStorage.getItem("Slot5_Genitals_Menu_Enabled");
 		var speciesMenuEnabled = localStorage.getItem("Slot5_Species_Menu_Enabled");
@@ -612,8 +594,6 @@
 		localStorage.setItem("Intelligence_Slider_Enabled", intelligenceSliderEnabled);	
 		localStorage.setItem("Fluffiness_Slider_Enabled", fluffinessSliderEnabled);		
 		localStorage.setItem("Hair_Lenght_Slider_Enabled", hairLenghtSliderEnabled);		
-		localStorage.setItem("Feral_Anthro_Slider_Enabled", feralAnthroSliderEnabled);	
-		localStorage.setItem("Hair_Color_Menu_Enabled", hairColorMenuEnabled);		
 		localStorage.setItem("Fertility_Slider_Enabled", fertilitySliderEnabled);		
 		localStorage.setItem("Genitals_Menu_Enabled", genitalsMenuEnabled);			
 		localStorage.setItem("Species_Menu_Enabled", speciesMenuEnabled);			
@@ -623,7 +603,7 @@
 		localStorage.setItem("ThinThicc_Slider_Enabled", thinThiccSliderEnabled);		
 		localStorage.setItem("SmolTall_Slider_Enabled", smolTallSliderEnabled);		
 		localStorage.setItem("Inanimate_Objects_Enabled", inanimateObjectsMenuEnabled);
-
+		
 		// Checkboxes
 		
 		var label = localStorage.getItem("Slot5_Custom_Checkbox1_Label");
@@ -674,6 +654,29 @@
 		var charVizEnabled = localStorage.getItem("CharViz_Enabled");
 		if (charVizEnabled === "Yes") {
 			
+			// Character parts
+			var body = localStorage.getItem("Slot5_CharViz_Body");
+			var head = localStorage.getItem("Slot5_CharViz_Head");
+			var tail = localStorage.getItem("Slot5_CharViz_Tail");
+			var wings = localStorage.getItem("Slot5_CharViz_Wings");
+			var pupils = localStorage.getItem("Slot5_CharViz_Pupils");
+			
+			localStorage.setItem("Slot0_CharViz_Body", body);
+			localStorage.setItem("Slot0_CharViz_Head", head);
+			localStorage.setItem("Slot0_CharViz_Tail", tail);
+			localStorage.setItem("Slot0_CharViz_Wings", wings);
+			localStorage.setItem("Slot0_CharViz_Pupils", pupils);
+			
+			// Character patterns
+			var secondary = localStorage.getItem("Slot5_CharViz_Secondary");
+			var tertiary = localStorage.getItem("Slot5_CharViz_Tertiary");
+			var markings = localStorage.getItem("Slot5_CharViz_Markings");
+			
+			localStorage.setItem("Slot0_CharViz_Secondary", secondary);
+			localStorage.setItem("Slot0_CharViz_Tertiary", tertiary);
+			localStorage.setItem("Slot0_CharViz_Markings", markings);
+			
+			// Clothes			
 			var topwear = localStorage.getItem("Slot5_CharViz_Topwear");
 			var bottomwear = localStorage.getItem("Slot5_CharViz_Bottomwear");
 			var armwear = localStorage.getItem("Slot5_CharViz_Armwear");
@@ -695,8 +698,7 @@
 			localStorage.setItem("Slot0_CharViz_Underwear", underwear);
 			localStorage.setItem("Slot0_CharViz_Accessories", accessories);
 			
-			// Character colors
-			
+			// Character colors			
 			var primaryCharColor = localStorage.getItem("Slot5_Primary_Character_Color");
 			var secondaryCharColor = localStorage.getItem("Slot5_Secondary_Character_Color");
 			var tertiaryCharColor = localStorage.getItem("Slot5_Tertiary_Character_Color");
@@ -704,6 +706,8 @@
 			var leftEyeCharColor = localStorage.getItem("Slot5_LeftEye_Character_Color");
 			var rightEyeCharColor = localStorage.getItem("Slot5_RightEye_Character_Color");
 			var hairCharColor = localStorage.getItem("Slot5_Hair_Character_Color");
+			var leftScleraCharColor = localStorage.getItem("Slot5_LeftSclera_Character_Color");
+			var rightScleraCharColor = localStorage.getItem("Slot5_RightSclera_Character_Color");
 			
 			localStorage.setItem("Slot0_Primary_Character_Color", primaryCharColor);
 			localStorage.setItem("Slot0_Secondary_Character_Color", secondaryCharColor);
@@ -712,9 +716,10 @@
 			localStorage.setItem("Slot0_LeftEye_Character_Color", leftEyeCharColor);
 			localStorage.setItem("Slot0_RightEye_Character_Color", rightEyeCharColor);
 			localStorage.setItem("Slot0_Hair_Character_Color", hairCharColor);
+			localStorage.setItem("Slot0_LeftSclera_Character_Color", leftScleraCharColor);
+			localStorage.setItem("Slot0_RightSclera_Character_Color", rightScleraCharColor);
 			
-			// Outfit colors
-			
+			// Outfit colors			
 			var primaryTopwearColor = localStorage.getItem("Slot5_Topwear_Primary_Clothing_Color");
 			var secondaryTopwearColor = localStorage.getItem("Slot5_Topwear_Secondary_Clothing_Color");
 			var primaryBottomwearColor = localStorage.getItem("Slot5_Bottomwear_Primary_Clothing_Color");
@@ -737,11 +742,7 @@
 			localStorage.setItem("Slot0_Underwear_Primary_Clothing_Color", primaryTopwearColor);
 			localStorage.setItem("Slot0_Underwear_Secondary_Clothing_Color", secondaryTopwearColor);
 			
-			// Blush
-			
-			var isBlushing = localStorage.getItem("Slot5_Character_Blushing");
-			localStorage.setItem("CharViz_Character_Blushing", isBlushing);
-			
+
 			initializeCharViz();
 			
 		}
@@ -758,7 +759,7 @@
 		document.getElementById("settingsLoadedPopup").style.display = "block";	
 		document.getElementById('settingsLoadedPopup').innerHTML = ">Preset Loaded:" + " " + presetName;
 		saveSettingsSlot0();
-		setTimeout(hideLoadedPopup, 4000);	
+		setTimeout(hideLoadedPopup, 4000);			
 		}
 	}
 }

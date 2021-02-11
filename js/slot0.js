@@ -66,7 +66,6 @@
 	var bellyShape = mySlider15.getValue();
 	var intelligence = mySlider16.getValue();
 	var hairLenght = mySlider20.getValue();
-	var feralAnthro = mySlider22.getValue();
 	var fertility = mySlider23.getValue();
 	
 	var cockType = document.getElementById("cockTypeCurrent").innerHTML;
@@ -93,7 +92,6 @@
 	localStorage.setItem("Slot0_Intelligence", intelligence);
 	localStorage.setItem("Slot0_Cock_Type", cockType);
 	localStorage.setItem("Slot0_Hair_Lenght", hairLenght);
-	localStorage.setItem("Slot0_Feral_Anthro", feralAnthro);
 	localStorage.setItem("Slot0_Pregnancy_Lock_Box_Ticked", tickbox2);
 	localStorage.setItem("Slot0_Fertility", fertility);
 	localStorage.setItem("Slot0_Genitals_Menu_Penis_Box_Ticked", tickbox3);
@@ -102,10 +100,14 @@
 	var custom1 = mySlider17.getValue();
 	var custom2 = mySlider18.getValue();
 	var custom3 = mySlider19.getValue();
+	var custom4 = mySlider24.getValue();
+	var custom5 = mySlider25.getValue();
  
 	localStorage.setItem("Slot0_Custom_Slider1_Value", custom1);	
 	localStorage.setItem("Slot0_Custom_Slider2_Value", custom2);	
 	localStorage.setItem("Slot0_Custom_Slider3_Value", custom3);
+	localStorage.setItem("Slot0_Custom_Slider4_Value", custom4);
+	localStorage.setItem("Slot0_Custom_Slider5_Value", custom5);
 
 	var leftText = document.getElementById("textinmenuLeftCS1").innerText;
 	var centerText = document.getElementById("textinmenuCenterCS1").innerText;
@@ -129,10 +131,21 @@
 	
 	localStorage.setItem("Custom_Slider3_LeftText", leftText);	
 	localStorage.setItem("Custom_Slider3_CenterText", centerText);	
-	localStorage.setItem("Custom_Slider3_RightText", rightText);	
+	localStorage.setItem("Custom_Slider3_RightText", rightText);
 	
-	var hairColor = document.getElementById('hairColorCurrent').innerHTML;
-	var swatchColor = document.getElementById('hairColorSwatch').style.backgroundColor;
-	localStorage.setItem("Slot0_Hair_Color", hairColor);
-	localStorage.setItem("Slot0_Swatch_Color", swatchColor);
+	var leftText = document.getElementById("textinmenuLeftCS4").innerText;
+	var centerText = document.getElementById("textinmenuCenterCS4").innerText;
+	var rightText = document.getElementById("textinmenuRightCS4").innerText;
+	
+	localStorage.setItem("Custom_Slider4_LeftText", leftText);	
+	localStorage.setItem("Custom_Slider4_CenterText", centerText);	
+	localStorage.setItem("Custom_Slider4_RightText", rightText);
+	
+	var leftText = document.getElementById("textinmenuLeftCS5").innerText;
+	var centerText = document.getElementById("textinmenuCenterCS5").innerText;
+	var rightText = document.getElementById("textinmenuRightCS5").innerText;
+	
+	localStorage.setItem("Custom_Slider5_LeftText", leftText);	
+	localStorage.setItem("Custom_Slider5_CenterText", centerText);	
+	localStorage.setItem("Custom_Slider5_RightText", rightText);
 }   

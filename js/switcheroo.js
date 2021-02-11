@@ -10,7 +10,7 @@ function toggleAdvancedSettingsMenu() {
 function toggleAddRemoveSlidersMenu() {
 	var x = document.getElementById("addRemoveSlidersContainer");
 	if (x.style.maxHeight === "0px") {
-		x.style.maxHeight = "600px";
+		x.style.maxHeight = "550px";
 		x.style.borderBottom = "3px solid #73728C";
 	} else {
 		x.style.maxHeight = "0px";
@@ -49,15 +49,6 @@ function toggleCustomObjectsMenu() {
 	var x = document.getElementById("defineInanimateObjectsContainer");
 	if (x.style.maxHeight === "0px") {
 		x.style.maxHeight = "300px";
-	} else {
-		x.style.maxHeight = "0px";
-	}
-}
-
-function toggleHairColorsMenu() {
-	var x = document.getElementById("defineHairColorsContainer");
-	if (x.style.maxHeight === "0px") {
-		x.style.maxHeight = "320px";
 	} else {
 		x.style.maxHeight = "0px";
 	}
@@ -181,8 +172,6 @@ function setContainersHeightToZero() {
 	document.getElementById("CustomCheckboxesContainer").style.maxHeight='0px';
 	document.getElementById("CustomSpeciesContainer").style.maxHeight='0px';
 	document.getElementById("defineInanimateObjectsContainer").style.maxHeight='0px';
-	document.getElementById("defineHairColorsContainer").style.maxHeight='0px';
-	document.getElementById("defineCockTypesContainer").style.maxHeight='0px';
 	document.getElementById("ThirdSexContainer").style.maxHeight='0px';
 	document.getElementById("renamePresetsContainer").style.maxHeight='0px';
 	document.getElementById("batteryDrainOptionsContainer").style.maxHeight='0px';
@@ -194,6 +183,8 @@ function setContainersHeightToZero() {
 	document.getElementById("charVizClothingColorsContainer").style.maxHeight='0px';
 	document.getElementById("charVizOptionsContainer").style.maxHeight='0px';
 	document.getElementById("charVizCreditsContainer").style.maxHeight='0px';
+	document.getElementById("charVizReadmeContainer").style.maxHeight='0px';
+	document.getElementById("charVizPickerContainer").style.maxHeight='0px';
 	document.getElementById("AdvancedSettingsContainer").style.display='block';
 	var c = document.getElementById("feedback");
 	c.style.borderTop = "0";
@@ -547,7 +538,6 @@ function openLockStage3() {
 	mySlider18.enable();
 	mySlider19.enable();
 	mySlider20.enable();
-	mySlider22.enable();
 	mySlider23.enable();
 	document.getElementById("radiobuttonMale").disabled = false;
 	document.getElementById("radiobuttonFemale").disabled = false;
@@ -579,7 +569,6 @@ function closeLock() {
 	mySlider18.disable();
 	mySlider19.disable();
 	mySlider20.disable();
-	mySlider22.disable();
 	mySlider23.disable();
 	document.getElementById("radiobuttonMale").disabled = true;
 	document.getElementById("radiobuttonFemale").disabled = true;
@@ -593,11 +582,9 @@ function changeOptionsAppearanceToLocked() {
 	if (changeAppearance != "No") {
 		document.getElementById("speciesCurrentContainer").style.backgroundColor = '#282640';
 		document.getElementById("inanimateObjectsCurrentContainer").style.backgroundColor = '#282640';
-		document.getElementById("hairColorCurrentContainer").style.backgroundColor = '#282640';
 		document.getElementById("cockTypeCurrentContainer").style.backgroundColor = '#282640';
 		document.getElementById("speciesCurrentContainer").style.cursor = 'not-allowed';
 		document.getElementById("inanimateObjectsCurrentContainer").style.cursor = 'not-allowed';
-		document.getElementById("hairColorCurrentContainer").style.cursor = 'not-allowed';
 		document.getElementById("cockTypeCurrentContainer").style.cursor = 'not-allowed';
 		document.getElementById("adaptClothingContainer").style.cursor = 'not-allowed';
 		document.getElementById("genitalsPenisContainer").style.cursor = 'not-allowed';
@@ -607,7 +594,6 @@ function changeOptionsAppearanceToLocked() {
 		document.getElementById("RBOtherContainer").style.cursor = 'not-allowed';
 		document.getElementById("speciesSearch").style.cursor = 'not-allowed';
 		document.getElementById("inanimateObjectsSearch").style.cursor = 'not-allowed';
-		document.getElementById("hairColorSwatch").style.cursor = 'not-allowed';
 		document.getElementById("cockTypeSearch").style.cursor = 'not-allowed';		
 		var areAdminPermsOn = document.getElementById("adminPermsText");
 		if (areAdminPermsOn.style.display === "none"){
@@ -636,11 +622,9 @@ function changeOptionsAppearanceToUnlocked() {
 	else {
 		document.getElementById("speciesCurrentContainer").style.backgroundColor = '#3b395e';
 		document.getElementById("inanimateObjectsCurrentContainer").style.backgroundColor = '#3b395e';
-		document.getElementById("hairColorCurrentContainer").style.backgroundColor = '#3b395e';
 		document.getElementById("cockTypeCurrentContainer").style.backgroundColor = '#3b395e';
 		document.getElementById("speciesCurrentContainer").style.cursor = 'pointer';
 		document.getElementById("inanimateObjectsCurrentContainer").style.cursor = 'pointer';
-		document.getElementById("hairColorCurrentContainer").style.cursor = 'pointer';
 		document.getElementById("cockTypeCurrentContainer").style.cursor = 'pointer';
 		document.getElementById("adaptClothingContainer").style.cursor = 'pointer';
 		document.getElementById("genitalsPenisContainer").style.cursor = 'pointer';
@@ -650,7 +634,6 @@ function changeOptionsAppearanceToUnlocked() {
 		document.getElementById("RBOtherContainer").style.cursor = 'pointer';
 		document.getElementById("speciesSearch").style.cursor = 'pointer';
 		document.getElementById("inanimateObjectsSearch").style.cursor = 'pointer';
-		document.getElementById("hairColorSwatch").style.cursor = 'pointer';
 		document.getElementById("cockTypeSearch").style.cursor = 'pointer';		
 	}
 }
@@ -1732,21 +1715,10 @@ function loadPS24() {
 function loadPS25() {
 		var hairLenght = localStorage.getItem("Slot0_Hair_Lenght");
 		if (hairLenght == null) {
-			loadPS27();
-		}
-		else {
-			mySlider20.setValue(hairLenght);
-			loadPS27();
-		}		
-	}
-	
-function loadPS27() {
-		var feralAnthro = localStorage.getItem("Slot0_Feral_Anthro");
-		if (feralAnthro == null) {
 			loadPS28();
 		}
 		else {
-			mySlider22.setValue(feralAnthro);
+			mySlider20.setValue(hairLenght);
 			loadPS28();
 		}		
 	}
@@ -1912,12 +1884,10 @@ var tickbox = document.getElementById("cockTypeMenuCheckbox");
 	if (tickbox.checked) {
 		var tickbox = "Yes"
 		document.getElementById("cockTypeMenu").style.display= 'block';
-		document.getElementById("advancedSettings7").style.display= 'block';
 	}
 	else {
 		var tickbox = "No"
 		document.getElementById("cockTypeMenu").style.display= 'none';
-		document.getElementById("advancedSettings7").style.display= 'none';
 	}
 	localStorage.setItem("Cock_Type_Menu_Enabled", tickbox);
 }
@@ -2041,23 +2011,6 @@ var tickbox = document.getElementById("hairLenghtSliderCheckbox");
 	localStorage.setItem("Hair_Lenght_Slider_Enabled", tickbox);
 }
 
-function toggleFeralAnthroSlider() {
-var tickbox = document.getElementById("feralAnthroSliderCheckbox");
-	if (tickbox.checked) {
-		var tickbox = "Yes"
-		document.getElementById("feralAnthroSlider").style.maxHeight= '60px';
-		document.getElementById("feralAnthroSlider").style.borderBottom= '3px solid #73728C';
-		document.getElementById("feralAnthroSlider").style.paddingBottom= '15px';
-	}
-	else {
-		var tickbox = "No"
-		document.getElementById("feralAnthroSlider").style.maxHeight= '0';
-		document.getElementById("feralAnthroSlider").style.borderBottom= '0';
-		document.getElementById("feralAnthroSlider").style.paddingBottom= '0';
-	}
-	localStorage.setItem("Feral_Anthro_Slider_Enabled", tickbox);
-}
-
 function toggleFertilitySlider() {
 var tickbox = document.getElementById("fertilitySliderCheckbox");
 	if (tickbox.checked) {
@@ -2071,21 +2024,6 @@ var tickbox = document.getElementById("fertilitySliderCheckbox");
 		document.getElementById("fertilitySlider").style.borderBottom= '0';
 	}
 	localStorage.setItem("Fertility_Slider_Enabled", tickbox);
-}
-
-function toggleHairColorMenu() {
-var tickbox = document.getElementById("hairColorMenuCheckbox");
-	if (tickbox.checked) {
-		var tickbox = "Yes"
-		document.getElementById("hairColorMenu").style.display= 'block';
-		document.getElementById("advancedSettings6").style.display= 'block';
-	}
-	else {
-		var tickbox = "No"
-		document.getElementById("hairColorMenu").style.display= 'none';
-		document.getElementById("advancedSettings6").style.display= 'none';
-	}
-	localStorage.setItem("Hair_Color_Menu_Enabled", tickbox);
 }
 
 function toggleGenitalsMenu() {
@@ -2205,8 +2143,6 @@ function loadSliderSettings() { // This function determines if all the options/s
 	var intelligenceSliderEnabled = localStorage.getItem("Intelligence_Slider_Enabled");
 	var fluffinessSliderEnabled = localStorage.getItem("Fluffiness_Slider_Enabled");
 	var hairLenghtSliderEnabled = localStorage.getItem("Hair_Lenght_Slider_Enabled");
-	var feralAnthroSliderEnabled = localStorage.getItem("Feral_Anthro_Slider_Enabled");
-	var hairColorMenuEnabled = localStorage.getItem("Hair_Color_Menu_Enabled");
 	var fertilitySliderEnabled = localStorage.getItem("Fertility_Slider_Enabled");
 	var genitalsMenuEnabled = localStorage.getItem("Genitals_Menu_Enabled");
 	var speciesMenuEnabled = localStorage.getItem("Species_Menu_Enabled");
@@ -2285,12 +2221,10 @@ function loadSliderSettings() { // This function determines if all the options/s
 	if (cockTypeMenuEnabled === "Yes") {
 		document.getElementById("cockTypeMenuCheckbox").checked = true;
 		document.getElementById("cockTypeMenu").style.display= 'block';
-		document.getElementById("advancedSettings7").style.display= 'block';
 	}
 	else {
 		document.getElementById("cockTypeMenuCheckbox").checked = false;
 		document.getElementById("cockTypeMenu").style.display= 'none';
-		document.getElementById("advancedSettings7").style.display= 'none';
 	}
 	
 	if (libidoSliderEnabled === "Yes") {
@@ -2383,31 +2317,7 @@ function loadSliderSettings() { // This function determines if all the options/s
 		document.getElementById("hairLenghtSlider").style.borderBottom= '0';
 		document.getElementById("hairLenghtSlider").style.paddingBottom= '0';
 	}
-	
-	if (hairColorMenuEnabled != "No") {
-		document.getElementById("hairColorMenuCheckbox").checked = true;
-		document.getElementById("hairColorMenu").style.display= 'block';
-		document.getElementById("advancedSettings6").style.display= 'block';
-	}
-	else {
-		document.getElementById("hairColorMenuCheckbox").checked = false;
-		document.getElementById("hairColorMenu").style.display= 'none';
-		document.getElementById("advancedSettings6").style.display= 'none';
-	}
 		
-	if (feralAnthroSliderEnabled === "Yes") {
-		document.getElementById("feralAnthroSliderCheckbox").checked = true;
-		document.getElementById("feralAnthroSlider").style.maxHeight= '60px';
-		document.getElementById("feralAnthroSlider").style.borderBottom= '3px solid #73728C';
-		document.getElementById("feralAnthroSlider").style.paddingBottom= '15px';
-	}
-	else {
-		document.getElementById("feralAnthroSliderCheckbox").checked = false;
-		document.getElementById("feralAnthroSlider").style.maxHeight= '0';
-		document.getElementById("feralAnthroSlider").style.borderBottom= '0';
-		document.getElementById("feralAnthroSlider").style.paddingBottom= '0';
-	}
-	
 	if (fertilitySliderEnabled === "Yes") {
 		document.getElementById("fertilitySliderCheckbox").checked = true;
 		document.getElementById("fertilitySlider").style.maxHeight= '98px';
@@ -3235,6 +3145,9 @@ function showOrHideBreastSizeMaleSlider() {
 		document.getElementById("showAdvancedSettings4a").style.maxHeight= '0';
 		document.getElementById("showAdvancedSettings4a").style.borderBottom= '0';
 		document.getElementById("showAdvancedSettings4a").style.paddingBottom= '0';
+		document.getElementById("showAdvancedSettings4b").style.maxHeight= '0';
+		document.getElementById("showAdvancedSettings4b").style.borderBottom= '0';
+		document.getElementById("showAdvancedSettings4b").style.paddingBottom= '0';
 		document.getElementById("showBreastSizeMaleCheckbox").checked = false;
 	}
 	else {		
@@ -4435,317 +4348,6 @@ function loadInanimateObjectStatus() {
 		}	
 }
 
-function randomizeCharacter() {
-	var areSettingsLocked = localStorage.getItem("Settings_Locked");
-	if (areSettingsLocked === "Yes") {
-		return;
-	}
-	else {
-	// Species
-	var rng = Math.floor(Math.random() * 100) + 1;
-	if (rng <= 90) {
-		// Most Popular Species
-		var array = ["Arctic Fox", "Bat", "Bear", "Cat", "Cheetah", "Coyote", "Deer",
-		"Dog", "Dragon", "Fennec", "Fox", "Horse", "Hyena", "Kangaroo", "Lion", "Lynx",
-		"Otter","Panther", "Protogen", "Rabbit", "Raccoon", "Sergal", "Shark", "Skunk",
-		"Snow Leopard",	"Synth", "Tiger", "Wolf"];
-		Species = array[Math.floor(Math.random() * array.length)];
-		document.getElementById('speciesCurrent').innerHTML = Species;
-	}
-	else {
-		// Other Species
-		var array = ["Avian", "Bird", "Crow", "Eagle", "Gryphon", "Owl", "Penguin"
-		, "Phoenix", "Raven", "Hawk", "Bison", "Buffalo", "Bull", "Cow", "African Wild Dog"
-		, "Ethiopian Wolf", "Fennec Fox", "Folf", "Husky", "Maned Wolf", "Werewolf", "Reindeer", "Elk"
-		, "Moose", "Donkey", "Pegasus", "Pony", "Unicorn", "Zebra", "Caracal", "Cougar"
-		, "Jaguar", "Khajiit", "Leopard", "Liger", "Serval", "Argonian", "Jackalope", "Jex"
-		, "Kitsune", "Kobold", "Tanuki", "Chimera", "Foxcoon", "Manokit", "Wox", "Wusky"
-		, "Pika", "Hare", "Koala", "Opossum", "Possum", "Badger", "Ferret", "Marten"
-		, "Weasel", "Alligator", "Crocodile", "Dinosaur", "Iguana", "Raptor", "Snake", "Turtle"
-		, "Beaver", "Hamster", "Mouse", "Porcupine", "Rat", "Squirrel", "Gazelle", "Giraffe"
-		, "Goat", "Llama", "Pig", "Sheep"];
-		Species = array[Math.floor(Math.random() * array.length)];
-		document.getElementById('speciesCurrent').innerHTML = Species;
-	}
-	// Sex
-	var isThirdSexEnabled = localStorage.getItem("Third_Sex_Enabled");
-	if (isThirdSexEnabled === "Yes") {
-		var rng = Math.floor(Math.random() * 100) + 1; // 45% chance for both female/male and 10% for other if third sex is enabled
-		if (rng >=0 && rng <=45) {
-			document.getElementById("radiobuttonFemale").checked = true;
-			saveSex('Female');
-		}
-		else if (rng >=46 && rng <=90) {
-			document.getElementById("radiobuttonMale").checked = true;
-			saveSex('Male');
-		}
-		else {
-			document.getElementById("radiobuttonOther").checked = true;
-			saveSex('Other');
-		}
-	}
-	else {
-		var rng = Math.floor(Math.random() * 2) + 1;
-		if (rng == 1) {
-			document.getElementById("radiobuttonFemale").checked = true;
-			saveSex('Female');
-		}
-		else {
-			document.getElementById("radiobuttonMale").checked = true;
-			saveSex('Male');
-		}
-	}
-	
-	// Genitals
-	var generatedSex = localStorage.getItem("Slot0_Sex");
-	if (generatedSex === "Male") {
-		var rng = Math.floor(Math.random() * 100) + 1;
-		if (rng >=0 && rng <=95) { // 95% chance for Male character to have dick and 5% to have vagina (Pre/Non-op Trans Male)
-			document.getElementById("genitalsPenisCheckbox").checked = true;
-			document.getElementById("genitalsVaginaCheckbox").checked = false;
-		}
-		else {
-			document.getElementById("genitalsVaginaCheckbox").checked = true;
-			document.getElementById("genitalsPenisCheckbox").checked = false;			
-		}
-	}
-	else if (generatedSex === "Female") {
-		var rng = Math.floor(Math.random() * 100) + 1;
-		if (rng >=0 && rng <=95) { // 95% chance for Female character to have vagina and 5% to have dick (Pre/Non-op Trans Female)
-			document.getElementById("genitalsVaginaCheckbox").checked = true;
-			document.getElementById("genitalsPenisCheckbox").checked = false;
-		}
-		else {
-			document.getElementById("genitalsPenisCheckbox").checked = true;
-			document.getElementById("genitalsVaginaCheckbox").checked = false;			
-		}
-	}
-	else {
-		var rng = Math.floor(Math.random() * 2) + 1; // 50% chance for one or other reproductive organ
-		if (rng == 1) {
-			document.getElementById("genitalsPenisCheckbox").checked = true;
-			document.getElementById("genitalsVaginaCheckbox").checked = false;
-			var rng = Math.floor(Math.random() * 100) + 1;
-			if (rng >=0 && rng <=30) { // 30% chance for character to have both sex organs
-				document.getElementById("genitalsVaginaCheckbox").checked = true;
-			}
-		}
-		else {
-			document.getElementById("genitalsVaginaCheckbox").checked = true;
-			document.getElementById("genitalsPenisCheckbox").checked = false;
-			var rng = Math.floor(Math.random() * 100) + 1;
-			if (rng >=0 && rng <=30) { // 30% chance for character to have both sex organs
-				document.getElementById("genitalsPenisCheckbox").checked = true;
-			}
-		}
-	}
-	
-	// Adapt Clothing Checkbox
-	var tickbox = document.getElementById("adaptClothingCheckbox");
-	var rng = Math.floor(Math.random() * 2) + 1;
-	if (rng == 1) {
-		tickbox.checked = false;
-	}
-	else {
-		tickbox.checked = true;
-	}
-	
-	// Determine femininity/masculinity of a character
-	var bodytype = Math.floor(Math.random() * 100) + 1;
-	mySlider6.setValue(bodytype); // Masculine/Feminine
-	
-	// Set sliders with feminine/masculine traits from -20 to -2 or 2 to 20 around that value
-	var range = 18;
-	var threshold = 2;
-		
-	// Breast Size Female
-	var value = Math.floor(Math.random() * range) + threshold;
-	var addOrSubstract = Math.floor(Math.random() * 2) + 1;
-	if (addOrSubstract == 1) {
-		// Add value
-		var sliderValue = bodytype + value;		
-	}
-	else {
-		// Substract value
-		var sliderValue = bodytype - value;	
-	}
-	// Sliders have range of 0 to 100 so if value is under or over this range it needs to be normalized
-	if (sliderValue > 100) {
-		sliderValue = 100;
-	}
-	else if (sliderValue < 0) {
-		sliderValue = 0;
-	}
-	mySlider8.setValue(sliderValue);
-	
-	// Butt Size
-	var value = Math.floor(Math.random() * range) + threshold;
-	var addOrSubstract = Math.floor(Math.random() * 2) + 1;
-	if (addOrSubstract == 1) {
-		var sliderValue = bodytype + value;		
-	}
-	else {
-		var sliderValue = bodytype - value;	
-	}
-	if (sliderValue > 100) {
-		sliderValue = 100;
-	}
-	else if (sliderValue < 0) {
-		sliderValue = 0;
-	}
-	mySlider13.setValue(sliderValue);
-	
-	// Hips
-	var value = Math.floor(Math.random() * range) + threshold;
-	var addOrSubstract = Math.floor(Math.random() * 2) + 1;
-	if (addOrSubstract == 1) {
-		var sliderValue = bodytype + value;		
-	}
-	else {
-		var sliderValue = bodytype - value;	
-	}
-	if (sliderValue > 100) {
-		sliderValue = 100;
-	}
-	else if (sliderValue < 0) {
-		sliderValue = 0;
-	}
-	mySlider3.setValue(sliderValue);
-	
-	// Hair Lenght
-	var value = Math.floor(Math.random() * range) + threshold;
-	var addOrSubstract = Math.floor(Math.random() * 2) + 1;
-	if (addOrSubstract == 1) {
-		var sliderValue = bodytype + value;		
-	}
-	else {
-		var sliderValue = bodytype - value;	
-	}
-	if (sliderValue > 100) {
-		sliderValue = 100;
-	}
-	else if (sliderValue < 0) {
-		sliderValue = 0;
-	}
-	mySlider20.setValue(sliderValue);
-	
-	// Thin/Thicc
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider5.setValue(rng);
-	
-	// Smol/Tall
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider4.setValue(rng);
-	
-	// Custom Slider 1
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider17.setValue(rng);
-	
-	// Custom Slider 2
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider18.setValue(rng);
-	
-	// Custom Slider 3
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider19.setValue(rng);
-	
-	// Custom Slider 4
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider24.setValue(rng);
-	
-	// Custom Slider 5
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider25.setValue(rng);
-		
-	// Breast Size Male
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider9.setValue(rng);
-		
-	// Belly Size
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider14.setValue(rng);
-	
-	// Belly Shape
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider15.setValue(rng);
-	
-	// Genital Size
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider2.setValue(rng);
-	
-	// Libido
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider7.setValue(rng);
-	
-	// Sensitivity
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider11.setValue(rng);
-	
-	// Demeanor
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider12.setValue(rng);
-	
-	// Position Preference
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider10.setValue(rng);
-	
-	// Intelligence
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider16.setValue(rng);
-	
-	// Fluffiness
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider.setValue(rng);
-	
-	// Fertility
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider23.setValue(rng);
-	
-	// Feral / Anthro
-	mySlider22.setValue(100); // Always generate 100% anthro characters
-	
-	// Sexuality
-	var rng = Math.floor(Math.random() * 100) + 1;
-	
-	if (rng >=0 && rng <=43) // Bi
-	
-		var sexuality = Math.floor(Math.random() * 70) + 15; // 15-85 Range
-
-	else if (rng >=44 && rng <=69) // Gay
-	
-		var sexuality = Math.floor(Math.random() * 14) + 86; // 86-100 Range
-	
-	else if (rng >=70 && rng <=85) // Mostly Straight
-	
-		var sexuality = Math.floor(Math.random() * 14) + 1; // 1-14 Range
-	
-	else if (rng >=86 && rng <=100) // 100% Straight 
-	
-		var sexuality = 0;
-		
-	var customSliderName1 = document.getElementById("textinmenuCenterCS1").innerText;
-	var customSliderName2 = document.getElementById("textinmenuCenterCS2").innerText;
-	var customSliderName3 = document.getElementById("textinmenuCenterCS3").innerText;
-	var customSliderName4 = document.getElementById("textinmenuCenterCS4").innerText;
-	var customSliderName5 = document.getElementById("textinmenuCenterCS5").innerText;
-		
-	if (customSliderName1 === "Sexuality") {	mySlider17.setValue(sexuality);	}
-	else if (customSliderName2 === "Sexuality") {	mySlider18.setValue(sexuality);	}
-	else if (customSliderName3 === "Sexuality") {	mySlider19.setValue(sexuality);	}
-	else if (customSliderName4 === "Sexuality") {	mySlider24.setValue(sexuality);	}
-	else if (customSliderName5 === "Sexuality") {	mySlider25.setValue(sexuality);	}
-		
-	// Hair Color
-	// Special thanks to StackOverflow for this one
-	var hairColor = "#000000".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);}); 
-	
-	document.getElementById('hairColorCurrent').innerHTML = hairColor;
-	document.getElementById('hairColorSwatch').style.backgroundColor = hairColor;
-	
-	saveSettingsSlot0();
-	}
-}
-
 function showOrHideRandomizerButton() {
 	var yesorno = localStorage.getItem("Randomizer_Enabled");
 	if (yesorno === "No") {
@@ -5173,68 +4775,6 @@ function setThirdSex() {
 	}
 }
 
-function randomizeCharacterColors() {
-	var hue = Math.floor(Math.random() * 360) + 1;
-	var rng = Math.floor(Math.random() * 2) + 1;
-	if (rng == 1) {
-		var scheme = "analogic";
-	}
-	else {
-		var scheme = "tetrade";
-	}
-	var rng = Math.floor(Math.random() * 3) + 1;
-	if (rng == 1) {
-		var variation = "pastel";
-	}
-	else if (rng == 2) {
-		var variation = "soft";
-	}
-	else if (rng == 3) {
-		var variation = "light";
-	}
-	
-	scm = new ColorScheme;
-	scm.from_hue(hue)
-   .scheme(scheme)
-   .distance(0.75)
-   .add_complement(true)
-   .variation(variation)
-   .web_safe(true);
-
-	var colors = scm.colors();
-	
-	var p1 = Math.floor(Math.random() * 3);			//0-3
-	var p2 = Math.floor(Math.random() * 3) + 4;		//4-7
-	var p3 = Math.floor(Math.random() * 3) + 8;		//8-11
-	var p4 = Math.floor(Math.random() * 3) + 12;	//12-15
-	
-	console.log(scheme);
-	console.log(variation);
-	console.log(p1);
-	console.log(p2);
-	console.log(p3);
-	console.log(p4);
-	
-	var mainColor = colors[p1];
-	var secondaryColor = colors[p2];
-	var markingsAndEyesColor = colors[p3];
-	var pawpadsColor = colors[p4];
-	
-	var mainColor = "#" + mainColor;
-	var secondaryColor = "#" + secondaryColor;
-	var markingsAndEyesColor = "#" + markingsAndEyesColor;
-	var pawpadsColor = "#" + pawpadsColor;
-	
-	localStorage.setItem("Slot0_Character_Preview_Main_Color", mainColor);
-	localStorage.setItem("Slot0_Character_Preview_Secondary_Color", secondaryColor);
-	localStorage.setItem("Slot0_Character_Preview_Markings_Color", markingsAndEyesColor);
-	localStorage.setItem("Slot0_Character_Preview_Left_Eye_Color", markingsAndEyesColor);
-	localStorage.setItem("Slot0_Character_Preview_Right_Eye_Color", markingsAndEyesColor);
-	localStorage.setItem("Slot0_Character_Preview_Pawpads_Color", pawpadsColor);
-	
-	loadCharacterPreviewColorStatus();
-}
-
 function oldOrNewStyle() {
 	newStyle = localStorage.getItem("New_Style_Enabled");
 	if (newStyle === "Yes") {
@@ -5529,14 +5069,10 @@ function wipeCurrentAppState() {
 	localStorage.removeItem("Slot0_Intelligence");
 	localStorage.removeItem("Slot0_Cock_Type");
 	localStorage.removeItem("Slot0_Hair_Lenght");
-	localStorage.removeItem("Slot0_Feral_Anthro");
 	localStorage.removeItem("Slot0_Pregnancy_Lock_Box_Ticked");
 	localStorage.removeItem("Slot0_Fertility");
 	localStorage.removeItem("Slot0_Genitals_Menu_Penis_Box_Ticked");
 	localStorage.removeItem("Slot0_Genitals_Menu_Vagina_Box_Ticked");
-	
-	localStorage.removeItem("Slot0_Hair_Color");
-	localStorage.removeItem("Slot0_Swatch_Color");
 	
 	localStorage.removeItem("Butt_Size_Slider_Enabled");
 	localStorage.removeItem("Belly_Size_Slider_Enabled");
@@ -5551,8 +5087,6 @@ function wipeCurrentAppState() {
 	localStorage.removeItem("Intelligence_Slider_Enabled");
 	localStorage.removeItem("Fluffiness_Slider_Enabled");
 	localStorage.removeItem("Hair_Lenght_Slider_Enabled");
-	localStorage.removeItem("Feral_Anthro_Slider_Enabled");
-	localStorage.removeItem("Hair_Color_Menu_Enabled");
 	localStorage.removeItem("Fertility_Slider_Enabled");
 	localStorage.removeItem("Genitals_Menu_Enabled");
 	localStorage.removeItem("Species_Menu_Enabled");

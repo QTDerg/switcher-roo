@@ -17,7 +17,6 @@ function exportAppStatus() {
 	var bellyShape = mySlider15.getValue();
 	var intelligence = mySlider16.getValue();
 	var hairLenght = mySlider20.getValue();
-	var feralAnthro = mySlider22.getValue();
 	var fertility = mySlider23.getValue();
 	
 	// Custom slider values
@@ -31,8 +30,6 @@ function exportAppStatus() {
 	var species = document.getElementById("speciesCurrent").innerHTML;
 	var inanimateObject = document.getElementById("inanimateObjectsCurrent").innerHTML;
 	var cockType = document.getElementById("cockTypeCurrent").innerHTML;
-	var hairColor = localStorage.getItem("Slot0_Hair_Color");
-	var swatchColor = localStorage.getItem("Slot0_Swatch_Color");
 	var sex = localStorage.getItem("Slot0_Sex");
 	var thirdSex = localStorage.getItem("Slot0_Third_Sex");
 	
@@ -53,7 +50,7 @@ function exportAppStatus() {
 	if (tickbox4.checked)	{	var tickbox4 = "Yes"	}
 	else 					{	var tickbox4 = "No"		}
 	
-	// Custom sliders names
+	// Custom sliders labels
 	var leftTextCustom1 = document.getElementById("textinmenuLeftCS1").innerText;
 	var centerTextCustom1 = document.getElementById("textinmenuCenterCS1").innerText;
 	var rightTextCustom1 = document.getElementById("textinmenuRightCS1").innerText;
@@ -109,8 +106,6 @@ function exportAppStatus() {
 	var intelligenceSliderEnabled = localStorage.getItem("Intelligence_Slider_Enabled");
 	var fluffinessSliderEnabled = localStorage.getItem("Fluffiness_Slider_Enabled");
 	var hairLenghtSliderEnabled = localStorage.getItem("Hair_Lenght_Slider_Enabled");
-	var feralAnthroSliderEnabled = localStorage.getItem("Feral_Anthro_Slider_Enabled");
-	var hairColorMenuEnabled = localStorage.getItem("Hair_Color_Menu_Enabled");
 	var fertilitySliderEnabled = localStorage.getItem("Fertility_Slider_Enabled");
 	var genitalsMenuEnabled = localStorage.getItem("Genitals_Menu_Enabled");
 	var speciesMenuEnabled = localStorage.getItem("Species_Menu_Enabled");
@@ -130,8 +125,20 @@ function exportAppStatus() {
 	var isCC3Enabled = localStorage.getItem("Slot0_Custom_Checkbox3_Enabled");
 	
 	// CharViz stuff
-	// Clothes
 	
+	// Character parts
+	var body = localStorage.getItem("Slot0_CharViz_Body");
+	var head = localStorage.getItem("Slot0_CharViz_Head");
+	var tail = localStorage.getItem("Slot0_CharViz_Tail");
+	var wings = localStorage.getItem("Slot0_CharViz_Wings");
+	var pupils = localStorage.getItem("Slot0_CharViz_Pupils");
+	
+	// Character patterns
+	var secondary = localStorage.getItem("Slot0_CharViz_Secondary");
+	var tertiary = localStorage.getItem("Slot0_CharViz_Tertiary");
+	var markings = localStorage.getItem("Slot0_CharViz_Markings");
+			
+	// Clothes	
 	var topwear = localStorage.getItem("Slot0_CharViz_Topwear");
 	var bottomwear = localStorage.getItem("Slot0_CharViz_Bottomwear");
 	var armwear = localStorage.getItem("Slot0_CharViz_Armwear");
@@ -146,8 +153,7 @@ function exportAppStatus() {
 	if (underwear == null) 		{	underwear = "None"; 	}
 	if (accessories == null) 	{	accessories = "None"; 	}
 
-	// Character colors
-		
+	// Character colors		
 	var primaryCharColor = localStorage.getItem("Slot0_Primary_Character_Color");
 	var secondaryCharColor = localStorage.getItem("Slot0_Secondary_Character_Color");
 	var tertiaryCharColor = localStorage.getItem("Slot0_Tertiary_Character_Color");
@@ -155,9 +161,10 @@ function exportAppStatus() {
 	var leftEyeCharColor = localStorage.getItem("Slot0_LeftEye_Character_Color");
 	var rightEyeCharColor = localStorage.getItem("Slot0_RightEye_Character_Color");
 	var hairCharColor = localStorage.getItem("Slot0_Hair_Character_Color");
+	var leftScleraCharColor = localStorage.getItem("Slot0_LeftSclera_Character_Color");
+	var rightScleraCharColor = localStorage.getItem("Slot0_RightSclera_Character_Color");
 
-	// Outfit colors
-	
+	// Outfit colors	
 	var primaryTopwearColor = localStorage.getItem("Slot0_Topwear_Primary_Clothing_Color");
 	var secondaryTopwearColor = localStorage.getItem("Slot0_Topwear_Secondary_Clothing_Color");
 	var primaryBottomwearColor = localStorage.getItem("Slot0_Bottomwear_Primary_Clothing_Color");
@@ -168,10 +175,6 @@ function exportAppStatus() {
 	var secondaryLegwearColor = localStorage.getItem("Slot0_Legwear_Secondary_Clothing_Color");
 	var primaryUnderwearColor = localStorage.getItem("Slot0_Underwear_Primary_Clothing_Color");
 	var secondaryUnderwearColor = localStorage.getItem("Slot0_Underwear_Secondary_Clothing_Color");
-
-	// Blush
-			
-	var isBlushing = localStorage.getItem("Slot0_Character_Blushing");
 		
 	var obj = {
     bodyType1: bodyType1,
@@ -191,7 +194,6 @@ function exportAppStatus() {
 	bellyShape: bellyShape,
 	intelligence: intelligence,
 	hairLenght: hairLenght,
-	feralAnthro: feralAnthro,
 	fertility: fertility,
 	custom1: custom1,
 	custom2: custom2,
@@ -201,8 +203,6 @@ function exportAppStatus() {
 	species: species,
 	inanimateObject: inanimateObject,
 	cockType: cockType,
-	hairColor: hairColor,
-	swatchColor: swatchColor,
 	sex: sex,
 	thirdSex: thirdSex,
 	tickbox1: tickbox1,
@@ -252,8 +252,6 @@ function exportAppStatus() {
 	intelligenceSliderEnabled: intelligenceSliderEnabled,
 	fluffinessSliderEnabled: fluffinessSliderEnabled,
 	hairLenghtSliderEnabled: hairLenghtSliderEnabled,
-	feralAnthroSliderEnabled: feralAnthroSliderEnabled,
-	hairColorMenuEnabled: hairColorMenuEnabled,
 	fertilitySliderEnabled: fertilitySliderEnabled,
 	genitalsMenuEnabled: genitalsMenuEnabled,
 	speciesMenuEnabled: speciesMenuEnabled,
@@ -271,6 +269,14 @@ function exportAppStatus() {
 	isCC1Enabled: isCC1Enabled,
 	isCC2Enabled: isCC2Enabled,
 	isCC3Enabled: isCC3Enabled,
+	body: body,
+	head: head,
+	tail: tail,
+	wings: wings,
+	pupils: pupils,
+	secondary: secondary,
+	tertiary: tertiary,
+	markings: markings,
 	topwear: topwear,
 	bottomwear: bottomwear,
 	armwear: armwear,
@@ -284,6 +290,8 @@ function exportAppStatus() {
 	leftEyeCharColor: leftEyeCharColor,
 	rightEyeCharColor: rightEyeCharColor,
 	hairCharColor: hairCharColor,	
+	leftScleraCharColor: leftScleraCharColor,
+	rightScleraCharColor: rightScleraCharColor,
 	primaryTopwearColor: primaryTopwearColor,
 	secondaryTopwearColor: secondaryTopwearColor,
 	primaryBottomwearColor: primaryBottomwearColor,
@@ -294,7 +302,6 @@ function exportAppStatus() {
 	secondaryLegwearColor: secondaryLegwearColor,
 	primaryUnderwearColor: primaryUnderwearColor,
 	secondaryUnderwearColor: secondaryUnderwearColor,
-	isBlushing: isBlushing,
 	};
 	
 	var json = JSON.stringify(obj);
@@ -331,7 +338,6 @@ function importAppStatus() {
 	mySlider15.setValue(obj.bellyShape);
 	mySlider16.setValue(obj.intelligence);
 	mySlider20.setValue(obj.hairLenght);
-	mySlider22.setValue(obj.feralAnthro);
 	mySlider23.setValue(obj.fertility);
 	
 	mySlider17.setValue(obj.custom1);
@@ -343,8 +349,6 @@ function importAppStatus() {
 	document.getElementById('speciesCurrent').innerHTML = obj.species;
 	document.getElementById('inanimateObjectsCurrent').innerHTML = obj.inanimateObject;
 	document.getElementById('cockTypeCurrent').innerHTML = obj.cockType;
-	document.getElementById('hairColorCurrent').innerHTML = obj.hairColor;
-	document.getElementById('hairColorSwatch').style.backgroundColor = obj.swatchColor;
 	
 	if (obj.thirdSex != null) 	{	document.getElementById('thirdSexValue').innerHTML = obj.thirdSex;
 									localStorage.setItem("Slot0_Third_Sex", obj.thirdSex); 				}
@@ -352,6 +356,7 @@ function importAppStatus() {
 	if (obj.sex === "Male") 			{	document.getElementById("radiobuttonMale").checked = true;		}
 	else if (obj.sex === "Female") 		{	document.getElementById("radiobuttonFemale").checked = true;	}
 	else if (obj.sex === "Other") 		{	document.getElementById("radiobuttonOther").checked = true;		}
+	localStorage.setItem("Slot0_Sex", obj.sex);
 	
 	if (obj.tickbox1 === "Yes") 	{	document.getElementById("adaptClothingCheckbox").checked = true;	}
 	else							{	document.getElementById("adaptClothingCheckbox").checked = false;	}
@@ -418,8 +423,6 @@ function importAppStatus() {
 	localStorage.setItem("Intelligence_Slider_Enabled", obj.intelligenceSliderEnabled);	
 	localStorage.setItem("Fluffiness_Slider_Enabled", obj.fluffinessSliderEnabled);		
 	localStorage.setItem("Hair_Lenght_Slider_Enabled", obj.hairLenghtSliderEnabled);			
-	localStorage.setItem("Feral_Anthro_Slider_Enabled", obj.feralAnthroSliderEnabled);	
-	localStorage.setItem("Hair_Color_Menu_Enabled", obj.hairColorMenuEnabled);		
 	localStorage.setItem("Fertility_Slider_Enabled", obj.fertilitySliderEnabled);		
 	localStorage.setItem("Genitals_Menu_Enabled", obj.genitalsMenuEnabled);			
 	localStorage.setItem("Species_Menu_Enabled", obj.speciesMenuEnabled);			
@@ -441,6 +444,19 @@ function importAppStatus() {
 	var charVizEnabled = localStorage.getItem("CharViz_Enabled");
 	if (charVizEnabled === "Yes") {
 		
+		// Character parts
+		localStorage.setItem("Slot0_CharViz_Body", obj.body);
+		localStorage.setItem("Slot0_CharViz_Head", obj.head);
+		localStorage.setItem("Slot0_CharViz_Tail", obj.tail);
+		localStorage.setItem("Slot0_CharViz_Wings", obj.wings);
+		localStorage.setItem("Slot0_CharViz_Pupils", obj.pupils);
+			
+		// Character patterns
+		localStorage.setItem("Slot0_CharViz_Secondary", obj.secondary);
+		localStorage.setItem("Slot0_CharViz_Tertiary", obj.tertiary);
+		localStorage.setItem("Slot0_CharViz_Markings", obj.markings);
+			
+		// Clothes
 		localStorage.setItem("Slot0_CharViz_Topwear", obj.topwear);
 		localStorage.setItem("Slot0_CharViz_Bottomwear", obj.bottomwear);
 		localStorage.setItem("Slot0_CharViz_Armwear", obj.armwear);
@@ -448,8 +464,7 @@ function importAppStatus() {
 		localStorage.setItem("Slot0_CharViz_Underwear", obj.underwear);
 		localStorage.setItem("Slot0_CharViz_Accessories", obj.accessories);
 		
-		// Character colors
-		
+		// Character colors		
 		localStorage.setItem("Slot0_Primary_Character_Color", obj.primaryCharColor);
 		localStorage.setItem("Slot0_Secondary_Character_Color", obj.secondaryCharColor);
 		localStorage.setItem("Slot0_Tertiary_Character_Color", obj.tertiaryCharColor);
@@ -457,9 +472,10 @@ function importAppStatus() {
 		localStorage.setItem("Slot0_LeftEye_Character_Color", obj.leftEyeCharColor);
 		localStorage.setItem("Slot0_RightEye_Character_Color", obj.rightEyeCharColor);
 		localStorage.setItem("Slot0_Hair_Character_Color", obj.hairCharColor);
+		localStorage.setItem("Slot0_LeftSclera_Character_Color", obj.leftScleraCharColor);
+		localStorage.setItem("Slot0_RightSclera_Character_Color", obj.rightScleraCharColor);
 		
-		// Outfit colors
-		
+		// Outfit colors		
 		localStorage.setItem("Slot0_Topwear_Primary_Clothing_Color", obj.primaryTopwearColor);
 		localStorage.setItem("Slot0_Topwear_Secondary_Clothing_Color", obj.secondaryTopwearColor);
 		localStorage.setItem("Slot0_Bottomwear_Primary_Clothing_Color", obj.primaryTopwearColor);
@@ -471,10 +487,6 @@ function importAppStatus() {
 		localStorage.setItem("Slot0_Underwear_Primary_Clothing_Color", obj.primaryTopwearColor);
 		localStorage.setItem("Slot0_Underwear_Secondary_Clothing_Color", obj.secondaryTopwearColor);
 		
-		// Blush
-		
-		localStorage.setItem("CharViz_Character_Blushing", obj.isBlushing);
-
 		initializeCharViz();
 	}
 	
