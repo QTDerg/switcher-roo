@@ -341,7 +341,8 @@ function randomizeCharacter() {
 	}
 }
 
-function randomizeCharacterColors() {
+function randomizeCharacterColorsAI() {
+	// This doesn't work when hosted on github cause colormind API is hosted on non-https server which gives mixed content error
 	var url = "http://colormind.io/api/";
 	var data = {
 		model : "default",
@@ -374,7 +375,7 @@ function randomizeCharacterColors() {
 	http.send(JSON.stringify(data));
 }
 
-function randomizeCharacterColorsOld() {
+function randomizeCharacterColors() {
 	var hue = Math.floor(Math.random() * 360) + 1;
 	var rng = Math.floor(Math.random() * 2) + 1;
 	if (rng == 1) {
@@ -404,25 +405,6 @@ function randomizeCharacterColorsOld() {
 
 	var colors = scm.colors();
 	
-	var p1 = Math.floor(Math.random() * 3);			//0-3
-	var p2 = Math.floor(Math.random() * 3) + 4;		//4-7
-	var p3 = Math.floor(Math.random() * 3) + 8;		//8-11
-	var p4 = Math.floor(Math.random() * 3) + 12;	//12-15
-	
-	console.log(scheme);
-	console.log(variation);
-	console.log(p1);
-	console.log(p2);
-	console.log(p3);
-	console.log(p4);
-	
-	//var primaryColor = colors[p1];
-	//var secondaryColor = colors[p2];
-	//var tertiaryColor = colors[p3];
-	//var markingsColor = colors[p4];
-	//var eyeColor = colors[5];
-	//var hairColor = colors[4];
-		
 	var primaryColor = colors[Math.floor(Math.random() * colors.length)];
 	var secondaryColor = colors[Math.floor(Math.random() * colors.length)];
 	var tertiaryColor = colors[Math.floor(Math.random() * colors.length)];
@@ -437,15 +419,16 @@ function randomizeCharacterColorsOld() {
 	eyeColor = "#" + eyeColor;
 	hairColor = "#" + hairColor;
 	
-	localStorage.setItem("Slot0_Primary_Character_Color", color1);
-	localStorage.setItem("Slot0_Secondary_Character_Color", color2);
-	localStorage.setItem("Slot0_Tertiary_Character_Color", color3);
-	localStorage.setItem("Slot0_Markings_Character_Color", color4);
-	localStorage.setItem("Slot0_LeftEye_Character_Color", color2);
-	localStorage.setItem("Slot0_RightEye_Character_Color", color2);
-	localStorage.setItem("Slot0_Hair_Character_Color", color5);
+	localStorage.setItem("Slot0_Primary_Character_Color", primaryColor);
+	localStorage.setItem("Slot0_Secondary_Character_Color", secondaryColor);
+	localStorage.setItem("Slot0_Tertiary_Character_Color", tertiaryColor);
+	localStorage.setItem("Slot0_Markings_Character_Color", markingsColor);
+	localStorage.setItem("Slot0_LeftEye_Character_Color", eyeColor);
+	localStorage.setItem("Slot0_RightEye_Character_Color", eyeColor);
+	localStorage.setItem("Slot0_Hair_Character_Color", hairColor);
 	localStorage.setItem("Slot0_LeftSclera_Character_Color", "#ffffff");
 	localStorage.setItem("Slot0_RightSclera_Character_Color", "#ffffff");
+	loadCharacterColors();
 }
 
 function randomizeCharacterClothing() {

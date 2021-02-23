@@ -1389,12 +1389,43 @@ function setNaturalColorScheme(species) {
 	var hairColor;
 	var scleraColor = "#ffffff";
 	
-	if (species === "Fox") 				{	primaryColor = "#ffaf1a";secondaryColor = "#FFF0F5";tertiaryColor = "#202120";markingsColor = "#9400D3"; eyeColor = "#00FF7F"; hairColor = "#A52A2A";	}
-	else if (species === "Arctic Fox") 	{	primaryColor = "#87CEFA";secondaryColor = "#FFF0F5";tertiaryColor = "#4682B4";markingsColor = "#4169E1"; eyeColor = "#20B2AA"; hairColor = "#6495ED";	}
-	else if (species === "Coyote") 		{	primaryColor = "#FFDEAD";secondaryColor = "#FFF8DC";tertiaryColor = "#696969";markingsColor = "#800000"; eyeColor = "#A52A2A"; hairColor = "#A0522D";	}
-	else if (species === "Wolf") 		{	primaryColor = "#808080";secondaryColor = "#FFF0F5";tertiaryColor = "#778899";markingsColor = "#708090"; eyeColor = "#00BFFF"; hairColor = "#333333";	}
-	else if (species === "Husky") 		{	primaryColor = "#404040";secondaryColor = "#FFF0F5";tertiaryColor = "#A9A9A9";markingsColor = "#C0C0C0"; eyeColor = "#40E0D0"; hairColor = "#00CED1";	}
-	else if (species === "Dragon") 		{	primaryColor = "#7e1e9f";secondaryColor = "#f9bf28";tertiaryColor = "#f9bf28";markingsColor = "#f9bf28"; eyeColor = "#7e1e9f"; hairColor = "#b658f0";	}
+	if (species === "Fox") 					{	primaryColor = "#ffaf1a";secondaryColor = "#FFF0F5";tertiaryColor = "#202120";markingsColor = "#9400D3"; eyeColor = "#00FF7F"; hairColor = "#A52A2A";	}
+	else if (species === "African Wild Dog"){	primaryColor = "#f7a762";secondaryColor = "#fee2ca";tertiaryColor = "#FFCB82";markingsColor = "#4A4F26"; eyeColor = "#4A4F26"; hairColor = "#4A4F26";	}
+	else if (species === "Arctic Fox") 		{	primaryColor = "#87CEFA";secondaryColor = "#FFF0F5";tertiaryColor = "#4682B4";markingsColor = "#4169E1"; eyeColor = "#20B2AA"; hairColor = "#6495ED";	}
+	else if (species === "Coyote") 			{	primaryColor = "#FFDEAD";secondaryColor = "#FFF8DC";tertiaryColor = "#696969";markingsColor = "#800000"; eyeColor = "#A52A2A"; hairColor = "#A0522D";	}
+	else if (species === "Dog") 			{	primaryColor = "#8c622a";secondaryColor = "#c4c0b8";tertiaryColor = "#42321e";markingsColor = "#f02828"; eyeColor = "#A52A2A"; hairColor = "#ffcb82";	}
+	else if (species === "Ethiopian Wolf")	{	primaryColor = "#ffcb82";secondaryColor = "#f8e9de";tertiaryColor = "#202120";markingsColor = "#f8e9de"; eyeColor = "#f8e9de"; hairColor = "#592aa5";	}
+	else if (species === "Fennec Fox")		{	primaryColor = "#BF7840";secondaryColor = "#E9B784";tertiaryColor = "#B46956";markingsColor = "#FFD1CA"; eyeColor = "#4D271A"; hairColor = "#4D271A";	}
+	else if (species === "Folf")			{	primaryColor = "#55D2E0";secondaryColor = "#FFF0F5";tertiaryColor = "#5C4AE0";markingsColor = "#E03F8B"; eyeColor = "#E03F8B"; hairColor = "#5C4AE0";	}
+	else if (species === "Husky") 			{	primaryColor = "#404040";secondaryColor = "#FFF0F5";tertiaryColor = "#A9A9A9";markingsColor = "#C0C0C0"; eyeColor = "#40E0D0"; hairColor = "#00CED1";	}
+	else if (species === "Maned Wolf")		{	primaryColor = "#CD7F5B";secondaryColor = "#E6AD80";tertiaryColor = "#BD7B61";markingsColor = "#905547"; eyeColor = "#905547"; hairColor = "#905547";	}
+	else if (species === "Werewolf")		{	primaryColor = "#424242";secondaryColor = "#FFF0F5";tertiaryColor = "#3d464f";markingsColor = "#3d464f"; eyeColor = "#f12121"; hairColor = "#202020";	}
+	else if (species === "Wolf") 			{	primaryColor = "#808080";secondaryColor = "#FFF0F5";tertiaryColor = "#778899";markingsColor = "#708090"; eyeColor = "#00BFFF"; hairColor = "#333333";	}
+	else if (species === "Wox")				{	primaryColor = "#DD63F7";secondaryColor = "#FFF0F5";tertiaryColor = "#63A0F7";markingsColor = "#5BF0ED"; eyeColor = "#DD63F7"; hairColor = "#5BF0ED";	}
+	else if (species === "Wusky")			{	primaryColor = "#3EE03F";secondaryColor = "#FFF0F5";tertiaryColor = "#1FAD70";markingsColor = "#871FAD"; eyeColor = "#871FAD"; hairColor = "#E479E4";	}
+	else if (species === "Alligator")		{	primaryColor = "#3E4B20";secondaryColor = "#F0E7CC";tertiaryColor = "#9BAB73";markingsColor = "#9BAB73"; eyeColor = "#62773A"; hairColor = "#3C3420";	}
+	else if (species === "Crocodile")		{	primaryColor = "#3E4B20";secondaryColor = "#F0E7CC";tertiaryColor = "#9BAB73";markingsColor = "#9BAB73"; eyeColor = "#62773A"; hairColor = "#3C3420";	}
+	else if (species === "Dinosaur")		{	primaryColor = "#0E4917";secondaryColor = "#248B40";tertiaryColor = "#E1A954";markingsColor = "#E1A954"; eyeColor = "#0E4917"; hairColor = "#62745D";	}
+	else if (species === "Raptor")			{	primaryColor = "#A31B66";secondaryColor = "#B0B0B0";tertiaryColor = "#2F1F74";markingsColor = "#2F1F74"; eyeColor = "#401F83"; hairColor = "#851A7B";	}
+	else if (species === "Snake")			{	primaryColor = "#698728";secondaryColor = "#C3E96F";tertiaryColor = "#262026";markingsColor = "#262026"; eyeColor = "#698728"; hairColor = "#262026";	}
+	else if (species === "Lizard")			{	primaryColor = "#90CC79";secondaryColor = "#4B6743";tertiaryColor = "#40563E";markingsColor = "#40563E"; eyeColor = "#4B6743"; hairColor = "#2D7A61";	}
+	else if (species === "Argonian")		{	primaryColor = "#55c02c";secondaryColor = "#327a17";tertiaryColor = "#ce5e1f";markingsColor = "#ce5e1f"; eyeColor = "#55c02c"; hairColor = "#2d2d2d";	}
+	else if (species === "Kobold")			{	primaryColor = "#972525";secondaryColor = "#2f2f2f";tertiaryColor = "#e05529";markingsColor = "#e05529"; eyeColor = "#272ec9"; hairColor = "#272ec9";	}
+	else if (species === "Shark")			{	primaryColor = "#93a3ac";secondaryColor = "#daeaea";tertiaryColor = "#96b7c0";markingsColor = "#96b7c0"; eyeColor = "#9e2ac7"; hairColor = "#9e2ac7";	}
+	else if (species === "Dragon") {
+		var rng = Math.floor(Math.random() * 8) + 1;
+		// 1 - Fire | 2 - Electricity | 3 - Ice | 4 - Earth | 5 - Shadow | 6 - Wind | 7 - Poison | 8 - Fear
+		if (rng == 1) 						{	primaryColor = "#FA372D";secondaryColor = "#FD6E21";tertiaryColor = "#FFB93A";markingsColor = "#EB502B"; eyeColor = "#EB502B"; hairColor = "#E31E61";	}
+		else if (rng == 2)					{	primaryColor = "#fabd47";secondaryColor = "#5546FA";tertiaryColor = "#5546FA";markingsColor = "#5546FA"; eyeColor = "#fabd47"; hairColor = "#bd2fe1";	}
+		else if (rng == 3)					{	primaryColor = "#6FAAF2";secondaryColor = "#A68DF0";tertiaryColor = "#A68DF0";markingsColor = "#A68DF0"; eyeColor = "#A68DF0"; hairColor = "#6FDBCB";	}
+		else if (rng == 4)					{	primaryColor = "#39B33C";secondaryColor = "#BF8634";tertiaryColor = "#BF8634";markingsColor = "#BF8634"; eyeColor = "#39B33C"; hairColor = "#5059C7";	}
+		else if (rng == 5)					{	primaryColor = "#0B0049";secondaryColor = "#241596";tertiaryColor = "#33238b";markingsColor = "#33238b"; eyeColor = "#241596"; hairColor = "#2D1D87";	}
+		else if (rng == 6)					{	primaryColor = "#8A90A6";secondaryColor = "#C9D2F2";tertiaryColor = "#C9D2F2";markingsColor = "#C9D2F2"; eyeColor = "#949BB3"; hairColor = "#555866";	}
+		else if (rng == 7)					{	primaryColor = "#41E632";secondaryColor = "#1B5E15";tertiaryColor = "#1B5E15";markingsColor = "#1B5E15"; eyeColor = "#2FA624"; hairColor = "#24801C";	}
+		else if (rng == 8)					{	primaryColor = "#851713";secondaryColor = "#111111";tertiaryColor = "#111111";markingsColor = "#111111"; eyeColor = "#000000"; hairColor = "#161616"; scleraColor="#E62720"	}
+		// Purple 
+		//primaryColor = "#7e1e9f";secondaryColor = "#f9bf28";tertiaryColor = "#f9bf28";markingsColor = "#f9bf28"; eyeColor = "#7e1e9f"; hairColor = "#b658f0";	
+	}
 	else { randomizeCharacterColors(); return; }
 	
 	localStorage.setItem("Slot0_Primary_Character_Color", primaryColor);

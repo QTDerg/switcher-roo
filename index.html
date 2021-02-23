@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#3b395e" />
 <meta name="msapplication-navbutton-color" content="#3b395e">
 <meta name="apple-mobile-web-app-status-bar-style" content="#3b395e">
-<title>Switcher⇌Roo – the way to create the perfect you</title>
+<title>Switcher-Roo – the way to create the perfect you</title>
 <meta name="google-site-verification" content="ZlbW0WzveBStYcU29sN4lKtKMy7ytBMUKn6A3_i5AbQ" />
 <meta name="description" content="Want to be your fursona? With Switcher-Roo you can choose dozens of various species, change your gender and modify many body and personality aspects!">
 <meta name="keywords" content="Switcherroo, Switcher-roo, Furry, Transformation, Tyroo">
@@ -3912,16 +3912,54 @@ document.getElementById("creativeModeCustomDropdownToggle").style.display='none'
 
 	<div id="CONTROLconnectToServerContainer" style="overflow:hidden;transition-duration:0.75s">
 	
-		<div id="CONTROLconnectToServerStatus" style="padding-left:18px;margin-top:5px;">Status:</div>
+		<div id="CONTROLconnectToServerStatus" style="padding-left:18px;font-size:15px;">Status: Waiting for user input...</div>
 		<div style="margin-top:5px"></div>
-		<div class="bigButton" onClick="connectToServer()">Connect to server</div>
+		<div class="bigButton" id="CONTROLconnectToServerButton" onClick="connectToServer()">Connect to server</div>
 		<div style="margin-top:5px"></div>
 		<div class="mediumButton" onClick="CONTROLgoBack()">Go back</div>
-		<div class="mediumButton" onClick="CONTROLshowChoice()">Proceed</div>
-		<div style="padding-left:18px;margin-top:5px;">Click "Connect to server" button. Once you're connected you may proceed. <br> It is recommended that you set an username first.</div>
+		<div class="mediumButton" id="CONTROLproceedButton" onClick="CONTROLshowChoice()">Proceed</div>
+		<div style="margin-top:55px"></div>
+		<div class="bigButton" id="whatsThisButton" onClick="CONTROLshowTutorial()">What's this?</div>
 				
 	</div>
-	<script>document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='0px';</script>
+	<script>
+		document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='0px';
+		document.getElementById("CONTROLproceedButton").style.backgroundColor='#424242';
+		document.getElementById("CONTROLproceedButton").style.border='2px solid #b0b0b0';
+		document.getElementById("CONTROLproceedButton").style.cursor='not-allowed';
+	</script>
+	
+	<div id="CONTROLtutorialContainer" style="overflow:hidden;transition-duration:0.75s">
+	
+		<div class="bigButton" onClick="CONTROLgoBackFromTutorial()">Go back</div>
+		
+		<div style="padding:10px;font-size:14px;">
+			CONTROL is a feature, that lets two users connect to each other. There are two roles:<br>
+			- Master which has control over other user's app settings,<br>
+			- Sub whose app settings can be manipulated by master.<br>
+			How to use:<br>
+			- Connect to server<br>
+			- Choose Master or Sub<br>
+			• Sub:<br>
+			- Click "Host" button<br>
+			- Copy peer ID<br>
+			- Send it to Master<br>
+			• Master:<br>
+			- Paste peer ID<br>
+			- Click "Join" button<br>
+			All changes Master makes will be reflected on sub's side in realtime
+		</div>
+		
+		<div style="padding:10px;font-size:15px;background-color:#FF4550">
+			CONTROL feature will not work if direct connection between users can't be made for whatever reason (closed ports, firewall, symmetric NAT etc.)
+		</div>
+		
+		<div style="padding:10px;font-size:14px;">
+			It is recommended that you set an username first. Click a button labelled "Username" below. If the button is missing, make sure "Hide Username button" in options is unticked. <!--Note: If you want to use CONTROL Chat feature you need to set up an username.-->
+		</div>
+				
+	</div>
+	<script>document.getElementById("CONTROLtutorialContainer").style.maxHeight='0px';</script>
 
 	<div id="CONTROLchoiceContainer" style="overflow:hidden;transition-duration:0.75s">
 	
@@ -3935,7 +3973,7 @@ document.getElementById("creativeModeCustomDropdownToggle").style.display='none'
 	
 	<div id="CONTROLconnectContainer" style="overflow:hidden;transition-duration:0.75s">
 		
-		<div id="CONTROLconnectToPeerStatus" style="padding-left:18px;margin-top:5px;">Status:</div>
+		<div id="CONTROLconnectToPeerStatus" style="padding-left:18px;font-size:15px;">Status: Waiting for user input...</div>
 		<div style="padding-left:18px;margin-top:5px;">Peer ID:</div>
 		<input id="connectToPeerTextField" class="bigTextField" value="">
 		<div style="margin-top:5px"></div>
@@ -3978,8 +4016,10 @@ document.getElementById("creativeModeCustomDropdownToggle").style.display='none'
 	
 	<div id="CONTROLsubContainer" style="overflow:hidden;transition-duration:0.75s">
 	
-		<div class="CONTROLchangelogContainer">
-			<div style="text-align:center; float:left; width: 100%; padding-top:5px; padding-bottom:5px;"> CONTROL Changelog </div>
+		<div class="CONTROLchangelogContainer" id="CONTROLchangelogContainer">
+			<div class="CONTROLchangelogButton" onClick="clearChangelog()">Clear</div>
+			<div style="text-align:center; float:left; width: 60%; padding-top:5px; padding-bottom:5px; background-color:#59568f"> CONTROL Changelog </div>
+			<div class="CONTROLchangelogButton" onClick="toggleChangelog()" id="showHideChangelogButton">Hide</div>
 			<div id="CONTROLchangelog" class="CONTROLchangelog"> &nbsp;</div>
 		</div>
 		<div id="CONTROLsubMessage" style="padding-left:18px;margin-top:5px;">CONTROL session is active. You're sub.</div>

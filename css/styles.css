@@ -1477,13 +1477,13 @@ a:active {
 }
 
 .bigButton:hover {
-	background-color: #59568f;
+	background-color: #59568f !important;
 	border: 2px solid #282640 !important;
 	border-radius: 10px;
 }
 
 .bigButton:active {
-	background-color: #69669A;
+	background-color: #69669A !important;
 	border: 2px solid #59568f !important;
 	border-radius: 0px;
 	transition-duration: 0.25s;
@@ -1911,6 +1911,26 @@ a:active {
 	border-top: 2px solid #59568f;
 	font-size: 14px;
 }
+
+.CONTROLchangelogButton {
+	float: left;
+	width: 20%;
+	transition-duration:0.5s;
+	padding-top:5px;
+	padding-bottom:5px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.CONTROLchangelogButton:hover {
+	background-color:#59568f;
+}
+
+.CONTROLchangelogButton:active {
+	background-color:#69669A;
+	transition-duration:0.05s;
+}
+
 
 .lds-ring {
  /* display: inline-block;  

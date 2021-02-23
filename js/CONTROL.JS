@@ -51,10 +51,13 @@ function connectToServer() {
 	
 		peer.on('open', function(id) {
 			document.getElementById('peerID').innerHTML = id;
-			document.getElementById('CONTROLconnectToServerStatus').innerHTML = "Status: Connected to PeerJS server!";
+			document.getElementById('CONTROLconnectToServerStatus').innerHTML = "Status: Connected to server! You shall pass.";
 			document.getElementById("CONTROLconnectToServerStatus").style.color = "#29a329";
-			document.getElementById('CONTROLconnectToPeerStatus').innerHTML = "Status: Connected to PeerJS server!";
+			document.getElementById('CONTROLconnectToPeerStatus').innerHTML = "Status: Connected to server! You shall pass.";
 			document.getElementById("CONTROLconnectToPeerStatus").style.color = "#29a329";
+			document.getElementById("CONTROLproceedButton").style.backgroundColor='#282640';
+			document.getElementById("CONTROLproceedButton").style.border='2px solid #59568f';
+			document.getElementById("CONTROLproceedButton").style.cursor='pointer';
 			isConnected = "yes";
 		});
 	
@@ -444,15 +447,15 @@ function synchronization() {
 			conn.send({firstParam: "putClothingOn", secondParam: "Accessories", thirdParam: accessories});
 			
 			// Character colors			
-			var primaryCharColor = document.getElementById("charVizDisplayBasePrimary").style.backgroundColor;
-			var secondaryCharColor = document.getElementById("charVizDisplayBaseSecondary").style.backgroundColor;
-			var tertiaryCharColor = document.getElementById("charVizDisplayTailTertiary").style.backgroundColor;
-			var markingsCharColor = document.getElementById("charVizDisplayBaseMarkings").style.backgroundColor;
-			var leftEyeCharColor = document.getElementById("charVizDisplayHeadIrisLeft").style.backgroundColor;
-			var rightEyeCharColor = document.getElementById("charVizDisplayHeadIrisRight").style.backgroundColor;
-			var hairCharColor = document.getElementById("charVizDisplayHeadHairPrimary").style.backgroundColor;
-			var leftScleraCharColor = document.getElementById("charVizDisplayHeadScleraLeft").style.backgroundColor;
-			var rightScleraCharColor = document.getElementById("charVizDisplayHeadScleraRight").style.backgroundColor;
+			var primaryCharColor = localStorage.getItem("Slot0_Primary_Character_Color");
+			var secondaryCharColor = localStorage.getItem("Slot0_Secondary_Character_Color");
+			var tertiaryCharColor = localStorage.getItem("Slot0_Tertiary_Character_Color");
+			var markingsCharColor = localStorage.getItem("Slot0_Markings_Character_Color");
+			var leftEyeCharColor = localStorage.getItem("Slot0_LeftEye_Character_Color");
+			var rightEyeCharColor = localStorage.getItem("Slot0_RightEye_Character_Color");
+			var hairCharColor = localStorage.getItem("Slot0_Hair_Character_Color");
+			var leftScleraCharColor = localStorage.getItem("Slot0_LeftSclera_Character_Color");
+			var rightScleraCharColor = localStorage.getItem("Slot0_RightSclera_Character_Color");
 			
 			conn.send({firstParam: "setCharacterColor", secondParam: "Primary", thirdParam: primaryCharColor});
 			conn.send({firstParam: "setCharacterColor", secondParam: "Secondary", thirdParam: secondaryCharColor});
@@ -534,7 +537,15 @@ function receiveData() {
 			else if (data.secondParam === "custom5") 			{	mySlider25.setValue(data.thirdParam);localStorage.setItem("Slot0_Custom_Slider5_Value", data.thirdParam);	}
 		}
 		else if (data.firstParam === "manipulateOption") {
-			if (data.secondParam === "Species") 				{	document.getElementById('speciesCurrent').innerHTML = data.thirdParam;localStorage.setItem("Slot0_Species", data.thirdParam);					}
+			if (data.secondParam === "Species") 				{	
+				document.getElementById('speciesCurrent').innerHTML = data.thirdParam;
+				localStorage.setItem("Slot0_Species", data.thirdParam);
+				var charVizEnabled = localStorage.getItem("CharViz_Enabled");
+				if (charVizEnabled === "Yes") {
+					var x = document.getElementById("charVizDisplayMessage")
+					if (x.style.display === "block") { initializeCharViz(); }
+				}
+			}
 			else if (data.secondParam === "Inanimate_Object")	{	document.getElementById('inanimateObjectsCurrent').innerHTML = data.thirdParam;localStorage.setItem("Slot0_Inanimate_Object", data.thirdParam);	}
 			else if (data.secondParam === "Cock_Type")			{	document.getElementById('cockTypeCurrent').innerHTML = data.thirdParam;localStorage.setItem("Slot0_Cock_Type", data.thirdParam); 				}
 			else if (data.secondParam === "Sex") 				{
@@ -653,8 +664,6 @@ function receiveData() {
 			else if (data.secondParam === "intelligence") 					{	localStorage.setItem("Intelligence_Slider_Enabled", data.thirdParam);	}
 			else if (data.secondParam === "fluffiness") 					{	localStorage.setItem("Fluffiness_Slider_Enabled", data.thirdParam);		}
 			else if (data.secondParam === "hairLenght") 					{	localStorage.setItem("Hair_Lenght_Slider_Enabled", data.thirdParam);	}
-			else if (data.secondParam === "feralAnthro") 					{	localStorage.setItem("Feral_Anthro_Slider_Enabled", data.thirdParam);	}
-			else if (data.secondParam === "hairColor") 						{	localStorage.setItem("Hair_Color_Menu_Enabled", data.thirdParam);		}
 			else if (data.secondParam === "fertility") 						{	localStorage.setItem("Fertility_Slider_Enabled", data.thirdParam);		}
 			else if (data.secondParam === "genitalsMenu") 					{	localStorage.setItem("Genitals_Menu_Enabled", data.thirdParam);			}
 			else if (data.secondParam === "speciesMenu") 					{	localStorage.setItem("Species_Menu_Enabled", data.thirdParam);			}
@@ -697,7 +706,7 @@ function receiveData() {
 			x = data.thirdParam;
 			if (x === "") { 
 				x = "&nbsp;"; 
-				}
+			}
 			if (data.secondParam === "Custom1Left") {	
 				document.getElementById('textinmenuLeftCS1').innerHTML = x;
 				localStorage.setItem("Custom_Slider1_LeftText", x);
@@ -944,18 +953,395 @@ function receiveData() {
 
 function CONTROLchangelog(data) {
 	var logEntry;
-	if (data.firstParam === "manipulateSlider") 			{	logEntry = data.secondParam + " slider set to " + data.thirdParam			}
-	else if (data.firstParam === "manipulateOption") 		{	logEntry = "Changed " + data.secondParam + " to " + data.thirdParam			}
-	else if (data.firstParam === "manipulateTickbox") 		{	logEntry = data.secondParam + " checkbox ticked: " + data.thirdParam		}
-	else if (data.firstParam === "manipulateCustomTickbox") {	logEntry = data.secondParam + " ticked: " + data.thirdParam					}
-	else if (data.firstParam === "optionEnabled") {				if 		(data.secondParam === "fireLoadSliderSettingsFunction") { return; }
-																else {	logEntry = data.secondParam + " slider/option enabled: " + data.thirdParam 	}}
-	else if (data.firstParam === "customCheckboxEnabled") {		if 		(data.secondParam === "fireLoadCustomCheckboxesOnStartupFunction") { return; }
-																else {	logEntry = data.secondParam + " checkbox enabled: " + data.thirdParam 		}}
-	else if (data.firstParam === "changeCustomCheckbox") 	{	logEntry = data.secondParam + " (checkbox): " + data.thirdParam				}
-	else if (data.firstParam === "changeSliderName") 		{	logEntry = data.secondParam + " slider label: " + data.thirdParam			}
-	//else if (data.firstParam === "putClothingOn") 			{	if		(data.secondaParam === "None") { return; }
-	//															else {	logEntry = "Clothing: " + data.secondParam + " " + data.thirdParam	} }
+	if (data.firstParam === "manipulateSlider")	{
+		var sliderName;
+		var increasedOrDecreased = "decreased";
+		var currentValue;
+		
+		if (data.secondParam === "mascFem") {
+			sliderName = "Masc/Fem";
+			currentValue = mySlider6.getValue();
+			if (currentValue < data.thirdParam) { increasedOrDecreased = "increased" }
+		}
+		else if (data.secondParam === "thinThicc") {
+			sliderName = "Thin/Thicc";
+			currentValue = mySlider5.getValue();
+			if (currentValue < data.thirdParam) { increasedOrDecreased = "increased" }
+		}
+		else if (data.secondParam === "smolTall") {
+			sliderName = "Smol/Tall";
+			currentValue = mySlider4.getValue();
+			if (currentValue < data.thirdParam) { increasedOrDecreased = "increased" }
+		}
+		else if (data.secondParam === "hips") {
+			sliderName = "Hips";
+			currentValue = mySlider3.getValue();
+			if (currentValue < data.thirdParam) { increasedOrDecreased = "increased" }
+		}
+		else if (data.secondParam === "genitalSize") {
+			sliderName = "Genital Size";
+			currentValue = mySlider2.getValue();
+			if (currentValue < data.thirdParam) { increasedOrDecreased = "increased" }
+		}
+		else if (data.secondParam === "fluffiness") {
+			sliderName = "Fluffiness";
+			currentValue = mySlider.getValue();
+			if (currentValue < data.thirdParam) { increasedOrDecreased = "increased" }
+		}
+		else if (data.secondParam === "libido") {
+			sliderName = "Libido";
+			currentValue = mySlider7.getValue();
+			if (currentValue < data.thirdParam) { increasedOrDecreased = "increased" }
+		}
+		else if (data.secondParam === "domsub") {
+			sliderName = "Dom/Sub";
+			currentValue = mySlider10.getValue();
+			if (currentValue < data.thirdParam) { increasedOrDecreased = "increased" }
+		}
+		else if (data.secondParam === "sensitivity") {
+			sliderName = "Sensitivity";
+			currentValue = mySlider11.getValue();
+			if (currentValue < data.thirdParam) { increasedOrDecreased = "increased" }
+		}
+		else if (data.secondParam === "assertiveShy") {
+			sliderName = "Demeanor";
+			currentValue = mySlider12.getValue();
+			if (currentValue < data.thirdParam) { increasedOrDecreased = "increased" }
+		}
+		else if (data.secondParam === "breastSizeMale") {
+			sliderName = "Breast Size";
+			currentValue = mySlider9.getValue();
+			if (currentValue < data.thirdParam) { increasedOrDecreased = "increased" }
+		}
+		else if (data.secondParam === "breastSizeFemale") {
+			sliderName = "Breast Size";
+			currentValue = mySlider8.getValue();
+			if (currentValue < data.thirdParam) { increasedOrDecreased = "increased" }
+		}
+		else if (data.secondParam === "buttSize") {
+			sliderName = "Butt Size";
+			currentValue = mySlider13.getValue();
+			if (currentValue < data.thirdParam) { increasedOrDecreased = "increased" }
+		}
+		else if (data.secondParam === "bellySize") {
+			sliderName = "Belly Size";
+			currentValue = mySlider14.getValue();
+			if (currentValue < data.thirdParam) { increasedOrDecreased = "increased" }
+		}
+		else if (data.secondParam === "bellyShape") {
+			sliderName = "Belly Shape";
+			currentValue = mySlider15.getValue();
+			if (currentValue < data.thirdParam) { increasedOrDecreased = "increased" }
+		}
+		else if (data.secondParam === "intelligence") {
+			sliderName = "Intelligence";
+			currentValue = mySlider16.getValue();
+			if (currentValue < data.thirdParam) { increasedOrDecreased = "increased" }
+		}
+		else if (data.secondParam === "hairLenght") {
+			sliderName = "Hair Lenght";
+			currentValue = mySlider20.getValue();
+			if (currentValue < data.thirdParam) { increasedOrDecreased = "increased" }
+		}
+		else if (data.secondParam === "fertility") {
+			sliderName = "Fertility";
+			currentValue = mySlider20.getValue();
+			if (currentValue < data.thirdParam) { increasedOrDecreased = "increased" }
+		}
+		else if (data.secondParam === "custom1") {
+			currentValue = mySlider17.getValue();
+			if (currentValue < data.thirdParam) { increasedOrDecreased = "increased" }
+		}
+		else if (data.secondParam === "custom2") {
+			currentValue = mySlider18.getValue();
+			if (currentValue < data.thirdParam) { increasedOrDecreased = "increased" }
+		}
+		else if (data.secondParam === "custom3") {
+			currentValue = mySlider19.getValue();
+			if (currentValue < data.thirdParam) { increasedOrDecreased = "increased" }
+		}
+		else if (data.secondParam === "custom4") {
+			currentValue = mySlider24.getValue();
+			if (currentValue < data.thirdParam) { increasedOrDecreased = "increased" }
+		}
+		else if (data.secondParam === "custom5") {
+			currentValue = mySlider25.getValue();
+			if (currentValue < data.thirdParam) { increasedOrDecreased = "increased" }
+		}
+		
+		// Get custom slider name
+		if (data.secondParam === "custom1" || data.secondParam === "custom2" || data.secondParam === "custom3" || data.secondParam === "custom4" || data.secondParam === "custom5")
+			{	
+				var leftLabel;
+				var rightLabel;
+				if (data.secondParam === "custom1") {
+					sliderName = localStorage.getItem("Custom_Slider1_CenterText");
+					if (sliderName === "&nbsp;") {
+						leftLabel = localStorage.getItem("Custom_Slider1_LeftText");
+						rightLabel = localStorage.getItem("Custom_Slider1_RightText");
+						sliderName = leftLabel + "/" + rightLabel;
+					}
+				}
+				else if (data.secondParam === "custom2") {
+					sliderName = localStorage.getItem("Custom_Slider2_CenterText");
+					if (sliderName === "&nbsp;") {
+						leftLabel = localStorage.getItem("Custom_Slider2_LeftText");
+						rightLabel = localStorage.getItem("Custom_Slider2_RightText");
+						sliderName = leftLabel + "/" + rightLabel;
+					}
+				}
+				else if (data.secondParam === "custom3") {
+					sliderName = localStorage.getItem("Custom_Slider3_CenterText");
+					if (sliderName === "&nbsp;") {
+					leftLabel = localStorage.getItem("Custom_Slider3_LeftText");
+						rightLabel = localStorage.getItem("Custom_Slider3_RightText");
+						sliderName = leftLabel + "/" + rightLabel;
+					}
+				}
+				else if (data.secondParam === "custom4") {
+					sliderName = localStorage.getItem("Custom_Slider4_CenterText");
+					if (sliderName === "&nbsp;") {
+						leftLabel = localStorage.getItem("Custom_Slider4_LeftText");
+						rightLabel = localStorage.getItem("Custom_Slider4_RightText");
+						sliderName = leftLabel + "/" + rightLabel;
+					}
+				}
+				else if (data.secondParam === "custom5") {
+					sliderName = localStorage.getItem("Custom_Slider5_CenterText");
+					if (sliderName === "&nbsp;") {
+						leftLabel = localStorage.getItem("Custom_Slider5_LeftText");
+						rightLabel = localStorage.getItem("Custom_Slider5_RightText");
+						sliderName = leftLabel + "/" + rightLabel;
+					}
+				}
+			}
+		
+		logEntry = sliderName + " slider " + increasedOrDecreased + " to " + data.thirdParam
+	}
+	else if (data.firstParam === "manipulateOption") {
+		logEntry = "Changed " + data.secondParam + " to " + data.thirdParam	
+	}
+	else if (data.firstParam === "manipulateTickbox") {
+		if (data.thirdParam === "Yes") {
+			tickedOrUnticked = "ticked"
+		}
+		else {
+			tickedOrUnticked = "unticked"
+		}
+		
+		var uwu;
+		if (data.secondParam === "Adapt_Clothing") 			{	uwu = "Adapt clothing"		}
+		else if (data.secondParam === "Genitals_Penis")		{	uwu = "Penis"				}
+		else if (data.secondParam === "Genitals_Vagina") 	{	uwu = "Vagina"				}
+		else if (data.secondParam === "Pregnancy_Lock") 	{	uwu = "Pregnancy lock"		}
+		
+		logEntry = uwu + " checkbox " + tickedOrUnticked
+	}
+	else if (data.firstParam === "manipulateCustomTickbox") {
+		var tickedOrUnticked
+		if (data.thirdParam === "Yes") {
+			tickedOrUnticked = "ticked"
+		}
+		else {
+			tickedOrUnticked = "unticked"
+		}
+		
+		var uwu;
+		if (data.secondParam === "Custom_Checkbox1_Value1") {
+			uwu = document.getElementById("CC1value1").innerHTML;
+		}
+		else if (data.secondParam === "Custom_Checkbox1_Value2") {
+			uwu = document.getElementById("CC1value2").innerHTML;
+		}
+		else if (data.secondParam === "Custom_Checkbox2_Value1") {
+			uwu = document.getElementById("CC2value1").innerHTML;
+		}
+		else if (data.secondParam === "Custom_Checkbox2_Value2") {
+			uwu = document.getElementById("CC2value2").innerHTML;
+		}
+		else if (data.secondParam === "Custom_Checkbox3_Value1") {
+			uwu = document.getElementById("CC3value1").innerHTML;
+		}
+		else if (data.secondParam === "Custom_Checkbox3_Value2") {
+			uwu = document.getElementById("CC3value2").innerHTML;
+		}
+		
+		logEntry = uwu + " checkbox " + tickedOrUnticked
+	}
+	else if (data.firstParam === "optionEnabled") {
+		if (data.secondParam === "fireLoadSliderSettingsFunction") {
+			return;
+		}
+		else {
+			var enabledOrDisabled
+			if (data.thirdParam === "Yes") {
+				enabledOrDisabled = "enabled"
+			}
+			else {
+				enabledOrDisabled = "disabled"
+			}
+		
+			var uwu;
+			if (data.secondParam === "buttSize") 					{	uwu = "Butt Size slider "			}
+			else if (data.secondParam === "bellySize") 				{	uwu = "Belly Size slider "			}
+			else if (data.secondParam === "bellyShape") 			{	uwu = "Belly Shape slider "			}
+			else if (data.secondParam === "hips") 					{	uwu = "Hips slider "				}
+			else if (data.secondParam === "genitalSize") 			{	uwu = "Genital Size slider "		}
+			else if (data.secondParam === "cockType") 				{	uwu = "Cock Type menu "				}
+			else if (data.secondParam === "libido") 				{	uwu = "Libido slider "				}
+			else if (data.secondParam === "sensitivity") 			{	uwu = "Sensitivity slider "			}
+			else if (data.secondParam === "demeanor") 				{	uwu = "Demeanor slider "			}
+			else if (data.secondParam === "positionPref") 			{	uwu = "Dom/Sub slider "				}
+			else if (data.secondParam === "intelligence") 			{	uwu = "Intelligence slider "		}
+			else if (data.secondParam === "fluffiness") 			{	uwu = "Fluffiness slider "			}
+			else if (data.secondParam === "hairLenght") 			{	uwu = "Hair Lenght slider "			}
+			else if (data.secondParam === "fertility") 				{	uwu = "Fertility slider "			}
+			else if (data.secondParam === "genitalsMenu") 			{	uwu = "Genitals checkboxes "		}
+			else if (data.secondParam === "speciesMenu") 			{	uwu = "Species menu "				}
+			else if (data.secondParam === "sexMenu")				{	uwu = "Sex radio buttons "			}
+			else if (data.secondParam === "acMenu") 				{	uwu = "Adapt clothing checkbox "	}
+			else if (data.secondParam === "mascFem") 				{	uwu = "Masc/Fem slider "			}
+			else if (data.secondParam === "thinThicc") 				{	uwu = "Thin/Thicc slider "			}
+			else if (data.secondParam === "smolTall") 				{	uwu = "Smol/Tall slider "			}
+			else if (data.secondParam === "inanimateObjectsMenu") 	{	uwu = "Inanimate Objects menu "		}
+			else if (data.secondParam === "custom1" || data.secondParam === "custom2" || data.secondParam === "custom3" || data.secondParam === "custom4" || data.secondParam === "custom5")
+				{	
+					var middleLabel;
+					var leftLabel;
+					var rightLabel;
+					if (data.secondParam === "custom1") {
+						middleLabel = localStorage.getItem("Custom_Slider1_CenterText");
+						uwu = middleLabel + " slider ";
+						if (middleLabel === "&nbsp;") {
+							leftLabel = localStorage.getItem("Custom_Slider1_LeftText");
+							rightLabel = localStorage.getItem("Custom_Slider1_RightText");
+							uwu = leftLabel + "/" + rightLabel + " slider ";
+						}
+					}
+					else if (data.secondParam === "custom2") {
+						middleLabel = localStorage.getItem("Custom_Slider2_CenterText");
+						uwu = middleLabel + " slider ";
+						if (middleLabel === "&nbsp;") {
+							leftLabel = localStorage.getItem("Custom_Slider2_LeftText");
+							rightLabel = localStorage.getItem("Custom_Slider2_RightText");
+							uwu = leftLabel + "/" + rightLabel + " slider ";
+						}
+					}
+					else if (data.secondParam === "custom3") {
+						middleLabel = localStorage.getItem("Custom_Slider3_CenterText");
+						uwu = middleLabel + " slider ";
+						if (middleLabel === "&nbsp;") {
+							leftLabel = localStorage.getItem("Custom_Slider3_LeftText");
+							rightLabel = localStorage.getItem("Custom_Slider3_RightText");
+							uwu = leftLabel + "/" + rightLabel + " slider ";
+						}
+					}
+					else if (data.secondParam === "custom4") {
+						middleLabel = localStorage.getItem("Custom_Slider4_CenterText");
+						uwu = middleLabel + " slider ";
+						if (middleLabel === "&nbsp;") {
+							leftLabel = localStorage.getItem("Custom_Slider4_LeftText");
+							rightLabel = localStorage.getItem("Custom_Slider4_RightText");
+							uwu = leftLabel + "/" + rightLabel + " slider ";
+						}
+					}
+					else if (data.secondParam === "custom5") {
+						middleLabel = localStorage.getItem("Custom_Slider5_CenterText");
+						uwu = middleLabel + " slider ";
+						if (middleLabel === "&nbsp;") {
+							leftLabel = localStorage.getItem("Custom_Slider5_LeftText");
+							rightLabel = localStorage.getItem("Custom_Slider5_RightText");
+							uwu = leftLabel + "/" + rightLabel + " slider ";
+						}
+					}
+				}
+			
+			logEntry = uwu + enabledOrDisabled
+		}
+	}
+	else if (data.firstParam === "customCheckboxEnabled") {
+		if (data.secondParam === "fireLoadCustomCheckboxesOnStartupFunction") { 
+			return;
+		}
+		else {
+			var enabledOrDisabled
+			if (data.thirdParam === "Yes") {
+				enabledOrDisabled = "enabled"
+			}
+			else {
+				enabledOrDisabled = "disabled"
+			}
+			
+			var checkboxName;
+			if (data.secondParam === "custom1") {
+				checkboxName = localStorage.getItem("Slot0_Custom_Checkbox1_Label");
+				if (checkboxName === "") {
+					checkboxName = localStorage.getItem("Slot0_Custom_Checkbox1_Value1");
+				}
+			}
+			if (data.secondParam === "custom2") {
+				checkboxName = localStorage.getItem("Slot0_Custom_Checkbox2_Label");
+				if (checkboxName === "") {
+					checkboxName = localStorage.getItem("Slot0_Custom_Checkbox2_Value1");
+				}
+			}
+			if (data.secondParam === "custom3") {
+				checkboxName = localStorage.getItem("Slot0_Custom_Checkbox3_Label");
+				if (checkboxName === "") {
+					checkboxName = localStorage.getItem("Slot0_Custom_Checkbox3_Value1");
+				}
+			}
+			logEntry = checkboxName + " checkbox " + enabledOrDisabled
+		}
+	}
+	else if (data.firstParam === "changeCustomCheckbox") {
+		label = data.thirdParam;
+		if (label === "") { 
+			label = "blank"; 
+		}
+		var uwu;
+		if (data.secondParam === "Custom1Label")			{	uwu = "Label: " + label + "<br> Custom Checkbox 1 created!"		}
+		else if (data.secondParam === "Custom1Value1")		{	uwu = "Value 1: " + label	}
+		else if (data.secondParam === "Custom1Value2")		{	uwu = "Value 2: " + label	}
+		else if (data.secondParam === "Custom2Label")		{	uwu = "Label: " + label + "<br> Custom Checkbox 2 created!"		}
+		else if (data.secondParam === "Custom2Value1")		{	uwu = "Value 1: " + label	}
+		else if (data.secondParam === "Custom2Value2")		{	uwu = "Value 2: " + label	}
+		else if (data.secondParam === "Custom3Label")		{	uwu = "Label: " + label + "<br> Custom Checkbox 3 created!"		}
+		else if (data.secondParam === "Custom3Value1")		{	uwu = "Value 1: " + label	}
+		else if (data.secondParam === "Custom3Value2")		{	uwu = "Value 2: " + label	}
+		logEntry = uwu
+	}
+	else if (data.firstParam === "changeSliderName") {
+		label = data.thirdParam;
+		if (label === "&nbsp;") { 
+			label = "blank"; 
+		}
+		var uwu;
+		if 		(data.secondParam === "Custom1Left") 	{	uwu = "Left label: " + label + "<br>Custom Slider 1 created!"	}
+		else if (data.secondParam === "Custom1Middle") 	{	uwu = "Middle label: " + label	}
+		else if (data.secondParam === "Custom1Right") 	{	uwu = "Right label: " + label	}
+		else if (data.secondParam === "Custom2Left") 	{	uwu = "Left label: " + label + "<br>Custom Slider 2 created!"	}
+		else if (data.secondParam === "Custom2Middle") 	{	uwu = "Middle label: " + label	}
+		else if (data.secondParam === "Custom2Right") 	{	uwu = "Right label: " + label	}
+		else if (data.secondParam === "Custom3Left") 	{	uwu = "Left label: " + label + "<br>Custom Slider 3 created!"	}
+		else if (data.secondParam === "Custom3Middle") 	{	uwu = "Middle label: " + label	}
+		else if (data.secondParam === "Custom3Right") 	{	uwu = "Right label: " + label	}
+		else if (data.secondParam === "Custom4Left") 	{	uwu = "Left label: " + label + "<br>Custom Slider 4 created!"	}
+		else if (data.secondParam === "Custom4Middle") 	{	uwu = "Middle label: " + label 	}
+		else if (data.secondParam === "Custom4Right") 	{	uwu = "Right label: " + label	}
+		else if (data.secondParam === "Custom5Left") 	{	uwu = "Left label: " + label + "<br>Custom Slider 5 created!"	}
+		else if (data.secondParam === "Custom5Middle") 	{	uwu = "Middle label: " + label	}
+		else if (data.secondParam === "Custom5Right") 	{	uwu = "Right label: " + label	}
+		logEntry = uwu
+	}
+	//else if (data.firstParam === "putClothingOn") {
+	//	if (data.secondaParam === "None") { 
+	//		return; 
+	//	}
+	//	else {	
+	//		logEntry = "Clothing: " + data.secondParam + " " + data.thirdParam	
+	//	} 
+	//}
 	else if (data.firstParam === "setCharacterColor") 		{	logEntry = data.secondParam + " character color set to " + data.thirdParam	}
 	else if (data.firstParam === "setOutfitColor") 			{	logEntry = data.secondParam + " clothing color set to " + data.thirdParam	}
 	else if (data.firstParam === "Unlock_Settings") 		{	logEntry = "Settings unlocked"												}
@@ -970,6 +1356,18 @@ function CONTROLchangelog(data) {
 }
 
 function clearChangelog() {	document.getElementById("CONTROLchangelog").innerHTML = "&nbsp;" }
+
+function toggleChangelog() {
+	var showOrHide = document.getElementById("showHideChangelogButton").innerHTML;
+	if (showOrHide === "Hide") {
+		document.getElementById("showHideChangelogButton").innerHTML = "Show";
+		document.getElementById("CONTROLchangelogContainer").style.height = "30px";
+	}
+	else {
+		document.getElementById("showHideChangelogButton").innerHTML = "Hide";
+		document.getElementById("CONTROLchangelogContainer").style.height = "150px";
+	}
+}
 
 function attachEvents() {
 	if (master === "true") {
@@ -1465,7 +1863,7 @@ function CONTROLshowConnectToServer() {
 	document.getElementById("CONTROLButton").style.border='0';
 	document.getElementById("CONTROLButton").style.fontSize='0px';
 	document.getElementById("CONTROLButton").style.marginTop='0px';
-	document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='230px';
+	document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='200px';
 }
 
 function CONTROLgoBack() {
@@ -1476,10 +1874,29 @@ function CONTROLgoBack() {
 	document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='0px';
 }
 
+function CONTROLshowTutorial() {
+	document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='0px';
+	document.getElementById("CONTROLtutorialContainer").style.maxHeight='580px';
+	document.getElementById('whatsThisButton').innerHTML = "OwO";
+	setTimeout(hideOwO, 50);
+}
+
+function hideOwO() {
+	document.getElementById('whatsThisButton').innerHTML = "What's this?";
+}
+
+function CONTROLgoBackFromTutorial() {
+	document.getElementById("CONTROLtutorialContainer").style.maxHeight='0px';
+	document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='200px';
+}
+
 function CONTROLshowChoice() {
 	if (isConnected == null) {
-		document.getElementById("CONTROLconnectToServerStatus").innerHTML = "Click 'Connect to server' button!";
+		document.getElementById("CONTROLconnectToServerStatus").innerHTML = "You shall not pass!";
 		document.getElementById("CONTROLconnectToServerStatus").style.color = "#FF4550";
+		document.getElementById("CONTROLconnectToServerButton").style.background='#b30003';
+		document.getElementById("CONTROLconnectToServerButton").style.border='2px solid #660002';
+		document.getElementById("CONTROLconnectToServerButton").style.transitionDuration='0.2s';
 		setTimeout(hideConnectToServerMessage, 1500);
 	}
 	else {
@@ -1490,8 +1907,11 @@ function CONTROLshowChoice() {
 
 function hideConnectToServerMessage() {
 	if (isConnected == null) {
-		document.getElementById("CONTROLconnectToServerStatus").innerHTML = "Status:";
+		document.getElementById("CONTROLconnectToServerStatus").innerHTML = "Status: Waiting for user input...";
 		document.getElementById("CONTROLconnectToServerStatus").style.color = "#fff";
+		document.getElementById("CONTROLconnectToServerButton").style.background='#282640';
+		document.getElementById("CONTROLconnectToServerButton").style.border='2px solid #59568f';
+		document.getElementById("CONTROLconnectToServerButton").style.transitionDuration='0.75s';
 	}
 	else {
 		return;
@@ -1499,7 +1919,7 @@ function hideConnectToServerMessage() {
 }
 
 function CONTROLgoBackFromChoice() {
-	document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='230px';
+	document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='200px';
 	document.getElementById("CONTROLchoiceContainer").style.maxHeight='0px';
 }
 
