@@ -24,12 +24,8 @@
 
 <script src="js/dhtmlxslider.js"></script>
 <script src="js/switcheroo.js"></script>
+<script src="js/saveSlots.js"></script>
 <script src="js/slot0.js"></script>
-<script src="js/slot1.js"></script>
-<script src="js/slot2.js"></script>
-<script src="js/slot3.js"></script>
-<script src="js/slot4.js"></script>
-<script src="js/slot5.js"></script>
 <script src="js/species.js"></script>
 <script src="js/inanimateObjects.js"></script>
 <script src="js/ppTypes.js"></script>
@@ -91,184 +87,14 @@ function error621ChangeSlider() {
 <body>
 
 <div class="appWidthContainer" id="appWidthContainer">
-<!-- Popup with settings loaded message -->
-<div class="settingsLoadedPopup" id="settingsLoadedPopup">
 
-	<script>
-	document.getElementById("settingsLoadedPopup").style.display = "none";	
-	</script>
+<div class="notification-container" id="notificationContainer" style="display:none">
 
-</div>
-
-<!-- Divs with error messages begin here-->
-
-<!-- Container with error messages -->
-<div class="errorMessageContainer" id="errorMessageContainer">	
-
-	<script>
-	document.getElementById("errorMessageContainer").style.display = "none";	
-	</script>
-
-	<div class="errorMessageAlignLeft" id="remoteLoginErrorMessage">
-	>Remote login enabled... <br>
-	>Setting sex = female <br>
-	>Setting shy = 100 <br>
-	>Setting tall = 0 <br>
-	>Setting submissive = 100 <br>
-	>Setting fluffiness = 100 <br>
-	>Lock settings enabled <br>
-	>Default profile settings saved <br>
-	>New password saved...
-	<script>
-	document.getElementById("remoteLoginErrorMessage").style.display = "none";	
-	</script>
+	<div class="notification-content" id="notificationContent">&nbsp;</div>
+	
+	<div class="notification-content" style="margin-top:5px;text-align:center;cursor:pointer;" onClick=closeNotification()>
+		Okay
 	</div>
-	
-	<div class="errorMessageAlignCenter" id="MSSErrorMessage" >
-	UwU <br>
-	>Error//multi_sex_select <br>
-	>processing...<br>
-	<br>
-	Please contact Switcher-Roo support
-	<script>
-	document.getElementById("MSSErrorMessage").style.display = "none";	
-	</script>
-	</div>
-	
-	
-	<div class="errorMessageAlignLeft" id="unblockSettingsMessage">
-	<script>
-		document.getElementById("unblockSettingsMessage").style.display = "none";	
-	</script>
-	>Error: Please unblock settings to load/import settings
-	</div>
-	
-	<div class="errorMessageAlignLeft" id="error69Message">
-	<script>
-		document.getElementById("error69Message").style.display = "none";	
-	</script>
-	<center>UwU</center>
-	<br>
-	>Error69//lock_settings <br>
-	>lock_setting1 initialized
-	</div>
-	
-	<div class="errorMessageAlignLeft" id="lowBatteryMessage">
-	<script>
-		document.getElementById("lowBatteryMessage").style.display = "none";	
-	</script>
-	>Your battery is low. Click Switcher-Roo logo or there will be 3 in 100 chance every 20 seconds, that error will happen.
-	</div>
-		
-</div>
-
-<!-- Okay buttons to close errors -->
-
-<div class="RLEOkayContainer" id="RLEOkayContainer" onClick=hideRemoteLoginError()>
-
-	<div class="okay" id="RLEOkay">
-
-	Okay
-	
-		<script>
-			document.getElementById("RLEOkay").style.display = "none";	
-		</script>
-		
-	</div>
-	
-	<script>
-	document.getElementById("RLEOkayContainer").style.display = "none";	
-	</script>
-	
-</div>
-
-<div class="MSSOkayContainer" id="MSSOkayContainer" onClick=hideMSSError()>
-
-	<div class="okay" id="MSSOkay">
-
-	Okay
-	
-		<script>
-			document.getElementById("MSSOkay").style.display = "none";	
-		</script>
-		
-	</div>
-	
-	<script>
-	document.getElementById("MSSOkayContainer").style.display = "none";	
-	</script>
-	
-</div>
-
-<div class="unblockSettingsOkayContainer" id="unblockSettingsOkayContainer" onClick=hideUnblockSettingsError()>
-
-	<div class="okay" id="unblockSettingsOkay">
-
-	Okay
-	
-		<script>
-			document.getElementById("unblockSettingsOkay").style.display = "none";	
-		</script>
-		
-	</div>
-
-	<script>
-	document.getElementById("unblockSettingsOkayContainer").style.display = "none";	
-	</script>
-	
-</div>
-
-<div class="error69OkayContainer" id="error69OkayContainer" onClick=hideError69()>
-
-	<div class="okay" id="error69Okay">
-
-	Okay
-	
-		<script>
-			document.getElementById("error69Okay").style.display = "none";	
-		</script>
-		
-	</div>
-
-	<script>
-	document.getElementById("error69OkayContainer").style.display = "none";	
-	</script>
-	
-</div>
-
-<div class="lowBatteryOkayContainer" id="lowBatteryOkayContainer" onClick=hideLowBatteryMessage()>
-
-	<div class="okay" id="lowBatteryOkay">
-
-	Okay
-	
-		<script>
-			document.getElementById("lowBatteryOkay").style.display = "none";	
-		</script>
-		
-	</div>
-
-	<script>
-	document.getElementById("lowBatteryOkayContainer").style.display = "none";	
-	</script>
-	
-</div>
-
-<div class="mobileDeviceOkayContainer" id="mobileDeviceOkayContainer" onClick=hideMobileDeviceMessage()>
-
-	<div class="okay" id="mobileDeviceOkay">
-
-	Okay
-	
-		<script>
-			document.getElementById("mobileDeviceOkay").style.display = "none";	
-		</script>
-		
-	</div>
-
-	<script>
-	document.getElementById("mobileDeviceOkayContainer").style.display = "none";	
-	</script>
 	
 </div>
 
@@ -283,7 +109,6 @@ function error621ChangeSlider() {
 		document.getElementById("secondSliderHandleContainer").style.display = "none";	
 	</script>
 </div>
-<!-- Divs with error messages end here-->
 
 <!-- Status bar stuff begins here-->
 
@@ -366,15 +191,14 @@ function error621ChangeSlider() {
 		</div>
 		
 		<script>
-		document.getElementById("battery_low").style.display = "none";	
-		document.getElementById("battery_14").style.display = "none";	
-		document.getElementById("battery_half").style.display = "none";	
-		document.getElementById("battery_34").style.display = "none";	
-		document.getElementById("battery_low_charging").style.display = "none";	
-		document.getElementById("battery_14_charging").style.display = "none";	
-		document.getElementById("battery_half_charging").style.display = "none";	
-		document.getElementById("battery_34_charging").style.display = "none";	
-		
+		document.getElementById("battery_low").style.display = "none";
+		document.getElementById("battery_14").style.display = "none";
+		document.getElementById("battery_half").style.display = "none";
+		document.getElementById("battery_34").style.display = "none";
+		document.getElementById("battery_low_charging").style.display = "none";
+		document.getElementById("battery_14_charging").style.display = "none";
+		document.getElementById("battery_half_charging").style.display = "none";
+		document.getElementById("battery_34_charging").style.display = "none";
 		</script>
 		
 	</div>
@@ -396,9 +220,6 @@ function error621ChangeSlider() {
   
   <div class="processingText" id="processingText">
   
-  <script>
-		//document.getElementById("processingText").style.display = "none";			
-	</script>
   </div>
   
 <div class="container2" id="container2">
@@ -1307,16 +1128,6 @@ Please contact Switcher-Roo support for assistance
 
 </div>
 
-<div class="logOutMessage" id="logOutMessage">
-<script>
-document.getElementById("logOutMessage").style.display = "none";
-</script>
-<p style="font-size: 30px; margin: 20px">UwU</p> 
-You have been successfully logged out!<br><br>
-We hope you'll be back soon!
-<br><br><br>
-</div>
-  
 <div class="menuSlider" id="bodyType1Slider">
 	<div class="linesMenuSlider">
 			<img src="images/lines.png" height="17" width="23"> 
@@ -4065,11 +3876,11 @@ document.getElementById("creativeModeCustomDropdownToggle").style.display='none'
 
 	<div class="saveSlotButtonsContainer" id="saveSlotButtons">
 		Save<br>
-		<div class="mediumSlotButton" id="saveSlot1" onClick="saveSettingsSlot1()">1</div>
-		<div class="mediumSlotButton" id="saveSlot2" onClick="saveSettingsSlot2()">2</div>
-		<div class="mediumSlotButton" id="saveSlot3" onClick="saveSettingsSlot3()">3</div>
-		<div class="mediumSlotButton" id="saveSlot4" onClick="saveSettingsSlot4()">4</div>
-		<div class="mediumSlotButton" id="saveSlot5" onClick="saveSettingsSlot5()">5</div>
+		<div class="mediumSlotButton" id="saveSlot1" onClick="saveSettings(1)">1</div>
+		<div class="mediumSlotButton" id="saveSlot2" onClick="saveSettings(2)">2</div>
+		<div class="mediumSlotButton" id="saveSlot3" onClick="saveSettings(3)">3</div>
+		<div class="mediumSlotButton" id="saveSlot4" onClick="saveSettings(4)">4</div>
+		<div class="mediumSlotButton" id="saveSlot5" onClick="saveSettings(5)">5</div>
 		<div class="mediumSlotButton" onClick="hideSaveSlotButtons()">Go back</div>
 		<script>
 			document.getElementById("saveSlotButtons").style.marginTop='0';
@@ -4082,11 +3893,11 @@ document.getElementById("creativeModeCustomDropdownToggle").style.display='none'
 
 	<div class="loadSlotButtonsContainer" id="loadSlotButtons">
 		Load<br>
-		<div class="mediumSlotButton" id="loadSlot1" onClick="loadSettingsSlot1()">1</div>
-		<div class="mediumSlotButton" id="loadSlot2" onClick="loadSettingsSlot2()">2</div>
-		<div class="mediumSlotButton" id="loadSlot3" onClick="loadSettingsSlot3()">3</div>
-		<div class="mediumSlotButton" id="loadSlot4" onClick="loadSettingsSlot4()">4</div>
-		<div class="mediumSlotButton" id="loadSlot5" onClick="loadSettingsSlot5()">5</div>
+		<div class="mediumSlotButton" id="loadSlot1" onClick="loadSettings(1)">1</div>
+		<div class="mediumSlotButton" id="loadSlot2" onClick="loadSettings(2)">2</div>
+		<div class="mediumSlotButton" id="loadSlot3" onClick="loadSettings(3)">3</div>
+		<div class="mediumSlotButton" id="loadSlot4" onClick="loadSettings(4)">4</div>
+		<div class="mediumSlotButton" id="loadSlot5" onClick="loadSettings(5)">5</div>
 		<div class="mediumSlotButton" onClick="hideLoadSlotButtons()">Go back</div>
 		<script>
 			document.getElementById("loadSlotButtons").style.marginTop='0';
@@ -4172,7 +3983,7 @@ document.getElementById("goBackHideMenusButton").style.marginTop='0px';
 
 <div class="bigButton" id="preferences" onClick="showOptions()">Options</div>
 
-<div class="bigButton" id="goBack" onClick="goBackFunction()">Go back</div>
+<div class="bigButton" id="goBack" onClick="goBackFromOptions()">Go back</div>
 <script>
 document.getElementById("goBack").style.padding='0px';
 document.getElementById("goBack").style.border='0';
@@ -4207,7 +4018,7 @@ document.getElementById("goBack").style.marginTop='0px';
 			<br>
 			
 			<div>
-			<label class="container">Change App Appearance when Settings are locked
+			<label class="container">Change app appearance when settings are locked
 				<input type="checkbox" id="appAppearanceCheckbox" onclick="toggleAppAppearance()">
 				<span class="checkbox"></span>  
 			</label>
@@ -4215,7 +4026,7 @@ document.getElementById("goBack").style.marginTop='0px';
 			<br>
 			
 			<div>
-			<label class="container">Enable App Presets sharing
+			<label class="container">Enable app presets sharing
 				<input type="checkbox" id="appStatusCheckbox" onclick="toggleAppStatus()">
 				<span class="checkbox"></span>  
 			</label>
@@ -4271,7 +4082,7 @@ document.getElementById("goBack").style.marginTop='0px';
 			<br>
 			
 			<div>
-			<label class="container">Hide Lock Password button
+			<label class="container">Hide Lock password button
 				<input type="checkbox" id="lockPasswordCheckbox" onclick="hideLockPasswordButton()">
 				<span class="checkbox"></span>  
 			</label>
@@ -4295,7 +4106,7 @@ document.getElementById("goBack").style.marginTop='0px';
 			<br>
 						
 			<div>
-			<label class="container">Turn off User Greetings
+			<label class="container">Turn off user greetings
 				<input type="checkbox" id="hideUGCheckbox" onclick="toggleUserGreetings()">
 				<span class="checkbox"></span>  
 			</label>
@@ -4335,7 +4146,7 @@ document.getElementById("goBack").style.marginTop='0px';
 			<br>
 			
 			<div>
-			<label class="container">Hide Footer
+			<label class="container">Hide footer
 				<input type="checkbox" id="hideFooterCheckbox" onclick="hideFooter()">
 				<span class="checkbox"></span>  
 			</label>
@@ -4343,7 +4154,7 @@ document.getElementById("goBack").style.marginTop='0px';
 			<br>
 			
 			<div>
-			<label class="container">Enable changing App Background
+			<label class="container">Enable changing app background
 				<input type="checkbox" id="appBackgroundCheckbox" onclick="toggleAppBackgroundButton()">
 				<span class="checkbox"></span>  
 			</label>
@@ -4365,7 +4176,7 @@ document.getElementById("goBack").style.marginTop='0px';
 	<div class="bigButton" onClick="error69()">Trigger Error69</div>	
 	<div class="bigButton" onClick="error621()">Trigger Error621</div>	
 	<div class="bigButton" onClick="MSSError()">Trigger Multi Sex Select Error</div>	
-	<div class="bigButton" onClick="devMenuDeleteLockPassword()">Delete Lock Password</div>	
+	<div class="bigButton" onClick="devMenuDeleteLockPassword()">Delete Lock password</div>	
 	<div class="bigButton" onClick="goToChangeBGColorOptions()">Change background color (Desktop only)</div>
 	<div style = "border: 3px solid #FF4550;">
 	<div style="padding-left:18px;margin-top:5px;">Reset app (current state)</div>
@@ -4393,7 +4204,7 @@ document.getElementById("goBack").style.marginTop='0px';
 	</div>
 	<script>document.getElementById("changeBGColorOptions").style.maxHeight='0px';</script>
 	
-<div class="bigButton" id="lockSettingsPasswordButton" onClick="openLockSettingsPasswordMenu()">Lock Password</div>
+<div class="bigButton" id="lockSettingsPasswordButton" onClick="openLockSettingsPasswordMenu()">Lock password</div>
 
 	<div id="setupPasswordFirstTimeContainer" style="overflow:hidden;transition-duration:0.75s">
 		
@@ -4537,18 +4348,10 @@ PWA Integration <br> SRThrowaway
 </div>
 </a>
 
-<a href="https://dhtmlx.com/docs/products/dhtmlxSlider/">
-<div class="creditsEntry">
-
-<div class="creditsText">
-Sliders .js script <br> DHTMLX
-</div>
-<div class="creditsAvatar">             
-<img src="images/dhtmlx_logo.png" width="70" height="70" class="avatar">
-</div>
-
-</div>
-</a>
+Special thanks to:<br>
+DHTMLX - Sliders .js library<br>
+iro.js - Color Picker .js library<br>
+c0bra - color-scheme .js library
 
 </div>
 

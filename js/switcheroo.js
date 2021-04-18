@@ -133,7 +133,7 @@ function toggleFeedbackMenu() {
 function showCredits() {
 	var c = document.getElementById("credits");
 	c.style.borderTop = "3px solid #73728C";
-	c.style.maxHeight = "337px";
+	c.style.maxHeight = "355px";
 	c.style.marginTop = "10px";
 	var showCreditsButton = document.getElementById("showCreditsButton");
 	showCreditsButton.style.padding = "0px";
@@ -825,11 +825,6 @@ function reTry() {
 	}
   
 function remoteLoginError() {
-		document.getElementById("errorMessageContainer").style.display = "block";
-		document.getElementById("remoteLoginErrorMessage").style.display = "block";
-		document.getElementById("RLEOkayContainer").style.display = "block";
-		document.getElementById("RLEOkay").style.display= 'block';   
-		document.getElementById("AdvancedSettingsContainer").style.display = "block";
 		radiobtn = document.getElementById("radiobuttonFemale");
 		radiobtn.checked = true;
 		radiobtn2 = document.getElementById("radiobuttonMale");
@@ -839,30 +834,14 @@ function remoteLoginError() {
 		mySlider10.setValue(100);			// Set submissive = 100
 		mySlider.setValue(100);				// Set fluffiness = 100
 		closeLock();
+		displayNotification(0);
 	}
  
-function hideRemoteLoginError () {
-		document.getElementById("errorMessageContainer").style.display = "none";
-		document.getElementById("remoteLoginErrorMessage").style.display = "none";
-		document.getElementById("RLEOkayContainer").style.display = "none";
-		document.getElementById("RLEOkay").style.display= 'none';  
-	}
-	
 function error69() {
-		document.getElementById("errorMessageContainer").style.display = "block";
-		document.getElementById("error69Message").style.display = "block";
-		document.getElementById("error69OkayContainer").style.display = "block";
-		document.getElementById("error69Okay").style.display= 'block';  
+		displayNotification(2); 
 		closeLock();
 	}
 	
-function hideError69() {
-		document.getElementById("errorMessageContainer").style.display = "none";
-		document.getElementById("error69Message").style.display = "none";
-		document.getElementById("error69OkayContainer").style.display = "none";
-		document.getElementById("error69Okay").style.display= 'none';  
-	}
-
 function error621() {
 		document.getElementById("container2").style.display = "none";
 		document.getElementById("speciesMenu").style.display = "none";
@@ -878,24 +857,13 @@ function error621() {
 
 function lowBatteryMessage() {
 		var lowBatteryMessageSeen = localStorage.getItem("Low_Battery_Message_Seen");
-		if (lowBatteryMessageSeen === "Yes") {
+		if (lowBatteryMessageSeen === "True") {
 			return;
 		}
 		else {
-			document.getElementById("errorMessageContainer").style.display = "block";
-			document.getElementById("lowBatteryMessage").style.display = "block";
-			document.getElementById("lowBatteryOkayContainer").style.display = "block";
-			document.getElementById("lowBatteryOkay").style.display= 'block';  
+			displayNotification(4);
+			localStorage.setItem("Low_Battery_Message_Seen", "True");
 		}
-	}
-
-function hideLowBatteryMessage(){
-		document.getElementById("errorMessageContainer").style.display = "none";
-		document.getElementById("lowBatteryMessage").style.display = "none";
-		document.getElementById("lowBatteryOkayContainer").style.display = "none";
-		document.getElementById("lowBatteryOkay").style.display= 'none';  
-		var lowBatteryMessageSeen = "Yes";
-		localStorage.setItem("Low_Battery_Message_Seen", lowBatteryMessageSeen);	
 	}
 
 function showOptions() {
@@ -911,7 +879,7 @@ function showOptions() {
 	document.getElementById("optionsList").style.marginTop='15px';	
 }
 	
-function goBackFunction() {
+function goBackFromOptions() {
 	document.getElementById("preferences").style.padding='10px';
 	document.getElementById("preferences").style.border="2px solid #59568f";
 	document.getElementById("preferences").style.fontSize='26px';
@@ -1026,19 +994,9 @@ function MSSErrorChance() {
 function MSSError() {
 	document.getElementById("sexMenu").style.display='none';
 	document.getElementById("sexMenuError").style.display='block';
-	document.getElementById("errorMessageContainer").style.display = "block";
-	document.getElementById("MSSErrorMessage").style.display = "block";
-	document.getElementById("MSSOkayContainer").style.display = "block";
-	document.getElementById("MSSOkay").style.display = "block";
+	displayNotification(1);
 }
 
-function hideMSSError() {
-	document.getElementById("errorMessageContainer").style.display = "none";
-	document.getElementById("MSSErrorMessage").style.display = "none";
-	document.getElementById("MSSOkayContainer").style.display = "none";	
-	document.getElementById("MSSOkay").style.display = "none";	
-}
- 
 function saveCurrentSpecies() {
 	var settingSpecies = document.getElementById('speciesChoice').value 
 	localStorage.setItem("Slot0_Species", settingSpecies);	 
@@ -5150,4 +5108,64 @@ function wipeCurrentAppState() {
 	localStorage.removeItem("Slot0_Custom_Checkbox1_Enabled");
 	localStorage.removeItem("Slot0_Custom_Checkbox2_Enabled");
 	localStorage.removeItem("Slot0_Custom_Checkbox3_Enabled");	
+}
+
+function displayNotification(x, presetName) {
+	var notification;
+	// 0 - Remote Login Error
+	// 1 - Multi Sex Select Error
+	// 2 - Error69
+	// 3 - Unblock Settings Error (when user tries to load/import preset when settings are locked)
+	// 4 - Low Battery Notification
+	// 5 - Preset Loaded Notification
+	// 6 - Empty Slot Error
+	
+	// Clear notification log when error occurs
+	if (x == 0 || x == 1 || x == 2) {
+		document.getElementById('notificationContent').innerHTML = "&nbsp;";
+	}
+	
+	if (x == 0) {
+		notification = ">Remote login enabled... <br> >Setting sex = female <br> >Setting shy = 100 <br> >Setting tall = 0 <br>	>Setting submissive = 100 <br> 	>Setting fluffiness = 100 <br> 	>Lock settings enabled <br> 	>Default profile settings saved <br> >New password saved..."
+	}
+	if (x == 1) {
+		notification = "<center>UwU <br> >Error//multi_sex_select <br> >processing...<br> <br> Please contact Switcher-Roo support</center>"
+	}
+	if (x == 2) {
+		notification = "<center>UwU</center> <br> >Error69//lock_settings <br> >lock_setting1 initialized"
+	}
+	if (x == 3) {
+		notification = ">Error: Please unblock the app to load/import preset"
+	}
+	if (x == 4) {
+		var chance = localStorage.getItem("Battery_Drain_Error_Chance");
+		var interval = localStorage.getItem("Battery_Drain_Error_Interval");
+		if (chance == null) { chance = 100; }
+		if (interval != null) { interval = interval / 1000; }
+		if (interval == null) { interval = 20; }
+		notification = ">Your battery is low. Click Switcher-Roo logo or there will be 3 in " + chance + " chance every " + interval + " seconds that error will occur."
+	}
+	if (x == 5) {
+		notification = ">Preset loaded:" + " " + presetName;
+	}
+	if (x == 6) {
+		notification = ">Error: This slot is empty"
+	}
+	
+	
+	var notificationHistory = document.getElementById('notificationContent').innerHTML;
+	if (notificationHistory === "&nbsp;") { 
+		document.getElementById('notificationContent').innerHTML = notification;
+		}
+	else {
+		document.getElementById('notificationContent').innerHTML = notificationHistory + "<br>" + notification;
+	}
+	
+	
+	document.getElementById('notificationContainer').style.display = "block";
+}
+
+function closeNotification(x) {
+	document.getElementById('notificationContent').innerHTML = "&nbsp;";
+	document.getElementById('notificationContainer').style.display = "none";
 }

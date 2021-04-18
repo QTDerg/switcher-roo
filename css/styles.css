@@ -318,134 +318,32 @@ div {
 	opacity: 1;
 }
 
-.errorMessageContainer {
+.notification-container {
+	z-index: 1;
+	position: absolute;
+	top: 70px;
+	width: 354px;
+}
+.notification-content {
 	background-color: #E8E8EA;
-	color: #000000;
-	z-index: 1;
-	position: absolute;
-	width: 354px;
+	color: #000000;	
+	width: 100%;
 	margin-left: auto;
-	margin-right: auto;
-	top: 70px;
+	margin-right: auto;	
 	opacity: 0.9;
-}
-.errorMessageAlignLeft {
-	z-index: 1;
-	margin-left: 10px;
-	margin-top: 2px;
-	margin-bottom: 10px;
-}
-.errorMessageAlignCenter {
-	z-index: 1;
-	margin-left: 10px;
-	margin-top: 2px;
-	margin-bottom: 10px;
-	text-align: center;
+	padding: 8px;
+	float: left;
+	box-sizing: border-box;
+	transition-duration: 0.5s;
 }
 
-.RLEOkayContainer {
-	background-color: #ffffff;
-	color: #000000;
-	z-index: 1;
-	position: absolute;
-	width: 354px;
-	margin-left: auto;
-	margin-right: auto;	
-	top: 287px;
-	opacity: 0.8;
-}
-
-.MSSOkayContainer {
-	background-color: #ffffff;
-	color: #000000;
-	z-index: 1;
-	position: absolute;
-	width: 354px;
-	margin-left: auto;
-	margin-right: auto;	
-	top: 193px;
-	opacity: 0.8;
-}
-
-.unblockSettingsOkayContainer {
-	background-color: #ffffff;
-	color: #000000;
-	z-index: 1;
-	position: absolute;
-	width: 354px;
-	margin-left: auto;
-	margin-right: auto;
-	top: 130px;
-	opacity: 0.8;
-}
-
-.error69OkayContainer {
-	background-color: #ffffff;
-	color: #000000;
-	z-index: 1;
-	position: absolute;
-	width: 354px;
-	margin-left: auto;
-	margin-right: auto;
-	top: 172px;
-	opacity: 0.8;
-}
-
-.lowBatteryOkayContainer {
-	background-color: #ffffff;
-	color: #000000;
-	z-index: 1;
-	position: absolute;
-	width: 354px;
-	margin-left: auto;
-	margin-right: auto;
-	top: 150px;
-	opacity: 0.8;
-}
-
-.mobileDeviceOkayContainer {
-	background-color: #ffffff;
-	color: #000000;
-	z-index: 1;
-	position: absolute;
-	width: 354px;
-	margin-left: auto;
-	margin-right: auto;
-	top: 192px;
-	opacity: 0.8;
-}
-
-.okay {
-	z-index: 1;
-	margin-left: 10px;
-	margin-top: 8px;
-	margin-bottom: 8px;
-	text-align: center;
-	cursor: pointer;
-}
-
-.settingsLoadedPopup {
-	background-color: #ffffff;
-	color: #000000;
-	z-index: 1;
-	position: absolute;
-	width: 354px;
-	margin-left: auto;
-	margin-right: auto;
-	left: 0;
-	right: 0;	
-	top: 70px;
-	opacity: 0.8;
-	font-size: 18px;
+.notification-content:hover {
+	opacity: 1;
 }
 
 .error621 {
 	text-align: center;
 	border-bottom: 1px solid #fff;	
-}
-
-.logOutMessage {
-	text-align: center;
 }
 
 /* width */
