@@ -350,14 +350,12 @@ function saveSettings(x) {
 	
 	var presetNameLocked = localStorage.getItem("Slot" + x + "_Preset_Name_Locked");	
 	if (presetNameLocked != "Yes") {
-		localStorage.setItem("Slot" + x + "_Preset_Name", settingSex + " " + settingSpecies);
+		localStorage.setItem("Slot" + x + "_Preset_Name", settingSex + " " + species);
 	}	
 	var presetName = localStorage.getItem("Slot" + x + "_Preset_Name");
 	
-	document.getElementById("settingsLoadedPopup").style.display = "block";	
-	document.getElementById('settingsLoadedPopup').innerHTML = ">Preset Saved:" + " " + presetName;
+	displayNotification(55, presetName);
 	checkSlots();
-	setTimeout(hideLoadedPopup, 4000);
  }
    
 function loadSettings(x) {
@@ -752,8 +750,7 @@ function loadSettings(x) {
 		
 		var presetName = localStorage.getItem("Slot" + x + "_Preset_Name");
 		displayNotification(5, presetName);
-		saveSettingsSlot0();
-		setTimeout(hideLoadedPopup, 4000);			
+		saveSettingsSlot0();		
 		}
 	}
 }

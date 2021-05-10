@@ -5118,6 +5118,7 @@ function displayNotification(x, presetName) {
 	// 3 - Unblock Settings Error (when user tries to load/import preset when settings are locked)
 	// 4 - Low Battery Notification
 	// 5 - Preset Loaded Notification
+	// 55 - Preset Saved Notification
 	// 6 - Empty Slot Error
 	
 	// Clear notification log when error occurs
@@ -5147,6 +5148,9 @@ function displayNotification(x, presetName) {
 	}
 	if (x == 5) {
 		notification = ">Preset loaded:" + " " + presetName;
+	}
+	if (x == 55) {
+		notification = ">Preset saved:" + " " + presetName;
 	}
 	if (x == 6) {
 		notification = ">Error: This slot is empty"
