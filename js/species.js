@@ -66,292 +66,37 @@ function setSpeciesTo(Species) {
 	showProcessingAnimation();
 }
 
-function setSpeciesToCustom(slotNumber) {
-	if (slotNumber === "Slot_One") {
-		var Species = document.getElementById('speciesEntryCustom1').innerHTML;		
-	}
-	if (slotNumber === "Slot_Two") {
-		var Species = document.getElementById('speciesEntryCustom2').innerHTML;		
-	}
-	if (slotNumber === "Slot_Three") {
-		var Species = document.getElementById('speciesEntryCustom3').innerHTML;		
-	}
-	if (slotNumber === "Slot_Four") {
-		var Species = document.getElementById('speciesEntryCustom4').innerHTML;		
-	}
-	if (slotNumber === "Slot_Five") {
-		var Species = document.getElementById('speciesEntryCustom5').innerHTML;		
-	}
-	if (slotNumber === "Slot_Six") {
-		var Species = document.getElementById('speciesEntryCustom6').innerHTML;		
-	}
-	if (slotNumber === "Slot_Seven") {
-		var Species = document.getElementById('speciesEntryCustom7').innerHTML;		
-	}
-	if (slotNumber === "Slot_Eight") {
-		var Species = document.getElementById('speciesEntryCustom8').innerHTML;		
-	}
-	if (slotNumber === "Slot_Nine") {
-		var Species = document.getElementById('speciesEntryCustom9').innerHTML;		
-	}
-	if (slotNumber === "Slot_Ten") {
-		var Species = document.getElementById('speciesEntryCustom10').innerHTML;		
-	}
+function setSpeciesToCustom(x) {
+	var Species = document.getElementById("speciesEntryCustom" + x).innerHTML;
 	setSpeciesTo(Species);
 }
 
 function loadCustomSpeciesOnStartup() {
-	var species1 = localStorage.getItem("Custom_Species_Slot1");
-	var species2 = localStorage.getItem("Custom_Species_Slot2");
-	var species3 = localStorage.getItem("Custom_Species_Slot3");
-	var species4 = localStorage.getItem("Custom_Species_Slot4");
-	var species5 = localStorage.getItem("Custom_Species_Slot5");
-	var species6 = localStorage.getItem("Custom_Species_Slot6");
-	var species7 = localStorage.getItem("Custom_Species_Slot7");
-	var species8 = localStorage.getItem("Custom_Species_Slot8");
-	var species9 = localStorage.getItem("Custom_Species_Slot9");
-	var species10 = localStorage.getItem("Custom_Species_Slot10");
-	
-	if (species1 === null) {
-		species1 = "Empty";
+	var x;
+	for (x = 1; x < 11; x++) {
+		var species = localStorage.getItem("Custom_Species_Slot" + x);
+		if (species === null) { species = "Empty" }
+		document.getElementById("customSpeciesName" + x).innerHTML = "Slot " + x + " - " + species;
+		document.getElementById("speciesEntryCustom" + x).innerHTML = species;
 	}
-	if (species2 === null) {
-		species2 = "Empty";
+}
+
+function setCustomSpecies(x) {
+	var species = document.getElementById("customSpeciesSlot" + x + "TextField").value;
+	localStorage.setItem("Custom_Species_Slot" + x, species);
+	document.getElementById("customSpeciesName" + x).innerHTML = "Slot " + x + " - " + species;
+	document.getElementById("speciesEntryCustom" + x).innerHTML = species;
+}
+
+function switchToCustomSpeciesSet(x) {
+	if (x == 1) {
+		document.getElementById("customSpeciesSet1Container").style.display = "block";
+		document.getElementById("customSpeciesSet2Container").style.display = "none";
 	}
-	if (species3 === null) {
-		species3 = "Empty";
+	else {
+		document.getElementById("customSpeciesSet1Container").style.display = "none";
+		document.getElementById("customSpeciesSet2Container").style.display = "block";
 	}
-	if (species4 === null) {
-		species4 = "Empty";
-	}
-	if (species5 === null) {
-		species5 = "Empty";
-	}
-	if (species6 === null) {
-		species6 = "Empty";
-	}
-	if (species7 === null) {
-		species7 = "Empty";
-	}
-	if (species8 === null) {
-		species8 = "Empty";
-	}
-	if (species9 === null) {
-		species9 = "Empty";
-	}
-	if (species10 === null) {
-		species10 = "Empty";
-	}
-	
-	document.getElementById('customSpeciesName1').innerHTML = species1;
-	document.getElementById('speciesEntryCustom1').innerHTML = species1;
-	
-	document.getElementById('customSpeciesName2').innerHTML = species2;
-	document.getElementById('speciesEntryCustom2').innerHTML = species2;
-	
-	document.getElementById('customSpeciesName3').innerHTML = species3;
-	document.getElementById('speciesEntryCustom3').innerHTML = species3;
-	
-	document.getElementById('customSpeciesName4').innerHTML = species4;
-	document.getElementById('speciesEntryCustom4').innerHTML = species4;
-	
-	document.getElementById('customSpeciesName5').innerHTML = species5;
-	document.getElementById('speciesEntryCustom5').innerHTML = species5;
-	
-	document.getElementById('customSpeciesName6').innerHTML = species6;
-	document.getElementById('speciesEntryCustom6').innerHTML = species6;
-	
-	document.getElementById('customSpeciesName7').innerHTML = species7;
-	document.getElementById('speciesEntryCustom7').innerHTML = species7;
-	
-	document.getElementById('customSpeciesName8').innerHTML = species8;
-	document.getElementById('speciesEntryCustom8').innerHTML = species8;
-	
-	document.getElementById('customSpeciesName9').innerHTML = species9;
-	document.getElementById('speciesEntryCustom9').innerHTML = species9;
-	
-	document.getElementById('customSpeciesName10').innerHTML = species10;
-	document.getElementById('speciesEntryCustom10').innerHTML = species10;
-}
-
-function changeCSSlot1() {
-	document.getElementById("CSContainerSlot11").style.display='none'; 
-	document.getElementById("CSContainerSlot12").style.display='block'; 
-}
-
-function goBackCSSlot1() {
-	document.getElementById("CSContainerSlot11").style.display='block'; 
-	document.getElementById("CSContainerSlot12").style.display='none'; 
-}
-
-function changeCSSlot2() {
-	document.getElementById("CSContainerSlot21").style.display='none'; 
-	document.getElementById("CSContainerSlot22").style.display='block'; 
-}
-
-function goBackCSSlot2() {
-	document.getElementById("CSContainerSlot21").style.display='block'; 
-	document.getElementById("CSContainerSlot22").style.display='none'; 
-}
-
-function changeCSSlot3() {
-	document.getElementById("CSContainerSlot31").style.display='none'; 
-	document.getElementById("CSContainerSlot32").style.display='block'; 
-}
-
-function goBackCSSlot3() {
-	document.getElementById("CSContainerSlot31").style.display='block'; 
-	document.getElementById("CSContainerSlot32").style.display='none'; 
-}
-
-function changeCSSlot4() {
-	document.getElementById("CSContainerSlot41").style.display='none'; 
-	document.getElementById("CSContainerSlot42").style.display='block'; 
-}
-
-function goBackCSSlot4() {
-	document.getElementById("CSContainerSlot41").style.display='block'; 
-	document.getElementById("CSContainerSlot42").style.display='none'; 
-}
-
-function changeCSSlot5() {
-	document.getElementById("CSContainerSlot51").style.display='none'; 
-	document.getElementById("CSContainerSlot52").style.display='block'; 
-}
-
-function goBackCSSlot5() {
-	document.getElementById("CSContainerSlot51").style.display='block'; 
-	document.getElementById("CSContainerSlot52").style.display='none'; 
-}
-
-function changeCSSlot6() {
-	document.getElementById("CSContainerSlot61").style.display='none'; 
-	document.getElementById("CSContainerSlot62").style.display='block'; 
-}
-
-function goBackCSSlot6() {
-	document.getElementById("CSContainerSlot61").style.display='block'; 
-	document.getElementById("CSContainerSlot62").style.display='none'; 
-}
-
-function changeCSSlot7() {
-	document.getElementById("CSContainerSlot71").style.display='none'; 
-	document.getElementById("CSContainerSlot72").style.display='block'; 
-}
-
-function goBackCSSlot7() {
-	document.getElementById("CSContainerSlot71").style.display='block'; 
-	document.getElementById("CSContainerSlot72").style.display='none'; 
-}
-
-function changeCSSlot8() {
-	document.getElementById("CSContainerSlot81").style.display='none'; 
-	document.getElementById("CSContainerSlot82").style.display='block'; 
-}
-
-function goBackCSSlot8() {
-	document.getElementById("CSContainerSlot81").style.display='block'; 
-	document.getElementById("CSContainerSlot82").style.display='none'; 
-}
-
-function changeCSSlot9() {
-	document.getElementById("CSContainerSlot91").style.display='none'; 
-	document.getElementById("CSContainerSlot92").style.display='block'; 
-}
-
-function goBackCSSlot9() {
-	document.getElementById("CSContainerSlot91").style.display='block'; 
-	document.getElementById("CSContainerSlot92").style.display='none'; 
-}
-
-function changeCSSlot10() {
-	document.getElementById("CSContainerSlot101").style.display='none'; 
-	document.getElementById("CSContainerSlot102").style.display='block'; 
-}
-
-function goBackCSSlot10() {
-	document.getElementById("CSContainerSlot101").style.display='block'; 
-	document.getElementById("CSContainerSlot102").style.display='none'; 
-}
-
-function setCSSlot1() {
-	var species = document.getElementById("customSpeciesSlot1TextField").value;
-	localStorage.setItem("Custom_Species_Slot1", species);
-	document.getElementById('customSpeciesName1').innerHTML = species;
-	document.getElementById('speciesEntryCustom1').innerHTML = species;
-	goBackCSSlot1();
-}
-
-function setCSSlot2() {
-	var species = document.getElementById("customSpeciesSlot2TextField").value;
-	localStorage.setItem("Custom_Species_Slot2", species);
-	document.getElementById('customSpeciesName2').innerHTML = species;
-	document.getElementById('speciesEntryCustom2').innerHTML = species;
-	goBackCSSlot2();
-}
-
-function setCSSlot3() {
-	var species = document.getElementById("customSpeciesSlot3TextField").value;
-	localStorage.setItem("Custom_Species_Slot3", species);
-	document.getElementById('customSpeciesName3').innerHTML = species;
-	document.getElementById('speciesEntryCustom3').innerHTML = species;
-	goBackCSSlot3();
-}
-
-function setCSSlot4() {
-	var species = document.getElementById("customSpeciesSlot4TextField").value;
-	localStorage.setItem("Custom_Species_Slot4", species);
-	document.getElementById('customSpeciesName4').innerHTML = species;
-	document.getElementById('speciesEntryCustom4').innerHTML = species;
-	goBackCSSlot4();
-}
-
-function setCSSlot5() {
-	var species = document.getElementById("customSpeciesSlot5TextField").value;
-	localStorage.setItem("Custom_Species_Slot5", species);
-	document.getElementById('customSpeciesName5').innerHTML = species;
-	document.getElementById('speciesEntryCustom5').innerHTML = species;
-	goBackCSSlot5();
-}
-
-function setCSSlot6() {
-	var species = document.getElementById("customSpeciesSlot6TextField").value;
-	localStorage.setItem("Custom_Species_Slot6", species);
-	document.getElementById('customSpeciesName6').innerHTML = species;
-	document.getElementById('speciesEntryCustom6').innerHTML = species;
-	goBackCSSlot6();
-}
-
-function setCSSlot7() {
-	var species = document.getElementById("customSpeciesSlot7TextField").value;
-	localStorage.setItem("Custom_Species_Slot7", species);
-	document.getElementById('customSpeciesName7').innerHTML = species;
-	document.getElementById('speciesEntryCustom7').innerHTML = species;
-	goBackCSSlot7();
-}
-
-function setCSSlot8() {
-	var species = document.getElementById("customSpeciesSlot8TextField").value;
-	localStorage.setItem("Custom_Species_Slot8", species);
-	document.getElementById('customSpeciesName8').innerHTML = species;
-	document.getElementById('speciesEntryCustom8').innerHTML = species;
-	goBackCSSlot8();
-}
-
-function setCSSlot9() {
-	var species = document.getElementById("customSpeciesSlot9TextField").value;
-	localStorage.setItem("Custom_Species_Slot9", species);
-	document.getElementById('customSpeciesName9').innerHTML = species;
-	document.getElementById('speciesEntryCustom9').innerHTML = species;
-	goBackCSSlot9();
-}
-
-function setCSSlot10() {
-	var species = document.getElementById("customSpeciesSlot10TextField").value;
-	localStorage.setItem("Custom_Species_Slot10", species);
-	document.getElementById('customSpeciesName10').innerHTML = species;
-	document.getElementById('speciesEntryCustom10').innerHTML = species;
-	goBackCSSlot10();
 }
 
 function goToMostPopularCategory() {

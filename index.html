@@ -14,7 +14,7 @@
 <meta name="author" content="qtderg">
 
 <link rel='manifest' href='/switcher-roo/manifest.webmanifest'>
-<link rel="stylesheet" href="css/styles.css?v=1.0">  
+<link rel="stylesheet" href="css/styles.css?v=1.1">  
 <link rel="stylesheet" type="text/css" href="css/dhtmlxslider.css" id="defaultcss"/>
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="apple-touch-icon" href="images/touch-icon-iphone.png">
@@ -23,20 +23,20 @@
 <link rel="apple-touch-icon" sizes="167x167" href="images/touch-icon-ipad-retina.png">
 
 <script src="js/dhtmlxslider.js"></script>
-<script src="js/switcheroo.js"></script>
-<script src="js/saveSlots.js"></script>
-<script src="js/slot0.js"></script>
-<script src="js/species.js"></script>
-<script src="js/inanimateObjects.js"></script>
-<script src="js/ppTypes.js"></script>
+<script src="js/switcheroo.js?v=1.0.0"></script>
+<script src="js/saveSlots.js?v=1.0.0"></script>
+<script src="js/slot0.js?v=1.0.0"></script>
+<script src="js/species.js?v=1.0.0"></script>
+<script src="js/inanimateObjects.js?v=1.0.0"></script>
+<script src="js/ppTypes.js?v=1.0.0"></script>
 <script src="js/iro.min.js"></script>
 <script src="js/color-scheme.min.js"></script>
 <script src="js/peerjs.min.js"></script>
-<script src="js/CONTROL.JS"></script>
-<script src="js/appStatus.js"></script>
-<script src="js/creativeMode.js"></script>
-<script src="js/charViz.js"></script>
-<script src="js/randomizer.js"></script>
+<script src="js/CONTROL.JS?v=1.0.0"></script>
+<script src="js/appStatus.js?v=1.0.0"></script>
+<script src="js/creativeMode.js?v=1.0.0"></script>
+<script src="js/charViz.js?v=1.0.0"></script>
+<script src="js/randomizer.js?v=1.0.0"></script>
 <script src="pwabuilder-sw.js"></script>
 <script>
 // This is the "Offline copy of pages" service worker
@@ -70,44 +70,27 @@ if ("serviceWorker" in navigator) {
   gtag('config', 'UA-156546863-1');
 </script>
  
-<script>
-
-function changeRadioButtonAppearance() {
-		document.getElementById('radioButtonStyle').href='css/radio_button_style_error.css';
-	}
- 
-function error621ChangeSlider() {
-		document.getElementById('defaultcss').href='css/dhtmlxslider_error.css';
-	}
-	
-</script>
-
 </head>
 
 <body>
 
 <div class="appWidthContainer" id="appWidthContainer">
 
+<div class="desktop-mode-container">
+
 <div class="notification-container" id="notificationContainer" style="display:none">
 
 	<div class="notification-content" id="notificationContent">&nbsp;</div>
 	
-	<div class="notification-content" style="margin-top:5px;text-align:center;cursor:pointer;" onClick=closeNotification()>
+	<div class="notification-content" style="margin-top:5px;text-align:center;cursor:pointer;" onClick="closeNotification()">
 		Okay
 	</div>
 	
 </div>
 
 <!-- Second slider handle for error 621 --> 
-<div class="secondSliderHandleContainer" id="secondSliderHandleContainer">
-	<div class="secondSliderHandle" id="secondSliderHandle">	
-		<script>
-		document.getElementById("secondSliderHandle").style.display = "none";	
-		</script>
-	</div>
-	<script>
-		document.getElementById("secondSliderHandleContainer").style.display = "none";	
-	</script>
+<div class="secondSliderHandleContainer" id="secondSliderHandleContainer" style="display:none">
+	<div class="secondSliderHandle" id="secondSliderHandle" style="display:none"></div>
 </div>
 
 <!-- Status bar stuff begins here-->
@@ -120,86 +103,69 @@ function error621ChangeSlider() {
 			<img src="images/coverage_4.png" height="16" width="52">
 		</div>
 		
-		<div id="coverage3">
+		<div id="coverage3" style="display:none">
 			<img src="images/coverage_3.png" height="16" width="52">
 		</div>
 		
-		<div id="coverage2">
+		<div id="coverage2" style="display:none">
 			<img src="images/coverage_2.png" height="16" width="52">
 		</div>
 		
-		<div id="coverage1">
+		<div id="coverage1" style="display:none">
 			<img src="images/coverage_1.png" height="16" width="52">
 		</div>
 		
-		<script>
-		document.getElementById("coverage3").style.display = "none";	
-		document.getElementById("coverage2").style.display = "none";	
-		document.getElementById("coverage1").style.display = "none";	
+		<script>	
 		changeCoverageWait();
 		</script>		
 		
 	</div>
 	
 	<div class="currentTime" id="currentTime">
-	6:21 PM	
+		6:21 PM	
 	</div>	
 	
-	<div class="welcomeUserMessage" id="welcomeUserMessage">
-	Notices your bulge *OwO*
-		<script>
-		document.getElementById("welcomeUserMessage").style.display = "none";	
-		</script>		
+	<div class="welcomeUserMessage" id="welcomeUserMessage" style="display:none">
+		Notices your bulge *OwO*		
 	</div>	
-				
+	
 	<div class="batteryContainer" onClick="batteryCharge()">		
 		
 		<div id="battery_full">
 			<img src="images/battery_full.png" height="14" width="40" align="right">
 		</div>
 		
-		<div id="battery_34">
+		<div id="battery_34" style="display:none">
 			<img src="images/battery_34.png" height="14" width="40" align="right">
 		</div>
 		
-		<div id="battery_half">
+		<div id="battery_half" style="display:none">
 			<img src="images/battery_half.png" height="14" width="40" align="right">
 		</div>
 		
-		<div id="battery_14">
+		<div id="battery_14" style="display:none">
 			<img src="images/battery_14.png" height="14" width="40" align="right">
 		</div>
 		
-		<div id="battery_low">
+		<div id="battery_low" style="display:none">
 			<img src="images/battery_low.png" height="14" width="40" align="right">
 		</div>
 		
-		<div id="battery_34_charging">
+		<div id="battery_34_charging" style="display:none">
 			<img src="images/battery_34_charging.png" height="14" width="40" align="right">
 		</div>
 		
-		<div id="battery_half_charging">
+		<div id="battery_half_charging" style="display:none">
 			<img src="images/battery_half_charging.png" height="14" width="40" align="right">
 		</div>
 		
-		<div id="battery_14_charging">
+		<div id="battery_14_charging" style="display:none">
 			<img src="images/battery_14_charging.png" height="14" width="40" align="right">
 		</div>
 		
-		<div id="battery_low_charging">
+		<div id="battery_low_charging" style="display:none">
 			<img src="images/battery_low_charging.png" height="14" width="40" align="right">
 		</div>
-		
-		<script>
-		document.getElementById("battery_low").style.display = "none";
-		document.getElementById("battery_14").style.display = "none";
-		document.getElementById("battery_half").style.display = "none";
-		document.getElementById("battery_34").style.display = "none";
-		document.getElementById("battery_low_charging").style.display = "none";
-		document.getElementById("battery_14_charging").style.display = "none";
-		document.getElementById("battery_half_charging").style.display = "none";
-		document.getElementById("battery_34_charging").style.display = "none";
-		</script>
 		
 	</div>
 
@@ -211,11 +177,8 @@ function error621ChangeSlider() {
   <img id="switcherLogo" src="images/logo.png" height="41" width="250" alt="logo"> 
 </div>
   
-  <div class="adminPerms" id="adminPermsText">
-  ADMINISTRATOR PERMISSIONS: ENABLED
-	<script>
-	document.getElementById("adminPermsText").style.display = "none";
-	</script>
+  <div class="adminPerms" id="adminPermsText" style="display:none">
+	ADMINISTRATOR PERMISSIONS: ENABLED
   </div>  
   
   <div class="processingText" id="processingText">
@@ -224,58 +187,49 @@ function error621ChangeSlider() {
   
 <div class="container2" id="container2">
 	<div class="lockSettingsImgOpen" id="lockOpen" onclick="closeLock()">
-	<img src="images/lockOpen.png" height="37" width="23"> 
+		<img src="images/lockOpen.png" height="37" width="23"> 
 	</div>
 	
-	<div class="lockSettingsImgClosed" id="lockClosed" onclick="openLockStage1()">
-	<script>
-		document.getElementById("lockClosed").style.display = "none";
-	</script>
-	<img src="images/lockClosed.png" height="37" width="23"> 
+	<div class="lockSettingsImgClosed" id="lockClosed" onclick="openLockStage1()" style="display:none">
+		<img src="images/lockClosed.png" height="37" width="23"> 
 	</div>
   
-	<div class="lockSettings" id="lockSettings" onclick="switchLockFunction()">
+	<div class="lockSettings" id="lockSettings" onClick="switchLock()">
 		Lock settings
 	</div>
 	
-	<div class="lockSettingsPasswordAndButtonContainer" id="lockSettingsPasswordAndButtonContainer">
+	<div class="lockSettingsPasswordAndButtonContainer" id="lockSettingsPasswordAndButtonContainer" style="display:none">
 		
 		<div class="smallButton" onClick="openLockStage2()">Proceed</div>
 		<input id="passwordTextFieldOpenLock" class="mediumTextField" value="" style="font-size:16px;padding:2px;margin-top:3px;margin-left:6px;width:68%;">
 		
 	</div>
-	
-	<script>
-		document.getElementById("lockSettingsPasswordAndButtonContainer").style.display = "none";
-	</script>
-  
+	  
 	<div class="processingContainer">  
-			<div class="processingAnim" id="processingAnim">
-			
+		<div class="processingAnim" id="processingAnim">
+		
 			<div id="newProcessingAnimation" style="text-align:center">
-			<!--
-			<div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-			-->
-			<div class="sk-chase">
-				<div class="sk-chase-dot"></div>
-				<div class="sk-chase-dot"></div>
-				<div class="sk-chase-dot"></div>
-				<div class="sk-chase-dot"></div>
-				<div class="sk-chase-dot"></div>
-				<div class="sk-chase-dot"></div>
+				<div class="sk-chase">
+					<div class="sk-chase-dot"></div>
+					<div class="sk-chase-dot"></div>
+					<div class="sk-chase-dot"></div>
+					<div class="sk-chase-dot"></div>
+					<div class="sk-chase-dot"></div>
+					<div class="sk-chase-dot"></div>
+				</div>
 			</div>
-			</div>
+			
 			<div id="oldProcessingAnimation" style="text-align:center">
-			<img src="images/animation.png" class="rotate" height="50" width="50">
+				<img src="images/animation.png" class="rotate" height="50" width="50">
 			</div>
+			
 			<script>
 			document.getElementById("processingAnim").style.display = "none";
 			document.getElementById("newProcessingAnimation").style.display = "none";
 			</script>
 			
-			</div>
-  
-	</div>
+		</div>
+  	</div>
   
 	<div class="logOut">
 	Log out&nbsp;&nbsp;</a>
@@ -318,7 +272,7 @@ function error621ChangeSlider() {
                                                     
 		-->
 		
-		<div class="speciesCategorySelectorContainer" id="speciesCategorySelectorContainer">
+		<div class="speciesCategorySelectorContainer" id="speciesCategorySelectorContainer" style="display:none">
 		
 			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromCategoryList();"><div class="speciesCategoryText">Go Back</div></div>
 			<div class="speciesCategory" id="speciesCategory" onClick="goToMostPopularCategory();"><div class="speciesCategoryText">Most Popular</div></div>
@@ -349,7 +303,7 @@ function error621ChangeSlider() {
                                    |_|                       
 		-->
 		
-		<div class="speciesSelector" id="speciesSelectorMostPopular">
+		<div class="speciesSelector" id="speciesSelectorMostPopular" style="display:none">
 		
 			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromMostPopularCategory();"><div class="speciesCategoryText">Go Back</div></div>
 			<div class="speciesCategoryButtonEnd"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -395,22 +349,22 @@ function error621ChangeSlider() {
                                     
 		-->
 		
-		<div class="speciesSelector" id="speciesSelectorCustom">
+		<div class="speciesSelector" id="speciesSelectorCustom" style="display:none">
 		
 			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromCustomCategory();"><div class="speciesCategoryText">Go Back</div></div>
 			<div class="speciesCategoryButton" onClick="goToMostPopularCategoryFromCustom();"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
 			<div class="speciesCategoryName"><div class="categoryText">Custom</div></div>
 			<div class="speciesCategoryButton" onClick="goToAvianCategoryFromCustom();"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
-			<div class="speciesEntryLeft" id="speciesEntryCustom1" onClick="setSpeciesToCustom('Slot_One');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryRight" id="speciesEntryCustom2" onClick="setSpeciesToCustom('Slot_Two');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryLeft" id="speciesEntryCustom3" onClick="setSpeciesToCustom('Slot_Three');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryRight" id="speciesEntryCustom4" onClick="setSpeciesToCustom('Slot_Four');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryLeft" id="speciesEntryCustom5" onClick="setSpeciesToCustom('Slot_Five');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryRight" id="speciesEntryCustom6" onClick="setSpeciesToCustom('Slot_Six');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryLeft" id="speciesEntryCustom7" onClick="setSpeciesToCustom('Slot_Seven');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryRight" id="speciesEntryCustom8" onClick="setSpeciesToCustom('Slot_Eight');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryLeftLast" id="speciesEntryCustom9" onClick="setSpeciesToCustom('Slot_Nine');"><div class="speciesEntryText">Empty</div></div>
-			<div class="speciesEntryRightLast" id="speciesEntryCustom10" onClick="setSpeciesToCustom('Slot_Ten');"><div class="speciesEntryText">Empty</div></div>			
+			<div class="speciesEntryLeft" id="speciesEntryCustom1" onClick="setSpeciesToCustom(1);"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryRight" id="speciesEntryCustom2" onClick="setSpeciesToCustom(2);"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryLeft" id="speciesEntryCustom3" onClick="setSpeciesToCustom(3);"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryRight" id="speciesEntryCustom4" onClick="setSpeciesToCustom(4);"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryLeft" id="speciesEntryCustom5" onClick="setSpeciesToCustom(5);"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryRight" id="speciesEntryCustom6" onClick="setSpeciesToCustom(6);"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryLeft" id="speciesEntryCustom7" onClick="setSpeciesToCustom(7);"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryRight" id="speciesEntryCustom8" onClick="setSpeciesToCustom(8);"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryLeftLast" id="speciesEntryCustom9" onClick="setSpeciesToCustom(9);"><div class="speciesEntryText">Empty</div></div>
+			<div class="speciesEntryRightLast" id="speciesEntryCustom10" onClick="setSpeciesToCustom(10);"><div class="speciesEntryText">Empty</div></div>			
 			
 		</div>
 		
@@ -423,7 +377,7 @@ function error621ChangeSlider() {
                             
 		-->
 		
-		<div class="speciesSelector" id="speciesSelectorAvian">
+		<div class="speciesSelector" id="speciesSelectorAvian" style="display:none">
 		
 			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromAvianCategory();"><div class="speciesCategoryText">Go Back</div></div>
 			<div class="speciesCategoryButton" onClick="goToCustomCategoryFromAvian();"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -451,7 +405,7 @@ function error621ChangeSlider() {
                                 
 		-->
 		
-		<div class="speciesSelector" id="speciesSelectorBovine">
+		<div class="speciesSelector" id="speciesSelectorBovine" style="display:none">
 		
 			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromBovineCategory();"><div class="speciesCategoryText">Go Back</div></div>
 			<div class="speciesCategoryButton" onClick="goToAvianCategoryFromBovine();"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -473,7 +427,7 @@ function error621ChangeSlider() {
                                 
 		-->
 		
-		<div class="speciesSelector" id="speciesSelectorCanine">
+		<div class="speciesSelector" id="speciesSelectorCanine" style="display:none">
 		
 			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromCanineCategory();"><div class="speciesCategoryText">Go Back</div></div>
 			<div class="speciesCategoryButton" onClick="goToBovineCategoryFromCanine();"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -503,7 +457,7 @@ function error621ChangeSlider() {
                                     
 		-->
 		
-		<div class="speciesSelector" id="speciesSelectorCervine">
+		<div class="speciesSelector" id="speciesSelectorCervine" style="display:none">
 		
 			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromCervineCategory();"><div class="speciesCategoryText">Go Back</div></div>
 			<div class="speciesCategoryButton" onClick="goToCanineCategoryFromCervine();"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -525,7 +479,7 @@ function error621ChangeSlider() {
           |_|                   
 		-->
 		
-		<div class="speciesSelector" id="speciesSelectorEquine">
+		<div class="speciesSelector" id="speciesSelectorEquine" style="display:none">
 		
 			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromEquineCategory();"><div class="speciesCategoryText">Go Back</div></div>
 			<div class="speciesCategoryButton" onClick="goToCervineCategoryFromEquine();"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -549,7 +503,7 @@ function error621ChangeSlider() {
                           
 		-->
 		
-		<div class="speciesSelector" id="speciesSelectorFeline">
+		<div class="speciesSelector" id="speciesSelectorFeline" style="display:none">
 		
 			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromFelineCategory();"><div class="speciesCategoryText">Go Back</div></div>
 			<div class="speciesCategoryButton" onClick="goToEquineCategoryFromFeline();"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -581,7 +535,7 @@ function error621ChangeSlider() {
                                          
 		-->
 		
-		<div class="speciesSelector" id="speciesSelectorFictional">
+		<div class="speciesSelector" id="speciesSelectorFictional" style="display:none">
 		
 			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromFictionalCategory();"><div class="speciesCategoryText">Go Back</div></div>
 			<div class="speciesCategoryButton" onClick="goToFelineCategoryFromFictional();"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -611,7 +565,7 @@ function error621ChangeSlider() {
         |___/                    
 		-->
 		
-		<div class="speciesSelector" id="speciesSelectorHybrid">
+		<div class="speciesSelector" id="speciesSelectorHybrid" style="display:none">
 		
 			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromHybridCategory();"><div class="speciesCategoryText">Go Back</div></div>
 			<div class="speciesCategoryButton" onClick="goToFictionalCategoryFromHybrid();"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -637,7 +591,7 @@ function error621ChangeSlider() {
              |___/                           |_|          
 		-->
 		
-		<div class="speciesSelector" id="speciesSelectorLagomorph">
+		<div class="speciesSelector" id="speciesSelectorLagomorph" style="display:none">
 		
 			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromLagomorphCategory();"><div class="speciesCategoryText">Go Back</div></div>
 			<div class="speciesCategoryButton" onClick="goToHybridCategoryFromLagomorph();"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -659,7 +613,7 @@ function error621ChangeSlider() {
                              |_|              
 		-->
 		
-		<div class="speciesSelector" id="speciesSelectorMarsupial">
+		<div class="speciesSelector" id="speciesSelectorMarsupial" style="display:none">
 		
 			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromMarsupialCategory();"><div class="speciesCategoryText">Go Back</div></div>
 			<div class="speciesCategoryButton" onClick="goToLagomorphCategoryFromMarsupial();"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -681,7 +635,7 @@ function error621ChangeSlider() {
                                      
 		-->
 		
-		<div class="speciesSelector" id="speciesSelectorMustelid">
+		<div class="speciesSelector" id="speciesSelectorMustelid" style="display:none">
 		
 			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromMustelidCategory();"><div class="speciesCategoryText">Go Back</div></div>
 			<div class="speciesCategoryButton" onClick="goToMarsupialCategoryFromMustelid();"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -705,7 +659,7 @@ function error621ChangeSlider() {
            |_|                 
 		-->
 		
-		<div class="speciesSelector" id="speciesSelectorReptile">
+		<div class="speciesSelector" id="speciesSelectorReptile" style="display:none">
 		
 			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromReptileCategory();"><div class="speciesCategoryText">Go Back</div></div>
 			<div class="speciesCategoryButton" onClick="goToMustelidCategoryFromReptile();"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -731,7 +685,7 @@ function error621ChangeSlider() {
                                   
 		-->
 		
-		<div class="speciesSelector" id="speciesSelectorRodent">
+		<div class="speciesSelector" id="speciesSelectorRodent" style="display:none">
 		
 			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromRodentCategory();"><div class="speciesCategoryText">Go Back</div></div>
 			<div class="speciesCategoryButton" onClick="goToReptileCategoryFromRodent();"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -755,7 +709,7 @@ function error621ChangeSlider() {
               |___/                       
 		-->
 		
-		<div class="speciesSelector" id="speciesSelectorUngulate">
+		<div class="speciesSelector" id="speciesSelectorUngulate" style="display:none">
 		
 			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromUngulateCategory();"><div class="speciesCategoryText">Go Back</div></div>
 			<div class="speciesCategoryButton" onClick="goToRodentCategoryFromUngulate();"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -769,35 +723,7 @@ function error621ChangeSlider() {
 			<div class="speciesEntryRightLast" onClick="setSpeciesTo('Sheep');"><div class="speciesEntryText">Sheep</div></div>			
 			
 		</div>
-				
-		<!--
-  _   _ _     _                        _        _                                         _             _               
- | | | (_) __| | ___    ___ ___  _ __ | |_ __ _(_)_ __   ___ _ __ ___    ___  _ __    ___| |_ __ _ _ __| |_ _   _ _ __  
- | |_| | |/ _` |/ _ \  / __/ _ \| '_ \| __/ _` | | '_ \ / _ \ '__/ __|  / _ \| '_ \  / __| __/ _` | '__| __| | | | '_ \ 
- |  _  | | (_| |  __/ | (_| (_) | | | | || (_| | | | | |  __/ |  \__ \ | (_) | | | | \__ \ || (_| | |  | |_| |_| | |_) |
- |_| |_|_|\__,_|\___|  \___\___/|_| |_|\__\__,_|_|_| |_|\___|_|  |___/  \___/|_| |_| |___/\__\__,_|_|   \__|\__,_| .__/ 
-                                                                                                                 |_|    
-		-->
-		<script>
-			document.getElementById("speciesCategorySelectorContainer").style.display = "none";
-			document.getElementById("speciesSelectorMostPopular").style.display = "none";
-			document.getElementById("speciesSelectorCustom").style.display = "none";
-			document.getElementById("speciesSelectorAvian").style.display = "none";
-			document.getElementById("speciesSelectorBovine").style.display = "none";
-			document.getElementById("speciesSelectorCanine").style.display = "none";
-			document.getElementById("speciesSelectorCervine").style.display = "none";
-			document.getElementById("speciesSelectorEquine").style.display = "none";
-			document.getElementById("speciesSelectorFeline").style.display = "none";
-			document.getElementById("speciesSelectorFictional").style.display = "none";
-			document.getElementById("speciesSelectorHybrid").style.display = "none";
-			document.getElementById("speciesSelectorLagomorph").style.display = "none";
-			document.getElementById("speciesSelectorMarsupial").style.display = "none";
-			document.getElementById("speciesSelectorMustelid").style.display = "none";
-			document.getElementById("speciesSelectorReptile").style.display = "none";
-			document.getElementById("speciesSelectorRodent").style.display = "none";
-			document.getElementById("speciesSelectorUngulate").style.display = "none";
-		</script>
-	
+
 	</div>
 	
 	<div class="search" id="speciesSearch" onClick="speciesLoadList();">
@@ -808,9 +734,7 @@ function error621ChangeSlider() {
 	
 </div> 
 
-
-
-<div class="menuInanimateObjects" id="inanimateObjectsMenu">
+<div class="menuInanimateObjects" id="inanimateObjectsMenu" style="display:none">
 
 	<div class="speciesText">
 	Inanimate Object
@@ -845,20 +769,36 @@ function error621ChangeSlider() {
                                                              |__/                   
 		-->
 		
-		<div class="speciesCategorySelectorContainer" id="inanimateObjectsSelectorContainer">
+		<div class="speciesCategorySelectorContainer" id="inanimateObjectsSelectorContainer" style="display:none">
 		
 			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromInanimateObjectsList();"><div class="speciesCategoryText">Go Back</div></div>
-			<div class="speciesCategory" id="inanimateObjectEntry1" onClick="setInanimateObjectToCustom('Slot_One');"><div class="speciesCategoryText">Empty</div></div>
-			<div class="speciesCategory" id="inanimateObjectEntry2" onClick="setInanimateObjectToCustom('Slot_Two');"><div class="speciesCategoryText">Empty</div></div>
-			<div class="speciesCategory" id="inanimateObjectEntry3" onClick="setInanimateObjectToCustom('Slot_Three');"><div class="speciesCategoryText">Empty</div></div>
-			<div class="speciesCategory" id="inanimateObjectEntry4" onClick="setInanimateObjectToCustom('Slot_Four');"><div class="speciesCategoryText">Empty</div></div>
-			<div class="speciesCategory" id="inanimateObjectEntry5" onClick="setInanimateObjectToCustom('Slot_Five');"><div class="speciesCategoryText">Empty</div></div>
-			<div class="speciesCategory" id="inanimateObjectEntry6" onClick="setInanimateObjectToCustom('Slot_Six');"><div class="speciesCategoryText">Empty</div></div>
-			<div class="speciesCategory" id="inanimateObjectEntry7" onClick="setInanimateObjectToCustom('Slot_Seven');"><div class="speciesCategoryText">Empty</div></div>
-			<div class="speciesCategory" id="inanimateObjectEntry8" onClick="setInanimateObjectToCustom('Slot_Eight');"><div class="speciesCategoryText">Empty</div></div>
-			<div class="speciesCategory" id="inanimateObjectEntry9" onClick="setInanimateObjectToCustom('Slot_Nine');"><div class="speciesCategoryText">Empty</div></div>
-			<div class="speciesCategory" id="inanimateObjectEntry10" onClick="setInanimateObjectToCustom('Slot_Ten');"><div class="speciesCategoryText">Empty</div></div>
-			<div class="speciesCategoryLast" onClick="funniestShitIveEverSeen();"><div class="speciesCategoryText">Pickle</div></div>
+			<div class="speciesCategory" onClick="inanimateObjectsGoToPredefinedCategory();"><div class="speciesCategoryText">Predefined</div></div>
+			<div class="speciesCategory" id="inanimateObjectEntry1" onClick="setInanimateObjectToCustom(1);"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" id="inanimateObjectEntry2" onClick="setInanimateObjectToCustom(2);"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" id="inanimateObjectEntry3" onClick="setInanimateObjectToCustom(3);"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" id="inanimateObjectEntry4" onClick="setInanimateObjectToCustom(4);"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" id="inanimateObjectEntry5" onClick="setInanimateObjectToCustom(5);"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" id="inanimateObjectEntry6" onClick="setInanimateObjectToCustom(6);"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" id="inanimateObjectEntry7" onClick="setInanimateObjectToCustom(7);"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" id="inanimateObjectEntry8" onClick="setInanimateObjectToCustom(8);"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" id="inanimateObjectEntry9" onClick="setInanimateObjectToCustom(9);"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" id="inanimateObjectEntry10" onClick="setInanimateObjectToCustom(10);"><div class="speciesCategoryText">Empty</div></div>
+			
+		</div>
+		
+		<div class="speciesCategorySelectorContainer" id="inanimateObjectsPredefinedSelectorContainer" style="display:none">
+		
+			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromPredefinedInanimateObjectsList();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" onClick="funniestShitIveEverSeen();"><div class="speciesCategoryText">Pickle</div></div>
+			<div class="speciesCategory"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategoryLast"><div class="speciesCategoryText">Empty</div></div>
 			
 		</div>
 	
@@ -871,12 +811,7 @@ function error621ChangeSlider() {
 
 </div>
 
-<script>
-	document.getElementById("inanimateObjectsSelectorContainer").style.display = "none";
-	document.getElementById("inanimateObjectsMenu").style.display = "none";
-</script>
-
-<div class="menuInanimateObjects" id="customDropdownMenu">
+<div class="menuInanimateObjects" id="customDropdownMenu" style="display:none">
 
 	<div class="speciesText" id="customDropdownLabel">
 	Label
@@ -910,10 +845,6 @@ function error621ChangeSlider() {
 </div> 
 
 </div>
-
-<script>
-	document.getElementById("customDropdownMenu").style.display = "none";
-</script>
   
 <div class="menu" id="sexMenu">
 
@@ -941,22 +872,18 @@ function error621ChangeSlider() {
 		</label>
 		</div>
 		
-		<div class="containerRBFemaleAndOther" id="containerRBOther">
+		<div class="containerRBFemaleAndOther" id="containerRBOther" style="display:none">
 		<label class="container" id="RBOtherContainer"><div id="thirdSexValue">Other</div>
 			<input type="radio" name="sex" onClick="saveSex('Other');" id="radiobuttonOther">
 			<span class="radiobuttonFemale"></span>
 		</label>
 		</div>
 		
-		<script>
-		document.getElementById("containerRBOther").style.display = "none";
-		</script>
-		
 	</div>
-			  
+	
 </div>
 
-<div class="menu" id="sexMenuError">
+<div class="menu" id="sexMenuError" style="display:none">
 
 	<div class="speciesText" style="color:#FF4550">
 	Sex
@@ -989,9 +916,93 @@ function error621ChangeSlider() {
 	</div>
 			  
 </div>
-<script>
-document.getElementById("sexMenuError").style.display = "none";
-</script>
+
+<div class="menu" id="customRadioInput1Menu" style="display:none">
+
+	<div class="speciesText" id="customRadioInput1Label">
+	Custom Radio Input 1
+	</div>
+	
+	<div class="selectMenuContainer2">
+		<div class="linesSex">
+			<img src="images/lines.png" height="17" width="23"> 
+		</div>
+		
+		<div class="containerRBMale" id="CRI1Container1">
+		<label class="container" id="CRI1Container21"><div id="CRI1value1">Value1</div>
+			<input type="radio" name="custom1" onClick="saveCustomRadioInput(1,1)" id="radiobuttonCustom1Value1">
+			<span class="radiobuttonMale"></span>
+		</label>
+		</div>
+		
+		<div class="containerRBFemaleAndOther" id="CRI1Container2">
+		<label class="container" id="CRI1Container22"><div id="CRI1value2">Value2</div>
+			<input type="radio" name="custom1" onClick="saveCustomRadioInput(1,2)" id="radiobuttonCustom1Value2">
+			<span class="radiobuttonFemale"></span>
+		</label>
+		</div>
+		
+	</div>
+	
+</div>
+
+<div class="menu" id="customRadioInput2Menu" style="display:none">
+
+	<div class="speciesText" id="customRadioInput2Label">
+	Custom Radio Input 2
+	</div>
+	
+	<div class="selectMenuContainer2">
+		<div class="linesSex">
+			<img src="images/lines.png" height="17" width="23"> 
+		</div>
+		
+		<div class="containerRBMale" id="CRI2Container1">
+		<label class="container" id="CRI2Container21"><div id="CRI2value1">Value1</div>
+			<input type="radio" name="custom2" onClick="saveCustomRadioInput(2,1)" id="radiobuttonCustom2Value1">
+			<span class="radiobuttonMale"></span>
+		</label>
+		</div>
+		
+		<div class="containerRBFemaleAndOther" id="CRI2Container2">
+		<label class="container" id="CRI2Container22"><div id="CRI2value2">Value2</div>
+			<input type="radio" name="custom2" onClick="saveCustomRadioInput(2,2)" id="radiobuttonCustom2Value2">
+			<span class="radiobuttonFemale"></span>
+		</label>
+		</div>
+		
+	</div>
+	
+</div>
+
+<div class="menu" id="customRadioInput3Menu" style="display:none">
+
+	<div class="speciesText" id="customRadioInput3Label">
+	Custom Radio Input 3
+	</div>
+	
+	<div class="selectMenuContainer2">
+		<div class="linesSex">
+			<img src="images/lines.png" height="17" width="23"> 
+		</div>
+			
+		<div class="containerRBMale" id="CRI3Container1">
+		<label class="container" id="CRI3Container21"><div id="CRI3value1">Value1</div>
+			<input type="radio" name="custom3" onClick="saveCustomRadioInput(3,1)" id="radiobuttonCustom3Value1">
+			<span class="radiobuttonMale"></span>
+		</label>
+		</div>
+		
+		<div class="containerRBFemaleAndOther" id="CRI3Container2">
+		<label class="container" id="CRI3Container22"><div id="CRI3value2">Value2</div>
+			<input type="radio" name="custom3" onClick="saveCustomRadioInput(3,2)" id="radiobuttonCustom3Value2">
+			<span class="radiobuttonFemale"></span>
+		</label>
+		</div>
+		
+	</div>
+	
+</div>
 
 <div class="menu" id="genitalsMenu" style="display:none;">
 
@@ -1047,14 +1058,14 @@ document.getElementById("sexMenuError").style.display = "none";
 		
 		<div class="menutextGenitals">
 			<label class="container" id="CC1value1Container"><div id="CC1value1">&nbsp;</div>
-				<input type="checkbox" id="CC1value1Checkbox" onclick="saveCheckboxCustom1Value1()">
+				<input type="checkbox" id="CC1value1Checkbox" onClick="saveCheckboxCustom(1,1)">
 				<span class="checkbox"></span>  
 			</label>
 		</div>
 		
 		<div class="menutextGenitals" style="margin-left:78px" id="secondCheckboxCC1">
 			<label class="container" id="CC1value2Container"><div id="CC1value2">&nbsp;</div>
-				<input type="checkbox" id="CC1value2Checkbox" onclick="saveCheckboxCustom1Value2()">
+				<input type="checkbox" id="CC1value2Checkbox" onClick="saveCheckboxCustom(1,2)">
 				<span class="checkbox"></span>  
 			</label>
 		</div>
@@ -1073,14 +1084,14 @@ document.getElementById("sexMenuError").style.display = "none";
 		
 		<div class="menutextGenitals">
 			<label class="container" id="CC2value1Container"><div id="CC2value1">&nbsp;</div>
-				<input type="checkbox" id="CC2value1Checkbox" onclick="saveCheckboxCustom2Value1()">
+				<input type="checkbox" id="CC2value1Checkbox" onClick="saveCheckboxCustom(2,1)">
 				<span class="checkbox"></span>  
 			</label>
 		</div>
 		
 		<div class="menutextGenitals" style="margin-left:78px" id="secondCheckboxCC2">
 			<label class="container" id="CC2value2Container"><div id="CC2value2">&nbsp;</div>
-				<input type="checkbox" id="CC2value2Checkbox" onclick="saveCheckboxCustom2Value2()">
+				<input type="checkbox" id="CC2value2Checkbox" onClick="saveCheckboxCustom(2,2)">
 				<span class="checkbox"></span>  
 			</label>
 		</div>
@@ -1099,24 +1110,22 @@ document.getElementById("sexMenuError").style.display = "none";
 		
 		<div class="menutextGenitals">
 			<label class="container" id="CC3value1Container"><div id="CC3value1">&nbsp;</div>
-				<input type="checkbox" id="CC3value1Checkbox" onclick="saveCheckboxCustom3Value1()">
+				<input type="checkbox" id="CC3value1Checkbox" onClick="saveCheckboxCustom(3,1)">
 				<span class="checkbox"></span>  
 			</label>
 		</div>
 		
 		<div class="menutextGenitals" style="margin-left:78px" id="secondCheckboxCC3">
 			<label class="container" id="CC3value2Container"><div id="CC3value2">&nbsp;</div>
-				<input type="checkbox" id="CC3value2Checkbox" onclick="saveCheckboxCustom3Value2()">
+				<input type="checkbox" id="CC3value2Checkbox" onClick="saveCheckboxCustom(3,2)">
 				<span class="checkbox"></span>  
 			</label>
 		</div>
 			  
 </div>
 
-<div class="error621" id="error621">
-<script>
-document.getElementById("error621").style.display = "none";
-</script>
+<div class="error621" id="error621" style="display:none">
+
 <p style="font-size: 30px; margin: 20px">UwU</p> 
 
 Error621//multisliders//processing... <br>
@@ -1222,7 +1231,7 @@ Please contact Switcher-Roo support for assistance
 	
 	<div id="sliderCustom1" class="slider">			
 			 <script>
-				var mySlider17 = new dhtmlXSlider(sliderCustom1, 315, null, false, 0, 100, 50, 1);
+				var CustomSliderNo1 = new dhtmlXSlider(sliderCustom1, 315, null, false, 0, 100, 50, 1);
 			</script>
 	</div>
 			
@@ -1247,7 +1256,7 @@ Please contact Switcher-Roo support for assistance
 	
 	<div id="sliderCustom2" class="slider">			
 			 <script>
-				var mySlider18 = new dhtmlXSlider(sliderCustom2, 315, null, false, 0, 100, 50, 1);
+				var CustomSliderNo2 = new dhtmlXSlider(sliderCustom2, 315, null, false, 0, 100, 50, 1);
 			</script>
 	</div>
 			
@@ -1272,7 +1281,7 @@ Please contact Switcher-Roo support for assistance
 	
 	<div id="sliderCustom3" class="slider">			
 			 <script>
-				var mySlider19 = new dhtmlXSlider(sliderCustom3, 315, null, false, 0, 100, 50, 1);
+				var CustomSliderNo3 = new dhtmlXSlider(sliderCustom3, 315, null, false, 0, 100, 50, 1);
 			</script>
 	</div>
 			
@@ -1297,7 +1306,7 @@ Please contact Switcher-Roo support for assistance
 	
 	<div id="sliderCustom4" class="slider">			
 			 <script>
-				var mySlider24 = new dhtmlXSlider(sliderCustom4, 315, null, false, 0, 100, 50, 1);
+				var CustomSliderNo4 = new dhtmlXSlider(sliderCustom4, 315, null, false, 0, 100, 50, 1);
 			</script>
 	</div>
 			
@@ -1313,7 +1322,7 @@ Please contact Switcher-Roo support for assistance
 	</div>
 	
 	<div class="textinmenuCenter" id="textinmenuCenterCS5">
-	Custom4
+	Custom5
 	</div>
 	
 	<div class="textinmenuRight" id="textinmenuRightCS5">
@@ -1322,11 +1331,140 @@ Please contact Switcher-Roo support for assistance
 	
 	<div id="sliderCustom5" class="slider">			
 			 <script>
-				var mySlider25 = new dhtmlXSlider(sliderCustom5, 315, null, false, 0, 100, 50, 1);
+				var CustomSliderNo5 = new dhtmlXSlider(sliderCustom5, 315, null, false, 0, 100, 50, 1);
 			</script>
 	</div>
-			
+	
 </div>
+
+<div class="menuSlider" id="custom6SliderMenu" style="max-height:0;border-bottom:0;padding-bottom:0">
+	<div class="linesMenuSlider">
+			<img src="images/lines.png" height="17" width="23"> 
+	</div>
+	
+	<div class="textinmenuLeft" id="textinmenuLeftCS6">
+	&nbsp;	
+	</div>
+	
+	<div class="textinmenuCenter" id="textinmenuCenterCS6">
+	Custom6
+	</div>
+	
+	<div class="textinmenuRight" id="textinmenuRightCS6">
+	&nbsp;
+	</div>
+	
+	<div id="sliderCustom6Container" class="slider">			
+			 <script>
+				var CustomSliderNo6 = new dhtmlXSlider(sliderCustom6Container, 315, null, false, 0, 100, 50, 1);
+			</script>
+	</div>
+	
+</div>
+
+<div class="menuSlider" id="custom7SliderMenu" style="max-height:0;border-bottom:0;padding-bottom:0">
+	<div class="linesMenuSlider">
+			<img src="images/lines.png" height="17" width="23"> 
+	</div>
+	
+	<div class="textinmenuLeft" id="textinmenuLeftCS7">
+	&nbsp;	
+	</div>
+	
+	<div class="textinmenuCenter" id="textinmenuCenterCS7">
+	Custom6
+	</div>
+	
+	<div class="textinmenuRight" id="textinmenuRightCS7">
+	&nbsp;
+	</div>
+	
+	<div id="sliderCustom7Container" class="slider">			
+			 <script>
+				var CustomSliderNo7 = new dhtmlXSlider(sliderCustom7Container, 315, null, false, 0, 100, 50, 1);
+			</script>
+	</div>
+	
+</div>
+
+<div class="menuSlider" id="custom8SliderMenu" style="max-height:0;border-bottom:0;padding-bottom:0">
+	<div class="linesMenuSlider">
+			<img src="images/lines.png" height="17" width="23"> 
+	</div>
+	
+	<div class="textinmenuLeft" id="textinmenuLeftCS8">
+	&nbsp;	
+	</div>
+	
+	<div class="textinmenuCenter" id="textinmenuCenterCS8">
+	Custom8
+	</div>
+	
+	<div class="textinmenuRight" id="textinmenuRightCS8">
+	&nbsp;
+	</div>
+	
+	<div id="sliderCustom8Container" class="slider">			
+			 <script>
+				var CustomSliderNo8 = new dhtmlXSlider(sliderCustom8Container, 315, null, false, 0, 100, 50, 1);
+			</script>
+	</div>
+	
+</div>
+
+<div class="menuSlider" id="custom9SliderMenu" style="max-height:0;border-bottom:0;padding-bottom:0">
+	<div class="linesMenuSlider">
+			<img src="images/lines.png" height="17" width="23"> 
+	</div>
+	
+	<div class="textinmenuLeft" id="textinmenuLeftCS9">
+	&nbsp;	
+	</div>
+	
+	<div class="textinmenuCenter" id="textinmenuCenterCS9">
+	Custom9
+	</div>
+	
+	<div class="textinmenuRight" id="textinmenuRightCS9">
+	&nbsp;
+	</div>
+	
+	<div id="sliderCustom9Container" class="slider">			
+			 <script>
+				var CustomSliderNo9 = new dhtmlXSlider(sliderCustom9Container, 315, null, false, 0, 100, 50, 1);
+			</script>
+	</div>
+	
+</div>
+
+<div class="menuSlider" id="custom10SliderMenu" style="max-height:0;border-bottom:0;padding-bottom:0">
+	<div class="linesMenuSlider">
+			<img src="images/lines.png" height="17" width="23"> 
+	</div>
+	
+	<div class="textinmenuLeft" id="textinmenuLeftCS10">
+	&nbsp;	
+	</div>
+	
+	<div class="textinmenuCenter" id="textinmenuCenterCS10">
+	Custom10
+	</div>
+	
+	<div class="textinmenuRight" id="textinmenuRightCS10">
+	&nbsp;
+	</div>
+	
+	<div id="sliderCustom10Container" class="slider">			
+			 <script>
+				var CustomSliderNo10 = new dhtmlXSlider(sliderCustom10Container, 315, null, false, 0, 100, 50, 1);
+			</script>
+	</div>
+	
+</div>
+
+</div>
+
+<div class="desktop-mode-container">
 
 <div class="menuCharViz" id="menuCharViz">
 
@@ -1440,18 +1578,40 @@ Please contact Switcher-Roo support for assistance
 	
 </div>
 
-<div class="menuAS" id="charVizCharacterColorsToggler" onclick="toggleCharVizMenus(0)">
+<div class="menuAS" id="charVizMenusToggler" onclick="toggleMainMenus(1)">
 	<div class="linesAS">
 			<img src="images/lines.png" height="17" width="23"> 
 			&nbsp;
 			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
 	</div>
 	
-	&nbsp;&nbsp;Character Colors
+	&nbsp;&nbsp;CharViz
 </div>
 
-<div id="charVizCharacterColorsContainer">
+<div id="CharVizMenusContainer" style="max-height:0px" class="menu-container">
 
+	<div class="section-info" style="margin-bottom:10px">Character</div>
+	
+	<div class="mediumButton" onclick="toggleCharVizMenus(0)">Colors</div>
+	<div class="mediumButton" onclick="toggleCharVizMenus(6)">Part Picker</div>
+	
+	<div class="section-info" style="margin-bottom:10px;margin-top:10px">Clothing</div>
+	
+	<div class="mediumButton" onclick="toggleCharVizMenus(1)">Wardrobe</div>
+	<div class="mediumButton" onclick="toggleCharVizMenus(2)">Colors</div>
+	
+	<div class="section-info" style="margin-bottom:10px;margin-top:10px">Other</div>
+	
+	<div class="mediumButton" onclick="toggleCharVizMenus(3)">Options</div>
+	<div class="mediumButton" onclick="toggleCharVizMenus(4)">Credits</div>
+	<div class="mediumButton" onclick="toggleCharVizMenus(5)">Readme</div>
+	
+</div>
+
+<div id="charVizCharacterColorsContainer" class="menu-container">
+		
+		<div class="bigButton" onclick="toggleCharVizMenus(0)" style="margin-bottom:10px">Go back</div>
+		
 		<div style="float: left;width: 48%;height:220px;overflow-y:auto;">
 	
 		<div class="charVizColorsEntryContainer" onClick="setActiveColor('Primary')" id="charColorSwatchContainer1">
@@ -1598,18 +1758,10 @@ Please contact Switcher-Roo support for assistance
 
 </div>
 
-<div class="menuAS" id="charVizClothToggler" onclick="toggleCharVizMenus(1)">
-	<div class="linesAS">
-			<img src="images/lines.png" height="17" width="23"> 
-			&nbsp;
-			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
-	</div>
+<div id="charVizClothingContainer" class="menu-container">
+
+	<div class="bigButton" onclick="toggleCharVizMenus(1)" style="margin-bottom:10px">Go back</div>
 	
-	&nbsp;&nbsp;Clothing
-</div>
-
-<div id="charVizClothingContainer">
-
 	<div class="speciesContainer" style="margin-top:10px;margin-left:50px;margin-bottom:10px;">
 
 	<div class="speciesCategorySelectorContainer" id="charVizClothingCategorySelectorContainer">
@@ -1764,18 +1916,10 @@ Please contact Switcher-Roo support for assistance
 
 </div>
 
-<div class="menuAS" id="charVizClothColorsToggler" onclick="toggleCharVizMenus(2)">
-	<div class="linesAS">
-			<img src="images/lines.png" height="17" width="23"> 
-			&nbsp;
-			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
-	</div>
+<div id="charVizClothingColorsContainer" class="menu-container">
+
+	<div class="bigButton" onclick="toggleCharVizMenus(2)" style="margin-bottom:10px">Go back</div>
 	
-	&nbsp;&nbsp;Clothing Colors
-</div>
-
-<div id="charVizClothingColorsContainer">
-
 	<div style="float: left;width: 48%;height:220px;overflow-y:auto;">
 	
 		<div class="charVizColorsEntryContainer" onClick="setActiveClothingColor('Topwear Primary')" id="clothingColorSwatchContainer1">
@@ -1918,19 +2062,20 @@ Please contact Switcher-Roo support for assistance
 				
 </div>
 
-<div class="menuAS" id="charVizPickerToggler" onclick="toggleCharVizMenus(6)">
-	<div class="linesAS">
-			<img src="images/lines.png" height="17" width="23"> 
-			&nbsp;
-			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
-	</div>
+<div id="charVizPickerContainer" class="menu-container">
+
+<div class="bigButton" onclick="toggleCharVizMenus(6)" style="margin-bottom:10px">Go back</div>
 	
-	&nbsp;&nbsp;Character Part & Pattern Picker
-</div>
+	<div style="padding:15px;height:20px;padding-top:5px;padding-bottom:5px">
+		<div>
+			<label class="container">Lock Character Parts
+				<input type="checkbox" id="enablePickerCheckbox" onclick="toggleCharVizOption(1)">
+				<span class="checkbox"></span>  
+			</label>
+		</div>
+	</div>
 
-<div id="charVizPickerContainer">
-
-<div class="speciesContainer" style="margin-top:10px;margin-left:50px;margin-bottom:10px;">
+<div class="speciesContainer" style="margin-left:50px;margin-bottom:10px;">
 
 	<div class="speciesCategorySelectorContainer" id="charVizPickerSelectorContainer">
 		
@@ -2084,28 +2229,12 @@ Please contact Switcher-Roo support for assistance
 
 </div>
 
-<div class="menuAS" id="charVizOptionToggler" onclick="toggleCharVizMenus(3)">
-	<div class="linesAS">
-			<img src="images/lines.png" height="17" width="23"> 
-			&nbsp;
-			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
-	</div>
-	
-	&nbsp;&nbsp;CharViz Options
-</div>
+<div id="charVizOptionsContainer" class="menu-container">
 
-<div id="charVizOptionsContainer">
-
-	<div style="padding:15px;height:360px;padding-top:5px;padding-bottom:5px">
+	<div class="bigButton" onclick="toggleCharVizMenus(3)" style="margin-bottom:10px">Go back</div>
 	
-		<div>
-			<label class="container">Enable Character Part & Pattern Picker
-				<input type="checkbox" id="enablePickerCheckbox" onclick="toggleCharVizOption(1)">
-				<span class="checkbox"></span>  
-			</label>
-		</div>
-		<br>
-		
+	<div style="padding:15px;height:310px;padding-top:5px;padding-bottom:5px">
+			
 		<div>
 			<label class="container">Set default color scheme when changing species
 				<input type="checkbox" id="setNaturalColorsCheckbox" onclick="toggleCharVizOption(2)">
@@ -2139,7 +2268,7 @@ Please contact Switcher-Roo support for assistance
 		<br>
 		
 		<div>
-			<label class="container">Show Genitals
+			<label class="container">(+18) Show character genitalia
 				<input type="checkbox" id="showGenitalsCheckbox" onclick="toggleCharVizOption(6)">
 				<span class="checkbox"></span>  
 			</label>
@@ -2169,24 +2298,17 @@ Please contact Switcher-Roo support for assistance
 
 </div>
 
-<div class="menuAS" id="charVizCreditsToggler" onclick="toggleCharVizMenus(4)">
-	<div class="linesAS">
-			<img src="images/lines.png" height="17" width="23"> 
-			&nbsp;
-			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
-	</div>
-	
-	&nbsp;&nbsp;CharViz Credits
-</div>
+<div id="charVizCreditsContainer" class="menu-container">
 
-<div id="charVizCreditsContainer">
-<div class = "charVizCreditsEntry" style="text-align: center; background-color: #b30003;margin-top:0">
+<div class="bigButton" onclick="toggleCharVizMenus(4)" style="margin-bottom:10px">Go back</div>
+
+<div class = "charVizCreditsEntry" style="text-align: center; background-color: #ff4550;margin-top:0">
 Listed alphabetically:
 </div>
 
 <a href="https://artbreeder.com">
 <div class = "charVizCreditsEntryContainer">
-	<div class = "charVizCreditsAuthor">Artbreeder.com</div>
+	<div class = "charVizCreditsAuthor">AI (Artbreeder.com)</div>
 	<div class = "charVizCreditsAvatar"><img src="images/avatar_terminator.jpg" width="40" height="40" class="charVizAvatar"></div>
 	<div class = "charVizCreditsContributions">Generated a portrait image which was used as base for head shapes</div>
 </div>
@@ -2202,17 +2324,9 @@ Listed alphabetically:
 
 </div>
 
-<div class="menuAS" id="charVizReadmeToggler" onclick="toggleCharVizMenus(5)">
-	<div class="linesAS">
-			<img src="images/lines.png" height="17" width="23"> 
-			&nbsp;
-			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
-	</div>
-	
-	&nbsp;&nbsp;CharViz Readme
-</div>
+<div id="charVizReadmeContainer" style="font-size:14px" class="menu-container">
 
-<div id="charVizReadmeContainer" style="font-size:14px">
+	<div class="bigButton" onclick="toggleCharVizMenus(5)" style="margin-bottom:10px">Go back</div>
 
 	•If you want to contribute, please follow this link: <a href="https://drive.google.com/drive/folders/15SH4fvY7Uqn1_QNuk0Md7Yib9OOZutju?usp=sharing">
 	<div style="background-color:#282640;padding:10px;border-radius:10px;margin:5px;overflow:hidden">https://drive.google.com/drive/folders/15SH4fvY7Uqn1_QNuk0Md7Yib9OOZutju?usp=sharing</div></a>
@@ -2226,15 +2340,14 @@ Listed alphabetically:
 	-Breast Size slider<br>
 	-Hair Lenght slider<br>
 	-Cock Type option<br>
-	-Genital Size slider<br>	
-	•When Character Part & Pattern Picker is enabled, changing species does not alter appearance of character<br>
+	-Genital Size slider<br>
 	•Available cocks:<br>
 	-Humanoid<br>
 	•Cock color is tied to markings color
 		
 </div>
   
-<div class="menuAS" id="advancedSettings" onclick="toggleAdvancedSettingsMenu()">
+<div class="menuAS" id="advancedSettings" onclick="toggleMainMenus(0)">
 	<div class="linesAS">
 			<img src="images/lines.png" height="17" width="23"> 
 			&nbsp;
@@ -2482,20 +2595,36 @@ Listed alphabetically:
                               |___/|_|                                                            
 		-->
 		
-		<div class="speciesCategorySelectorContainer" id="cockTypeSelectorContainer">
+		<div class="speciesCategorySelectorContainer" id="cockTypeSelectorContainer" style="display:none">
 		
-			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromcockTypeList();"><div class="speciesCategoryText">Go Back</div></div>
-			<div class="speciesCategory" onClick="setcockTypeTo('None');"><div class="speciesCategoryText">None</div></div>
-			<div class="speciesCategory" onClick="setcockTypeTo('Canine');"><div class="speciesCategoryText">Canine</div></div>
-			<div class="speciesCategory" onClick="setcockTypeTo('Equine');"><div id="cockTypeEntry2" class="speciesCategoryText">Equine</div></div>
-			<div class="speciesCategory" onClick="setcockTypeTo('Feline');"><div id="cockTypeEntry3" class="speciesCategoryText">Feline</div></div>
-			<div class="speciesCategory" onClick="setcockTypeTo('Humanoid');"><div id="cockTypeEntry4" class="speciesCategoryText">Humanoid</div></div>
-			<div class="speciesCategory" onClick="setcockTypeTo('None');"><div id="cockTypeEntry5" class="speciesCategoryText">Empty</div></div>
-			<div class="speciesCategory" onClick="setcockTypeTo('None');"><div id="cockTypeEntry6" class="speciesCategoryText">Empty</div></div>
-			<div class="speciesCategory" onClick="setcockTypeTo('None');"><div id="cockTypeEntry7" class="speciesCategoryText">Empty</div></div>
-			<div class="speciesCategory" onClick="setcockTypeTo('None');"><div id="cockTypeEntry8" class="speciesCategoryText">Empty</div></div>
-			<div class="speciesCategory" onClick="setcockTypeTo('None');"><div id="cockTypeEntry9" class="speciesCategoryText">Empty</div></div>
-			<div class="speciesCategoryLast" onClick="setcockTypeTo('None');"><div id="cockTypeEntry10" class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" onClick="goBackFromCockTypesList();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" onClick="goToCustomCockTypesCategory();"><div class="speciesCategoryText">Custom</div></div>
+			<div class="speciesCategory" onClick="setCockTypeTo('None');"><div class="speciesCategoryText">None</div></div>
+			<div class="speciesCategory" onClick="setCockTypeTo('Canine');"><div class="speciesCategoryText">Canine</div></div>
+			<div class="speciesCategory" onClick="setCockTypeTo('Equine');"><div class="speciesCategoryText">Equine</div></div>
+			<div class="speciesCategory" onClick="setCockTypeTo('Feline');"><div class="speciesCategoryText">Feline</div></div>
+			<div class="speciesCategory" onClick="setCockTypeTo('Humanoid');"><div class="speciesCategoryText">Humanoid</div></div>
+			<div class="speciesCategory" onClick="setCockTypeTo('None');"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" onClick="setCockTypeTo('None');"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" onClick="setCockTypeTo('None');"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" onClick="setCockTypeTo('None');"><div class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategoryLast" onClick="setCockTypeTo('None');"><div class="speciesCategoryText">Empty</div></div>
+			
+		</div>
+		
+		<div class="speciesCategorySelectorContainer" id="cockTypeCustomSelectorContainer" style="display:none">
+		
+			<div class="speciesCategory" onClick="goBackFromCustomCockTypesCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" onClick="setCockTypeToCustom(1);"><div id="cockTypeEntry1" class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" onClick="setCockTypeToCustom(2);"><div id="cockTypeEntry2" class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" onClick="setCockTypeToCustom(3);"><div id="cockTypeEntry3" class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" onClick="setCockTypeToCustom(4);"><div id="cockTypeEntry4" class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" onClick="setCockTypeToCustom(5);"><div id="cockTypeEntry5" class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" onClick="setCockTypeToCustom(6);"><div id="cockTypeEntry6" class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" onClick="setCockTypeToCustom(7);"><div id="cockTypeEntry7" class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" onClick="setCockTypeToCustom(8);"><div id="cockTypeEntry8" class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategory" onClick="setCockTypeToCustom(9);"><div id="cockTypeEntry9" class="speciesCategoryText">Empty</div></div>
+			<div class="speciesCategoryLast" onClick="setCockTypeToCustom(10);"><div id="cockTypeEntry10" class="speciesCategoryText">Empty</div></div>
 			
 		</div>
 	
@@ -2506,10 +2635,6 @@ Listed alphabetically:
 	</div>
 	
 	</div> 
-
-	<script>
-		document.getElementById("cockTypeSelectorContainer").style.display = "none";
-	</script>
 
 	</div>
 
@@ -2704,18 +2829,42 @@ Listed alphabetically:
 	
 </div>
 
-<div class="menuAS" id="advancedSettings2" onclick="toggleAddRemoveSlidersMenu()">
+<div class="menuAS" id="customizeAppToggler" onclick="toggleMainMenus(2)">
 	<div class="linesAS">
 			<img src="images/lines.png" height="17" width="23"> 
 			&nbsp;
 			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
 	</div>
 	
-	&nbsp;&nbsp;Configure Options and Sliders
+	&nbsp;&nbsp;App Settings & Customization
 </div>
 
-<div id="addRemoveSlidersContainer">
+<div id="CustomizeAppMenusContainer" style="max-height:0px" class="menu-container">
 
+	<div class="bigButton" onclick="toggleMenus(0)">Sliders/options visibility</div>
+	
+	<div class="section-info" style="margin-bottom:10px;margin-top:10px">Create custom stuff</div>
+	
+	<div class="mediumButton" onclick="toggleMenus(1)">Sliders</div>
+	<div class="mediumButton" onclick="toggleMenus(2)">Checkboxes</div>
+	<div class="mediumButton" onclick="toggleMenus(3)">Radio Inputs</div>
+	<div class="mediumButton" onclick="toggleMenus(4)">Species</div>
+	<div class="mediumButton" onclick="toggleMenus(5)">Inanim. Obj.</div>
+	<div class="mediumButton" onclick="toggleMenus(6)">Cock Types</div>
+	
+	<div class="section-info" style="margin-bottom:10px;margin-top:10px">Other</div>
+	
+	<div class="mediumButton" onclick="toggleMenus(7)">Rename Presets</div>
+	<div class="mediumButton" onclick="toggleMenus(8)">Battery Drain Settings</div>
+	<div class="mediumButton" id="thirdSexButton" onclick="toggleMenus(9)">Define Third Sex</div>
+	<div class="mediumButton" id="creativeModeButton" onclick="toggleMenus(10)">Creative Mode</div>
+	
+</div>
+
+<div id="addRemoveSlidersContainer" class="menu-container">
+
+	<div class="bigButton" onclick="toggleMenus(0)" style="margin-bottom:10px">Go back</div>
+	
 	<div class="optionCategory">Main</div>
 	
 	<div class="option">
@@ -2920,18 +3069,18 @@ Listed alphabetically:
 	
 </div>
 
-<div class="menuAS" id="advancedSettings3" onclick="toggleCustomSlidersMenu()">
-	<div class="linesAS">
-			<img src="images/lines.png" height="17" width="23"> 
-			&nbsp;
-			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
-	</div>
+<div id="CustomSlidersContainer" class="menu-container">
 	
-	&nbsp;&nbsp;Create Custom Sliders
-</div>
-
-<div id="CustomSlidersContainer">
-				
+	<div class="bigButton" onclick="toggleMenus(1)" style="margin-bottom:10px">Go back</div>
+	
+	<div id="customSlidersSet1Container">
+		
+		<div style="height:40px">
+		<div class="speciesCategoryButtonEnd"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
+			<div class="speciesCategoryName"><div class="categoryText">Custom Sliders 1-5</div></div>
+			<div class="speciesCategoryButton" onClick="switchToCustomSlidersSet(2);"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
+		</div>
+			
 		<div class="menu">
 	
 			<div class="speciesText">
@@ -2941,7 +3090,7 @@ Listed alphabetically:
 			<div class="selectMenuContainer2">
 				<div class="checkboxCustomSliders">
 					<label class="container">
-						<input type="checkbox" id="customSlider1Checkbox" onClick="toggleCustomSlider1()">
+						<input type="checkbox" id="customSlider1Checkbox" onClick="toggleCustomSlider(1)">
 						<span class="checkbox"></span>  
 					</label>
 				</div>
@@ -2951,7 +3100,7 @@ Listed alphabetically:
 				<input id="slider1RightText" class="customSliderTextField">
 				
 				
-				<div class="smallButton" onClick="makeCustomSlider1()">Set</div>
+				<div class="smallButton" onClick="makeCustomSlider(1)">Set</div>
 					
 			</div>
 		
@@ -2966,7 +3115,7 @@ Listed alphabetically:
 			<div class="selectMenuContainer2">
 				<div class="checkboxCustomSliders">
 					<label class="container">
-						<input type="checkbox" id="customSlider2Checkbox" onClick="toggleCustomSlider2()">
+						<input type="checkbox" id="customSlider2Checkbox" onClick="toggleCustomSlider(2)">
 						<span class="checkbox"></span>  
 					</label>
 				</div>
@@ -2975,7 +3124,7 @@ Listed alphabetically:
 				<input id="slider2CenterText" class="customSliderTextField">
 				<input id="slider2RightText" class="customSliderTextField">
 				
-				<div class="smallButton" onClick="makeCustomSlider2()">Set</div>
+				<div class="smallButton" onClick="makeCustomSlider(2)">Set</div>
 				
 			</div>
 		
@@ -2990,7 +3139,7 @@ Listed alphabetically:
 			<div class="selectMenuContainer2">
 				<div class="checkboxCustomSliders">
 					<label class="container">
-						<input type="checkbox" id="customSlider3Checkbox" onClick="toggleCustomSlider3()">
+						<input type="checkbox" id="customSlider3Checkbox" onClick="toggleCustomSlider(3)">
 						<span class="checkbox"></span>  
 					</label>
 				</div>
@@ -2999,7 +3148,7 @@ Listed alphabetically:
 				<input id="slider3CenterText" class="customSliderTextField">
 				<input id="slider3RightText" class="customSliderTextField">
 				
-				<div class="smallButton" onClick="makeCustomSlider3()">Set</div>
+				<div class="smallButton" onClick="makeCustomSlider(3)">Set</div>
 					
 			</div>
 		
@@ -3014,7 +3163,7 @@ Listed alphabetically:
 			<div class="selectMenuContainer2">
 				<div class="checkboxCustomSliders">
 					<label class="container">
-						<input type="checkbox" id="customSlider4Checkbox" onClick="toggleCustomSlider4()">
+						<input type="checkbox" id="customSlider4Checkbox" onClick="toggleCustomSlider(4)">
 						<span class="checkbox"></span>  
 					</label>
 				</div>
@@ -3023,7 +3172,7 @@ Listed alphabetically:
 				<input id="slider4CenterText" class="customSliderTextField">
 				<input id="slider4RightText" class="customSliderTextField">
 				
-				<div class="smallButton" onClick="makeCustomSlider4()">Set</div>
+				<div class="smallButton" onClick="makeCustomSlider(4)">Set</div>
 					
 			</div>
 		
@@ -3038,7 +3187,7 @@ Listed alphabetically:
 			<div class="selectMenuContainer2">
 				<div class="checkboxCustomSliders">
 					<label class="container">
-						<input type="checkbox" id="customSlider5Checkbox" onClick="toggleCustomSlider5()">
+						<input type="checkbox" id="customSlider5Checkbox" onClick="toggleCustomSlider(5)">
 						<span class="checkbox"></span>  
 					</label>
 				</div>
@@ -3047,11 +3196,144 @@ Listed alphabetically:
 				<input id="slider5CenterText" class="customSliderTextField">
 				<input id="slider5RightText" class="customSliderTextField">
 				
-				<div class="smallButton" onClick="makeCustomSlider5()">Set</div>
+				<div class="smallButton" onClick="makeCustomSlider(5)">Set</div>
 					
 			</div>
 		
 		</div>
+		
+	</div>
+	
+	<div id="customSlidersSet2Container" style="display:none">
+		
+		<div style="height:40px">
+		<div class="speciesCategoryButton" onClick="switchToCustomSlidersSet(1);"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
+			<div class="speciesCategoryName"><div class="categoryText">Custom Sliders 6-10</div></div>
+			<div class="speciesCategoryButtonEnd"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
+		</div>
+			
+		<div class="menu">
+	
+			<div class="speciesText">
+			Slider 6
+			</div>
+	
+			<div class="selectMenuContainer2">
+				<div class="checkboxCustomSliders">
+					<label class="container">
+						<input type="checkbox" id="customSlider6Checkbox" onClick="toggleCustomSlider(6)">
+						<span class="checkbox"></span>  
+					</label>
+				</div>
+					
+				<input id="slider6LeftText" class="customSliderTextField">
+				<input id="slider6CenterText" class="customSliderTextField">
+				<input id="slider6RightText" class="customSliderTextField">
+				
+				
+				<div class="smallButton" onClick="makeCustomSlider(6)">Set</div>
+					
+			</div>
+		
+		</div>
+
+		<div class="menu">
+
+			<div class="speciesText">
+			Slider 7
+			</div>
+	
+			<div class="selectMenuContainer2">
+				<div class="checkboxCustomSliders">
+					<label class="container">
+						<input type="checkbox" id="customSlider7Checkbox" onClick="toggleCustomSlider(7)">
+						<span class="checkbox"></span>  
+					</label>
+				</div>
+				
+				<input id="slider7LeftText" class="customSliderTextField">
+				<input id="slider7CenterText" class="customSliderTextField">
+				<input id="slider7RightText" class="customSliderTextField">
+				
+				<div class="smallButton" onClick="makeCustomSlider(7)">Set</div>
+				
+			</div>
+		
+		</div>
+		
+		<div class="menu">
+
+			<div class="speciesText">
+			Slider 8
+			</div>
+	
+			<div class="selectMenuContainer2">
+				<div class="checkboxCustomSliders">
+					<label class="container">
+						<input type="checkbox" id="customSlider8Checkbox" onClick="toggleCustomSlider(8)">
+						<span class="checkbox"></span>  
+					</label>
+				</div>
+							
+				<input id="slider8LeftText" class="customSliderTextField">
+				<input id="slider8CenterText" class="customSliderTextField">
+				<input id="slider8RightText" class="customSliderTextField">
+				
+				<div class="smallButton" onClick="makeCustomSlider(8)">Set</div>
+					
+			</div>
+		
+		</div>
+		
+		<div class="menu">
+
+			<div class="speciesText">
+			Slider 9
+			</div>
+	
+			<div class="selectMenuContainer2">
+				<div class="checkboxCustomSliders">
+					<label class="container">
+						<input type="checkbox" id="customSlider9Checkbox" onClick="toggleCustomSlider(9)">
+						<span class="checkbox"></span>  
+					</label>
+				</div>
+							
+				<input id="slider9LeftText" class="customSliderTextField">
+				<input id="slider9CenterText" class="customSliderTextField">
+				<input id="slider9RightText" class="customSliderTextField">
+				
+				<div class="smallButton" onClick="makeCustomSlider(9)">Set</div>
+					
+			</div>
+		
+		</div>
+		
+		<div class="menu">
+
+			<div class="speciesText">
+			Slider 10
+			</div>
+	
+			<div class="selectMenuContainer2">
+				<div class="checkboxCustomSliders">
+					<label class="container">
+						<input type="checkbox" id="customSlider10Checkbox" onClick="toggleCustomSlider(10)">
+						<span class="checkbox"></span>  
+					</label>
+				</div>
+							
+				<input id="slider10LeftText" class="customSliderTextField">
+				<input id="slider10CenterText" class="customSliderTextField">
+				<input id="slider10RightText" class="customSliderTextField">
+				
+				<div class="smallButton" onClick="makeCustomSlider(10)">Set</div>
+					
+			</div>
+		
+		</div>
+		
+	</div>
 		
 		<div id="customSliderTutorial">
 			Input text in text fields then click "Set" button to make a custom slider. Checkbox on the left is for hiding/unhiding a slider.
@@ -3059,18 +3341,10 @@ Listed alphabetically:
 	
 </div>
 
-<div class="menuAS" id="advancedSettings3b" onclick="toggleCustomCheckboxesMenu()">
-	<div class="linesAS">
-			<img src="images/lines.png" height="17" width="23"> 
-			&nbsp;
-			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
-	</div>
+<div id="CustomCheckboxesContainer" class="menu-container">
 	
-	&nbsp;&nbsp;Create Custom Checkboxes
-</div>
-
-<div id="CustomCheckboxesContainer">
-			
+	<div class="bigButton" onclick="toggleMenus(2)" style="margin-bottom:10px">Go back</div>
+	
 		<div class="menu">
 			
 			<div class="speciesText">
@@ -3080,7 +3354,7 @@ Listed alphabetically:
 			<div class="selectMenuContainer2">
 				<div class="checkboxCustomSliders">
 					<label class="container">
-						<input type="checkbox" id="customCheckbox1Checkbox" onClick="toggleCustomCheckbox1()">
+						<input type="checkbox" id="customCheckbox1Checkbox" onClick="toggleCustomCheckbox(1)">
 						<span class="checkbox"></span>  
 					</label>
 				</div>
@@ -3089,8 +3363,7 @@ Listed alphabetically:
 				<input id="customCheckbox1Value1" class="customSliderTextField">
 				<input id="customCheckbox1Value2" class="customSliderTextField">
 				
-				
-				<div class="smallButton" onClick="makeCustomCheckbox1()">Set</div>
+				<div class="smallButton" onClick="makeCustomCheckbox(1)">Set</div>
 					
 			</div>
 		
@@ -3105,7 +3378,7 @@ Listed alphabetically:
 			<div class="selectMenuContainer2">
 				<div class="checkboxCustomSliders">
 					<label class="container">
-						<input type="checkbox" id="customCheckbox2Checkbox" onClick="toggleCustomCheckbox2()">
+						<input type="checkbox" id="customCheckbox2Checkbox" onClick="toggleCustomCheckbox(2)">
 						<span class="checkbox"></span>  
 					</label>
 				</div>
@@ -3114,7 +3387,7 @@ Listed alphabetically:
 				<input id="customCheckbox2Value1" class="customSliderTextField">
 				<input id="customCheckbox2Value2" class="customSliderTextField">
 				
-				<div class="smallButton" onClick="makeCustomCheckbox2()">Set</div>
+				<div class="smallButton" onClick="makeCustomCheckbox(2)">Set</div>
 				
 			</div>
 		
@@ -3129,7 +3402,7 @@ Listed alphabetically:
 			<div class="selectMenuContainer2">
 				<div class="checkboxCustomSliders">
 					<label class="container">
-						<input type="checkbox" id="customCheckbox3Checkbox" onClick="toggleCustomCheckbox3()">
+						<input type="checkbox" id="customCheckbox3Checkbox" onClick="toggleCustomCheckbox(3)">
 						<span class="checkbox"></span>  
 					</label>
 				</div>
@@ -3138,7 +3411,7 @@ Listed alphabetically:
 				<input id="customCheckbox3Value1" class="customSliderTextField">
 				<input id="customCheckbox3Value2" class="customSliderTextField">
 				
-				<div class="smallButton" onClick="makeCustomCheckbox3()">Set</div>
+				<div class="smallButton" onClick="makeCustomCheckbox(3)">Set</div>
 					
 			</div>
 		
@@ -3150,312 +3423,385 @@ Listed alphabetically:
 	
 </div>
 
-<div class="menuAS" id="advancedSettings4" onclick="toggleCustomSpeciesMenu()">
-	<div class="linesAS">
-			<img src="images/lines.png" height="17" width="23"> 
-			&nbsp;
-			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
-	</div>
+<div id="CustomRadioInputsContainer" class="menu-container">
 	
-	&nbsp;&nbsp;Create Custom Species
+	<div class="bigButton" onclick="toggleMenus(3)" style="margin-bottom:10px">Go back</div>
+	
+		<div class="menu">
+			
+			<div class="speciesText">
+			Radio Input 1
+			</div>
+	
+			<div class="selectMenuContainer2">
+				<div class="checkboxCustomSliders">
+					<label class="container">
+						<input type="checkbox" id="customRadioInput1Checkbox" onClick="toggleCustomRadioInput(1)">
+						<span class="checkbox"></span>  
+					</label>
+				</div>
+					
+				<input id="customRadioInput1LabelTextField" class="customSliderTextField">
+				<input id="customRadioInput1Value1" class="customSliderTextField">
+				<input id="customRadioInput1Value2" class="customSliderTextField">
+				
+				<div class="smallButton" onClick="makeCustomRadioInput(1)">Set</div>
+					
+			</div>
+		
+		</div>
+
+		<div class="menu">
+
+			<div class="speciesText">
+			Radio Input 2
+			</div>
+	
+			<div class="selectMenuContainer2">
+				<div class="checkboxCustomSliders">
+					<label class="container">
+						<input type="checkbox" id="customRadioInput2Checkbox" onClick="toggleCustomRadioInput(2)">
+						<span class="checkbox"></span>  
+					</label>
+				</div>
+				
+				<input id="customRadioInput2LabelTextField" class="customSliderTextField">
+				<input id="customRadioInput2Value1" class="customSliderTextField">
+				<input id="customRadioInput2Value2" class="customSliderTextField">
+				
+				<div class="smallButton" onClick="makeCustomRadioInput(2)">Set</div>
+				
+			</div>
+		
+		</div>
+		
+		<div class="menu">
+
+			<div class="speciesText">
+			Radio Input 3
+			</div>
+	
+			<div class="selectMenuContainer2">
+				<div class="checkboxCustomSliders">
+					<label class="container">
+						<input type="checkbox" id="customRadioInput3Checkbox" onClick="toggleCustomRadioInput(3)">
+						<span class="checkbox"></span>  
+					</label>
+				</div>
+							
+				<input id="customRadioInput3LabelTextField" class="customSliderTextField">
+				<input id="customRadioInput3Value1" class="customSliderTextField">
+				<input id="customRadioInput3Value2" class="customSliderTextField">
+				
+				<div class="smallButton" onClick="makeCustomRadioInput(3)">Set</div>
+					
+			</div>
+		
+		</div>
+		
+		<div id="customSliderTutorial">
+			Left text field is for radio input label. The other two are for it's values. You can leave label text field blank however you need to fill in other two.
+		</div>
+	
 </div>
 
-<div id="CustomSpeciesContainer">
-
-	<div id="CSContainerSlot11"> <!-- Custom Species Container Slot 1-1 -->
-		<div class="CSSlotDiv">Slot 1 -&nbsp;</div>
-		<div class="CSNameDiv" id="customSpeciesName1">SpeciesName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCSSlot1" onclick="changeCSSlot1()">Change</button>
+<div id="CustomSpeciesContainer" class="menu-container">
+	
+	<div class="bigButton" onclick="toggleMenus(4)" style="margin-bottom:10px">Go back</div>
+	
+	<div id="customSpeciesSet1Container">
+	
+		<div style="height:40px">
+			<div class="speciesCategoryButtonEnd"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
+			<div class="speciesCategoryName"><div class="categoryText">Custom Species 1-5</div></div>
+			<div class="speciesCategoryButton" onClick="switchToCustomSpeciesSet(2)"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
+		</div>
+		
+		<div class="custom-species-name" id="customSpeciesName1">SpeciesName</div>
+		<input id="customSpeciesSlot1TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomSpecies(1)">Set</div>
+		
+		<div class="custom-species-name" id="customSpeciesName2">SpeciesName</div>
+		<input id="customSpeciesSlot2TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomSpecies(2)">Set</div>
+		
+		<div class="custom-species-name" id="customSpeciesName3">SpeciesName</div>
+		<input id="customSpeciesSlot3TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomSpecies(3)">Set</div>
+		
+		<div class="custom-species-name" id="customSpeciesName4">SpeciesName</div>
+		<input id="customSpeciesSlot4TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomSpecies(4)">Set</div>
+		
+		<div class="custom-species-name" id="customSpeciesName5">SpeciesName</div>
+		<input id="customSpeciesSlot5TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomSpecies(5)">Set</div>
+		
 	</div>
 	
-	<div id="CSContainerSlot12"> <!-- Custom Species Container Slot 1-2 -->
-		<input id="customSpeciesSlot1TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCSSlot1()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCSSlot1()">Go Back</button>
+	<div id="customSpeciesSet2Container" style="display:none">
+	
+		<div style="height:40px">
+			<div class="speciesCategoryButton" onClick="switchToCustomSpeciesSet(1)"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
+			<div class="speciesCategoryName"><div class="categoryText">Custom Species 6-10</div></div>
+			<div class="speciesCategoryButtonEnd"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
+		</div>
+		
+		<div class="custom-species-name" id="customSpeciesName6">SpeciesName</div>
+		<input id="customSpeciesSlot6TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomSpecies(6)">Set</div>
+		
+		<div class="custom-species-name" id="customSpeciesName7">SpeciesName</div>
+		<input id="customSpeciesSlot7TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomSpecies(7)">Set</div>
+		
+		<div class="custom-species-name" id="customSpeciesName8">SpeciesName</div>
+		<input id="customSpeciesSlot8TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomSpecies(8)">Set</div>
+		
+		<div class="custom-species-name" id="customSpeciesName9">SpeciesName</div>
+		<input id="customSpeciesSlot9TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomSpecies(9)">Set</div>
+		
+		<div class="custom-species-name" id="customSpeciesName10">SpeciesName</div>
+		<input id="customSpeciesSlot10TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomSpecies(10)">Set</div>
+		
 	</div>
 	
-	<div id="CSContainerSlot21">
-		<div class="CSSlotDiv">Slot 2 -&nbsp;</div>
-		<div class="CSNameDiv" id="customSpeciesName2">SpeciesName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCSSlot2" onclick="changeCSSlot2()">Change</button>
-	</div>
-	
-	<div id="CSContainerSlot22">
-		<input id="customSpeciesSlot2TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCSSlot2()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCSSlot2()">Go Back</button>
-	</div>
-	
-	<div id="CSContainerSlot31">
-		<div class="CSSlotDiv">Slot 3 -&nbsp;</div>
-		<div class="CSNameDiv" id="customSpeciesName3">SpeciesName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCSSlot3" onclick="changeCSSlot3()">Change</button>
-	</div>
-	
-	<div id="CSContainerSlot32">
-		<input id="customSpeciesSlot3TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCSSlot3()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCSSlot3()">Go Back</button>
-	</div>
-	
-	<div id="CSContainerSlot41">
-		<div class="CSSlotDiv">Slot 4 -&nbsp;</div>
-		<div class="CSNameDiv" id="customSpeciesName4">SpeciesName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCSSlot4" onclick="changeCSSlot4()">Change</button>
-	</div>
-	
-	<div id="CSContainerSlot42">
-		<input id="customSpeciesSlot4TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCSSlot4()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCSSlot4()">Go Back</button>
-	</div>
-	
-	<div id="CSContainerSlot51">
-		<div class="CSSlotDiv">Slot 5 -&nbsp;</div>
-		<div class="CSNameDiv" id="customSpeciesName5">SpeciesName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCSSlot5" onclick="changeCSSlot5()">Change</button>
-	</div>
-	
-	<div id="CSContainerSlot52">
-		<input id="customSpeciesSlot5TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCSSlot5()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCSSlot5()">Go Back</button>
-	</div>
-	
-	<div id="CSContainerSlot61">
-		<div class="CSSlotDiv">Slot 6 -&nbsp;</div>
-		<div class="CSNameDiv" id="customSpeciesName6">SpeciesName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCSSlot6" onclick="changeCSSlot6()">Change</button>
-	</div>
-	
-	<div id="CSContainerSlot62">
-		<input id="customSpeciesSlot6TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCSSlot6()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCSSlot6()">Go Back</button>
-	</div>
-	
-	<div id="CSContainerSlot71">
-		<div class="CSSlotDiv">Slot 7 -&nbsp;</div>
-		<div class="CSNameDiv" id="customSpeciesName7">SpeciesName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCSSlot7" onclick="changeCSSlot7()">Change</button>
-	</div>
-	
-	<div id="CSContainerSlot72">
-		<input id="customSpeciesSlot7TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCSSlot7()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCSSlot7()">Go Back</button>
-	</div>
-	
-	<div id="CSContainerSlot81">
-		<div class="CSSlotDiv">Slot 8 -&nbsp;</div>
-		<div class="CSNameDiv" id="customSpeciesName8">SpeciesName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCSSlot8" onclick="changeCSSlot8()">Change</button>
-	</div>
-	
-	<div id="CSContainerSlot82">
-		<input id="customSpeciesSlot8TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCSSlot8()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCSSlot8()">Go Back</button>
-	</div>
-	
-	<div id="CSContainerSlot91">
-		<div class="CSSlotDiv">Slot 9 -&nbsp;</div>
-		<div class="CSNameDiv" id="customSpeciesName9">SpeciesName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCSSlot9" onclick="changeCSSlot9()">Change</button>
-	</div>
-	
-	<div id="CSContainerSlot92">
-		<input id="customSpeciesSlot9TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCSSlot9()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCSSlot9()">Go Back</button>
-	</div>
-	
-	<div id="CSContainerSlot101">
-		<div class="CSSlotDiv">Slot 10 -&nbsp;</div>
-		<div class="CSNameDiv" id="customSpeciesName10">SpeciesName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCSSlot10" onclick="changeCSSlot10()">Change</button>
-	</div>
-	
-	<div id="CSContainerSlot102">
-		<input id="customSpeciesSlot10TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCSSlot10()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCSSlot10()">Go Back</button>
-	</div>
-
 </div>
 
-<script>
-document.getElementById("CSContainerSlot12").style.display='none';
-document.getElementById("CSContainerSlot22").style.display='none';
-document.getElementById("CSContainerSlot32").style.display='none';
-document.getElementById("CSContainerSlot42").style.display='none';
-document.getElementById("CSContainerSlot52").style.display='none';
-document.getElementById("CSContainerSlot62").style.display='none';
-document.getElementById("CSContainerSlot72").style.display='none';
-document.getElementById("CSContainerSlot82").style.display='none';
-document.getElementById("CSContainerSlot92").style.display='none';
-document.getElementById("CSContainerSlot102").style.display='none';
-</script>
-
-<div class="menuAS" id="advancedSettings5" onclick="toggleCustomObjectsMenu()">
-	<div class="linesAS">
-			<img src="images/lines.png" height="17" width="23"> 
-			&nbsp;
-			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
+<div id="defineInanimateObjectsContainer" class="menu-container">
+	
+	<div class="bigButton" onclick="toggleMenus(5)" style="margin-bottom:10px">Go back</div>
+	
+	<div id="customObjectsSet1Container">
+	
+		<div style="height:40px">
+			<div class="speciesCategoryButtonEnd"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
+			<div class="speciesCategoryName"><div class="categoryText">Custom Objects 1-5</div></div>
+			<div class="speciesCategoryButton" onClick="switchToCustomObjectsSet(2)"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
+		</div>
+		
+		<div class="custom-species-name" id="customObjectName1">ObjectName</div>
+		<input id="inanimateObjectSlot1TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomObject(1)">Set</div>
+		
+		<div class="custom-species-name" id="customObjectName2">ObjectName</div>
+		<input id="inanimateObjectSlot2TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomObject(2)">Set</div>
+		
+		<div class="custom-species-name" id="customObjectName3">ObjectName</div>
+		<input id="inanimateObjectSlot3TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomObject(3)">Set</div>
+		
+		<div class="custom-species-name" id="customObjectName4">ObjectName</div>
+		<input id="inanimateObjectSlot4TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomObject(4)">Set</div>
+		
+		<div class="custom-species-name" id="customObjectName5">ObjectName</div>
+		<input id="inanimateObjectSlot5TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomObject(5)">Set</div>
+		
 	</div>
 	
-	&nbsp;&nbsp;Define Inanimate Objects
+	<div id="customObjectsSet2Container" style="display:none">
+	
+		<div style="height:40px">
+			<div class="speciesCategoryButton" onClick="switchToCustomObjectsSet(1)"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
+			<div class="speciesCategoryName"><div class="categoryText">Custom Objects 6-10</div></div>
+			<div class="speciesCategoryButtonEnd"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
+		</div>
+		
+		<div class="custom-species-name" id="customObjectName6">ObjectName</div>
+		<input id="inanimateObjectSlot6TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomObject(6)">Set</div>
+		
+		<div class="custom-species-name" id="customObjectName7">ObjectName</div>
+		<input id="inanimateObjectSlot7TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomObject(7)">Set</div>
+		
+		<div class="custom-species-name" id="customObjectName8">ObjectName</div>
+		<input id="inanimateObjectSlot8TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomObject(8)">Set</div>
+		
+		<div class="custom-species-name" id="customObjectName9">ObjectName</div>
+		<input id="inanimateObjectSlot9TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomObject(9)">Set</div>
+		
+		<div class="custom-species-name" id="customObjectName10">ObjectName</div>
+		<input id="inanimateObjectSlot10TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomObject(10)">Set</div>
+		
+	</div>
+	
 </div>
 
-<div id="defineInanimateObjectsContainer">
-
-	<div id="COContainerSlot11"> <!-- Custom Objects Container Slot 1-1 -->
-		<div class="CSSlotDiv">Slot 1 -&nbsp;</div>
-		<div class="CSNameDiv" id="inanimateObjectName1">ObjectName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCOSlot1" onclick="changeCOSlot1()">Change</button>
+<div id="CustomCockTypesContainer" class="menu-container">
+	
+	<div class="bigButton" onclick="toggleMenus(6)" style="margin-bottom:10px">Go back</div>
+	
+	<div id="customCocksSet1Container">
+	
+		<div style="height:40px">
+			<div class="speciesCategoryButtonEnd"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
+			<div class="speciesCategoryName"><div class="categoryText">Custom Cocks 1-5</div></div>
+			<div class="speciesCategoryButton" onClick="switchToCustomCocksSet(2)"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
+		</div>
+		
+		<div class="custom-species-name" id="customCockName1">CockName</div>
+		<input id="cockTypeSlot1TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomCock(1)">Set</div>
+		
+		<div class="custom-species-name" id="customCockName2">CockName</div>
+		<input id="cockTypeSlot2TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomCock(2)">Set</div>
+		
+		<div class="custom-species-name" id="customCockName3">CockName</div>
+		<input id="cockTypeSlot3TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomCock(3)">Set</div>
+		
+		<div class="custom-species-name" id="customCockName4">CockName</div>
+		<input id="cockTypeSlot4TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomCock(4)">Set</div>
+		
+		<div class="custom-species-name" id="customCockName5">CockName</div>
+		<input id="cockTypeSlot5TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomCock(5)">Set</div>
+		
 	</div>
 	
-	<div id="COContainerSlot12"> <!-- Custom Objects Container Slot 1-2 -->
-		<input id="inanimateObjectSlot1TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCOSlot1()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCOSlot1()">Go Back</button>
+	<div id="customCocksSet2Container" style="display:none">
+	
+		<div style="height:40px">
+			<div class="speciesCategoryButton" onClick="switchToCustomCocksSet(1)"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
+			<div class="speciesCategoryName"><div class="categoryText">Custom Cocks 6-10</div></div>
+			<div class="speciesCategoryButtonEnd"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
+		</div>
+		
+		<div class="custom-species-name" id="customCockName6">CockName</div>
+		<input id="cockTypeSlot6TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomCock(6)">Set</div>
+		
+		<div class="custom-species-name" id="customCockName7">CockName</div>
+		<input id="cockTypeSlot7TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomCock(7)">Set</div>
+		
+		<div class="custom-species-name" id="customCockName8">CockName</div>
+		<input id="cockTypeSlot8TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomCock(8)">Set</div>
+		
+		<div class="custom-species-name" id="customCockName9">CockName</div>
+		<input id="cockTypeSlot9TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomCock(9)">Set</div>
+		
+		<div class="custom-species-name" id="customCockName10">CockName</div>
+		<input id="cockTypeSlot10TextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomCock(10)">Set</div>
+		
 	</div>
 	
-	<div id="COContainerSlot21">
-		<div class="CSSlotDiv">Slot 2 -&nbsp;</div>
-		<div class="CSNameDiv" id="inanimateObjectName2">ObjectName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCOSlot2" onclick="changeCOSlot2()">Change</button>
-	</div>
-	
-	<div id="COContainerSlot22">
-		<input id="inanimateObjectSlot2TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCOSlot2()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCOSlot2()">Go Back</button>
-	</div>
-	
-	<div id="COContainerSlot31">
-		<div class="CSSlotDiv">Slot 3 -&nbsp;</div>
-		<div class="CSNameDiv" id="inanimateObjectName3">ObjectName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCOSlot3" onclick="changeCOSlot3()">Change</button>
-	</div>
-	
-	<div id="COContainerSlot32">
-		<input id="inanimateObjectSlot3TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCOSlot3()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCOSlot3()">Go Back</button>
-	</div>
-	
-	<div id="COContainerSlot41">
-		<div class="CSSlotDiv">Slot 4 -&nbsp;</div>
-		<div class="CSNameDiv" id="inanimateObjectName4">ObjectName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCOSlot4" onclick="changeCOSlot4()">Change</button>
-	</div>
-	
-	<div id="COContainerSlot42">
-		<input id="inanimateObjectSlot4TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCOSlot4()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCOSlot4()">Go Back</button>
-	</div>
-	
-	<div id="COContainerSlot51">
-		<div class="CSSlotDiv">Slot 5 -&nbsp;</div>
-		<div class="CSNameDiv" id="inanimateObjectName5">ObjectName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCOSlot5" onclick="changeCOSlot5()">Change</button>
-	</div>
-	
-	<div id="COContainerSlot52">
-		<input id="inanimateObjectSlot5TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCOSlot5()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCOSlot5()">Go Back</button>
-	</div>
-	
-	<div id="COContainerSlot61">
-		<div class="CSSlotDiv">Slot 6 -&nbsp;</div>
-		<div class="CSNameDiv" id="inanimateObjectName6">ObjectName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCOSlot6" onclick="changeCOSlot6()">Change</button>
-	</div>
-	
-	<div id="COContainerSlot62">
-		<input id="inanimateObjectSlot6TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCOSlot6()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCOSlot6()">Go Back</button>
-	</div>
-	
-	<div id="COContainerSlot71">
-		<div class="CSSlotDiv">Slot 7 -&nbsp;</div>
-		<div class="CSNameDiv" id="inanimateObjectName7">ObjectName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCOSlot7" onclick="changeCOSlot7()">Change</button>
-	</div>
-	
-	<div id="COContainerSlot72">
-		<input id="inanimateObjectSlot7TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCOSlot7()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCOSlot7()">Go Back</button>
-	</div>
-	
-	<div id="COContainerSlot81">
-		<div class="CSSlotDiv">Slot 8 -&nbsp;</div>
-		<div class="CSNameDiv" id="inanimateObjectName8">ObjectName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCOSlot8" onclick="changeCOSlot8()">Change</button>
-	</div>
-	
-	<div id="COContainerSlot82">
-		<input id="inanimateObjectSlot8TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCOSlot8()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCOSlot8()">Go Back</button>
-	</div>
-	
-	<div id="COContainerSlot91">
-		<div class="CSSlotDiv">Slot 9 -&nbsp;</div>
-		<div class="CSNameDiv" id="inanimateObjectName9">ObjectName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCOSlot9" onclick="changeCOSlot9()">Change</button>
-	</div>
-	
-	<div id="COContainerSlot92">
-		<input id="inanimateObjectSlot9TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCOSlot9()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCOSlot9()">Go Back</button>
-	</div>
-	
-	<div id="COContainerSlot101">
-		<div class="CSSlotDiv">Slot 10 -&nbsp;</div>
-		<div class="CSNameDiv" id="inanimateObjectName10">ObjectName</div>
-		<button type="button" class="buttonOpenLock" id="buttonCOSlot10" onclick="changeCOSlot10()">Change</button>
-	</div>
-	
-	<div id="COContainerSlot102">
-		<input id="inanimateObjectSlot10TextField" class="bgColorTextField" value="">
-		<button type="button" class="buttonOpenLock" onclick="setCOSlot10()">Set</button>
-		<button type="button" class="buttonOpenLock" onclick="goBackCOSlot10()">Go Back</button>
-	</div>
-
 </div>
 
-<script>
-document.getElementById("COContainerSlot12").style.display='none';
-document.getElementById("COContainerSlot22").style.display='none';
-document.getElementById("COContainerSlot32").style.display='none';
-document.getElementById("COContainerSlot42").style.display='none';
-document.getElementById("COContainerSlot52").style.display='none';
-document.getElementById("COContainerSlot62").style.display='none';
-document.getElementById("COContainerSlot72").style.display='none';
-document.getElementById("COContainerSlot82").style.display='none';
-document.getElementById("COContainerSlot92").style.display='none';
-document.getElementById("COContainerSlot102").style.display='none';
-</script>
-
-<div class="menuAS" id="advancedSettings8" onclick="toggleThirdSexMenu()">
-	<div class="linesAS">
-			<img src="images/lines.png" height="17" width="23"> 
-			&nbsp;
-			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
+<div id="renamePresetsContainer" class="menu-container">
+	
+	<div class="bigButton" onclick="toggleMenus(7)" style="margin-bottom:10px">Go back</div>
+	
+	<div class="renamePresetsContainer2">
+	<div id="renamePresetsSlot1Message" class="renamePresetsText">Slot 1 - Empty slot</div>
+	<div class="renamePresetsTickboxContainer">
+		<label class="container">Lock
+			<input type="checkbox" id="lockPresetName1Checkbox" onclick="lockPresetName(1)">
+			<span class="checkbox"></span>  
+		</label>
+	</div>
+	<input id="presetName1TextField" class="mediumTextField" value="">
+	<div class="mediumButton" id="setPresetName1Button" onClick="setPresetName(1)">Set</div>
 	</div>
 	
-	&nbsp;&nbsp;Define Third Sex
+	<div class="renamePresetsContainer2">
+	<div id="renamePresetsSlot2Message" class="renamePresetsText">Slot 2 - Empty slot</div>
+	<div class="renamePresetsTickboxContainer">
+		<label class="container">Lock
+			<input type="checkbox" id="lockPresetName2Checkbox" onclick="lockPresetName(2)">
+			<span class="checkbox"></span>  
+		</label>
+	</div>
+	<input id="presetName2TextField" class="mediumTextField" value="">
+	<div class="mediumButton" id="setPresetName2Button" onClick="setPresetName(2)">Set</div>
+	</div>
+	
+	<div class="renamePresetsContainer2">
+	<div id="renamePresetsSlot3Message" class="renamePresetsText">Slot 3 - Empty slot</div>
+	<div class="renamePresetsTickboxContainer">
+		<label class="container">Lock
+			<input type="checkbox" id="lockPresetName3Checkbox" onclick="lockPresetName(3)">
+			<span class="checkbox"></span>  
+		</label>
+	</div>
+	<input id="presetName3TextField" class="mediumTextField" value="">
+	<div class="mediumButton" id="setPresetName3Button" onClick="setPresetName(3)">Set</div>
+	</div>
+	
+	<div class="renamePresetsContainer2">
+	<div id="renamePresetsSlot4Message" class="renamePresetsText">Slot 4 - Empty slot</div>
+	<div class="renamePresetsTickboxContainer">
+		<label class="container">Lock
+			<input type="checkbox" id="lockPresetName4Checkbox" onclick="lockPresetName(4)">
+			<span class="checkbox"></span>  
+		</label>
+	</div>
+	<input id="presetName4TextField" class="mediumTextField" value="">
+	<div class="mediumButton" id="setPresetName4Button" onClick="setPresetName(4)">Set</div>
+	</div>
+	
+	<div class="renamePresetsContainer2">
+	<div id="renamePresetsSlot5Message" class="renamePresetsText">Slot 5 - Empty slot</div>
+	<div class="renamePresetsTickboxContainer">
+		<label class="container">Lock
+			<input type="checkbox" id="lockPresetName5Checkbox" onclick="lockPresetName(5)">
+			<span class="checkbox"></span>  
+		</label>
+	</div>
+	<input id="presetName5TextField" class="mediumTextField" value="">
+	<div class="mediumButton" id="setPresetName5Button" onClick="setPresetName(5)">Set</div>
+	</div>
+	
+	<div style="padding-left:18px">Input preset name in the text field and click "Set" button. If you don't want preset name to be overwriten when saving a preset, tick a "Lock" checkbox.</div>
+	
 </div>
 
-<div id="ThirdSexContainer">
+<div id="batteryDrainOptionsContainer" class="menu-container">
 
+	<div class="bigButton" onclick="toggleMenus(8)" style="margin-bottom:10px">Go back</div>
+	
+	<div style="margin-left: 20px; margin-top: 10px">
+		<label class="container">Disable battery draining
+			<input type="checkbox" id="disableBatteryCheckbox" onclick="disableBatteryFuntion()">
+			<span class="checkbox"></span>  
+		</label>
+	</div>
+	
+	<div style="margin-top:50px"></div>
+	<div id="batteryDrainMessage" style="padding-left:18px;margin-top:5px;">When battery is low there is 3 in 100 chance every 20 seconds that error will occur.</div>
+	
+	<div style="padding-left:18px;margin-top:5px;">Adjust chance (min 3):</div>
+	<input class="mediumTextField" id="batteryDrainAdjustErrorChanceTextField" value="">
+	<div class="mediumButton" onClick="batteryDrainAdjustErrorChance()">Set</div>
+	
+	<div style="padding-left:18px;margin-top:5px;">Adjust interval (in seconds):</div>
+	<input class="mediumTextField" id="batteryDrainAdjustErrorIntervalTextField" value="">
+	<div class="mediumButton" onClick="batteryDrainAdjustErrorInterval()">Set</div>
+	
+	<div style="margin-top:55px"></div>		
+	<div class="bigButton" onClick="batteryDrainReset()">Reset to defaults</div>
+		
+</div>
+
+<div id="ThirdSexContainer" class="menu-container">
+	
+	<div class="bigButton" onclick="toggleMenus(9)" style="margin-bottom:10px">Go back</div>
+	
 	<div id="thirdSexValueMessage" style="padding-left:18px;">uwu</div>
 	<div style="margin-top:5px"></div>
 	<input id="thirdSexTextField" class="mediumTextField" value="">
@@ -3463,137 +3809,25 @@ document.getElementById("COContainerSlot102").style.display='none';
 
 </div>
 
-<div class="menuAS" id="advancedSettings9" onclick="toggleRenamePresetsMenu()">
-	<div class="linesAS">
-			<img src="images/lines.png" height="17" width="23"> 
-			&nbsp;
-			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
-	</div>
+<div id="CreativeModeContainer" style="max-height:0px" class="menu-container">
 	
-	&nbsp;&nbsp;Rename Presets
-</div>
-
-<div id="renamePresetsContainer">
-
-	<div class="renamePresetsContainer2">
-	<div id="renamePresetsSlot1Message" class="renamePresetsText">Slot 1 - Empty slot</div>
-	<div class="renamePresetsTickboxContainer">
-		<label class="container">Lock
-			<input type="checkbox" id="lockPresetName1Checkbox" onclick="lockPresetName1()">
-			<span class="checkbox"></span>  
-		</label>
-	</div>
-	<input id="presetName1TextField" class="mediumTextField" value="">
-	<div class="mediumButton" id="setPresetName1Button" onClick="setPresetName1()">Set</div>
-	</div>
+	<div class="bigButton" onclick="toggleMenus(10)">Go back</div>
+	<div class="bigButton" onclick="toggleCreativeModeMenus(0)">Status bar</div>
+	<div class="bigButton" onclick="toggleCreativeModeMenus(1)">Custom dropdown</div>
+	<div class="bigButton" onclick="toggleCreativeModeMenus(2)">Custom notification</div>
 	
-	<div class="renamePresetsContainer2">
-	<div id="renamePresetsSlot2Message" class="renamePresetsText">Slot 2 - Empty slot</div>
-	<div class="renamePresetsTickboxContainer">
-		<label class="container">Lock
-			<input type="checkbox" id="lockPresetName2Checkbox" onclick="lockPresetName2()">
-			<span class="checkbox"></span>  
-		</label>
+	<div style="padding:10px;font-size:15px;background-color:#FF4550;margin-top:5px">
+	Notes: <br>
+	- When Creative Mode is enabled status bar is frozen (time clock is stopped, coverage won't change and battery won't deplete), <br> 
+	- Any Creative Mode specific changes made will not persist upon restarting the app.
 	</div>
-	<input id="presetName2TextField" class="mediumTextField" value="">
-	<div class="mediumButton" id="setPresetName2Button" onClick="setPresetName2()">Set</div>
-	</div>
-	
-	<div class="renamePresetsContainer2">
-	<div id="renamePresetsSlot3Message" class="renamePresetsText">Slot 3 - Empty slot</div>
-	<div class="renamePresetsTickboxContainer">
-		<label class="container">Lock
-			<input type="checkbox" id="lockPresetName3Checkbox" onclick="lockPresetName3()">
-			<span class="checkbox"></span>  
-		</label>
-	</div>
-	<input id="presetName3TextField" class="mediumTextField" value="">
-	<div class="mediumButton" id="setPresetName3Button" onClick="setPresetName3()">Set</div>
-	</div>
-	
-	<div class="renamePresetsContainer2">
-	<div id="renamePresetsSlot4Message" class="renamePresetsText">Slot 4 - Empty slot</div>
-	<div class="renamePresetsTickboxContainer">
-		<label class="container">Lock
-			<input type="checkbox" id="lockPresetName4Checkbox" onclick="lockPresetName4()">
-			<span class="checkbox"></span>  
-		</label>
-	</div>
-	<input id="presetName4TextField" class="mediumTextField" value="">
-	<div class="mediumButton" id="setPresetName4Button" onClick="setPresetName4()">Set</div>
-	</div>
-	
-	<div class="renamePresetsContainer2">
-	<div id="renamePresetsSlot5Message" class="renamePresetsText">Slot 5 - Empty slot</div>
-	<div class="renamePresetsTickboxContainer">
-		<label class="container">Lock
-			<input type="checkbox" id="lockPresetName5Checkbox" onclick="lockPresetName5()">
-			<span class="checkbox"></span>  
-		</label>
-	</div>
-	<input id="presetName5TextField" class="mediumTextField" value="">
-	<div class="mediumButton" id="setPresetName5Button" onClick="setPresetName5()">Set</div>
-	</div>
-	
-	<div style="padding-left:18px;border-bottom: 3px solid #73728C;">Input preset name in the text field and click "Set" button. If you don't want preset name to be overwriten when saving a preset, tick a "Lock" checkbox.</div>
 	
 </div>
 
-<div class="menuAS" id="advancedSettings10" onclick="toggleBatteryDrainOptions()">
-	<div class="linesAS">
-			<img src="images/lines.png" height="17" width="23"> 
-			&nbsp;
-			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
-	</div>
+	<div id="creativeModeStatusBarContainer" class="menu-container">
 	
-	&nbsp;&nbsp;Battery Drain Options
-</div>
-
-	<div id="batteryDrainOptionsContainer">
-		<div style="margin-left: 20px; margin-top: 10px">
-			<label class="container">Disable battery draining
-				<input type="checkbox" id="disableBatteryCheckbox" onclick="disableBatteryFuntion()">
-				<span class="checkbox"></span>  
-			</label>
-		</div>
+		<div class="bigButton" onclick="toggleCreativeModeMenus(0)" style="margin-bottom:10px">Go back</div>
 		
-		<div style="margin-top:50px"></div>
-		<div id="batteryDrainMessage" style="padding-left:18px;margin-top:5px;">When battery is low there is 3 in 100 chance every 20 seconds that error will occur.</div>
-		
-		<div style="padding-left:18px;margin-top:5px;">Adjust chance (min 3):</div>
-		<input class="mediumTextField" id="batteryDrainAdjustErrorChanceTextField" value="">
-		<div class="mediumButton" onClick="batteryDrainAdjustErrorChance()">Set</div>
-		
-		<div style="padding-left:18px;margin-top:5px;">Adjust interval (in seconds):</div>
-		<input class="mediumTextField" id="batteryDrainAdjustErrorIntervalTextField" value="">
-		<div class="mediumButton" onClick="batteryDrainAdjustErrorInterval()">Set</div>
-		
-		<div style="margin-top:55px"></div>		
-		<div class="bigButton" onClick="batteryDrainReset()">Reset to defaults</div>
-			
-	</div>
-
-<div class="menuAS" id="advancedSettings11" onclick="toggleCreativeModeMenu()">
-	<div class="linesAS">
-			<img src="images/lines.png" height="17" width="23"> 
-			&nbsp;
-			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
-	</div>
-	
-	&nbsp;&nbsp;Creative Mode
-</div>
-
-<div class="menuAS" id="creativeModeStatusBarToggle" onclick="toggleCreativeModeStatusBarMenu()">
-	<div class="linesAS">
-			<img src="images/lines.png" height="17" width="23"> 
-			&nbsp;
-			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
-	</div>
-	
-	&nbsp;&nbsp;Status bar
-</div>
-	
-	<div id="creativeModeStatusBarContainer">
 		<div style="padding-left:18px;">Coverage</div>
 		<div class="mediumButton" onClick="creativeModeChangeCoverage(1)">1/4</div>
 		<div class="mediumButton" onClick="creativeModeChangeCoverage(2)">2/4</div>
@@ -3623,69 +3857,48 @@ document.getElementById("COContainerSlot102").style.display='none';
 		
 
 	</div>
-
-<div class="menuAS" id="creativeModeCustomErrorToggle" onclick="toggleCreativeModeCustomErrorMenu()">
-	<div class="linesAS">
-			<img src="images/lines.png" height="17" width="23"> 
-			&nbsp;
-			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
-	</div>
 	
-	&nbsp;&nbsp;Custom error msg/notification
-</div>
+	<div id="creativeModeCustomDropdownContainer" class="menu-container">
 	
-	<div id="creativeModeCustomErrorContainer">
-	Something will be there
-	</div>
-
-<div class="menuAS" id="creativeModeCustomDropdownToggle" onclick="toggleCreativeModeCustomDropdownMenu()">
-	<div class="linesAS">
-			<img src="images/lines.png" height="17" width="23"> 
-			&nbsp;
-			<img src="images/arrow.png" class="imgArrow" height="13" width="23">
-	</div>
-	
-	&nbsp;&nbsp;Custom dropdown menu
-</div>
-	
-	<div id="creativeModeCustomDropdownContainer">
-	
-	<div style="height: 120px">
-	<div class="renamePresetsText">&nbsp;</div>
-	<div class="renamePresetsTickboxContainer">
-		<label class="container">Enable
-			<input type="checkbox" id="enableCustomDropdownMenuCheckbox" onclick="toggleCustomDropdownMenu()">
-			<span class="checkbox"></span>  
-		</label>
-	</div>
-	
-	<input id="customDropdownMenuLabelTextField" class="mediumTextField" value="">
-	<div class="mediumButton" onClick="setCustomDropdownMenuLabel()">Set label</div>
-	
-	<input id="customDropdownMenuValueTextField" class="mediumTextField" value="">
-	<div class="mediumButton" onClick="setCustomDropdownMenuValue()">Set value</div>
-	</div>
-	
-	<div style="padding-left:18px;margin-top:5px;">Note: changes made in Creative Mode (status bar, custom error/notification, custom dropdown) will not persist upon restarting the app.</div>
-	
-	</div>
-	
-	
-	
-<script>
-// Hide Creative Mode menus
-document.getElementById("creativeModeStatusBarToggle").style.display='none';
-document.getElementById("creativeModeCustomErrorToggle").style.display='none';
-document.getElementById("creativeModeCustomDropdownToggle").style.display='none';
-</script>
+		<div class="bigButton" onclick="toggleCreativeModeMenus(1)" style="margin-bottom:10px">Go back</div>
 		
-<div style="height:10px"></div>
+		<div style="height: 120px">
+		<div class="renamePresetsText">&nbsp;</div>
+		<div class="renamePresetsTickboxContainer">
+			<label class="container">Enable
+				<input type="checkbox" id="enableCustomDropdownMenuCheckbox" onclick="toggleCustomDropdownMenu()">
+				<span class="checkbox"></span>  
+			</label>
+		</div>
+		
+		<input id="customDropdownMenuLabelTextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomDropdownMenuLabel()">Set label</div>
+		
+		<input id="customDropdownMenuValueTextField" class="mediumTextField" value="">
+		<div class="mediumButton" onClick="setCustomDropdownMenuValue()">Set value</div>
+		</div>
+		
+	</div>
+	
+	<div id="creativeModeCustomNotificationContainer" class="menu-container">
+	
+		<div class="bigButton" onclick="toggleCreativeModeMenus(2)" style="margin-bottom:10px">Go back</div>
+		
+		<div style="padding:5px;font-size:15px;background-color:#282640;">Input your custom error/notification message in the text field and click "Set". Use br and center tags if you want line break/centered text.</div>
+		<input id="customNotificationTextField" class="bigTextField" value="">
+		<div class="bigButton" onClick="displayNotification(7)">Set</div>
+		
+	</div>
 
-<div id="ButtonsContainer">
+</div>
+
+<div class="desktop-mode-container">
+		
+<div id="ButtonsContainer" style="margin-top:10px">
 
 <div class="bigButton" id="applySettingsButton" onClick="showProcessingAnimation()">Apply settings</div>
 
-<div class="bigButton" id="appStatusButton" onClick="showAppStatusOptions()">Import/Export Preset</div>
+<div class="bigButton" id="appStatusButton" onClick="showAppStatusOptions()">Import/export preset</div>
 
 	<div id="appStatusChoiceContainer" style="overflow:hidden;transition-duration:0.75s">
 	
@@ -3766,7 +3979,7 @@ document.getElementById("creativeModeCustomDropdownToggle").style.display='none'
 		</div>
 		
 		<div style="padding:10px;font-size:14px;">
-			It is recommended that you set an username first. Click a button labelled "Username" below. If the button is missing, make sure "Hide Username button" in options is unticked. <!--Note: If you want to use CONTROL Chat feature you need to set up an username.-->
+			It is recommended that you set an username first. Click a button labelled "Username" below. If the button is missing, make sure "Hide Username button" in options is unticked. <br> Note: If you want to use CONTROL Chat feature you need to set up an username.
 		</div>
 				
 	</div>
@@ -3820,14 +4033,26 @@ document.getElementById("creativeModeCustomDropdownToggle").style.display='none'
 		<div class="mediumButton" onClick="CONTROLlockSubsSettings()">Lock</div>
 		</div>
 		
-		<div style="margin-top:5px"></div>
-		
 	</div>
 	<script>document.getElementById("CONTROLmasterContainer").style.maxHeight='0px';document.getElementById("CONTROLmasterContainer").style.border='0';</script>
 	
-	<div id="CONTROLsubContainer" style="overflow:hidden;transition-duration:0.75s">
+	<div id="COTNROLchatMainContainer" style="overflow:hidden;transition-duration:0.75s">
 	
-		<div class="CONTROLchangelogContainer" id="CONTROLchangelogContainer">
+		<div class="CONTROLchangelogContainer" id="CONTROLchatContainer" style="height: 190px;">
+			<div class="CONTROLchangelogButton" onClick="clearChat()">Clear</div>
+			<div id="CONTROLchatNoUsernameError" style="text-align:center; float:left; width: 60%; padding-top:5px; padding-bottom:5px; background-color:#59568f">CONTROL Chat</div>
+			<div class="CONTROLchangelogButton" onClick="toggleCONTROLchat()" id="showHideChatButton">Hide</div>
+			<div id="CONTROLchatlog" class="CONTROLchangelog" style="border-bottom: 2px solid #59568f;min-height: 120px;"> &nbsp;</div>
+			<input id="CONTROLchatWriteMessage" value="">
+			<div class="CONTROLchangelogButton" onClick="CONTROLsendChatMessage()" style="float:right;padding-top: 6px;padding-bottom: 6px;">Send</div>
+		</div>
+	
+	</div>
+	<script>document.getElementById("COTNROLchatMainContainer").style.maxHeight='0px';</script>
+	
+	<div id="CONTROLsubContainer" style="overflow:hidden;transition-duration:0.75s">
+
+		<div class="CONTROLchangelogContainer" id="CONTROLchangelogContainer" style="margin-top:14px">
 			<div class="CONTROLchangelogButton" onClick="clearChangelog()">Clear</div>
 			<div style="text-align:center; float:left; width: 60%; padding-top:5px; padding-bottom:5px; background-color:#59568f"> CONTROL Changelog </div>
 			<div class="CONTROLchangelogButton" onClick="toggleChangelog()" id="showHideChangelogButton">Hide</div>
@@ -3854,7 +4079,7 @@ document.getElementById("creativeModeCustomDropdownToggle").style.display='none'
 
 <div class="bigButtonAdminMode" id="adminbutton" onClick="enterPasswordFunction()">Admin Mode</div>
 
-<div class="bigButtonAdminMode" id="adminbuttontoggle" onClick="toggleAdminModeFunction()">Toggle Admin Mode</div>
+<div class="bigButtonAdminMode" id="adminbuttontoggle" onClick="toggleAdminMode()">Toggle Admin Mode</div>
 <script>
 	document.getElementById("adminbuttontoggle").style.padding='0px';
 	document.getElementById("adminbuttontoggle").style.border='0';
@@ -3875,7 +4100,7 @@ document.getElementById("creativeModeCustomDropdownToggle").style.display='none'
 <div class="bigButton" id="saveSettingsButton" onClick="showSaveSlotButtons()">Save presets</div>
 
 	<div class="saveSlotButtonsContainer" id="saveSlotButtons">
-		Save<br>
+		Save preset<br>
 		<div class="mediumSlotButton" id="saveSlot1" onClick="saveSettings(1)">1</div>
 		<div class="mediumSlotButton" id="saveSlot2" onClick="saveSettings(2)">2</div>
 		<div class="mediumSlotButton" id="saveSlot3" onClick="saveSettings(3)">3</div>
@@ -3884,7 +4109,7 @@ document.getElementById("creativeModeCustomDropdownToggle").style.display='none'
 		<div class="mediumSlotButton" onClick="hideSaveSlotButtons()">Go back</div>
 		<script>
 			document.getElementById("saveSlotButtons").style.marginTop='0';
-			document.getElementById("saveSlotButtons").style.border='0';
+			document.getElementById("saveSlotButtons").style.border='0px solid transparent';
 			document.getElementById("saveSlotButtons").style.maxHeight='0';
 		</script>
 	</div>
@@ -3892,7 +4117,7 @@ document.getElementById("creativeModeCustomDropdownToggle").style.display='none'
 <div class="bigButton" id="loadSettingsButton" onClick="showLoadSlotButtons()">Load presets</div>
 
 	<div class="loadSlotButtonsContainer" id="loadSlotButtons">
-		Load<br>
+		Load preset<br>
 		<div class="mediumSlotButton" id="loadSlot1" onClick="loadSettings(1)">1</div>
 		<div class="mediumSlotButton" id="loadSlot2" onClick="loadSettings(2)">2</div>
 		<div class="mediumSlotButton" id="loadSlot3" onClick="loadSettings(3)">3</div>
@@ -3901,86 +4126,11 @@ document.getElementById("creativeModeCustomDropdownToggle").style.display='none'
 		<div class="mediumSlotButton" onClick="hideLoadSlotButtons()">Go back</div>
 		<script>
 			document.getElementById("loadSlotButtons").style.marginTop='0';
-			document.getElementById("loadSlotButtons").style.border='0';
+			document.getElementById("loadSlotButtons").style.border='0px solid transparent';
 			document.getElementById("loadSlotButtons").style.maxHeight='0';  
 		</script>
 	</div>
 	
-<div class="bigButton" id="hideMenusButton" onClick="showHideMenus()">Hide Menus</div>
-
-<div class="bigButton" id="goBackHideMenusButton" onClick="goBackFromHideMenus()">Go back</div>
-<script>
-document.getElementById("goBackHideMenusButton").style.padding='0px';
-document.getElementById("goBackHideMenusButton").style.border='0';
-document.getElementById("goBackHideMenusButton").style.fontSize='0px';
-document.getElementById("goBackHideMenusButton").style.marginTop='0px';
-</script>
-
-<div class="optionsCheckboxes" id="hideMenusCheckboxesContainer">
-		
-	<div>
-		<label class="container">Hide "Advanced Settings"
-			<input type="checkbox" id="hideAdvancedSettingsCheckbox" onclick="hideAdvancedSettings()">
-			<span class="checkbox"></span>  
-		</label>
-	</div>
-	<br>
-	
-	<div>
-		<label class="container">Hide "Configure Options and Sliders"
-			<input type="checkbox" id="hideConfigureOptionsAndSlidersCheckbox" onclick="hideConfigureOptionsAndSliders()">
-			<span class="checkbox"></span>  
-		</label>
-	</div>
-	<br>
-	
-	<div>
-		<label class="container">Hide "Create Custom Sliders"
-			<input type="checkbox" id="hideCreateCustomSlidersCheckbox" onclick="hideCreateCustomSliders()">
-			<span class="checkbox"></span>  
-		</label>
-	</div>
-	<br>
-	
-	<div>
-		<label class="container">Hide "Create Custom Checkboxes"
-			<input type="checkbox" id="hideCreateCustomCheckboxesCheckbox" onclick="hideCreateCustomCheckboxes()">
-			<span class="checkbox"></span>  
-		</label>
-	</div>
-	<br>
-	
-	<div>
-		<label class="container">Hide "Create Custom Species"
-			<input type="checkbox" id="hideCreateCustomSpeciesCheckbox" onclick="hideCreateCustomSpecies()">
-			<span class="checkbox"></span>  
-		</label>
-	</div>
-	<br>
-	
-	<div>
-		<label class="container">Hide "Rename Presets"
-			<input type="checkbox" id="hideRenamePresetsCheckbox" onclick="hideRenamePresets()">
-			<span class="checkbox"></span>  
-		</label>
-	</div>
-	<br>
-	
-	<div>
-		<label class="container">Hide every menu
-			<input type="checkbox" id="hideEveryMenuCheckbox" onclick="hideEveryMenu()">
-			<span class="checkbox"></span>  
-		</label>
-	</div>
-	<br>
-	
-</div>
-	
-<script>
-	document.getElementById("hideMenusCheckboxesContainer").style.maxHeight='0';
-	document.getElementById("hideMenusCheckboxesContainer").style.marginTop='0';
-</script>
-
 <div class="bigButton" id="preferences" onClick="showOptions()">Options</div>
 
 <div class="bigButton" id="goBack" onClick="goBackFromOptions()">Go back</div>
@@ -4042,6 +4192,14 @@ document.getElementById("goBack").style.marginTop='0px';
 			<br>
 			
 			<div>
+			<label class="container">Enable Desktop Mode
+				<input type="checkbox" id="desktopModeCheckbox" onclick="toggleDesktopMode()">
+				<span class="checkbox"></span>  
+			</label>
+			</div>
+			<br>
+			
+			<div>
 			<label class="container">Show Breast Size slider when Male Sex is selected
 				<input type="checkbox" id="showBreastSizeMaleCheckbox" onclick="toggleBreastSizeMaleOption()">
 				<span class="checkbox"></span>  
@@ -4068,14 +4226,6 @@ document.getElementById("goBack").style.marginTop='0px';
 			<div>
 			<label class="container">Modern logo and "Processing" animation
 				<input type="checkbox" id="newStyleCheckbox" onclick="toggleNewStyle()">
-				<span class="checkbox"></span>  
-			</label>
-			</div>
-			<br>
-			
-			<div>
-			<label class="container">Show Battery Drain menu
-				<input type="checkbox" id="batteryDrainCheckbox" onclick="toggleBatteryDrainMenu()">
 				<span class="checkbox"></span>  
 			</label>
 			</div>
@@ -4122,14 +4272,6 @@ document.getElementById("goBack").style.marginTop='0px';
 			<br>
 			
 			<div>
-			<label class="container">Show Hide Menus button
-				<input type="checkbox" id="hideMenusCheckbox" onclick="toggleHideMenusButton()">
-				<span class="checkbox"></span>  
-			</label>
-			</div>
-			<br>
-			
-			<div>
 			<label class="container">Show Developer Menu button
 				<input type="checkbox" id="devMenuCheckbox" onclick="toggleDevMenu()">
 				<span class="checkbox"></span>  
@@ -4138,7 +4280,7 @@ document.getElementById("goBack").style.marginTop='0px';
 			<br>
 			
 			<div>
-			<label class="container">Show Apply Settings button
+			<label class="container">Show Apply settings button
 				<input type="checkbox" id="applySettingsCheckbox" onclick="toggleApplySettingsButton()">
 				<span class="checkbox"></span>  
 			</label>
@@ -4171,12 +4313,19 @@ document.getElementById("goBack").style.marginTop='0px';
 
 	<div class="devMenuOptions" id="devMenuOptions">	
 	
-	<div class="bigButton" onClick="goBackFromDevMenuFunction()">Go back</div>	
-	<div class="bigButton" onClick="remoteLoginError()">Trigger Remote Login Error</div>	
-	<div class="bigButton" onClick="error69()">Trigger Error69</div>	
-	<div class="bigButton" onClick="error621()">Trigger Error621</div>	
-	<div class="bigButton" onClick="MSSError()">Trigger Multi Sex Select Error</div>	
-	<div class="bigButton" onClick="devMenuDeleteLockPassword()">Delete Lock password</div>	
+	<div class="bigButton" onClick="goBackFromDevMenuFunction()">Go back</div>
+	<div style="height:190px">
+	<div class="section-info" style="margin-top:5px;margin-bottom:5px">Trigger errors</div>
+	<div class="mediumButton" onClick="remoteLoginError()">RLE</div>
+	<div class="mediumButton" onClick="error69()">Error69</div>
+	<div class="mediumButton" onClick="error621()">Error621</div>
+	<div class="mediumButton" onClick="MSSError()">MSS</div>
+	<div class="section-info">
+	RLE - Remote Login Error<br>
+	MSS - Multi Sex Select Error
+	</div>
+	</div>
+	<div class="bigButton" id="devMenuDeleteLockPasswordButton" onClick="devMenuDeleteLockPassword()">Delete Lock password</div>
 	<div class="bigButton" onClick="goToChangeBGColorOptions()">Change background color (Desktop only)</div>
 	<div style = "border: 3px solid #FF4550;">
 	<div style="padding-left:18px;margin-top:5px;">Reset app (current state)</div>
@@ -4208,7 +4357,7 @@ document.getElementById("goBack").style.marginTop='0px';
 
 	<div id="setupPasswordFirstTimeContainer" style="overflow:hidden;transition-duration:0.75s">
 		
-		<div id="setupPasswordFirstTimeMessage" style="padding-left:18px;margin-top:5px;">Enter password:</div>
+		<div id="setupPasswordFirstTimeMessage" style="padding-left:18px;margin-top:5px;">Set up a lock password:</div>
 		<input id="passwordFirstTimeTextField" class="bigTextField" value="">
 		<div style="margin-top:5px"></div>
 		<div class="mediumButton" onClick="goBackSetupPasswordFirstTime()">Cancel</div>
@@ -4298,7 +4447,7 @@ document.getElementById("goBack").style.marginTop='0px';
 
 <div class="bigButton" id="toggleFeedbackButton" onClick="toggleFeedbackMenu()">Feedback</div>
 
-<div class="bigButton" id="hideCreditsButton" onClick="hideCredits()">Hide Credits</div>
+<div class="bigButton" id="hideCreditsButton" onClick="hideCredits()">Hide credits</div>
 
 <script>
 	document.getElementById("hideCreditsButton").style.padding='0px';
@@ -4350,6 +4499,7 @@ PWA Integration <br> SRThrowaway
 
 Special thanks to:<br>
 DHTMLX - Sliders .js library<br>
+PeerJS - WebRTC P2P .js library<br>
 iro.js - Color Picker .js library<br>
 c0bra - color-scheme .js library
 
@@ -4358,18 +4508,65 @@ c0bra - color-scheme .js library
 
 <div class="feedback" id="feedback">
 
-<a href="https://curiouscat.me/qtderg"> 
-<div class="creditsEntry">
+	<div class="section-info" style="margin-top:10px">
+	Choose platform of your choice
+	</div>
+	
+	<a href="https://curiouscat.me/qtderg">
+	<div class="credits-entry-mini">
 
-<div class="creditsText">
-Leave your feedback <br> on Curious Cat
-</div>
-<div class="creditsAvatar">              
-<img src="images/curiouscat_logo.png" width="70" height="70" class="avatar">
-</div>
-</div>
+		<div class="credits-text-mini">
+		Curious Cat
+		</div>
+		<div class="credits-avatar-mini">
+		<img src="images/curiouscat_logo.png" width="40" height="40" class="avatar">
+		</div>
+	
+	</div>
+	</a>
+	
+	<a href="https://github.com/QTDerg/switcher-roo/issues/1">
+	<div class="credits-entry-mini" style="border:2px solid #ff4550">
 
-</a>
+		<div class="credits-text-mini">
+		Github
+		</div>
+		<div class="credits-avatar-mini">
+		<img src="images/githubLogo.png" width="40" height="40" class="avatar">
+		</div>
+	
+	</div>
+	</a>
+	
+	<a href="https://www.reddit.com/message/compose?to=qtderg&subject=Switcher-Roo Feedback">
+	<div class="credits-entry-mini" style="border:2px solid #ff4550">
+
+		<div class="credits-text-mini">
+		Reddit
+		</div>
+		<div class="credits-avatar-mini">
+		<img src="images/reddit_logo.png" width="40" height="40" class="avatar">
+		</div>
+	
+	</div>
+	</a>
+	
+	<a href="https://twitter.com/qtderg">
+	<div class="credits-entry-mini" style="border:2px solid #ff4550">
+
+		<div class="credits-text-mini">
+		Twitter
+		</div>
+		<div class="credits-avatar-mini">
+		<img src="images/twitter_logo.png" width="40" height="40" class="avatar">
+		</div>
+	
+	</div>
+	</a>
+	
+	<div class="section-info" style="margin-top:5px;background-color:#ff4550;float:left;width:100%">
+	Red border = requires registering
+	</div>
 
 </div>
 
@@ -4406,10 +4603,10 @@ Add app <br> to your device
 <div class="creditsEntry">
 
 <div class="creditsText">
-Version 0.6.2.1p <br> Click to see changelog
+Version 0.6.2.1q <br> Click to see changelog
 </div>
 <div class="creditsAvatar">             
-<img src="images/favicon-upscaled-512.png" width="70" height="70" class="avatar">
+<img src="images/favicon-512.png" width="70" height="70" class="avatar">
 </div>
 
 </div>
@@ -4420,140 +4617,142 @@ Version 0.6.2.1p <br> Click to see changelog
 <script>
 
 mySlider6.attachEvent("onSlideEnd", function() {
-   	var bodyType1 = mySlider6.getValue();
-	localStorage.setItem("Slot0_Body_Type1", bodyType1);
+	localStorage.setItem("Slot0_Body_Type1", mySlider6.getValue());
 	showProcessingAnimation();
 });
 
 mySlider5.attachEvent("onSlideEnd", function() {
-   	var bodyType2 = mySlider5.getValue();
-	localStorage.setItem("Slot0_Body_Type2", bodyType2);
+	localStorage.setItem("Slot0_Body_Type2", mySlider5.getValue());
 	showProcessingAnimation();
 });
 
 mySlider4.attachEvent("onSlideEnd", function() {
-   	var bodyType3 = mySlider4.getValue();
-	localStorage.setItem("Slot0_Body_Type3", bodyType3);
+	localStorage.setItem("Slot0_Body_Type3", mySlider4.getValue());
 	showProcessingAnimation();
 });
 
 mySlider3.attachEvent("onSlideEnd", function() {
-   	var hips = mySlider3.getValue();
-	localStorage.setItem("Slot0_Hips", hips);
+	localStorage.setItem("Slot0_Hips", mySlider3.getValue());
 	showProcessingAnimation();
 });
 
 mySlider2.attachEvent("onSlideEnd", function() {
-   	var genitalSize = mySlider2.getValue();
-	localStorage.setItem("Slot0_Genital_Size", genitalSize);
+	localStorage.setItem("Slot0_Genital_Size", mySlider2.getValue());
 	showProcessingAnimation();
 });
 
 mySlider.attachEvent("onSlideEnd", function() {
-   	var fluffiness = mySlider.getValue();
-	localStorage.setItem("Slot0_Fluffiness", fluffiness);
+	localStorage.setItem("Slot0_Fluffiness", mySlider.getValue());
 	showProcessingAnimation();
 });
 
 mySlider7.attachEvent("onSlideEnd", function() {
-   	var libido = mySlider7.getValue();
-	localStorage.setItem("Slot0_Libido", libido);
+	localStorage.setItem("Slot0_Libido", mySlider7.getValue());
 	showProcessingAnimation();
 });
 
 mySlider10.attachEvent("onSlideEnd", function() {
-   	var domsub = mySlider10.getValue();
-	localStorage.setItem("Slot0_Position_Preference", domsub);
+	localStorage.setItem("Slot0_Position_Preference", mySlider10.getValue());
 	showProcessingAnimation();
 });
 
 mySlider11.attachEvent("onSlideEnd", function() {
-   	var sensitivity = mySlider11.getValue();
-	localStorage.setItem("Slot0_Sensitivity", sensitivity);
+	localStorage.setItem("Slot0_Sensitivity", mySlider11.getValue());
 	showProcessingAnimation();
 });
 
 mySlider12.attachEvent("onSlideEnd", function() {
-   	var assertiveShy = mySlider12.getValue();
-	localStorage.setItem("Slot0_Demeanor", assertiveShy);
+	localStorage.setItem("Slot0_Demeanor", mySlider12.getValue());
 	showProcessingAnimation();
 });
 
 mySlider9.attachEvent("onSlideEnd", function() {
-   	var breastSizeMale = mySlider9.getValue();
-	localStorage.setItem("Slot0_Breast_Size_Male", breastSizeMale);
+	localStorage.setItem("Slot0_Breast_Size_Male", mySlider9.getValue());
 	showProcessingAnimation();
 });
 
 mySlider8.attachEvent("onSlideEnd", function() {
-   	var breastSizeFemale = mySlider8.getValue();
-	localStorage.setItem("Slot0_Breast_Size_Female", breastSizeFemale);
+	localStorage.setItem("Slot0_Breast_Size_Female", mySlider8.getValue());
 	showProcessingAnimation();
 });
 
 mySlider13.attachEvent("onSlideEnd", function() {
-   	var buttSize = mySlider13.getValue();
-	localStorage.setItem("Slot0_Butt_Size", buttSize);
+	localStorage.setItem("Slot0_Butt_Size", mySlider13.getValue());
 	showProcessingAnimation();
 });
 
 mySlider14.attachEvent("onSlideEnd", function() {
-   	var bellySize = mySlider14.getValue();
-	localStorage.setItem("Slot0_Belly_Size", bellySize);
+	localStorage.setItem("Slot0_Belly_Size", mySlider14.getValue());
 	showProcessingAnimation();
 });
 
 mySlider15.attachEvent("onSlideEnd", function() {
-   	var bellyShape = mySlider15.getValue();
-	localStorage.setItem("Slot0_Belly_Shape", bellyShape);
+	localStorage.setItem("Slot0_Belly_Shape", mySlider15.getValue());
 	showProcessingAnimation();
 });
 
 mySlider16.attachEvent("onSlideEnd", function() {
-   	var intelligence = mySlider16.getValue();
-	localStorage.setItem("Slot0_Intelligence", intelligence);
+	localStorage.setItem("Slot0_Intelligence", mySlider16.getValue());
 	showProcessingAnimation();
 });
 
-mySlider17.attachEvent("onSlideEnd", function() {
-   	var custom1 = mySlider17.getValue();
-	localStorage.setItem("Slot0_Custom_Slider1_Value", custom1);
+CustomSliderNo1.attachEvent("onSlideEnd", function() {
+	localStorage.setItem("Slot0_Custom_Slider1_Value", CustomSliderNo1.getValue());
 	showProcessingAnimation();
 });
 
-mySlider18.attachEvent("onSlideEnd", function() {
-   	var custom2 = mySlider18.getValue();
-	localStorage.setItem("Slot0_Custom_Slider2_Value", custom2);
+CustomSliderNo2.attachEvent("onSlideEnd", function() {
+	localStorage.setItem("Slot0_Custom_Slider2_Value", CustomSliderNo2.getValue());
 	showProcessingAnimation();
 });
 
-mySlider19.attachEvent("onSlideEnd", function() {
-   	var custom3 = mySlider19.getValue();
-	localStorage.setItem("Slot0_Custom_Slider3_Value", custom3);
+CustomSliderNo3.attachEvent("onSlideEnd", function() {
+	localStorage.setItem("Slot0_Custom_Slider3_Value", CustomSliderNo3.getValue());
 	showProcessingAnimation();
 });
 
 mySlider20.attachEvent("onSlideEnd", function() {
-   	var hairLenght = mySlider20.getValue();
-	localStorage.setItem("Slot0_Hair_Lenght", hairLenght);
+	localStorage.setItem("Slot0_Hair_Lenght", mySlider20.getValue());
 	showProcessingAnimation();
 });
 
 mySlider23.attachEvent("onSlideEnd", function() {
-   	var fertility = mySlider23.getValue();
-	localStorage.setItem("Slot0_Fertility", fertility);
+	localStorage.setItem("Slot0_Fertility", mySlider23.getValue());
 	showProcessingAnimation();
 });
 
-mySlider24.attachEvent("onSlideEnd", function() {
-   	var custom4 = mySlider24.getValue();
-	localStorage.setItem("Slot0_Custom_Slider4_Value", custom4);
+CustomSliderNo4.attachEvent("onSlideEnd", function() {
+	localStorage.setItem("Slot0_Custom_Slider4_Value", CustomSliderNo4.getValue());
 	showProcessingAnimation();
 });
 
-mySlider25.attachEvent("onSlideEnd", function() {
-   	var custom5 = mySlider25.getValue();
-	localStorage.setItem("Slot0_Custom_Slider5_Value", custom5);
+CustomSliderNo5.attachEvent("onSlideEnd", function() {
+	localStorage.setItem("Slot0_Custom_Slider5_Value", CustomSliderNo5.getValue());
+	showProcessingAnimation();
+});
+
+CustomSliderNo6.attachEvent("onSlideEnd", function() {
+	localStorage.setItem("Slot0_Custom_Slider6_Value", CustomSliderNo6.getValue());
+	showProcessingAnimation();
+});
+
+CustomSliderNo7.attachEvent("onSlideEnd", function() {
+	localStorage.setItem("Slot0_Custom_Slider7_Value", CustomSliderNo7.getValue());
+	showProcessingAnimation();
+});
+
+CustomSliderNo8.attachEvent("onSlideEnd", function() {
+	localStorage.setItem("Slot0_Custom_Slider8_Value", CustomSliderNo8.getValue());
+	showProcessingAnimation();
+});
+
+CustomSliderNo9.attachEvent("onSlideEnd", function() {
+	localStorage.setItem("Slot0_Custom_Slider9_Value", CustomSliderNo9.getValue());
+	showProcessingAnimation();
+});
+
+CustomSliderNo10.attachEvent("onSlideEnd", function() {
+	localStorage.setItem("Slot0_Custom_Slider10_Value", CustomSliderNo10.getValue());
 	showProcessingAnimation();
 });
 
@@ -4567,13 +4766,15 @@ checkSlots();
 welcomeUser();
 showOrHideBreastSizeMaleSlider();
 showOrHideGenitalSizeFemaleSlider();
-loadCustomSlidersOnStartup();
-loadCustomCheckboxesOnStartup();
+loadCustomSliders();
+loadCustomCheckboxes();
+loadCustomRadioInputs();
 setContainersHeightToZero();
 lockSettingsOnStartup();
 loadCustomSpeciesOnStartup();
 loadInanimateObjectsOnStartup();
 loadInanimateObjectStatus();
+loadCockTypesOnStartup();
 showOrHideRandomizerButton();
 showOrHideDevMenuButton();
 showOrHideFeedbackButton();
@@ -4585,8 +4786,6 @@ showOrHideAppBackgroundButton();
 showOrHideCONTROLButton();
 showOrHideAppStatusButton();
 showOrHideCreativeModeMenu();
-showOrHideBatteryDrainMenu();
-showOrHideHideMenusButton();
 setBGColorOnInit();
 setAppBGColorOnInit();
 checkThirdSexStatus();
@@ -4595,11 +4794,14 @@ checkLockPasswordStatus();
 oldOrNewStyle();
 checkLockPresetNameStatus();
 displayBatteryDrainSettings();
-showOrHideMenus();
-currentTime();
 charVizStartup();
 loadCharVizOptions();
+loadDesktopMode();
+textFieldsEventListeners();
+currentTime();
 </script>		
+
+</div>
 
 </div>
 

@@ -1,16 +1,24 @@
-function toggleCreativeModeMenu() {
-	var x = document.getElementById("creativeModeStatusBarToggle");
-	if (x.style.display === "block") {
-		document.getElementById("creativeModeStatusBarToggle").style.display='none';
-		//document.getElementById("creativeModeCustomErrorToggle").style.display='none';
-		document.getElementById("creativeModeCustomDropdownToggle").style.display='none';
-		document.getElementById("creativeModeStatusBarContainer").style.maxHeight='0px';
-		document.getElementById("creativeModeCustomErrorContainer").style.maxHeight='0px';
-		document.getElementById("creativeModeCustomDropdownContainer").style.maxHeight='0px';		
+function toggleCreativeModeMenus(x) {
+	var menu;
+	var height;
+	if (x == 0) {
+		menu = document.getElementById("creativeModeStatusBarContainer");
+		height = "550px"
+	}
+	else if (x == 1) {
+		menu = document.getElementById("creativeModeCustomDropdownContainer");
+		height = "210px"
+	}
+	else if (x == 2) {
+		menu = document.getElementById("creativeModeCustomNotificationContainer");
+		height = "260px"
+	}
+	if (menu.style.maxHeight === "0px") {
+		menu.style.maxHeight = height;
+		document.getElementById("CreativeModeContainer").style.maxHeight='0px';
 	} else {
-		document.getElementById("creativeModeStatusBarToggle").style.display='block';
-		//document.getElementById("creativeModeCustomErrorToggle").style.display='block';
-		document.getElementById("creativeModeCustomDropdownToggle").style.display='block';
+		menu.style.maxHeight = "0px";
+		document.getElementById("CreativeModeContainer").style.maxHeight='390px';
 	}
 }
 

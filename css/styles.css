@@ -18,6 +18,9 @@ div {
 	border: 1px;
 	text-align: left;	
 }
+textarea:focus, input:focus{
+    outline: none;
+}
 
 .speciesCurrent {
 	font-size: 17px;
@@ -231,12 +234,13 @@ div {
 	margin: 0 auto;	
 	border: 2px solid #000000;
 	background-color: #3b395e;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 }
 
-.changelogWidthContainer {
-	width: 600px;
-	margin: 0 auto;	
-	border: 2px solid #000000;	
+.desktop-mode-container {
+	width: 354px;
 }
 
 .customSliderTextField {
@@ -248,6 +252,7 @@ div {
 	font-size: 12px;
 	float: left;
 	margin-left: 4px;
+	transition-duration: 0.75s;
 }
 
 .statusBarContainer {
@@ -646,10 +651,6 @@ select:disabled::-ms-expand {
 .charVizSpritesheetM { /* style for spritesheets - masks for colors */
 	-webkit-mask-size: 500% 100% !important;
 }
-#charVizCharacterColorsContainer, #charVizClothingContainer, #charVizClothingColorsContainer, #charVizOptionsContainer, #charVizCreditsContainer, #charVizReadmeContainer, #charVizPickerContainer {
-	overflow: hidden;
-	transition-duration: 0.5s;
-}
 .charVizColorsEntryContainer {
 	float:left;
 	height: 30px;
@@ -758,36 +759,6 @@ select:disabled::-ms-expand {
 	overflow: hidden;
 	transition-duration: 1s;
 }
-#addRemoveSlidersContainer {
-	border-bottom: 3px solid #73728C;
-	overflow: hidden;
-	transition-duration: 0.75s;
-	transition-timing-function: ease-in-out;
-}
-#CustomSlidersContainer, #CustomCheckboxesContainer {
-	overflow: hidden;
-	transition-duration: 0.75s;
-	transition-timing-function: ease-in-out;
-}
-
-#CSContainerSlot101, #CSContainerSlot102, #COContainerSlot101, #COContainerSlot102, #CHContainerSlot101, #CHContainerSlot102, #CTContainerSlot101, #CTContainerSlot102 {
-	border-bottom: 3px solid #73728C;
-}
-
-#CustomSpeciesContainer, #defineCockTypesContainer, #defineInanimateObjectsContainer, #defineHairColorsContainer, #renamePresetsContainer, #batteryDrainOptionsContainer,
-#creativeModeContainer, #creativeModeStatusBarContainer, #creativeModeCustomErrorContainer, #creativeModeCustomDropdownContainer {
-	overflow: hidden;
-	transition-duration: 0.75s;
-	transition-timing-function: ease-in-out;
-	width: 100%;
-}
-
-#ThirdSexContainer  {
-	overflow: hidden;
-	transition-duration: 0.5s;
-	transition-timing-function: ease-in-out;
-	width: 100%;
-}
 
 .renamePresetsContainer2 {
 	height: 90px;
@@ -879,10 +850,7 @@ select:disabled::-ms-expand {
 	margin-bottom: 10px;
 	width: 100%;
 }
-.passwordMessage{
-	float: right;	
-	margin-right:10px;
-}
+
 .linesAS
 {
 	display: block;
@@ -907,19 +875,14 @@ select:disabled::-ms-expand {
 	float: left;
 	padding-left: 6px;
 }
-.addRemoveSlidersContainer {
-	height: 300px;
-}
+
 .slider{
 	float: left;
 	text-align: center;
 	margin-top:5px;
 	margin-left:5px;
 }
-.menutext{
-	float: left;
-	text-align: center;	
-}
+
 .textinmenuLeft {
 	float: left;
 	width: 28.5%;
@@ -949,7 +912,6 @@ select:disabled::-ms-expand {
 
 .avatar {
 	border-radius: 50%;
-	margin-left: 14px;
 }
 
 .credits {
@@ -961,6 +923,7 @@ select:disabled::-ms-expand {
 	border-top: 0px none;
 	transition-timing-function: ease-in-out;
 }
+
 .feedback {
 	text-align: center;
 	font-size: 20px;
@@ -971,30 +934,23 @@ select:disabled::-ms-expand {
 	transition-timing-function: ease-in-out;
 }
 
-.processingPasswordDiv {
-	text-align: center;
-	margin-top: 5px;
-}
-
 .saveSlotButtonsContainer {
 	text-align: center;
 	margin-top: 5px;
-	color: #FF4550;
-	border: 3px solid #FF4550;
+	color: #b30003;
 	font-size: 30px;
 	overflow: hidden;
-	transition-duration: 0.75s;
+	transition-duration: 0.5s;
 	transition-timing-function: ease-in-out;
 }
 
 .loadSlotButtonsContainer {
 	text-align: center;
 	margin-top: 5px;
-	color: #4845ff;
-	border: 3px solid #4845ff;
+	color: #29a329;
 	font-size: 30px;
 	overflow: hidden;
-	transition-duration: 0.75s;
+	transition-duration: 0.5s;
 	transition-timing-function: ease-in-out;
 }
 
@@ -1006,67 +962,12 @@ select:disabled::-ms-expand {
 	padding: 10px;
 	font-size: 22px;
 }
-.buttonOpenLock {
-  position: relative;
-  background-color: #282640;
-  border: none; 
-  font-size: 16px;
-  color: #FFFFFF;
-  padding: 5px;
-  text-align: center;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.buttonOpenLock:after {
-  content: "";
-  background: #8280b3;
-  display: block;
-  position: absolute;
-  padding-top: 300%;
-  padding-left: 350%;
-  margin-left: -20px!important;
-  margin-top: -120%;
-  opacity: 0;
-  transition: all 1.8s
-}
-
-.buttonOpenLock:active:after {
-  padding: 0;
-  margin: 0;
-  opacity: 1;
-  transition: 0s
-}
-.buttonOpenLock:hover {
-	background: #59568f; 
-}
-
-.usernameTextField {
-	background: #59568f;
-	border: 1px solid #8280b3; 
-	color: #282640;
-	width: 65%;
-	padding: 10px;
-	font-size: 22px;
-}
 
 .bgColorTextField {
 	background: #59568f;
 	border: 1px solid #8280b3; 
 	color: #282640;
 	width: 65%;
-	padding: 5px;
-	font-size: 22px;
-}
-
-.hairColorTextField {
-	background: #59568f;
-	border: 1px solid #8280b3; 
-	color: #282640;
-	width: 30%;
 	padding: 5px;
 	font-size: 22px;
 }
@@ -1091,20 +992,6 @@ select:disabled::-ms-expand {
 	margin-top: 5px;
 	transition-duration: 0.75s;
 	overflow: hidden;
-}
-
-.enterFeedback {
-	text-align: center;
-	margin-top: 5px;
-}
-
-.feedbackTextField {
-	background: #59568f;
-	border: 1px solid #8280b3; 
-	color: #282640;
-	width: 65%;
-	padding: 10px;
-	font-size: 22px;
 }
 
 /* Customize the label (the container) */
@@ -1254,7 +1141,8 @@ a:active {
 
 .creditsAvatar {
 	width: 26%;
-	float:left;
+	float: left;
+	text-align: right;
 }
 
 .creditsEntry {
@@ -1283,80 +1171,13 @@ a:active {
 	transition-duration: 0.75s;
 }
 
-.githubSource {
-	float: left;
-	width: 47%;
-	border-radius: 8px;
-	background-color: #59568f;
-	border: 2px solid #282640;
-	transition: 0.75s;
-}
-
-.addToDevice {
-	float: left;
-	border-radius: 8px;
-	background-color: #59568f;
-	margin-left: 5px;
-	border: 2px solid #282640;
-	transition: 0.75s;
-}
-
-.addToDevice:hover, .githubSource:hover {
-	border: 2px solid #59568f;
-	background-color: #3b395e;
-}
-
-.CSSlotDiv {
+.custom-species-name {
 	float:left;
+	padding-left: 20px;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	width: 100%;
 }
-.CSNameDiv {
-	float:left;
-	margin-right: 15px;
-}
-
-.hairColorSwatchCurrent {
-	width: 28px;
-	height: 28px;
-	background-color: #3b395e;
-	border-radius: 14px;
-	float: left;
-	margin-top: 3px;
-	margin-left: 13px;
-	cursor:pointer;	
-}
-
-.hairColorSwatchPrefefined {
-	width: 20px;
-	height: 20px;
-	background-color: #3b395e;
-	margin-right: 5px;
-	float: right;
-	border-radius: 10px;
-}
-
-.hairColorSwatchCustom {
-	position: relative;
-	top: -20px;
-	width: 20px;
-	height: 20px;
-	background-color: #3b395e;
-	margin-right: 5px;
-	float: right;
-	border-radius: 10px;
-}
-
-.swatchBlack 	{	background-color: #090806;	}
-.swatchBlonde1	{	background-color: #dccbba;	}
-.swatchBlonde2	{	background-color: #debc99;	}
-.swatchBlonde3	{	background-color: #e9d0bc;	}
-.swatchBrown1	{	background-color: #5a4545;	}
-.swatchBrown2 	{	background-color: #6a4e42;	}
-.swatchBrown3 	{	background-color: #a7856a;	}
-.swatchGray1 	{	background-color: #71635a;	}
-.swatchGray2 	{	background-color: #b7a69e;	}
-.swatchGray3 	{	background-color: #d6c4c2;	}
-.swatchRed1 	{	background-color: #8d4a43;	}
-.swatchRed2 	{	background-color: #b55239;	}
 
 .bigButton {
 	background-color: #282640;
@@ -1829,54 +1650,24 @@ a:active {
 	transition-duration:0.05s;
 }
 
+#CONTROLchatWriteMessage {
+	background: #59568f;
+	border: 0; 
+	color: #282640;
+	width: 78%;
+	height: 32px;
+	font-size: 20px;
+	font-family: Century Gothic;
+	transition-duration: 0.75s;
+}
 
-.lds-ring {
- /* display: inline-block;  
-  width: 80px;
-  height: 80px;*/
-  position: relative;
-  top: -5px;
-  right: -8px;
+#CONTROLchatWriteMessage:hover {
+	background-color: #59568f;
 }
-.lds-ring div {
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  width: 44px;
-  height: 44px;
-  margin: 8px;
-  border: 5px solid #fff;
-  border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite, spinner linear 2.4s infinite ;
-  border-color: #fff transparent transparent transparent;
-}
-.lds-ring div:nth-child(1) {
-  animation-delay: -0.45s;
-}
-.lds-ring div:nth-child(2) {
-  animation-delay: -0.3s;
-}
-.lds-ring div:nth-child(3) {
-  animation-delay: -0.15s;
-}
-@keyframes lds-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-@keyframes spinner {
-  0% {
-    border-color: #FF41EA transparent transparent transparent; /* Pink */
-  }
-  50% {
-    border-color: #2658FB transparent transparent transparent; /* Blue */
-  }
-  100% {
-    border-color: #FF41EA transparent transparent transparent; /* Pink */
-  }
+
+#CONTROLchatWriteMessage:active {
+	background-color: #69669A;
+	transition-duration: 0.25s;
 }
 
 .sk-chase {
@@ -1946,4 +1737,52 @@ a:active {
   100% {
     background-color: #FF41EA; /* Pink */
   }
+}
+
+.section-info {
+	padding:5px;
+	font-size:15px;
+	background-color:#282640;
+	transition-duration:0.5s;
+	user-select:none;
+	float:left;
+	width:100%;
+}
+.section-info:hover {
+	font-size:20px;
+	background-color:#282640
+}
+
+.credits-entry-mini {
+	margin: 6px;
+	height: 40px;
+	width: 45%;
+	border-radius: 50px;
+	transition: 0.5s;
+	border: 2px solid #59568f;
+	background-color: #282640;
+	float: left;
+}
+.credits-entry-mini:hover {
+	background-color: #59568f;
+	border: 2px solid #282640;
+}
+
+.credits-text-mini {
+	font-size: 18px;
+	width: 74%;
+	float:left;
+	text-align: center;
+	padding-top: 8px;
+}
+
+.credits-avatar-mini {
+	width: 26%;
+	float:left;
+	text-align:right;
+}
+
+.menu-container {
+	overflow: hidden;
+	transition-duration: 0.5s;
 }

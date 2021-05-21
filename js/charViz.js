@@ -7,12 +7,7 @@ var tickbox = document.getElementById("charVizCheckbox");
 	if (tickbox.checked) {
 		var tickbox = "Yes"
 		document.getElementById("menuCharViz").style.display = 'block';
-		document.getElementById("charVizCharacterColorsToggler").style.display = 'block';
-		document.getElementById("charVizClothToggler").style.display = 'block';
-		document.getElementById("charVizClothColorsToggler").style.display = 'block';
-		document.getElementById("charVizOptionToggler").style.display = 'block';
-		document.getElementById("charVizCreditsToggler").style.display = 'block';
-		document.getElementById("charVizReadmeToggler").style.display = 'block';
+		document.getElementById("charVizMenusToggler").style.display = 'block';
 		localStorage.setItem("CharViz_Enabled", tickbox);
 		initializeCharViz();
 		var Species = localStorage.getItem("Slot0_Species");
@@ -25,13 +20,7 @@ var tickbox = document.getElementById("charVizCheckbox");
 	else {
 		var tickbox = "No"
 		document.getElementById("menuCharViz").style.display = 'none';
-		document.getElementById("charVizCharacterColorsToggler").style.display = 'none';
-		document.getElementById("charVizClothToggler").style.display = 'none';
-		document.getElementById("charVizClothColorsToggler").style.display = 'none';
-		document.getElementById("charVizOptionToggler").style.display = 'none';
-		document.getElementById("charVizCreditsToggler").style.display = 'none';
-		document.getElementById("charVizReadmeToggler").style.display = 'none';
-		document.getElementById("charVizPickerToggler").style.display = 'none';
+		document.getElementById("charVizMenusToggler").style.display = 'none';
 		localStorage.setItem("CharViz_Enabled", tickbox);
 	}
 }
@@ -40,23 +29,13 @@ function charVizStartup() {
 	var x = localStorage.getItem("CharViz_Enabled");
 	if (x === "Yes") {
 		document.getElementById("menuCharViz").style.display = 'block';
-		document.getElementById("charVizCharacterColorsToggler").style.display = 'block';
-		document.getElementById("charVizClothToggler").style.display = 'block';
-		document.getElementById("charVizClothColorsToggler").style.display = 'block';
-		document.getElementById("charVizOptionToggler").style.display = 'block';
-		document.getElementById("charVizCreditsToggler").style.display = 'block';
-		document.getElementById("charVizReadmeToggler").style.display = 'block';
+		document.getElementById("charVizMenusToggler").style.display = 'block';
 		document.getElementById("charVizCheckbox").checked = true;
 		initializeCharViz();
 	}
 	else {
 		document.getElementById("menuCharViz").style.display = 'none';
-		document.getElementById("charVizCharacterColorsToggler").style.display = 'none';
-		document.getElementById("charVizClothToggler").style.display = 'none';
-		document.getElementById("charVizClothColorsToggler").style.display = 'none';
-		document.getElementById("charVizOptionToggler").style.display = 'none';
-		document.getElementById("charVizCreditsToggler").style.display = 'none';
-		document.getElementById("charVizReadmeToggler").style.display = 'none';
+		document.getElementById("charVizMenusToggler").style.display = 'none';
 	}
 }
 
@@ -874,7 +853,7 @@ function charVizPutClothingOn(x, y, z) {
 			document.getElementById("charVizDisplayAccessoriesSlot1").style.backgroundImage = '';
 		}
 	}
-	if (controlsessionactive === "Yes") { 
+	if (controlsessionactive === "Yes" && synchronizationComplete === "Yes") { 
 		conn.send({firstParam: "putClothingOn", secondParam: x, thirdParam: y});
 	}
 	localStorage.setItem("Slot0_CharViz_" + x, y);
@@ -1639,37 +1618,49 @@ function toggleCharVizMenus(x) {
 	var height;
 	if (x == 0) {
 		menu = document.getElementById("charVizCharacterColorsContainer");
-		height = "330px"
+		height = "400px"
 	}
 	else if (x == 1) {
 		menu = document.getElementById("charVizClothingContainer");
-		height = "350px"
+		height = "420px"
 	}
 	else if (x == 2) {
 		menu = document.getElementById("charVizClothingColorsContainer");
-		height = "330px"
+		height = "400px"
 	}
 	else if (x == 3) {
 		menu = document.getElementById("charVizOptionsContainer");
-		height = "630px"
+		height = "640px"
 	}
 	else if (x == 4) {
 		menu = document.getElementById("charVizCreditsContainer");
-		height = "470px"
+		height = "550px"
 	}
 	else if (x == 5) {
 		menu = document.getElementById("charVizReadmeContainer");
-		height = "450px"
+		height = "410px"
 	}
 	else if (x == 6) {
 		menu = document.getElementById("charVizPickerContainer");
-		height = "350px"
+		height = "450px"
 	}
 	if (menu.style.maxHeight === "0px") {
 		menu.style.maxHeight = height;
+		document.getElementById("CharVizMenusContainer").style.maxHeight='0px';
 	} else {
 		menu.style.maxHeight = "0px";
+		document.getElementById("CharVizMenusContainer").style.maxHeight='340px';
 	}
+}
+
+function closeCharvizContainers() {
+	document.getElementById("charVizCharacterColorsContainer").style.maxHeight='0px';
+	document.getElementById("charVizClothingContainer").style.maxHeight='0px';
+	document.getElementById("charVizClothingColorsContainer").style.maxHeight='0px';
+	document.getElementById("charVizOptionsContainer").style.maxHeight='0px';
+	document.getElementById("charVizCreditsContainer").style.maxHeight='0px';
+	document.getElementById("charVizReadmeContainer").style.maxHeight='0px';
+	document.getElementById("charVizPickerContainer").style.maxHeight='0px';
 }
 
 function charVizSetBGColor(x) {
@@ -1710,22 +1701,13 @@ function loadCharVizOptions() {	// Loads CharViz specific options on startup
 	if (x6 === "Yes")	{	document.getElementById("showGenitalsCheckbox").checked = true;							}
 	if (x7 === "Yes")	{	document.getElementById("displayRandomizersCheckbox").checked = true;					}
 	
-	// Show or hide Picker toggler
-	var charVizEnabled = localStorage.getItem("CharViz_Enabled");
-	if (charVizEnabled === "Yes" && x1 === "Yes") {
-		document.getElementById("charVizPickerToggler").style.display = 'block';
-	}
-	else {
-		document.getElementById("charVizPickerToggler").style.display = 'none';
-	}
-
 	// Show or hide containers with 2 randomize buttons
 	if (x7 === "Yes")		{	document.getElementById("randomizeCharacterButtonsContainer").style.display = 'block';	}
 	else					{	document.getElementById("randomizeCharacterButtonsContainer").style.display = 'none';	}
 }
 
 function toggleCharVizOption(x) {
-	// 1 - Enable Character Part & Pattern Picker
+	// 1 - Lock Character Parts
 	// 2 - Set default color scheme when changing species
 	// 3 - Randomizer affects character color scheme
 	// 4 - Randomizer affects clothing
@@ -1754,12 +1736,6 @@ function toggleCharVizOption(x) {
 	else if (x == 5) 	{ 	localStorage.setItem("Randomizer_Generates_Supported_Species", y);		}
 	else if (x == 6) 	{ 	localStorage.setItem("CharViz_Show_Genitals", y);						}
 	else if (x == 7) 	{ 	localStorage.setItem("CharViz_Display_Randomizers", y);					}
-	
-	// Show or hide Picker toggler	
-	if (x == 1) {
-		if (y === "Yes"){	document.getElementById("charVizPickerToggler").style.display = 'block';}
-		else			{	document.getElementById("charVizPickerToggler").style.display = 'none';	}
-	}
 	
 	// Show or hide Genitals 		
 	if (x == 6)			{	loadCharacterGenitals();	}

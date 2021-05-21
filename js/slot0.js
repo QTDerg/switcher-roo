@@ -1,4 +1,4 @@
-// Slot 0 is "current" state of the app. This function is triggered after loading settings from slots 1-5, using Randomize function, importing App Status and connecting to someone (using CONTROL).
+// Slot 0 is "current" state of the app. This function is triggered after loading settings from slots 1-5, using Randomize function and importing App Preset.
  function saveSettingsSlot0() {
 	var species = document.getElementById("speciesCurrent").innerHTML;
 	var inanimateObject = document.getElementById("inanimateObjectsCurrent").innerHTML;
@@ -6,14 +6,14 @@
 	rbmale = document.getElementById("radiobuttonMale");
 	rbfemale = document.getElementById("radiobuttonFemale");
 	if (rbmale.checked) {
-		var settingSex = "Male"
+		var sex = "Male"
 	}
 	else if (rbfemale.checked) {
-		var settingSex = "Female"
+		var sex = "Female"
 	}
 	else {
-		var settingSex = document.getElementById("thirdSexValue").innerHTML;
-		localStorage.setItem("Slot0_Third_Sex", settingSex);
+		var sex = document.getElementById("thirdSexValue").innerHTML;
+		localStorage.setItem("Slot0_Third_Sex", sex);
 		checkThirdSexStatus();
 	}
  
@@ -72,7 +72,7 @@
  
 	localStorage.setItem("Slot0_Species", species);	
 	localStorage.setItem("Slot0_Inanimate_Object", inanimateObject);	
-    localStorage.setItem("Slot0_Sex", settingSex);	
+    localStorage.setItem("Slot0_Sex", sex);	
 	localStorage.setItem("Slot0_AC_Box_Ticked", tickbox);
 	localStorage.setItem("Slot0_Body_Type1", bodyType1);
 	localStorage.setItem("Slot0_Body_Type2", bodyType2);
@@ -96,56 +96,4 @@
 	localStorage.setItem("Slot0_Fertility", fertility);
 	localStorage.setItem("Slot0_Genitals_Menu_Penis_Box_Ticked", tickbox3);
 	localStorage.setItem("Slot0_Genitals_Menu_Vagina_Box_Ticked", tickbox4);
-	
-	var custom1 = mySlider17.getValue();
-	var custom2 = mySlider18.getValue();
-	var custom3 = mySlider19.getValue();
-	var custom4 = mySlider24.getValue();
-	var custom5 = mySlider25.getValue();
- 
-	localStorage.setItem("Slot0_Custom_Slider1_Value", custom1);	
-	localStorage.setItem("Slot0_Custom_Slider2_Value", custom2);	
-	localStorage.setItem("Slot0_Custom_Slider3_Value", custom3);
-	localStorage.setItem("Slot0_Custom_Slider4_Value", custom4);
-	localStorage.setItem("Slot0_Custom_Slider5_Value", custom5);
-
-	var leftText = document.getElementById("textinmenuLeftCS1").innerText;
-	var centerText = document.getElementById("textinmenuCenterCS1").innerText;
-	var rightText = document.getElementById("textinmenuRightCS1").innerText;
-	
-	localStorage.setItem("Custom_Slider1_LeftText", leftText);	
-	localStorage.setItem("Custom_Slider1_CenterText", centerText);	
-	localStorage.setItem("Custom_Slider1_RightText", rightText);	
-	
-	var leftText = document.getElementById("textinmenuLeftCS2").innerText;
-	var centerText = document.getElementById("textinmenuCenterCS2").innerText;
-	var rightText = document.getElementById("textinmenuRightCS2").innerText;
-	
-	localStorage.setItem("Custom_Slider2_LeftText", leftText);	
-	localStorage.setItem("Custom_Slider2_CenterText", centerText);	
-	localStorage.setItem("Custom_Slider2_RightText", rightText);	
-	
-	var leftText = document.getElementById("textinmenuLeftCS3").innerText;
-	var centerText = document.getElementById("textinmenuCenterCS3").innerText;
-	var rightText = document.getElementById("textinmenuRightCS3").innerText;
-	
-	localStorage.setItem("Custom_Slider3_LeftText", leftText);	
-	localStorage.setItem("Custom_Slider3_CenterText", centerText);	
-	localStorage.setItem("Custom_Slider3_RightText", rightText);
-	
-	var leftText = document.getElementById("textinmenuLeftCS4").innerText;
-	var centerText = document.getElementById("textinmenuCenterCS4").innerText;
-	var rightText = document.getElementById("textinmenuRightCS4").innerText;
-	
-	localStorage.setItem("Custom_Slider4_LeftText", leftText);	
-	localStorage.setItem("Custom_Slider4_CenterText", centerText);	
-	localStorage.setItem("Custom_Slider4_RightText", rightText);
-	
-	var leftText = document.getElementById("textinmenuLeftCS5").innerText;
-	var centerText = document.getElementById("textinmenuCenterCS5").innerText;
-	var rightText = document.getElementById("textinmenuRightCS5").innerText;
-	
-	localStorage.setItem("Custom_Slider5_LeftText", leftText);	
-	localStorage.setItem("Custom_Slider5_CenterText", centerText);	
-	localStorage.setItem("Custom_Slider5_RightText", rightText);
 }   

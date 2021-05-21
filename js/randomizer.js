@@ -232,26 +232,35 @@ function randomizeCharacter() {
 	var rng = Math.floor(Math.random() * 100) + 1;
 	mySlider4.setValue(rng);
 	
-	// Custom Slider 1
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider17.setValue(rng);
+	// Custom sliders	
+	var i;
+	for (i = 1; i < 11; i++) {
+		var rng = Math.floor(Math.random() * 100) + 1;
+		localStorage.setItem("Slot0_Custom_Slider" + i + "_Value", rng);
+	}
 	
-	// Custom Slider 2
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider18.setValue(rng);
+	// Custom checkboxes
+	var i;
+	for (i = 1; i < 4; i++) {
+		var x;
+		for (x = 1; x < 3; x++) {
+			var rng = Math.floor(Math.random() * 2) + 1;
+			if (rng == 1) {
+				localStorage.setItem("Slot0_Custom_Checkbox" + i + "_Value" + x + "_Ticked", "Yes")
+			}
+			else {
+				localStorage.setItem("Slot0_Custom_Checkbox" + i + "_Value" + x + "_Ticked", "No")
+			}
+		}
+	}
 	
-	// Custom Slider 3
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider19.setValue(rng);
+	// Custom radio inputs
+	var i;
+	for (i = 1; i < 4; i++) {
+		var rng = Math.floor(Math.random() * 2) + 1;
+		localStorage.setItem("Slot0_Custom_Radio_Input" + i + "_Ticked_Value", rng);
+	}
 	
-	// Custom Slider 4
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider24.setValue(rng);
-	
-	// Custom Slider 5
-	var rng = Math.floor(Math.random() * 100) + 1;
-	mySlider25.setValue(rng);
-		
 	// Breast Size Male
 	//var rng = Math.floor(Math.random() * 100) + 1;
 	mySlider9.setValue(0);
@@ -315,19 +324,33 @@ function randomizeCharacter() {
 	
 		var sexuality = 0;
 	}
+	
 	var customSliderName1 = document.getElementById("textinmenuCenterCS1").innerText;
 	var customSliderName2 = document.getElementById("textinmenuCenterCS2").innerText;
 	var customSliderName3 = document.getElementById("textinmenuCenterCS3").innerText;
 	var customSliderName4 = document.getElementById("textinmenuCenterCS4").innerText;
 	var customSliderName5 = document.getElementById("textinmenuCenterCS5").innerText;
+	var customSliderName6 = document.getElementById("textinmenuCenterCS6").innerText;
+	var customSliderName7 = document.getElementById("textinmenuCenterCS7").innerText;
+	var customSliderName8 = document.getElementById("textinmenuCenterCS8").innerText;
+	var customSliderName9 = document.getElementById("textinmenuCenterCS9").innerText;
+	var customSliderName10 = document.getElementById("textinmenuCenterCS10").innerText;
 		
-	if (customSliderName1 === "Sexuality") {	mySlider17.setValue(sexuality);	}
-	else if (customSliderName2 === "Sexuality") {	mySlider18.setValue(sexuality);	}
-	else if (customSliderName3 === "Sexuality") {	mySlider19.setValue(sexuality);	}
-	else if (customSliderName4 === "Sexuality") {	mySlider24.setValue(sexuality);	}
-	else if (customSliderName5 === "Sexuality") {	mySlider25.setValue(sexuality);	}
+	if (customSliderName1 === "Sexuality") 		{	CustomSliderNo1.setValue(sexuality);	}
+	else if (customSliderName2 === "Sexuality") {	CustomSliderNo2.setValue(sexuality);	}
+	else if (customSliderName3 === "Sexuality") {	CustomSliderNo3.setValue(sexuality);	}
+	else if (customSliderName4 === "Sexuality") {	CustomSliderNo4.setValue(sexuality);	}
+	else if (customSliderName5 === "Sexuality") {	CustomSliderNo5.setValue(sexuality);	}
+	else if (customSliderName6 === "Sexuality") {	CustomSliderNo6.setValue(sexuality);	}
+	else if (customSliderName7 === "Sexuality") {	CustomSliderNo7.setValue(sexuality);	}
+	else if (customSliderName8 === "Sexuality") {	CustomSliderNo8.setValue(sexuality);	}
+	else if (customSliderName9 === "Sexuality") {	CustomSliderNo9.setValue(sexuality);	}
+	else if (customSliderName10 === "Sexuality") {	CustomSliderNo10.setValue(sexuality);	}
 		
 	saveSettingsSlot0();
+	loadCustomSliders();
+	loadCustomCheckboxes();
+	loadCustomRadioInputs();
 
 	if (charVizEnabled === "Yes") {
 		var pickerEnabled = localStorage.getItem("Character_Part_And_Pattern_Picker_Enabled");

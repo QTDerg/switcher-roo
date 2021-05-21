@@ -15,20 +15,9 @@ Make your own character, dress them up in various outfits and adjust their body 
 ### Randomizer
 You want to make a character and have a lack of inspiration? Don't hesistate to hit Randomizer button a few times! Works best with CharViz enabled.
 
-## TODO/planned features
+## TODO
 
-```html
-I know the code is a mess, especially the parts written about 2 years ago, however I will refactor some stuff when I feel like it.
-```
-
-### Clean-up/refactoring:
-
-- Redo menus that let users create custom species (also used for defining inanimate objects)
-- loadPreviousState() function refactoring
-
-### New features:
-- Create up to 3 custom radio inputs
-- Additional 5 custom sliders
+- Code refactoring/cleanup
 
 ## CharViz contributions
 
@@ -45,7 +34,7 @@ On newer versions of SAI 2 the file will not open correctly. I use Preview 2019.
 PSD is not available for download since folder clipping mask feature is used which Photoshop does not support
 ```
 
-### What needs to be done
+### TODO
 
 - Add some fluff to Fluffy base and Canine head
 - Make heads for following groups of species: Feline, Equine, Cervine (Deer - with and without antlers)
