@@ -34,7 +34,7 @@ function connectToServer() {
 		}
 		else if (chosenPeerJSServer == 2) {
 			peer = new Peer({
-				host: 'peerjs-server.herokuapp.com',
+				host: 'peerjs.92k.de',
 				port: 443,
 				secure: true,
 				config: {
@@ -2033,7 +2033,7 @@ function CONTROLgoBackFromConnectOptions() {
 
 function CONTROLshowReveiveOptions() {
 	document.getElementById("CONTROLchoiceContainer").style.maxHeight='0px';
-	document.getElementById("CONTROLreceiveContainer").style.maxHeight='190px';
+	document.getElementById("CONTROLreceiveContainer").style.maxHeight='200px';
 }
 
 function CONTROLgoBackFromReceiveOptions() {
