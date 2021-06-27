@@ -1,6 +1,6 @@
 {
   "name": "Switcher⇌Roo",
-  "start_url": "https://qtderg.github.io/switcher-roo/",
+  "start_url": "https://srthrowaway.github.io/switcher-roo/",
   "short_name": "Switcher⇌Roo",
   "description": "Want to be your fursona? With this app you can choose 30+ species, change your gender and modify many body and personality aspects!",
   "display": "fullscreen",
@@ -13,11 +13,6 @@
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "maskable"
-    },
-    {
-      "src": "/switcher-roo/images/favicon-512.png",
-      "type": "image/png",
-      "sizes": "512x512"
     }
   ]
 }
