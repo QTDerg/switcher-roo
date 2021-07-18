@@ -25,14 +25,7 @@ You want to make a character and have a lack of inspiration? Don't hesistate to 
 
 Follow this link https://drive.google.com/drive/folders/15SH4fvY7Uqn1_QNuk0Md7Yib9OOZutju?usp=sharing
 
-- Download .sai2 file if you have Paint Tool SAI 2
-- Download .clip file if you have Clip Studio Paint
-
-```html
-Notes: 
-On newer versions of SAI 2 the file will not open correctly. I use Preview 2019.05.21 and it opens fine
-PSD is not available for download since folder clipping mask feature is used which Photoshop does not support
-```
+- Download .sai2 file if you have Paint Tool SAI 2 otherwise go for .psd
 
 ### TODO
 
@@ -40,4 +33,3 @@ PSD is not available for download since folder clipping mask feature is used whi
 - Make heads for following groups of species: Feline, Equine, Cervine (Deer - with and without antlers)
 - Add color patterns for various Felines (leopards, tigers etc.)
 - Make some outfits
-- Redo following low quality assets: Scaly tail, Shark tail, Dragon wings
