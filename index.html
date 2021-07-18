@@ -14,7 +14,7 @@
 <meta name="author" content="qtderg">
 
 <link rel='manifest' href='/switcher-roo/manifest.webmanifest'>
-<link rel="stylesheet" href="css/styles.css?v=1.1">  
+<link rel="stylesheet" href="css/styles.css?v=1.2">  
 <link rel="stylesheet" type="text/css" href="css/dhtmlxslider.css" id="defaultcss"/>
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="apple-touch-icon" href="images/touch-icon-iphone.png">
@@ -26,7 +26,7 @@
 <script src="js/switcheroo.js?v=1.0.0"></script>
 <script src="js/saveSlots.js?v=1.0.0"></script>
 <script src="js/slot0.js?v=1.0.0"></script>
-<script src="js/species.js?v=1.0.0"></script>
+<script src="js/species.js?v=1.0.1"></script>
 <script src="js/inanimateObjects.js?v=1.0.0"></script>
 <script src="js/ppTypes.js?v=1.0.0"></script>
 <script src="js/iro.min.js"></script>
@@ -35,8 +35,8 @@
 <script src="js/CONTROL.JS?v=1.0.1"></script>
 <script src="js/appStatus.js?v=1.0.0"></script>
 <script src="js/creativeMode.js?v=1.0.0"></script>
-<script src="js/charViz.js?v=1.0.0"></script>
-<script src="js/randomizer.js?v=1.0.0"></script>
+<script src="js/charViz.js?v=1.0.1"></script>
+<script src="js/randomizer.js?v=1.0.1"></script>
 <script src="pwabuilder-sw.js"></script>
 <script>
 // This is the "Offline copy of pages" service worker
@@ -330,9 +330,11 @@ if ("serviceWorker" in navigator) {
 			<div class="speciesEntryLeft" onClick="setSpeciesTo('Protogen');"><div class="speciesEntryText">Protogen</div></div>
 			<div class="speciesEntryRight" onClick="setSpeciesTo('Rabbit');"><div class="speciesEntryText">Rabbit</div></div>
 			<div class="speciesEntryLeft" onClick="setSpeciesTo('Raccoon');"><div class="speciesEntryText">Raccoon</div></div>
-			<div class="speciesEntryRight" onClick="setSpeciesTo('Sergal');"><div class="speciesEntryText">Sergal</div></div>
-			<div class="speciesEntryLeft" onClick="setSpeciesTo('Shark');"><div class="speciesEntryText">Shark</div></div>
-			<div class="speciesEntryRight" onClick="setSpeciesTo('Skunk');"><div class="speciesEntryText">Skunk</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Red Panda');"><div class="speciesEntryText">Red Panda</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Sergal');"><div class="speciesEntryText">Sergal</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Shark');"><div class="speciesEntryText">Shark</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Skunk');"><div class="speciesEntryText">Skunk</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Snake');"><div class="speciesEntryText">Snake</div></div>
 			<div class="speciesEntryLeft" onClick="setSpeciesTo('Snow Leopard');"><div class="speciesEntryText">Snow Leopard</div></div>
 			<div class="speciesEntryRight" onClick="setSpeciesTo('Synth');"><div class="speciesEntryText">Synth</div></div>
 			<div class="speciesEntryLeftLast" onClick="setSpeciesTo('Tiger');"><div class="speciesEntryText">Tiger</div></div>
@@ -1568,7 +1570,9 @@ Please contact Switcher-Roo support for assistance
 		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayInanimateTF" id="charVizDisplayInanimateTFlines"></div>
 		
 		<div class="charVizDisplay" id="charVizDisplayMessage">Species unsupported<div style="font-size:16px;padding-left: 15px;padding-top:150px">Supported species are listed in readme</div></div>
-			
+		
+		<div class="charVizDisplay" id="charVizLaunchMessage" onClick="charVizStartup()">Tap to launch CharViz<div style="font-size:14px;padding-left:15px;padding-right:15px;padding-top:170px">To enable autolaunch, navigate to CharViz -> Options and tick "Launch CharViz automatically on app startup"</div></div>
+		
 	</div>
 	
 	<div id="randomizeCharacterButtonsContainer" style="top:10px;position:relative">	
@@ -2233,8 +2237,16 @@ Please contact Switcher-Roo support for assistance
 
 	<div class="bigButton" onclick="toggleCharVizMenus(3)" style="margin-bottom:10px">Go back</div>
 	
-	<div style="padding:15px;height:310px;padding-top:5px;padding-bottom:5px">
-			
+	<div style="padding:15px;height:340px;padding-top:5px;padding-bottom:5px">
+		
+		<div>
+			<label class="container">Launch CharViz automatically on app startup
+				<input type="checkbox" id="autoCharVizLaunchCheckbox" onclick="toggleCharVizOption(0)">
+				<span class="checkbox"></span>  
+			</label>
+		</div>
+		<br>
+		
 		<div>
 			<label class="container">Set default color scheme when changing species
 				<input type="checkbox" id="setNaturalColorsCheckbox" onclick="toggleCharVizOption(2)">
@@ -4757,6 +4769,7 @@ CustomSliderNo10.attachEvent("onSlideEnd", function() {
 });
 
 // Functions that need to execute on startup to bring app to state user left in in
+var startup = "True";
 loadPreviousState();
 loadSliderSettings();
 checkAppAppearanceWhenLockedStatusOnStartup();
@@ -4799,6 +4812,7 @@ loadCharVizOptions();
 loadDesktopMode();
 textFieldsEventListeners();
 currentTime();
+var startup = "False";
 </script>		
 
 </div>

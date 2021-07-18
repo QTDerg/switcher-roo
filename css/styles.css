@@ -645,6 +645,19 @@ select:disabled::-ms-expand {
 	transition-duration: 0.1s;
 	text-shadow: 2px 2px 20px #000;
 }
+#charVizLaunchMessage {
+	background-color: #282640;
+	font-size: 40px;
+	text-align: center;
+	padding-top: 100px;
+	padding-left: 10px;
+	transition-duration: 0.5s;
+	user-select: none;
+	cursor: pointer;
+}
+#charVizLaunchMessage:hover {
+	background-color: #59568f !important;
+}
 .charVizSpritesheetL { /* style for spritesheets - lines */
 	background-size: 500% 100% !important;
 }

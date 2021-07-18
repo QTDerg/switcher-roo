@@ -1,5 +1,5 @@
-const supportedSpecies = ['African Wild Dog', 'Arctic Fox', 'Coyote', 'Dog', 'Ethiopian Wolf', 'Fennec Fox', 'Folf', 'Fox', 'Husky', 'Maned Wolf', 'Werewolf', 'Wolf', 'Wox', 'Wusky', 'Alligator', 'Crocodile', 'Dinosaur', 'Raptor', 'Snake', 'Lizard', 'Shark', 'Dragon', 'Argonian', 'Kobold'];
-const canineSpecies = ['African Wild Dog', 'Arctic Fox', 'Coyote', 'Dog', 'Ethiopian Wolf', 'Fennec Fox', 'Folf', 'Fox', 'Husky', 'Maned Wolf', 'Werewolf', 'Wolf', 'Wox', 'Wusky'];
+const supportedSpecies = ['African Wild Dog', 'Arctic Fox', 'Coyote', 'Dog', 'Ethiopian Wolf', 'Fennec Fox', 'Folf', 'Fox', 'Husky', 'Maned Wolf', 'Red Panda', 'Werewolf', 'Wolf', 'Wox', 'Wusky', 'Alligator', 'Crocodile', 'Dinosaur', 'Raptor', 'Snake', 'Lizard', 'Shark', 'Dragon', 'Argonian', 'Kobold'];
+const canineSpecies = ['African Wild Dog', 'Arctic Fox', 'Coyote', 'Dog', 'Ethiopian Wolf', 'Fennec Fox', 'Folf', 'Fox', 'Husky', 'Maned Wolf', 'Red Panda', 'Werewolf', 'Wolf', 'Wox', 'Wusky'];
 const scalySpecies = ['Alligator', 'Crocodile', 'Dinosaur', 'Raptor', 'Snake', 'Lizard', 'Argonian', 'Kobold'];
 
 function toggleCharViz() {
@@ -31,7 +31,14 @@ function charVizStartup() {
 		document.getElementById("menuCharViz").style.display = 'block';
 		document.getElementById("charVizMenusToggler").style.display = 'block';
 		document.getElementById("charVizCheckbox").checked = true;
-		initializeCharViz();
+		var autolaunch = localStorage.getItem("Launch_CharViz_Automatically");
+		if (startup === "False" || autolaunch === "Yes") {
+			document.getElementById("charVizLaunchMessage").style.display = 'none';
+			initializeCharViz();
+		}
+		else {
+			document.getElementById("charVizLaunchMessage").style.display = 'block';
+		}
 	}
 	else {
 		document.getElementById("menuCharViz").style.display = 'none';
@@ -1378,6 +1385,7 @@ function setNaturalColorScheme(species) {
 	else if (species === "Folf")			{	primaryColor = "#55D2E0";secondaryColor = "#FFF0F5";tertiaryColor = "#5C4AE0";markingsColor = "#E03F8B"; eyeColor = "#E03F8B"; hairColor = "#5C4AE0";	}
 	else if (species === "Husky") 			{	primaryColor = "#404040";secondaryColor = "#FFF0F5";tertiaryColor = "#A9A9A9";markingsColor = "#C0C0C0"; eyeColor = "#40E0D0"; hairColor = "#00CED1";	}
 	else if (species === "Maned Wolf")		{	primaryColor = "#CD7F5B";secondaryColor = "#E6AD80";tertiaryColor = "#BD7B61";markingsColor = "#905547"; eyeColor = "#905547"; hairColor = "#905547";	}
+	else if (species === "Red Panda")		{	primaryColor = "#c24f19";secondaryColor = "#d16f42";tertiaryColor = "#832408";markingsColor = "#c99072"; eyeColor = "#438e22"; hairColor = "#8e2424";	}
 	else if (species === "Werewolf")		{	primaryColor = "#424242";secondaryColor = "#FFF0F5";tertiaryColor = "#3d464f";markingsColor = "#3d464f"; eyeColor = "#f12121"; hairColor = "#202020";	}
 	else if (species === "Wolf") 			{	primaryColor = "#808080";secondaryColor = "#FFF0F5";tertiaryColor = "#778899";markingsColor = "#708090"; eyeColor = "#00BFFF"; hairColor = "#333333";	}
 	else if (species === "Wox")				{	primaryColor = "#DD63F7";secondaryColor = "#FFF0F5";tertiaryColor = "#63A0F7";markingsColor = "#5BF0ED"; eyeColor = "#DD63F7"; hairColor = "#5BF0ED";	}
@@ -1630,7 +1638,7 @@ function toggleCharVizMenus(x) {
 	}
 	else if (x == 3) {
 		menu = document.getElementById("charVizOptionsContainer");
-		height = "640px"
+		height = "670px"
 	}
 	else if (x == 4) {
 		menu = document.getElementById("charVizCreditsContainer");
@@ -1684,6 +1692,7 @@ function charVizSetBGColor(x) {
 }
 
 function loadCharVizOptions() {	// Loads CharViz specific options on startup
+	var x0 = localStorage.getItem("Launch_CharViz_Automatically");
 	var x1 = localStorage.getItem("Character_Part_And_Pattern_Picker_Enabled");
 	var x2 = localStorage.getItem("CharViz_Set_Natural_Color_Scheme");
 	var x3 = localStorage.getItem("Randomizer_Affects_Char_Colors");
@@ -1693,6 +1702,7 @@ function loadCharVizOptions() {	// Loads CharViz specific options on startup
 	var x7 = localStorage.getItem("CharViz_Display_Randomizers");
 	
 	// Tick the checkboxes
+	if (x0 === "Yes")	{	document.getElementById("autoCharVizLaunchCheckbox").checked = true;					}
 	if (x1 === "Yes")	{	document.getElementById("enablePickerCheckbox").checked = true;							}
 	if (x2 === "Yes")	{	document.getElementById("setNaturalColorsCheckbox").checked = true;						}
 	if (x3 === "Yes")	{	document.getElementById("randomizerAffectsCharColorsCheckbox").checked = true;			}
@@ -1707,6 +1717,7 @@ function loadCharVizOptions() {	// Loads CharViz specific options on startup
 }
 
 function toggleCharVizOption(x) {
+	// 0 - Launch CharViz automatically on app startup
 	// 1 - Lock Character Parts
 	// 2 - Set default color scheme when changing species
 	// 3 - Randomizer affects character color scheme
@@ -1716,7 +1727,8 @@ function toggleCharVizOption(x) {
 	// 7 - Show buttons to randomize colors and character under character display
 	
 	var tickbox
-	if (x == 1) 		{ 	tickbox = document.getElementById("enablePickerCheckbox"); 						}
+	if (x == 0) 		{ 	tickbox = document.getElementById("autoCharVizLaunchCheckbox"); 				}
+	else if (x == 1) 	{ 	tickbox = document.getElementById("enablePickerCheckbox"); 						}
 	else if (x == 2) 	{ 	tickbox = document.getElementById("setNaturalColorsCheckbox"); 					}
 	else if (x == 3) 	{ 	tickbox = document.getElementById("randomizerAffectsCharColorsCheckbox"); 		}
 	else if (x == 4) 	{ 	tickbox = document.getElementById("randomizerAffectsClothingCheckbox"); 		}
@@ -1729,7 +1741,8 @@ function toggleCharVizOption(x) {
 	else				{	y = "No"	}
 	
 	// Save to localStorage
-	if (x == 1) 		{ 	localStorage.setItem("Character_Part_And_Pattern_Picker_Enabled", y);	}
+	if (x == 0) 		{ 	localStorage.setItem("Launch_CharViz_Automatically", y);				}
+	else if (x == 1) 	{ 	localStorage.setItem("Character_Part_And_Pattern_Picker_Enabled", y);	}
 	else if (x == 2) 	{ 	localStorage.setItem("CharViz_Set_Natural_Color_Scheme", y); 			}
 	else if (x == 3) 	{ 	localStorage.setItem("Randomizer_Affects_Char_Colors", y);				}
 	else if (x == 4) 	{ 	localStorage.setItem("Randomizer_Affects_Clothing", y);					}

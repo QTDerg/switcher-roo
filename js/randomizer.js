@@ -20,8 +20,8 @@ function randomizeCharacter() {
 			// Most Popular Species
 			var array = ["Arctic Fox", "Bat", "Bear", "Cat", "Cheetah", "Coyote", "Deer",
 			"Dog", "Dragon", "Fennec", "Fox", "Horse", "Hyena", "Kangaroo", "Lion", "Lynx",
-			"Otter","Panther", "Protogen", "Rabbit", "Raccoon", "Sergal", "Shark", "Skunk",
-			"Snow Leopard",	"Synth", "Tiger", "Wolf"];
+			"Otter","Panther", "Protogen", "Rabbit", "Raccoon", "Red Panda", "Sergal", "Shark",
+			"Skunk", "Snake", "Snow Leopard", "Synth", "Tiger", "Wolf"];
 			Species = array[Math.floor(Math.random() * array.length)];
 			document.getElementById('speciesCurrent').innerHTML = Species;
 		}
@@ -34,7 +34,7 @@ function randomizeCharacter() {
 			, "Jaguar", "Khajiit", "Leopard", "Liger", "Serval", "Argonian", "Jackalope", "Jex"
 			, "Kitsune", "Kobold", "Tanuki", "Chimera", "Foxcoon", "Manokit", "Wox", "Wusky"
 			, "Pika", "Hare", "Koala", "Opossum", "Possum", "Badger", "Ferret", "Marten"
-			, "Weasel", "Alligator", "Crocodile", "Dinosaur", "Iguana", "Raptor", "Snake", "Turtle"
+			, "Weasel", "Alligator", "Crocodile", "Dinosaur", "Iguana", "Raptor", "Turtle"
 			, "Beaver", "Hamster", "Mouse", "Porcupine", "Rat", "Squirrel", "Gazelle", "Giraffe"
 			, "Goat", "Llama", "Pig", "Sheep"];
 			Species = array[Math.floor(Math.random() * array.length)];

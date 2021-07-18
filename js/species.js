@@ -102,7 +102,7 @@ function switchToCustomSpeciesSet(x) {
 function goToMostPopularCategory() {
 	document.getElementById("speciesCategorySelectorContainer").style.display= 'none';
 	document.getElementById("speciesSelectorMostPopular").style.display= 'block';
-	document.getElementById('speciesMenu').style.height = "620px";
+	document.getElementById('speciesMenu').style.height = "650px";
 }
 
 function goBackFromMostPopularCategory() {
@@ -120,7 +120,7 @@ function goToCustomCategoryFromMostPopular() {
 function goToMostPopularCategoryFromCustom() {
 	document.getElementById("speciesSelectorCustom").style.display= 'none';
 	document.getElementById("speciesSelectorMostPopular").style.display= 'block';	
-	document.getElementById('speciesMenu').style.height = "620px";
+	document.getElementById('speciesMenu').style.height = "650px";
 }
 
 function goToCustomCategory() {
