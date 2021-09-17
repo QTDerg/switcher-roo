@@ -8,6 +8,11 @@
   "lang": "English",
   "background_color": "#3B395E",
   "icons": [
+	{
+      "src": "/switcher-roo/images/touch-icon-iphone.png",
+      "type": "image/png",
+      "sizes": "256x256",
+    },
     {
       "src": "/switcher-roo/images/icon-maskable.png",
       "type": "image/png",
