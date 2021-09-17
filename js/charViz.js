@@ -12,10 +12,6 @@ var tickbox = document.getElementById("charVizCheckbox");
 		initializeCharViz();
 		var Species = localStorage.getItem("Slot0_Species");
 		setSpeciesTo(Species);
-		var x1 = localStorage.getItem("Character_Part_And_Pattern_Picker_Enabled");
-		if (x1 === "Yes") {
-			document.getElementById("charVizPickerToggler").style.display = 'block';
-		}
 	}
 	else {
 		var tickbox = "No"
@@ -49,10 +45,10 @@ function charVizStartup() {
 var charVizEventsInitialized;
 
 function initializeCharViz() {	
-	// Check if species are supported or Character Part & Pattern Picker is enabled
+	// Check if species are supported or Character Parts are locked
 	var chosenSpecies = document.getElementById("speciesCurrent").innerHTML;
-	var pickerEnabled = localStorage.getItem("Character_Part_And_Pattern_Picker_Enabled");
-	if (supportedSpecies.includes(chosenSpecies) || pickerEnabled === "Yes") {
+	var charPartsLocked = localStorage.getItem("Lock_Character_Parts");
+	if (supportedSpecies.includes(chosenSpecies) || charPartsLocked === "Yes") {
 		document.getElementById("charVizDisplayMessage").style.display = 'none';
 		loadSharedAssets();
 		loadCharacterParts();
@@ -1693,7 +1689,7 @@ function charVizSetBGColor(x) {
 
 function loadCharVizOptions() {	// Loads CharViz specific options on startup
 	var x0 = localStorage.getItem("Launch_CharViz_Automatically");
-	var x1 = localStorage.getItem("Character_Part_And_Pattern_Picker_Enabled");
+	var x1 = localStorage.getItem("Lock_Character_Parts");
 	var x2 = localStorage.getItem("CharViz_Set_Natural_Color_Scheme");
 	var x3 = localStorage.getItem("Randomizer_Affects_Char_Colors");
 	var x4 = localStorage.getItem("Randomizer_Affects_Clothing");
@@ -1703,7 +1699,7 @@ function loadCharVizOptions() {	// Loads CharViz specific options on startup
 	
 	// Tick the checkboxes
 	if (x0 === "Yes")	{	document.getElementById("autoCharVizLaunchCheckbox").checked = true;					}
-	if (x1 === "Yes")	{	document.getElementById("enablePickerCheckbox").checked = true;							}
+	if (x1 === "Yes")	{	document.getElementById("lockCharPartsCheckbox").checked = true;						}
 	if (x2 === "Yes")	{	document.getElementById("setNaturalColorsCheckbox").checked = true;						}
 	if (x3 === "Yes")	{	document.getElementById("randomizerAffectsCharColorsCheckbox").checked = true;			}
 	if (x4 === "Yes")	{	document.getElementById("randomizerAffectsClothingCheckbox").checked = true;			}
@@ -1728,7 +1724,7 @@ function toggleCharVizOption(x) {
 	
 	var tickbox
 	if (x == 0) 		{ 	tickbox = document.getElementById("autoCharVizLaunchCheckbox"); 				}
-	else if (x == 1) 	{ 	tickbox = document.getElementById("enablePickerCheckbox"); 						}
+	else if (x == 1) 	{ 	tickbox = document.getElementById("lockCharPartsCheckbox"); 					}
 	else if (x == 2) 	{ 	tickbox = document.getElementById("setNaturalColorsCheckbox"); 					}
 	else if (x == 3) 	{ 	tickbox = document.getElementById("randomizerAffectsCharColorsCheckbox"); 		}
 	else if (x == 4) 	{ 	tickbox = document.getElementById("randomizerAffectsClothingCheckbox"); 		}
@@ -1742,7 +1738,7 @@ function toggleCharVizOption(x) {
 	
 	// Save to localStorage
 	if (x == 0) 		{ 	localStorage.setItem("Launch_CharViz_Automatically", y);				}
-	else if (x == 1) 	{ 	localStorage.setItem("Character_Part_And_Pattern_Picker_Enabled", y);	}
+	else if (x == 1) 	{ 	localStorage.setItem("Lock_Character_Parts", y);	}
 	else if (x == 2) 	{ 	localStorage.setItem("CharViz_Set_Natural_Color_Scheme", y); 			}
 	else if (x == 3) 	{ 	localStorage.setItem("Randomizer_Affects_Char_Colors", y);				}
 	else if (x == 4) 	{ 	localStorage.setItem("Randomizer_Affects_Clothing", y);					}

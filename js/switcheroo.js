@@ -99,7 +99,7 @@ function toggleFeedbackMenu() {
 	var x = document.getElementById("feedback");
 	if (x.style.maxHeight === "0px") {
 		x.style.borderTop = "3px solid #73728C";
-		x.style.maxHeight = "195px";
+		x.style.maxHeight = "300px";
 		x.style.marginTop = "10px";
 	} else {
 		x.style.borderTop = "0";
@@ -2824,7 +2824,7 @@ function openLockSettingsPasswordMenu() {
 		document.getElementById("setupPasswordFirstTimeContainer").style.maxHeight='139px';
 	}
 	else {
-		document.getElementById("lockPasswordChooseOptionContainer").style.maxHeight='128px';
+		document.getElementById("lockPasswordChooseOptionContainer").style.maxHeight='190px';
 	}
 }
 
@@ -2875,7 +2875,7 @@ function setupPasswordFirstTime() {
 		localStorage.setItem("Current_Password", password);
 		localStorage.setItem("Lock_Settings_Password_Enabled", "Yes");
 		document.getElementById("setupPasswordFirstTimeContainer").style.maxHeight='0px';
-		document.getElementById("lockPasswordChooseOptionContainer").style.maxHeight='128px';
+		document.getElementById("lockPasswordChooseOptionContainer").style.maxHeight='190px';
 		checkLockPasswordStatus();
 	}
 }
@@ -2897,7 +2897,7 @@ function lockPasswordChangeStage1() {
 }
 
 function lockPasswordChangeGoBack() {
-	document.getElementById("lockPasswordChooseOptionContainer").style.maxHeight='128px';
+	document.getElementById("lockPasswordChooseOptionContainer").style.maxHeight='190px';
 	document.getElementById("lockPasswordChangeContainer").style.maxHeight='0px';
 }
 
@@ -2949,7 +2949,7 @@ function lockPasswordDeleteStage1() {
 }
 
 function lockPasswordDeleteGoBack() {
-	document.getElementById("lockPasswordChooseOptionContainer").style.maxHeight='128px';
+	document.getElementById("lockPasswordChooseOptionContainer").style.maxHeight='190px';
 	document.getElementById("lockPasswordDeleteContainer").style.maxHeight='0px';
 }
 
@@ -2995,6 +2995,11 @@ function lockPasswordGoBack() {
 	document.getElementById("lockPasswordChooseOptionContainer").style.maxHeight='0px';
 }
 
+function lockPasswordForgotPasswd() {
+	document.getElementById("lockPasswordChooseOptionContainer").style.maxHeight='0px';
+	document.getElementById("setupPasswordFirstTimeContainer").style.maxHeight='139px';
+}
+
 function lockPasswordEnable() {
 	localStorage.setItem("Lock_Settings_Password_Enabled", "Yes");
 	checkLockPasswordStatus();
@@ -3006,7 +3011,7 @@ function lockPasswordDisableStage1() {
 }
 
 function lockPasswordDisableGoBack() {
-	document.getElementById("lockPasswordChooseOptionContainer").style.maxHeight='128px';
+	document.getElementById("lockPasswordChooseOptionContainer").style.maxHeight='190px';
 	document.getElementById("lockPasswordDisableContainer").style.maxHeight='0px';
 }
 

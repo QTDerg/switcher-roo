@@ -11,7 +11,7 @@ function connectToServer() {
 		var chosenPeerJSServer = 2;
 		// 0 = PeerJS server hosted on localhost.
 		// 1 = Official PeerJS server. Very unstable, often giving "Server has reached its concurrent user limit" error.
-		// 2 = PeerJS server hosted on Heroku. https://www.heroku.com/
+		// 2 = PeerJS server hosted on peerjs.92k.de
 		
 		// Command to launch PeerJS server // peerjs --port 9000 --key peerjs --path /myapp
 		
@@ -2024,6 +2024,11 @@ function CONTROLgoBackFromChoice() {
 function CONTROLshowConnectOptions() {
 	document.getElementById("CONTROLchoiceContainer").style.maxHeight='0px';
 	document.getElementById("CONTROLconnectContainer").style.maxHeight='230px';
+	var x = document.getElementById("CONTROLconnectToPeerStatus").innerHTML;
+	if (x === "Status: Connected to server! You shall pass.") {
+		document.getElementById("CONTROLconnectToPeerStatus").innerHTML = "Status: Waiting for user input..."
+		document.getElementById("CONTROLconnectToPeerStatus").style.color = "#fff";
+	}
 }
 
 function CONTROLgoBackFromConnectOptions() {
@@ -2044,7 +2049,7 @@ function CONTROLgoBackFromReceiveOptions() {
 function CONTROLgoToChangeSubLockPassword() {
 	document.getElementById("CONTROLmasterContainer").style.maxHeight='0px';
 	document.getElementById("CONTROLmasterContainer").style.border='0';
-	document.getElementById("CONTROLchangeSubsPasswordContainer").style.maxHeight='139px';
+	document.getElementById("CONTROLchangeSubsPasswordContainer").style.maxHeight='280px';
 }
 
 function goBackCONTROLchangeSubsPassword() {
