@@ -18,30 +18,10 @@ function goBackFromCategoryList() {
 	document.getElementById('speciesContainer').style.width = "70%";
 }
 
-function closeCategoryMenu() {
-	document.getElementById("speciesCategorySelectorContainer").style.display = "none";
-	document.getElementById("speciesSelectorMostPopular").style.display = "none";
-	document.getElementById("speciesSelectorCustom").style.display = "none";
-	document.getElementById("speciesSelectorAvian").style.display = "none";
-	document.getElementById("speciesSelectorBovine").style.display = "none";
-	document.getElementById("speciesSelectorCanine").style.display = "none";
-	document.getElementById("speciesSelectorCervine").style.display = "none";
-	document.getElementById("speciesSelectorEquine").style.display = "none";
-	document.getElementById("speciesSelectorFeline").style.display = "none";
-	document.getElementById("speciesSelectorFictional").style.display = "none";
-	document.getElementById("speciesSelectorHybrid").style.display = "none";
-	document.getElementById("speciesSelectorLagomorph").style.display = "none";
-	document.getElementById("speciesSelectorMarsupial").style.display = "none";
-	document.getElementById("speciesSelectorMustelid").style.display = "none";
-	document.getElementById("speciesSelectorReptile").style.display = "none";
-	document.getElementById("speciesSelectorRodent").style.display = "none";
-	document.getElementById("speciesSelectorUngulate").style.display = "none";	
-}
-
 function setSpeciesTo(Species) {
 	document.getElementById('speciesCurrent').innerHTML = Species;
 	localStorage.setItem("Slot0_Species", Species);
-	closeCategoryMenu();
+	speciesGoBackFromCategory();
 	goBackFromCategoryList();
 	if (controlsessionactive === "Yes") {
 		conn.send({firstParam: "manipulateOption", secondParam: "Species", thirdParam: Species});
