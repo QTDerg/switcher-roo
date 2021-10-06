@@ -361,6 +361,11 @@ function randomizeCharacter() {
 		if (randomizeClothing === "Yes") { randomizeCharacterClothing(); }
 		initializeCharViz();
 	}
+	
+	if (controlsessionactive === "Yes") {
+		synchronization();
+		conn.send({firstParam: "randomizerUsed"});
+	}
 	}
 }
 

@@ -29,17 +29,17 @@
 <script src="js/switcheroo.js?v=1.0.1"></script>
 <script src="js/saveSlots.js?v=1.0.0"></script>
 <script src="js/slot0.js?v=1.0.0"></script>
-<script src="js/species.js?v=1.1.1"></script>
+<script src="js/species.js?v=1.1.2"></script>
 <script src="js/inanimateObjects.js?v=1.0.0"></script>
 <script src="js/ppTypes.js?v=1.0.0"></script>
 <script src="js/iro.min.js"></script>
 <script src="js/color-scheme.min.js"></script>
 <script src="js/peerjs.min.js"></script>
-<script src="js/CONTROL.JS?v=1.0.2"></script>
+<script src="js/CONTROL.JS?v=1.0.3"></script>
 <script src="js/appStatus.js?v=1.0.0"></script>
 <script src="js/creativeMode.js?v=1.0.0"></script>
 <script src="js/charViz.js?v=1.0.2"></script>
-<script src="js/randomizer.js?v=1.0.1"></script>
+<script src="js/randomizer.js?v=1.0.2"></script>
 <script src="pwabuilder-sw.js"></script>
 <script>
 // This is the "Offline copy of pages" service worker
@@ -277,7 +277,7 @@ if ("serviceWorker" in navigator) {
 		
 		<div class="speciesCategorySelectorContainer" id="speciesCategorySelectorContainer" style="display:none">
 		
-			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromCategoryList();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromCategoryList();"><div class="speciesCategoryText">Go back</div></div>
 			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoToCategory('1');"><div class="speciesCategoryText">Most Popular</div></div>
 			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoToCategory('2');"><div class="speciesCategoryText">Custom</div></div>
 			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoToCategory('3');"><div class="speciesCategoryText">Aquatic</div></div>
@@ -310,7 +310,7 @@ if ("serviceWorker" in navigator) {
 		
 		<div class="speciesSelector" id="speciesSelector1" style="display:none">
 		
-			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go back</div></div>
 			<div class="speciesCategoryButtonEnd"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
 			<div class="speciesCategoryName"><div class="categoryText">Most Popular</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory('2');"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -358,7 +358,7 @@ if ("serviceWorker" in navigator) {
 		
 		<div class="speciesSelector" id="speciesSelector2" style="display:none">
 		
-			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go back</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory('1');"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
 			<div class="speciesCategoryName"><div class="categoryText">Custom</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory('3');"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -386,7 +386,7 @@ if ("serviceWorker" in navigator) {
 		
 		<div class="speciesSelector" id="speciesSelector3" style="display:none">
 		
-			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go back</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory('2');"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
 			<div class="speciesCategoryName"><div class="categoryText">Aquatic</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory('4');"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -417,7 +417,7 @@ if ("serviceWorker" in navigator) {
 		
 		<div class="speciesSelector" id="speciesSelector4" style="display:none">
 		
-			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go back</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory('3');"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
 			<div class="speciesCategoryName"><div class="categoryText">Arthropod</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory('5');"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -442,7 +442,7 @@ if ("serviceWorker" in navigator) {
 		
 		<div class="speciesSelector" id="speciesSelector5" style="display:none">
 		
-			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go back</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(4);"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
 			<div class="speciesCategoryName"><div class="categoryText">Avian</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(6);"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -470,7 +470,7 @@ if ("serviceWorker" in navigator) {
 		
 		<div class="speciesSelector" id="speciesSelector6" style="display:none">
 		
-			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go back</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(5);"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
 			<div class="speciesCategoryName"><div class="categoryText">Bovine</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(7);"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -492,7 +492,7 @@ if ("serviceWorker" in navigator) {
 		
 		<div class="speciesSelector" id="speciesSelector7" style="display:none">
 		
-			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go back</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(6);"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
 			<div class="speciesCategoryName"><div class="categoryText">Canine</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(8);"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -523,7 +523,7 @@ if ("serviceWorker" in navigator) {
 		
 		<div class="speciesSelector" id="speciesSelector8" style="display:none">
 		
-			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go back</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(7);"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
 			<div class="speciesCategoryName"><div class="categoryText">Cervine</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(9);"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -545,7 +545,7 @@ if ("serviceWorker" in navigator) {
 		
 		<div class="speciesSelector" id="speciesSelector9" style="display:none">
 		
-			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go back</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(8);"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
 			<div class="speciesCategoryName"><div class="categoryText">Equine</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(10);"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -569,7 +569,7 @@ if ("serviceWorker" in navigator) {
 		
 		<div class="speciesSelector" id="speciesSelector10" style="display:none">
 		
-			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go back</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(9);"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
 			<div class="speciesCategoryName"><div class="categoryText">Feline</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(11);"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -601,7 +601,7 @@ if ("serviceWorker" in navigator) {
 		
 		<div class="speciesSelector" id="speciesSelector11" style="display:none">
 		
-			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go back</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(10);"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
 			<div class="speciesCategoryName"><div class="categoryText">Fictional</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(12);"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -634,7 +634,7 @@ if ("serviceWorker" in navigator) {
 		
 		<div class="speciesSelector" id="speciesSelector12" style="display:none">
 		
-			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go back</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(11);"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
 			<div class="speciesCategoryName"><div class="categoryText">Hybrid</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(13);"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -660,7 +660,7 @@ if ("serviceWorker" in navigator) {
 		
 		<div class="speciesSelector" id="speciesSelector13" style="display:none">
 		
-			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go back</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(12);"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
 			<div class="speciesCategoryName"><div class="categoryText">Lagomorph</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(14);"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -682,7 +682,7 @@ if ("serviceWorker" in navigator) {
 		
 		<div class="speciesSelector" id="speciesSelector14" style="display:none">
 		
-			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go back</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(13);"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
 			<div class="speciesCategoryName"><div class="categoryText">Marsupial</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(15);"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -704,7 +704,7 @@ if ("serviceWorker" in navigator) {
 		
 		<div class="speciesSelector" id="speciesSelector15" style="display:none">
 		
-			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go back</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(14);"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
 			<div class="speciesCategoryName"><div class="categoryText">Mustelid</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(16);"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -728,7 +728,7 @@ if ("serviceWorker" in navigator) {
 		
 		<div class="speciesSelector" id="speciesSelector16" style="display:none">
 		
-			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go back</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(15);"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
 			<div class="speciesCategoryName"><div class="categoryText">Reptile</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(17);"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -754,7 +754,7 @@ if ("serviceWorker" in navigator) {
 		
 		<div class="speciesSelector" id="speciesSelector17" style="display:none">
 		
-			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go back</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(16);"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
 			<div class="speciesCategoryName"><div class="categoryText">Rodent</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(18);"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -779,7 +779,7 @@ if ("serviceWorker" in navigator) {
 		
 		<div class="speciesSelector" id="speciesSelector18" style="display:none">
 		
-			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go back</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(17);"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
 			<div class="speciesCategoryName"><div class="categoryText">Ungulate</div></div>
 			<div class="speciesCategoryButtonEnd"><div class="categoryText"><img src="images/harpoonArrowRight.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -839,7 +839,7 @@ if ("serviceWorker" in navigator) {
 		
 		<div class="speciesCategorySelectorContainer" id="inanimateObjectsSelectorContainer" style="display:none">
 		
-			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromInanimateObjectsList();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromInanimateObjectsList();"><div class="speciesCategoryText">Go back</div></div>
 			<div class="speciesCategory" onClick="inanimateObjectsGoToPredefinedCategory();"><div class="speciesCategoryText">Predefined</div></div>
 			<div class="speciesCategory" id="inanimateObjectEntry1" onClick="setInanimateObjectToCustom(1);"><div class="speciesCategoryText">Empty</div></div>
 			<div class="speciesCategory" id="inanimateObjectEntry2" onClick="setInanimateObjectToCustom(2);"><div class="speciesCategoryText">Empty</div></div>
@@ -856,7 +856,7 @@ if ("serviceWorker" in navigator) {
 		
 		<div class="speciesCategorySelectorContainer" id="inanimateObjectsPredefinedSelectorContainer" style="display:none">
 		
-			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromPredefinedInanimateObjectsList();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" id="speciesCategory" onClick="goBackFromPredefinedInanimateObjectsList();"><div class="speciesCategoryText">Go back</div></div>
 			<div class="speciesCategory" onClick="funniestShitIveEverSeen();"><div class="speciesCategoryText">Pickle</div></div>
 			<div class="speciesCategory"><div class="speciesCategoryText">Empty</div></div>
 			<div class="speciesCategory"><div class="speciesCategoryText">Empty</div></div>
@@ -2675,7 +2675,7 @@ Listed alphabetically:
 		
 		<div class="speciesCategorySelectorContainer" id="cockTypeSelectorContainer" style="display:none">
 		
-			<div class="speciesCategory" onClick="goBackFromCockTypesList();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" onClick="goBackFromCockTypesList();"><div class="speciesCategoryText">Go back</div></div>
 			<div class="speciesCategory" onClick="goToCustomCockTypesCategory();"><div class="speciesCategoryText">Custom</div></div>
 			<div class="speciesCategory" onClick="setCockTypeTo('None');"><div class="speciesCategoryText">None</div></div>
 			<div class="speciesCategory" onClick="setCockTypeTo('Canine');"><div class="speciesCategoryText">Canine</div></div>
@@ -2692,7 +2692,7 @@ Listed alphabetically:
 		
 		<div class="speciesCategorySelectorContainer" id="cockTypeCustomSelectorContainer" style="display:none">
 		
-			<div class="speciesCategory" onClick="goBackFromCustomCockTypesCategory();"><div class="speciesCategoryText">Go Back</div></div>
+			<div class="speciesCategory" onClick="goBackFromCustomCockTypesCategory();"><div class="speciesCategoryText">Go back</div></div>
 			<div class="speciesCategory" onClick="setCockTypeToCustom(1);"><div id="cockTypeEntry1" class="speciesCategoryText">Empty</div></div>
 			<div class="speciesCategory" onClick="setCockTypeToCustom(2);"><div id="cockTypeEntry2" class="speciesCategoryText">Empty</div></div>
 			<div class="speciesCategory" onClick="setCockTypeToCustom(3);"><div id="cockTypeEntry3" class="speciesCategoryText">Empty</div></div>
@@ -4114,6 +4114,20 @@ Listed alphabetically:
 	</div>
 	<script>document.getElementById("CONTROLmasterContainer").style.maxHeight='0px';document.getElementById("CONTROLmasterContainer").style.border='0';</script>
 	
+	<div id="CONTROLchangeSubsPasswordContainer" style="overflow:hidden;transition-duration:0.75s">
+		
+		<div id="CONTROLchangeSubsPasswordMessage" style="padding-left:18px;margin-top:5px;">Enter password:</div>
+		<input id="CONTROLchangeSubsPasswordTextField" class="bigTextField" value="">
+		<div style="margin-top:5px"></div>
+		<div class="mediumButton" onClick="goBackCONTROLchangeSubsPassword()">Cancel</div>
+		<div class="mediumButton" onClick="CONTROLchangeSubsPassword()">Proceed</div>
+		<div class="section-info warning-animation" style="margin-top:5px;background-color:#ff4550;float:left;width:100%">
+		Warning: Password is stored in plain text on user device which you're connected to, so do not reuse password you're using on any websites/applications!
+		</div>
+		
+	</div>
+	<script>document.getElementById("CONTROLchangeSubsPasswordContainer").style.maxHeight='0px';</script>
+	
 	<div id="COTNROLchatMainContainer" style="overflow:hidden;transition-duration:0.75s">
 	
 		<div class="CONTROLchangelogContainer" id="CONTROLchatContainer" style="height: 190px;">
@@ -4142,20 +4156,6 @@ Listed alphabetically:
 	</div>
 	<script>document.getElementById("CONTROLsubContainer").style.maxHeight='0px';</script>
 	
-	<div id="CONTROLchangeSubsPasswordContainer" style="overflow:hidden;transition-duration:0.75s">
-		
-		<div id="CONTROLchangeSubsPasswordMessage" style="padding-left:18px;margin-top:5px;">Enter password:</div>
-		<input id="CONTROLchangeSubsPasswordTextField" class="bigTextField" value="">
-		<div style="margin-top:5px"></div>
-		<div class="mediumButton" onClick="goBackCONTROLchangeSubsPassword()">Cancel</div>
-		<div class="mediumButton" onClick="CONTROLchangeSubsPassword()">Proceed</div>
-		<div class="section-info warning-animation" style="margin-top:5px;background-color:#ff4550;float:left;width:100%">
-		Warning: Password is stored in plain text on user device which you're connected to, so do not reuse password you're using on any websites/applications!
-		</div>
-		
-	</div>
-	<script>document.getElementById("CONTROLchangeSubsPasswordContainer").style.maxHeight='0px';</script>
-
 <div class="bigButton" id="randomizeButton" onClick="randomizeCharacter()">Randomize</div>
 
 <div class="bigButtonAdminMode" id="adminbutton" onClick="enterPasswordFunction()">Admin Mode</div>

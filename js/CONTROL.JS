@@ -101,6 +101,7 @@ function host() { // Sub
 		synchronizationSleep();
 		sendUsernameSleep();
 		connectionLostSubMessage();
+		hideRandomizerButton();
 	});
 }
 
@@ -1330,7 +1331,14 @@ function CONTROLchangelog(data) {
 	else if (data.firstParam === "Toggle_Admin_Mode") 		{	logEntry = "Toggled Admin Mode"												}
 	else if (data.firstParam === "Change_Lock_Password") 	{	logEntry = "Changed lock password"											}
 	else if (data.firstParam === "toggleAdvSettings") 		{	logEntry = "Toggled Advanced Settings"										}
-		
+	else if (data.firstParam === "randomizerUsed") 			{
+		clearChangelog();
+		var sex = localStorage.getItem("Slot0_Sex");
+		var species = localStorage.getItem("Slot0_Species");
+		var bodyType1 = localStorage.getItem("Slot0_Body_Type1");
+		sex = functionBodyType(sex, bodyType1);
+		logEntry = "Randomizer has been used! Generated a " + sex + " " + species + " character.";
+	}
 	if (logEntry == null) { return }
 	var logHistory = document.getElementById("CONTROLchangelog").innerHTML;
 	document.getElementById("CONTROLchangelog").innerHTML = logEntry + "<br>" + logHistory;
@@ -2126,4 +2134,11 @@ function CONTROLsendChatMessage() {
 function CONTROLchatClearError() {
 	document.getElementById("CONTROLchatNoUsernameError").innerHTML = "CONTROL Chat";
 	document.getElementById("CONTROLchatNoUsernameError").style.backgroundColor = "#59568f";
+}
+
+function hideRandomizerButton() {
+	document.getElementById("randomizeButton").style.padding='0px';
+	document.getElementById("randomizeButton").style.border='0';
+	document.getElementById("randomizeButton").style.fontSize='0px';
+	document.getElementById("randomizeButton").style.marginTop='0px';
 }

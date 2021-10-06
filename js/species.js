@@ -11,11 +11,12 @@ function speciesLoadList() {
 	}
 }
 
-function goBackFromCategoryList() {
+async function goBackFromCategoryList() {
 	document.getElementById("speciesCurrentContainer").style.display= 'block';
-	document.getElementById("speciesSearch").style.display= 'block';
 	document.getElementById("speciesCategorySelectorContainer").style.display= 'none';
 	document.getElementById('speciesContainer').style.width = "70%";
+	await sleep(200);
+	document.getElementById("speciesSearch").style.display= 'block';
 }
 
 function setSpeciesTo(Species) {
