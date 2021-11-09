@@ -101,7 +101,7 @@ function host() { // Sub
 		synchronizationSleep();
 		sendUsernameSleep();
 		connectionLostSubMessage();
-		hideRandomizerButton();
+		hideStuff(); // Hide Randomizer and Load presets buttons and Load preset menu
 	});
 }
 
@@ -1339,6 +1339,14 @@ function CONTROLchangelog(data) {
 		sex = functionBodyType(sex, bodyType1);
 		logEntry = "Randomizer has been used! Generated a " + sex + " " + species + " character.";
 	}
+	else if (data.firstParam === "loadedSettings") 			{
+		clearChangelog();
+		var sex = localStorage.getItem("Slot0_Sex");
+		var species = localStorage.getItem("Slot0_Species");
+		var bodyType1 = localStorage.getItem("Slot0_Body_Type1");
+		sex = functionBodyType(sex, bodyType1);
+		logEntry = "Settings from Master's slot " + data.secondParam + " have been loaded: "  + sex + " " + species;
+	}
 	if (logEntry == null) { return }
 	var logHistory = document.getElementById("CONTROLchangelog").innerHTML;
 	document.getElementById("CONTROLchangelog").innerHTML = logEntry + "<br>" + logHistory;
@@ -2136,9 +2144,19 @@ function CONTROLchatClearError() {
 	document.getElementById("CONTROLchatNoUsernameError").style.backgroundColor = "#59568f";
 }
 
-function hideRandomizerButton() {
+function hideStuff() {
+	// Hide Randomizer and Load presets buttons and Load preset menu
 	document.getElementById("randomizeButton").style.padding='0px';
 	document.getElementById("randomizeButton").style.border='0';
 	document.getElementById("randomizeButton").style.fontSize='0px';
 	document.getElementById("randomizeButton").style.marginTop='0px';
+	
+	document.getElementById("loadSettingsButton").style.padding='0px';
+	document.getElementById("loadSettingsButton").style.border='0';
+	document.getElementById("loadSettingsButton").style.fontSize='0px';
+	document.getElementById("loadSettingsButton").style.marginTop='0px';
+	
+	document.getElementById("loadSlotButtons").style.marginTop='0';
+	document.getElementById("loadSlotButtons").style.border='0px solid transparent';
+	document.getElementById("loadSlotButtons").style.maxHeight='0';
 }

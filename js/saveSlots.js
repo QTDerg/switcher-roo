@@ -669,7 +669,12 @@ function loadSettings(x) {
 		
 		var presetName = localStorage.getItem("Slot" + x + "_Preset_Name");
 		displayNotification(5, presetName);
-		saveSettingsSlot0();		
+		saveSettingsSlot0();
+
+		if (controlsessionactive === "Yes") {
+			synchronization();
+			conn.send({firstParam: "loadedSettings", secondParam: x});
+		}
 		}
 	}
 }
