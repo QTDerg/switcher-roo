@@ -1336,7 +1336,7 @@ function CONTROLchangelog(data) {
 		var sex = localStorage.getItem("Slot0_Sex");
 		var species = localStorage.getItem("Slot0_Species");
 		var bodyType1 = localStorage.getItem("Slot0_Body_Type1");
-		sex = functionBodyType(sex, bodyType1);
+		sex = determineBodyType(sex, bodyType1);
 		logEntry = "Randomizer has been used! Generated a " + sex + " " + species + " character.";
 	}
 	else if (data.firstParam === "loadedSettings") 			{
@@ -1344,7 +1344,7 @@ function CONTROLchangelog(data) {
 		var sex = localStorage.getItem("Slot0_Sex");
 		var species = localStorage.getItem("Slot0_Species");
 		var bodyType1 = localStorage.getItem("Slot0_Body_Type1");
-		sex = functionBodyType(sex, bodyType1);
+		sex = determineBodyType(sex, bodyType1);
 		logEntry = "Settings from Master's slot " + data.secondParam + " have been loaded: "  + sex + " " + species;
 	}
 	if (logEntry == null) { return }

@@ -68,7 +68,7 @@ function saveSettings(x) {
 	
 	var cockType = document.getElementById("cockTypeCurrent").innerHTML;
 	
-	sex = functionBodyType(sex, bodyType1);
+	sex = determineBodyType(sex, bodyType1);
 	
 	// Custom stuff
 	// Custom sliders

@@ -26,8 +26,8 @@
 <link rel="apple-touch-icon" sizes="167x167" href="images/touch-icon-ipad-retina.png">
 
 <script src="js/dhtmlxslider.js"></script>
-<script src="js/switcheroo.js?v=1.0.1"></script>
-<script src="js/saveSlots.js?v=1.0.1"></script>
+<script src="js/switcheroo.js?v=1.0.2"></script>
+<script src="js/saveSlots.js?v=1.0.2"></script>
 <script src="js/slot0.js?v=1.0.0"></script>
 <script src="js/species.js?v=1.1.2"></script>
 <script src="js/inanimateObjects.js?v=1.0.0"></script>
@@ -35,7 +35,7 @@
 <script src="js/iro.min.js"></script>
 <script src="js/color-scheme.min.js"></script>
 <script src="js/peerjs.min.js"></script>
-<script src="js/CONTROL.JS?v=1.0.4"></script>
+<script src="js/CONTROL.JS?v=1.0.5"></script>
 <script src="js/appStatus.js?v=1.0.0"></script>
 <script src="js/creativeMode.js?v=1.0.0"></script>
 <script src="js/charViz.js?v=1.0.2"></script>
@@ -599,7 +599,7 @@ if ("serviceWorker" in navigator) {
                                          
 		-->
 		
-		<div class="speciesSelector" id="speciesSelector11" style="display:none">
+		<div class="speciesSelector" id="speciesSelector11" style="display:none"> 
 		
 			<div class="speciesCategory" id="speciesCategory" onClick="speciesGoBackFromCategory();"><div class="speciesCategoryText">Go back</div></div>
 			<div class="speciesCategoryButton" onClick="speciesGoToCategory(10);"><div class="categoryText"><img src="images/harpoonArrowLeft.png" height="20" width="20" class="harpoonArrowImg"></div></div>
@@ -613,13 +613,15 @@ if ("serviceWorker" in navigator) {
 			<div class="speciesEntryRight" onClick="setSpeciesTo('Khajiit');"><div class="speciesEntryText">Khajiit</div></div>
 			<div class="speciesEntryLeft" onClick="setSpeciesTo('Kitsune');"><div class="speciesEntryText">Kitsune</div></div>
 			<div class="speciesEntryRight" onClick="setSpeciesTo('Kobold');"><div class="speciesEntryText">Kobold</div></div>
-			<div class="speciesEntryLeft" onClick="setSpeciesTo('Phoenix');"><div class="speciesEntryText">Phoenix</div></div>
-			<div class="speciesEntryRight" onClick="setSpeciesTo('Protogen');"><div class="speciesEntryText">Protogen</div></div>
-			<div class="speciesEntryLeft" onClick="setSpeciesTo('Sergal');"><div class="speciesEntryText">Sergal</div></div>
-			<div class="speciesEntryRight" onClick="setSpeciesTo('Synth');"><div class="speciesEntryText">Synth</div></div>
-			<div class="speciesEntryLeft" onClick="setSpeciesTo('Tanuki');"><div class="speciesEntryText">Tanuki</div></div>
-			<div class="speciesEntryRight" onClick="setSpeciesTo('Unicorn');"><div class="speciesEntryText">Unicorn</div></div>
-			<div class="speciesEntryLast" onClick="setSpeciesTo('Werewolf');"><div class="speciesEntryText">Werewolf</div></div>			
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Nargacuga');"><div class="speciesEntryText">Nargacuga</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Phoenix');"><div class="speciesEntryText">Phoenix</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Protogen');"><div class="speciesEntryText">Protogen</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Sergal');"><div class="speciesEntryText">Sergal</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Synth');"><div class="speciesEntryText">Synth</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Tanuki');"><div class="speciesEntryText">Tanuki</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Unicorn');"><div class="speciesEntryText">Unicorn</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Werewolf');"><div class="speciesEntryText">Werewolf</div></div>
+			<div class="speciesEntryLast" onClick="setSpeciesTo('Wickerbeast');"><div class="speciesEntryText">Wickerbeast</div></div>
 			
 		</div>
 		
@@ -2416,7 +2418,7 @@ Listed alphabetically:
 	•Sliders/options affecting the character:<br>
 	-Thin/Thicc slider<br>
 	-Breast Size slider<br>
-	-Hair Lenght slider<br>
+	-Hair Length slider<br>
 	-Cock Type option<br>
 	-Genital Size slider<br>
 	•Available cocks:<br>
@@ -2597,7 +2599,7 @@ Listed alphabetically:
 			</div>
 	
 			<div class="textinmenuCenter">
-			Hair Lenght
+			Hair Length
 			</div>
 	
 			<div class="textinmenuRight">
@@ -3057,7 +3059,7 @@ Listed alphabetically:
 	
 	<div class="option">
 
-		<label class="container">Hair Lenght
+		<label class="container">Hair Length
 			<input type="checkbox" id="hairLenghtSliderCheckbox" onClick="toggleHairLenghtSlider()">
 			<span class="checkbox"></span>  
 		</label>
@@ -4104,7 +4106,7 @@ Listed alphabetically:
 		<div id="CONTROLmasterMessageSubName" style="padding-left:18px;margin-top:5px;">&nbsp;</div>
 		<div style="padding-left:18px;margin-top:5px;">Change your sub's lock password:</div>
 		<div class="bigButton" onClick="CONTROLgoToChangeSubLockPassword()">Lock Password</div>
-		<div style="padding-left:18px;margin-top:5px;">Lock/Unlock settings:</div>
+		<div style="padding-left:18px;margin-top:5px;">Lock/Unlock their settings:</div>
 		<div style="margin-top:5px"></div>
 		<div style="height:45px">
 		<div class="mediumButton" onClick="CONTROLunlockSubsSettings()">Unlock</div>
@@ -4621,7 +4623,7 @@ c0bra - color-scheme .js library
 	</div>
 	</a>
 	
-	<a href="https://www.reddit.com/message/compose?to=qtderg&subject=Switcher-Roo Feedback">
+	<a href="https://www.reddit.com/r/SwitcherRoo/">
 	<div class="credits-entry-mini" style="border:2px solid #ff4550">
 
 		<div class="credits-text-mini">

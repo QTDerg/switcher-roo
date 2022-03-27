@@ -2451,7 +2451,7 @@ function setAppBGColorOnInit() {
 	}
 }
 
-function functionBodyType(Sex, bodyType1) {
+function determineBodyType(Sex, bodyType1) {
 	if (Sex == "Male" && bodyType1 >= 85) {
 		var Sex = "Femboy";
 		return Sex;
