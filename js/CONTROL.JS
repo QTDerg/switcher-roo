@@ -1990,7 +1990,7 @@ function CONTROLgoBack() {
 
 function CONTROLshowTutorial() {
 	document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='0px';
-	document.getElementById("CONTROLtutorialContainer").style.maxHeight='621px';
+	document.getElementById("CONTROLtutorialContainer").style.maxHeight='650px';
 	document.getElementById('whatsThisButton').innerHTML = "OwO";
 	setTimeout(hideOwO, 50);
 }

@@ -3390,39 +3390,43 @@ function showOrHideThirdSexMenu() {
 		document.getElementById("thirdSexButton").style.backgroundColor='#282640';
 		document.getElementById("thirdSexButton").style.border='2px solid #59568f';
 		document.getElementById("thirdSexButton").style.cursor='pointer';
-		document.getElementById("thirdSexCheckbox").checked = true;		
+		document.getElementById("thirdSexCheckbox").checked = true;
 	}
 	else {
 		document.getElementById("containerRBOther").style.display='none';
+		document.getElementById("containerRBOther").style.display='none';
+		document.getElementById("containerRBMale").style.width='40%';
+		document.getElementById("containerRBFemale").style.width='30%';
 		document.getElementById("thirdSexButton").style.backgroundColor='#424242';
 		document.getElementById("thirdSexButton").style.border='2px solid #b0b0b0';
 		document.getElementById("thirdSexButton").style.cursor='not-allowed';
+		document.getElementById("thirdSexCheckbox").checked = false;
 	}
 }
 
 function toggleThirdSex() {
 	var tickbox = document.getElementById("thirdSexCheckbox");
-		if (tickbox.checked) {
-			var tickbox = "Yes"
-			localStorage.setItem("Third_Sex_Enabled", tickbox);
-			document.getElementById("containerRBOther").style.display='block';
-			document.getElementById("containerRBMale").style.width='22%';
-			document.getElementById("containerRBFemale").style.width='27%';
-			document.getElementById("containerRBOther").style.width='40%';
-			document.getElementById("thirdSexButton").style.backgroundColor='#282640';
-			document.getElementById("thirdSexButton").style.border='2px solid #59568f';
-			document.getElementById("thirdSexButton").style.cursor='pointer';
-		}
-		else {
-			var tickbox = "No"
-			localStorage.setItem("Third_Sex_Enabled", tickbox);
-			document.getElementById("containerRBOther").style.display='none';
-			document.getElementById("containerRBMale").style.width='40%';
-			document.getElementById("containerRBFemale").style.width='30%';
-			document.getElementById("thirdSexButton").style.backgroundColor='#424242';
-			document.getElementById("thirdSexButton").style.border='2px solid #b0b0b0';
-			document.getElementById("thirdSexButton").style.cursor='not-allowed';
-		}
+	if (tickbox.checked) {
+		tickbox = "Yes"
+		localStorage.setItem("Third_Sex_Enabled", tickbox);
+		document.getElementById("containerRBOther").style.display='block';
+		document.getElementById("containerRBMale").style.width='22%';
+		document.getElementById("containerRBFemale").style.width='27%';
+		document.getElementById("containerRBOther").style.width='40%';
+		document.getElementById("thirdSexButton").style.backgroundColor='#282640';
+		document.getElementById("thirdSexButton").style.border='2px solid #59568f';
+		document.getElementById("thirdSexButton").style.cursor='pointer';
+	}
+	else {
+		tickbox = "No"
+		document.getElementById("containerRBOther").style.display='none';
+		document.getElementById("containerRBMale").style.width='40%';
+		document.getElementById("containerRBFemale").style.width='30%';
+		document.getElementById("thirdSexButton").style.backgroundColor='#424242';
+		document.getElementById("thirdSexButton").style.border='2px solid #b0b0b0';
+		document.getElementById("thirdSexButton").style.cursor='not-allowed';
+	}
+	localStorage.setItem("Third_Sex_Enabled", tickbox);
 }
 
 function checkThirdSexStatus() {

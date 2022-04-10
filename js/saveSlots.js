@@ -14,6 +14,8 @@ function saveSettings(x) {
 	else {
 		sex = document.getElementById("thirdSexValue").innerHTML;
 	}
+	
+	localStorage.setItem("Slot" + x + "_Third_Sex_Enabled", localStorage.getItem("Third_Sex_Enabled"));
  
 	var tickbox = document.getElementById("adaptClothingCheckbox");
 	if (tickbox.checked) {
@@ -171,9 +173,9 @@ function saveSettings(x) {
 	var smolTallSliderEnabled = localStorage.getItem("SmolTall_Slider_Enabled");
 	var inanimateObjectsMenuEnabled = localStorage.getItem("Inanimate_Objects_Enabled");
 	
-	localStorage.setItem("Slot" + x + "_Species", species);	
+	localStorage.setItem("Slot" + x + "_Species", species);
 	localStorage.setItem("Slot" + x + "_Inanimate_Object", inanimateObject);
-    localStorage.setItem("Slot" + x + "_Sex", sex);	
+	localStorage.setItem("Slot" + x + "_Sex", sex);
 	localStorage.setItem("Slot" + x + "_AC_Box_Ticked", tickbox);
 	localStorage.setItem("Slot" + x + "_Body_Type1", bodyType1);
 	localStorage.setItem("Slot" + x + "_Body_Type2", bodyType2);
@@ -184,9 +186,9 @@ function saveSettings(x) {
 	localStorage.setItem("Slot" + x + "_Libido", libido);
 	localStorage.setItem("Slot" + x + "_Position_Preference", domsub);
 	localStorage.setItem("Slot" + x + "_Sensitivity", sensitivity);
-	localStorage.setItem("Slot" + x + "_Demeanor", assertiveShy); 
-	localStorage.setItem("Slot" + x + "_Breast_Size_Male", breastSizeMale); 
-	localStorage.setItem("Slot" + x + "_Breast_Size_Female", breastSizeFemale); 
+	localStorage.setItem("Slot" + x + "_Demeanor", assertiveShy);
+	localStorage.setItem("Slot" + x + "_Breast_Size_Male", breastSizeMale);
+	localStorage.setItem("Slot" + x + "_Breast_Size_Female", breastSizeFemale);
 	localStorage.setItem("Slot" + x + "_Butt_Size", buttSize);
 	localStorage.setItem("Slot" + x + "_Belly_Size", bellySize);
 	localStorage.setItem("Slot" + x + "_Belly_Shape", bellyShape);
@@ -304,14 +306,14 @@ function saveSettings(x) {
 			
 			localStorage.setItem("Slot" + x + "_Topwear_Primary_Clothing_Color", primaryTopwearColor);
 			localStorage.setItem("Slot" + x + "_Topwear_Secondary_Clothing_Color", secondaryTopwearColor);
-			localStorage.setItem("Slot" + x + "_Bottomwear_Primary_Clothing_Color", primaryTopwearColor);
-			localStorage.setItem("Slot" + x + "_Bottomwear_Secondary_Clothing_Color", secondaryTopwearColor);
-			localStorage.setItem("Slot" + x + "_Armwear_Primary_Clothing_Color", primaryTopwearColor);
-			localStorage.setItem("Slot" + x + "_Armwear_Secondary_Clothing_Color", secondaryTopwearColor);
-			localStorage.setItem("Slot" + x + "_Legwear_Primary_Clothing_Color", primaryTopwearColor);
-			localStorage.setItem("Slot" + x + "_Legwear_Secondary_Clothing_Color", secondaryTopwearColor);
-			localStorage.setItem("Slot" + x + "_Underwear_Primary_Clothing_Color", primaryTopwearColor);
-			localStorage.setItem("Slot" + x + "_Underwear_Secondary_Clothing_Color", secondaryTopwearColor);
+			localStorage.setItem("Slot" + x + "_Bottomwear_Primary_Clothing_Color", primaryBottomwearColor);
+			localStorage.setItem("Slot" + x + "_Bottomwear_Secondary_Clothing_Color", secondaryBottomwearColor);
+			localStorage.setItem("Slot" + x + "_Armwear_Primary_Clothing_Color", primaryArmearColor);
+			localStorage.setItem("Slot" + x + "_Armwear_Secondary_Clothing_Color", secondaryArmwearColor);
+			localStorage.setItem("Slot" + x + "_Legwear_Primary_Clothing_Color", primaryLegwearColor);
+			localStorage.setItem("Slot" + x + "_Legwear_Secondary_Clothing_Color", secondaryLegwearColor);
+			localStorage.setItem("Slot" + x + "_Underwear_Primary_Clothing_Color", primaryUnderwearColor);
+			localStorage.setItem("Slot" + x + "_Underwear_Secondary_Clothing_Color", secondaryUnderwearColor);
 			
 		}
 	
@@ -357,6 +359,8 @@ function loadSettings(x) {
 			rbother.checked = true;
 		}
 		localStorage.setItem("Slot0_Sex", Sex);
+		
+		localStorage.setItem("Third_Sex_Enabled", localStorage.getItem("Slot" + x + "_Third_Sex_Enabled"));
  
 		var AC_Box_Ticked = localStorage.getItem("Slot" + x + "_AC_Box_Ticked");
 		var tickbox = document.getElementById("adaptClothingCheckbox");
@@ -568,7 +572,8 @@ function loadSettings(x) {
 		
 		// CharViz Stuff
 		var charVizEnabled = localStorage.getItem("CharViz_Enabled");
-		if (charVizEnabled === "Yes") {
+		var body = localStorage.getItem("Slot" + x + "_CharViz_Body");
+		if (charVizEnabled === "Yes" && body != null) {
 			
 			// Character parts
 			var body = localStorage.getItem("Slot" + x + "_CharViz_Body");
@@ -647,16 +652,16 @@ function loadSettings(x) {
 			var primaryUnderwearColor = localStorage.getItem("Slot" + x + "_Underwear_Primary_Clothing_Color");
 			var secondaryUnderwearColor = localStorage.getItem("Slot" + x + "_Underwear_Secondary_Clothing_Color");
 			
-			localStorage.setItem("Slot0_Topwear_Primary_Clothing_Color", primaryTopwearColor);
-			localStorage.setItem("Slot0_Topwear_Secondary_Clothing_Color", secondaryTopwearColor);
-			localStorage.setItem("Slot0_Bottomwear_Primary_Clothing_Color", primaryTopwearColor);
-			localStorage.setItem("Slot0_Bottomwear_Secondary_Clothing_Color", secondaryTopwearColor);
-			localStorage.setItem("Slot0_Armwear_Primary_Clothing_Color", primaryTopwearColor);
-			localStorage.setItem("Slot0_Armwear_Secondary_Clothing_Color", secondaryTopwearColor);
-			localStorage.setItem("Slot0_Legwear_Primary_Clothing_Color", primaryTopwearColor);
-			localStorage.setItem("Slot0_Legwear_Secondary_Clothing_Color", secondaryTopwearColor);
-			localStorage.setItem("Slot0_Underwear_Primary_Clothing_Color", primaryTopwearColor);
-			localStorage.setItem("Slot0_Underwear_Secondary_Clothing_Color", secondaryTopwearColor);
+			if (primaryTopwearColor != null) { localStorage.setItem("Slot0_Topwear_Primary_Clothing_Color", primaryTopwearColor) }
+			if (secondaryTopwearColor != null) { localStorage.setItem("Slot0_Topwear_Secondary_Clothing_Color", secondaryTopwearColor) }
+			if (primaryBottomwearColor != null) { localStorage.setItem("Slot0_Bottomwear_Primary_Clothing_Color", primaryBottomwearColor) }
+			if (secondaryBottomwearColor != null) { localStorage.setItem("Slot0_Bottomwear_Secondary_Clothing_Color", secondaryBottomwearColor) }
+			if (primaryArmearColor != null) { localStorage.setItem("Slot0_Armwear_Primary_Clothing_Color", primaryArmearColor) }
+			if (secondaryArmwearColor != null) { localStorage.setItem("Slot0_Armwear_Secondary_Clothing_Color", secondaryArmwearColor) }
+			if (primaryLegwearColor != null) { localStorage.setItem("Slot0_Legwear_Primary_Clothing_Color", primaryLegwearColor) }
+			if (secondaryLegwearColor != null) { localStorage.setItem("Slot0_Legwear_Secondary_Clothing_Color", secondaryLegwearColor) }
+			if (primaryUnderwearColor != null) { localStorage.setItem("Slot0_Underwear_Primary_Clothing_Color", primaryUnderwearColor) }
+			if (secondaryUnderwearColor != null) { localStorage.setItem("Slot0_Underwear_Secondary_Clothing_Color", secondaryUnderwearColor) }
 			
 			initializeCharViz();
 			
@@ -666,6 +671,7 @@ function loadSettings(x) {
 		loadCustomSliders();
 		loadCustomCheckboxes();
 		loadCustomRadioInputs();
+		showOrHideThirdSexMenu();
 		
 		var presetName = localStorage.getItem("Slot" + x + "_Preset_Name");
 		displayNotification(5, presetName);
