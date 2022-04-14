@@ -3408,7 +3408,6 @@ function toggleThirdSex() {
 	var tickbox = document.getElementById("thirdSexCheckbox");
 	if (tickbox.checked) {
 		tickbox = "Yes"
-		localStorage.setItem("Third_Sex_Enabled", tickbox);
 		document.getElementById("containerRBOther").style.display='block';
 		document.getElementById("containerRBMale").style.width='22%';
 		document.getElementById("containerRBFemale").style.width='27%';
