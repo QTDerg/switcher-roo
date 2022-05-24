@@ -27,8 +27,7 @@ function connectToServer() {
 				config: {
 					iceServers: [
 						{ url: 'stun:stun.l.google.com:19302' },
-						{ url: 'turn:openrelay.metered.ca:80', username: 'openrelayproject', credential: 'openrelayproject'},
-						{ url: 'turn:openrelay.metered.ca:443', username: 'openrelayproject', credential: 'openrelayproject'}
+						{ url: 'turn:numb.viagenie.ca', username: 'webrtc@live.com', credential: 'muazkh'}
 					]
 				},	
 			});
@@ -41,8 +40,7 @@ function connectToServer() {
 				config: {
 					iceServers: [
 						{ url: 'stun:stun.l.google.com:19302' },
-						{ url: 'turn:openrelay.metered.ca:80', username: 'openrelayproject', credential: 'openrelayproject'},
-						{ url: 'turn:openrelay.metered.ca:443', username: 'openrelayproject', credential: 'openrelayproject'}
+						{ url: 'turn:numb.viagenie.ca', username: 'webrtc@live.com', credential: 'muazkh'}
 					]
 				},		
 			});
