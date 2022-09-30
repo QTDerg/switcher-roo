@@ -390,7 +390,7 @@ textarea:focus, input:focus{
 .container2 {
 	text-align: center;
 	height: 60px;
-	border-bottom: 3px solid #73728C;
+	border-bottom: 2px solid #807F97;
 }
 
 .processingText {
@@ -555,27 +555,27 @@ select:disabled::-ms-expand {
 }
 
 .menu {
-	border-bottom: 3px solid #73728C;	
+	border-bottom: 2px solid #807F97;	
 	text-align: center;
 	height: 60px;
 }
 .menuSmall {
-	border-bottom: 3px solid #73728C;	
+	border-bottom: 2px solid #807F97;	
 	text-align: center;
 	height: 45px;
 }
 .menuBig {
-	border-bottom: 3px solid #73728C;	
+	border-bottom: 2px solid #807F97;	
 	text-align: center;
 	height: 340px;
 }
 .menuBig2 {
-	border-bottom: 3px solid #73728C;	
+	border-bottom: 2px solid #807F97;	
 	text-align: center;
 	height: 220px;
 }
 .menuSlider {
-	border-bottom: 3px solid #73728C;	
+	border-bottom: 2px solid #807F97;	
 	text-align: center;
 	max-height: 60px;
 	padding-bottom: 15px;
@@ -583,14 +583,14 @@ select:disabled::-ms-expand {
 	overflow: hidden;	
 }
 .menuFirst {	
-	border-bottom: 3px solid #73728C;	
+	border-bottom: 2px solid #807F97;	
 	text-align: center;
 	transition: 1s;
 	overflow: hidden;
 	width: 100%;
 }
 .menuInanimateObjects {
-	border-bottom: 3px solid #73728C;	
+	border-bottom: 2px solid #807F97;	
 	text-align: center;
 	height: 62px;
 	transition: 1s;
@@ -598,14 +598,14 @@ select:disabled::-ms-expand {
 	width: 100%;
 }
 .menuSliderFertility {
-	border-bottom: 3px solid #73728C;	
+	border-bottom: 2px solid #807F97;	
 	text-align: center;
 	max-height: 98px;
 	transition-duration: 0.5s;	
 	overflow: hidden;	
 }
 .menuCharViz {
-	border-bottom: 3px solid #73728C;
+	border-bottom: 2px solid #807F97;
 	text-align: center;
 	padding: 15px;
 	overflow: hidden;
@@ -856,14 +856,14 @@ select:disabled::-ms-expand {
 	height:30px;
 	font-size:18px;
 }
-.optionsCheckboxes{
-	text-align: center;	
-	margin-top: 15px;
-	margin-left:7px;
+.optionsCheckboxesContainer{
+	text-align: center;
 	font-size:18px;
 	overflow: hidden;
-	max-height: 580px;
 	transition-duration: 0.75s;
+}
+.optionsCheckbox{
+	margin-left:10px;
 }
 .lockSettingsPasswordMenu{
 	margin-top: 15px;
@@ -1187,7 +1187,7 @@ a:active {
 
 .footerContainer {
 	margin-top: 10px;
-	border-top: 3px solid #73728C;
+	border-top: 2px solid #807F97;
 	padding-bottom: 10px;
 	overflow: hidden;
 	transition-duration: 0.75s;

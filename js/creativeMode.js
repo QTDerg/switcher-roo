@@ -18,7 +18,7 @@ function toggleCreativeModeMenus(x) {
 		document.getElementById("CreativeModeContainer").style.maxHeight='0px';
 	} else {
 		menu.style.maxHeight = "0px";
-		document.getElementById("CreativeModeContainer").style.maxHeight='390px';
+		document.getElementById("CreativeModeContainer").style.maxHeight='450px';
 	}
 }
 

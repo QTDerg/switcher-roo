@@ -5,7 +5,7 @@ function toggleMainMenus(x) {
 	var y;
 	if (x == 0) 		{ x = document.getElementById("AdvancedSettingsContainer");  y = "1180px"}
 	else if (x == 1) 	{ x = document.getElementById("CharVizMenusContainer"); 	 y = "340px"; closeCharvizContainers()}
-	else if (x == 2) 	{ x = document.getElementById("CustomizeAppMenusContainer"); y = "460px"; closeContainers()}
+	else if (x == 2) 	{ x = document.getElementById("CustomizeAppMenusContainer"); y = "520px"; closeContainers()}
 	if (x.style.maxHeight === "0px") { x.style.maxHeight = y; } 
 	else { x.style.maxHeight = "0px"; }
 }
@@ -63,7 +63,7 @@ function toggleMenus(x) {
 		var isEnabled = localStorage.getItem("Creative_Mode_Enabled");
 		if (isEnabled === "Yes") {
 			menu = document.getElementById("CreativeModeContainer");
-			height = "390px"
+			height = "450px"
 		}
 		else {
 			return;
@@ -74,7 +74,7 @@ function toggleMenus(x) {
 		document.getElementById("CustomizeAppMenusContainer").style.maxHeight='0px'
 	} else {
 		menu.style.maxHeight = "0px";
-		document.getElementById("CustomizeAppMenusContainer").style.maxHeight='460px'
+		document.getElementById("CustomizeAppMenusContainer").style.maxHeight='520px'
 	}
 }
 
@@ -98,7 +98,7 @@ function closeContainers() {
 function toggleFeedbackMenu() {
 	var x = document.getElementById("feedback");
 	if (x.style.maxHeight === "0px") {
-		x.style.borderTop = "3px solid #73728C";
+		x.style.borderTop = "2px solid #807F97";
 		x.style.maxHeight = "300px";
 		x.style.marginTop = "10px";
 	} else {
@@ -110,7 +110,7 @@ function toggleFeedbackMenu() {
 
 function showCredits() {
 	var c = document.getElementById("credits");
-	c.style.borderTop = "3px solid #73728C";
+	c.style.borderTop = "2px solid #807F97";
 	c.style.maxHeight = "375px";
 	c.style.marginTop = "10px";
 	var showCreditsButton = document.getElementById("showCreditsButton");
@@ -891,8 +891,7 @@ function showOptions() {
 	document.getElementById("goBack").style.border="2px solid #59568f";
 	document.getElementById("goBack").style.fontSize='26px';
 	document.getElementById("goBack").style.marginTop='5px';
-	document.getElementById("optionsList").style.maxHeight='830px';
-	document.getElementById("optionsList").style.marginTop='15px';	
+	document.getElementById("optionsList").style.maxHeight='740px';
 }
 	
 function goBackFromOptions() {
@@ -905,7 +904,6 @@ function goBackFromOptions() {
 	document.getElementById("goBack").style.fontSize='0px';
 	document.getElementById("goBack").style.marginTop='0px';
 	document.getElementById("optionsList").style.maxHeight='0';
-	document.getElementById("optionsList").style.marginTop='0';
 }
 
 function saveSex(sex) {
@@ -914,7 +912,7 @@ function saveSex(sex) {
 		localStorage.setItem("Slot0_Sex", sex);
 		showProcessingAnimation();
 		document.getElementById("showAdvancedSettings4a").style.maxHeight= '60px';
-		document.getElementById("showAdvancedSettings4a").style.borderBottom= '3px solid #73728C';
+		document.getElementById("showAdvancedSettings4a").style.borderBottom= '2px solid #807F97';
 		document.getElementById("showAdvancedSettings4a").style.paddingBottom= '15px'; 
 		document.getElementById("showAdvancedSettings4b").style.maxHeight= '0';
 		document.getElementById("showAdvancedSettings4b").style.borderBottom= '0';
@@ -930,7 +928,7 @@ function saveSex(sex) {
 		document.getElementById("showAdvancedSettings4a").style.borderBottom= '0';
 		document.getElementById("showAdvancedSettings4a").style.paddingBottom= '0';
 		document.getElementById("showAdvancedSettings4b").style.maxHeight= '60px';
-		document.getElementById("showAdvancedSettings4b").style.borderBottom= '3px solid #73728C';
+		document.getElementById("showAdvancedSettings4b").style.borderBottom= '2px solid #807F97';
 		document.getElementById("showAdvancedSettings4b").style.paddingBottom= '15px';
 		showOrHideGenitalSizeFemaleSlider();
 		x = mySlider8.getValue();
@@ -943,10 +941,10 @@ function saveSex(sex) {
 		document.getElementById("showAdvancedSettings4a").style.borderBottom= '0';
 		document.getElementById("showAdvancedSettings4a").style.paddingBottom= '0';
 		document.getElementById("showAdvancedSettings4b").style.maxHeight= '60px';
-		document.getElementById("showAdvancedSettings4b").style.borderBottom= '3px solid #73728C';
+		document.getElementById("showAdvancedSettings4b").style.borderBottom= '2px solid #807F97';
 		document.getElementById("showAdvancedSettings4b").style.paddingBottom= '15px';
 		document.getElementById("genitalSizeSlider").style.maxHeight= '60px';
-		document.getElementById("genitalSizeSlider").style.borderBottom= '3px solid #73728C';
+		document.getElementById("genitalSizeSlider").style.borderBottom= '2px solid #807F97';
 		document.getElementById("genitalSizeSlider").style.paddingBottom= '15px';
 		x = mySlider8.getValue();
 	}	
@@ -1232,7 +1230,7 @@ function loadPreviousState() {
 	
 	if (Sex == "Male") {
 		document.getElementById("showAdvancedSettings4a").style.maxHeight = '60px';
-		document.getElementById("showAdvancedSettings4a").style.borderBottom = '3px solid #73728C';
+		document.getElementById("showAdvancedSettings4a").style.borderBottom = '2px solid #807F97';
 		document.getElementById("showAdvancedSettings4a").style.paddingBottom = '15px';
 		document.getElementById("showAdvancedSettings4b").style.maxHeight = '0';
 		document.getElementById("showAdvancedSettings4b").style.borderBottom = '0';
@@ -1240,7 +1238,7 @@ function loadPreviousState() {
 	}
 	else {
 		document.getElementById("showAdvancedSettings4b").style.maxHeight = '60px';
-		document.getElementById("showAdvancedSettings4b").style.borderBottom = '3px solid #73728C';
+		document.getElementById("showAdvancedSettings4b").style.borderBottom = '2px solid #807F97';
 		document.getElementById("showAdvancedSettings4b").style.paddingBottom = '15px';
 		document.getElementById("showAdvancedSettings4a").style.maxHeight = '0';
 		document.getElementById("showAdvancedSettings4a").style.borderBottom = '0';
@@ -1252,90 +1250,148 @@ function saveCockType() {
 		var cockType = document.getElementById('cockType').value 
 		localStorage.setItem("Slot0_Cock_Type", cockType);
 	}
+	
+function isChecked(x) {
+	if (x.checked) {x = "Yes"}
+	else {x = "No"}
+	return x
+}
 
-function toggleButtSizeSlider() {
-var tickbox = document.getElementById("buttSizeSliderCheckbox");
-	if (tickbox.checked) {
-		var tickbox = "Yes"
-		document.getElementById("buttSizeSlider").style.maxHeight = '60px';
-		document.getElementById("buttSizeSlider").style.borderBottom = '3px solid #73728C';
-		document.getElementById("buttSizeSlider").style.paddingBottom = '15px';
+function toggleSlider(x,sliderID) {
+	if (x === "Yes") {
+		document.getElementById(sliderID).style.maxHeight = '60px';
+		document.getElementById(sliderID).style.borderBottom = '2px solid #807F97';
+		document.getElementById(sliderID).style.paddingBottom = '15px';
 	}
 	else {
-		var tickbox = "No"
-		document.getElementById("buttSizeSlider").style.maxHeight = '0';
-		document.getElementById("buttSizeSlider").style.borderBottom = '0';
-		document.getElementById("buttSizeSlider").style.paddingBottom = '0';
+		document.getElementById(sliderID).style.maxHeight = '0';
+		document.getElementById(sliderID).style.borderBottom = '0';
+		document.getElementById(sliderID).style.paddingBottom = '0';
 	}
-	localStorage.setItem("Butt_Size_Slider_Enabled", tickbox);
+}
+
+// TODO // The following functions could be refactored further by deleting this bit - x = isChecked(x); - but variables would need to be converted from "Yes" to "true" and "No" to "false" or else people who used app before would lose their saved slider visibility settings.
+
+function toggleButtSizeSlider() {
+	var x = document.getElementById("buttSizeSliderCheckbox");
+	x = isChecked(x);
+	localStorage.setItem("Butt_Size_Slider_Enabled", x);
+	//localStorage.setItem("Butt_Size_Slider_Enabled_Test", x.checked);
+	toggleSlider(x,"buttSizeSlider");
 }
 
 function toggleBellySizeSlider() {
-var tickbox = document.getElementById("bellySizeSliderCheckbox");
-	if (tickbox.checked) {
-		var tickbox = "Yes"
-		document.getElementById("bellySizeSlider").style.maxHeight = '60px';
-		document.getElementById("bellySizeSlider").style.borderBottom = '3px solid #73728C';
-		document.getElementById("bellySizeSlider").style.paddingBottom = '15px';
-	}
-	else {
-		var tickbox = "No"
-		document.getElementById("bellySizeSlider").style.maxHeight = '0';
-		document.getElementById("bellySizeSlider").style.borderBottom = '0';
-		document.getElementById("bellySizeSlider").style.paddingBottom = '0';
-	}
-	localStorage.setItem("Belly_Size_Slider_Enabled", tickbox);
+	var x = document.getElementById("bellySizeSliderCheckbox");
+	x = isChecked(x);
+	localStorage.setItem("Belly_Size_Slider_Enabled", x);
+	toggleSlider(x,"bellySizeSlider");
 }
 
 function toggleBellyShapeSlider() {
-var tickbox = document.getElementById("bellyShapeSliderCheckbox");
-	if (tickbox.checked) {
-		var tickbox = "Yes"
-		document.getElementById("bellyShapeSlider").style.maxHeight = '60px';
-		document.getElementById("bellyShapeSlider").style.borderBottom = '3px solid #73728C';
-		document.getElementById("bellyShapeSlider").style.paddingBottom = '15px';
-	}
-	else {
-		var tickbox = "No"
-		document.getElementById("bellyShapeSlider").style.maxHeight = '0';
-		document.getElementById("bellyShapeSlider").style.borderBottom = '0';
-		document.getElementById("bellyShapeSlider").style.paddingBottom = '0';
-	}
-	localStorage.setItem("Belly_Shape_Slider_Enabled", tickbox);
+	var x = document.getElementById("bellyShapeSliderCheckbox");
+	x = isChecked(x);
+	localStorage.setItem("Belly_Shape_Slider_Enabled", x);
+	toggleSlider(x,"bellyShapeSlider");
 }
 
 function toggleHipsSlider() {
-var tickbox = document.getElementById("hipsSliderCheckbox");
-	if (tickbox.checked) {
-		var tickbox = "Yes"
-		document.getElementById("hipsSlider").style.maxHeight = '60px';
-		document.getElementById("hipsSlider").style.borderBottom = '3px solid #73728C';
-		document.getElementById("hipsSlider").style.paddingBottom = '15px';
-	}
-	else {
-		var tickbox = "No"
-		document.getElementById("hipsSlider").style.maxHeight = '0';
-		document.getElementById("hipsSlider").style.borderBottom = '0';
-		document.getElementById("hipsSlider").style.paddingBottom = '0';
-	}
-	localStorage.setItem("Hips_Slider_Enabled", tickbox);
+	var x = document.getElementById("hipsSliderCheckbox");
+	x = isChecked(x);
+	localStorage.setItem("Hips_Slider_Enabled", x);
+	toggleSlider(x,"hipsSlider");
 }
 
 function toggleGenitalSizeSlider() {
-var tickbox = document.getElementById("genitalSizeSliderCheckbox");
+	var x = document.getElementById("genitalSizeSliderCheckbox");
+	x = isChecked(x);
+	localStorage.setItem("Genital_Size_Slider_Enabled", x);
+	toggleSlider(x,"genitalSizeSlider");
+}
+
+function toggleLibidoSlider() {
+	var x = document.getElementById("libidoSliderCheckbox");
+	x = isChecked(x);
+	localStorage.setItem("Libido_Slider_Enabled", x);
+	toggleSlider(x,"libidoSlider");
+}
+
+function toggleSensitivitySlider() {
+	var x = document.getElementById("sensitivitySliderCheckbox");
+	x = isChecked(x);
+	localStorage.setItem("Sensitivity_Slider_Enabled", x);
+	toggleSlider(x,"sensitivitySlider");
+}
+
+function toggleDemeanorSlider() {
+	var x = document.getElementById("demeanorSliderCheckbox");
+	x = isChecked(x);
+	localStorage.setItem("Demeanor_Slider_Enabled", x);
+	toggleSlider(x,"demeanorSlider");
+}
+
+function togglePositionPreferenceSlider() {
+	var x = document.getElementById("positionPreferenceSliderCheckbox");
+	x = isChecked(x);
+	localStorage.setItem("Postion_Pref_Slider_Enabled", x);
+	toggleSlider(x,"positionPrefSlider");
+}
+
+function toggleIntelligenceSlider() {
+	var x = document.getElementById("intelligenceSliderCheckbox");
+	x = isChecked(x);
+	localStorage.setItem("Intelligence_Slider_Enabled", x);
+	toggleSlider(x,"intelligenceSlider");
+}
+
+function toggleFluffinessSlider() {
+	var x = document.getElementById("fluffinessSliderCheckbox");
+	x = isChecked(x);
+	localStorage.setItem("Fluffiness_Slider_Enabled", x);
+	toggleSlider(x,"fluffinessSlider");
+}
+
+function toggleHairLenghtSlider() {
+	var x = document.getElementById("hairLenghtSliderCheckbox");
+	x = isChecked(x);
+	localStorage.setItem("Hair_Lenght_Slider_Enabled", x);
+	toggleSlider(x,"hairLenghtSlider");
+}
+
+// That's a special case with different maxHeight and no paddingBottom so I'll leave it for now
+function toggleFertilitySlider() { 
+var tickbox = document.getElementById("fertilitySliderCheckbox");
 	if (tickbox.checked) {
 		var tickbox = "Yes"
-		document.getElementById("genitalSizeSlider").style.maxHeight = '60px';
-		document.getElementById("genitalSizeSlider").style.borderBottom = '3px solid #73728C';
-		document.getElementById("genitalSizeSlider").style.paddingBottom = '15px';
+		document.getElementById("fertilitySlider").style.maxHeight = '98px';
+		document.getElementById("fertilitySlider").style.borderBottom = '2px solid #807F97';
 	}
 	else {
 		var tickbox = "No"
-		document.getElementById("genitalSizeSlider").style.maxHeight = '0';
-		document.getElementById("genitalSizeSlider").style.borderBottom = '0';
-		document.getElementById("genitalSizeSlider").style.paddingBottom = '0';
+		document.getElementById("fertilitySlider").style.maxHeight = '0';
+		document.getElementById("fertilitySlider").style.borderBottom = '0';
 	}
-	localStorage.setItem("Genital_Size_Slider_Enabled", tickbox);
+	localStorage.setItem("Fertility_Slider_Enabled", tickbox);
+}
+
+function toggleMascFemSlider() {
+	var x = document.getElementById("mascFemCheckbox");
+	x = isChecked(x);
+	localStorage.setItem("MascFem_Slider_Enabled", x);
+	toggleSlider(x,"bodyType1Slider");
+}
+
+function toggleThinThiccSlider() {
+	var x = document.getElementById("thinThiccCheckbox");
+	x = isChecked(x);
+	localStorage.setItem("ThinThicc_Slider_Enabled", x);
+	toggleSlider(x,"bodyType2Slider");
+}
+
+function toggleSmolTallSlider() {
+	var x = document.getElementById("smolTallCheckbox");
+	x = isChecked(x);
+	localStorage.setItem("SmolTall_Slider_Enabled", x);
+	toggleSlider(x,"bodyType3Slider");
 }
 
 function toggleCockTypeMenu() {
@@ -1349,140 +1405,6 @@ var tickbox = document.getElementById("cockTypeMenuCheckbox");
 		document.getElementById("cockTypeMenu").style.display= 'none';
 	}
 	localStorage.setItem("Cock_Type_Menu_Enabled", tickbox);
-}
-
-function toggleLibidoSlider() {
-var tickbox = document.getElementById("libidoSliderCheckbox");
-	if (tickbox.checked) {
-		var tickbox = "Yes"
-		document.getElementById("libidoSlider").style.maxHeight = '60px';
-		document.getElementById("libidoSlider").style.borderBottom = '3px solid #73728C';
-		document.getElementById("libidoSlider").style.paddingBottom = '15px';
-	}
-	else {
-		var tickbox = "No"
-		document.getElementById("libidoSlider").style.maxHeight = '0';
-		document.getElementById("libidoSlider").style.borderBottom = '0';
-		document.getElementById("libidoSlider").style.paddingBottom = '0';
-	}
-	localStorage.setItem("Libido_Slider_Enabled", tickbox);
-}
-
-function toggleSensitivitySlider() {
-var tickbox = document.getElementById("sensitivitySliderCheckbox");
-	if (tickbox.checked) {
-		var tickbox = "Yes"
-		document.getElementById("sensitivitySlider").style.maxHeight = '60px';
-		document.getElementById("sensitivitySlider").style.borderBottom = '3px solid #73728C';
-		document.getElementById("sensitivitySlider").style.paddingBottom = '15px';
-	}
-	else {
-		var tickbox = "No"
-		document.getElementById("sensitivitySlider").style.maxHeight = '0';
-		document.getElementById("sensitivitySlider").style.borderBottom = '0';
-		document.getElementById("sensitivitySlider").style.paddingBottom = '0';
-	}
-	localStorage.setItem("Sensitivity_Slider_Enabled", tickbox);
-}
-
-function toggleDemeanorSlider() {
-var tickbox = document.getElementById("demeanorSliderCheckbox");
-	if (tickbox.checked) {
-		var tickbox = "Yes"
-		document.getElementById("demeanorSlider").style.maxHeight = '60px';
-		document.getElementById("demeanorSlider").style.borderBottom = '3px solid #73728C';
-		document.getElementById("demeanorSlider").style.paddingBottom = '15px';
-	}
-	else {
-		var tickbox = "No"
-		document.getElementById("demeanorSlider").style.maxHeight= '0';
-		document.getElementById("demeanorSlider").style.borderBottom= '0';
-		document.getElementById("demeanorSlider").style.paddingBottom= '0';
-	}
-	localStorage.setItem("Demeanor_Slider_Enabled", tickbox);
-}
-
-function togglePositionPreferenceSlider() {
-var tickbox = document.getElementById("positionPreferenceSliderCheckbox");
-	if (tickbox.checked) {
-		var tickbox = "Yes"
-		document.getElementById("positionPrefSlider").style.maxHeight = '60px';
-		document.getElementById("positionPrefSlider").style.borderBottom = '3px solid #73728C';
-		document.getElementById("positionPrefSlider").style.paddingBottom = '15px';
-	}
-	else {
-		var tickbox = "No"
-		document.getElementById("positionPrefSlider").style.maxHeight = '0';
-		document.getElementById("positionPrefSlider").style.borderBottom = '0';
-		document.getElementById("positionPrefSlider").style.paddingBottom = '0';
-	}
-	localStorage.setItem("Postion_Pref_Slider_Enabled", tickbox);
-}
-
-function toggleIntelligenceSlider() {
-var tickbox = document.getElementById("intelligenceSliderCheckbox");
-	if (tickbox.checked) {
-		var tickbox = "Yes"
-		document.getElementById("intelligenceSlider").style.maxHeight = '60px';
-		document.getElementById("intelligenceSlider").style.borderBottom = '3px solid #73728C';
-		document.getElementById("intelligenceSlider").style.paddingBottom = '15px';
-	}
-	else {
-		var tickbox = "No"
-		document.getElementById("intelligenceSlider").style.maxHeight = '0';
-		document.getElementById("intelligenceSlider").style.borderBottom = '0';
-		document.getElementById("intelligenceSlider").style.paddingBottom = '0';
-	}
-	localStorage.setItem("Intelligence_Slider_Enabled", tickbox);
-}
-
-function toggleFluffinessSlider() {
-var tickbox = document.getElementById("fluffinessSliderCheckbox");
-	if (tickbox.checked) {
-		var tickbox = "Yes"
-		document.getElementById("fluffinessSlider").style.maxHeight = '60px';
-		document.getElementById("fluffinessSlider").style.borderBottom = '3px solid #73728C';
-		document.getElementById("fluffinessSlider").style.paddingBottom = '15px';
-	}
-	else {
-		var tickbox = "No"
-		document.getElementById("fluffinessSlider").style.maxHeight = '0';
-		document.getElementById("fluffinessSlider").style.borderBottom = '0';
-		document.getElementById("fluffinessSlider").style.paddingBottom = '0';
-	}
-	localStorage.setItem("Fluffiness_Slider_Enabled", tickbox);
-}
-
-function toggleHairLenghtSlider() {
-var tickbox = document.getElementById("hairLenghtSliderCheckbox");
-	if (tickbox.checked) {
-		var tickbox = "Yes"
-		document.getElementById("hairLenghtSlider").style.maxHeight = '60px';
-		document.getElementById("hairLenghtSlider").style.borderBottom = '3px solid #73728C';
-		document.getElementById("hairLenghtSlider").style.paddingBottom = '15px';
-	}
-	else {
-		var tickbox = "No"
-		document.getElementById("hairLenghtSlider").style.maxHeight = '0';
-		document.getElementById("hairLenghtSlider").style.borderBottom = '0';
-		document.getElementById("hairLenghtSlider").style.paddingBottom = '0';
-	}
-	localStorage.setItem("Hair_Lenght_Slider_Enabled", tickbox);
-}
-
-function toggleFertilitySlider() {
-var tickbox = document.getElementById("fertilitySliderCheckbox");
-	if (tickbox.checked) {
-		var tickbox = "Yes"
-		document.getElementById("fertilitySlider").style.maxHeight = '98px';
-		document.getElementById("fertilitySlider").style.borderBottom = '3px solid #73728C';
-	}
-	else {
-		var tickbox = "No"
-		document.getElementById("fertilitySlider").style.maxHeight = '0';
-		document.getElementById("fertilitySlider").style.borderBottom = '0';
-	}
-	localStorage.setItem("Fertility_Slider_Enabled", tickbox);
 }
 
 function toggleGenitalsMenu() {
@@ -1537,57 +1459,6 @@ var tickbox = document.getElementById("toggleAdaptClothingCheckbox");
 	localStorage.setItem("AC_Menu_Enabled", tickbox);
 }
 
-function toggleMascFemSlider() {
-var tickbox = document.getElementById("mascFemCheckbox");
-	if (tickbox.checked) {
-		var tickbox = "Yes"
-		document.getElementById("bodyType1Slider").style.maxHeight = '60px';
-		document.getElementById("bodyType1Slider").style.borderBottom = '3px solid #73728C';
-		document.getElementById("bodyType1Slider").style.paddingBottom = '15px';
-	}
-	else {
-		var tickbox = "No"
-		document.getElementById("bodyType1Slider").style.maxHeight = '0';
-		document.getElementById("bodyType1Slider").style.borderBottom = '0';
-		document.getElementById("bodyType1Slider").style.paddingBottom = '0';
-	}
-	localStorage.setItem("MascFem_Slider_Enabled", tickbox);
-}
-
-function toggleThinThiccSlider() {
-var tickbox = document.getElementById("thinThiccCheckbox");
-	if (tickbox.checked) {
-		var tickbox = "Yes"
-		document.getElementById("bodyType2Slider").style.maxHeight = '60px';
-		document.getElementById("bodyType2Slider").style.borderBottom = '3px solid #73728C';
-		document.getElementById("bodyType2Slider").style.paddingBottom = '15px';
-	}
-	else {
-		var tickbox = "No"
-		document.getElementById("bodyType2Slider").style.maxHeight = '0';
-		document.getElementById("bodyType2Slider").style.borderBottom = '0';
-		document.getElementById("bodyType2Slider").style.paddingBottom = '0';
-	}
-	localStorage.setItem("ThinThicc_Slider_Enabled", tickbox);
-}
-
-function toggleSmolTallSlider() {
-var tickbox = document.getElementById("smolTallCheckbox");
-	if (tickbox.checked) {
-		var tickbox = "Yes"
-		document.getElementById("bodyType3Slider").style.maxHeight = '60px';
-		document.getElementById("bodyType3Slider").style.borderBottom = '3px solid #73728C';
-		document.getElementById("bodyType3Slider").style.paddingBottom = '15px';
-	}
-	else {
-		var tickbox = "No"
-		document.getElementById("bodyType3Slider").style.maxHeight = '0';
-		document.getElementById("bodyType3Slider").style.borderBottom = '0';
-		document.getElementById("bodyType3Slider").style.paddingBottom = '0';
-	}
-	localStorage.setItem("SmolTall_Slider_Enabled", tickbox);
-}
-
 function loadSliderSettings() { // This function determines if all the options/sliders should be visible or hidden
 	var buttSizeSliderEnabled = localStorage.getItem("Butt_Size_Slider_Enabled");
 	var bellySizeSliderEnabled = localStorage.getItem("Belly_Size_Slider_Enabled");
@@ -1615,7 +1486,7 @@ function loadSliderSettings() { // This function determines if all the options/s
 	if (buttSizeSliderEnabled != "No") {// = Null or yes. Enabled on default.
 		document.getElementById("buttSizeSliderCheckbox").checked = true;
 		document.getElementById("buttSizeSlider").style.maxHeight = '60px';
-		document.getElementById("buttSizeSlider").style.borderBottom = '3px solid #73728C';
+		document.getElementById("buttSizeSlider").style.borderBottom = '2px solid #807F97';
 		document.getElementById("buttSizeSlider").style.paddingBottom = '15px';
 	}
 	else {
@@ -1628,7 +1499,7 @@ function loadSliderSettings() { // This function determines if all the options/s
 	if (bellySizeSliderEnabled != "No") {
 		document.getElementById("bellySizeSliderCheckbox").checked = true;
 		document.getElementById("bellySizeSlider").style.maxHeight = '60px';
-		document.getElementById("bellySizeSlider").style.borderBottom = '3px solid #73728C';
+		document.getElementById("bellySizeSlider").style.borderBottom = '2px solid #807F97';
 		document.getElementById("bellySizeSlider").style.paddingBottom = '15px';
 	}
 	else {
@@ -1641,7 +1512,7 @@ function loadSliderSettings() { // This function determines if all the options/s
 	if (bellyShapeSliderEnabled === "Yes") {// Disabled on default.
 		document.getElementById("bellyShapeSliderCheckbox").checked = true;
 		document.getElementById("bellyShapeSlider").style.maxHeight = '60px';
-		document.getElementById("bellyShapeSlider").style.borderBottom = '3px solid #73728C';
+		document.getElementById("bellyShapeSlider").style.borderBottom = '2px solid #807F97';
 		document.getElementById("bellyShapeSlider").style.paddingBottom = '15px';
 	} 
 	else {
@@ -1654,7 +1525,7 @@ function loadSliderSettings() { // This function determines if all the options/s
 	if (hipsSliderEnabled != "No") {
 		document.getElementById("hipsSliderCheckbox").checked = true;
 		document.getElementById("hipsSlider").style.maxHeight = '60px';
-		document.getElementById("hipsSlider").style.borderBottom = '3px solid #73728C';
+		document.getElementById("hipsSlider").style.borderBottom = '2px solid #807F97';
 		document.getElementById("hipsSlider").style.paddingBottom = '15px';
 	}
 	else {
@@ -1667,7 +1538,7 @@ function loadSliderSettings() { // This function determines if all the options/s
 	if (genitalSizeSliderEnabled != "No") {
 		document.getElementById("genitalSizeSliderCheckbox").checked = true;
 		document.getElementById("genitalSizeSlider").style.maxHeight = '60px';
-		document.getElementById("genitalSizeSlider").style.borderBottom = '3px solid #73728C';
+		document.getElementById("genitalSizeSlider").style.borderBottom = '2px solid #807F97';
 		document.getElementById("genitalSizeSlider").style.paddingBottom = '15px';
 	}
 	else {
@@ -1689,7 +1560,7 @@ function loadSliderSettings() { // This function determines if all the options/s
 	if (libidoSliderEnabled === "Yes") {
 		document.getElementById("libidoSliderCheckbox").checked = true;
 		document.getElementById("libidoSlider").style.maxHeight = '60px';
-		document.getElementById("libidoSlider").style.borderBottom = '3px solid #73728C';
+		document.getElementById("libidoSlider").style.borderBottom = '2px solid #807F97';
 		document.getElementById("libidoSlider").style.paddingBottom = '15px';
 	}
 	else {
@@ -1702,7 +1573,7 @@ function loadSliderSettings() { // This function determines if all the options/s
 	if (sensitivitySliderEnabled === "Yes") {
 		document.getElementById("sensitivitySliderCheckbox").checked = true;
 		document.getElementById("sensitivitySlider").style.maxHeight = '60px';
-		document.getElementById("sensitivitySlider").style.borderBottom = '3px solid #73728C';
+		document.getElementById("sensitivitySlider").style.borderBottom = '2px solid #807F97';
 		document.getElementById("sensitivitySlider").style.paddingBottom = '15px';
 	}
 	else {
@@ -1715,7 +1586,7 @@ function loadSliderSettings() { // This function determines if all the options/s
 	if (demeanorSliderEnabled != "No") {
 		document.getElementById("demeanorSliderCheckbox").checked = true;
 		document.getElementById("demeanorSlider").style.maxHeight = '60px';
-		document.getElementById("demeanorSlider").style.borderBottom = '3px solid #73728C';
+		document.getElementById("demeanorSlider").style.borderBottom = '2px solid #807F97';
 		document.getElementById("demeanorSlider").style.paddingBottom = '15px';
 	}
 	else {
@@ -1728,7 +1599,7 @@ function loadSliderSettings() { // This function determines if all the options/s
 	if (positionPrefSliderEnabled != "No") {
 		document.getElementById("positionPreferenceSliderCheckbox").checked = true;
 		document.getElementById("positionPrefSlider").style.maxHeight = '60px';
-		document.getElementById("positionPrefSlider").style.borderBottom = '3px solid #73728C';
+		document.getElementById("positionPrefSlider").style.borderBottom = '2px solid #807F97';
 		document.getElementById("positionPrefSlider").style.paddingBottom = '15px';
 	}
 	else {
@@ -1741,7 +1612,7 @@ function loadSliderSettings() { // This function determines if all the options/s
 	if (intelligenceSliderEnabled === "Yes") {
 		document.getElementById("intelligenceSliderCheckbox").checked = true;
 		document.getElementById("intelligenceSlider").style.maxHeight = '60px';
-		document.getElementById("intelligenceSlider").style.borderBottom = '3px solid #73728C';
+		document.getElementById("intelligenceSlider").style.borderBottom = '2px solid #807F97';
 		document.getElementById("intelligenceSlider").style.paddingBottom = '15px';
 	}
 	else {
@@ -1754,7 +1625,7 @@ function loadSliderSettings() { // This function determines if all the options/s
 	if (fluffinessSliderEnabled != "No") {
 		document.getElementById("fluffinessSliderCheckbox").checked = true;
 		document.getElementById("fluffinessSlider").style.maxHeight = '60px';
-		document.getElementById("fluffinessSlider").style.borderBottom = '3px solid #73728C';
+		document.getElementById("fluffinessSlider").style.borderBottom = '2px solid #807F97';
 		document.getElementById("fluffinessSlider").style.paddingBottom = '15px';
 	}
 	else {
@@ -1767,7 +1638,7 @@ function loadSliderSettings() { // This function determines if all the options/s
 	if (hairLenghtSliderEnabled != "No") {
 		document.getElementById("hairLenghtSliderCheckbox").checked = true;
 		document.getElementById("hairLenghtSlider").style.maxHeight = '60px';
-		document.getElementById("hairLenghtSlider").style.borderBottom = '3px solid #73728C';
+		document.getElementById("hairLenghtSlider").style.borderBottom = '2px solid #807F97';
 		document.getElementById("hairLenghtSlider").style.paddingBottom = '15px';
 	}
 	else {
@@ -1780,7 +1651,7 @@ function loadSliderSettings() { // This function determines if all the options/s
 	if (fertilitySliderEnabled === "Yes") {
 		document.getElementById("fertilitySliderCheckbox").checked = true;
 		document.getElementById("fertilitySlider").style.maxHeight = '98px';
-		document.getElementById("fertilitySlider").style.borderBottom = '3px solid #73728C';
+		document.getElementById("fertilitySlider").style.borderBottom = '2px solid #807F97';
 	}
 	else {
 		document.getElementById("fertilitySliderCheckbox").checked = false;
@@ -1833,7 +1704,7 @@ function loadSliderSettings() { // This function determines if all the options/s
 	else {
 		document.getElementById("mascFemCheckbox").checked = true;
 		document.getElementById("bodyType1Slider").style.maxHeight = '60px';
-		document.getElementById("bodyType1Slider").style.borderBottom = '3px solid #73728C';
+		document.getElementById("bodyType1Slider").style.borderBottom = '2px solid #807F97';
 		document.getElementById("bodyType1Slider").style.paddingBottom = '15px';
 	}
 	
@@ -1846,7 +1717,7 @@ function loadSliderSettings() { // This function determines if all the options/s
 	else {
 		document.getElementById("thinThiccCheckbox").checked = true;
 		document.getElementById("bodyType2Slider").style.maxHeight = '60px';
-		document.getElementById("bodyType2Slider").style.borderBottom = '3px solid #73728C';
+		document.getElementById("bodyType2Slider").style.borderBottom = '2px solid #807F97';
 		document.getElementById("bodyType2Slider").style.paddingBottom = '15px';
 	}
 	
@@ -1859,7 +1730,7 @@ function loadSliderSettings() { // This function determines if all the options/s
 	else {
 		document.getElementById("smolTallCheckbox").checked = true;
 		document.getElementById("bodyType3Slider").style.maxHeight = '60px';
-		document.getElementById("bodyType3Slider").style.borderBottom = '3px solid #73728C';
+		document.getElementById("bodyType3Slider").style.borderBottom = '2px solid #807F97';
 		document.getElementById("bodyType3Slider").style.paddingBottom = '15px';
 	}
 	
@@ -2011,7 +1882,7 @@ function changeUsernameBegin() {
 	document.getElementById("usernameButton").style.border='0';
 	document.getElementById("usernameButton").style.fontSize='0px';
 	document.getElementById("usernameButton").style.marginTop='0px';
-	document.getElementById("enterUsernameContainer").style.maxHeight='124px';
+	document.getElementById("enterUsernameContainer").style.maxHeight='200px';
 	document.getElementById("enterUsernameContainer").style.marginTop='5px';
 }
 
@@ -2210,6 +2081,15 @@ function checkUsername() {
 		username = "Empty";
 	}
 	document.getElementById('currentUsername').innerHTML = "Your username is " + username;
+	var swapUsername = localStorage.getItem("Show_Username_Instead_Of_Logout_Text");
+	if (swapUsername === "Yes") {
+		document.getElementById('logOut').innerHTML = username;
+		document.getElementById('logOut').style.cursor = "default";
+	}
+	else {
+		document.getElementById('logOut').innerHTML = "Log out";
+		document.getElementById('logOut').style.cursor = "not-allowed";
+	}
 }
 
 function welcomeUser() {
@@ -2310,7 +2190,7 @@ function showOrHideBreastSizeMaleSlider() {
 			document.getElementById("showAdvancedSettings4a").style.borderBottom= '0';
 			document.getElementById("showAdvancedSettings4a").style.paddingBottom= '0';
 			document.getElementById("showAdvancedSettings4b").style.maxHeight= '60px';
-			document.getElementById("showAdvancedSettings4b").style.borderBottom= '3px solid #73728C';
+			document.getElementById("showAdvancedSettings4b").style.borderBottom= '2px solid #807F97';
 			document.getElementById("showAdvancedSettings4b").style.paddingBottom= '15px';
 		}
 		document.getElementById("showBreastSizeMaleCheckbox").checked = false;
@@ -2324,7 +2204,7 @@ function showOrHideBreastSizeMaleSlider() {
 		}
 		else {
 			document.getElementById("showAdvancedSettings4a").style.maxHeight= '60px';
-			document.getElementById("showAdvancedSettings4a").style.borderBottom= '3px solid #73728C';
+			document.getElementById("showAdvancedSettings4a").style.borderBottom= '2px solid #807F97';
 			document.getElementById("showAdvancedSettings4a").style.paddingBottom= '15px';
 		}
 	}
@@ -2345,7 +2225,7 @@ function showOrHideGenitalSizeFemaleSlider() {
 			if (isGenitalSizeSliderEnabled === "Yes")
 			{
 				document.getElementById("genitalSizeSlider").style.maxHeight= '60px';
-				document.getElementById("genitalSizeSlider").style.borderBottom= '3px solid #73728C';
+				document.getElementById("genitalSizeSlider").style.borderBottom= '2px solid #807F97';
 				document.getElementById("genitalSizeSlider").style.paddingBottom= '15px';
 			}
 			else if (isGenitalSizeSliderEnabled === "No")
@@ -2356,7 +2236,7 @@ function showOrHideGenitalSizeFemaleSlider() {
 			}
 			else {
 				document.getElementById("genitalSizeSlider").style.maxHeight= '60px';
-				document.getElementById("genitalSizeSlider").style.borderBottom= '3px solid #73728C';
+				document.getElementById("genitalSizeSlider").style.borderBottom= '2px solid #807F97';
 				document.getElementById("genitalSizeSlider").style.paddingBottom= '15px';
 			}
 		}
@@ -2364,7 +2244,7 @@ function showOrHideGenitalSizeFemaleSlider() {
 	else {		
 		document.getElementById("showGenitalSizeFemaleCheckbox").checked = true;
 		document.getElementById("genitalSizeSlider").style.maxHeight= '60px';
-		document.getElementById("genitalSizeSlider").style.borderBottom= '3px solid #73728C';
+		document.getElementById("genitalSizeSlider").style.borderBottom= '2px solid #807F97';
 		document.getElementById("genitalSizeSlider").style.paddingBottom= '15px';
 	}
 }
@@ -2732,7 +2612,7 @@ function makeCustomSlider(x) {
 		localStorage.setItem("Custom_Slider" + x + "_Enabled", "Yes");
 		document.getElementById("customSlider" + x + "Checkbox").checked = true;
 		document.getElementById("custom" + x + "SliderMenu").style.maxHeight= '60px';
-		document.getElementById("custom" + x + "SliderMenu").style.borderBottom= '3px solid #73728C';
+		document.getElementById("custom" + x + "SliderMenu").style.borderBottom= '2px solid #807F97';
 		document.getElementById("custom" + x + "SliderMenu").style.paddingBottom= '15px';
 		if (controlsessionactive === "Yes") {
 			conn.send({firstParam: "changeCustomSliderLabel", secondParam: x, thirdParam: leftText, fourthParam: centerText, fifthParam: rightText});
@@ -2746,7 +2626,7 @@ function toggleCustomSlider(x) {
 		if (tickbox.checked) {
 			var tickbox = "Yes"
 			document.getElementById("custom" + x + "SliderMenu").style.maxHeight= '60px';
-			document.getElementById("custom" + x + "SliderMenu").style.borderBottom= '3px solid #73728C';
+			document.getElementById("custom" + x + "SliderMenu").style.borderBottom= '2px solid #807F97';
 			document.getElementById("custom" + x + "SliderMenu").style.paddingBottom= '15px';
 		}
 		else {
@@ -2771,7 +2651,7 @@ function loadCustomSliderVisibilityStatus() {
 		if (isSliderEnabled === "Yes") {
 			document.getElementById("customSlider" + x + "Checkbox").checked = true;
 			document.getElementById("custom" + x + "SliderMenu").style.maxHeight= '60px';
-			document.getElementById("custom" + x + "SliderMenu").style.borderBottom= '3px solid #73728C';
+			document.getElementById("custom" + x + "SliderMenu").style.borderBottom= '2px solid #807F97';
 			document.getElementById("custom" + x + "SliderMenu").style.paddingBottom= '15px';
 		}
 		else {
@@ -3356,7 +3236,7 @@ function hideFooter() {
 		var tickbox = "No"
 		localStorage.setItem("Footer_Hidden", tickbox);
 		document.getElementById("footerContainer").style.paddingBottom='10px';
-		document.getElementById("footerContainer").style.borderTop="3px solid #73728C";
+		document.getElementById("footerContainer").style.borderTop="2px solid #807F97";
 		document.getElementById("footerContainer").style.marginTop='10px';
 		document.getElementById("footerContainer").style.maxHeight='250px';
 	}
@@ -3373,7 +3253,7 @@ function showOrHideFooter() {
 	}
 	else {
 		document.getElementById("footerContainer").style.paddingBottom='10px';
-		document.getElementById("footerContainer").style.borderTop="3px solid #73728C";
+		document.getElementById("footerContainer").style.borderTop="2px solid #807F97";
 		document.getElementById("footerContainer").style.marginTop='10px';
 		document.getElementById("footerContainer").style.maxHeight='250px';
 	}
@@ -3521,6 +3401,54 @@ var tickbox = document.getElementById("creativeModeCheckbox");
 		document.getElementById("creativeModeButton").style.cursor='not-allowed';
 	}
 	localStorage.setItem("Creative_Mode_Enabled", tickbox);
+}
+
+function showOrHideBorder() {
+	var x = localStorage.getItem("Border_Disabled");
+	if (x === "Yes") {
+		document.getElementById("appWidthContainer").style.border='0';
+		document.getElementById("disableBorderCheckbox").checked = true;		
+	}
+	else {
+		document.getElementById("appWidthContainer").style.border='2px solid #000000';
+		document.getElementById("disableBorderCheckbox").checked = false;	
+	}
+}
+
+function toggleBorder() {
+var tickbox = document.getElementById("disableBorderCheckbox");
+	if (tickbox.checked) {
+		var tickbox = "Yes"
+		document.getElementById("appWidthContainer").style.border='0';
+	}
+	else {
+		var tickbox = "No"
+		document.getElementById("appWidthContainer").style.border='2px solid #000000';
+	}
+	localStorage.setItem("Border_Disabled", tickbox);
+}
+
+function tickOrUntickCheckboxes() {
+	// A single function for ticking or unticking the checkboxes in "Options" menu. WIP, currently only for option swapping "Log out" text for username.
+	var x = localStorage.getItem("Show_Username_Instead_Of_Logout_Text");
+	if (x === "Yes") {
+		document.getElementById("swapUsernameLogoutCheckbox").checked = true;		
+	}
+	else {
+		document.getElementById("swapUsernameLogoutCheckbox").checked = false;	
+	}
+}
+
+function toggleSwapUsername() {
+var tickbox = document.getElementById("swapUsernameLogoutCheckbox");
+	if (tickbox.checked) {
+		var tickbox = "Yes"
+	}
+	else {
+		var tickbox = "No"
+	}
+	localStorage.setItem("Show_Username_Instead_Of_Logout_Text", tickbox);
+	checkUsername();
 }
 
 function resetAppAll() {

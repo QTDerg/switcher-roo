@@ -17,7 +17,7 @@
 <meta name="twitter:image" content="https://qtderg.github.io/switcher-roo/images/twitter_card.png"/>
 
 <link rel='manifest' href='/switcher-roo/manifest.webmanifest'>
-<link rel="stylesheet" href="css/styles.css?v=1.3">  
+<link rel="stylesheet" href="css/styles.css?v=1.4">  
 <link rel="stylesheet" type="text/css" href="css/dhtmlxslider.css" id="defaultcss"/>
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="apple-touch-icon" href="images/touch-icon-iphone.png">
@@ -26,7 +26,7 @@
 <link rel="apple-touch-icon" sizes="167x167" href="images/touch-icon-ipad-retina.png">
 
 <script src="js/dhtmlxslider.js"></script>
-<script src="js/switcheroo.js?v=1.0.4"></script>
+<script src="js/switcheroo.js?v=1.1.0"></script>
 <script src="js/saveSlots.js?v=1.0.3"></script>
 <script src="js/slot0.js?v=1.0.0"></script>
 <script src="js/species.js?v=1.1.2"></script>
@@ -37,7 +37,7 @@
 <script src="js/peerjs.min.js"></script>
 <script src="js/CONTROL.JS?v=1.0.8"></script>
 <script src="js/appStatus.js?v=1.0.0"></script>
-<script src="js/creativeMode.js?v=1.0.0"></script>
+<script src="js/creativeMode.js?v=1.0.1"></script>
 <script src="js/charViz.js?v=1.1.0"></script>
 <script src="js/randomizer.js?v=1.0.2"></script>
 <script src="pwabuilder-sw.js"></script>
@@ -234,7 +234,7 @@ if ("serviceWorker" in navigator) {
 		</div>
   	</div>
   
-	<div class="logOut">
+	<div class="logOut" id="logOut">
 	Log out&nbsp;&nbsp;</a>
 	</div>
 	
@@ -2380,7 +2380,7 @@ Please contact Switcher-Roo support for assistance
 
 <div class="bigButton" onclick="toggleCharVizMenus(4)" style="margin-bottom:10px">Go back</div>
 
-<div class = "charVizCreditsEntry" style="text-align: center; background-color: #ff4550;margin-top:0">
+<div class = "charVizCreditsEntry" style="text-align:center;background-color:#660002;margin-top:0">
 Listed alphabetically:
 </div>
 
@@ -2936,6 +2936,21 @@ Listed alphabetically:
 	<div class="mediumButton" onclick="toggleMenus(8)">Batt. Drain Settings</div>
 	<div class="mediumButton" id="thirdSexButton" onclick="toggleMenus(9)">Define Third Sex</div>
 	<div class="mediumButton" id="creativeModeButton" onclick="toggleMenus(10)">Creative Mode</div>
+	
+	<div class="optionsCheckbox">
+	<label class="container">Enable Third Sex
+		<input type="checkbox" id="thirdSexCheckbox" onclick="toggleThirdSex()">
+		<span class="checkbox"></span>  
+	</label>
+	</div>
+	<br>
+	
+	<div class="optionsCheckbox">
+	<label class="container">Enable Creative Mode
+		<input type="checkbox" id="creativeModeCheckbox" onclick="toggleCreativeMode()">
+		<span class="checkbox"></span>  
+	</label>
+	</div>
 	
 </div>
 
@@ -3889,14 +3904,21 @@ Listed alphabetically:
 
 <div id="CreativeModeContainer" style="max-height:0px" class="menu-container">
 	
-	<div class="bigButton" onclick="toggleMenus(10)">Go back</div>
-	<div class="bigButton" onclick="toggleCreativeModeMenus(0)">Status bar</div>
-	<div class="bigButton" onclick="toggleCreativeModeMenus(1)">Custom dropdown</div>
-	<div class="bigButton" onclick="toggleCreativeModeMenus(2)">Custom notification</div>
+	<div class="mediumButton" onclick="toggleMenus(10)">Go back</div>
+	<div class="mediumButton" onclick="toggleCreativeModeMenus(0)">Status bar</div>
+	<div class="mediumButton" onclick="toggleCreativeModeMenus(1)">Custom dropdown</div>
+	<div class="mediumButton" onclick="toggleCreativeModeMenus(2)">Custom notification</div>
 	
-	<div style="padding:10px;font-size:15px;background-color:#FF4550;margin-top:5px">
-	Notes: <br>
-	- When Creative Mode is enabled status bar is frozen (time clock is stopped, coverage won't change and battery won't deplete), <br> 
+	<div style="padding:5px;font-size:13px;background-color:#282640;margin-top:125px">
+	Creative Mode is meant for artists that want to get a screenshot of the app for use in their art. They might want to set the app up (eg. change hour or battery charge in status bar) that is not possible without the use of Inspect Element.
+	</div>
+	
+	<div style="padding:10px;font-size:19px;background-color:#282640;box-shadow:inset 0px 0px 0px 5px #ff4550;">
+		<p style="color:#ff4550;margin:0">Tip:</p>Enable "Always show "Processing" animation" in Options. The upper part of the UI looks empty without it.
+	</div>
+	
+	<div style="padding:10px;font-size:15px;background-color:#660002">
+	- When Creative Mode is enabled status bar is frozen (clock is stopped, coverage won't change and battery won't deplete), <br> 
 	- Any Creative Mode specific changes made will not persist upon restarting the app.
 	</div>
 	
@@ -4052,7 +4074,7 @@ Listed alphabetically:
 			All changes Master makes will be reflected on sub's side in realtime
 		</div>
 		
-		<div style="padding:10px;font-size:15px;background-color:#FF4550">
+		<div style="padding:10px;font-size:15px;background-color:#660002">
 			CONTROL feature will not work if direct connection between users can't be made for whatever reason (closed ports, firewall, symmetric NAT etc.)
 		</div>
 		
@@ -4099,7 +4121,7 @@ Listed alphabetically:
 	
 	<div id="CONTROLmasterContainer" style="overflow:hidden;transition-duration:0.75s;border:3px solid rgb(255, 69, 80);">
 	
-		<div style="margin-top:5px;text-align:center;font-size:30px;color:#ff4500">CONTROL panel</div>
+		<div style="margin-top:5px;text-align:center;font-size:30px;color:#ff4550">CONTROL panel</div>
 		<div id="CONTROLmasterMessage" style="padding-left:18px;margin-top:5px;font-size:16px">CONTROL session is active. You're master.</div>
 		<div id="CONTROLmasterMessageSubName" style="padding-left:18px;margin-top:5px;">&nbsp;</div>
 		<div style="padding-left:18px;margin-top:5px;">Change your sub's lock password:</div>
@@ -4121,7 +4143,7 @@ Listed alphabetically:
 		<div style="margin-top:5px"></div>
 		<div class="mediumButton" onClick="goBackCONTROLchangeSubsPassword()">Cancel</div>
 		<div class="mediumButton" onClick="CONTROLchangeSubsPassword()">Proceed</div>
-		<div class="section-info warning-animation" style="margin-top:5px;background-color:#ff4550;float:left;width:100%">
+		<div class="section-info warning-animation" style="margin-top:5px;background-color:#660002;float:left;width:100%">
 		Warning: Password is stored in plain text on user device which you're connected to, so do not reuse password you're using on any websites/applications!
 		</div>
 		
@@ -4222,9 +4244,9 @@ document.getElementById("goBack").style.fontSize='0px';
 document.getElementById("goBack").style.marginTop='0px';
 </script>
 
-		<div class="optionsCheckboxes" id="optionsList">
+		<div class="optionsCheckboxesContainer" id="optionsList" style="max-height:0">
 		
-			<div>
+			<div class="optionsCheckbox">
 			<label class="container">Enable CONTROL
 				<input type="checkbox" id="CONTROLbuttonCheckbox" onclick="toggleCONTROLButton()">
 				<span class="checkbox"></span>  
@@ -4232,7 +4254,7 @@ document.getElementById("goBack").style.marginTop='0px';
 			</div>
 			<br>
 			
-			<div>
+			<div class="optionsCheckbox">
 			<label class="container">(Beta Feature) Enable CharViz
 				<input type="checkbox" id="charVizCheckbox" onclick="toggleCharViz()">
 				<span class="checkbox"></span>  
@@ -4240,7 +4262,7 @@ document.getElementById("goBack").style.marginTop='0px';
 			</div>
 			<br>
 		
-			<div>
+			<div class="optionsCheckbox">
 			<label class="container">Enable Randomizer
 				<input type="checkbox" id="randomizerCheckbox" onclick="toggleRandomizer()">
 				<span class="checkbox"></span>  
@@ -4248,7 +4270,7 @@ document.getElementById("goBack").style.marginTop='0px';
 			</div>
 			<br>
 			
-			<div>
+			<div class="optionsCheckbox">
 			<label class="container">Change app appearance when settings are locked
 				<input type="checkbox" id="appAppearanceCheckbox" onclick="toggleAppAppearance()">
 				<span class="checkbox"></span>  
@@ -4256,7 +4278,7 @@ document.getElementById("goBack").style.marginTop='0px';
 			</div>
 			<br>
 			
-			<div>
+			<div class="optionsCheckbox">
 			<label class="container">Enable app presets sharing
 				<input type="checkbox" id="appStatusCheckbox" onclick="toggleAppStatus()">
 				<span class="checkbox"></span>  
@@ -4264,15 +4286,15 @@ document.getElementById("goBack").style.marginTop='0px';
 			</div>
 			<br>
 			
-			<div>
-			<label class="container">Enable Third Sex
-				<input type="checkbox" id="thirdSexCheckbox" onclick="toggleThirdSex()">
+			<div class="optionsCheckbox">
+			<label class="container">Disable side margins/borders
+				<input type="checkbox" id="disableBorderCheckbox" onclick="toggleBorder()">
 				<span class="checkbox"></span>  
 			</label>
 			</div>
 			<br>
 			
-			<div>
+			<div class="optionsCheckbox">
 			<label class="container">Enable Desktop Mode
 				<input type="checkbox" id="desktopModeCheckbox" onclick="toggleDesktopMode()">
 				<span class="checkbox"></span>  
@@ -4280,7 +4302,7 @@ document.getElementById("goBack").style.marginTop='0px';
 			</div>
 			<br>
 			
-			<div>
+			<div class="optionsCheckbox">
 			<label class="container">Show Breast Size slider when Male Sex is selected
 				<input type="checkbox" id="showBreastSizeMaleCheckbox" onclick="toggleBreastSizeMaleOption()">
 				<span class="checkbox"></span>  
@@ -4288,7 +4310,7 @@ document.getElementById("goBack").style.marginTop='0px';
 			</div>
 			<br>
 			
-			<div>
+			<div class="optionsCheckbox">
 			<label class="container">Show Genital Size slider when Female Sex is selected
 				<input type="checkbox" id="showGenitalSizeFemaleCheckbox" onclick="toggleGenitalSizeFemaleOption()">
 				<span class="checkbox"></span>  
@@ -4296,7 +4318,7 @@ document.getElementById("goBack").style.marginTop='0px';
 			</div>
 			<br>
 			
-			<div>
+			<div class="optionsCheckbox">
 			<label class="container">Always show "Processing" animation
 				<input type="checkbox" id="alwaysShowCheckbox" onclick="toggleAlwaysShowAnim()">
 				<span class="checkbox"></span>  
@@ -4304,7 +4326,7 @@ document.getElementById("goBack").style.marginTop='0px';
 			</div>
 			<br>
 			
-			<div>
+			<div class="optionsCheckbox">
 			<label class="container">Modern logo and "Processing" animation
 				<input type="checkbox" id="newStyleCheckbox" onclick="toggleNewStyle()">
 				<span class="checkbox"></span>  
@@ -4312,7 +4334,7 @@ document.getElementById("goBack").style.marginTop='0px';
 			</div>
 			<br>
 			
-			<div>
+			<div class="optionsCheckbox">
 			<label class="container">Hide Lock password button
 				<input type="checkbox" id="lockPasswordCheckbox" onclick="hideLockPasswordButton()">
 				<span class="checkbox"></span>  
@@ -4320,7 +4342,7 @@ document.getElementById("goBack").style.marginTop='0px';
 			</div>			
 			<br>
 			
-			<div>
+			<div class="optionsCheckbox">
 			<label class="container">Hide Username button
 				<input type="checkbox" id="hideUsernameCheckbox" onclick="hideUsernameFuntion()">
 				<span class="checkbox"></span>  
@@ -4328,31 +4350,15 @@ document.getElementById("goBack").style.marginTop='0px';
 			</div>			
 			<br>
 			
-			<div>
+			<div class="optionsCheckbox">
 			<label class="container">Hide Feedback button
 				<input type="checkbox" id="hideFeedbackCheckbox" onclick="hideFeedbackButton()">
 				<span class="checkbox"></span>  
 			</label>
 			</div>			
 			<br>
-						
-			<div>
-			<label class="container">Turn off user greetings
-				<input type="checkbox" id="hideUGCheckbox" onclick="toggleUserGreetings()">
-				<span class="checkbox"></span>  
-			</label>
-			</div>
-			<br>
-
-			<div>
-			<label class="container">Enable Creative Mode
-				<input type="checkbox" id="creativeModeCheckbox" onclick="toggleCreativeMode()">
-				<span class="checkbox"></span>  
-			</label>
-			</div>
-			<br>
 			
-			<div>
+			<div class="optionsCheckbox">
 			<label class="container">Show Developer Menu button
 				<input type="checkbox" id="devMenuCheckbox" onclick="toggleDevMenu()">
 				<span class="checkbox"></span>  
@@ -4360,7 +4366,7 @@ document.getElementById("goBack").style.marginTop='0px';
 			</div>
 			<br>
 			
-			<div>
+			<div class="optionsCheckbox">
 			<label class="container">Show Apply settings button
 				<input type="checkbox" id="applySettingsCheckbox" onclick="toggleApplySettingsButton()">
 				<span class="checkbox"></span>  
@@ -4368,7 +4374,7 @@ document.getElementById("goBack").style.marginTop='0px';
 			</div>
 			<br>
 			
-			<div>
+			<div class="optionsCheckbox">
 			<label class="container">Hide footer
 				<input type="checkbox" id="hideFooterCheckbox" onclick="hideFooter()">
 				<span class="checkbox"></span>  
@@ -4376,7 +4382,7 @@ document.getElementById("goBack").style.marginTop='0px';
 			</div>
 			<br>
 			
-			<div>
+			<div class="optionsCheckbox">
 			<label class="container">Enable option to change app background color
 				<input type="checkbox" id="appBackgroundCheckbox" onclick="toggleAppBackgroundButton()">
 				<span class="checkbox"></span>  
@@ -4385,10 +4391,6 @@ document.getElementById("goBack").style.marginTop='0px';
 			<br>
 			
 		</div>
-		<script>
-			document.getElementById("optionsList").style.maxHeight='0';
-			document.getElementById("optionsList").style.marginTop='0';
-		</script>
 
 <div class="bigButton" id="devMenuButton" onClick="showDevMenu()">Developer Menu</div>
 
@@ -4507,6 +4509,21 @@ document.getElementById("goBack").style.marginTop='0px';
 	<div class="mediumButton" id="buttonChangeUsername" onClick="changeUsername()">Set</div>
 	<div class="mediumButton" id="cancelChangeUsernameButton" onClick="cancelChangeUsername()">Go back</div>
 	<div class="mediumButton" id="clearUsernameButton" onClick="clearUsername()">Delete</div>
+	
+	<div>
+	<label class="container">Turn off user greetings
+		<input type="checkbox" id="hideUGCheckbox" onclick="toggleUserGreetings()">
+		<span class="checkbox"></span>  
+	</label>
+	</div>
+	<br>
+	
+	<div>
+	<label class="container">Show username instead of "Log out" text
+		<input type="checkbox" id="swapUsernameLogoutCheckbox" onclick="toggleSwapUsername()">
+		<span class="checkbox"></span>  
+	</label>
+	</div>
 	
 </div>
 <script>document.getElementById("enterUsernameContainer").style.maxHeight='0px';document.getElementById("enterUsernameContainer").style.marginTop='0px'</script>
@@ -4647,7 +4664,7 @@ c0bra - color-scheme .js library
 	</div>
 	</a>
 	
-	<div class="section-info" style="margin-top:5px;background-color:#ff4550;float:left;width:100%">
+	<div class="section-info" style="margin-top:5px;background-color:#660002;float:left;width:100%">
 	Platforms marked with red border require you to register at said platform, before you can post your feedback.
 	</div>
 
@@ -4870,6 +4887,8 @@ showOrHideAppBackgroundButton();
 showOrHideCONTROLButton();
 showOrHideAppStatusButton();
 showOrHideCreativeModeMenu();
+showOrHideBorder();
+tickOrUntickCheckboxes();
 setBGColorOnInit();
 setAppBGColorOnInit();
 checkThirdSexStatus();
