@@ -78,6 +78,56 @@ function toggleMenus(x) {
 	}
 }
 
+function menuNavigation(x, y, z) {
+	document.getElementById(x).style.maxHeight = "0px";
+	document.getElementById(y).style.maxHeight = z + "px"
+}
+
+function menuNavigation2 (x, y, z, a, b) {
+	// x - Show/Hide menu // y - Which menu // z - Set menu height
+	if (x == "Show") {
+		document.getElementById(y).style.maxHeight = z + "px"
+	}
+	else {
+		document.getElementById(y).style.maxHeight = "0px";
+	}
+	// a - Show/Hide button	// b - Which button
+	if (a == "Show") {
+		document.getElementById(b).style.padding='10px';
+		document.getElementById(b).style.border="2px solid #59568f";
+		document.getElementById(b).style.fontSize='26px';
+		document.getElementById(b).style.marginTop='5px';
+	}
+	else {
+		document.getElementById(b).style.padding='0px';
+		document.getElementById(b).style.border='0';
+		document.getElementById(b).style.fontSize='0px';
+		document.getElementById(b).style.marginTop='0px';
+	}
+}
+
+function menuNavigation3(x, y) {
+	document.getElementById(x).style.display = "none";
+	document.getElementById(y).style.display = "block"
+}
+
+function toggleButton(x, y) {
+	// x - Show/Hide button
+	// y - Which button
+	if (x == "Show") {
+		document.getElementById(y).style.padding='10px';
+		document.getElementById(y).style.border="2px solid #59568f";
+		document.getElementById(y).style.fontSize='26px';
+		document.getElementById(y).style.marginTop='5px';
+	}
+	else {
+		document.getElementById(y).style.padding='0px';
+		document.getElementById(y).style.border='0';
+		document.getElementById(y).style.fontSize='0px';
+		document.getElementById(y).style.marginTop='0px';
+	}
+}
+
 function closeContainers() {
 	document.getElementById("addRemoveSlidersContainer").style.maxHeight='0px';
 	document.getElementById("CustomSlidersContainer").style.maxHeight='0px';

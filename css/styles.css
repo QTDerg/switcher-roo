@@ -607,7 +607,6 @@ select:disabled::-ms-expand {
 .menuCharViz {
 	border-bottom: 2px solid #807F97;
 	text-align: center;
-	padding: 15px;
 	overflow: hidden;
 }
 
@@ -620,7 +619,6 @@ select:disabled::-ms-expand {
 	height: 400px;
 	margin: auto;
 	background-color: #282640;
-	border: 2px solid #59568f;
 	transition-duration: 0.5s;
 	position: relative;
 	overflow: hidden;
@@ -628,7 +626,6 @@ select:disabled::-ms-expand {
 
 .charVizDisplay {
 	position: absolute;
-	left: -15px;
 	top: -30px;
 	width: 330px;
 	height: 440px;
@@ -666,6 +663,15 @@ select:disabled::-ms-expand {
 }
 #charVizLaunchMessage:hover {
 	background-color: #59568f !important;
+}
+#charVizAIDisplayMessage {
+	font-size:30px;
+	padding-left: 15px;
+	padding-top:150px;
+	background: rgba(40, 38, 64, 0.5);
+	text-align: center;
+	/*-webkit-text-stroke: 2px black;
+	paint-order: stroke fill;*/
 }
 .charVizSpritesheetL { /* style for spritesheets - lines */
 	background-size: 500% 100% !important;
@@ -1822,5 +1828,20 @@ a:active {
   }
   100% {
     background-color: #ff4550;
+  }
+}
+
+@keyframes warning-anim2 {
+  0% {
+    color: #ffffff;
+  }
+  15% {
+    color: #ff4550;
+  }
+  30% {
+    color: #ffffff;
+  }
+  100% {
+    color: #ffffff;
   }
 }

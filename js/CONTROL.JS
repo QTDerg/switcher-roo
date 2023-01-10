@@ -27,7 +27,7 @@ function connectToServer() {
 				config: {
 					iceServers: [
 						{ url: 'stun:stun.l.google.com:19302' },
-						{ url: 'turn:numb.viagenie.ca', username: 'webrtc@live.com', credential: 'muazkh'}
+						{ url: 'turn:openrelay.metered.ca:80', username: 'openrelayproject', credential: 'openrelayproject'}
 					]
 				},	
 			});
@@ -40,7 +40,7 @@ function connectToServer() {
 				config: {
 					iceServers: [
 						{ url: 'stun:stun.l.google.com:19302' },
-						{ url: 'turn:numb.viagenie.ca', username: 'webrtc@live.com', credential: 'muazkh'}
+						{ url: 'turn:openrelay.metered.ca:80', username: 'openrelayproject', credential: 'openrelayproject'}
 					]
 				},		
 			});
@@ -1414,12 +1414,12 @@ function sliderHandleAnimation() {
 
 function showCONTROLmenus() {
 	if (master === "false") {
-		document.getElementById("CONTROLreceiveContainer").style.maxHeight='0px';
+		document.getElementById("CONTROLmenu-subRole").style.maxHeight='0px';
 		document.getElementById("CONTROLsubContainer").style.maxHeight='220px';
 		document.getElementById("COTNROLchatMainContainer").style.maxHeight='200px';
 	}
 	else {
-		document.getElementById("CONTROLconnectContainer").style.maxHeight='0px';
+		document.getElementById("CONTROLmenu-masterRole").style.maxHeight='0px';
 		document.getElementById("CONTROLmasterContainer").style.maxHeight='340px';
 		document.getElementById("CONTROLmasterContainer").style.border='3px solid rgb(255, 69, 80)';
 		document.getElementById("COTNROLchatMainContainer").style.maxHeight='200px';
@@ -1972,25 +1972,7 @@ function CONTROLlockSubsSettings() {
 	conn.send({firstParam: "Lock_Settings"});
 }
 
-function CONTROLshowConnectToServer() {
-	document.getElementById("CONTROLButton").style.padding='0px';
-	document.getElementById("CONTROLButton").style.border='0';
-	document.getElementById("CONTROLButton").style.fontSize='0px';
-	document.getElementById("CONTROLButton").style.marginTop='0px';
-	document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='200px';
-}
-
-function CONTROLgoBack() {
-	document.getElementById("CONTROLButton").style.padding='10px';
-	document.getElementById("CONTROLButton").style.border="2px solid #59568f";
-	document.getElementById("CONTROLButton").style.fontSize='26px';
-	document.getElementById("CONTROLButton").style.marginTop='5px';
-	document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='0px';
-}
-
-function CONTROLshowTutorial() {
-	document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='0px';
-	document.getElementById("CONTROLtutorialContainer").style.maxHeight='650px';
+function OwO() {
 	document.getElementById('whatsThisButton').innerHTML = "OwO";
 	setTimeout(hideOwO, 50);
 }
@@ -1999,12 +1981,7 @@ function hideOwO() {
 	document.getElementById('whatsThisButton').innerHTML = "What's this?";
 }
 
-function CONTROLgoBackFromTutorial() {
-	document.getElementById("CONTROLtutorialContainer").style.maxHeight='0px';
-	document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='200px';
-}
-
-function CONTROLshowChoice() {
+function CONTROLproceedToRoleChoice() {
 	if (isConnected == null) {
 		document.getElementById("CONTROLconnectToServerStatus").innerHTML = "You shall not pass!";
 		document.getElementById("CONTROLconnectToServerStatus").style.color = "#FF4550";
@@ -2014,8 +1991,7 @@ function CONTROLshowChoice() {
 		setTimeout(hideConnectToServerMessage, 1500);
 	}
 	else {
-		document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='0px';
-		document.getElementById("CONTROLchoiceContainer").style.maxHeight='140px';
+		menuNavigation("CONTROLmenu-connectToServer", "CONTROLmenu-roleChoice", 140)
 	}
 }
 
@@ -2032,34 +2008,12 @@ function hideConnectToServerMessage() {
 	}	
 }
 
-function CONTROLgoBackFromChoice() {
-	document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='200px';
-	document.getElementById("CONTROLchoiceContainer").style.maxHeight='0px';
-}
-
-function CONTROLshowConnectOptions() {
-	document.getElementById("CONTROLchoiceContainer").style.maxHeight='0px';
-	document.getElementById("CONTROLconnectContainer").style.maxHeight='230px';
+function replaceThisText() {
 	var x = document.getElementById("CONTROLconnectToPeerStatus").innerHTML;
 	if (x === "Status: Connected to server! You shall pass.") {
 		document.getElementById("CONTROLconnectToPeerStatus").innerHTML = "Status: Waiting for user input..."
 		document.getElementById("CONTROLconnectToPeerStatus").style.color = "#fff";
 	}
-}
-
-function CONTROLgoBackFromConnectOptions() {
-	document.getElementById("CONTROLconnectContainer").style.maxHeight='0px';
-	document.getElementById("CONTROLchoiceContainer").style.maxHeight='140px';
-}
-
-function CONTROLshowReveiveOptions() {
-	document.getElementById("CONTROLchoiceContainer").style.maxHeight='0px';
-	document.getElementById("CONTROLreceiveContainer").style.maxHeight='200px';
-}
-
-function CONTROLgoBackFromReceiveOptions() {
-	document.getElementById("CONTROLreceiveContainer").style.maxHeight='0px';
-	document.getElementById("CONTROLchoiceContainer").style.maxHeight='140px';
 }
 
 function CONTROLgoToChangeSubLockPassword() {

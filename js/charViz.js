@@ -1755,3 +1755,66 @@ function toggleCharVizOption(x) {
 		else			{	document.getElementById("randomizeCharacterButtonsContainer").style.display = 'none';	}
 	}
 }
+
+// WIP
+async function sendToStableHorde(prompt, negPrompt, seed) {
+	const response = await fetch('https://stablehorde.net/api/v2/generate/async', {
+		method: 'POST',
+		body: JSON.stringify({
+		  "prompt": prompt,
+		  "params": {
+			"sampler_name": "k_euler_a",
+			"cfg_scale": 7,
+			"seed": seed,
+			"height": 704,
+			"width": 512,
+			"steps": 28
+		  },
+		  "nsfw": true,
+		  "trusted_workers": true,
+		  "models": [
+			"Yiffy"
+		  ],
+		  "shared": false
+		}),
+		headers: {
+		'Content-Type': 'application/json',
+		'apikey': 0000000000
+		}
+	});
+	const myJson = await response.json();
+	console.log(myJson);
+	var parsedData = JSON.parse(myJson);
+	document.getElementById('charVizAIDisplayMessage').style.display = "block";
+	if (parsedData.message === "Generation Queued") {		
+		document.getElementById('charVizAIDisplayMessage').innerHTML = "Generating<br>Please wait...";
+		setTimeout(checkGenerationStatus, 3000, parsedData.id);
+	}
+	else {
+		document.getElementById('charVizAIDisplayMessage').innerHTML = parsedData.message;
+		console.log("uwu we made a fucky wucky");
+		return;
+	}
+}
+
+async function checkGenerationStatus(id) {
+	const response = await fetch('https://stablehorde.net/api/v2/generate/check/' + id);
+	const myJson = await response.json();
+	console.log(myJson);
+	var parsedData = JSON.parse(myJson);
+	if (parsedData.done == true) {
+		getImageFromStableHorde(id)
+	}
+	else {
+		setTimeout(checkGenerationStatus, 3000, id)
+	}
+}
+
+async function getImageFromStableHorde(id) {
+	const response = await fetch('https://stablehorde.net/api/v2/generate/status' + id);
+	const myJson = await response.json();
+	console.log(myJson);
+	var parsedData = JSON.parse(myJson);
+	document.getElementById('charVizAIDisplayMessage').display = "none";
+	document.getElementById("charVizAIDisplayImage").style.backgroundImage = "url(" + parsedData.generations[0].img + ")"
+}

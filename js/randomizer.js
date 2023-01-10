@@ -16,27 +16,28 @@ function randomizeCharacter() {
 	}
 	else {
 		var rng = Math.floor(Math.random() * 100) + 1;
-		if (rng <= 90) {
+		if (rng <= 75) {
 			// Most Popular Species
 			var array = ["Arctic Fox", "Bat", "Bear", "Cat", "Cheetah", "Coyote", "Deer",
 			"Dog", "Dragon", "Fennec", "Fox", "Horse", "Hyena", "Kangaroo", "Lion", "Lynx",
 			"Otter","Panther", "Protogen", "Rabbit", "Raccoon", "Red Panda", "Sergal", "Shark",
-			"Skunk", "Snake", "Snow Leopard", "Synth", "Tiger", "Wolf"];
+			"Skunk", "Snake", "Snow Leopard", "Synth", "Tiger", "Wolf", "Bird", "Fennec Fox",
+			"Werewolf", "Leopard", "Kobold", "Possum"];
 			Species = array[Math.floor(Math.random() * array.length)];
 			document.getElementById('speciesCurrent').innerHTML = Species;
 		}
 		else {
 			// Other Species
-			var array = ["Avian", "Bird", "Crow", "Eagle", "Gryphon", "Owl", "Penguin"
-			, "Phoenix", "Raven", "Hawk", "Bison", "Buffalo", "Bull", "Cow", "African Wild Dog"
-			, "Ethiopian Wolf", "Fennec Fox", "Folf", "Husky", "Maned Wolf", "Werewolf", "Reindeer", "Elk"
-			, "Moose", "Donkey", "Pegasus", "Pony", "Unicorn", "Zebra", "Caracal", "Cougar"
-			, "Jaguar", "Khajiit", "Leopard", "Liger", "Serval", "Argonian", "Jackalope", "Jex"
-			, "Kitsune", "Kobold", "Tanuki", "Chimera", "Foxcoon", "Manokit", "Wox", "Wusky"
-			, "Pika", "Hare", "Koala", "Opossum", "Possum", "Badger", "Ferret", "Marten"
-			, "Weasel", "Alligator", "Crocodile", "Dinosaur", "Iguana", "Raptor", "Turtle"
-			, "Beaver", "Hamster", "Mouse", "Porcupine", "Rat", "Squirrel", "Gazelle", "Giraffe"
-			, "Goat", "Llama", "Pig", "Sheep"];
+			var array = ["Avian", "Crow", "Eagle", "Gryphon", "Owl", "Penguin",
+			"Phoenix", "Raven", "Hawk", "Bison", "Buffalo", "Bull", "Cow", "African Wild Dog",
+			"Ethiopian Wolf", "Folf", "Husky", "Maned Wolf", "Reindeer", "Elk",
+			"Moose", "Donkey", "Pegasus", "Pony", "Unicorn", "Zebra", "Caracal", "Cougar",
+			"Jaguar", "Khajiit", "Liger", "Serval", "Argonian", "Jackalope", "Jex",
+			"Kitsune", "Tanuki", "Chimera", "Foxcoon", "Manokit", "Wox", "Wusky",
+			"Pika", "Hare", "Koala", "Opossum", "Badger", "Ferret", "Marten",
+			"Weasel", "Alligator", "Crocodile", "Dinosaur", "Iguana", "Raptor", "Turtle",
+			"Beaver", "Hamster", "Mouse", "Porcupine", "Rat", "Squirrel", "Gazelle",
+			"Giraffe", "Goat", "Llama", "Pig", "Sheep"];
 			Species = array[Math.floor(Math.random() * array.length)];
 			document.getElementById('speciesCurrent').innerHTML = Species;
 		}

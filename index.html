@@ -17,7 +17,7 @@
 <meta name="twitter:image" content="https://qtderg.github.io/switcher-roo/images/twitter_card.png"/>
 
 <link rel='manifest' href='/switcher-roo/manifest.webmanifest'>
-<link rel="stylesheet" href="css/styles.css?v=1.4">  
+<link rel="stylesheet" href="css/styles.css?v=1.5">  
 <link rel="stylesheet" type="text/css" href="css/dhtmlxslider.css" id="defaultcss"/>
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="apple-touch-icon" href="images/touch-icon-iphone.png">
@@ -26,7 +26,7 @@
 <link rel="apple-touch-icon" sizes="167x167" href="images/touch-icon-ipad-retina.png">
 
 <script src="js/dhtmlxslider.js"></script>
-<script src="js/switcheroo.js?v=1.1.0"></script>
+<script src="js/switcheroo.js?v=1.1.1"></script>
 <script src="js/saveSlots.js?v=1.0.3"></script>
 <script src="js/slot0.js?v=1.0.0"></script>
 <script src="js/species.js?v=1.1.2"></script>
@@ -35,11 +35,11 @@
 <script src="js/iro.min.js"></script>
 <script src="js/color-scheme.min.js"></script>
 <script src="js/peerjs.min.js"></script>
-<script src="js/CONTROL.JS?v=1.0.8"></script>
+<script src="js/CONTROL.JS?v=1.0.9"></script>
 <script src="js/appStatus.js?v=1.0.0"></script>
 <script src="js/creativeMode.js?v=1.0.1"></script>
-<script src="js/charViz.js?v=1.1.0"></script>
-<script src="js/randomizer.js?v=1.0.2"></script>
+<script src="js/charViz.js?v=1.1.1"></script>
+<script src="js/randomizer.js?v=1.0.3"></script>
 <script src="pwabuilder-sw.js"></script>
 <script>
 // This is the "Offline copy of pages" service worker
@@ -1637,13 +1637,18 @@ Please contact Switcher-Roo support for assistance
 		
 		<div class="charVizDisplay" id="charVizDisplayMessage">Species unsupported<div style="font-size:16px;padding-left: 15px;padding-top:150px">Supported species are listed in readme</div></div>
 		
+		<div class="charVizDisplay" id="charVizAIDisplayImage" style="display:none"></div>
+		
+		<div class="charVizDisplay" id="charVizAIDisplayMessage" style="display:none"></div>
+		
 		<div class="charVizDisplay" id="charVizLaunchMessage" onClick="charVizStartup()">Tap to launch CharViz<div style="font-size:14px;padding-left:15px;padding-right:15px;padding-top:170px">To enable autolaunch, navigate to CharViz -> Options and tick "Launch CharViz automatically on app startup"</div></div>
 		
 	</div>
 	
-	<div id="randomizeCharacterButtonsContainer" style="top:10px;position:relative">	
+	<div id="randomizeCharacterButtonsContainer" style="position:relative;float:left;width:100%">
+		<div style="float:left;width:100%">Randomize:</div>
 		<div class="mediumButton" onClick="randomizeCharacterColors()">Colors</div>	
-		<div class="mediumButton" onClick="randomizeCharacter()">Randomize</div>
+		<div class="mediumButton" onClick="randomizeCharacter()">Character</div>
 	</div>
 	
 </div>
@@ -4000,7 +4005,7 @@ Listed alphabetically:
 
 <div class="bigButton" id="appStatusButton" onClick="showAppStatusOptions()">Import/export preset</div>
 
-	<div id="appStatusChoiceContainer" style="overflow:hidden;transition-duration:0.75s">
+	<div id="appStatusChoiceContainer" style="overflow:hidden;transition-duration:0.75s;max-height:0px">
 	
 		<div class="bigButton" onClick="appStatusGoBack()">Go back</div>
 		<div style="margin-top:5px"></div>
@@ -4008,9 +4013,8 @@ Listed alphabetically:
 		<div class="mediumButton" onClick="appStatusShowExportOptions()">Export</div>
 				
 	</div>
-	<script>document.getElementById("appStatusChoiceContainer").style.maxHeight='0px';</script>
 	
-	<div id="appStatusImportOptionsContainer" style="overflow:hidden;transition-duration:0.75s">
+	<div id="appStatusImportOptionsContainer" style="overflow:hidden;transition-duration:0.75s;max-height:0px">
 	
 		<div id="appStatusImportMessage" style="padding-left:18px;margin-top:5px;">Insert App Preset and click Import</div>
 		<input id="importAppStatusTextField" class="bigTextField" value="">
@@ -4020,9 +4024,8 @@ Listed alphabetically:
 		<div style="padding-left:18px;margin-top:5px;">Remember to save your current preset before importing!</div>
 				
 	</div>
-	<script>document.getElementById("appStatusImportOptionsContainer").style.maxHeight='0px';</script>
 	
-	<div id="appStatusExportOptionsContainer" style="overflow:hidden;transition-duration:0.75s">
+	<div id="appStatusExportOptionsContainer" style="overflow:hidden;transition-duration:0.75s;max-height:0px">
 	
 		<div id="appStatusCopyMessage" style="padding-left:18px;margin-top:5px;">App Preset: (click to copy)</div>
 		<div id="appStatus" onClick="appStatusCopy('appStatus')">&nbsp;</div>
@@ -4030,32 +4033,25 @@ Listed alphabetically:
 		<div class="mediumButton" onClick="exportAppStatus()">Export</div>
 				
 	</div>
-	<script>document.getElementById("appStatusExportOptionsContainer").style.maxHeight='0px';</script>
 	
-<div class="bigButton" id="CONTROLButton" onClick="CONTROLshowConnectToServer()">CONTROL</div>
+<div class="bigButton" id="CONTROLButton" onClick="menuNavigation2('Show', 'CONTROLmenu-connectToServer', 200, 'Hide', 'CONTROLButton')">CONTROL</div>
 
-	<div id="CONTROLconnectToServerContainer" style="overflow:hidden;transition-duration:0.75s">
+	<div id="CONTROLmenu-connectToServer" style="overflow:hidden;transition-duration:0.75s;max-height:0px">
 	
 		<div id="CONTROLconnectToServerStatus" style="padding-left:18px;font-size:15px;">Status: Waiting for user input...</div>
 		<div style="margin-top:5px"></div>
 		<div class="bigButton" id="CONTROLconnectToServerButton" onClick="connectToServer()">Connect to server</div>
 		<div style="margin-top:5px"></div>
-		<div class="mediumButton" onClick="CONTROLgoBack()">Go back</div>
-		<div class="mediumButton" id="CONTROLproceedButton" onClick="CONTROLshowChoice()">Proceed</div>
+		<div class="mediumButton" onClick="menuNavigation2('Hide', 'CONTROLmenu-connectToServer', 200, 'Show', 'CONTROLButton')">Go back</div>
+		<div class="mediumButton" id="CONTROLproceedButton" onClick="CONTROLproceedToRoleChoice()" style="background-color:#424242;border:2px solid #b0b0b0;cursor:not-allowed">Proceed</div>
 		<div style="margin-top:55px"></div>
-		<div class="bigButton" id="whatsThisButton" onClick="CONTROLshowTutorial()">What's this?</div>
-				
+		<div class="bigButton" id="whatsThisButton" onClick="menuNavigation('CONTROLmenu-connectToServer', 'CONTROLmenu-tutorial', 550); OwO()">What's this?</div>
+		
 	</div>
-	<script>
-		document.getElementById("CONTROLconnectToServerContainer").style.maxHeight='0px';
-		document.getElementById("CONTROLproceedButton").style.backgroundColor='#424242';
-		document.getElementById("CONTROLproceedButton").style.border='2px solid #b0b0b0';
-		document.getElementById("CONTROLproceedButton").style.cursor='not-allowed';
-	</script>
 	
-	<div id="CONTROLtutorialContainer" style="overflow:hidden;transition-duration:0.75s">
+	<div id="CONTROLmenu-tutorial" style="overflow:hidden;transition-duration:0.75s;max-height:0px">
 	
-		<div class="bigButton" onClick="CONTROLgoBackFromTutorial()">Go back</div>
+		<div class="bigButton" onClick="menuNavigation('CONTROLmenu-tutorial', 'CONTROLmenu-connectToServer', 200)">Go back</div>
 		
 		<div style="padding:10px;font-size:14px;">
 			CONTROL is a feature, that lets two users connect to each other. There are two roles:<br>
@@ -4071,55 +4067,55 @@ Listed alphabetically:
 			• Master:<br>
 			- Paste peer ID<br>
 			- Click "Join" button<br>
-			All changes Master makes will be reflected on sub's side in realtime
+			All changes Master makes will be reflected on sub's side in realtime<br>
+			<br>
+			It is recommended that you set an username first. Click a button labelled "Username" below. If the button is missing, make sure "Hide Username button" in options is unticked. 
+			<br>
+			<span style='color:#FF4550;'>Note: If you want to use CONTROL Chat feature you need to set up an username.</span>
 		</div>
 		
-		<div style="padding:10px;font-size:15px;background-color:#660002">
-			CONTROL feature will not work if direct connection between users can't be made for whatever reason (closed ports, firewall, symmetric NAT etc.)
-		</div>
-		
-		<div style="padding:10px;font-size:14px;">
-			It is recommended that you set an username first. Click a button labelled "Username" below. If the button is missing, make sure "Hide Username button" in options is unticked. <br> Note: If you want to use CONTROL Chat feature you need to set up an username.
-		</div>
-				
 	</div>
-	<script>document.getElementById("CONTROLtutorialContainer").style.maxHeight='0px';</script>
 
-	<div id="CONTROLchoiceContainer" style="overflow:hidden;transition-duration:0.75s">
+	<div id="CONTROLmenu-roleChoice" style="overflow:hidden;transition-duration:0.75s;max-height:0px">
 	
-		<div class="bigButton" onClick="CONTROLgoBackFromChoice()">Go back</div>
+		<div class="bigButton" onClick="menuNavigation('CONTROLmenu-roleChoice', 'CONTROLmenu-connectToServer', 200)">Go back</div>
 		<div style="padding-left:18px;margin-top:5px;margin-bottom:5px;">Choose your role:</div>
-		<div class="mediumButton" onClick="CONTROLshowConnectOptions()">Master</div>
-		<div class="mediumButton" onClick="CONTROLshowReveiveOptions()">Sub</div>
+		<div class="mediumButton" onClick="menuNavigation('CONTROLmenu-roleChoice', 'CONTROLmenu-masterRole', 270); replaceThisText()">Master</div>
+		<div class="mediumButton" onClick="menuNavigation('CONTROLmenu-roleChoice', 'CONTROLmenu-subRole', 290)">Sub</div>
 				
 	</div>
-	<script>document.getElementById("CONTROLchoiceContainer").style.maxHeight='0px';</script>
 	
-	<div id="CONTROLconnectContainer" style="overflow:hidden;transition-duration:0.75s">
+	<div id="CONTROLmenu-masterRole" style="overflow:hidden;transition-duration:0.75s;max-height:0px">
 		
 		<div id="CONTROLconnectToPeerStatus" style="padding-left:18px;font-size:15px;">Status: Waiting for user input...</div>
 		<div style="padding-left:18px;margin-top:5px;">Peer ID:</div>
 		<input id="connectToPeerTextField" class="bigTextField" value="">
 		<div style="margin-top:5px"></div>
-		<div class="mediumButton" onClick="CONTROLgoBackFromConnectOptions()">Go back</div>
+		<div class="mediumButton" onClick="menuNavigation('CONTROLmenu-masterRole', 'CONTROLmenu-roleChoice', 140)">Go back</div>
 		<div class="mediumButton" onClick="join()">Join</div>
-		<div style="padding-left:18px;margin-top:5px;">Remember to save your current settings!</div>
-				
+		<div style="padding-left:18px;margin-top:5px;animation: warning-anim2 2s infinite ease-in-out;">Remember to save your current settings!</div>
+		
+		<div style="padding:10px;font-size:15px;background-color:#660002">
+			This feature will not work if direct connection between users can't be made for whatever reason (closed ports, firewall, symmetric NAT)
+		</div>
+		
 	</div>
-	<script>document.getElementById("CONTROLconnectContainer").style.maxHeight='0px';</script>
 	
-	<div id="CONTROLreceiveContainer" style="overflow:hidden;transition-duration:0.75s">
+	<div id="CONTROLmenu-subRole" style="overflow:hidden;transition-duration:0.75s;max-height:0px">
 	
 		<div id="peerIDCopyMessage" style="padding-left:18px;margin-top:5px;">Your peer ID: (click to copy)</div>
 		<div id="peerID" onClick="CONTROLcopyPeerID('peerID')">&nbsp;</div>
-		<div class="mediumButton" id="CONTROLgoBackFromHostOptionsButton" onClick="CONTROLgoBackFromReceiveOptions()">Go back</div>
+		<div class="mediumButton" id="CONTROLgoBackFromHostOptionsButton" onClick="menuNavigation('CONTROLmenu-subRole', 'CONTROLmenu-roleChoice', 140)">Go back</div>
 		<div class="mediumButton" id="CONTROLhostSessionButton" onClick="host()">Host</div>
 		<div id="controlSubTutorial" style="padding-left:18px;margin-top:5px;">Click "Host" button then send PeerID to person you want to connect to you</div>
-				
+		
+		<div style="padding:10px;font-size:15px;background-color:#660002">
+			This feature will not work if direct connection between users can't be made for whatever reason (closed ports, firewall, symmetric NAT)
+		</div>
+		
 	</div>
-	<script>document.getElementById("CONTROLreceiveContainer").style.maxHeight='0px';</script>
 	
-	<div id="CONTROLmasterContainer" style="overflow:hidden;transition-duration:0.75s;border:3px solid rgb(255, 69, 80);">
+	<div id="CONTROLmasterContainer" style="overflow:hidden;transition-duration:0.75s;max-height:0px">
 	
 		<div style="margin-top:5px;text-align:center;font-size:30px;color:#ff4550">CONTROL panel</div>
 		<div id="CONTROLmasterMessage" style="padding-left:18px;margin-top:5px;font-size:16px">CONTROL session is active. You're master.</div>
@@ -4134,9 +4130,8 @@ Listed alphabetically:
 		</div>
 		
 	</div>
-	<script>document.getElementById("CONTROLmasterContainer").style.maxHeight='0px';document.getElementById("CONTROLmasterContainer").style.border='0';</script>
 	
-	<div id="CONTROLchangeSubsPasswordContainer" style="overflow:hidden;transition-duration:0.75s">
+	<div id="CONTROLchangeSubsPasswordContainer" style="overflow:hidden;transition-duration:0.75s;max-height:0px">
 		
 		<div id="CONTROLchangeSubsPasswordMessage" style="padding-left:18px;margin-top:5px;">Enter password:</div>
 		<input id="CONTROLchangeSubsPasswordTextField" class="bigTextField" value="">
@@ -4148,35 +4143,32 @@ Listed alphabetically:
 		</div>
 		
 	</div>
-	<script>document.getElementById("CONTROLchangeSubsPasswordContainer").style.maxHeight='0px';</script>
 	
-	<div id="COTNROLchatMainContainer" style="overflow:hidden;transition-duration:0.75s">
+	<div id="COTNROLchatMainContainer" style="overflow:hidden;transition-duration:0.75s;max-height:0px">
 	
-		<div class="CONTROLchangelogContainer" id="CONTROLchatContainer" style="height: 190px;">
+		<div class="CONTROLchangelogContainer" id="CONTROLchatContainer" style="height: 190px">
 			<div class="CONTROLchangelogButton" onClick="clearChat()">Clear</div>
 			<div id="CONTROLchatNoUsernameError" style="text-align:center; float:left; width: 60%; padding-top:5px; padding-bottom:5px; background-color:#59568f">CONTROL Chat</div>
 			<div class="CONTROLchangelogButton" onClick="toggleCONTROLchat()" id="showHideChatButton">Hide</div>
-			<div id="CONTROLchatlog" class="CONTROLchangelog" style="border-bottom: 2px solid #59568f;min-height: 120px;"> &nbsp;</div>
+			<div id="CONTROLchatlog" class="CONTROLchangelog" style="border-bottom: 2px solid #59568f;min-height: 120px">&nbsp;</div>
 			<input id="CONTROLchatWriteMessage" value="">
-			<div class="CONTROLchangelogButton" onClick="CONTROLsendChatMessage()" style="float:right;padding-top: 6px;padding-bottom: 6px;">Send</div>
+			<div class="CONTROLchangelogButton" onClick="CONTROLsendChatMessage()" style="float:right;padding-top: 6px;padding-bottom: 6px">Send</div>
 		</div>
 	
 	</div>
-	<script>document.getElementById("COTNROLchatMainContainer").style.maxHeight='0px';</script>
 	
-	<div id="CONTROLsubContainer" style="overflow:hidden;transition-duration:0.75s">
+	<div id="CONTROLsubContainer" style="overflow:hidden;transition-duration:0.75s;max-height:0px">
 
 		<div class="CONTROLchangelogContainer" id="CONTROLchangelogContainer" style="margin-top:14px">
 			<div class="CONTROLchangelogButton" onClick="clearChangelog()">Clear</div>
-			<div style="text-align:center; float:left; width: 60%; padding-top:5px; padding-bottom:5px; background-color:#59568f"> CONTROL Changelog </div>
+			<div style="text-align:center; float:left; width: 60%; padding-top:5px; padding-bottom:5px; background-color:#59568f">CONTROL Changelog</div>
 			<div class="CONTROLchangelogButton" onClick="toggleChangelog()" id="showHideChangelogButton">Hide</div>
-			<div id="CONTROLchangelog" class="CONTROLchangelog"> &nbsp;</div>
+			<div id="CONTROLchangelog" class="CONTROLchangelog">&nbsp;</div>
 		</div>
-		<div id="CONTROLsubMessage" style="padding-left:18px;margin-top:5px;">CONTROL session is active. You're sub.</div>
-		<div id="CONTROLsubMessageMasterName" style="padding-left:18px;margin-top:5px;">&nbsp;</div>
+		<div id="CONTROLsubMessage" style="padding-left:18px;margin-top:5px">CONTROL session is active. You're sub.</div>
+		<div id="CONTROLsubMessageMasterName" style="padding-left:18px;margin-top:5px">&nbsp;</div>
 				
 	</div>
-	<script>document.getElementById("CONTROLsubContainer").style.maxHeight='0px';</script>
 	
 <div class="bigButton" id="randomizeButton" onClick="randomizeCharacter()">Randomize</div>
 
@@ -4625,7 +4617,7 @@ c0bra - color-scheme .js library
 	</div>
 	</a>
 	
-	<a href="https://github.com/QTDerg/switcher-roo/issues/1">
+	<a href="https://github.com/QTDerg/switcher-roo/discussions/4">
 	<div class="credits-entry-mini" style="border:2px solid #ff4550">
 
 		<div class="credits-text-mini">
