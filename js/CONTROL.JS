@@ -26,8 +26,8 @@ function connectToServer() {
 			peer = new Peer({
 				config: {
 					iceServers: [
-						{ url: 'stun:stun.l.google.com:19302' },
-						{ url: 'turn:openrelay.metered.ca:80', username: 'openrelayproject', credential: 'openrelayproject'}
+						{ urls: 'stun:stun.l.google.com:19302' },
+						{ urls: 'turn:openrelay.metered.ca:80', username: 'openrelayproject', credential: 'openrelayproject'}
 					]
 				},	
 			});
@@ -39,8 +39,8 @@ function connectToServer() {
 				secure: true,
 				config: {
 					iceServers: [
-						{ url: 'stun:stun.l.google.com:19302' },
-						{ url: 'turn:openrelay.metered.ca:80', username: 'openrelayproject', credential: 'openrelayproject'}
+						{ urls: 'stun:stun.l.google.com:19302' },
+						{ urls: 'turn:openrelay.metered.ca:80', username: 'openrelayproject', credential: 'openrelayproject'}
 					]
 				},		
 			});
