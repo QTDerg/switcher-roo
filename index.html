@@ -26,7 +26,7 @@
 <link rel="apple-touch-icon" sizes="167x167" href="images/touch-icon-ipad-retina.png">
 
 <script src="js/dhtmlxslider.js"></script>
-<script src="js/switcheroo.js?v=1.1.1"></script>
+<script src="js/switcheroo.js?v=1.1.2"></script>
 <script src="js/saveSlots.js?v=1.0.3"></script>
 <script src="js/slot0.js?v=1.0.0"></script>
 <script src="js/species.js?v=1.1.2"></script>
@@ -35,11 +35,12 @@
 <script src="js/iro.min.js"></script>
 <script src="js/color-scheme.min.js"></script>
 <script src="js/peerjs.min.js"></script>
-<script src="js/CONTROL.JS?v=1.0.10"></script>
+<script src="js/CONTROL.JS?v=1.0.11"></script>
 <script src="js/appStatus.js?v=1.0.0"></script>
 <script src="js/creativeMode.js?v=1.0.1"></script>
-<script src="js/charViz.js?v=1.1.1"></script>
+<script src="js/charViz.js?v=1.1.2"></script>
 <script src="js/randomizer.js?v=1.0.3"></script>
+<script src="js/promptConstructors/yiffy-e18.js?v=1.0.0"></script>
 <script src="pwabuilder-sw.js"></script>
 <script>
 // This is the "Offline copy of pages" service worker
@@ -1637,13 +1638,15 @@ Please contact Switcher-Roo support for assistance
 		
 		<div class="charVizDisplay" id="charVizDisplayMessage">Species unsupported<div style="font-size:16px;padding-left: 15px;padding-top:150px">Supported species are listed in readme</div></div>
 		
-		<div class="charVizDisplay" id="charVizAIDisplayImage" style="display:none"></div>
+		<div class="charVizDisplay" id="charVizAIDisplayImage" style="display:none" style="background-color:#282640"></div>
 		
 		<div class="charVizDisplay" id="charVizAIDisplayMessage" style="display:none"></div>
 		
 		<div class="charVizDisplay" id="charVizLaunchMessage" onClick="charVizStartup()">Tap to launch CharViz<div style="font-size:14px;padding-left:15px;padding-right:15px;padding-top:170px">To enable autolaunch, navigate to CharViz -> Options and tick "Launch CharViz automatically on app startup"</div></div>
 		
 	</div>
+	
+	<div class="bigButton" style="display:none" onClick="constructPrompt('yiffy-e18')">Generate</div>
 	
 	<div id="randomizeCharacterButtonsContainer" style="position:relative;float:left;width:100%">
 		<div style="float:left;width:100%">Randomize:</div>
@@ -4695,7 +4698,7 @@ Add app <br> to your device
 <div class="creditsEntry">
 
 <div class="creditsText">
-Version 0.6.2.1q <br> Click to see changelog
+Version 0.6.2.1q M8H5<br> Click to see changelog
 </div>
 <div class="creditsAvatar">             
 <img src="images/touch-icon-iphone.png" width="70" height="70" class="avatar">

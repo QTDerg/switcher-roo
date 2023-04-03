@@ -2443,6 +2443,7 @@ function makeCustomCheckbox(x) {
 		document.getElementById("customCheckbox" + x + "Menu").style.height = "60px";
 		document.getElementById("customCheckbox" + x + "Menu").style.paddingTop = "0";
 	}
+	labelLengthCheck("Checkbox")
 }
 
 async function makeCustomCheckboxError(x) {
@@ -2521,6 +2522,7 @@ function loadCustomCheckboxes() {
 			document.getElementById("customCheckbox" + x + "Menu").style.paddingTop = "0";
 		}
 	}
+	labelLengthCheck("Checkbox")
 }
 
 function makeCustomRadioInput(x) {
@@ -3821,4 +3823,29 @@ document.getElementById("thirdSexTextField").addEventListener("keyup", function(
 		setThirdSex();
 	}
 });
+}
+
+function labelLengthCheck(x) {
+	var lengthCheck;
+	if (x === "Checkbox" || x === "All")
+	{
+		for (i = 1; i < 4; i++) {
+			lengthCheck = document.getElementById("CC" + i + "value1").innerHTML;
+			if (lengthCheck.length >= 16) {
+				document.getElementById("CC" + i + "value1").style.fontSize = "13px";
+				document.getElementById("CC" + i + "value2").style.fontSize = "13px";
+				document.getElementById("secondCheckboxCC" + i).style.marginLeft = "10px";
+			}
+			else if (lengthCheck.length >= 10) {
+				document.getElementById("CC" + i + "value1").style.fontSize = "15px";
+				document.getElementById("CC" + i + "value2").style.fontSize = "15px";
+				document.getElementById("secondCheckboxCC" + i).style.marginLeft = "40px";
+			}
+			else {
+				document.getElementById("CC" + i + "value1").style.fontSize = "18px";
+				document.getElementById("CC" + i + "value2").style.fontSize = "18px";
+				document.getElementById("secondCheckboxCC" + i).style.marginLeft = "78px";
+			}
+		}
+	}
 }

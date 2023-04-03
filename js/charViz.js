@@ -1761,7 +1761,7 @@ async function sendToStableHorde(prompt, negPrompt, seed) {
 	const response = await fetch('https://stablehorde.net/api/v2/generate/async', {
 		method: 'POST',
 		body: JSON.stringify({
-		  "prompt": prompt,
+		  "prompt": prompt + " ### " + negPrompt,
 		  "params": {
 			"sampler_name": "k_euler_a",
 			"cfg_scale": 7,
@@ -1786,7 +1786,7 @@ async function sendToStableHorde(prompt, negPrompt, seed) {
 	console.log(myJson);
 	var parsedData = JSON.parse(myJson);
 	document.getElementById('charVizAIDisplayMessage').style.display = "block";
-	if (parsedData.message === "Generation Queued") {		
+	if (parsedData.message === "Generation Queued") {
 		document.getElementById('charVizAIDisplayMessage').innerHTML = "Generating<br>Please wait...";
 		setTimeout(checkGenerationStatus, 3000, parsedData.id);
 	}
@@ -1817,4 +1817,88 @@ async function getImageFromStableHorde(id) {
 	var parsedData = JSON.parse(myJson);
 	document.getElementById('charVizAIDisplayMessage').display = "none";
 	document.getElementById("charVizAIDisplayImage").style.backgroundImage = "url(" + parsedData.generations[0].img + ")"
+}
+
+async function sendToLocal(prompt, negPrompt, seed) {
+	document.getElementById('charVizAIDisplayMessage').style.display = "block";
+	document.getElementById('charVizAIDisplayMessage').innerHTML = "Generating<br>Please wait...";
+	const response = await fetch('http://127.0.0.1:7860/sdapi/v1/txt2img', {
+		method: 'POST',
+		body: JSON.stringify({
+			"enable_hr": true,
+			"prompt": prompt,
+			"negative_prompt": negPrompt,
+			"sampler_index": "Euler A",
+			"cfg_scale": 7,
+			"seed": seed,
+			"height": 704,
+			"width": 512,
+			"steps": 25
+		}),
+		headers: {
+		'Content-Type': 'application/json'
+		}
+	});
+	const myJson = await response.json();
+	document.getElementById('charVizAIDisplayMessage').style.display = "none";
+	document.getElementById('charVizAIDisplayImage').style.display = "block";
+	document.getElementById("charVizAIDisplayImage").style.backgroundImage = "url(data:image/png;base64," + myJson.images + ")"
+}
+
+async function sendToLocal2(prompt, negPrompt, seed, image) {
+	document.getElementById('charVizAIDisplayMessage').style.display = "block";
+	document.getElementById('charVizAIDisplayMessage').innerHTML = "Generating<br>Please wait...";
+	const response = await fetch('http://127.0.0.1:7860/sdapi/v1/img2img', {
+		method: 'POST',
+		body: JSON.stringify({
+			"init_images": [
+			image
+			],
+			"denoising_strength": 0.7,
+			"prompt": prompt,
+			"negative_prompt": negPrompt,
+			"sampler_index": "Euler A",
+			"cfg_scale": 7,
+			"seed": -1,
+			"height": 704,
+			"width": 512,
+			"steps": 50
+		}),
+		headers: {
+		'Content-Type': 'application/json'
+		}
+	});
+	const myJson = await response.json();
+	document.getElementById('charVizAIDisplayMessage').style.display = "none";
+	document.getElementById('charVizAIDisplayImage').style.display = "block";
+	document.getElementById("charVizAIDisplayImage").style.backgroundImage = "url(data:image/png;base64," + myJson.images + ")";
+}
+
+function constructPrompt(model) {
+	//var seed = localStorage.getItem("CharVizAI_Seed");
+	var seed = 621;
+	var prompts;
+	if (model == "yiffy-e18") {
+		prompts = constructPromptYiffyE18()
+	}
+	console.log(prompts[0]);
+	image = getBase64String(function(dataURL){
+		image = dataURL;
+		sendToLocal2(prompts[0], prompts[1], seed, image)
+	});
+}
+
+function getBase64String(callback){
+	var image = new Image();
+	image.crossOrigin = 'Anonymous';
+	image.onload = function(){
+		var canvas = document.createElement('canvas');
+		var context = canvas.getContext('2d');
+		canvas.height = this.naturalHeight;
+		canvas.width = this.naturalWidth;
+		context.drawImage(this, 0, 0);
+		var dataURL = canvas.toDataURL('image/png');
+		callback(dataURL);
+	};
+	image.src = 'images/fursonaCreatorAssets/reference.png';
 }

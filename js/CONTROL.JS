@@ -963,7 +963,8 @@ function receiveData() {
 			}
 		}
 		else if (data.firstParam === "Synchronization_Complete") {
-			synchronizationComplete = "Yes"
+			synchronizationComplete = "Yes";
+			labelLengthCheck("All")
 		}
 		else if (data.firstParam === "CONTROLchat") {
 			var chatHistory = document.getElementById("CONTROLchatlog").innerHTML;
