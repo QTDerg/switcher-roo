@@ -21,6 +21,17 @@ div {
 textarea:focus, input:focus{
     outline: none;
 }
+.notification {
+	position: fixed;
+	top: 0;
+	background-color: #59568f;
+	border-radius: 4px;
+	top: 10%;
+	left: 35%;
+	cursor: pointer;
+	font-size: 14px;
+	padding: 2px;
+}
 
 .speciesCurrent {
 	font-size: 17px;
@@ -189,8 +200,8 @@ textarea:focus, input:focus{
 	padding-top: 5px;
 	float: left;
 	transition: 0.5s;
-	cursor: not-allowed;
 	background-color: #282640;
+	cursor: auto;
 }
 
 .speciesCategoryButton {
@@ -604,6 +615,72 @@ select:disabled::-ms-expand {
 	transition-duration: 0.5s;	
 	overflow: hidden;	
 }
+.menu-CharViz-NextGen {
+	border-bottom: 2px solid #807F97;
+	text-align: center;
+	overflow: hidden;
+}
+.charViz-NextGen-display-container {
+	height: 460px; /*640x960 -> 531px | 640x832 -> 460px */
+	margin: auto;
+	background-color: #282640;
+	transition-duration: 0.5s;
+	position: relative;
+	overflow: hidden;
+}
+.charViz-NextGen-display {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-size: 100% 100% !important;
+}
+.charViz-NextGen-button-container {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 70px;
+}
+.button-CharViz-NextGen {
+	float: left;
+	width: 40px;
+	height: 40px;
+	background-color: rgba(89, 86, 143, 0.7);
+	border-radius: 12px;
+	text-align: center;
+	padding: 8px;
+	transition-duration: 0.35s;
+	cursor: pointer;
+	user-select: none;
+	font-size: 11px;
+	margin: 7px;
+}
+.button-CharViz-NextGen:hover {
+	background-color: #928fbc;
+}
+.button-CharViz-NextGen:active {
+	background-color: #c1bfd9;
+}
+.smol-button-CharViz-NextGen {
+	float: left;
+	width: 10px;
+	height: 10px;
+	background-color: rgba(89, 86, 143, 0.7);
+	border-radius: 4px;
+	text-align: center;
+	padding: 6px;
+	transition-duration: 0.35s;
+	cursor: pointer;
+	user-select: none;
+	font-size: 11px;
+	margin: 5px;
+}
+.smol-button-CharViz-NextGen:hover {
+	background-color: #928fbc;
+}
+.smol-button-CharViz-NextGen:active {
+	background-color: #c1bfd9;
+}
+
 .menuCharViz {
 	border-bottom: 2px solid #807F97;
 	text-align: center;
@@ -782,6 +859,8 @@ select:disabled::-ms-expand {
 }
 .harpoonArrowImg {
 	padding-top:6px;
+	width: 20px;
+	height: 20px;
 }
 #AdvancedSettingsContainer {
 	overflow: hidden;
@@ -940,6 +1019,14 @@ select:disabled::-ms-expand {
 
 .avatar {
 	border-radius: 50%;
+	width: 70px;
+	height: 70px;
+}
+
+.avatar-small {
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
 }
 
 .credits {

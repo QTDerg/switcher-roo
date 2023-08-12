@@ -1785,13 +1785,13 @@ async function sendToStableHorde(prompt, negPrompt, seed) {
 	const myJson = await response.json();
 	console.log(myJson);
 	var parsedData = JSON.parse(myJson);
-	document.getElementById('charVizAIDisplayMessage').style.display = "block";
+	document.getElementById('charVizNextGenDisplayMessage').style.display = "block";
 	if (parsedData.message === "Generation Queued") {
-		document.getElementById('charVizAIDisplayMessage').innerHTML = "Generating<br>Please wait...";
+		document.getElementById('charVizNextGenDisplayMessage').innerHTML = "Generating<br>Please wait...";
 		setTimeout(checkGenerationStatus, 3000, parsedData.id);
 	}
 	else {
-		document.getElementById('charVizAIDisplayMessage').innerHTML = parsedData.message;
+		document.getElementById('charVizNextGenDisplayMessage').innerHTML = parsedData.message;
 		console.log("uwu we made a fucky wucky");
 		return;
 	}
@@ -1815,24 +1815,24 @@ async function getImageFromStableHorde(id) {
 	const myJson = await response.json();
 	console.log(myJson);
 	var parsedData = JSON.parse(myJson);
-	document.getElementById('charVizAIDisplayMessage').display = "none";
-	document.getElementById("charVizAIDisplayImage").style.backgroundImage = "url(" + parsedData.generations[0].img + ")"
+	document.getElementById('charVizNextGenDisplayMessage').display = "none";
+	document.getElementById("charVizNextGenDisplayImage").style.backgroundImage = "url(" + parsedData.generations[0].img + ")"
 }
 
-async function sendToLocal(prompt, negPrompt, seed) {
-	document.getElementById('charVizAIDisplayMessage').style.display = "block";
-	document.getElementById('charVizAIDisplayMessage').innerHTML = "Generating<br>Please wait...";
+async function sendToLocaltxt2img(prompt, negPrompt, seed) {
+	document.getElementById('charVizNextGenDisplayMessage').style.display = "block";
+	document.getElementById('charVizNextGenDisplayMessage').innerHTML = "Generating<br>Please wait...";
 	const response = await fetch('http://127.0.0.1:7860/sdapi/v1/txt2img', {
 		method: 'POST',
 		body: JSON.stringify({
-			"enable_hr": true,
+			"enable_hr": false,
 			"prompt": prompt,
 			"negative_prompt": negPrompt,
-			"sampler_index": "Euler A",
+			"sampler_index": "Euler a",
 			"cfg_scale": 7,
 			"seed": seed,
-			"height": 704,
-			"width": 512,
+			"height": 832,
+			"width": 640,
 			"steps": 25
 		}),
 		headers: {
@@ -1840,14 +1840,14 @@ async function sendToLocal(prompt, negPrompt, seed) {
 		}
 	});
 	const myJson = await response.json();
-	document.getElementById('charVizAIDisplayMessage').style.display = "none";
-	document.getElementById('charVizAIDisplayImage').style.display = "block";
-	document.getElementById("charVizAIDisplayImage").style.backgroundImage = "url(data:image/png;base64," + myJson.images + ")"
+	document.getElementById('charVizNextGenDisplayMessage').style.display = "none";
+	document.getElementById('charVizNextGenDisplayImage').style.display = "block";
+	document.getElementById("charVizNextGenDisplayImage").style.backgroundImage = "url(data:image/png;base64," + myJson.images + ")"
 }
 
-async function sendToLocal2(prompt, negPrompt, seed, image) {
-	document.getElementById('charVizAIDisplayMessage').style.display = "block";
-	document.getElementById('charVizAIDisplayMessage').innerHTML = "Generating<br>Please wait...";
+async function sendToLocalimg2img(prompt, negPrompt, seed, image) {
+	document.getElementById('charVizNextGenDisplayMessage').style.display = "block";
+	document.getElementById('charVizNextGenDisplayMessage').innerHTML = "Generating<br>Please wait...";
 	const response = await fetch('http://127.0.0.1:7860/sdapi/v1/img2img', {
 		method: 'POST',
 		body: JSON.stringify({
@@ -1857,11 +1857,11 @@ async function sendToLocal2(prompt, negPrompt, seed, image) {
 			"denoising_strength": 0.7,
 			"prompt": prompt,
 			"negative_prompt": negPrompt,
-			"sampler_index": "Euler A",
+			"sampler_index": "Euler a",
 			"cfg_scale": 7,
-			"seed": -1,
-			"height": 704,
-			"width": 512,
+			"seed": seed,
+			"height": 832,
+			"width": 640,
 			"steps": 50
 		}),
 		headers: {
@@ -1869,23 +1869,24 @@ async function sendToLocal2(prompt, negPrompt, seed, image) {
 		}
 	});
 	const myJson = await response.json();
-	document.getElementById('charVizAIDisplayMessage').style.display = "none";
-	document.getElementById('charVizAIDisplayImage').style.display = "block";
-	document.getElementById("charVizAIDisplayImage").style.backgroundImage = "url(data:image/png;base64," + myJson.images + ")";
+	document.getElementById('charVizNextGenDisplayMessage').style.display = "none";
+	document.getElementById('charVizNextGenDisplayImage').style.display = "block";
+	document.getElementById("charVizNextGenDisplayImage").style.backgroundImage = "url(data:image/png;base64," + myJson.images + ")";
 }
 
 function constructPrompt(model) {
-	//var seed = localStorage.getItem("CharVizAI_Seed");
-	var seed = 621;
+	var seed = localStorage.getItem("CharViz_NextGen_Seed");
+	if (seed == null) { seed = 621 }
 	var prompts;
-	if (model == "yiffy-e18") {
-		prompts = constructPromptYiffyE18()
+	if (model == "fluffusion") {
+		prompts = constructPromptFluffusion()
 	}
 	console.log(prompts[0]);
-	image = getBase64String(function(dataURL){
-		image = dataURL;
-		sendToLocal2(prompts[0], prompts[1], seed, image)
-	});
+	sendToLocaltxt2img(prompts[0], prompts[1], seed)
+	//image = getBase64String(function(dataURL){
+	//	image = dataURL;
+	//	sendToLocalimg2img(prompts[0], prompts[1], seed, image)
+	//});
 }
 
 function getBase64String(callback){
@@ -1901,4 +1902,24 @@ function getBase64String(callback){
 		callback(dataURL);
 	};
 	image.src = 'images/fursonaCreatorAssets/reference.png';
+}
+
+function charVizNextGenRandSeed() {
+	localStorage.setItem("CharViz_NextGen_Seed", Math.floor(Math.random() * 1000000) + 1)
+}
+
+function cycleStyle(x) {
+	var currentStyle = parseInt(localStorage.getItem("CharViz_NextGen_Style"));
+	if (isNaN(currentStyle)) { currentStyle = 0 }
+	currentStyle = currentStyle + x;
+	if (currentStyle == styles.length) 	{ currentStyle = 0 }
+	if (currentStyle == -1) 			{ currentStyle = styles.length - 1 }
+	localStorage.setItem("CharViz_NextGen_Style", currentStyle)
+	document.getElementById('notification').style.display = "block";
+	document.getElementById('notification').innerHTML = "Style set to " + styles[currentStyle];
+	//setTimeout(hideCharVizNotification, 4000)
+}
+
+function hideCharVizNotification() {
+	document.getElementById('notification').style.display = "none";
 }

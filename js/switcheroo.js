@@ -3484,10 +3484,10 @@ function tickOrUntickCheckboxes() {
 	// A single function for ticking or unticking the checkboxes in "Options" menu. WIP, currently only for option swapping "Log out" text for username.
 	var x = localStorage.getItem("Show_Username_Instead_Of_Logout_Text");
 	if (x === "Yes") {
-		document.getElementById("swapUsernameLogoutCheckbox").checked = true;		
+		document.getElementById("swapUsernameLogoutCheckbox").checked = true;
 	}
 	else {
-		document.getElementById("swapUsernameLogoutCheckbox").checked = false;	
+		document.getElementById("swapUsernameLogoutCheckbox").checked = false;
 	}
 }
 
@@ -3501,6 +3501,30 @@ var tickbox = document.getElementById("swapUsernameLogoutCheckbox");
 	}
 	localStorage.setItem("Show_Username_Instead_Of_Logout_Text", tickbox);
 	checkUsername();
+}
+
+function toggleCharVizNextGen() {
+var tickbox = document.getElementById("charVizNextGenCheckbox");
+	if (tickbox.checked) {
+		tickbox = "Yes";
+		document.getElementById("menuCharVizNextGen").style.display='block';
+	}
+	else {
+		tickbox = "No";
+		document.getElementById("menuCharVizNextGen").style.display='none';
+	}
+	localStorage.setItem("CharViz_Nextgen_Enabled", tickbox);
+}
+
+function loadCharVizNextGen() {
+	var x = localStorage.getItem("CharViz_Nextgen_Enabled");
+	if (x === "Yes") {
+		document.getElementById("charVizNextGenCheckbox").checked = true;
+		document.getElementById("menuCharVizNextGen").style.display='block';
+	}
+	else {
+		document.getElementById("charVizNextGenCheckbox").checked = false;
+	}
 }
 
 function resetAppAll() {
@@ -3848,4 +3872,49 @@ function labelLengthCheck(x) {
 			}
 		}
 	}
+}
+
+// Thanks ChatGPT
+function getLastUpdatedTimestamp(lastUpdatedDate) {
+  const currentDate = new Date();
+  const updatedDate = new Date(lastUpdatedDate);
+
+  const timeDifference = currentDate - updatedDate;
+  const millisecondsPerDay = 24 * 60 * 60 * 1000;
+  const millisecondsPerMonth = 30 * millisecondsPerDay;
+  const millisecondsPerYear = 365 * millisecondsPerDay;
+  const millisecondsPerDecade = 10 * millisecondsPerYear;
+  const millisecondsPerCentury = 100 * millisecondsPerYear;
+  const millisecondsPerMillennium = 1000 * millisecondsPerYear;
+
+  if (timeDifference < millisecondsPerDay) {
+    return "Last updated today";
+  } else if (timeDifference < millisecondsPerMonth) {
+    const daysAgo = Math.floor(timeDifference / millisecondsPerDay);
+    return `Last updated ${daysAgo} ${daysAgo === 1 ? "day" : "days"} ago`;
+  } else if (timeDifference < millisecondsPerYear) {
+    const monthsAgo = Math.floor(timeDifference / millisecondsPerMonth);
+    return `Last updated ${monthsAgo} ${monthsAgo === 1 ? "month" : "months"} ago`;
+  } else if (timeDifference < millisecondsPerDecade) {
+    const yearsAgo = Math.floor(timeDifference / millisecondsPerYear);
+    return `Last updated ${yearsAgo} ${yearsAgo === 1 ? "year" : "years"} ago`;
+  } else if (timeDifference < millisecondsPerCentury) {
+    const decadesAgo = Math.floor(timeDifference / millisecondsPerDecade);
+    return `Last updated ${decadesAgo} ${decadesAgo === 1 ? "decade" : "decades"} ago`;
+  } else if (timeDifference < millisecondsPerMillennium) {
+    const centuriesAgo = Math.floor(timeDifference / millisecondsPerCentury);
+    return `Last updated ${centuriesAgo} ${centuriesAgo === 1 ? "century" : "centuries"} ago`;
+  } else {
+    const millenniaAgo = Math.floor(timeDifference / millisecondsPerMillennium);
+    return `Last updated ${millenniaAgo} ${millenniaAgo === 1 ? "millennium" : "millennia"} ago`;
+  }
+}
+
+// Example usage
+const lastUpdatedDate = "2023-08-12"; // Replace this with your last updated date
+
+function appUpdateTime() {
+	const output = getLastUpdatedTimestamp(lastUpdatedDate);
+	var info = document.getElementById('minorUpdateInfo').innerHTML;
+	document.getElementById('minorUpdateInfo').innerHTML = info + output;
 }

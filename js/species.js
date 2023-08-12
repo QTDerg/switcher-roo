@@ -8,6 +8,7 @@ function speciesLoadList() {
 		document.getElementById("speciesSearch").style.display= 'none';
 		document.getElementById("speciesCategorySelectorContainer").style.display= 'block';
 		document.getElementById('speciesContainer').style.width = "80%";
+		document.getElementById('speciesMenu').style.paddingBottom = "10px";
 	}
 }
 
@@ -15,7 +16,8 @@ async function goBackFromCategoryList() {
 	document.getElementById("speciesCurrentContainer").style.display= 'block';
 	document.getElementById("speciesCategorySelectorContainer").style.display= 'none';
 	document.getElementById('speciesContainer').style.width = "70%";
-	await sleep(200);
+	document.getElementById('speciesMenu').style.paddingBottom = "0px";
+	await sleep(250);
 	document.getElementById("speciesSearch").style.display= 'block';
 }
 
@@ -82,7 +84,7 @@ function speciesGoToCategory(x) {
 	// Hide the elements	
 	document.getElementById("speciesCategorySelectorContainer").style.display = 'none';
 	var i;
-	for (i = 1; i < 19; i++) {
+	for (i = 1; i < 21; i++) {
 		document.getElementById("speciesSelector" + i).style.display = 'none';
 	}
 	
@@ -92,7 +94,7 @@ function speciesGoToCategory(x) {
 
 function speciesGoBackFromCategory() {
 	var i;
-	for (i = 1; i < 19; i++) {
+	for (i = 1; i < 21; i++) {
 		document.getElementById("speciesSelector" + i).style.display = 'none';
 	}
 	
