@@ -27,7 +27,7 @@ function connectToServer() {
 				config: {
 					iceServers: [
 						{ urls: 'stun:stun.l.google.com:19302' },
-						{ urls: 'turn:openrelay.metered.ca:80', username: 'openrelayproject', credential: 'openrelayproject'}
+						{ urls: 'turn:freeturn.net:3478', username: 'free', credential: 'free'}
 					]
 				},	
 			});
@@ -40,7 +40,7 @@ function connectToServer() {
 				config: {
 					iceServers: [
 						{ urls: 'stun:stun.l.google.com:19302' },
-						{ urls: 'turn:openrelay.metered.ca:80', username: 'openrelayproject', credential: 'openrelayproject'}
+						{ urls: 'turn:freeturn.net:3478', username: 'free', credential: 'free'}
 					]
 				},		
 			});

@@ -27,10 +27,11 @@ textarea:focus, input:focus{
 	background-color: #59568f;
 	border-radius: 4px;
 	top: 10%;
-	left: 35%;
+	margin-left: 20px;
 	cursor: pointer;
 	font-size: 14px;
 	padding: 2px;
+	max-width: 300px;
 }
 
 .speciesCurrent {
@@ -621,7 +622,22 @@ select:disabled::-ms-expand {
 	overflow: hidden;
 }
 .charViz-NextGen-display-container {
-	height: 460px; /*640x960 -> 531px | 640x832 -> 460px */
+	height: 531px; 
+	/*
+	512x768  ->  531px
+	640x960  ->  531px
+	768x1152 ->  531px
+	
+	704x1088 ->  547px
+	
+	640x832  ->  460px
+	832x1088 ->  463px
+	
+	512x704  ->  487px
+	640x896  ->  496px
+	704x1024 ->  515px
+	768x1088 ->  502px
+	*/
 	margin: auto;
 	background-color: #282640;
 	transition-duration: 0.5s;
@@ -644,7 +660,7 @@ select:disabled::-ms-expand {
 	float: left;
 	width: 40px;
 	height: 40px;
-	background-color: rgba(89, 86, 143, 0.7);
+	background-color: rgba(89, 86, 143, 0.6);
 	border-radius: 12px;
 	text-align: center;
 	padding: 8px;
@@ -660,27 +676,74 @@ select:disabled::-ms-expand {
 .button-CharViz-NextGen:active {
 	background-color: #c1bfd9;
 }
+.button-icon {
+	background-color: rgba(89, 86, 143, 0.6);
+	background-image: url("../images/gear-icon.png");
+	background-size: 100%;
+	width: 15px;
+	height: 15px;
+	opacity: 0.6;
+}
+/*.button-icon:hover {
+	background-color: transparent;
+}
+.button-icon:active {
+	background-color: transparent;
+}*/
 .smol-button-CharViz-NextGen {
 	float: left;
 	width: 10px;
 	height: 10px;
-	background-color: rgba(89, 86, 143, 0.7);
+	background-color: rgba(89, 86, 143, 0.6);
 	border-radius: 4px;
 	text-align: center;
-	padding: 6px;
+	padding: 4px;
 	transition-duration: 0.35s;
 	cursor: pointer;
 	user-select: none;
 	font-size: 11px;
-	margin: 5px;
+	margin: 2px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 .smol-button-CharViz-NextGen:hover {
-	background-color: #928fbc;
+	background-color: #928fbc !important;
 }
 .smol-button-CharViz-NextGen:active {
-	background-color: #c1bfd9;
+	background-color: #c1bfd9 !important;
 }
-
+.rect-button {
+	width: 40px;
+	margin: 7px;
+	padding: 8px;
+}
+.rect-button-select {
+	width: 80%;
+	background-color: rgba(89, 86, 143, 0.75);
+	padding: 6px;
+	margin: 0 auto;
+	font-size: 12px;
+	height: 14px;
+	float: none;
+	margin-top: 6px;
+}
+.charViz-NextGen-menu {
+	margin: 0 auto;
+	position: inherit;
+	width: 60%;
+	overflow-y: auto;
+	height: 100%;
+}
+.charViz-NextGen-menu-info {
+	padding: 8px;
+	font-size: 12px;
+	background-color: rgba(40, 38, 64, 0.6);
+	margin: 5px;
+	margin-bottom: 0;
+	border-radius: 5%;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
 .menuCharViz {
 	border-bottom: 2px solid #807F97;
 	text-align: center;
@@ -693,7 +756,7 @@ select:disabled::-ms-expand {
 }
 
 .charVizDisplayContainer {
-	height: 400px;
+	height: 440px;
 	margin: auto;
 	background-color: #282640;
 	transition-duration: 0.5s;
@@ -704,12 +767,12 @@ select:disabled::-ms-expand {
 .charVizDisplay {
 	position: absolute;
 	top: -30px;
-	width: 330px;
-	height: 440px;
+	width: 354px;
+	height: 472px;
 	background-size: 100% 100% !important;
 	background-position: 60% 60% !important;
-	mask-size: 330px 440px !important;
-	-webkit-mask-size: 330px 440px !important;
+	mask-size: 354px 472px !important;
+	-webkit-mask-size: 354px 472px !important;
 }
 #charVizDisplayMessage {
 	color: #FF4550;
@@ -1468,7 +1531,44 @@ a:active {
 	border-radius: 0px;
 	transition-duration: 0.25s;
 }
-
+.charViz-NextGen-text-field-quick-access {
+	font-size:16px;
+	padding:6px;
+	margin:7px;
+	width:40px;
+	background-color:rgba(89, 86, 143, 0.6);
+	border: 2px solid transparent;
+	transition-duration: 0.5s;
+}
+.charViz-NextGen-text-field-quick-access:hover {
+	width:180px;
+}
+.charViz-NextGen-text-field-quick-access:focus {
+	width:285px;
+}
+.charViz-NextGen-text-field {
+	width: 80%;
+	background-color: rgba(89, 86, 143, 0.75);
+	color: #282640;
+	border: 0;
+	border-radius: 5px;
+	padding: 6px;
+	margin: 0 auto;
+	font-size: 12px;
+	height: 14px;
+	float: none;
+	margin-top: 6px;
+	display: inherit;
+	font-family: Century Gothic;
+}
+.half-width {
+	width: 30%;
+	margin: 16px;
+	margin-right: 5px;
+	margin-top: 5px;
+	margin-bottom: 0;
+	display: inline-block;
+}
 .smallButton {
 	background-color: #282640;
 	border: 2px solid #59568f;

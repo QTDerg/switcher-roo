@@ -17,7 +17,7 @@
 <meta name="twitter:image" content="https://qtderg.github.io/switcher-roo/images/twitter_card.png"/>
 
 <link rel='manifest' href='/switcher-roo/manifest.webmanifest'>
-<link rel="stylesheet" href="css/styles.css?v=1.6">  
+<link rel="stylesheet" href="css/styles.css?v=1.7">  
 <link rel="stylesheet" type="text/css" href="css/dhtmlxslider.css" id="defaultcss"/>
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="apple-touch-icon" href="images/touch-icon-iphone.png">
@@ -26,7 +26,7 @@
 <link rel="apple-touch-icon" sizes="167x167" href="images/touch-icon-ipad-retina.png">
 
 <script src="js/dhtmlxslider.js"></script>
-<script src="js/switcheroo.js?v=1.1.3"></script>
+<script src="js/switcheroo.js?v=1.1.4"></script>
 <script src="js/saveSlots.js?v=1.0.3"></script>
 <script src="js/slot0.js?v=1.0.0"></script>
 <script src="js/species.js?v=1.1.3"></script>
@@ -35,12 +35,13 @@
 <script src="js/iro.min.js"></script>
 <script src="js/color-scheme.min.js"></script>
 <script src="js/peerjs.min.js"></script>
-<script src="js/CONTROL.JS?v=1.0.11"></script>
+<script src="js/CONTROL.JS?v=1.0.12"></script>
 <script src="js/appStatus.js?v=1.0.0"></script>
 <script src="js/creativeMode.js?v=1.0.1"></script>
-<script src="js/charViz.js?v=1.2.0"></script>
+<script src="js/charViz.js?v=1.2.1"></script>
+<script src="js/charViz-NextGen.js?v=1.1.0"></script>
 <script src="js/randomizer.js?v=1.0.3"></script>
-<script src="js/prompt-constructors/fluffusion.js?v=1.0.1"></script>
+<script src="js/prompt-constructor.js?v=1.1.0"></script>
 <script src="pwabuilder-sw.js"></script>
 <script>
 // This is the "Offline copy of pages" service worker
@@ -291,7 +292,7 @@ if ("serviceWorker" in navigator) {
 			<div class="speciesEntryRight" onClick="speciesGoToCategory('10');"><div class="speciesCategoryText">Cervine</div></div>
 			<div class="speciesEntryLeft" onClick="speciesGoToCategory('11');"><div class="speciesCategoryText">Equine</div></div>
 			<div class="speciesEntryRight" onClick="speciesGoToCategory('12');"><div class="speciesCategoryText">Feline</div></div>
-			<div class="speciesEntryLeft" onClick="speciesGoToCategory('13');"><div class="speciesCategoryText">Fictional</div></div>
+			<div class="speciesEntryLeft" onClick="speciesGoToCategory('13');"><div class="speciesCategoryText">Fictional & VRC</div></div>
 			<div class="speciesEntryRight" onClick="speciesGoToCategory('14');"><div class="speciesCategoryText">Hybrid</div></div>
 			<div class="speciesEntryLeft" onClick="speciesGoToCategory('15');"><div class="speciesCategoryText">Lagomorph</div></div>
 			<div class="speciesEntryRight" onClick="speciesGoToCategory('16');"><div class="speciesCategoryText">Marsupial</div></div>
@@ -667,19 +668,25 @@ if ("serviceWorker" in navigator) {
 			<div class="speciesEntryRight" onClick="setSpeciesTo('Dragon');"><div class="speciesEntryText">Dragon</div></div>
 			<div class="speciesEntryLeft" onClick="setSpeciesTo('Gryphon');"><div class="speciesEntryText">Gryphon</div></div>
 			<div class="speciesEntryRight" onClick="setSpeciesTo('Jackalope');"><div class="speciesEntryText">Jackalope</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Khajiit');"><div class="speciesEntryText">Khajiit</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Kitsune');"><div class="speciesEntryText">Kitsune</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Kobold');"><div class="speciesEntryText">Kobold</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Nargacuga');"><div class="speciesEntryText">Nargacuga</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Phoenix');"><div class="speciesEntryText">Phoenix</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Protogen');"><div class="speciesEntryText">Protogen</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Sergal');"><div class="speciesEntryText">Sergal</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Synth');"><div class="speciesEntryText">Synth</div></div>
+			<div class="speciesEntryLeft" onClick="setSpeciesTo('Tanuki');"><div class="speciesEntryText">Tanuki</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Unicorn');"><div class="speciesEntryText">Unicorn</div></div>
+			<div class="speciesEntryLast" onClick="setSpeciesTo('Werewolf');"><div class="speciesEntryText">Werewolf</div></div>
+			
+			<div class="speciesCategoryButtonEnd"><div class="categoryText"><img src="images/harpoonArrowLeft.png" class="harpoonArrowImg"></div></div>
+			<div class="speciesCategoryName"><div class="categoryText">VRChat</div></div>
+			<div class="speciesCategoryButtonEnd"><div class="categoryText"><img src="images/harpoonArrowRight.png" class="harpoonArrowImg"></div></div>
 			<div class="speciesEntryLeft" onClick="setSpeciesTo('Jex');"><div class="speciesEntryText">Jex</div></div>
-			<div class="speciesEntryRight" onClick="setSpeciesTo('Khajiit');"><div class="speciesEntryText">Khajiit</div></div>
-			<div class="speciesEntryLeft" onClick="setSpeciesTo('Kitsune');"><div class="speciesEntryText">Kitsune</div></div>
-			<div class="speciesEntryRight" onClick="setSpeciesTo('Kobold');"><div class="speciesEntryText">Kobold</div></div>
-			<div class="speciesEntryLeft" onClick="setSpeciesTo('Nargacuga');"><div class="speciesEntryText">Nargacuga</div></div>
-			<div class="speciesEntryRight" onClick="setSpeciesTo('Phoenix');"><div class="speciesEntryText">Phoenix</div></div>
-			<div class="speciesEntryLeft" onClick="setSpeciesTo('Protogen');"><div class="speciesEntryText">Protogen</div></div>
-			<div class="speciesEntryRight" onClick="setSpeciesTo('Sergal');"><div class="speciesEntryText">Sergal</div></div>
-			<div class="speciesEntryLeft" onClick="setSpeciesTo('Synth');"><div class="speciesEntryText">Synth</div></div>
-			<div class="speciesEntryRight" onClick="setSpeciesTo('Tanuki');"><div class="speciesEntryText">Tanuki</div></div>
-			<div class="speciesEntryLeft" onClick="setSpeciesTo('Unicorn');"><div class="speciesEntryText">Unicorn</div></div>
-			<div class="speciesEntryRight" onClick="setSpeciesTo('Werewolf');"><div class="speciesEntryText">Werewolf</div></div>
-			<div class="speciesEntryLast" onClick="setSpeciesTo('Wickerbeast');"><div class="speciesEntryText">Wickerbeast</div></div>
+			<div class="speciesEntryRight" onClick="setSpeciesTo('Nardoragon');"><div class="speciesEntryText">Nardoragon</div></div>
+			<div class="speciesEntryLeftLast" onClick="setSpeciesTo('Rexouium');"><div class="speciesEntryText">Rexouium</div></div>
+			<div class="speciesEntryRightLast" onClick="setSpeciesTo('Wickerbeast');"><div class="speciesEntryText">Wickerbeast</div></div>
 			
 		</div>
 		
@@ -1693,9 +1700,9 @@ Please contact Switcher-Roo support for assistance
 		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayInanimateTF" id="charVizDisplayInanimateTFsecondary"></div>		
 		<div class="charVizDisplay charVizDisplayCharacter charVizDisplayInanimateTF" id="charVizDisplayInanimateTFlines"></div>
 		
-		<div class="charVizDisplay" id="charVizDisplayMessage">Species unsupported<div style="font-size:16px;padding-left: 15px;padding-top:150px">Supported species are listed in readme</div></div>
+		<div class="charVizDisplay" id="charVizDisplayMessage">Species unsupported<div style="font-size:16px;padding-left: 15px;padding-top:185px">Supported species are listed in readme</div></div>
 		
-		<div class="charVizDisplay" id="charVizLaunchMessage" onClick="charVizStartup()">Tap to launch CharViz<div style="font-size:14px;padding-left:15px;padding-right:15px;padding-top:170px">To enable autolaunch, navigate to CharViz -> Options and tick "Launch CharViz automatically on app startup"</div></div>
+		<div class="charVizDisplay" id="charVizLaunchMessage" onClick="charVizStartup()">Tap to launch CharViz<div style="font-size:14px;padding-left:15px;padding-right:15px;padding-top:200px">To enable autolaunch, navigate to CharViz -> Options and tick "Launch CharViz automatically on app startup"</div></div>
 		
 	</div>
 	
@@ -1709,17 +1716,195 @@ Please contact Switcher-Roo support for assistance
 
 <div class="menu-CharViz-NextGen" id="menuCharVizNextGen" style="display:none">
 
-	<div class="charViz-NextGen-display-container">
+	<div class="charViz-NextGen-display-container" id="charVizNextGenDisplayContainer">
 	
 		<div class="charViz-NextGen-display" id="charVizNextGenDisplayImage" style="background-color:#282640"></div>
 		
-		<div class="charViz-NextGen-display" id="charVizNextGenDisplayMessage" style="background-color: rgba(0, 0, 0, 0.15); display:none"></div>
+		<div class="charViz-NextGen-display" id="charVizNextGenDisplayMessage" style="background-color: rgba(0, 0, 0, 0.25); display:none">
+			<div style="text-align:center">
+				<div class="sk-chase" style="left: 0;top: 200px; margin: 0 auto; scale: 1.35">
+					<div class="sk-chase-dot"></div>
+					<div class="sk-chase-dot"></div>
+					<div class="sk-chase-dot"></div>
+					<div class="sk-chase-dot"></div>
+					<div class="sk-chase-dot"></div>
+					<div class="sk-chase-dot"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="charViz-NextGen-button-container" style="left:0;top:0">
+			
+			<input id="charVizNextGenExtraPrompt" class="charViz-NextGen-text-field-quick-access mediumTextField" value="">
+			
+		</div>
+		
+		<div class="charViz-NextGen-button-container" style="top:0">
+			
+			<div id="currentResolution" style="font-size: 10px;text-align: right;padding: 4px; width: 40px; float: right; background-color: rgba(0, 0, 0, 0.25);"></div>
+			
+			<div class="button-CharViz-NextGen button-icon" onClick="charVizNextGenOpenMenu('charVizNextGenSettings')" style="float:right"></div>
+			
+		</div>
+		
+		<div class="charViz-NextGen-button-container charViz-NextGen-menu" id="charVizNextGenSettings" style="display:none">
+			
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="charVizNextGenCloseMenu('charVizNextGenSettings')" style="background-color: rgba(179, 0, 3, 0.5)">Close</div>
+			
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="charVizNextGenCloseMenu('charVizNextGenSettings')">Quick Access Buttons</div>
+			
+			<div class="charViz-NextGen-menu-info">
+			Seed
+			</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select half-width" onClick="charVizNextGenCheckSeed()">Check</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select half-width" onClick="charVizNextGenRandSeed()">Randomize</div>
+			<input id="charVizNextGenUserSeed" class="charViz-NextGen-text-field half-width" value="">
+			<div class="smol-button-CharViz-NextGen rect-button-select half-width" onClick="charVizNextGenSetSeed()">Set</div>
+			
+			<input id="testtttttttt" class="charViz-NextGen-text-field" value="">
+			
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="charVizNextGenCloseMenu('charVizNextGenSettings')" style="background-color: rgba(179, 0, 3, 0.5)">Close</div>
+		
+		</div>
+		
+		<div class="charViz-NextGen-button-container charViz-NextGen-menu" id="charVizNextGenSelectOutfit" style="display:none">
+			
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="charVizNextGenCloseMenu('charVizNextGenSelectOutfit')" style="background-color: rgba(179, 0, 3, 0.5)">Close</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select half-width" onClick="selectOutfit(0,0)">Naked</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select half-width" onClick="checkOutfit()">Check</div>
+			
+			<div class="charViz-NextGen-menu-info">
+			Everyday wear
+			</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectOutfit(0,1)">Programmer outfit</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectOutfit(0,2)">Sundress</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectOutfit(0,3)">Floral sundress</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectOutfit(0,4)">Crop top & shorts</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectOutfit(0,5)">Sports bra & leggings</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectOutfit(0,6)">Bikini</div>
+			
+			<div class="charViz-NextGen-menu-info">
+			Cosplay
+			</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectOutfit(1,0)">Maid outfit</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectOutfit(1,1)">Cheerleader outfit</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectOutfit(1,2)">Witch costume</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectOutfit(1,3)">Nurse uniform</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectOutfit(1,4)">Secretary uniform</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectOutfit(1,5)">School uniform</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectOutfit(1,6)">Nun outfit</div>
+			
+			<div class="charViz-NextGen-menu-info">
+			Bedroom wear
+			</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectOutfit(2,0)">Black lingerie set</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectOutfit(2,1)">Pink lingerie set</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectOutfit(2,2)">White lingerie set</div>
+			
+			<div class="charViz-NextGen-menu-info">
+			Formal wear
+			</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectOutfit(3,0)">Evening gown</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectOutfit(3,1)">Wedding dress</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectOutfit(3,2)">Ball gown</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectOutfit(3,3)">Suit</div>
+			
+		</div>
+		
+		<div class="charViz-NextGen-button-container charViz-NextGen-menu" id="charVizNextGenSelectStyle" style="display:none">
+			
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="charVizNextGenCloseMenu('charVizNextGenSelectStyle')" style="background-color: rgba(179, 0, 3, 0.5)">Close</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select half-width" onClick="selectStyle(0)">Default</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select half-width" onClick="checkStyle()">Check</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectStyle(1)">Digital drawing</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectStyle(2)">Digital painting</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectStyle(3)">Pixel art</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectStyle(4)">Traditional media</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectStyle(5)">Watercolor</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectStyle(6)">Graphite</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectStyle(7)">Lineless</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectStyle(8)">Sketch</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectStyle(9)">Monochrome</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectStyle(10)">Greyscale</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectStyle(11)">Line art</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="selectStyle(12)">Kemono</div>
+			
+		</div>
+		
+		<div class="charViz-NextGen-button-container charViz-NextGen-menu" id="charVizNextGenSelectResolution" style="display:none">
+			
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="charVizNextGenCloseMenu('charVizNextGenSelectResolution')" style="margin-top:170px;background-color: rgba(179, 0, 3, 0.5)">Close</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="setResolution(-2)">256x384 (Debug only)</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="setResolution(-1)">384x576 (Debug only)</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="setResolution(0)">512x768 (RTX 2060 6GB)</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="setResolution(1)">640x960 (RTX 3060 Ti 8GB)</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="setResolution(2)">768x1152 (RTX 3080 10GB)</div>
+			<div class="smol-button-CharViz-NextGen rect-button-select" onClick="setResolution(3)">896x1344 (RTX 4070 Ti 12GB)</div>
+			
+			<div class="charViz-NextGen-menu-info">
+			RTX 3060 12GB performance:<br>
+			<!-- Pony Diffusion V6 XL-->
+			512x768 - 9s <br>
+			640x960 - 14s <br>
+			768x1152 - 21s <br>
+			896x1344 - 27s <br>
+			<!-- EasyFluff
+			512x768 - 5s <br>
+			640x960 - 9s <br>
+			768x1152 - 13s <br>
+			896x1344 - 20s <br> -->
+			24 steps, Euler a sampler & <br> -opt-sdp-no-mem
+			</div>
+			
+		</div>
+		
+		<div class="charViz-NextGen-button-container" style="left:0">
+			
+			<div class="smol-button-CharViz-NextGen rect-button" onClick="abortTF()" style="font-size:9px">Abort TF</div>
+			
+			<div class="smol-button-CharViz-NextGen rect-button" onClick="transformation(1)">Init TF</div>
+			
+			<div class="smol-button-CharViz-NextGen rect-button" onClick="transformation(1, 1)">Dbg TF</div>
+			
+			<div class="smol-button-CharViz-NextGen rect-button" onClick="charVizNextGenRandSeed()" style="font-size:8px">RNG seed</div>
+		
+			<input id="charVizNextGenIpLanDigit" class="charViz-NextGen-text-field-quick-access mediumTextField" value="" style="width:40px !important">
+			
+			<div class="smol-button-CharViz-NextGen rect-button" onClick="setIP('lan')">LAN</div>
+			
+			<div class="smol-button-CharViz-NextGen rect-button" onClick="setIP('local')">Local</div>
+			
+			<div class="button-CharViz-NextGen" onClick="generateImage(true)">Debug<br>prompt</div>
+		
+		</div>
 		
 		<div class="charViz-NextGen-button-container">
+			
+			<div class="smol-button-CharViz-NextGen rect-button" onClick="charVizNextGenOpenMenu('charVizNextGenSelectResolution')">Set res</div>
+			
+			<div class="smol-button-CharViz-NextGen rect-button" onClick="downloadBase64File()">Save</div>
+			
+			<div class="smol-button-CharViz-NextGen rect-button" onClick="charVizNextGenOpenMenu('charVizNextGenSelectOutfit')">Outfits</div>
+			<!--
+			<div class="smol-button-CharViz-NextGen" onClick="cycleOutfit(-1)"><</div>
+			<div class="smol-button-CharViz-NextGen" onClick="noOutfit()">X</div>
+			<div class="smol-button-CharViz-NextGen" onClick="cycleOutfit(1)">></div>
+			-->
+			
+			<div class="smol-button-CharViz-NextGen rect-button" onClick="charVizNextGenOpenMenu('charVizNextGenSelectStyle')">Styles</div>
+			<!--
 			<div class="smol-button-CharViz-NextGen" onClick="cycleStyle(-1)"><</div>
+			<div class="smol-button-CharViz-NextGen" onClick="noStyle()">X</div>
 			<div class="smol-button-CharViz-NextGen" onClick="cycleStyle(1)">></div>
-			<div class="button-CharViz-NextGen" onClick="charVizNextGenRandSeed()">Rand<br>seed</div>
-			<div class="button-CharViz-NextGen" onClick="constructPrompt('fluffusion');hideCharVizNotification()">Gen.</div>
+			
+			<div class="smol-button-CharViz-NextGen" onClick="cycleLoraStr(-0.1)"><</div>
+			<div class="smol-button-CharViz-NextGen" onClick="defaultLoraStr()">X</div>
+			<div class="smol-button-CharViz-NextGen" onClick="cycleLoraStr(0.1)">></div>
+			-->
+			<div class="button-CharViz-NextGen" onClick="randomizeCharacter();generateImage();hideCharVizNotification()">Rand<br>and<br>gnrate</div>
+			
+			<div class="button-CharViz-NextGen" onClick="generateImage();hideCharVizNotification()">Gene-<br>-rate<br>image</div>
+			
 		</div>
 		
 	</div>
@@ -4781,7 +4966,7 @@ Version 0.6.2.1q<br> Click to see changelog
 </div>
 
 <div id="minorUpdateInfo" style="text-align: center;font-size: 12px;height: 10px;top: -8px;position: relative;">
-Minor update 9 • Hotfix 5 • 
+Minor update 10 • Hotfix 5 • 
 </div>
 
 <script>
@@ -4937,7 +5122,7 @@ checkSlots();
 welcomeUser();
 showOrHideBreastSizeMaleSlider();
 showOrHideGenitalSizeFemaleSlider();
-loadCustomSliders();
+setTimeout (loadCustomSliders, 1);
 loadCustomCheckboxes();
 loadCustomRadioInputs();
 setContainersHeightToZero();
@@ -4974,7 +5159,7 @@ loadDesktopMode();
 textFieldsEventListeners();
 currentTime();
 appUpdateTime();
-var startup = "False";
+startup = "False";
 </script>		
 
 </div>

@@ -3525,6 +3525,7 @@ function loadCharVizNextGen() {
 	else {
 		document.getElementById("charVizNextGenCheckbox").checked = false;
 	}
+	loadResolution();
 }
 
 function resetAppAll() {
@@ -3911,7 +3912,7 @@ function getLastUpdatedTimestamp(lastUpdatedDate) {
 }
 
 // Example usage
-const lastUpdatedDate = "2023-08-12"; // Replace this with your last updated date
+const lastUpdatedDate = "2024-04-01"; // Replace this with your last updated date
 
 function appUpdateTime() {
 	const output = getLastUpdatedTimestamp(lastUpdatedDate);

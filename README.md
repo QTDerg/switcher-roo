@@ -12,7 +12,7 @@ CONTROL lets you connect to other user and change their app settings (manipulate
 ### CharViz (beta)
 Make your own character, dress them up in various outfits and adjust their body with sliders! Note: this feature is in beta and species support is a bit limited. Also it is disabled by default so you will need to enable it in options.
 
-> Note: Current CharViz is considered a legacy feature and won't be updated anymore. CharViz NextGen will be released in Q4 2023. It will support all species and all body types enabling a wide range of transformations.
+> Note: Current CharViz is considered a legacy feature and won't be updated anymore. CharViz NextGen might be released sometime in the future. It will support all species and all body types enabling a wide range of transformations.
 
 ### Randomizer
 You want to make a character and have a lack of inspiration? Don't hesistate to hit Randomizer button a few times! Works best with CharViz enabled.
