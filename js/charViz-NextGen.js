@@ -25,10 +25,10 @@ async function sendToLocaltxt2img(prompt, negPrompt, seed, ipAdd) {
 			"width": width,
 			"steps": 24,
 			"save_images": true,
-			"alwayson_scripts": {
-				"CFG Rescale Extension": 	{"args": [0.0]}//,
+			//"alwayson_scripts": {
+			//	"CFG Rescale Extension": 	{"args": [0.0]}//,
 				//"Plasma Noise": 			{"args": [true, 2.75, 1.0, 1.0, -1, -1, -1, -1, -1, -1, -1, -1]}
-			}
+			//}
 		}),
 		headers: {
 		'Content-Type': 'application/json'
