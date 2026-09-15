@@ -8,9 +8,9 @@ var synchronizationComplete;
 
 function connectToServer() {
 	if (peer == null) {
-		var chosenPeerJSServer = 2;
+		var chosenPeerJSServer = 1;
 		// 0 = PeerJS server hosted on localhost.
-		// 1 = Official PeerJS server. Very unstable, often giving "Server has reached its concurrent user limit" error.
+		// 1 = Official PeerJS server. Very unstable, often giving "Server has reached its concurrent user limit" error. 2026 - update - looks like it became more stable in recent years
 		// 2 = PeerJS server hosted on peerjs.92k.de
 		
 		// Command to launch PeerJS server // peerjs --port 9000 --key peerjs --path /myapp
